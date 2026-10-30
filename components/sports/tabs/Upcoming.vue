@@ -126,7 +126,7 @@ const handleSportChange = (event: Event): void => {
 
 const matchingEvents = computed(() => {
   const q = search.value.toLowerCase().trim()
-  return props.events.filter(event => {
+  return props.events.filter((event: SportsEvent) => {
     if (event.completed) return false
     const details = `${event.home_team ?? ''} ${event.away_team ?? ''} ${event.sport_title ?? ''}`.toLowerCase()
     return !q || details.includes(q)
@@ -134,7 +134,7 @@ const matchingEvents = computed(() => {
 })
 
 const availableTimeFilters = computed(() => timeFilters.filter(filter =>
-  matchingEvents.value.some(event => isWithinTimeFilter(event, filter)),
+  matchingEvents.value.some((event: SportsEvent) => isWithinTimeFilter(event, filter)),
 ))
 
 watch(availableTimeFilters, filters => {
@@ -147,7 +147,7 @@ watch(availableTimeFilters, filters => {
 
 const filteredEvents = computed(() => {
   if (!selectedTimeFilter.value) return []
-  return matchingEvents.value.filter(event => isWithinTimeFilter(event, selectedTimeFilter.value))
+  return matchingEvents.value.filter((event: SportsEvent) => isWithinTimeFilter(event, selectedTimeFilter.value))
     .sort((a, b) => sortBy.value === 'league'
       ? a.sport_title.localeCompare(b.sport_title) || Date.parse(a.commence_time) - Date.parse(b.commence_time)
       : Date.parse(a.commence_time) - Date.parse(b.commence_time))
@@ -156,7 +156,7 @@ const filteredEvents = computed(() => {
 const groupedSports = computed(() => {
   const groups: Record<string, { title: string; key: string; description: string; group: string; earliestTime: number }> = {}
 
-  filteredEvents.value.forEach(event => {
+  filteredEvents.value.forEach((event: SportsEvent) => {
     const sportKey = event.sport_key
     const eventTime = Date.parse(event.commence_time)
     const validTime = Number.isFinite(eventTime) ? eventTime : Infinity

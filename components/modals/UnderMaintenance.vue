@@ -13,6 +13,12 @@ const emit = defineEmits<{ close: [] }>()
 const dialog = ref<HTMLDialogElement | null>(null)
 let previousOverflow = ''
 
+const handleBackdropClick = (event: MouseEvent): void => {
+  if (event.target === dialog.value) {
+    emit('close')
+  }
+}
+
 onMounted(() => {
   previousOverflow = document.body.style.overflow
   document.body.style.overflow = 'hidden'
@@ -33,7 +39,7 @@ onBeforeUnmount(() => {
       aria-labelledby="maintenance-title"
       aria-describedby="maintenance-description"
       @cancel.prevent="emit('close')"
-      @click="event => { if (event.target === dialog) emit('close') }"
+      @click="handleBackdropClick"
     >
       <div class="maintenance-content">
         <div class="maintenance-symbol" aria-hidden="true">!</div>

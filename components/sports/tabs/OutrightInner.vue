@@ -51,7 +51,7 @@ const commencementDates = computed(() => {
     hourCycle: 'h23',
   })
   for (const [key, events] of Object.entries(outrightEvents.value)) {
-    const first = events.filter(event => Number.isFinite(Date.parse(event.commence_time)))
+    const first = events.filter((event: SportsEvent) => Number.isFinite(Date.parse(event.commence_time)))
       .sort((a, b) => Date.parse(a.commence_time) - Date.parse(b.commence_time))[0]
     if (first) {
       const parts = formatter.formatToParts(new Date(first.commence_time))

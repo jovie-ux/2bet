@@ -106,7 +106,7 @@ const handleSportChange = (event: Event): void => {
 
 const filteredEvents = computed(() => {
   const q = search.value.toLowerCase().trim()
-  const list = props.events.filter(event => {
+  const list = props.events.filter((event: SportsEvent) => {
     const start = Date.parse(event.commence_time)
     if (!Number.isFinite(start) || start <= now.value || event.completed) return false
     if (selectedDate.value !== 'all' && dateKey(start) !== selectedDate.value) return false
@@ -126,7 +126,7 @@ const filteredEvents = computed(() => {
 const groupedSports = computed(() => {
   const groups: Record<string, { title: string; key: string; description: string; group: string; earliestTime: number }> = {}
   
-  filteredEvents.value.forEach(event => {
+  filteredEvents.value.forEach((event: SportsEvent) => {
     const sportKey = event.sport_key
     const eventTime = Date.parse(event.commence_time)
     const validTime = Number.isFinite(eventTime) ? eventTime : Infinity

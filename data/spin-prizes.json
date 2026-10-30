@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Acer Laptop",
+    "image": "/images/spin-prizes/acer-laptop.png",
+    "accent": "#7de6c0",
+    "value": 36999,
+    "details": "Reference model: Aspire Lite AL15-41P-R16X, Ryzen 7, 8GB / 512GB.",
+    "valueSource": "https://shop.villman.com/products/acer-aspire-lite-al15-41p-r16x",
+    "valueCheckedAt": "2026-10-30"
+  },
+  {
+    "name": "Apple Watch",
+    "image": "/images/spin-prizes/apple-watch.png",
+    "accent": "#d8e4df",
+    "value": 27990,
+    "details": "Reference model: Series 11 GPS, 42mm aluminum case with Sport Band.",
+    "valueSource": "https://powermaccenter.com/pages/installment-options",
+    "valueCheckedAt": "2026-10-30"
+  },
+  {
+    "name": "DJI Pocket Camera",
+    "image": "/images/spin-prizes/dji-pocket-camera.png",
+    "accent": "#9fd3ff",
+    "value": 20590,
+    "details": "Reference model: DJI Osmo Pocket 3, standard package.",
+    "valueSource": "https://www.henryscameraphoto.com/NEW-ITEMS/NEW-ITEMS/DJI-Osmo-Pocket-3",
+    "valueCheckedAt": "2026-10-30"
+  },
+  {
+    "name": "Antigravity A1 Drone",
+    "image": "/images/spin-prizes/antigravity-a1-drone.png",
+    "accent": "#f5f5f5",
+    "value": 63740,
+    "details": "Reference model: Antigravity A1 8K 360 Drone, Standard Bundle.",
+    "valueSource": "https://www.henryscameraphoto.com/Insta360-ANTIGRAVITY-A1-8K-360-Drone-Standard-Bundle",
+    "valueCheckedAt": "2026-10-30"
+  },
+  {
+    "name": "iPad Pro M5 512GB",
+    "image": "/images/spin-prizes/ipad-pro-m5.png",
+    "accent": "#d2b7ff",
+    "value": 103990,
+    "details": "Reference model: 11-inch iPad Pro M5, 512GB, Wi-Fi, standard glass.",
+    "valueSource": "https://www.apple.com/ph/shop/buy-ipad/ipad-pro/11-inch-display-512gb-space-black-wifi-standard-glass",
+    "valueCheckedAt": "2026-10-30"
+  },
+  {
+    "name": "iPhone Pro",
+    "image": "/images/spin-prizes/iphone-pro.webp",
+    "accent": "#ffad72",
+    "value": 73790,
+    "details": "Reference model: iPhone 17 Pro, 256GB, non-installment price.",
+    "valueSource": "https://powermaccenter.com/pages/iphone-price-list",
+    "valueCheckedAt": "2026-10-30"
+  },
+  {
+    "name": "PlayStation 5",
+    "image": "/images/spin-prizes/playstation-5.png",
+    "accent": "#c5d7ff",
+    "value": 40032,
+    "details": "Reference model: PS5 console with disc drive, Philippine recommended retail price.",
+    "valueSource": "https://blog.playstation.com/?p=417060",
+    "valueCheckedAt": "2026-10-30"
+  },
+  {
+    "name": "Samsung QLED TV",
+    "image": "/images/spin-prizes/samsung-qled-tv.png",
+    "accent": "#66d9ff",
+    "value": 26947,
+    "details": "Reference model: 55-inch Samsung Q7FA QLED 4K TV, QA55Q7FAAGXXP.",
+    "valueSource": "https://www.addessa.com/tv/tv/p/samsung-55-qled-4k-smart-tv-qa55q7faagxxp-00025",
+    "valueCheckedAt": "2026-10-30"
+  },
+  {
+    "name": "Galaxy Z Fold 7 1TB",
+    "image": "/images/spin-prizes/galaxy-z-fold-7.png",
+    "accent": "#759dff",
+    "value": 141990,
+    "details": "Reference model: Samsung Galaxy Z Fold7, 16GB RAM / 1TB storage.",
+    "valueSource": "https://www.samsung.com/ph/smartphones/galaxy-z-fold7/buy/?modelCode=SM-F966BZSDPHL",
+    "valueCheckedAt": "2026-10-30"
+  },
+  {
+    "name": "Steam Deck",
+    "image": "/images/spin-prizes/steam-deck.png",
+    "accent": "#9ba5aa",
+    "value": 54995,
+    "details": "Reference model: Steam Deck OLED, 512GB NVMe SSD.",
+    "valueSource": "https://ecommerce.datablitz.com.ph/products/steam-deck-oled-1tb",
+    "valueCheckedAt": "2026-10-30"
+  }
+]

@@ -22,6 +22,12 @@ const handleOk = (): void => {
   emit('close')
 }
 
+const handleBackdropClick = (event: MouseEvent): void => {
+  if (event.target === dialog.value) {
+    emit('close')
+  }
+}
+
 onMounted(() => {
   previousOverflow = document.body.style.overflow
   document.body.style.overflow = 'hidden'
@@ -42,7 +48,7 @@ onBeforeUnmount(() => {
       aria-labelledby="reminder-title"
       aria-describedby="reminder-description"
       @cancel.prevent="emit('close')"
-      @click="event => { if (event.target === dialog) emit('close') }"
+      @click="handleBackdropClick"
     >
       <div class="reminder-content">
         <div class="reminder-symbol" aria-hidden="true">!</div>

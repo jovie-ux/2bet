@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ReferenceSpinSection from '~/components/ReferenceSpinSection.vue'
 import {
   newGames,
   popularGames,
@@ -56,6 +57,7 @@ useAppSeo({
       to="/explore/egames/slots"
     />
     <ReferenceJackpots />
+    <ReferenceSpinSection />
     <ReferenceProviders :providers="providers" />
     <ReferencePromotions />
     <ReferenceGameSection

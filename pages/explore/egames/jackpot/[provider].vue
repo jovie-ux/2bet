@@ -433,7 +433,7 @@ watch(activeProvider, () => { activeGameId.value = null })
 
     <!-- Winners List Card (Shown only on JDB jackpot page) -->
     <div
-      v-if="activeProvider === 'jdb'"
+      v-if="activeProvider === 'jdb' || activeProvider === 'all'"
       class="winners-card rounded-md bg-[#171817] shadow-sm mb-8"
     >
       <div class="flex items-center justify-between pt-2 px-4">

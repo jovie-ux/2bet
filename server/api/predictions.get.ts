@@ -1,3 +1,4 @@
+import type { H3Event } from 'h3'
 import { EXPERT_PREDICTORS } from '~/data/predictions'
 import type {
   Prediction,
@@ -140,7 +141,7 @@ const formatMatchTime = (value: string): string => {
 
 const randomItem = <T>(items: T[]): T => items[Math.floor(Math.random() * items.length)]!
 
-export default defineCachedEventHandler(async (event): Promise<PredictionsResponse> => {
+export default defineCachedEventHandler(async (event: H3Event): Promise<PredictionsResponse> => {
   const now = new Date()
   const twoDaysFromNow = new Date(now.getTime() + TWO_DAYS_MS)
   const commenceTimeFrom = toApiTimestamp(now)

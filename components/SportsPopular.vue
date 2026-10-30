@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { SportsEvent } from '~/types/sports'
 import { sportsTimeRange } from '~/utils/sportsTimeRange'
 import { matchesSportsSelection } from '~/utils/sportsSelection'
 const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
@@ -214,7 +215,7 @@ const outrightRefreshVersion = ref(0)
 
 const inplayEvents = computed(() => {
   return (fixtures.value?.events ?? [])
-    .filter((event) => {
+    .filter((event: SportsEvent) => {
       const start = new Date(event.commence_time).getTime()
       if (event.completed) return false
       if (!usesLiveCatalog.value) return Boolean(event.scores && start <= now.value)
@@ -225,7 +226,7 @@ const inplayEvents = computed(() => {
 
 const upcomingEvents = computed(() => {
   return (fixtures.value?.events ?? [])
-    .filter((event) => {
+    .filter((event: SportsEvent) => {
       const start = new Date(event.commence_time).getTime()
       return start > now.value
     })
@@ -234,7 +235,7 @@ const upcomingEvents = computed(() => {
 
 const prematchEvents = computed(() => {
   return (fixtures.value?.events ?? [])
-    .filter((event) => {
+    .filter((event: SportsEvent) => {
       const start = new Date(event.commence_time).getTime()
       return start > now.value
     })

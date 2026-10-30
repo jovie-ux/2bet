@@ -39,11 +39,11 @@ const filteredEvents = computed(() => {
   let list = props.events
 
   if (props.selectedSport) {
-    list = list.filter(event => event.sport_key === props.selectedSport)
+    list = list.filter((event: SportsEvent) => event.sport_key === props.selectedSport)
   }
 
   if (q) {
-    list = list.filter((event) => {
+    list = list.filter((event: SportsEvent) => {
       const details = `${event.home_team ?? ''} ${event.away_team ?? ''} ${event.sport_title ?? ''}`.toLowerCase()
       return details.includes(q)
     })
