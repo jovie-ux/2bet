@@ -51,7 +51,7 @@ export function createOddsApi(api: string, apiKey: string) {
       markets: /^(soccer|tennis)_/.test(sport) ? 'h2h' : 'h2h,spreads,totals',
       oddsFormat: 'decimal',
     }, 10 * 60 * 1000)
-    return events.filter(event =>
+    return events.filter((event: SportsEvent) =>
       (!range.commenceTimeFrom || Date.parse(event.commence_time) >= Date.parse(range.commenceTimeFrom))
       && (!range.commenceTimeTo || Date.parse(event.commence_time) <= Date.parse(range.commenceTimeTo)),
     )

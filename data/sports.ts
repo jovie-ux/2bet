@@ -2599,7 +2599,7 @@ export function getSampleSportsData(query: SportsApiQuery = {}): { sports: Sport
         return true
       }
 
-      return getOutrightEvents(sport.key).some(event =>
+      return getOutrightEvents(sport.key).some((event: SportsEvent) =>
         event.bookmakers?.some(bookmaker =>
           bookmaker.markets.some(market => market.key === 'outrights' && market.outcomes.length > 0),
         ),

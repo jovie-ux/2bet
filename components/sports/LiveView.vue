@@ -46,10 +46,10 @@ onBeforeUnmount(() => clearInterval(refreshTimer))
 
 const filteredEvents = computed(() => {
   const q = search.value.toLowerCase().trim()
-  let list = liveEvents.value.filter(event => matchesSportsSelection(event, selectedSports.value))
+  let list = liveEvents.value.filter((event: SportsEvent) => matchesSportsSelection(event, selectedSports.value))
 
   if (q) {
-    list = list.filter((event) => {
+    list = list.filter((event: SportsEvent) => {
       const details = `${event.home_team ?? ''} ${event.away_team ?? ''} ${event.sport_title ?? ''}`.toLowerCase()
       return details.includes(q)
     })

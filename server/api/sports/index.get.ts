@@ -1,9 +1,10 @@
+import type { H3Event } from 'h3'
 import { getLiveInplayEvents } from '~/server/utils/kadarioApi'
 import { createOddsApi } from '~/server/utils/oddsApi'
 import type { Sport, SportsEvent } from '~/types/sports'
 import { getSampleSportsData } from '~/data/sports'
 
-export default defineEventHandler(async (event): Promise<{ sports: Sport[]; events: SportsEvent[] }> => {
+export default defineEventHandler(async (event: H3Event): Promise<{ sports: Sport[]; events: SportsEvent[] }> => {
   const query = getQuery(event)
   const mode = typeof query.mode === 'string' ? query.mode : 'league'
   const sport = typeof query.sport === 'string' ? query.sport : ''
@@ -37,7 +38,7 @@ export default defineEventHandler(async (event): Promise<{ sports: Sport[]; even
     const kadarioEvents = await getLiveInplayEvents(config.kadarioApi, config.kadarioSite)
     
     // Filter out tennis and baseball from Kadario to avoid duplicates and fulfill requirement
-    const otherEvents = kadarioEvents.filter(event => {
+    const otherEvents = kadarioEvents.filter((event: SportsEvent) => {
       const key = event.sport_key.toLowerCase()
       return !key.startsWith('tennis') && key !== 'baseball_mlb'
     })
@@ -50,7 +51,7 @@ export default defineEventHandler(async (event): Promise<{ sports: Sport[]; even
     for (const sportKey of oddsSports) {
       try {
         const events = await odds.leagueOdds(sportKey)
-        oddsEvents.push(...events.filter(event => 
+        oddsEvents.push(...events.filter((event: SportsEvent) => 
           Date.parse(event.commence_time) <= now && !event.completed
         ))
       } catch (e) {
@@ -73,7 +74,7 @@ export default defineEventHandler(async (event): Promise<{ sports: Sport[]; even
     // Each selected league reuses the shared fixture cache; date bounds are applied locally.
     for (let index = 0; index < keys.length; index += 4) {
       const batch = await Promise.all(keys.slice(index, index + 4).map(key => odds.leagueOdds(key, range)))
-      events.push(...batch.flat().filter(event => allowedKeys.has(event.sport_key) && inRange(event)))
+      events.push(...batch.flat().filter((event: SportsEvent) => allowedKeys.has(event.sport_key) && inRange(event)))
     }
     return { sports: [], events: events.sort((a, b) => Date.parse(a.commence_time) - Date.parse(b.commence_time)) }
   }
