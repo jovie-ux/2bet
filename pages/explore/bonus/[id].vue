@@ -607,7 +607,7 @@ const handleContentClick = (event: MouseEvent): void => {
 }
 
 .promotion-custom-content :deep(.bg-primary) {
-  background-color: #036242;
+  background-color: var(--main-color);
 }
 
 .promotion-custom-content :deep(.text-theme-tab-text) {
@@ -619,7 +619,7 @@ const handleContentClick = (event: MouseEvent): void => {
 }
 
 .promotion-custom-content :deep(.fill-tab-bar-big-button) {
-  fill:  #036242;
+  fill:  var(--main-color);
 }
 
 .promotion-custom-content :deep(iframe) {
@@ -701,7 +701,7 @@ const handleContentClick = (event: MouseEvent): void => {
 }
 
 .promotion-custom-content :deep(.border-primary) {
-  border-color: #036242;
+  border-color: var(--main-color);
 }
 
 .promotion-custom-content :deep(.text-black-1) {
@@ -797,7 +797,7 @@ const handleContentClick = (event: MouseEvent): void => {
 }
 
 :global(html[data-theme='light']) .promotion-custom-content :deep(.text-green-1) {
-  color: #036242;
+  color: var(--main-color);
 }
 
 :global(html[data-theme='light']) .promotion-custom-content :deep(._component-treasure-box__grid-common_1eql6_1) {
@@ -822,7 +822,7 @@ const handleContentClick = (event: MouseEvent): void => {
 }
 
 :global(html[data-theme='light']) .promotion-custom-content :deep(.text-primary-text) {
-  color: #036242;
+  color: var(--main-color);
 }
 
 :global(html[data-theme='light']) .promotion-custom-content :deep(.border-dividers-7) {
@@ -872,7 +872,7 @@ const handleContentClick = (event: MouseEvent): void => {
 }
 
 :deep(.fill-tab-bar-big-button) {
-  fill: var(--dark, #036242);
+  fill: var(--dark, var(--main-color));
 }
 
 .promotion-title h1 {
@@ -1019,7 +1019,7 @@ const handleContentClick = (event: MouseEvent): void => {
   color: #ffffff;
   font-weight: 800;
   text-align: center;
-  background: #036242;
+  background: var(--main-color);
 }
 
 .qualification-table dd {

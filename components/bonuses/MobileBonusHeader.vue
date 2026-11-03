@@ -29,7 +29,7 @@ withDefaults(defineProps<{ backTo?: string }>(), { backTo: '/' })
     height: 52px;
     padding: 0 14px;
     color: #fff;
-    background: #036242;
+    background: var(--main-color);
   }
   h1 { margin: 0; text-align: center; font-size: 16px; font-weight: 800; }
   .mobile-bonus-header__back, .mobile-bonus-header__flag {

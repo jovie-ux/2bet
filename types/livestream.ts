@@ -12,6 +12,7 @@ export interface LiveStream {
   thumbnail?: string
   iframe?: { src: string; title: string }
   sources?: { type?: string; url?: string; fallbackUrl?: string }[]
+  hasStream?: boolean
 }
 
 export interface LiveStreamCatalog {

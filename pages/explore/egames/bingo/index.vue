@@ -322,7 +322,7 @@ const resetFilters = (): void => {
             :key="cat.key"
             type="button"
             class="nav-tab flex flex-col items-center justify-center min-w-[48px] shrink-0 py-1 px-2.5 rounded-md transition-all cursor-pointer select-none"
-            :class="activeCategory === cat.key ? 'bg-[#036242] text-white shadow font-semibold' : 'text-[#959799] '"
+            :class="activeCategory === cat.key ? 'bg-[var(--main-color)] text-white shadow font-semibold' : 'text-[#959799] '"
             :aria-label="cat.label"
             @click="selectCategory(cat.key)"
           >
@@ -372,7 +372,7 @@ const resetFilters = (): void => {
             :key="prov.key"
             type="button"
             class="provider-pill px-4 py-1.5 rounded-full text-[12px] whitespace-nowrap transition-all cursor-pointer select-none border border-white/5 shrink-0"
-            :class="activeProvider === prov.key ? 'bg-[#036242] text-white font-bold shadow' : 'bg-[#242625] text-[#8e9491] '"
+            :class="activeProvider === prov.key ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'bg-[#242625] text-[#8e9491] '"
             @click="selectProvider(prov.key)"
           >
             {{ prov.label }}
@@ -413,7 +413,7 @@ const resetFilters = (): void => {
             v-model="searchQuery"
             type="text"
             placeholder="Enter game name"
-            class="w-full h-11 rounded-full bg-[#171817] border border-[#2b2d2b] px-5 text-sm text-white placeholder-[#7a807d] focus:outline-none focus:border-[#036242] transition-colors"
+            class="w-full h-11 rounded-full bg-[#171817] border border-[#2b2d2b] px-5 text-sm text-white placeholder-[#7a807d] focus:outline-none focus:border-[var(--main-color)] transition-colors"
             @input="handleInput"
             @keyup.enter="handleSearchSubmit"
           />
@@ -651,7 +651,7 @@ const resetFilters = (): void => {
           </button>
           <button
             type="button"
-            class="h-[46px] rounded-xl text-[15px] font-bold text-white bg-[#036242] hover:bg-[#047a52] transition-colors"
+            class="h-[46px] rounded-xl text-[15px] font-bold text-white bg-[var(--main-color)] hover:bg-[#047a52] transition-colors"
             @click="isFilterOpen = false"
           >
             OK

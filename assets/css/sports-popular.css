@@ -1,0 +1,104 @@
+/* The Popular sportsbook follows the compact reference at every viewport size. */
+.sports-page.sports-page--popular {
+  padding: 0;
+  color: var(--text);
+}
+
+.sports-page--popular .sports-tabs {
+  height: 44px;
+  min-height: 44px;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 13px;
+  background: #1e1e1e;
+}
+
+.sports-page--popular .sports-tabs a {
+  height: 28px;
+  min-height: 28px;
+  flex-shrink: 0;
+  padding: 0 12px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.sports-page--popular .sports-tabs a.selected,
+.sports-page--popular .time-filter[aria-pressed='true'] {
+  background: #006b4b;
+  color: #fff;
+}
+
+.sports-page--popular .results {
+  margin-top: 8px;
+}
+
+.sports-page--popular .toolbar,
+.sports-page--popular .section-heading {
+  display: none;
+}
+
+.sports-page--popular .upcoming-tab,
+.sports-page--popular .prematch-tab,
+.sports-page--popular .sport-category-list {
+  gap: 8px;
+}
+
+.sports-page--popular .sports-time-filters,
+.sports-page--popular .sports-date-filters {
+  gap: 4px;
+}
+
+.sports-page--popular .time-filter {
+  min-width: 62px;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: #131313;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.sports-page--popular .sports-date-filters .time-filter {
+  min-height: 44px;
+  padding: 5px 12px;
+}
+
+.sports-page--popular .league-group {
+  margin: 0 0 8px;
+}
+
+.sports-page--popular .league-matches-list {
+  gap: 8px;
+}
+
+.sports-page--popular .league-preview {
+  border-radius: 16px;
+  background: #131313;
+}
+
+.sports-page--popular .league-preview-heading {
+  height: 40px;
+  min-height: 40px;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 0;
+  background: #131313;
+  color: #999;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.sports-page--popular .league-preview-heading .league-name {
+  color: #999;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.sports-page--popular .sports-navigation {
+  padding-bottom: 0;
+}

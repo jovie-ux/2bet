@@ -66,7 +66,13 @@ onBeforeUnmount(() => {
     <!-- Header -->
     <div class="flex items-center justify-between mb-6 pb-3 border-b border-white/5">
       <div class="flex items-center gap-2.5">
-        <div class="h-9 w-9 rounded-xl bg-[#036242]/20 border border-[#036242]/40 flex items-center justify-center text-[#036242]">
+        <div
+          class="h-9 w-9 rounded-xl flex items-center justify-center text-[var(--main-color)]"
+          :style="{
+            backgroundColor: 'color-mix(in srgb, var(--main-color) 20%, transparent)',
+            border: '1px solid color-mix(in srgb, var(--main-color) 40%, transparent)'
+          }"
+        >
           <History class="h-5 w-5" />
         </div>
         <div>
@@ -117,7 +123,7 @@ onBeforeUnmount(() => {
       </p>
       <NuxtLink
         to="/explore/egames/slots"
-        class="mt-3 inline-flex items-center gap-2 rounded-full bg-[#036242] px-5 py-2 text-xs font-bold text-white hover:bg-[#047b53] transition-colors"
+        class="mt-3 inline-flex items-center gap-2 rounded-full bg-[var(--main-color)] px-5 py-2 text-xs font-bold text-white hover:bg-[#047b53] transition-colors"
       >
         <span>Explore Slots</span>
         <ArrowRight class="h-3.5 w-3.5" />

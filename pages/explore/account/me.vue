@@ -629,7 +629,7 @@ onBeforeUnmount(() => {
             :href="bybetRedirectUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="rounded-lg bg-[#036242] px-4 py-1 text-[12px] font-bold text-white hover:bg-[#122F25] transition-colors"
+            class="rounded-lg bg-[var(--main-color)] px-4 py-1 text-[12px] font-bold text-white hover:bg-[#122F25] transition-colors"
           >
             Sign Up
           </a>

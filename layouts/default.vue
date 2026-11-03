@@ -321,7 +321,7 @@ onBeforeUnmount(() => {
   position: fixed;
   top: 0;
   pointer-events: none;
-  background: #036242;
+  background: var(--main-color);
 }
 
 .app-header-underlay {
@@ -340,7 +340,7 @@ onBeforeUnmount(() => {
   overflow: hidden;
   transform: translateX(-50%);
   margin-right: var(--comment-width);
-  margin-left: cal(var(--sidebar-width) - 10px);
+  margin-left: calc(var(--sidebar-width) - 10px);
   transition: margin-right 180ms ease, margin-left 180ms ease;
 }
 
@@ -506,7 +506,7 @@ onBeforeUnmount(() => {
     left: calc(0px - var(--page-padding));
     height: calc(var(--header-height) + 28px);
     border-radius: 0 0 16px 16px;
-    background: #036242;
+    background: var(--main-color);
     pointer-events: none;
   }
 

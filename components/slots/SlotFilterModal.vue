@@ -394,7 +394,7 @@ onBeforeUnmount(unlockPage)
 }
 
 .slot-filter-ok {
-  background: #036242;
+  background: var(--main-color);
   font-weight: 700;
 }
 

@@ -47,7 +47,7 @@ const formattedRulesHtml = computed(() => {
   width: 100%;
   overflow-x: auto;
   margin: 1.5rem 0;
-  border: 1px solid #036242 !important;
+  border: 1px solid var(--main-color) !important;
   border-radius: 8px;
   -webkit-overflow-scrolling: touch;
 }
@@ -82,7 +82,7 @@ const formattedRulesHtml = computed(() => {
 
 :deep(.rules-table-wrapper table td[style*="background-color:#212529"]) {
   background-color: #1a2e22 !important;
-  border-color: #036242 !important;
+  border-color: var(--main-color) !important;
 }
 
 :deep(.rules-table-wrapper table td[style*="background-color:#212529"] span) {
@@ -109,7 +109,7 @@ const formattedRulesHtml = computed(() => {
 
 :deep(.editor-container [style*="background-color:#e1e1e1"]) {
   background-color: #1a2e22 !important;
-  border-color: #036242 !important;
+  border-color: var(--main-color) !important;
   color: #32d49a !important;
   border-radius: 8px;
 }
@@ -122,7 +122,7 @@ const formattedRulesHtml = computed(() => {
 :deep(.editor-container [style*="border-right:solid #bbbbb5"]),
 :deep(.editor-container [style*="border-top:solid #bbbbb5"]),
 :deep(.editor-container [style*="border-bottom:solid #bbbbb5"]) {
-  border-color: #036242 !important;
+  border-color: var(--main-color) !important;
 }
 
 :deep(.editor-container h2 strong span),

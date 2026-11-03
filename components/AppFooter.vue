@@ -310,7 +310,7 @@ onBeforeUnmount(() => {
 }
 
 :global(html[data-theme='light']) .app-footer button:hover span {
-  color: #036242 !important;
+  color: var(--main-color) !important;
 }
 
 :global(html[data-theme='light']) .app-footer a {
@@ -318,7 +318,7 @@ onBeforeUnmount(() => {
 }
 
 :global(html[data-theme='light']) .app-footer a:hover {
-  color: #036242 !important;
+  color: var(--main-color) !important;
 }
 
 :global(html[data-theme='light']) .app-footer h4 {

@@ -46,7 +46,7 @@ html[data-theme='light']:not(#_) .rail-submenu-link {
 
 html[data-theme='light']:not(#_) .rail-link:hover,
 html[data-theme='light']:not(#_) .rail-submenu-link:hover {
-  color: #036242;
+  color: var(--main-color);
   background: rgba(3, 98, 66, 0.08);
 }
 
@@ -55,7 +55,7 @@ html[data-theme='light']:not(#_) .rail-link--active:hover,
 html[data-theme='light']:not(#_) .rail-submenu-link--active,
 html[data-theme='light']:not(#_) .rail-submenu-link--active:hover {
   color: #ffffff;
-  background: #036242;
+  background: var(--main-color);
 }
 
 html[data-theme='light']:not(#_) .rail-link--active .rail-icon {
@@ -75,7 +75,7 @@ html[data-theme='light']:not(#_) .language-option {
 
 html[data-theme='light']:not(#_) .language-option:hover,
 html[data-theme='light']:not(#_) .language-option--active {
-  color: #036242;
+  color: var(--main-color);
 }
 
 html[data-theme='light']:not(#_) .theme-options button {
@@ -107,7 +107,7 @@ html[data-theme='light']:not(#_) .mobile-bottom-link {
 }
 
 html[data-theme='light']:not(#_) .mobile-bottom-link--active {
-  color: #036242;
+  color: var(--main-color);
 }
 
 html[data-theme='light']:not(#_) .footer,
@@ -125,7 +125,7 @@ html[data-theme='light']:not(#_) .footer-brand > a {
 }
 
 html[data-theme='light']:not(#_) .footer nav a:hover {
-  color: #036242;
+  color: var(--main-color);
 }
 
 html[data-theme='light']:not(#_) .responsible-gaming {
@@ -197,11 +197,11 @@ html[data-theme='light']:not(#_) .table-shell th {
 }
 
 html[data-theme='light']:not(#_) .table-shell td.amount-column {
-  color: #036242;
+  color: var(--main-color);
 }
 
 html[data-theme='light']:not(#_) .table-shell .multiplier {
-  color: #036242;
+  color: var(--main-color);
   background: rgba(3, 98, 66, 0.1);
 }
 
@@ -369,16 +369,17 @@ html[data-theme='light']:not(#_) .group:hover .group-hover\:text-white {
 }
 
 /* Preserve white text on brand/accent buttons, active pills, badges, and dark media overlays */
-html[data-theme='light']:not(#_) .bg-\[\#036242\].text-white,
-html[data-theme='light']:not(#_) .bg-\[\#036242\]\/95.text-white,
+html[data-theme='light']:not(#_) .bg-\[var\(--main-color\)\].text-white,
+html[data-theme='light']:not(#_) .bg-\[var\(--main-color\)\]\/95.text-white,
+html[data-theme='light']:not(#_) .bg-main-color.text-white,
 html[data-theme='light']:not(#_) .bg-\[\#005a3c\].text-white,
 html[data-theme='light']:not(#_) .bg-\[\#007653\].text-white,
 html[data-theme='light']:not(#_) .bg-\[\#015A3C\].text-white,
-html[data-theme='light']:not(#_) .bg-\[\#076b4a\].text-white,
+html[data-theme='light']:not(#_) .bg-\[var\(--main-highlight\)\].text-white,
+html[data-theme='light']:not(#_) .bg-main-highlight.text-white,
 html[data-theme='light']:not(#_) .bg-\[\#07835c\].text-white,
 html[data-theme='light']:not(#_) .bg-\[\#047a58\].text-white,
 html[data-theme='light']:not(#_) .bg-\[\#047b53\].text-white,
-html[data-theme='light']:not(#_) .bg-\[\#006649\].text-white,
 html[data-theme='light']:not(#_) .bg-\[\#008d62\].text-white,
 html[data-theme='light']:not(#_) .bg-\[\#007c55\].text-white,
 html[data-theme='light']:not(#_) .bg-\[\#00828a\].text-white,
@@ -396,12 +397,13 @@ html[data-theme='light']:not(#_) .bg-black\/40.text-white,
 html[data-theme='light']:not(#_) .bg-black\/50.text-white,
 html[data-theme='light']:not(#_) .bg-black\/60.text-white,
 html[data-theme='light']:not(#_) .bg-black\/70.text-white,
-html[data-theme='light']:not(#_) .bg-\[\#036242\] .text-white,
+html[data-theme='light']:not(#_) .bg-\[var\(--main-color\)\] .text-white,
+html[data-theme='light']:not(#_) .bg-main-color .text-white,
 html[data-theme='light']:not(#_) .bg-\[\#005a3c\] .text-white,
 html[data-theme='light']:not(#_) .bg-\[\#007653\] .text-white,
 html[data-theme='light']:not(#_) .bg-\[\#015A3C\] .text-white,
-html[data-theme='light']:not(#_) .bg-\[\#076b4a\] .text-white,
-html[data-theme='light']:not(#_) .bg-\[\#006649\] .text-white,
+html[data-theme='light']:not(#_) .bg-\[var\(--main-highlight\)\] .text-white,
+html[data-theme='light']:not(#_) .bg-main-highlight .text-white,
 html[data-theme='light']:not(#_) .bg-\[\#001e4e\] .text-white,
 html[data-theme='light']:not(#_) .bg-\[\#5c2d82\] .text-white,
 html[data-theme='light']:not(#_) .bg-\[\#00828a\] .text-white,
@@ -441,7 +443,7 @@ html[data-theme='light']:not(#_) .sports-page .sports-tabs a {
 
 html[data-theme='light']:not(#_) .sports-page .sports-tabs a.selected {
   color: #ffffff;
-  background: #076b4a;
+  background: var(--main-highlight);
 }
 
 html[data-theme='light']:not(#_) .sports-page .search,
@@ -488,7 +490,7 @@ html[data-theme='light']:not(#_) .sports-page .sort-menu-item:hover {
 
 html[data-theme='light']:not(#_) .sports-page .sort-menu-item--active {
   color: #ffffff;
-  background: #036242;
+  background: var(--main-color);
 }
 
 html[data-theme='light']:not(#_) .winner-match + .winner-match,
@@ -518,7 +520,7 @@ html[data-theme='light']:not(#_) .preference-list {
 }
 
 html[data-theme='light']:not(#_) .back-button {
-  color: #036242;
+  color: var(--main-color);
   background: #edf4f0;
 }
 
@@ -553,9 +555,9 @@ html[data-theme='light']:not(#_) .radio-indicator {
 }
 
 html[data-theme='light']:not(#_) .preference-row--selected .radio-indicator {
-  border-color: #036242;
+  border-color: var(--main-color);
   color: #ffffff;
-  background: #036242;
+  background: var(--main-color);
 }
 
 /* --------------------------------------------------------------------------
@@ -577,7 +579,7 @@ html[data-theme='light']:not(#_) .question-tabs {
 }
 
 html[data-theme='light']:not(#_) .affiliate-back {
-  color: #036242;
+  color: var(--main-color);
   background: #edf4f0;
 }
 
@@ -650,11 +652,11 @@ html[data-theme='light']:not(#_) .question-tabs button {
 }
 
 html[data-theme='light']:not(#_) .question-tabs .question-tab--active {
-  color: #036242;
+  color: var(--main-color);
 }
 
 html[data-theme='light']:not(#_) .question-tabs button::after {
-  background: #036242;
+  background: var(--main-color);
 }
 
 html[data-theme='light']:not(#_) .contact-row {
@@ -663,7 +665,7 @@ html[data-theme='light']:not(#_) .contact-row {
 
 html[data-theme='light']:not(#_) .contact-row button {
   color: #ffffff;
-  background: #036242;
+  background: var(--main-color);
 }
 
 /* --------------------------------------------------------------------------
@@ -775,12 +777,12 @@ html[data-theme='light']:not(#_) .reward-table__footnote {
 }
 
 html[data-theme='light']:not(#_) .reward-table td:not(:first-child) {
-  color: #036242;
+  color: var(--main-color);
   font-weight: 700;
 }
 
 html[data-theme='light']:not(#_) .promotion-terms-link {
-  color: #036242;
+  color: var(--main-color);
 }
 
 html[data-theme='light']:not(#_) .join-bar {
@@ -835,7 +837,7 @@ html[data-theme='light']:not(#_) .panel-action:hover,
 html[data-theme='light']:not(#_) .panel-action--open,
 html[data-theme='light']:not(#_) .experts-sort__button:hover,
 html[data-theme='light']:not(#_) .experts-sort__button--open {
-  border-color: #036242;
+  border-color: var(--main-color);
   background: #e0ece5;
 }
 
@@ -903,13 +905,13 @@ html[data-theme='light']:not(#_) .expert-card__hit-rate small {
 
 html[data-theme='light']:not(#_) .prediction-card__unlock {
   border-color: #078a63;
-  color: #036242;
+  color: var(--main-color);
   background: #edf4f0;
 }
 
 html[data-theme='light']:not(#_) .prediction-card__unlock:hover,
 html[data-theme='light']:not(#_) .prediction-card__unlock--active {
-  color: #036242;
+  color: var(--main-color);
   background: rgba(3, 98, 66, 0.14);
 }
 
@@ -972,13 +974,13 @@ html[data-theme='light']:not(#_) .transaction-toolbar {
 
 html[data-theme='light']:not(#_) .game-back,
 html[data-theme='light']:not(#_) .transaction-back {
-  color: #036242;
+  color: var(--main-color);
   background: #edf4f0;
 }
 
 html[data-theme='light']:not(#_) .game-back:hover,
 html[data-theme='light']:not(#_) .transaction-back:hover {
-  color: #036242;
+  color: var(--main-color);
   background: #dfece5;
 }
 
@@ -1097,7 +1099,7 @@ html[data-theme='light']:not(#_) .winner-item:nth-child(even) {
 
 html[data-theme='light']:not(#_) .jackpot-provider-logo,
 html[data-theme='light']:not(#_) .winner-item img,
-html[data-theme='light']:not(#_) .jackpot-page .top-nav-bar .nav-tab:not(.bg-\[\#036242\]) img {
+html[data-theme='light']:not(#_) .jackpot-page .top-nav-bar .nav-tab:not(.bg-\[var\(--main-color\)\]):not(.bg-main-color) img {
   filter: drop-shadow(0 1px 1.5px rgba(7, 62, 42, 0.45));
 }
 
@@ -1122,7 +1124,7 @@ html[data-theme='light']:not(#_) .slot-filter-option {
 
 html[data-theme='light']:not(#_) .slot-filter-option--active {
   border-color: #008d62;
-  color: #036242;
+  color: var(--main-color);
   background: rgba(3, 98, 66, 0.12);
   font-weight: 600;
 }

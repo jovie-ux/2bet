@@ -156,9 +156,11 @@ const toggleCollapseAll = (): void => {
       />
     </div>
 
-    <section
+    <SportsCategorySection
       v-for="group in searchedGroups"
       :key="group"
+      :sport="group"
+      :label="group"
       class="league-group"
     >
       <div class="outright-list">
@@ -286,8 +288,13 @@ const toggleCollapseAll = (): void => {
           </div>
         </article>
       </div>
-    </section>
+    </SportsCategorySection>
     <div v-if="!searchedSports.length" class="empty">
+      <img
+        src="/images/empty/no-events.webp"
+        alt="No outright markets available"
+        class="h-auto w-full max-w-[200px] object-contain"
+      />
       <h2>No outright markets available</h2>
       <p>No outright markets are currently available for this tournament. Check back later.</p>
     </div>

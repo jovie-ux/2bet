@@ -8,6 +8,7 @@ const props = defineProps<{
   match: SportsEvent
   soccer: boolean
   fullMarkets?: boolean
+  compact?: boolean
   selectedOutcome?: string
 }>()
 
@@ -89,6 +90,14 @@ const isFullDateSport = computed(() => {
 })
 
 const matchDate = computed(() => {
+  if (props.compact && !props.fullMarkets) {
+    return new Intl.DateTimeFormat('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      timeZone: 'Asia/Manila',
+    }).format(new Date(props.match.commence_time))
+  }
+
   return new Intl.DateTimeFormat('en-PH', {
     month: isFullDateSport.value ? 'long' : 'short',
     day: 'numeric',
@@ -97,6 +106,15 @@ const matchDate = computed(() => {
 })
 
 const matchTime = computed(() => {
+  if (props.compact && !props.fullMarkets) {
+    return new Intl.DateTimeFormat('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23',
+      timeZone: 'Asia/Manila',
+    }).format(new Date(props.match.commence_time))
+  }
+
   return new Intl.DateTimeFormat('en-PH', {
     hour: 'numeric',
     minute: '2-digit',
@@ -118,7 +136,11 @@ const copyMatchLink = async (): Promise<void> => {
 </script>
 
 <template>
-  <article :id="`match-${match.id}`" class="winner-match">
+  <article
+    :id="`match-${match.id}`"
+    class="winner-match"
+    :class="{ 'winner-match--compact': compact && !fullMarkets }"
+  >
     <div class="winner-header">
       <time v-if="!fullMarkets" class="winner-date text-[12px]" :datetime="match.commence_time" >
         <span>{{ matchDate }}</span>
@@ -168,6 +190,17 @@ const copyMatchLink = async (): Promise<void> => {
           @click=" navigateTo(bybetRedirectUrl, { external: true, open: { target: '_blank', windowFeatures: { noopener: true, noreferrer: true } } })"
         >
           <Star :size="16"  aria-hidden="true" />
+        </button>
+        <button
+          v-if="compact && !fullMarkets"
+          type="button"
+          class="winner-market-count"
+          aria-label="More match markets"
+          title="More match markets"
+          @click="navigateTo(bybetRedirectUrl, { external: true, open: { target: '_blank', windowFeatures: { noopener: true, noreferrer: true } } })"
+        >
+          <!-- Reference mock count until the sports feed includes market totals. -->
+          26
         </button>
       </div>
     </div>
@@ -351,7 +384,7 @@ const copyMatchLink = async (): Promise<void> => {
 
 .winner-price[aria-pressed='true'] {
   border-color: #48daa6;
-  background: #076b4a;
+  background: var(--main-highlight);
 }
 
 .winner-price:disabled {
@@ -408,6 +441,101 @@ const copyMatchLink = async (): Promise<void> => {
   display: block;
   text-align: center;
   white-space: normal;
+}
+
+.winner-match--compact {
+  padding: 8px 8px 10px;
+  background: #131313;
+}
+
+.winner-match--compact:hover {
+  background: #131313;
+}
+
+.winner-match--compact + .winner-match--compact {
+  border-top: 1px dashed #292929;
+}
+
+.winner-match--compact .winner-header {
+  min-height: 40px;
+  gap: 0;
+  margin-bottom: 10px;
+}
+
+.winner-match--compact .winner-date {
+  width: 49px;
+  gap: 0;
+  padding-right: 8px;
+  color: #eee;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.winner-match--compact .winner-teams {
+  gap: 0;
+  padding-right: 8px;
+  padding-left: 8px;
+  border-color: #2b2b2b;
+  color: #f5f5f5;
+  font-size: 12px;
+  line-height: 24px;
+}
+
+.winner-match--compact .winner-actions {
+  min-height: 40px;
+  gap: 5px;
+  padding-left: 8px;
+  border-left: 1px solid #2b2b2b;
+}
+
+.winner-match--compact .winner-actions button {
+  width: 28px;
+  height: 28px;
+  color: #b6b9bb;
+}
+
+.winner-match--compact .winner-actions button:first-child svg {
+  width: 12px;
+  height: 12px;
+}
+
+.winner-match--compact .winner-actions button.winner-market-count {
+  width: 36px;
+  border: 1px solid #2b2b2b;
+  border-radius: 8px;
+  color: #999;
+  font-size: 12px;
+}
+
+.winner-match--compact .winner-markets {
+  gap: 4px;
+}
+
+.winner-match--compact .winner-price {
+  min-height: 36px;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background: #232323;
+  color: #f5f5f5;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.winner-match--compact .winner-price > span {
+  color: #959799;
+}
+
+.winner-match--compact .winner-price strong {
+  font-weight: 700;
+}
+
+.winner-match--compact .winner-price:hover {
+  background: var(--odd-btn-hover);
+}
+
+.winner-match--compact .winner-price[aria-pressed='true'] {
+  background: var(--main-highlight);
 }
 
 @media (max-width: 600px) {

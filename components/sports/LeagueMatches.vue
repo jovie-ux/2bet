@@ -59,6 +59,7 @@ watch(() => data.value?.events, (events) => {
 }, { immediate: true })
 
 const selectedOutcomes = ref<Record<string, string>>({})
+const sportsRouteBase = useSportsRouteBase()
 
 const selectOutcome = (eventId: string, market: string, name: string): void => {
   const key = `${eventId}:${market}`
@@ -98,6 +99,7 @@ const selectOutcome = (eventId: string, market: string, name: string): void => {
         :soccer="isSoccer"
         :full-markets="showFullMarkets"
         :selected-outcome="selectedOutcomes[`${match.id}:h2h`]"
+        :compact="sportsRouteBase === '/explore/sports/popular'"
         @select="selectOutcome(match.id, 'h2h', $event)"
       />
     </template>
@@ -117,7 +119,7 @@ const selectOutcome = (eventId: string, market: string, name: string): void => {
   padding: 8px 16px;
   border: 0;
   border-radius: 8px;
-  background: #076b4a;
+  background: var(--main-highlight);
   color: white;
 }
 

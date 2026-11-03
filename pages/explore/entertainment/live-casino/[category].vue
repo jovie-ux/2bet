@@ -181,7 +181,7 @@ const getSicBoRounds = (wins?: any[]): SicBoRound[] => {
       <!-- Top Bar -->
       <header class="top-brand-bar flex items-center justify-between gap-2 rounded-lg bg-[#202020] p-0 py-1 mb-1.5 shadow-sm">
         <div class="flex items-center pl-1 bg-[#141414] width-full  flex-auto px-3 py-1.5 shadow-sm">
-          <div class="h-6 w-8 rounded-md bg-[#036242] flex items-center justify-center shadow-md">
+          <div class="h-6 w-8 rounded-md bg-[var(--main-color)] flex items-center justify-center shadow-md">
             <img
               :src="pragmaticPlayLogo"
               alt="Pragmatic Play"
@@ -219,7 +219,7 @@ const getSicBoRounds = (wins?: any[]): SicBoRound[] => {
           :key="cat.key"
           type="button"
           class="category-pill px-1.5 py-0.5 rounded-md text-[14px]  whitespace-nowrap transition-all cursor-pointer select-none"
-          :class="activeCategory === cat.key ? 'bg-[#036242] text-white font-bold shadow' : 'text-[#8e9491] '"
+          :class="activeCategory === cat.key ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'text-[#8e9491] '"
           @click="selectCategory(cat.key)"
         >
           {{ cat.label }}

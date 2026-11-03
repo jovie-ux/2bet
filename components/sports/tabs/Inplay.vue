@@ -94,9 +94,19 @@ const filteredEvents = computed(() => {
     </div>
 
     <SportsSkeleton v-if="loading" :cols="oddsCols" />
-    <InplayMatches v-else-if="filteredEvents.length" ref="matchList" :events="filteredEvents" />
+    <InplayMatches
+      v-else-if="filteredEvents.length"
+      ref="matchList"
+      :events="filteredEvents"
+      :group-by-sport="!route.params.sport"
+    />
 
     <div v-else class="empty">
+      <img
+        src="/images/empty/no-events.webp"
+        alt="No inplay events"
+        class="h-auto w-full max-w-[200px] object-contain"
+      />
       <h2>No inplay events</h2>
       <p>Try another league or check back later.</p>
     </div>

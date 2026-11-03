@@ -170,7 +170,7 @@ watch(() => context.value, () => {
               <button
                 v-if="isScrolledUp"
                 type="button"
-                class="back-to-latest-btn absolute bottom-[62px] right-3 z-20 flex items-center rounded-full bg-[#036242]/95 px-1 py-1  text-white  shadow-[0_4px_16px_rgba(0,0,0,0.6)] backdrop-blur-md  transition-all cursor-pointer select-none whitespace-nowrap"
+                class="back-to-latest-btn absolute bottom-[62px] right-3 z-20 flex items-center rounded-full bg-[var(--main-color)] px-1 py-1  text-white  shadow-[0_4px_16px_rgba(0,0,0,0.6)] backdrop-blur-md  transition-all cursor-pointer select-none whitespace-nowrap"
                 aria-label="Back to latest comments"
                 @click="scrollToLatest('smooth')"
               >

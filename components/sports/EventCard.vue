@@ -11,6 +11,7 @@ const sport = computed(() => (props.event.sport || props.event.sport_key.split('
 const isSoccer = computed(() => ['soccer', 'football'].includes(sport.value))
 const fullMarkets = computed(() => ['basketball', 'nba', 'pba', 'baseball', 'mlb'].includes(sport.value))
 const selectedOutcome = ref('')
+const sportsRouteBase = useSportsRouteBase()
 </script>
 
 <template>
@@ -20,6 +21,7 @@ const selectedOutcome = ref('')
     :soccer="isSoccer"
     :full-markets="fullMarkets"
     :selected-outcome="selectedOutcome"
+    :compact="sportsRouteBase === '/explore/sports/popular'"
     @select="selectedOutcome = selectedOutcome === $event ? '' : $event"
   />
 </template>

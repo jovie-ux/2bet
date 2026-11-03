@@ -38,6 +38,6 @@ const isActive = (item: typeof items[number]): boolean => {
 .live-plaza-nav-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) 60px; height: 58px; align-items: stretch; }
 .live-plaza-nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; color: #959799; font-size: 11px; line-height: 1; }
 .live-plaza-nav-item[aria-current="page"] { color: #1fa779; }
-.live-plaza-nav-back { display: grid; place-items: center; border-radius: 32px 32px 0 32px; background: #036242; color: #fff; }
+.live-plaza-nav-back { display: grid; place-items: center; border-radius: 32px 32px 0 32px; background: var(--main-color); color: #fff; }
 .live-plaza-nav-back span { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #101010; }
 </style>

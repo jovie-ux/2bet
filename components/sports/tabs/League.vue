@@ -32,6 +32,7 @@ const emit = defineEmits<{
 }>()
 
 const search = ref('')
+const sportsRouteBase = useSportsRouteBase()
 const localSortBy = ref<'league' | 'time'>(props.sortBy)
 const localCollapsed = ref<string[]>([])
 const earliestTimes = ref<Record<string, number>>({})
@@ -166,7 +167,7 @@ const sortedGroups = computed(() => {
 
 <template>
   <div class="league-tab">
-    <div class="toolbar">
+    <div v-if="sportsRouteBase !== '/explore/sports/popular'" class="toolbar">
       <Ai
         v-if="aiTo"
         :to="aiTo"
@@ -194,13 +195,15 @@ const sortedGroups = computed(() => {
     <SportsSkeleton v-if="loading" />
 
     <template v-else-if="visibleSports.length">
-      <section
+      <SportsCategorySection
         v-for="group in sortedGroups"
         v-show="visibleSports.some(sport => sport.group === group)"
         :key="group"
+        :sport="group"
+        :label="group"
+        :show-banner="!hideSportTitle"
         class="league-group"
       >
-        <h2 v-if="!hideSportTitle" class="text-[18px] mb-2 ">{{ group }}</h2>
         <div class="league-matches-list">
           <article
             v-for="sport in getGroupTournaments(group)"
@@ -237,12 +240,17 @@ const sortedGroups = computed(() => {
             </div>
           </article>
         </div>
-      </section>
+      </SportsCategorySection>
     </template>
     <div
       v-else
       class="empty"
     >
+      <img
+        src="/images/empty/no-events.webp"
+        alt="No leagues found"
+        class="h-auto w-full max-w-[200px] object-contain"
+      />
       <h2>No leagues found</h2>
       <p>Try searching for a different tournament or league.</p>
     </div>

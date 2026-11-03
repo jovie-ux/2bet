@@ -22,6 +22,10 @@ export async function getKadarioCatalog(api: string, site: string, previews = fa
   async function request<T>(path: string, query?: Record<string, string>): Promise<T> {
     const response = await $fetch<ApiResponse<T>>(path, {
       baseURL, query, timeout: 15000, retry: 0,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'application/json',
+      },
     })
     if (![0, 200].includes(response.code) || !response.data) {
       throw new Error('Invalid livestream response')
@@ -56,11 +60,14 @@ export async function getKadarioCatalog(api: string, site: string, previews = fa
       enabled: true,
       results: catalog.results.map(stream => {
         const game = gamePreviews.get(stream.id)
-        const src = resolveUrl(game?.iframe?.src)
+        const embedUrl = `${origin}/embed/live/${encodeURIComponent(stream.id)}?site=${encodeURIComponent(site)}`
         return {
           ...stream,
           thumbnail: resolveUrl(game?.thumbnail),
-          iframe: src ? { src, title: game?.iframe?.title || `${stream.home.name} vs ${stream.away.name}` } : undefined,
+          iframe: {
+            src: embedUrl,
+            title: game?.iframe?.title || `${stream.home?.name || 'Live'} vs ${stream.away?.name || 'Match'}`,
+          },
         }
       }),
     }

@@ -47,7 +47,7 @@ useAppSeo({
 
 :deep(.editor-container [style*="background-color:#e1e1e1"]) {
   background-color: #1a2e22 !important;
-  border-color: #036242 !important;
+  border-color: var(--main-color) !important;
   color: #32d49a !important;
   border-radius: 8px;
 }
@@ -60,7 +60,7 @@ useAppSeo({
 :deep(.editor-container [style*="border-right:solid #bbbbb5"]),
 :deep(.editor-container [style*="border-top:solid #bbbbb5"]),
 :deep(.editor-container [style*="border-bottom:solid #bbbbb5"]) {
-  border-color: #036242 !important;
+  border-color: var(--main-color) !important;
 }
 
 :deep(.editor-container h2 strong span),

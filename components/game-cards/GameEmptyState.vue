@@ -33,7 +33,7 @@ defineEmits<{
     <button
       v-if="showReset"
       type="button"
-      class="mt-3 rounded-full bg-[#036242] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#047b53] transition-colors cursor-pointer"
+      class="mt-3 rounded-full bg-[var(--main-color)] px-4 py-1.5 text-xs font-bold text-white hover:bg-[#047b53] transition-colors cursor-pointer"
       @click="$emit('reset')"
     >
       {{ resetText }}

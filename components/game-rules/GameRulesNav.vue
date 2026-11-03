@@ -210,7 +210,7 @@ watch(() => route.path, () => {
           :to="tab.to"
           class="game-rules-tab shrink-0 text-xs sm:text-sm font-semibold uppercase transition-all whitespace-nowrap select-none px-4 py-1.5 rounded-full border border-white/5"
           :class="isActive(tab.to)
-            ? 'tab-pill--active bg-[#036242] text-white shadow font-bold'
+            ? 'tab-pill--active bg-[var(--main-color)] text-white shadow font-bold'
             : 'bg-[#242625] text-[#8e9491] hover:text-white'"
         >
           {{ tab.label }}
@@ -225,14 +225,14 @@ watch(() => route.path, () => {
   .game-rules-sticky-wrapper {
     padding-bottom: 0;
     border-radius: 0;
-    background: linear-gradient(#036242 0 74px, #000 74px);
+    background: linear-gradient(var(--main-color) 0 74px, #000 74px);
   }
   .game-rules-header-wrapper :deep(.subpage-header) {
     height: 48px;
     min-height: 48px;
     margin-bottom: 0;
     padding: 0 12px;
-    background: #036242;
+    background: var(--main-color);
     box-shadow: none;
   }
   .game-rules-header-wrapper :deep(.subpage-header__title) { font-size: 16px; }
@@ -257,7 +257,7 @@ watch(() => route.path, () => {
     background: transparent;
     box-shadow: none;
   }
-  .game-rules-category-nav .game-rules-tab.tab-pill--active { background: #036242; }
+  .game-rules-category-nav .game-rules-tab.tab-pill--active { background: var(--main-color); }
 }
 
 .scrollbar-none::-webkit-scrollbar {
@@ -305,7 +305,7 @@ watch(() => route.path, () => {
 
   .game-rules-tab.tab-pill--active {
     color: #ffffff;
-    background: #036242;
+    background: var(--main-color);
   }
 }
 
