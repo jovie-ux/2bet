@@ -37,7 +37,7 @@ const backTo = computed(() => path.value.endsWith('/streamer/all')
     align-items: center;
     height: 52px;
     padding: 0 14px;
-    background: #036242;
+    background: var(--main-color);
     color: #fff;
   }
   h1 { margin: 0; text-align: center; font-size: 16px; font-weight: 800; }

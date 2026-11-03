@@ -411,7 +411,7 @@ onBeforeUnmount(() => {
 .rail-link--active,
 .rail-link--active:hover {
   color: white;
-  background: #036242;
+  background: var(--main-color);
 }
 
 .rail-link--surface {
@@ -502,7 +502,7 @@ onBeforeUnmount(() => {
 .rail-submenu-link--active,
 .rail-submenu-link--active:hover {
   color: white;
-  background: #036242;
+  background: var(--main-color);
   box-shadow: none;
 }
 

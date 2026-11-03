@@ -96,25 +96,15 @@ const sportCategories = computed(() => {
 
 <template>
   <div class="sport-category-list min-w-0">
-    <section
+    <SportsCategorySection
       v-for="category in sportCategories"
       :key="category.key"
+      :sport="category.key"
+      :label="category.name"
+      :show-banner="groupBySport"
       class="sport-category"
       :aria-label="groupBySport ? category.name : undefined"
     >
-      <header v-if="groupBySport" class="sport-category__heading">
-        <img
-          v-if="category.icon"
-          :src="category.icon"
-          alt=""
-          class="sport-category__icon"
-          width="22"
-          height="22"
-          aria-hidden="true"
-        >
-        <h2>{{ category.name }}</h2>
-      </header>
-
       <div class="league-matches-list">
         <article
           v-for="tournament in tournaments(category.events)"
@@ -150,7 +140,7 @@ const sportCategories = computed(() => {
           </div>
         </article>
       </div>
-    </section>
+    </SportsCategorySection>
   </div>
 </template>
 

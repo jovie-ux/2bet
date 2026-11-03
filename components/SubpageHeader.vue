@@ -119,7 +119,7 @@ const handleBack = (): void => {
     box-shadow: none;
   }
   .subpage-header--mobile-tabs :deep([role="tab"][aria-selected="true"]) {
-    color: #036242;
+    color: var(--main-color);
     background: #fff;
     border-color: #fff;
   }
@@ -134,7 +134,7 @@ const handleBack = (): void => {
   align-items: center;
   justify-content: space-between;
   padding: 0 12px;
-  background-color: #036242;
+  background-color: var(--main-color);
   color: #ffffff;
   user-select: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);

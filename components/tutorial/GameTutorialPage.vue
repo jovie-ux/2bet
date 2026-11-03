@@ -899,7 +899,7 @@ const selectChoice = (id: string): void => {
 <style scoped>
 @media (max-width: 63.99rem) {
   .game-tutorial-page {
-    background: linear-gradient(#036242 0 74px, transparent 74px);
+    background: linear-gradient(var(--main-color) 0 74px, transparent 74px);
   }
 }
 
@@ -945,7 +945,7 @@ const selectChoice = (id: string): void => {
 
 .tutorial-pill--active {
   background-color: #ffffff;
-  color: #036242;
+  color: var(--main-color);
   font-weight: 700;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }

@@ -38,7 +38,7 @@ const getLevelBadge = (level?: string, vip?: number): { src: string; alt: string
       <!-- Avatar -->
       <div
         class="grid h-5 w-5 shrink-0 place-items-center overflow-hidden rounded-full text-[15px] font-bold text-white shadow-sm"
-        :style="{ backgroundColor: (message.avatarType === 'image' || isImageUrl(message.avatar)) ? 'transparent' : (message.avatarBg || '#006649') }"
+        :style="{ backgroundColor: (message.avatarType === 'image' || isImageUrl(message.avatar)) ? 'transparent' : (message.avatarBg || 'var(--main-highlight)') }"
         aria-hidden="true"
       >
         <img

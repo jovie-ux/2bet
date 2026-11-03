@@ -1,20 +1,42 @@
 <script setup lang="ts">
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
-import { MessageCircle, ShoppingBag, GraduationCap, ChartPie, Video, PanelsTopLeft, Play } from 'lucide-vue-next'
+import { MessageCircle, ShoppingBag, GraduationCap, ChartPie, Video, PanelsTopLeft } from 'lucide-vue-next'
 
 import type { LiveStreamCatalog } from '~/types/livestream'
 import StreamPlayer from './StreamPlayer.vue'
 
+const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+
 const { data: catalog, status, refresh } = useFetch<LiveStreamCatalog>('/api/livestream', { server: false })
 const selectedStreamId = ref('')
 const endedStreamIds = ref(new Set<string>())
-const streams = computed(() => (catalog.value?.results ?? [])
-  .filter(stream => !endedStreamIds.value.has(stream.id)
-    && (!stream.status || stream.status === 'live')
-    && stream.sources?.some(source => source.url || source.fallbackUrl))
-  .toSorted((a, b) => (Date.parse(b.startTime ?? '') || 0) - (Date.parse(a.startTime ?? '') || 0)))
+const streams = computed(() => {
+  const list = (catalog.value?.results ?? [])
+    .filter(stream => !endedStreamIds.value.has(stream.id)
+      && (!stream.status || stream.status === 'live'))
+  return list.toSorted((a, b) => {
+    const aHasVideo = (a.hasStream || (a.sources && a.sources.length > 0)) ? 1 : 0
+    const bHasVideo = (b.hasStream || (b.sources && b.sources.length > 0)) ? 1 : 0
+    if (bHasVideo !== aHasVideo) return bHasVideo - aHasVideo
+    return (Date.parse(b.startTime ?? '') || 0) - (Date.parse(a.startTime ?? '') || 0)
+  })
+})
 const selectedStream = computed(() => streams.value.find(stream => stream.id === selectedStreamId.value) ?? streams.value[0])
-watch(selectedStream, stream => { selectedStreamId.value = stream?.id ?? '' })
+watch(selectedStream, stream => {
+  if (stream?.id) selectedStreamId.value = stream.id
+}, { immediate: true })
+
+const iframeSrc = computed(() => {
+  const stream = selectedStream.value
+  if (!stream) return ''
+  return stream.iframe?.src || `https://live88.eu.cc/embed/live/${encodeURIComponent(stream.id)}?site=YBa-BnymZ6iN8pkfAUFTWIKn`
+})
+
+const streamTitle = computed(() => {
+  const stream = selectedStream.value
+  if (!stream) return 'Sports TV'
+  return stream.iframe?.title || `${stream.home?.name || 'Live'} vs ${stream.away?.name || 'Match'}`
+})
+
 const previewMode = ref('video')
 let refreshTimer: ReturnType<typeof setInterval> | undefined
 let pendingRefresh: Promise<void> | undefined
@@ -47,32 +69,35 @@ const tabs = [
 
 <template>
   <section class="overflow-hidden rounded-2xl bg-[#1f1f1f] opacity-90 ">
-    <div id="tv-title" class="flex min-w-0 items-center justify-center gap-2 px-4 py-2 text-center text-[16px] font-semibold">
+    <div id="tv-title" class="flex min-w-0 items-center justify-center gap-2 px-4 py-2 text-center text-[14px] font-semibold text-white">
       <template v-if="selectedStream">
-        <span class="min-w-0 truncate text-right" :title="selectedStream.home.name">{{ selectedStream.home.name }}</span>
-        <span class="shrink-0 whitespace-nowrap">{{ selectedStream.scoreAvailable ? `${selectedStream.homeScore ?? 0} - ${selectedStream.awayScore ?? 0}` : 'vs' }}</span>
-        <span class="min-w-0 truncate text-left" :title="selectedStream.away.name">{{ selectedStream.away.name }}</span>
+        <span class="min-w-0 truncate text-right" :title="selectedStream.home?.name">{{ selectedStream.home?.name }}</span>
+        <span class="shrink-0 whitespace-nowrap font-bold">
+          {{ selectedStream.scoreAvailable ? `${selectedStream.homeScore ?? 0} - ${selectedStream.awayScore ?? 0}` : 'vs' }}
+        </span>
+        <span class="min-w-0 truncate text-left" :title="selectedStream.away?.name">{{ selectedStream.away?.name }}</span>
       </template>
       <template v-else>Sports TV</template>
     </div>
     <div class="relative aspect-[16/9] overflow-hidden rounded-xl bg-[#14261d]">
-      <StreamPlayer
-        v-if="previewMode === 'court' && selectedStream"
-        :key="selectedStream.id"
-        :sources="selectedStream.sources ?? []" @ended="switchEndedStream(selectedStream.id)" @unavailable="switchEndedStream(selectedStream.id)" />
-      <a
-        v-else-if="previewMode === 'video' && selectedStream"
-        :href="bybetRedirectUrl"
-        class="relative flex h-full w-full items-center justify-center bg-[#14261d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400"
-        :aria-label="`Play livestream: ${selectedStream.home.name} vs ${selectedStream.away.name}`"
-      >
-        <div class="pointer-events-none absolute inset-0" aria-hidden="true">
-          <StreamPlayer :key="selectedStream.id" :sources="selectedStream.sources ?? []" @ended="switchEndedStream(selectedStream.id)" @unavailable="switchEndedStream(selectedStream.id)" class="box-border" preview />
-        </div>
-        <span class="relative flex flex-col items-center gap-2">
-          <span class="grid h-5 w-5 place-items-center rounded-full bg-white text-white ring-1 ring-white/40 backdrop-blur-sm"><Play class="text-black" :size="15" fill="currentColor" aria-hidden="true" /></span>
-        </span>
-      </a>
+      <template v-if="selectedStream">
+        <StreamPlayer
+          v-if="selectedStream.sources?.length"
+          :key="selectedStream.id"
+          :sources="selectedStream.sources"
+          @ended="switchEndedStream(selectedStream.id)"
+          @unavailable="switchEndedStream(selectedStream.id)"
+        />
+        <iframe
+          v-else-if="iframeSrc"
+          :key="selectedStream.id + previewMode"
+          :src="iframeSrc"
+          :title="streamTitle"
+          class="absolute inset-0 h-full w-full border-0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+        />
+      </template>
       <div v-else class="flex h-full flex-col items-center justify-center px-5 text-center" role="status">
         <Video :size="26" class="mb-2 text-white/60" aria-hidden="true" />
         <p class="text-[14px] font-semibold text-white">
@@ -84,7 +109,7 @@ const tabs = [
     </div>
     <div class="flex items-center justify-between gap-2 px-2 py-1">
       <div class="flex gap-1">
-        <button type="button" class="grid h-5 w-5 place-items-center rounded-full bg-[#006649] text-white" aria-label="Comments" aria-pressed="true" title="Comments">
+        <button type="button" class="grid h-5 w-5 place-items-center rounded-full bg-[var(--main-highlight)] text-white" aria-label="Comments" aria-pressed="true" title="Comments">
           <MessageCircle :size="18" aria-hidden="true" />
         </button>
         <a

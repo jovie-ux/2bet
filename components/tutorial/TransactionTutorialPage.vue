@@ -159,7 +159,7 @@ const steps = computed(() => (props.mode === 'deposit' ? depositSteps : withdraw
 <style scoped>
 @media (max-width: 63.99rem) {
   .transaction-tutorial {
-    background: linear-gradient(#036242 0 74px, transparent 74px);
+    background: linear-gradient(var(--main-color) 0 74px, transparent 74px);
   }
   .transaction-board-wrapper { padding-right: 8px; padding-left: 8px; }
   .transaction-board-wrapper .transaction-board { margin-top: 0; }
@@ -200,7 +200,7 @@ const steps = computed(() => (props.mode === 'deposit' ? depositSteps : withdraw
 
 .transaction-pill--active {
   background-color: #ffffff;
-  color: #036242;
+  color: var(--main-color);
   font-weight: 700;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }

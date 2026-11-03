@@ -307,7 +307,7 @@ watch(activeProvider, () => { activeGameId.value = null })
             :key="tab.key"
             type="button"
             class="nav-tab flex h-6 min-w-[48px] shrink-0 cursor-pointer select-none items-center justify-center rounded-md px-2 transition-all py-2"
-            :class="activeProvider === tab.key.toLowerCase() ? 'bg-[#036242] shadow-md' : 'hover:bg-white/5'"
+            :class="activeProvider === tab.key.toLowerCase() ? 'bg-[var(--main-color)] shadow-md' : 'hover:bg-white/5'"
             :aria-label="tab.label"
             :aria-current="activeProvider === tab.key.toLowerCase() ? 'page' : undefined"
             @click="selectTab(tab.key)"

@@ -297,7 +297,7 @@ onBeforeUnmount(restorePageScroll)
   overflow-x: hidden;
   overflow-y: auto;
   color: #f7f7f7;
-  background: #036242;
+  background: var(--main-color);
   border: 0;
   border-radius: 20px;
   box-shadow: 0 24px 80px rgb(0 0 0 / 70%);
@@ -373,7 +373,7 @@ onBeforeUnmount(restorePageScroll)
   text-underline-offset: 2px;
 }
 .terms-confirmation a {
-  color: #036242;
+  color: var(--main-color);
 }
 .eligibility-panel {
   max-height: 145px;
@@ -440,7 +440,7 @@ onBeforeUnmount(restorePageScroll)
 .confirmation-check--active,
 input:checked + .confirmation-check {
   color: #fff;
-  background: #036242;
+  background: var(--main-color);
 }
 
 input:focus-visible + .confirmation-check {
@@ -495,7 +495,7 @@ input:focus-visible + .confirmation-check {
   border: 0;
   border-radius: 13px;
   color: #fff;
-  background: #036242;
+  background: var(--main-color);
   font-size: 17px;
   font-weight: 700;
   cursor: pointer;

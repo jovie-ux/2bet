@@ -41,7 +41,7 @@ const tournamentPath = (key: string): string => {
 
 <template>
   <div class="outright-tab">
-    <div class="toolbar">
+    <div v-if="sportsRouteBase !== '/explore/sports/popular'" class="toolbar">
       <Ai
         v-if="aiTo"
         :to="aiTo"
@@ -61,12 +61,14 @@ const tournamentPath = (key: string): string => {
       </label>
     </div>
 
-    <section
-      v-for="group in searchedGroups"
+    <SportsSkeleton v-if="loading" />
+    <SportsCategorySection
+      v-for="group in loading ? [] : searchedGroups"
       :key="group"
+      :sport="group"
+      :label="group"
       class="league-group"
     >
-      <h3>{{ group }}</h3>
       <div class="league-grid">
         <NuxtLink
           v-for="sport in searchedSports.filter(item => item.group === group)"
@@ -84,8 +86,13 @@ const tournamentPath = (key: string): string => {
           <ChevronUp :size="16" aria-hidden="true" />
         </NuxtLink>
       </div>
-    </section>
-    <div v-if="!searchedSports.length" class="empty">
+    </SportsCategorySection>
+    <div v-if="!loading && !searchedSports.length" class="empty">
+      <img
+        src="/images/empty/no-events.webp"
+        alt="No tournaments found"
+        class="h-auto w-full max-w-[200px] object-contain"
+      />
       <h2>No tournaments found</h2>
       <p>No available tournaments match your tournament list and search.</p>
     </div>

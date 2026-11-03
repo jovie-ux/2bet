@@ -545,7 +545,7 @@ const handleNavCell = (cell: NavCell): void => {
   }
 
   .mobile-bottom-nav__switch--plaza {
-    background: #036242;
+    background: var(--main-color);
   }
 
   .mobile-bottom-nav__switch--plaza .mobile-bottom-nav__switch-circle {

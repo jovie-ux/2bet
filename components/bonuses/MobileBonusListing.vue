@@ -137,7 +137,7 @@ watch(() => props.category, revealCategory)
   .mobile-bonuses__categories { position: relative; display: flex; gap: 8px; overflow-x: auto; align-items: center; height: 48px; padding: 8px; scrollbar-width: none; background: #111; border-radius: 12px; }
   .mobile-bonuses__categories::-webkit-scrollbar, .mobile-bonuses__carousel::-webkit-scrollbar { display: none; }
   .mobile-bonuses__categories a { flex: 0 0 auto; padding: 6px 12px; border-radius: 24px; font-size: 14px; font-weight: 700; white-space: nowrap; }
-  .mobile-bonuses__categories a[aria-current="page"] { background: #036242; }
+  .mobile-bonuses__categories a[aria-current="page"] { background: var(--main-color); }
   .mobile-bonuses__banners { position: relative; margin-top: 8px; }
   .mobile-bonuses__carousel { position: relative; display: flex; gap: 8px; padding: 0 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 10px; scrollbar-width: none; }
   .mobile-bonus-card { display: block; overflow: hidden; min-width: 0; border-radius: 16px; background: #003e2b; scroll-snap-align: start; }

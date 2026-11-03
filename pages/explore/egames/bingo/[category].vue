@@ -287,7 +287,7 @@ const displayedGames = computed<BingoGame[]>(() => {
             :key="cat.key"
             type="button"
             class="nav-tab flex flex-col items-center justify-center min-w-[48px] shrink-0 py-1 px-2.5 rounded-md transition-all cursor-pointer select-none"
-            :class="activeCategory === cat.key ? 'bg-[#036242] text-white shadow font-semibold' : 'text-[#959799]'"
+            :class="activeCategory === cat.key ? 'bg-[var(--main-color)] text-white shadow font-semibold' : 'text-[#959799]'"
             :aria-label="cat.label"
             @click="selectCategory(cat.key)"
           >
@@ -337,7 +337,7 @@ const displayedGames = computed<BingoGame[]>(() => {
             :key="prov.key"
             type="button"
             class="provider-pill px-4 py-1.5 rounded-full text-[12px] whitespace-nowrap transition-all cursor-pointer select-none border border-white/5 shrink-0"
-            :class="activeProvider === prov.key ? 'bg-[#036242] text-white font-bold shadow' : 'bg-[#242625] text-[#8e9491] '"
+            :class="activeProvider === prov.key ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'bg-[#242625] text-[#8e9491] '"
             @click="selectProvider(prov.key)"
           >
             {{ prov.label }}
@@ -377,7 +377,7 @@ const displayedGames = computed<BingoGame[]>(() => {
           v-model="searchQuery"
           type="text"
           placeholder="Search by game or provider..."
-          class="w-full rounded-xl bg-[#202220] border border-white/10 pl-10 pr-20 py-2.5 text-sm text-white placeholder-[#8e9491] focus:outline-none focus:border-[#036242] transition-colors"
+          class="w-full rounded-xl bg-[#202220] border border-white/10 pl-10 pr-20 py-2.5 text-sm text-white placeholder-[#8e9491] focus:outline-none focus:border-[var(--main-color)] transition-colors"
           @input="handleInput"
           @keyup.enter="handleSearchSubmit"
         />
@@ -568,7 +568,7 @@ const displayedGames = computed<BingoGame[]>(() => {
           </button>
           <button
             type="button"
-            class="h-[46px] rounded-xl text-[15px] font-bold text-white bg-[#036242] hover:bg-[#047a52] transition-colors"
+            class="h-[46px] rounded-xl text-[15px] font-bold text-white bg-[var(--main-color)] hover:bg-[#047a52] transition-colors"
             @click="isFilterOpen = false"
           >
             OK

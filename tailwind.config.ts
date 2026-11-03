@@ -5,6 +5,12 @@ export default {
   content: [],
   theme: {
     extend: {
+      colors: {
+        'main-color': 'var(--main-color)',
+        'main-highlight': 'var(--main-highlight)',
+        'header-text': 'var(--header-text)',
+        'theme-header-text': 'var(--header-text)',
+      },
       fontFamily: {
         sans: [
           '"PingFang SC"',

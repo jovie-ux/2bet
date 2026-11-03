@@ -379,7 +379,7 @@ const copyMatchLink = async (): Promise<void> => {
 
 .winner-price[aria-pressed='true'] {
   border-color: #48daa6;
-  background: #076b4a;
+  background: var(--main-highlight);
 }
 
 .winner-price:disabled {

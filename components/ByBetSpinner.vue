@@ -30,7 +30,7 @@ const isDarkTheme = computed(() => {
   return effectiveTheme.value !== 'light'
 })
 
-const greenColor = computed(() => (isDarkTheme.value ? '#fff' : '#036242'))
+const greenColor = computed(() => (isDarkTheme.value ? '#fff' : 'var(--main-color)'))
 
 const dimension = computed(() => {
   if (typeof props.size === 'number') return props.size
@@ -82,10 +82,10 @@ const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).sl
         >
           <defs>
             <linearGradient :id="gradientId" x1="18%" y1="78%" x2="68%" y2="88%">
-              <stop offset="0%" :stop-color="greenColor" stop-opacity="0.06" />
-              <stop offset="35%" :stop-color="greenColor" stop-opacity="0.38" />
-              <stop offset="70%" :stop-color="greenColor" stop-opacity="0.78" />
-              <stop offset="100%" :stop-color="greenColor" stop-opacity="1" />
+              <stop offset="0%" :stop-color="greenColor" :style="{ stopColor: greenColor }" stop-opacity="0.06" />
+              <stop offset="35%" :stop-color="greenColor" :style="{ stopColor: greenColor }" stop-opacity="0.38" />
+              <stop offset="70%" :stop-color="greenColor" :style="{ stopColor: greenColor }" stop-opacity="0.78" />
+              <stop offset="100%" :stop-color="greenColor" :style="{ stopColor: greenColor }" stop-opacity="1" />
             </linearGradient>
           </defs>
 
@@ -104,6 +104,7 @@ const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).sl
             cy="86.25"
             r="3.2"
             :fill="greenColor"
+            :style="{ fill: greenColor }"
           />
         </svg>
       </div>

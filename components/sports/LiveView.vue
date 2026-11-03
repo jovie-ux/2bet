@@ -116,11 +116,14 @@ const filteredEvents = computed(() => {
       />
 
       <!-- Empty State -->
-      <div v-else class="flex min-h-[100px] w-full items-center justify-center" role="status">
-        <div class="flex flex-col items-center mt-14">
-          <img src="/images/empty/no-matches.webp" alt="No matches available for the selected date" class="h-auto w-full max-w-[200px] object-contain" />
-          <p class="text-center text-[16px] text-[#959799]">No Live Streaming</p>
-        </div>
+      <div v-else class="empty" role="status">
+        <img
+          src="/images/empty/no-events.webp"
+          alt="No Live Streaming"
+          class="h-auto w-full max-w-[200px] object-contain"
+        />
+        <h2>No Live Streaming</h2>
+        <p>No live streaming matches available right now. Check back later.</p>
       </div>
     </div>
   </div>

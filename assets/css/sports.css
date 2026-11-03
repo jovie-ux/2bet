@@ -64,7 +64,7 @@
 }
 
 .sports-page .sports-tabs a.selected {
-  background: #076b4a;
+  background: var(--main-highlight);
   color: white;
   border-color: #24865f;
 }
@@ -272,7 +272,7 @@
 
 .sports-page .league-card:hover {
   border-color: #27855f;
-  /* background: #076b4a22; */
+  /* background: color-mix(in srgb, var(--main-highlight) 13%, transparent); */
 }
 
 .sports-page .league-icon {
@@ -386,6 +386,20 @@
   text-align: center;
 }
 
+.sports-page .empty img {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.sports-page .empty h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text, #ffffff);
+  margin: 0;
+}
+
 .sports-page .empty > svg {
   color: #48daa6;
 }
@@ -398,7 +412,7 @@
 }
 
 .sports-page .empty button {
-  background: #076b4a;
+  background: var(--main-highlight);
   color: white;
   border: 0;
   border-radius: 18px;
@@ -469,7 +483,7 @@
   padding: 8px 16px;
   border: 0;
   border-radius: 18px;
-  background: #076b4a;
+  background: var(--main-highlight);
   color: white;
   font-size: 14px;
 }

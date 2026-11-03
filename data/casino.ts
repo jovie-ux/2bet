@@ -43,7 +43,7 @@ export const promoBanners: PromoBanner[] = [
     title: 'Level up your first play',
     copy: 'A demo welcome experience built for the bold.',
     action: 'View promotion',
-    accent: '#036242',
+    accent: 'var(--main-color)',
     symbol: '♠',
   },
   {

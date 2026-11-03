@@ -224,7 +224,7 @@ const tagLabel = computed(() => {
 })
 
 const tagBgClass = computed(() => {
-  return 'bg-[#036242]'
+  return 'bg-[var(--main-color)]'
 })
 
 const showRtpBadge = computed(() => {
@@ -357,9 +357,10 @@ onUnmounted(() => {
       <!-- Top Right: Dual-color RTP Badge -->
       <div
         v-if="showRtpBadge"
-        class="absolute top-1 right-0.5 flex items-center rounded overflow-hidden shadow-md leading-none border border-[#036242]/40 text-[12px] font-black"
+        class="absolute top-1 right-0.5 flex items-center rounded overflow-hidden shadow-md leading-none border text-[12px] font-black"
+        :style="{ borderColor: 'color-mix(in srgb, var(--main-color) 40%, transparent)' }"
       >
-        <span class="bg-[#036242] text-white px-1.5 py-0.5">RTP</span>
+        <span class="bg-[var(--main-color)] text-white px-1.5 py-0.5">RTP</span>
         <span class="bg-white/90 text-black px-1.5 py-0.5 font-semibold">{{ displayRtp }}</span>
       </div>
 
@@ -455,7 +456,7 @@ onUnmounted(() => {
         <!-- Start Now Button -->
         <button
           type="button"
-          class="w-full max-w-[85px] py-1.5 px-0.5 rounded-full bg-[#036242] hover:bg-[#0e896033] text-white font-extrabold text-[12px] leading-tight text-center transition-all shadow-md active:scale-95 cursor-pointer"
+          class="w-full max-w-[85px] py-1.5 px-0.5 rounded-full bg-[var(--main-color)] hover:bg-[#0e896033] text-white font-extrabold text-[12px] leading-tight text-center transition-all shadow-md active:scale-95 cursor-pointer"
           @click.stop="handleStartNowClick"
         >
           Start Now

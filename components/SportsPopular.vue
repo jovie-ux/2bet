@@ -24,6 +24,7 @@ import Replay from './sports/tabs/Replay.vue'
 import Outright from './sports/tabs/Outright.vue'
 import OutrightInner from './sports/tabs/OutrightInner.vue'
 import '~/assets/css/sports.css'
+import '~/assets/css/sports-popular.css'
 
 const props = withDefaults(defineProps<{
   selectedSports: string[]
@@ -36,6 +37,7 @@ const props = withDefaults(defineProps<{
 
 const route = useRoute()
 const sportsRouteBase = useSportsRouteBase()
+const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular')
 
 const tabs = [
   { key: 'league', label: 'League', icon: Trophy },
@@ -47,11 +49,10 @@ const tabs = [
   { key: 'outright', label: 'Outright', icon: Flag },
 ] as const
 
-const visibleTabs = computed(() => (
-  sportsRouteBase.value === '/explore/sports/soccer'
-    ? tabs
-    : tabs.filter(tab => tab.key !== 'replay')
-))
+const visibleTabs = computed(() => tabs.filter(tab => {
+  if (isPopular.value) return !['inplay', 'replay'].includes(tab.key)
+  return sportsRouteBase.value === '/explore/sports/soccer' || tab.key !== 'replay'
+}))
 
 const tabLabel = (tab: typeof tabs[number]): string => {
   if (tab.key === 'smart-pick' && sportsRouteBase.value !== '/explore/sports/popular') {
@@ -112,7 +113,7 @@ const {
   status: leagueStatus,
   error: leagueError,
   refresh: refreshLeagues,
-} = await useFetch('/api/sports', {
+} = useFetch('/api/sports', {
   query: { mode: 'league' },
 })
 
@@ -188,7 +189,7 @@ const {
   status: fixtureStatus,
   error: fixtureError,
   execute: loadFixtures,
-} = await useFetch('/api/sports', {
+} = useFetch('/api/sports', {
   query,
   immediate: isFixtureTab.value && canLoadFixtures.value,
   watch: false,
@@ -251,10 +252,6 @@ const error = computed(() => {
   return leagueError.value || (isFixtureTab.value ? fixtureError.value : null)
 })
 
-const activeLabel = computed(() => {
-  return tabs.find(tab => tab.key === activeTab.value)?.label
-})
-
 const selectTab = (key: string): void => {
   void navigateTo(tabPath(key))
 }
@@ -290,7 +287,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="sports-page">
+  <section class="sports-page" :class="{ 'sports-page--popular': isPopular }">
     <div class="sports-navigation">
       <MobileSportsNav />
       <nav
@@ -320,13 +317,6 @@ onBeforeUnmount(() => {
       />
       <Replay v-else-if="activeTab === 'replay'" />
       <div
-        v-else-if="loading && (isFixtureTab || !leagues)"
-        class="empty py-8 flex flex-col items-center justify-center"
-        role="status"
-      >
-        <ByBetSpinner size="sm" :label="`Loading ${activeLabel?.toLowerCase() || 'sports'}…`" />
-      </div>
-      <div
         v-else-if="error"
         class="empty"
         role="alert"
@@ -354,6 +344,7 @@ onBeforeUnmount(() => {
         :groups="groups"
         :max-matches-per-group="sportsRouteBase === '/explore/sports/popular' ? 2 : undefined"
         :ai-to="bybetRedirectUrl"
+        :loading="loading"
       />
       <Inplay
         v-else-if="activeTab === 'inplay'"
@@ -362,6 +353,7 @@ onBeforeUnmount(() => {
         :selected-sport="usesLiveCatalog ? undefined : selectedSport"
         @update:selected-sport="selectedSport = $event"
         :ai-to="bybetRedirectUrl"
+        :loading="loading"
       />
       <Upcoming
         v-else-if="activeTab === 'upcoming'"
@@ -369,6 +361,7 @@ onBeforeUnmount(() => {
         :available-sports="availableSports"
         v-model:selected-sport="selectedSport"
         :ai-to="bybetRedirectUrl"
+        :loading="loading"
       />
       <Prematch
         v-else-if="activeTab === 'prematch'"
@@ -376,6 +369,7 @@ onBeforeUnmount(() => {
         :available-sports="availableSports"
         v-model:selected-sport="selectedSport"
         :ai-to="bybetRedirectUrl"
+        :loading="loading"
       />
       <OutrightInner
         v-else-if="activeTab === 'outright' && isOutrightDetail"
@@ -389,6 +383,7 @@ onBeforeUnmount(() => {
         :filtered-sports="filteredSports"
         :groups="groups"
         :ai-to="bybetRedirectUrl"
+        :loading="loading"
       />
     </div>
   </section>

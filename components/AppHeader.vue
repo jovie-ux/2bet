@@ -96,7 +96,7 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
         class="header-glass-icon header-glass-icon--profile"
         aria-label="Open profile"
       >
-        <svg id="_圖層_1" data-name="圖層_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 56 56" class="h-full w-full" fill="#fff"><path d="M28,0C12.54,0,0,12.54,0,28s12.54,28,28,28,28-12.54,28-28S43.46,0,28,0ZM28,12.26c3.53,0,6.41,2.86,6.41,6.41s-2.86,6.41-6.41,6.41-6.41-2.86-6.41-6.41,2.86-6.41,6.41-6.41ZM28,49.5c-9.97,0-18.03-5.07-18.03-11.28s8.06-11.28,18.03-11.28,18.03,5.07,18.03,11.28-8.06,11.28-18.03,11.28Z" class="fill-theme-header-text"></path><path d="M28,25.09c3.56,0,6.41-2.88,6.41-6.41s-2.88-6.41-6.41-6.41-6.41,2.86-6.41,6.41,2.88,6.41,6.41,6.41Z" class="fill-transparent"></path><path d="M28,26.94c-9.97,0-18.03,5.07-18.03,11.28s8.06,11.28,18.03,11.28,18.03-5.07,18.03-11.28-8.06-11.28-18.03-11.28Z" class="fill-transparent"></path></svg>
+        <svg id="_圖層_1" data-name="圖層_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 56 56" class="h-full w-full" fill="currentColor"><path d="M28,0C12.54,0,0,12.54,0,28s12.54,28,28,28,28-12.54,28-28S43.46,0,28,0ZM28,12.26c3.53,0,6.41,2.86,6.41,6.41s-2.86,6.41-6.41,6.41-6.41-2.86-6.41-6.41,2.86-6.41,6.41-6.41ZM28,49.5c-9.97,0-18.03-5.07-18.03-11.28s8.06-11.28,18.03-11.28,18.03,5.07,18.03,11.28-8.06,11.28-18.03,11.28Z" class="fill-theme-header-text"></path><path d="M28,25.09c3.56,0,6.41-2.88,6.41-6.41s-2.88-6.41-6.41-6.41-6.41,2.86-6.41,6.41,2.88,6.41,6.41,6.41Z" class="fill-transparent"></path><path d="M28,26.94c-9.97,0-18.03,5.07-18.03,11.28s8.06,11.28,18.03,11.28,18.03-5.07,18.03-11.28-8.06-11.28-18.03-11.28Z" class="fill-transparent"></path></svg>
       </NuxtLink>
     </div>
   </header>
@@ -166,7 +166,7 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.52);
   border-radius: 50%;
-  color: #ffffff;
+  color: var(--header-text);
   background: rgba(255, 255, 255, 0.2);
   box-shadow: none;
   transition:
@@ -193,7 +193,7 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
   padding: 0 10px;
   box-shadow: inset 1px 1px #ffffff4d, inset -1px -1px #ffffff80, inset 2px 2px 4px #00000005, inset -4px -4px 8px #00000005, 0 0 4px #0000000a, 0 4px 8px #00000014;
   border-radius: var(--header-button-radius);
-  color: #ffffff;
+  color: var(--header-text);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -203,6 +203,10 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
     border-color 160ms ease,
     filter 160ms ease,
     background-color 160ms ease;
+}
+
+.fill-theme-header-text {
+  fill: var(--header-text);
 }
 
 .header-glass-button--login {
@@ -230,7 +234,7 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 50%;
-  color: #ffffff;
+  color: var(--header-text);
   background: rgba(255, 255, 255, 0.2);
 }
 

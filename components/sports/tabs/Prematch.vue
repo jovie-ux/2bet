@@ -7,6 +7,7 @@ import Ai from '~/components/buttons/Ai.vue'
 import Collapse from '~/components/buttons/Collapse.vue'
 import Sort from '~/components/buttons/Sort.vue'
 import type { Sport, SportsEvent } from '~/types/sports'
+import { getSportsCategoryKey, getSportsCategoryLabel, getSportsCategoryRank } from '~/data/sports-category-banners'
 
 const props = defineProps<{
   events: SportsEvent[]
@@ -23,6 +24,7 @@ const emit = defineEmits<{
 const search = ref('')
 const route = useRoute()
 const sportsRouteBase = useSportsRouteBase()
+const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular')
 const oddsCols = computed<2 | 3>(() => route.params.sport === 'soccer' ? 3 : 2)
 const selectedDate = ref('all')
 watch(() => route.params.date, value => {
@@ -124,7 +126,7 @@ const filteredEvents = computed(() => {
 })
 
 const groupedSports = computed(() => {
-  const groups: Record<string, { title: string; key: string; description: string; group: string; earliestTime: number }> = {}
+  const groups: Record<string, { title: string; key: string; description: string; group: string; category: string; earliestTime: number }> = {}
   
   filteredEvents.value.forEach((event: SportsEvent) => {
     const sportKey = event.sport_key
@@ -137,6 +139,7 @@ const groupedSports = computed(() => {
         key: sportKey,
         description: (event as any).sport_group ?? event.sport ?? '',
         group: (event as any).sport_group ?? event.sport ?? '',
+        category: getSportsCategoryKey(event.sport || event.sport_key),
         earliestTime: validTime,
       }
     } else if (validTime < groups[sportKey].earliestTime) {
@@ -149,6 +152,22 @@ const groupedSports = computed(() => {
     return list.sort((a, b) => a.title.localeCompare(b.title) || a.earliestTime - b.earliestTime)
   }
   return list.sort((a, b) => a.earliestTime - b.earliestTime || a.title.localeCompare(b.title))
+})
+
+const categoryGroups = computed(() => {
+  const categories = new Map<string, { key: string; label: string; sports: typeof groupedSports.value }>()
+
+  for (const sport of groupedSports.value) {
+    const category = categories.get(sport.category) ?? {
+      key: sport.category,
+      label: getSportsCategoryLabel(sport.category),
+      sports: [],
+    }
+    category.sports.push(sport)
+    categories.set(sport.category, category)
+  }
+
+  return [...categories.values()].sort((a, b) => getSportsCategoryRank(a.key) - getSportsCategoryRank(b.key))
 })
 
 const allCollapsed = computed(() => {
@@ -166,8 +185,8 @@ const toggleCollapseAll = (): void => {
 </script>
 
 <template>
-  <div class="prematch-tab">
-    <div class="toolbar">
+  <div class="prematch-tab" :class="{ 'flex flex-col gap-2': isPopular }">
+    <div v-if="!isPopular" class="toolbar">
       <Ai
         v-if="aiTo"
         :to="aiTo"
@@ -195,11 +214,11 @@ const toggleCollapseAll = (): void => {
       />
       
     </div>
-    <div class="mb-4 flex flex-wrap gap-1" role="group" aria-label="Filter upcoming matches by date, Philippine time">
+    <div class="sports-date-filters flex flex-wrap gap-1" :class="{ 'mb-4': !isPopular }" role="group" aria-label="Filter upcoming matches by date, Philippine time">
       <button
         type="button"
         class="time-filter min-h-[44px] min-w-[64px] rounded-md px-3 py-1 text-[12px] font-medium text-white"
-        :class="selectedDate === 'all' ? 'bg-[#076b4a]' : 'bg-[#1a1a1a]'"
+        :class="selectedDate === 'all' ? 'bg-[var(--main-highlight)]' : 'bg-[#1a1a1a]'"
         :aria-pressed="selectedDate === 'all'"
         @click="selectDate('all')"
       >All</button>
@@ -208,7 +227,7 @@ const toggleCollapseAll = (): void => {
         :key="filter.key"
         type="button"
         class="time-filter flex min-h-[44px] min-w-[64px] flex-col items-center justify-center rounded-md px-3 py-1 text-[12px] font-medium text-white"
-        :class="selectedDate === filter.key ? 'bg-[#076b4a]' : 'bg-[#1a1a1a]'"
+        :class="selectedDate === filter.key ? 'bg-[var(--main-highlight)]' : 'bg-[#1a1a1a]'"
         :aria-pressed="selectedDate === filter.key"
         :aria-label="`${filter.date}, ${filter.label}`"
         @click="selectDate(filter.key)"
@@ -220,51 +239,68 @@ const toggleCollapseAll = (): void => {
 
     <SportsSkeleton v-if="loading" :cols="oddsCols" />
 
-    <div v-else-if="filteredEvents.length" class="league-matches-list">
-      <article
-        v-for="sport in groupedSports"
-        :key="sport.key"
-        class="league-preview"
+    <div v-else-if="filteredEvents.length" class="sport-category-list">
+      <SportsCategorySection
+        v-for="category in categoryGroups"
+        :key="category.key"
+        :sport="category.key"
+        :label="category.label"
       >
-        <button
-          :id="`league-trigger-${sport.key}`"
-          class="league-card league-preview-heading"
-          type="button"
-          :aria-expanded="isExpanded(sport.key)"
-          :aria-controls="`league-panel-${sport.key}`"
-          @click="toggleTournament(sport.key)"
-        >
-          <span class="league-name text-[12px] text-[#999] truncate" :title="sport.title">
-            {{ sport.title }} {{ sport.description }}
-          </span>
-          <CollapseIcon :expanded="isExpanded(sport.key)" />
-        </button>
-        <div
-          v-show="isExpanded(sport.key)"
-          :id="`league-panel-${sport.key}`"
-          role="region"
-          :aria-labelledby="`league-trigger-${sport.key}`"
-        >
-          <EventCard
-            v-for="event in filteredEvents.filter(item => item.sport_key === sport.key).slice(0, 2)"
-            :key="event.id"
-            :event="event"
-          />
+        <div class="league-matches-list">
+          <article
+            v-for="sport in category.sports"
+            :key="sport.key"
+            class="league-preview"
+          >
+            <button
+              :id="`league-trigger-${sport.key}`"
+              class="league-card league-preview-heading"
+              type="button"
+              :aria-expanded="isExpanded(sport.key)"
+              :aria-controls="`league-panel-${sport.key}`"
+              @click="toggleTournament(sport.key)"
+            >
+              <span class="league-name text-[12px] text-[#999] truncate" :title="sport.title">
+                {{ sport.title }} {{ sport.description }}
+              </span>
+              <CollapseIcon :expanded="isExpanded(sport.key)" />
+            </button>
+            <div
+              v-show="isExpanded(sport.key)"
+              :id="`league-panel-${sport.key}`"
+              role="region"
+              :aria-labelledby="`league-trigger-${sport.key}`"
+            >
+              <EventCard
+                v-for="event in filteredEvents.filter(item => item.sport_key === sport.key).slice(0, 2)"
+                :key="event.id"
+                :event="event"
+              />
+            </div>
+          </article>
         </div>
-      </article>
+      </SportsCategorySection>
     </div>
 
-    <div v-else class="flex min-h-[100px] w-full items-center justify-center" role="status">
-        <div class="flex flex-col items-center mt-14">
-          <img src="/images/empty/no-matches.webp" alt="No matches available for the selected date" class="h-auto w-full max-w-[200px] object-contain" />
-          <p class="text-center text-[16px] text-[#959799]">No Live Streaming</p>
-        </div>
+    <div v-else class="empty" role="status">
+      <img
+        src="/images/empty/no-events.webp"
+        alt="No pre-match events"
+        class="h-auto w-full max-w-[200px] object-contain"
+      />
+      <h2>No pre-match events</h2>
+      <p>Try another date or check back later.</p>
     </div>
   </div>
 </template>
 
 <style scoped>
 .league-matches-list {
+  display: grid;
+  gap: 16px;
+}
+
+.sport-category-list {
   display: grid;
   gap: 16px;
 }

@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, defineComponent, h } from 'vue'
-import { CalendarDays, ChevronDown, Search } from 'lucide-vue-next'
+import { ChevronDown, Search } from 'lucide-vue-next'
 import EventCard from '~/components/sports/EventCard.vue'
 import SportsSkeleton from '~/components/sports/SportsSkeleton.vue'
 import Collapse from '~/components/buttons/Collapse.vue'
 import Sort from '~/components/buttons/Sort.vue'
 import Ai from '~/components/buttons/Ai.vue'
 import type { Sport, SportsEvent } from '~/types/sports'
+import { getSportsCategoryKey, getSportsCategoryLabel, getSportsCategoryRank } from '~/data/sports-category-banners'
 
 const props = defineProps<{
   events: SportsEvent[]
@@ -26,10 +27,11 @@ const earliestTimes = ref<Record<string, number>>({})
 const timeFilters = ['1hours', '3hours', '6hours', '12hours', '24hours'] as const
 const route = useRoute()
 const sportsRouteBase = useSportsRouteBase()
+const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular')
 const oddsCols = computed<2 | 3>(() => route.params.sport === 'soccer' ? 3 : 2)
 const selectedTimeFilter = ref<(typeof timeFilters)[number] | null>(null)
 watch(() => route.params.hours, value => {
-  selectedTimeFilter.value = timeFilters.find(filter => filter === value) ?? null
+  selectedTimeFilter.value = timeFilters.find(filter => filter === value) ?? (isPopular.value ? '3hours' : null)
 }, { immediate: true })
 function selectTimeFilter(value: (typeof timeFilters)[number], replace = false) {
   selectedTimeFilter.value = value
@@ -136,8 +138,12 @@ const matchingEvents = computed(() => {
 const availableTimeFilters = computed(() => timeFilters.filter(filter =>
   matchingEvents.value.some((event: SportsEvent) => isWithinTimeFilter(event, filter)),
 ))
+const displayedTimeFilters = computed(() => isPopular.value
+  ? timeFilters.filter(filter => filter !== '1hours')
+  : availableTimeFilters.value)
 
 watch(availableTimeFilters, filters => {
+  if (isPopular.value) return
   if (route.params.hours) return
   if (!selectedTimeFilter.value || !filters.includes(selectedTimeFilter.value)) {
     selectedTimeFilter.value = filters[0] ?? null
@@ -154,7 +160,7 @@ const filteredEvents = computed(() => {
 })
 
 const groupedSports = computed(() => {
-  const groups: Record<string, { title: string; key: string; description: string; group: string; earliestTime: number }> = {}
+  const groups: Record<string, { title: string; key: string; description: string; group: string; category: string; earliestTime: number }> = {}
 
   filteredEvents.value.forEach((event: SportsEvent) => {
     const sportKey = event.sport_key
@@ -167,6 +173,7 @@ const groupedSports = computed(() => {
         key: sportKey,
         description: (event as any).sport_group ?? event.sport ?? '',
         group: (event as any).sport_group ?? event.sport ?? '',
+        category: getSportsCategoryKey(event.sport || event.sport_key),
         earliestTime: validTime,
       }
     } else if (validTime < groups[sportKey].earliestTime) {
@@ -179,6 +186,22 @@ const groupedSports = computed(() => {
     return list.sort((a, b) => a.title.localeCompare(b.title) || a.earliestTime - b.earliestTime)
   }
   return list.sort((a, b) => a.earliestTime - b.earliestTime || a.title.localeCompare(b.title))
+})
+
+const categoryGroups = computed(() => {
+  const categories = new Map<string, { key: string; label: string; sports: typeof groupedSports.value }>()
+
+  for (const sport of groupedSports.value) {
+    const category = categories.get(sport.category) ?? {
+      key: sport.category,
+      label: getSportsCategoryLabel(sport.category),
+      sports: [],
+    }
+    category.sports.push(sport)
+    categories.set(sport.category, category)
+  }
+
+  return [...categories.values()].sort((a, b) => getSportsCategoryRank(a.key) - getSportsCategoryRank(b.key))
 })
 
 const allCollapsed = computed(() => {
@@ -196,8 +219,8 @@ const toggleCollapseAll = (): void => {
 </script>
 
 <template>
-  <div class="upcoming-tab">
-    <div class="toolbar">
+  <div class="upcoming-tab" :class="{ 'flex flex-col gap-2': isPopular }">
+    <div v-if="!isPopular" class="toolbar">
       <Ai
         v-if="aiTo"
         :to="aiTo"
@@ -225,13 +248,13 @@ const toggleCollapseAll = (): void => {
       />
     </div>
 
-    <div v-if="availableTimeFilters.length" class="flex flex-wrap gap-1" aria-label="Filter upcoming matches by start time">
+    <div v-if="displayedTimeFilters.length" class="sports-time-filters flex flex-wrap gap-1" aria-label="Filter upcoming matches by start time">
       <button
-        v-for="filter in availableTimeFilters"
+        v-for="filter in displayedTimeFilters"
         :key="filter"
         type="button"
         class="time-filter rounded-md  px-3 py-1 text-[12px] font-medium text-white"
-        :class="selectedTimeFilter === filter ? 'bg-[#076b4a]' : 'bg-[#1a1a1a]'"
+        :class="selectedTimeFilter === filter ? 'bg-[var(--main-highlight)]' : 'bg-[#1a1a1a]'"
         :aria-pressed="selectedTimeFilter === filter"
         @click="selectTimeFilter(filter)"
       >
@@ -239,49 +262,62 @@ const toggleCollapseAll = (): void => {
       </button>
     </div>
 
-    <div class="section-heading">
+    <div v-if="!isPopular" class="section-heading">
       <h2>Upcoming</h2>
       <span>{{ filteredEvents.length }} events · Philippine time</span>
     </div>
 
     <SportsSkeleton v-if="loading" :cols="oddsCols" />
 
-    <div v-else-if="filteredEvents.length" class="league-matches-list">
-      <article
-        v-for="sport in groupedSports"
-        :key="sport.key"
-        class="league-preview"
+    <div v-else-if="filteredEvents.length" class="sport-category-list">
+      <SportsCategorySection
+        v-for="category in categoryGroups"
+        :key="category.key"
+        :sport="category.key"
+        :label="category.label"
       >
-        <button
-          :id="`league-trigger-${sport.key}`"
-          class="league-card league-preview-heading"
-          type="button"
-          :aria-expanded="isExpanded(sport.key)"
-          :aria-controls="`league-panel-${sport.key}`"
-          @click="toggleTournament(sport.key)"
-        >
-          <span class="league-name text-[12px] text-[#999] truncate" :title="sport.title">
-            {{ sport.title }} {{ sport.description }}
-          </span>
-          <CollapseIcon :expanded="isExpanded(sport.key)" />
-        </button>
-        <div
-          v-show="isExpanded(sport.key)"
-          :id="`league-panel-${sport.key}`"
-          role="region"
-          :aria-labelledby="`league-trigger-${sport.key}`"
-        >
-          <EventCard
-            v-for="event in filteredEvents.filter(item => item.sport_key === sport.key).slice(0, 2)"
-            :key="event.id"
-            :event="event"
-          />
+        <div class="league-matches-list">
+          <article
+            v-for="sport in category.sports"
+            :key="sport.key"
+            class="league-preview"
+          >
+            <button
+              :id="`league-trigger-${sport.key}`"
+              class="league-card league-preview-heading"
+              type="button"
+              :aria-expanded="isExpanded(sport.key)"
+              :aria-controls="`league-panel-${sport.key}`"
+              @click="toggleTournament(sport.key)"
+            >
+              <span class="league-name text-[12px] text-[#999] truncate" :title="sport.title">
+                {{ sport.title }} {{ sport.description }}
+              </span>
+              <CollapseIcon :expanded="isExpanded(sport.key)" />
+            </button>
+            <div
+              v-show="isExpanded(sport.key)"
+              :id="`league-panel-${sport.key}`"
+              role="region"
+              :aria-labelledby="`league-trigger-${sport.key}`"
+            >
+              <EventCard
+                v-for="event in filteredEvents.filter(item => item.sport_key === sport.key).slice(0, 2)"
+                :key="event.id"
+                :event="event"
+              />
+            </div>
+          </article>
         </div>
-      </article>
+      </SportsCategorySection>
     </div>
 
     <div v-else class="empty">
-      <CalendarDays :size="32" class="text-[#ff8a3d]" aria-hidden="true" />
+      <img
+        src="/images/empty/no-events.webp"
+        alt="No upcoming events"
+        class="h-auto w-full max-w-[200px] object-contain"
+      />
       <h2>No upcoming events</h2>
       <p>Try another league or check back later.</p>
     </div>
@@ -290,6 +326,11 @@ const toggleCollapseAll = (): void => {
 
 <style scoped>
 .league-matches-list {
+  display: grid;
+  gap: 16px;
+}
+
+.sport-category-list {
   display: grid;
   gap: 16px;
 }
