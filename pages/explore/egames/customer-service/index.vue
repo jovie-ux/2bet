@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { ChevronRight } from 'lucide-vue-next'
 
-const router = useRouter()
 const { closeComments } = useCommentPanel()
-const { showDemoMessage } = useDemoInteraction()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
 
 useAppSeo({
   title: '24/7 Customer Support & Help Center | ByBet Philippines',
@@ -21,21 +18,6 @@ useAppSeo({
     url: 'https://bybet.com/explore/egames/customer-service',
   },
 })
-
-const handleBack = (): void => {
-  if (import.meta.client && window.history.length > 1) {
-    router.back()
-  } else {
-    router.push('/explore/account/me')
-  }
-}
-
-const handleServiceClick = (serviceName: string): void => {
-  showDemoMessage(`Connecting to ${serviceName}...`)
-  if (import.meta.client && bybetRedirectUrl) {
-    window.open(bybetRedirectUrl, '_blank')
-  }
-}
 
 onMounted(() => {
   closeComments()
@@ -73,12 +55,11 @@ onMounted(() => {
     </div>
 
     <!-- Service Options Card -->
-    <div class="services-card px-0.5 rounded-md bg-[#141414] overflow-hidden shadow-sm">
+    <div class="services-card px-0.5 rounded-md bg-[#141414] overflow-hidden shadow-sm" aria-label="Customer service channels">
       <!-- 24/7 Services 1 -->
-      <button
-        type="button"
+      <NuxtLink
+        to="/explore/egames/customer-service/1"
         class="service-row flex w-full items-center justify-between p-2 text-left transition-colors  group cursor-pointer "
-        @click="handleServiceClick('24/7 Services 1')"
       >
         <div class="flex items-center gap-3">
           <div class="p-[1px] rounded-md shrink-0 bg-[#036242] flex items-center justify-center">
@@ -90,16 +71,15 @@ onMounted(() => {
           </span>
         </div>
         <ChevronRight class="h-4 w-4 text-[#7a807d] transition-colors shrink-0" />
-      </button>
+      </NuxtLink>
 
       <!-- Divider -->
       <div class="divider h-px bg-white/30 mx-1" />
 
       <!-- 24/7 Services 2 -->
-      <button
-        type="button"
+      <NuxtLink
+        to="/explore/egames/customer-service/2"
         class="service-row flex w-full items-center justify-between p-2 text-left transition-colors  group cursor-pointer"
-        @click="handleServiceClick('24/7 Services 2')"
       >
         <div class="flex items-center gap-3">
           <div class="p-[1px] rounded-md shrink-0 bg-[#036242] flex items-center justify-center">
@@ -110,7 +90,7 @@ onMounted(() => {
           </span>
         </div>
         <ChevronRight class="h-4 w-4 text-[#7a807d] group-hover:text-white transition-colors shrink-0" />
-      </button>
+      </NuxtLink>
     </div>
   </div>
 </template>

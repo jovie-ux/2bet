@@ -46,8 +46,8 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
     providerLogo: '/images/providers/jili.webp',
     count: 27,
     jackpotCharacter: 'dragon',
-    showCounter: false,
-    jackpotAmount: 8769541.88,
+    showCounter: true,
+    jackpotAmount: 7854.20,
     games: [
       {
         id: '3-coin-treasures-2',
@@ -122,7 +122,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
     count: 0,
     jackpotCharacter: 'genie',
     showCounter: true,
-    jackpotAmount: 0.00,
+    jackpotAmount: 6328.50,
     games: [
       {
         id: 'golden-egg-jp',

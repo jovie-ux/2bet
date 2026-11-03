@@ -47,14 +47,19 @@ const isDoorAnimating = ref(false)
 const isMobileViewport = ref(false)
 const isPageFooterVisible = ref(false)
 let pageFooterObserver: IntersectionObserver | null = null
+const isCustomerServicePage = computed(() => (
+  route.path === '/explore/egames/customer-service'
+  || route.path.startsWith('/explore/egames/customer-service/')
+))
 const hasChatRoom = computed(() => (
   (route.path.startsWith('/explore/egames/')
-  && route.path !== '/explore/egames/customer-service')
+  && !isCustomerServicePage.value)
   || route.path.startsWith('/explore/entertainment/live-casino')
   || route.path.startsWith('/explore/sports/')
 ))
 const isChatExpanded = computed(() => isMobileViewport.value && hasChatRoom.value && chatContext.value !== null)
 const isBonusDetailPage = computed(() => route.path.startsWith('/explore/bonus/'))
+const isCustomerServiceChatPage = computed(() => /^\/explore\/egames\/customer-service\/[12]\/?$/.test(route.path))
 const showNavigation = computed(() => !isBonusDetailPage.value && (isDoorAnimating.value || isChatExpanded.value || isNavVisible.value || (hasChatRoom.value && !isPageFooterVisible.value)))
 const updateViewport = (): void => { isMobileViewport.value = window.innerWidth < 1024 }
 
@@ -367,7 +372,7 @@ const handleNavCell = (cell: NavCell): void => {
 
 <template>
   <nav
-    v-show="!isBonusDetailPage"
+    v-show="!isBonusDetailPage && !isCustomerServiceChatPage"
     class="mobile-bottom-nav"
     :class="{
       'mobile-bottom-nav--hidden': !showNavigation,

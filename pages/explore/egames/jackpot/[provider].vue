@@ -14,6 +14,12 @@ import {
   type JackpotSection,
   type JackpotWinner,
 } from '~/data/jackpot'
+import {
+  JDB_JACKPOT_COUNTER,
+  JILI_JACKPOT_COUNTER,
+  CQ9_JACKPOT_COUNTER,
+  useJackpotCounter,
+} from '~/composables/useJackpotCounter'
 import GameCard from '~/components/game-cards/GameCard.vue'
 import GameRail from '~/components/game-cards/GameRail.vue'
 import { SLOTS, normalizeSlotProvider } from '~/data/slots'
@@ -96,6 +102,20 @@ const jackpotRevision = ref(0)
 let winnerTimer: ReturnType<typeof setTimeout> | null = null
 let jackpotClockTimer: ReturnType<typeof setInterval> | null = null
 
+const { displayAmount: jdbDisplay } = useJackpotCounter(JDB_JACKPOT_COUNTER)
+const { displayAmount: jiliDisplay } = useJackpotCounter(JILI_JACKPOT_COUNTER)
+const { displayAmount: cq9Display } = useJackpotCounter(CQ9_JACKPOT_COUNTER)
+
+const storeAmounts: Record<string, Ref<number>> = {
+  jdb: jdbDisplay,
+  jili: jiliDisplay,
+  cq9: cq9Display,
+}
+
+watch([jdbDisplay, jiliDisplay, cq9Display], () => {
+  jackpotRevision.value += 1
+})
+
 const WINNER_PROVIDER_LOGO = '/images/providers/jdb.webp'
 
 const maskUsername = (name: string): string => {
@@ -145,6 +165,9 @@ const scheduleRandomWinner = (): void => {
 }
 
 const getJackpotAmount = (section: JackpotSection): number => {
+  if (storeAmounts[section.id]) {
+    return storeAmounts[section.id].value
+  }
   return jackpotAmounts.value[section.id] ?? section.jackpotAmount
 }
 

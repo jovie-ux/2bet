@@ -167,6 +167,105 @@ export const isGameInSlotCategory = (game: SlotGame, categoryKey: string): boole
 
 const slotsBatch1: SlotGame[] = [
   {
+    "id": "3-lightning-blitz",
+    "title": "3 Lightning Blitz",
+    "provider": "JILI",
+    "image": "/images/slots/3-lightning-blitz.webp",
+    "category": [
+      "bonus"
+    ],
+    "new": true,
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243",
+    "providerLogo": "/images/providers/jili.webp"
+  },
+  {
+    "id": "golden-retriever",
+    "title": "Golden Retriever",
+    "provider": "PP",
+    "image": "/images/slots/golden-retriever.webp",
+    "category": [
+      "bonus"
+    ],
+    "new": true,
+    "theme": "Nature",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "All Ways",
+    "providerLogo": "/images/providers/pp.webp"
+  },
+  {
+    "id": "harvest-moon-grave-profits",
+    "title": "Harvest Moon – Grave Profits",
+    "provider": "PP",
+    "image": "/images/slots/harvest-moon-grave-profits.webp",
+    "category": [
+      "bonus"
+    ],
+    "new": true,
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "20 lines",
+    "providerLogo": "/images/providers/pp.webp"
+  },
+  {
+    "id": "joker-s-revenge",
+    "title": "Joker’s Revenge",
+    "provider": "PP",
+    "image": "/images/slots/joker-s-revenge.webp",
+    "category": [
+      "bonus"
+    ],
+    "new": true,
+    "theme": "Adventures",
+    "features": [
+      "Buy Spins"
+    ],
+    "winningLine": "1024",
+    "providerLogo": "/images/providers/pp.webp"
+  },
+  {
+    "id": "777-wheel-blitz",
+    "title": "777 Wheel Blitz",
+    "provider": "PP",
+    "image": "/images/slots/777-wheel-blitz.webp",
+    "category": [
+      "bonus"
+    ],
+    "new": true,
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines",
+    "providerLogo": "/images/providers/pp.webp"
+  },
+  {
+    "id": "mahjong-wins-triple-pot",
+    "title": "Mahjong Wins Triple Pot",
+    "provider": "PP",
+    "image": "/images/slots/mahjong-wins-triple-pot.webp",
+    "category": [
+      "bonus"
+    ],
+    "new": true,
+    "theme": "Others",
+    "features": [
+      "Prize Pool"
+    ],
+    "winningLine": "All Ways",
+    "providerLogo": "/images/providers/pp.webp"
+  },
+  {
     "id": "super-ace",
     "title": "Super Ace",
     "provider": "JILI",
@@ -8581,6 +8680,7 @@ const slotsBatch2: SlotGame[] = [
     "provider": "PP",
     "image": "/images/slots/jade-legends.webp",
     "category": [
+      "bonus",
       "top",
       "max-rpt"
     ],
@@ -8600,6 +8700,7 @@ const slotsBatch2: SlotGame[] = [
     "provider": "PP",
     "image": "/images/slots/super-serge.webp",
     "category": [
+      "bonus",
       "top",
       "cold",
       "max-rpt"

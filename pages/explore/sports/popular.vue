@@ -32,7 +32,7 @@ definePageMeta({
   middleware: (to) => {
     if (to.path.replace(/\/$/, '') === '/explore/sports/popular') {
       return navigateTo({
-        path: '/explore/sports/popular/league',
+        path: '/explore/sports/popular/inplay',
         query: to.query,
       }, { replace: true })
     }
