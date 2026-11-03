@@ -1,45 +1,64 @@
 <script setup lang="ts">
-import { ArrowRight, Info, Trophy } from 'lucide-vue-next'
+import type { Ref } from 'vue'
+import { ArrowRight, Trophy, LockKeyhole, LogIn, UserPlus } from 'lucide-vue-next'
+import ReferencePlayerWinners from '~/components/ReferencePlayerWinners.vue'
+import {
+  JILI_JACKPOT_COUNTER,
+  CQ9_JACKPOT_COUNTER,
+  JDB_JACKPOT_COUNTER,
+  formatJackpotAmount,
+  useJackpotCounter,
+} from '~/composables/useJackpotCounter'
+
+type JackpotKey = 'jili' | 'cq9' | 'jdb'
 
 interface Jackpot {
+  key: JackpotKey
   label: string
-  amount: string
   image: string
+  to: string
   amountColor: string
   borderEffectColor: string
 }
 
 const jackpots: Jackpot[] = [
   {
-    label: 'Mega Jackpot',
-    amount: '₱1,256,832.45',
+    key: 'jili',
+    label: 'JILI Jackpot',
     image: '/images/jackpots/mega-red.webp',
-    amountColor: '#ffe27a',
+    to: '/explore/egames/jackpot/jili',
+    amountColor: '#FF99FF',
     borderEffectColor: '#ff4138',
   },
   {
-    label: 'Grand Jackpot',
-    amount: '₱356,901.22',
-    image: '/images/jackpots/grand-purple.webp',
-    amountColor: '#e19bff',
-    borderEffectColor: '#d83cff',
-  },
-  {
-    label: 'Major Jackpot',
-    amount: '₱85,421.36',
-    image: '/images/jackpots/major-blue.webp',
+    key: 'cq9',
+    label: 'CQ9 Jackpot',
+    image: '/images/jackpots/cq9-jackpot.webp',
+    to: '/explore/egames/jackpot/cq9',
     amountColor: '#7fd8ff',
-    borderEffectColor: '#22cfff',
+    borderEffectColor: '#D10CFF',
   },
   {
-    label: 'Minor Jackpot',
-    amount: '₱12,903.14',
-    image: '/images/jackpots/minor-green.webp',
-    amountColor: '#f5ee7a',
-    borderEffectColor: '#2df083',
+    key: 'jdb',
+    label: 'JDB Jackpot',
+    image: '/images/jackpots/jdb-jackpot.webp',
+    to: '/explore/egames/jackpot/jdb',
+    amountColor: '#FEE05B',
+    borderEffectColor: '#1352DE',
   },
 ]
 
+const { displayAmount: jiliDisplay } = useJackpotCounter(JILI_JACKPOT_COUNTER)
+const { displayAmount: cq9Display } = useJackpotCounter(CQ9_JACKPOT_COUNTER)
+const { displayAmount: jdbDisplay } = useJackpotCounter(JDB_JACKPOT_COUNTER)
+
+const jackpotDisplays: Record<JackpotKey, Ref<number>> = {
+  jili: jiliDisplay,
+  cq9: cq9Display,
+  jdb: jdbDisplay,
+}
+
+const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
 const { translate } = useSiteLocale()
 </script>
 
@@ -50,13 +69,13 @@ const { translate } = useSiteLocale()
         <Trophy :size="16" fill="currentColor" aria-hidden="true" />
         <h2 id="jackpots-title">{{ translate('Top Jackpots') }}</h2>
       </div>
-      <NuxtLink to="/explore/egames/jackpot">{{ translate('View All') }} <ArrowRight :size="9" /></NuxtLink>
+      <NuxtLink to="/explore/egames/jackpot/all">{{ translate('View All') }} <ArrowRight :size="9" /></NuxtLink>
     </header>
     <div class="jackpot-grid">
       <NuxtLink
         v-for="jackpot in jackpots"
         :key="jackpot.label"
-        to="/explore/egames/jackpot"
+        :to="jackpot.to"
         :style="{
           '--jackpot-image': `url('${jackpot.image}')`,
           '--jackpot-amount': jackpot.amountColor,
@@ -65,9 +84,28 @@ const { translate } = useSiteLocale()
       >
         <span class="jackpot-text">
           <small>{{ translate(jackpot.label) }}</small>
-          <strong>{{ jackpot.amount }}</strong>
+          <strong>₱{{ formatJackpotAmount(jackpotDisplays[jackpot.key].value) }}</strong>
         </span>
       </NuxtLink>
+    </div>
+
+    <div class="jackpot-bottom-grid">
+      <section class="recent-spin-card font-bold" aria-labelledby="recent-spin-title">
+        <span class="panel-eyebrow">{{ translate('Win Jackpot in Bybet') }}</span>
+        <p>{{ translate('Everyone dreams of that one massive hit, and we provide the perfect stage for those dreams to unfold. We host a wide array of jackpot titles that range from fixed amounts to progressive totals that grow with every single spin across our network. We want our users to feel the rush of adrenaline that comes with chasing a life-changing total.') }}</p>
+        <h3 id="recent-spin-title">{{ translate('Sign in to track your wins') }}</h3>
+        <p>{{ translate('Log in or create an account to save spins, claim prizes, and view your win history.') }}</p>
+        <div class="auth-actions">
+          <a :href="externalSiteUrl" target="_blank" rel="nofollow noopener noreferrer" class="auth-primary">
+            <LogIn :size="14" /> {{ translate('Login') }}
+          </a>
+          <a :href="externalSiteUrl" target="_blank" rel="nofollow noopener noreferrer" class="auth-secondary">
+            <UserPlus :size="14" /> {{ translate('Sign Up') }}
+          </a>
+        </div>
+      </section>
+
+      <ReferencePlayerWinners />
     </div>
   </section>
 </template>
@@ -165,7 +203,7 @@ const { translate } = useSiteLocale()
 
 .jackpot-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.28rem;
 }
 
@@ -174,7 +212,7 @@ const { translate } = useSiteLocale()
   display: flex;
   position: relative;
   min-width: 0;
-  height: 5.3rem;
+  height: 7.5rem;
   align-items: center;
   padding: 0.12rem 0.3rem 0.12rem 39%;
   overflow: hidden;
@@ -246,6 +284,105 @@ const { translate } = useSiteLocale()
   font-weight: 850;
   white-space: nowrap;
   text-shadow: 0 0.1rem 0.16rem rgba(0, 0, 0, 0.5);
+}
+
+.jackpot-bottom-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+  align-items: stretch;
+}
+
+.recent-spin-card {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  min-height: 250px;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 24px;
+  border: 1px solid rgba(197, 255, 231, 0.24);
+  border-radius: 24px;
+  background:
+    linear-gradient(90deg, rgba(4, 35, 25, 0.90) 0%, rgba(4, 35, 25, 0.72) 46%, rgba(4, 35, 25, 0.2) 100%),
+    url('/reference/recent-spin.webp') right center / cover no-repeat;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.16),
+    inset 0 -1px rgba(148, 255, 209, 0.05),
+    0 12px 32px rgba(0, 0, 0, 0.16);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+}
+
+.panel-eyebrow {
+  color: #48efb7;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.recent-spin-card p {
+  position: relative;
+  z-index: 2;
+  max-width: 65%;
+  margin: 10px 0 0;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.recent-spin-card p strong,
+.recent-spin-card p a {
+  color: #48efb7;
+  text-decoration: none;
+}
+
+.recent-spin-card h3 {
+  position: relative;
+  z-index: 2;
+  margin: 18px 0 0;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.auth-actions {
+  display: flex;
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 16px;
+  gap: 8px;
+}
+
+.auth-actions a {
+  display: inline-flex;
+  min-width: 100px;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(111, 255, 197, 0.4);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+  text-decoration: none;
+  text-transform: uppercase;
+  gap: 6px;
+}
+
+.auth-primary {
+  color: #ffffff;
+  background: linear-gradient(rgba(19, 213, 142, 0.8), rgba(6, 117, 79, 0.6));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.25), 0 0 18px rgba(0, 227, 147, 0.2);
+}
+
+.auth-secondary {
+  color: #48efb7;
+  background: rgba(150, 255, 213, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 @property --jackpot-border-angle {
@@ -357,6 +494,31 @@ const { translate } = useSiteLocale()
 
   .jackpot-grid strong {
     font-size: clamp(0.78rem, 3.3vw, 1rem);
+  }
+
+  .jackpot-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 14px;
+  }
+}
+
+@media (max-width: 30rem) {
+  .jackpot-bottom-grid {
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .recent-spin-card {
+    padding: 20px;
+  }
+
+  .recent-spin-card p {
+    max-width: 90%;
+  }
+
+  .panel-eyebrow {
+    font-size: 12px;
   }
 }
 </style>

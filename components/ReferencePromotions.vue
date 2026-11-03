@@ -1,39 +1,15 @@
 <script setup lang="ts">
 import { ArrowRight, Gift } from 'lucide-vue-next'
+import {
+  PROMOTIONS,
+  getPromoBannerUrl,
+} from '~/data/promotions'
 
-interface Promotion {
-  label: string
-  value: string
-  detail?: string
-  action: string
-  image: string
-  tone: 'emerald' | 'violet' | 'crimson'
-}
-
-const promotions: Promotion[] = [
-  {
-    label: 'Welcome Rewards',
-    value: 'Up to ₱1,000',
-    action: 'Register Now',
-    image: '/reference/promotion-gift.webp',
-    tone: 'emerald',
-  },
-  {
-    label: 'Daily Cashback',
-    value: 'Up to 15%',
-    action: 'Learn More',
-    image: '/reference/promotion-cashback.webp',
-    tone: 'violet',
-  },
-  {
-    label: 'Slot Tournament',
-    value: '₱100,000',
-    detail: 'Prize Pool',
-    action: 'Join Now',
-    image: '/reference/promotion-tournament.webp',
-    tone: 'crimson',
-  },
-]
+const mostPopularPromotions = computed(() => (
+  PROMOTIONS
+    .filter(promotion => Boolean(promotion['most-popular'] || promotion.mostPopular))
+    .slice(0, 3)
+))
 
 const { translate } = useSiteLocale()
 </script>
@@ -46,30 +22,23 @@ const { translate } = useSiteLocale()
     </header>
     <div class="promotion-grid">
       <NuxtLink
-        v-for="promotion in promotions"
-        :key="promotion.label"
-        to="/explore/bonuses"
-        :data-tone="promotion.tone"
-        :aria-label="`${translate(promotion.label)}: ${promotion.value}${promotion.detail ? ` ${translate(promotion.detail)}` : ''}`"
+        v-for="(promotion, index) in mostPopularPromotions"
+        :key="promotion.id"
+        :to="`/explore/bonus/${promotion.slug}`"
+        :style="{
+          '--promo-border-effect': promotion.accentColor || '#20c97d',
+          '--promo-image-position': promotion.imagePosition || 'center',
+        }"
+        :aria-label="`${promotion.title}: ${promotion.description}`"
       >
         <img
-          :src="promotion.image"
-          alt=""
-          width="1024"
-          height="343"
-          loading="lazy"
+          :src="getPromoBannerUrl(promotion.bannerImage, promotion.slug)"
+          :alt="promotion.title"
+          width="1230"
+          height="615"
+          :loading="index === 0 ? 'eager' : 'lazy'"
           decoding="async"
         >
-        <span class="promotion-copy">
-          <small>{{ translate(promotion.label) }}</small>
-          <span class="promotion-value">
-            <strong>{{ promotion.value }}</strong>
-            <em v-if="promotion.detail">{{ translate(promotion.detail) }}</em>
-          </span>
-          <span class="promotion-action">
-            {{ translate(promotion.action) }}
-          </span>
-        </span>
       </NuxtLink>
     </div>
   </section>
@@ -173,34 +142,13 @@ const { translate } = useSiteLocale()
   position: relative;
   isolation: isolate;
   min-width: 0;
-  aspect-ratio: 3.2 / 1;
+  aspect-ratio: 2 / 1;
   padding: 0;
   overflow: hidden;
   border: 0;
   border-radius: var(--promo-card-radius);
   background: #101713;
   box-shadow: 0 0.18rem 0.5rem rgba(0, 0, 0, 0.22);
-}
-
-.promotion-grid a[data-tone='emerald'] {
-  --promo-border-effect: #20c97d;
-  box-shadow:
-    0 0.18rem 0.5rem rgba(0, 0, 0, 0.22),
-    0 0 0.85rem rgba(32, 201, 125, 0.12);
-}
-
-.promotion-grid a[data-tone='violet'] {
-  --promo-border-effect: #af48ec;
-  box-shadow:
-    0 0.18rem 0.5rem rgba(0, 0, 0, 0.22),
-    0 0 0.85rem rgba(175, 72, 236, 0.14);
-}
-
-.promotion-grid a[data-tone='crimson'] {
-  --promo-border-effect: #ff474e;
-  box-shadow:
-    0 0.18rem 0.5rem rgba(0, 0, 0, 0.22),
-    0 0 0.85rem rgba(255, 71, 78, 0.14);
 }
 
 .promotion-grid a::before {
@@ -230,36 +178,12 @@ const { translate } = useSiteLocale()
   animation: promotion-border-run 2.6s linear infinite;
 }
 
-.promotion-grid a::after {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(0, 5, 3, 0.24), transparent 63%);
-  content: '';
-  pointer-events: none;
-}
-
 .promotion-grid a:hover {
+  box-shadow:
+    0 0.22rem 0.55rem rgba(0, 0, 0, 0.24),
+    0 0 1.1rem color-mix(in srgb, var(--promo-border-effect) 24%, transparent);
   filter: brightness(1.06);
   transform: translateY(-1px);
-}
-
-.promotion-grid a[data-tone='emerald']:hover {
-  box-shadow:
-    0 0.22rem 0.55rem rgba(0, 0, 0, 0.24),
-    0 0 1.1rem rgba(32, 201, 125, 0.22);
-}
-
-.promotion-grid a[data-tone='violet']:hover {
-  box-shadow:
-    0 0.22rem 0.55rem rgba(0, 0, 0, 0.24),
-    0 0 1.1rem rgba(175, 72, 236, 0.24);
-}
-
-.promotion-grid a[data-tone='crimson']:hover {
-  box-shadow:
-    0 0.22rem 0.55rem rgba(0, 0, 0, 0.24),
-    0 0 1.1rem rgba(255, 71, 78, 0.24);
 }
 
 @property --promo-border-angle {
@@ -287,80 +211,7 @@ const { translate } = useSiteLocale()
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.promotion-copy {
-  display: flex;
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 5.5%;
-  width: 47%;
-  flex-direction: column;
-  align-items: flex-start;
-  color: white;
-  text-transform: uppercase;
-  text-shadow: 0 1px 0.35rem rgba(0, 0, 0, 0.72);
-  transform: translateY(-50%);
-}
-
-.promotion-copy small {
-  color: #ffffff;
-  font-size: clamp(0.45rem, 0.72vw, 0.6rem);
-  font-weight: 800;
-  letter-spacing: 0.025em;
-  line-height: 1.05;
-}
-
-.promotion-value {
-  display: inline-flex;
-  align-items: baseline;
-  margin-top: 0.08rem;
-  white-space: nowrap;
-  gap: 0.18rem;
-}
-
-.promotion-copy strong {
-  color: #ffd34f;
-  font-size: clamp(1rem, 2.5vw, 1.4rem);
-  font-weight: 850;
-  letter-spacing: -0.025em;
-  line-height: 1;
-  background: linear-gradient(180deg, #fff7bd 0%, #ffd653 46%, #f2a719 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: #f1c72e8f;
-}
-
-.promotion-copy em {
-  color: #ffe27d;
-  font-size: clamp(0.35rem, 0.52vw, 0.48rem);
-  font-style: normal;
-  font-weight: 800;
-  letter-spacing: 0.035em;
-}
-
-.promotion-action {
-  display: inline-flex;
-  align-items: center;
-  min-height: clamp(1.12rem, 1.8vw, 1.45rem);
-  margin-top: clamp(0.24rem, 0.5vw, 0.42rem);
-  padding: 0.14rem clamp(0.78rem, 1.12vw, 1rem);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 0.38rem;
-  font-size: clamp(0.4rem, 1vw, 0.55rem);
-  font-weight: 800;
-  line-height: 1;
-  text-transform: none;
-  background: linear-gradient(180deg, #07966a, #036242);
-  box-shadow:
-    inset 0 1px rgba(255, 255, 255, 0.16),
-    0 0.12rem 0.28rem rgba(0, 0, 0, 0.22);
-  gap: 0.18rem;
-}
-
-.promotion-grid a[data-tone='violet'] .promotion-action {
-  background: linear-gradient(180deg, #7546b8, #4b218b);
+  object-position: var(--promo-image-position);
 }
 
 .promotion-grid a:focus-visible {
@@ -425,39 +276,9 @@ const { translate } = useSiteLocale()
 
   .promotion-grid a {
     --promo-card-radius: 0.5rem;
-    aspect-ratio: 2.85 / 1;
+    aspect-ratio: 2 / 1;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-  }
-
-  .promotion-copy {
-    left: 5.5%;
-    width: 54%;
-  }
-
-  .promotion-copy small {
-    font-size: clamp(0.62rem, 2.5vw, 0.75rem);
-  }
-
-  .promotion-value {
-    margin-top: 0.14rem;
-    gap: 0.24rem;
-  }
-
-  .promotion-copy strong {
-    font-size: clamp(1.05rem, 4.4vw, 1.35rem);
-  }
-
-  .promotion-copy em {
-    font-size: clamp(0.58rem, 2.2vw, 0.7rem);
-  }
-
-  .promotion-action {
-    min-height: 1.6rem;
-    margin-top: 0.36rem;
-    padding: 0.22rem 0.75rem;
-    border-radius: 0.4rem;
-    font-size: clamp(0.68rem, 2.5vw, 0.78rem);
   }
 }
 </style>

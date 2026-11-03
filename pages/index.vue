@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ReferenceSpinSection from '~/components/ReferenceSpinSection.vue'
 import {
+  faqItems,
   newGames,
   popularGames,
   providers,
@@ -10,9 +10,10 @@ import {
 const config = useRuntimeConfig()
 const siteName = computed(() => String(config.public.siteName || 'ByBet').trim())
 const siteUrl = computed(() => String(config.public.siteUrl || 'https://bybet.com').replace(/\/+$/, ''))
+const { translate } = useSiteLocale()
 
 useAppSeo({
-  title: 'ByBet Casino PH Slots | Login, Spin Big and Win More Prizes',
+  title: 'ByBet Casino PH Slots – Big Spins, Endless Entertainment',
   description: 'Experience top-tier gaming on the ByBet Casino Ph. We provide competitive odds and a vast selection of digital casino titles for every visitor.',
   image: '/brand/bybet-logo.webp',
   includeSiteName: false,
@@ -40,6 +41,18 @@ useAppSeo({
         availableLanguage: ['English', 'Filipino'],
       },
     },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map(item => ({
+        '@type': 'Question',
+        name: translate(item.question),
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: translate(item.answer),
+        },
+      })),
+    },
   ]),
 })
 
@@ -56,24 +69,23 @@ useAppSeo({
       :games="popularGames"
       to="/explore/egames/slots"
     />
+    <ReferenceGameSection
+      id="new-releases"
+      title="New Releases"
+      variant="new"
+      :games="newGames"
+      to="/explore/egames/slots"
+    />
+    <ReferenceGameSection
+      id="recommended"
+      title="Recommended For You"
+      variant="recommended"
+      :games="recommendedGames"
+      to="/explore/egames/slots"
+    />
     <ReferenceJackpots />
-    <ReferenceSpinSection />
     <ReferenceProviders :providers="providers" />
     <ReferencePromotions />
-    <ReferenceGameSection
-    id="new-releases"
-    title="New Releases"
-    variant="new"
-    :games="newGames"
-    to="/explore/egames/slots"
-  />
-  <ReferenceGameSection
-    id="recommended"
-    title="Recommended For You"
-    variant="recommended"
-    :games="recommendedGames"
-    to="/explore/egames/slots"
-  />
   <ReferenceInfo />
   </div>
 </template>

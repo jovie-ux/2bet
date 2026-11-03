@@ -92,14 +92,21 @@ const translations: Partial<Record<LocaleCode, Record<string, string>>> = {
     'At ByBet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.': '在 ByBet，您可以畅玩来自全球顶级供应商的数千款优质老虎机游戏。从经典水果机到拥有精彩功能的最新视频老虎机，总有新内容等待探索。',
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, ByBet is your home for bigger wins.': '在同一平台尽享激动人心的奖池、创新玩法和丰厚奖励。无论您是休闲玩家还是高额玩家，ByBet 都是您赢取更多大奖的理想选择。',
     'Frequently Asked Questions': '常见问题',
-    'How do I create an account?': '如何创建账户？',
-    'Choose Sign Up and follow the demo registration steps.': '选择“注册”，然后按照演示注册步骤操作。',
-    'How do I make a deposit?': '如何充值？',
-    'Deposit controls are presented as a demo and do not process payments.': '充值功能仅作演示，不会处理真实付款。',
-    'What games are available at Bybet?': 'ByBet 提供哪些游戏？',
-    'The interface showcases slots, live tables, original games, and sports categories.': '本界面展示老虎机、真人桌面游戏、原创游戏和体育分类。',
-    'How do I contact customer support?': '如何联系客服？',
-    'Use the support control in the navigation rail or footer.': '请使用侧边导航栏或页脚中的客服入口。',
+    'What is ByBet Slot?': '什么是 ByBet Slot？',
+    'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.':
+      'ByBet Slot 是一个高端在线游戏平台，提供海量优质电子老虎机。我们致力于打造安全的游戏环境，涵盖从古代文明到未来冒险等多元主题。我们的平台将 ByBet 老虎机游戏库与先进技术深度融合，无论您是通过电脑浏览器还是便捷的 ByBet 移动 App，都能畅享流畅丝滑的游戏体验。',
+    'Is ByBet legit or a scam?': 'ByBet 是正规合法的还是骗局？',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      '我们郑重承诺，ByBet 是一家完全合规且合法的在线娱乐平台。为确保最高标准的安全与公平，我们持有菲律宾博彩监管机构 PAGCOR（Philippine Amusement and Gaming Corporation）颁发的正规执照。这一认证标志着我们在严格监管下运营，确保所有业务透明公开，包括含有 ByBet 分散符号（Scatter）在内的所有游戏均做到公平公正。您的账户安全是我们的首要任务，我们采用业界领先的加密技术全面保护您在网站上的每一次互动。',
+    'Is the ByBet app slot compatible with both Android and iOS?': 'ByBet 移动端 App 是否兼容 Android 和 iOS 系统？',
+    'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
+      '是的，我们的应用程序专为两大主流移动操作系统精心设计并完美兼容。您可以直接从我们的官方网站下载 App，以确保获取最新、最安全的官方版本。',
+    'How does the ByBet slots casino ensure fairness?': 'ByBet 老虎机平台如何保障游戏公平性？',
+    'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.':
+      '我们采用经权威认证的随机数生成器（RNG），确保每次旋转结果均真实随机且无任何人为偏差。同时，我们定期接受独立第三方机构的专业审核，以验证游戏严格符合国际公平竞技标准。',
+    'What makes the ByBet scatter symbol special?': 'ByBet 分散符号（Scatter Symbol）有什么特别之处？',
+    'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
+      '在我们的大多数游戏中，分散符号（Scatter）是一项强力触发机制，无论其出现在转轴的哪个位置，都能激活特殊奖励。这通常会触发免费旋转或特色小游戏，为您的游戏过程增添更多惊喜与刺激。',
     'Contact Us': '联系我们', FAQ: '常见问题', 'Responsible Gaming': '负责任博彩',
     'Terms of Service': '服务条款', 'Privacy Policy': '隐私政策', 'General Terms': '通用条款',
     'Bonus Terms': '优惠条款', 'Betting Rules': '投注规则', 'Cookie Policy': 'Cookie 政策',
@@ -188,14 +195,21 @@ const translations: Partial<Record<LocaleCode, Record<string, string>>> = {
     'At ByBet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.': '在 ByBet，您可以暢玩來自全球頂級供應商的數千款優質老虎機遊戲。從經典水果機到擁有精彩功能的最新影片老虎機，總有新內容等待探索。',
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, ByBet is your home for bigger wins.': '在同一平台盡享刺激獎池、創新玩法和豐厚獎勵。無論您是休閒玩家還是高額玩家，ByBet 都是您贏取更多大獎的理想選擇。',
     'Frequently Asked Questions': '常見問題',
-    'How do I create an account?': '如何建立帳戶？',
-    'Choose Sign Up and follow the demo registration steps.': '選擇「註冊」，然後依照示範註冊步驟操作。',
-    'How do I make a deposit?': '如何儲值？',
-    'Deposit controls are presented as a demo and do not process payments.': '儲值功能僅供示範，不會處理真實付款。',
-    'What games are available at Bybet?': 'ByBet 提供哪些遊戲？',
-    'The interface showcases slots, live tables, original games, and sports categories.': '本介面展示老虎機、真人桌面遊戲、原創遊戲和體育分類。',
-    'How do I contact customer support?': '如何聯絡客服？',
-    'Use the support control in the navigation rail or footer.': '請使用側邊導覽列或頁尾中的客服入口。',
+    'What is ByBet Slot?': '什麼是 ByBet Slot？',
+    'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.':
+      'ByBet Slot 是一個高端線上遊戲平台，提供海量優質電子老虎機。我們致力於打造安全可靠的遊戲環境，涵蓋從古代文明到未來冒險等多元主題。我們的平台將 ByBet 老虎機遊戲庫與先進技術深度結合，無論您是透過電腦瀏覽器還是便捷的 ByBet 行動 App，都能暢享流暢無阻的遊戲體驗。',
+    'Is ByBet legit or a scam?': 'ByBet 是正宗合法平台還是詐騙？',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      '我們自信地聲明，ByBet 是一家完全合法且正規的遊戲娛樂平台。為落實最高規格的安全與公平標準，我們持有菲律賓博彩監管機構 PAGCOR（Philippine Amusement and Gaming Corporation）頒發的正式執照。這項認證代表我們在嚴格監管下營運，確保所有業務運作公開透明，包括含有 ByBet 分散符號（Scatter）在內的所有遊戲均真實公平、無偏頗。您的安全是我們的重中之重，我們採用業界領先的加密技術守護您在網站上的每一次互動。',
+    'Is the ByBet app slot compatible with both Android and iOS?': 'ByBet 行動端 App 是否支援 Android 與 iOS 系統？',
+    'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
+      '是的，我們的應用程式專為兩大主流行動作業系統精心打造並全面相容。您可以直接由我們的官方網站下載 App，確保獲取最新、最安全的官方版本。',
+    'How does the ByBet slots casino ensure fairness?': 'ByBet 老虎機平台如何確保遊戲公平？',
+    'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.':
+      '我們採用經認證的隨機數生成器（RNG），確保每一次遊戲結果均客觀隨機且毫無偏差。同時，我們定期接受獨立第三方機構的專業審查，驗證各項遊戲均符合國際公平標準。',
+    'What makes the ByBet scatter symbol special?': 'ByBet 分散符號（Scatter Symbol）有何特別之處？',
+    'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
+      '在我們的大多數遊戲中，分散符號（Scatter）是強大的特色機制，無論落在轉軸上的任何位置皆可觸發專屬獎勵功能。這通常會啟動免費旋轉或精采的小遊戲，為您的遊玩體驗增添無限驚喜與樂趣。',
     'Contact Us': '聯絡我們', FAQ: '常見問題', 'Responsible Gaming': '負責任博彩',
     'Terms of Service': '服務條款', 'Privacy Policy': '隱私權政策', 'General Terms': '一般條款',
     'Bonus Terms': '優惠條款', 'Betting Rules': '投注規則', 'Cookie Policy': 'Cookie 政策',
@@ -688,14 +702,21 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'At ByBet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.': 'Sa ByBet, masisiyahan ka sa libu-libong de-kalidad na slot game mula sa mga nangungunang provider sa mundo. Mula sa klasikong fruit machine hanggang sa pinakabagong video slots, palaging may bagong matutuklasan.',
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, ByBet is your home for bigger wins.': 'Masiyahan sa kapana-panabik na jackpot, makabagong gameplay, at masaganang gantimpala sa iisang lugar. Casual player ka man o high roller, tahanan mo ang ByBet para sa mas malalaking panalo.',
     'Frequently Asked Questions': 'Mga Madalas Itanong',
-    'How do I create an account?': 'Paano ako gagawa ng account?',
-    'Choose Sign Up and follow the demo registration steps.': 'Piliin ang “Mag-sign Up” at sundin ang mga hakbang sa demo registration.',
-    'How do I make a deposit?': 'Paano ako magdedeposito?',
-    'Deposit controls are presented as a demo and do not process payments.': 'Demo lamang ang deposit controls at hindi ito nagpoproseso ng tunay na bayad.',
-    'What games are available at Bybet?': 'Anong mga laro ang available sa ByBet?',
-    'The interface showcases slots, live tables, original games, and sports categories.': 'Ipinapakita ng interface ang slots, live tables, original games, at sports categories.',
-    'How do I contact customer support?': 'Paano ko kokontakin ang customer support?',
-    'Use the support control in the navigation rail or footer.': 'Gamitin ang support control sa sidebar o footer.',
+    'What is ByBet Slot?': 'Ano ang ByBet Slot?',
+    'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.':
+      'Ang ByBet Slot ay isang de-kalidad na online gaming destination na nag-aalok ng komprehensibong koleksyon ng mga high-quality digital slot machine. Nagbibigay kami ng ligtas na kapaligiran kung saan maaaring tuklasin ng mga manlalaro ang iba\'t ibang tema, mula sa mga sinaunang sibilisasyon hanggang sa mga futuristic na pakikipagsapalaran. Pinagsasama ng aming platform ang ByBet slots casino library at advanced technology, na nagbibigay-daan sa maayos na gameplay gamit man ang desktop browser o ang ByBet app slot para sa mobile.',
+    'Is ByBet legit or a scam?': 'Legit ba o scam ang ByBet?',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'Buong tiwala naming masasabi na kami ay isang ganap na lehitimo at legal na gaming platform. Upang matiyak ang pinakamataas na pamantayan ng kaligtasan at patas na paglalaro, mayroon kaming pormal na lisensya mula sa PAGCOR (Philippine Amusement and Gaming Corporation). Ang sertipikasyong ito ay nangangahulugang nagpapatakbo kami sa ilalim ng mahigpit na regulasyon, tinitiyak na ang lahat ng aming operasyon ay transparent at ang aming mga laro, kabilang ang may ByBet scatter symbols, ay patas at walang kinikilingan. Ang iyong seguridad ang aming pangunahing priyoridad, at gumagamit kami ng industry-leading encryption upang protektahan ang bawat transaksyon sa aming site.',
+    'Is the ByBet app slot compatible with both Android and iOS?': 'Tugma ba ang ByBet app slot sa Android at iOS?',
+    'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
+      'Oo, idinisenyo namin ang aming application upang maging ganap na tugma sa parehong pangunahing mobile operating system. Maaari mong i-download ang app nang direkta mula sa aming opisyal na site upang matiyak na nakukuha mo ang pinakaligtas at pinakabagong bersyon.',
+    'How does the ByBet slots casino ensure fairness?': 'Paano tinitiyak ng ByBet slots casino ang pagiging patas?',
+    'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.':
+      'Gumagamit kami ng certified Random Number Generators (RNG) upang matiyak na ang bawat resulta ay random at patas. Sumasailalim kami sa regular na pag-audit ng mga third-party organization upang mapatunayan na ang aming mga laro ay sumusunod sa mga internasyonal na pamantayan ng pagiging patas.',
+    'What makes the ByBet scatter symbol special?': 'Ano ang nagpapaganda sa ByBet scatter symbol?',
+    'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
+      'Sa karamihan ng aming mga laro, ang scatter symbol ay isang makapangyarihang tampok na maaaring mag-trigger ng mga espesyal na bonus saanman ito lumapag sa reels. Kadalasan itong nagbibigay ng free spins o mga espesyal na mini-game na nagdaragdag ng pananabik sa iyong paglalaro.',
     'Contact Us': 'Makipag-ugnayan', FAQ: 'Mga Tanong', 'Responsible Gaming': 'Responsableng Paglalaro',
     'Terms of Service': 'Mga Tuntunin ng Serbisyo', 'Privacy Policy': 'Patakaran sa Privacy',
     'General Terms': 'Pangkalahatang Tuntunin', 'Bonus Terms': 'Mga Tuntunin ng Bonus',
@@ -720,14 +741,21 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'At ByBet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.': 'Tại ByBet, bạn có thể trải nghiệm hàng nghìn trò chơi slot chất lượng từ các nhà cung cấp hàng đầu thế giới. Từ máy trái cây cổ điển đến video slot mới nhất, luôn có điều mới để khám phá.',
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, ByBet is your home for bigger wins.': 'Tận hưởng jackpot hấp dẫn, lối chơi sáng tạo và phần thưởng hào phóng tại một nơi. Dù chơi giải trí hay cược lớn, ByBet là điểm đến cho những chiến thắng lớn hơn.',
     'Frequently Asked Questions': 'Câu hỏi thường gặp',
-    'How do I create an account?': 'Làm thế nào để tạo tài khoản?',
-    'Choose Sign Up and follow the demo registration steps.': 'Chọn “Đăng ký” và làm theo các bước đăng ký minh họa.',
-    'How do I make a deposit?': 'Làm thế nào để nạp tiền?',
-    'Deposit controls are presented as a demo and do not process payments.': 'Chức năng nạp tiền chỉ dùng để minh họa và không xử lý thanh toán thật.',
-    'What games are available at Bybet?': 'ByBet có những trò chơi nào?',
-    'The interface showcases slots, live tables, original games, and sports categories.': 'Giao diện giới thiệu slot, bàn chơi trực tiếp, trò chơi độc quyền và các môn thể thao.',
-    'How do I contact customer support?': 'Làm thế nào để liên hệ hỗ trợ khách hàng?',
-    'Use the support control in the navigation rail or footer.': 'Sử dụng mục hỗ trợ trên thanh điều hướng hoặc chân trang.',
+    'What is ByBet Slot?': 'ByBet Slot là gì?',
+    'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.':
+      'ByBet Slot là điểm đến chơi game trực tuyến cao cấp, cung cấp bộ sưu tập máy đánh bạc kỹ thuật số chất lượng cao đa dạng. Chúng tôi mang đến môi trường an toàn, nơi người chơi có thể khám phá nhiều chủ đề từ nền văn minh cổ đại đến những cuộc phiêu lưu tương lai. Nền tảng của chúng tôi tích hợp kho trò chơi slot ByBet với công nghệ hiện đại, giúp bạn tận hưởng trải nghiệm mượt mà dù chơi trên trình duyệt máy tính hay ứng dụng ByBet di động tiện lợi.',
+    'Is ByBet legit or a scam?': 'ByBet có uy tín hợp pháp không hay là lừa đảo?',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'Chúng tôi tự tin khẳng định ByBet là một nền tảng chơi game hoàn toàn hợp pháp và uy tín. Để đảm bảo tiêu chuẩn an toàn và công bằng cao nhất, chúng tôi sở hữu giấy phép chính thức từ PAGCOR (Tập đoàn Giải trí và Trò chơi Philippines). Chứng nhận này đảm bảo mọi hoạt động đều được giám sát nghiêm ngặt, minh bạch và tất cả trò chơi, bao gồm các biểu tượng Scatter của ByBet, đều công bằng tuyệt đối. An toàn của bạn là ưu tiên hàng đầu, và chúng tôi áp dụng công nghệ mã hóa hàng đầu ngành để bảo vệ mọi tương tác trên trang web.',
+    'Is the ByBet app slot compatible with both Android and iOS?': 'Ứng dụng ByBet slot có tương thích với cả Android và iOS không?',
+    'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
+      'Có, ứng dụng của chúng tôi được thiết kế để tương thích hoàn hảo với cả hai hệ điều hành di động phổ biến nhất. Bạn có thể tải ứng dụng trực tiếp từ trang web chính thức của chúng tôi để đảm bảo nhận được phiên bản an toàn và mới nhất.',
+    'How does the ByBet slots casino ensure fairness?': 'Sòng bạc slot ByBet đảm bảo tính công bằng như thế nào?',
+    'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.':
+      'Chúng tôi sử dụng Bộ tạo số ngẫu nhiên (RNG) được chứng nhận để đảm bảo mọi kết quả đều hoàn toàn ngẫu nhiên và không thiên vị. Chúng tôi cũng thường xuyên trải qua các cuộc kiểm toán độc lập từ các tổ chức bên thứ ba để xác minh trò chơi tuân thủ các tiêu chuẩn công bằng quốc tế.',
+    'What makes the ByBet scatter symbol special?': 'Biểu tượng Scatter của ByBet có gì đặc biệt?',
+    'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
+      'Trong hầu hết các trò chơi của chúng tôi, biểu tượng Scatter là một công cụ mạnh mẽ có thể kích hoạt các tính năng đặc biệt bất kể vị trí xuất hiện trên guồng quay. Biểu tượng này thường mang lại vòng quay miễn phí hoặc các trò chơi nhỏ đặc biệt, tăng thêm phần kịch tính cho mỗi lượt chơi của bạn.',
     'Contact Us': 'Liên hệ', FAQ: 'Câu hỏi thường gặp', 'Responsible Gaming': 'Chơi có trách nhiệm',
     'Terms of Service': 'Điều khoản dịch vụ', 'Privacy Policy': 'Chính sách bảo mật',
     'General Terms': 'Điều khoản chung', 'Bonus Terms': 'Điều khoản tiền thưởng',
@@ -752,14 +780,21 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'At ByBet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.': 'Di ByBet, nikmati ribuan permainan slot berkualiti daripada penyedia terkemuka dunia. Daripada mesin buah klasik hingga slot video terkini, sentiasa ada sesuatu yang baharu untuk diterokai.',
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, ByBet is your home for bigger wins.': 'Nikmati jackpot menarik, permainan inovatif dan ganjaran lumayan di satu tempat. Sama ada pemain santai atau taruhan tinggi, ByBet ialah destinasi anda untuk kemenangan lebih besar.',
     'Frequently Asked Questions': 'Soalan Lazim',
-    'How do I create an account?': 'Bagaimanakah saya mencipta akaun?',
-    'Choose Sign Up and follow the demo registration steps.': 'Pilih “Daftar” dan ikuti langkah pendaftaran demo.',
-    'How do I make a deposit?': 'Bagaimanakah saya membuat deposit?',
-    'Deposit controls are presented as a demo and do not process payments.': 'Kawalan deposit hanyalah demo dan tidak memproses pembayaran sebenar.',
-    'What games are available at Bybet?': 'Apakah permainan yang tersedia di ByBet?',
-    'The interface showcases slots, live tables, original games, and sports categories.': 'Antara muka ini memaparkan slot, meja langsung, permainan asli dan kategori sukan.',
-    'How do I contact customer support?': 'Bagaimanakah saya menghubungi khidmat pelanggan?',
-    'Use the support control in the navigation rail or footer.': 'Gunakan kawalan sokongan pada bar navigasi atau pengaki.',
+    'What is ByBet Slot?': 'Apakah itu ByBet Slot?',
+    'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.':
+      'ByBet Slot ialah destinasi permainan dalam talian premium yang menawarkan koleksi mesin slot digital berkualiti tinggi yang lengkap. Kami menyediakan persekitaran yang selamat di mana pengguna boleh meneroka pelbagai tema, daripada tamadun purba hingga pengembaraan futuristik. Platform kami menggabungkan perpustakaan kasino slot ByBet dengan teknologi canggih, membolehkan anda menikmati permainan yang lancar sama ada menggunakan pelayar desktop atau aplikasi slot ByBet untuk kemudahan mudah alih.',
+    'Is ByBet legit or a scam?': 'Adakah ByBet sah atau satu penipuan?',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'Kami boleh menyatakan dengan yakin bahawa kami adalah platform permainan yang sah dan sah sepenuhnya. Untuk memastikan piawaian keselamatan dan keadilan tertinggi, kami memegang lesen rasmi daripada PAGCOR (Perbadanan Hiburan dan Permainan Filipina). Pensijilan ini bermakna kami beroperasi di bawah pengawasan kawal selia yang ketat, memastikan semua operasi kami telus dan permainan kami, termasuk yang menampilkan simbol scatter ByBet, adalah adil dan saksama. Keselamatan anda adalah keutamaan kami, dan kami menggunakan penyulitan terkemuka industri untuk melindungi setiap interaksi di laman web kami.',
+    'Is the ByBet app slot compatible with both Android and iOS?': 'Adakah aplikasi slot ByBet serasi dengan kedua-dua Android dan iOS?',
+    'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
+      'Ya, kami telah mereka bentuk aplikasi kami agar serasi sepenuhnya dengan kedua-dua sistem pengendalian mudah alih utama. Anda boleh memuat turun aplikasi secara terus daripada laman rasmi kami untuk memastikan anda mendapat versi yang paling selamat dan terkini.',
+    'How does the ByBet slots casino ensure fairness?': 'Bagaimanakah kasino slot ByBet memastikan keadilan?',
+    'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.':
+      'Kami menggunakan Penjana Nombor Rawak (RNG) yang diperakui untuk memastikan setiap keputusan adalah rawak dan tidak berat sebelah. Kami menjalani audit berkala oleh organisasi pihak ketiga untuk mengesahkan bahawa permainan kami beroperasi mengikut piawaian keadilan antarabangsa.',
+    'What makes the ByBet scatter symbol special?': 'Apakah yang membuatkan simbol scatter ByBet begitu istimewa?',
+    'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
+      'Dalam kebanyakan permainan kami, simbol scatter ialah ciri hebat yang boleh mencetuskan ciri khas tidak kira di mana ia mendarat pada gelendong. Ini sering membawa kepada putaran percuma atau permainan mini khas yang menambah keterujaan pada sesi permainan anda.',
     'Contact Us': 'Hubungi Kami', FAQ: 'Soalan Lazim', 'Responsible Gaming': 'Permainan Bertanggungjawab',
     'Terms of Service': 'Syarat Perkhidmatan', 'Privacy Policy': 'Dasar Privasi',
     'General Terms': 'Syarat Umum', 'Bonus Terms': 'Syarat Bonus',
@@ -784,14 +819,21 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'At ByBet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.': 'Di ByBet, nikmati ribuan game slot berkualitas dari penyedia terkemuka dunia. Dari mesin buah klasik hingga video slot terbaru, selalu ada hal baru untuk dijelajahi.',
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, ByBet is your home for bigger wins.': 'Nikmati jackpot menarik, gameplay inovatif, dan hadiah melimpah di satu tempat. Baik pemain santai maupun taruhan tinggi, ByBet adalah tempat untuk kemenangan lebih besar.',
     'Frequently Asked Questions': 'Pertanyaan Umum',
-    'How do I create an account?': 'Bagaimana cara membuat akun?',
-    'Choose Sign Up and follow the demo registration steps.': 'Pilih “Daftar” dan ikuti langkah pendaftaran demo.',
-    'How do I make a deposit?': 'Bagaimana cara melakukan deposit?',
-    'Deposit controls are presented as a demo and do not process payments.': 'Kontrol deposit hanya berupa demo dan tidak memproses pembayaran nyata.',
-    'What games are available at Bybet?': 'Game apa saja yang tersedia di ByBet?',
-    'The interface showcases slots, live tables, original games, and sports categories.': 'Antarmuka menampilkan slot, meja live, game orisinal, dan kategori olahraga.',
-    'How do I contact customer support?': 'Bagaimana cara menghubungi layanan pelanggan?',
-    'Use the support control in the navigation rail or footer.': 'Gunakan kontrol dukungan di bilah navigasi atau footer.',
+    'What is ByBet Slot?': 'Apa itu ByBet Slot?',
+    'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.':
+      'ByBet Slot adalah destinasi permainan online premium yang menawarkan koleksi lengkap mesin slot digital berkualitas tinggi. Kami menyediakan lingkungan yang aman di mana pemain dapat menjelajahi berbagai tema, mulai dari peradaban kuno hingga petualangan futuristik. Platform kami mengintegrasikan koleksi kasino slot ByBet dengan teknologi canggih, memungkinkan Anda menikmati gameplay yang mulus baik melalui browser desktop maupun aplikasi slot ByBet di ponsel.',
+    'Is ByBet legit or a scam?': 'Apakah ByBet resmi atau penipuan?',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'Kami dapat menyatakan dengan yakin bahwa kami adalah platform permainan yang sepenuhnya sah dan resmi. Untuk memastikan standar keselamatan dan keadilan tertinggi, kami memegang lisensi resmi dari PAGCOR (Philippine Amusement and Gaming Corporation). Sertifikasi ini berarti kami beroperasi di bawah pengawasan regulasi yang ketat, memastikan semua operasi transparan dan permainan kami, termasuk yang menampilkan simbol scatter ByBet, adil tanpa rekayasa. Keamanan Anda adalah prioritas utama kami, dan kami menerapkan enkripsi terdepan untuk melindungi setiap interaksi di situs kami.',
+    'Is the ByBet app slot compatible with both Android and iOS?': 'Apakah aplikasi slot ByBet kompatibel dengan Android dan iOS?',
+    'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
+      'Ya, kami merancang aplikasi kami agar kompatibel sepenuhnya dengan kedua sistem operasi seluler utama. Anda dapat mengunduh aplikasi langsung dari situs resmi kami untuk memastikan Anda memperoleh versi yang paling aman dan mutakhir.',
+    'How does the ByBet slots casino ensure fairness?': 'Bagaimana kasino slot ByBet menjamin keadilan permainan?',
+    'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.':
+      'Kami menggunakan Generator Angka Acak (RNG) bersertifikat untuk memastikan setiap hasil putaran benar-benar acak dan tidak memihak. Kami menjalani audit berkala oleh lembaga independen pihak ketiga untuk memverifikasi bahwa permainan kami beroperasi sesuai standar keadilan internasional.',
+    'What makes the ByBet scatter symbol special?': 'Apa yang membuat simbol scatter ByBet istimewa?',
+    'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
+      'Di sebagian besar permainan kami, simbol scatter adalah fitur istimewa yang dapat memicu putaran bonus terlepas dari posisinya di gulungan. Simbol ini sering kali menghasilkan putaran gratis atau mini-game khusus yang membuat sesi bermain Anda semakin seru.',
     'Contact Us': 'Hubungi Kami', FAQ: 'Pertanyaan Umum', 'Responsible Gaming': 'Bermain Bertanggung Jawab',
     'Terms of Service': 'Ketentuan Layanan', 'Privacy Policy': 'Kebijakan Privasi',
     'General Terms': 'Ketentuan Umum', 'Bonus Terms': 'Ketentuan Bonus',
@@ -816,14 +858,21 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'At ByBet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.': 'ByBet पर दुनिया के शीर्ष प्रदाताओं के हज़ारों बेहतरीन स्लॉट गेम खेलें। क्लासिक फ्रूट मशीनों से नवीनतम वीडियो स्लॉट तक, खोजने के लिए हमेशा कुछ नया है।',
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, ByBet is your home for bigger wins.': 'रोमांचक जैकपॉट, नया गेमप्ले और शानदार पुरस्कार एक ही जगह पाएँ। चाहे आप सामान्य खिलाड़ी हों या हाई रोलर, बड़ी जीत के लिए ByBet आपका घर है।',
     'Frequently Asked Questions': 'अक्सर पूछे जाने वाले प्रश्न',
-    'How do I create an account?': 'मैं खाता कैसे बनाऊँ?',
-    'Choose Sign Up and follow the demo registration steps.': '“साइन अप” चुनें और डेमो पंजीकरण चरणों का पालन करें।',
-    'How do I make a deposit?': 'मैं जमा कैसे करूँ?',
-    'Deposit controls are presented as a demo and do not process payments.': 'जमा नियंत्रण केवल डेमो हैं और वास्तविक भुगतान संसाधित नहीं करते।',
-    'What games are available at Bybet?': 'ByBet पर कौन से गेम उपलब्ध हैं?',
-    'The interface showcases slots, live tables, original games, and sports categories.': 'यह इंटरफ़ेस स्लॉट्स, लाइव टेबल, ओरिजिनल गेम और खेल श्रेणियाँ दिखाता है।',
-    'How do I contact customer support?': 'मैं ग्राहक सहायता से कैसे संपर्क करूँ?',
-    'Use the support control in the navigation rail or footer.': 'नेविगेशन बार या फ़ुटर में सहायता विकल्प का उपयोग करें।',
+    'What is ByBet Slot?': 'ByBet Slot क्या है?',
+    'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.':
+      'ByBet Slot एक प्रीमियम ऑनलाइन गेमिंग डेस्टिनेशन है जो उच्च गुणवत्ता वाले डिजिटल स्लॉट मशीनों का व्यापक संग्रह प्रदान करता है। हम एक सुरक्षित वातावरण प्रदान करते हैं जहाँ खिलाड़ी प्राचीन सभ्यताओं से लेकर भविष्य के रोमांच तक विभिन्न थीम का अन्वेषण कर सकते हैं। हमारा प्लेटफ़ॉर्म उन्नत तकनीक के साथ ByBet स्लॉट कैसीनो लाइब्रेरी को एकीकृत करता है, जिससे आप डेस्कटॉप ब्राउज़र या मोबाइल सुविधा के लिए ByBet ऐप स्लॉट पर सहज गेमप्ले का आनंद ले सकते हैं।',
+    'Is ByBet legit or a scam?': 'क्या ByBet वैध है या कोई धोखाधड़ी (स्कैम)?',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'हम विश्वास के साथ कह सकते हैं कि हम पूरी तरह से एक वैध और कानूनी गेमिंग प्लेटफ़ॉर्म हैं। सुरक्षा और निष्पक्षता के उच्चतम मानकों को सुनिश्चित करने के लिए, हमारे पास PAGCOR (फिलीपीन एम्यूजमेंट एंड गेमिंग कॉर्पोरेशन) से औपचारिक लाइसेंस है। इस प्रमाणीकरण का अर्थ है कि हम सख्त नियामक निगरानी में काम करते हैं, यह सुनिश्चित करते हुए कि हमारे सभी संचालन पारदर्शी हैं और हमारे खेल, जिनमें ByBet स्कैटर सिंबल शामिल हैं, निष्पक्ष और निष्पक्ष हैं। आपकी सुरक्षा हमारी सर्वोच्च प्राथमिकता है, और हम आपकी हर बातचीत की सुरक्षा के लिए उद्योग-अग्रणी एन्क्रिप्शन का उपयोग करते हैं।',
+    'Is the ByBet app slot compatible with both Android and iOS?': 'क्या ByBet ऐप स्लॉट Android और iOS दोनों के साथ संगत है?',
+    'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
+      'हाँ, हमने अपने एप्लिकेशन को दोनों प्रमुख मोबाइल ऑपरेटिंग सिस्टम के साथ पूरी तरह से संगत बनाया है। यह सुनिश्चित करने के लिए कि आपको सबसे सुरक्षित और अद्यतित संस्करण मिल रहा है, आप ऐप को सीधे हमारी आधिकारिक वेबसाइट से डाउनलोड कर सकते हैं।',
+    'How does the ByBet slots casino ensure fairness?': 'ByBet स्लॉट कैसीनो निष्पक्षता कैसे सुनिश्चित करता है?',
+    'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.':
+      'हम यह सुनिश्चित करने के लिए प्रमाणित रैंडम नंबर जेनरेटर (RNG) का उपयोग करते हैं कि प्रत्येक परिणाम यादृच्छिक और निष्पक्ष हो। हमारे खेल अंतरराष्ट्रीय निष्पक्षता मानकों के अनुसार संचालित होते हैं, यह सत्यापित करने के लिए हम तीसरे पक्ष के संगठनों द्वारा नियमित ऑडिट से गुजरते हैं।',
+    'What makes the ByBet scatter symbol special?': 'ByBet स्कैटर सिंबल को क्या खास बनाता है?',
+    'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
+      'हमारे अधिकांश खेलों में, स्कैटर सिंबल एक शक्तिशाली विशेषता है जो रीलों पर कहीं भी आने पर विशेष बोनस सुविधाओं को ट्रिगर कर सकता है। यह अक्सर मुफ़्त स्पिन या विशेष मिनी-गेम की ओर ले जाता है जो आपके सत्र में उत्साह जोड़ता है।',
     'Contact Us': 'संपर्क करें', FAQ: 'सामान्य प्रश्न', 'Responsible Gaming': 'ज़िम्मेदार गेमिंग',
     'Terms of Service': 'सेवा की शर्तें', 'Privacy Policy': 'गोपनीयता नीति',
     'General Terms': 'सामान्य शर्तें', 'Bonus Terms': 'बोनस की शर्तें',
@@ -848,14 +897,21 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'At ByBet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.': 'ByBetでは、世界トップクラスのプロバイダーによる数千種類の高品質スロットを楽しめます。クラシックなフルーツマシンから最新のビデオスロットまで、いつでも新しい発見があります。',
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, ByBet is your home for bigger wins.': '魅力的なジャックポット、革新的なゲームプレイ、豪華な報酬を一か所で。カジュアルプレイヤーにもハイローラーにも、ByBetは大きな勝利のための場所です。',
     'Frequently Asked Questions': 'よくある質問',
-    'How do I create an account?': 'アカウントを作成するには？',
-    'Choose Sign Up and follow the demo registration steps.': '「登録」を選び、デモ登録手順に従ってください。',
-    'How do I make a deposit?': '入金するには？',
-    'Deposit controls are presented as a demo and do not process payments.': '入金機能はデモ表示のみで、実際の支払いは処理されません。',
-    'What games are available at Bybet?': 'ByBetではどのゲームを遊べますか？',
-    'The interface showcases slots, live tables, original games, and sports categories.': 'スロット、ライブテーブル、オリジナルゲーム、スポーツカテゴリーを紹介しています。',
-    'How do I contact customer support?': 'カスタマーサポートへの連絡方法は？',
-    'Use the support control in the navigation rail or footer.': 'サイドナビゲーションまたはフッターのサポート項目をご利用ください。',
+    'What is ByBet Slot?': 'ByBet Slotとは何ですか？',
+    'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.':
+      'ByBet Slotは、高品質なデジタルスロットゲームの豊富なコレクションを提供するプレミアムオンラインゲーミングプラットフォームです。古代文明から未来の冒険まで、多彩なテーマを安心して探索できる安全な環境を提供しています。ByBetスロットカジノライブラリと最先端テクノロジーの融合により、デスクトップブラウザでも手軽なByBetアプリスロットでも、快適でシームレスなゲームプレイをお楽しみいただけます。',
+    'Is ByBet legit or a scam?': 'ByBetは合法ですか？それとも詐欺ですか？',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'ByBetは完全に合法的かつ正当なゲーミングプラットフォームです。最高水準の安全性と公平性を確保するため、フィリピンの公的規制機関PAGCOR（Philippine Amusement and Gaming Corporation）から正式なライセンスを取得して運営されています。この認証は厳格な監督のもとで運営されていることを意味し、ByBetスキャッターシンボルを含むすべてのゲームが公平かつ透明であることが保証されています。お客様のセキュリティを最優先とし、業界屈指の暗号化技術ですべての通信を保護しています。',
+    'Is the ByBet app slot compatible with both Android and iOS?': 'ByBetアプリスロットはAndroidとiOSの両方に対応していますか？',
+    'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
+      'はい、両方の主要なモバイルOSに完全対応するように設計されています。最新かつ最も安全なバージョンをご利用いただくため、公式ウェブサイトから直接アプリをダウンロードしていただけます。',
+    'How does the ByBet slots casino ensure fairness?': 'ByBetスロットカジノはどのように公平性を確保していますか？',
+    'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.':
+      'すべてのゲーム結果が完全にランダムかつ公平であることを保証するため、認証済みの乱数発生器（RNG）を使用しています。また、国際的な公平性基準に従って運営されていることを証明するため、第三者監査機関による定期的な監査を受けています。',
+    'What makes the ByBet scatter symbol special?': 'ByBetのスキャッターシンボルにはどのような特徴がありますか？',
+    'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
+      'ほとんどのゲームにおいて、スキャッターシンボルはリール上のどの位置に停止しても特別なボーナス機能を誘発する強力なトリガーです。フリースピンや特別ミニゲームへ突入することが多く、プレイ体験をさらにエキサイティングに盛り上げます。',
     'Contact Us': 'お問い合わせ', FAQ: 'よくある質問', 'Responsible Gaming': '責任あるゲーミング',
     'Terms of Service': '利用規約', 'Privacy Policy': 'プライバシーポリシー',
     'General Terms': '一般規約', 'Bonus Terms': 'ボーナス規約',
@@ -880,14 +936,21 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'At ByBet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.': 'ByBet에서 세계 최고의 제공업체가 선보이는 수천 개의 고품질 슬롯을 즐겨보세요. 클래식 과일 머신부터 최신 비디오 슬롯까지 언제나 새로운 게임을 발견할 수 있습니다.',
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, ByBet is your home for bigger wins.': '흥미진진한 잭팟, 혁신적인 게임플레이, 풍성한 보상을 한곳에서 즐기세요. 캐주얼 플레이어든 하이 롤러든 ByBet에서 더 큰 승리를 만나보세요.',
     'Frequently Asked Questions': '자주 묻는 질문',
-    'How do I create an account?': '계정은 어떻게 만드나요?',
-    'Choose Sign Up and follow the demo registration steps.': '“회원가입”을 선택하고 데모 등록 단계를 따르세요.',
-    'How do I make a deposit?': '입금은 어떻게 하나요?',
-    'Deposit controls are presented as a demo and do not process payments.': '입금 기능은 데모이며 실제 결제를 처리하지 않습니다.',
-    'What games are available at Bybet?': 'ByBet에서 어떤 게임을 이용할 수 있나요?',
-    'The interface showcases slots, live tables, original games, and sports categories.': '슬롯, 라이브 테이블, 오리지널 게임, 스포츠 카테고리를 제공합니다.',
-    'How do I contact customer support?': '고객 지원에 어떻게 연락하나요?',
-    'Use the support control in the navigation rail or footer.': '사이드 내비게이션 또는 푸터의 지원 메뉴를 이용하세요.',
+    'What is ByBet Slot?': 'ByBet Slot이란 무엇인가요?',
+    'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.':
+      'ByBet Slot은 최고 품질의 디지털 슬롯머신 컬렉션을 제공하는 프리미엄 온라인 게이밍 플랫폼입니다. 고대 문명부터 미래지향적 모험까지 다양한 테마를 안전한 환경에서 즐기실 수 있습니다. ByBet 슬롯 카지노 라이브러리와 최첨단 기술을 결합하여 PC 브라우저는 물론 ByBet 모바일 앱 슬롯에서도 끊김 없는 매끄러운 플레이를 지원합니다.',
+    'Is ByBet legit or a scam?': 'ByBet은 합법인가요, 아니면 사기인가요?',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'ByBet은 완벽하게 합법적이고 신뢰할 수 있는 게이밍 플랫폼입니다. 최상의 안전성과 공정성 기준을 보장하기 위해 필리핀 정부 공인 기관인 PAGCOR(Philippine Amusement and Gaming Corporation)의 정식 라이선스를 보유하고 있습니다. 이는 엄격한 규제 감독 하에 운영됨을 의미하며, ByBet 스캐터 심볼을 포함한 모든 게임이 공정하고 투명함을 입증합니다. 사용자의 보안을 최우선으로 생각하여 업계 최고의 암호화 기술로 모든 접속을 안전하게 보호합니다.',
+    'Is the ByBet app slot compatible with both Android and iOS?': 'ByBet 앱 슬롯은 Android와 iOS 모두 지원하나요?',
+    'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
+      '네, 두 가지 주요 모바일 운영체제 모두와 완벽하게 호환되도록 설계되었습니다. 가장 안전하고 최신 버전을 이용하시려면 공식 웹사이트에서 직접 앱을 다운로드하실 수 있습니다.',
+    'How does the ByBet slots casino ensure fairness?': 'ByBet 슬롯 카지노는 게임의 공정성을 어떻게 보장하나요?',
+    'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.':
+      '모든 게임 결과가 무작위이고 편향되지 않도록 인증된 난수 생성기(RNG)를 사용합니다. 또한 국제 공정성 기준에 따라 게임이 운영되고 있는지 검증하기 위해 독립된 제3자 기관의 정기적인 감사를 받고 있습니다.',
+    'What makes the ByBet scatter symbol special?': 'ByBet 스캐터 심볼의 특별한 점은 무엇인가요?',
+    'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
+      '대부분의 게임에서 스캐터 심볼은 릴의 어느 위치에 나타나더라도 특별한 보너스 기능을 발동시키는 강력한 심볼입니다. 주로 무료 스핀이나 스페셜 미니 게임으로 이어져 게임의 짜릿한 재미를 더해줍니다.',
     'Contact Us': '문의하기', FAQ: '자주 묻는 질문', 'Responsible Gaming': '책임감 있는 게임',
     'Terms of Service': '서비스 이용약관', 'Privacy Policy': '개인정보 처리방침',
     'General Terms': '일반 약관', 'Bonus Terms': '보너스 약관',
@@ -912,14 +975,21 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'At ByBet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.': 'ที่ ByBet สนุกกับเกมสล็อตคุณภาพนับพันจากผู้ให้บริการชั้นนำทั่วโลก ตั้งแต่เกมสล็อตผลไม้คลาสสิกไปจนถึงวิดีโอสล็อตล่าสุด มีสิ่งใหม่ให้ค้นพบเสมอ',
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, ByBet is your home for bigger wins.': 'เพลิดเพลินกับแจ็กพอตสุดตื่นเต้น รูปแบบการเล่นใหม่ และรางวัลมากมายในที่เดียว ไม่ว่าคุณจะเล่นทั่วไปหรือเดิมพันสูง ByBet คือบ้านแห่งชัยชนะที่ยิ่งใหญ่กว่า',
     'Frequently Asked Questions': 'คำถามที่พบบ่อย',
-    'How do I create an account?': 'ฉันจะสร้างบัญชีได้อย่างไร?',
-    'Choose Sign Up and follow the demo registration steps.': 'เลือก “สมัครสมาชิก” แล้วทำตามขั้นตอนการลงทะเบียนตัวอย่าง',
-    'How do I make a deposit?': 'ฉันจะฝากเงินได้อย่างไร?',
-    'Deposit controls are presented as a demo and do not process payments.': 'ฟังก์ชันฝากเงินเป็นเพียงตัวอย่างและไม่มีการประมวลผลเงินจริง',
-    'What games are available at Bybet?': 'ByBet มีเกมอะไรบ้าง?',
-    'The interface showcases slots, live tables, original games, and sports categories.': 'หน้าเว็บแสดงสล็อต โต๊ะสด เกมต้นฉบับ และหมวดหมู่กีฬา',
-    'How do I contact customer support?': 'ฉันจะติดต่อฝ่ายบริการลูกค้าได้อย่างไร?',
-    'Use the support control in the navigation rail or footer.': 'ใช้เมนูช่วยเหลือในแถบนำทางหรือส่วนท้าย',
+    'What is ByBet Slot?': 'ByBet Slot คืออะไร?',
+    'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.':
+      'ByBet Slot คือศูนย์รวมเกมออนไลน์ระดับพรีเมียมที่นำเสนอคอลเลกชันสล็อตแมชชีนดิจิทัลคุณภาพสูงอย่างครบวงจร เรามอบสภาพแวดล้อมที่ปลอดภัย ให้ผู้เล่นได้สำรวจธีมที่หลากหลายตั้งแต่อารยธรรมโบราณไปจนถึงการผจญภัยแห่งอนาคต แพลตฟอร์มของเรารวมคลังเกมสล็อต ByBet เข้ากับเทคโนโลยีขั้นสูง เพื่อให้คุณเพลิดเพลินกับการเล่นที่ลื่นไหลไม่ว่าจะเล่นผ่านเบราว์เซอร์เดสก์ท็อปหรือแอป ByBet บนมือถือ',
+    'Is ByBet legit or a scam?': 'ByBet ถูกกฎหมายหรือเป็นการหลอกลวง?',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'เราสามารถยืนยันได้อย่างมั่นใจว่าเราเป็นแพลตฟอร์มเกมที่ถูกกฎหมายและได้รับอนุญาตอย่างเป็นทางการ เพื่อรักษามาตรฐานความปลอดภัยและความยุติธรรมสูงสุด เราถือใบอนุญาตอย่างเป็นทางการจาก PAGCOR (Philippine Amusement and Gaming Corporation) การรับรองนี้หมายความว่าเราดำเนินงานภายใต้การกำกับดูแลอย่างเข้มงวด มั่นใจได้ว่าการดำเนินงานทั้งหมดโปร่งใส และเกมทั้งหมดรวมถึงสัญลักษณ์สแคทเตอร์ของ ByBet มีความยุติธรรมและไม่มีอคติ ความปลอดภัยของคุณคือสิ่งสำคัญสูงสุด เราใช้การเข้ารหัสชั้นนำของอุตสาหกรรมเพื่อปกป้องทุกการใช้งาน',
+    'Is the ByBet app slot compatible with both Android and iOS?': 'แอปสล็อต ByBet รองรับทั้ง Android และ iOS หรือไม่?',
+    'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
+      'ใช่ แอปพลิเคชันของเราได้รับการออกแบบมาให้เข้ากันได้อย่างสมบูรณ์กับทั้งสองระบบปฏิบัติการมือถือหลัก คุณสามารถดาวน์โหลดแอปได้โดยตรงจากเว็บไซต์ทางการของเราเพื่อรับเวอร์ชันที่ปลอดภัยและทันสมัยที่สุด',
+    'How does the ByBet slots casino ensure fairness?': 'คาสิโนสล็อต ByBet รับประกันความยุติธรรมอย่างไร?',
+    'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.':
+      'เราใช้ระบบสร้างตัวเลขสุ่ม (RNG) ที่ได้รับการรับรองเพื่อให้แน่ใจว่าผลลัพธ์ทุกครั้งเป็นแบบสุ่มและไม่มีการบิดเบือน เราผ่านการตรวจสอบอย่างสม่ำเสมอจากองค์กรภายนอกเพื่อยืนยันว่าเกมของเราดำเนินไปตามมาตรฐานความยุติธรรมระดับสากล',
+    'What makes the ByBet scatter symbol special?': 'สัญลักษณ์สแคทเตอร์ (Scatter) ของ ByBet มีความพิเศษอย่างไร?',
+    'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
+      'ในเกมส่วนใหญ่ของเรา สัญลักษณ์สแคทเตอร์เป็นฟีเจอร์อันทรงพลังที่สามารถปลดล็อกโบนัสพิเศษได้ไม่ว่าจะปรากฏที่ตำแหน่งใดบนวงล้อ ซึ่งมักจะนำไปสู่การหมุนฟรี (Free Spins) หรือมินิเกมพิเศษที่เพิ่มความตื่นเต้นให้กับการเล่นของคุณ',
     'Contact Us': 'ติดต่อเรา', FAQ: 'คำถามที่พบบ่อย', 'Responsible Gaming': 'การเล่นอย่างรับผิดชอบ',
     'Terms of Service': 'ข้อกำหนดการให้บริการ', 'Privacy Policy': 'นโยบายความเป็นส่วนตัว',
     'General Terms': 'ข้อกำหนดทั่วไป', 'Bonus Terms': 'ข้อกำหนดโบนัส',
@@ -944,14 +1014,21 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'At ByBet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.': 'Na ByBet, você aproveita milhares de slots de alta qualidade dos melhores provedores do mundo. Das clássicas máquinas de frutas aos vídeos slots mais recentes, sempre há algo novo para descobrir.',
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, ByBet is your home for bigger wins.': 'Aproveite jackpots emocionantes, jogabilidade inovadora e recompensas generosas em um só lugar. Seja um jogador casual ou de apostas altas, a ByBet é o seu lugar para vitórias maiores.',
     'Frequently Asked Questions': 'Perguntas frequentes',
-    'How do I create an account?': 'Como faço para criar uma conta?',
-    'Choose Sign Up and follow the demo registration steps.': 'Selecione “Cadastrar” e siga as etapas de registro demonstrativas.',
-    'How do I make a deposit?': 'Como faço um depósito?',
-    'Deposit controls are presented as a demo and do not process payments.': 'Os controles de depósito são apenas demonstrativos e não processam pagamentos reais.',
-    'What games are available at Bybet?': 'Quais jogos estão disponíveis na ByBet?',
-    'The interface showcases slots, live tables, original games, and sports categories.': 'A interface apresenta slots, mesas ao vivo, jogos originais e categorias esportivas.',
-    'How do I contact customer support?': 'Como entro em contato com o suporte?',
-    'Use the support control in the navigation rail or footer.': 'Use a opção de suporte na barra de navegação ou no rodapé.',
+    'What is ByBet Slot?': 'O que é o ByBet Slot?',
+    'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.':
+      'O ByBet Slot é um destino de jogos online premium que oferece uma coleção abrangente de caça-níqueis digitais de alta qualidade. Oferecemos um ambiente seguro onde os jogadores podem explorar diversos temas, desde civilizações antigas até aventuras futuristas. Nossa plataforma combina o catálogo de slots de cassino da ByBet com tecnologia de ponta, permitindo que você desfrute de uma jogabilidade fluida tanto no navegador do computador quanto no app ByBet para dispositivos móveis.',
+    'Is ByBet legit or a scam?': 'A ByBet é confiável ou é um golpe?',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'Podemos afirmar com total confiança que somos uma plataforma de jogos totalmente legítima e legal. Para garantir os mais altos padrões de segurança e justiça, possuímos uma licença formal da PAGCOR (Philippine Amusement and Gaming Corporation). Essa certificação significa que operamos sob rigorosa supervisão regulatória, garantindo que todas as nossas operações sejam transparentes e que nossos jogos, incluindo aqueles com os símbolos scatter da ByBet, sejam justos e imparciais. Sua segurança é nossa prioridade máxima, e utilizamos criptografia líder do setor para proteger todas as interações no site.',
+    'Is the ByBet app slot compatible with both Android and iOS?': 'O aplicativo de slots ByBet é compatível com Android e iOS?',
+    'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
+      'Sim, desenvolvemos nosso aplicativo para ser totalmente compatível com os dois principais sistemas operacionais móveis. Você pode baixar o aplicativo diretamente do nosso site oficial para garantir a versão mais segura e atualizada.',
+    'How does the ByBet slots casino ensure fairness?': 'Como o cassino de slots ByBet garante a imparcialidade?',
+    'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.':
+      'Utilizamos Geradores de Números Aleatórios (RNG) certificados para assegurar que cada resultado seja verdadeiramente aleatório e imparcial. Passamos por auditorias periódicas de organizações terceirizadas para confirmar que nossos jogos funcionam de acordo com os padrões internacionais de integridade.',
+    'What makes the ByBet scatter symbol special?': 'O que torna o símbolo scatter da ByBet tão especial?',
+    'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
+      'Na maioria dos nossos jogos, o símbolo scatter é um recurso poderoso capaz de ativar recursos especiais, independentemente de onde ele caia nos cilindros. Isso frequentemente leva a rodadas grátis ou minijogos especiais que trazem ainda mais emoção à sua sessão.',
     'Contact Us': 'Fale conosco', FAQ: 'Perguntas frequentes', 'Responsible Gaming': 'Jogo responsável',
     'Terms of Service': 'Termos de serviço', 'Privacy Policy': 'Política de privacidade',
     'General Terms': 'Termos gerais', 'Bonus Terms': 'Termos de bônus',

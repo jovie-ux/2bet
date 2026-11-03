@@ -164,8 +164,8 @@ watch(
             :alt="game.image === '/brand/bybet-logo.webp'
               ? `ByBet placeholder for ${game.title}`
               : `${game.title} slot game artwork`"
-            :width="66"
-            :height="variant === 'popular' ? 73 : 75"
+            :width="100"
+            :height="100"
             loading="lazy"
             decoding="async"
           >
@@ -307,7 +307,7 @@ watch(
   position: relative;
   isolation: isolate;
   min-width: 0;
-  aspect-ratio: 66 / 75;
+  aspect-ratio: 1 / 1;
   padding: 0;
   overflow: hidden;
   border: 1px solid rgba(50, 212, 154, 0.1);
@@ -348,7 +348,7 @@ watch(
 }
 
 .reference-section--popular .reference-game {
-  aspect-ratio: 66 / 73;
+  aspect-ratio: 1 / 1;
 }
 
 .reference-game:hover {
@@ -566,7 +566,7 @@ watch(
   }
 
   .reference-game img {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 1 / 1;
     height: auto;
     padding: 0;
     border-radius: 0.45rem 0.45rem 0 0;
@@ -579,7 +579,7 @@ watch(
   }
 
   .reference-game--fallback picture {
-    aspect-ratio: 1.08 / 1;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
   }
 

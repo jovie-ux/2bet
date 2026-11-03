@@ -1,4 +1,5 @@
 import { h, type Component } from 'vue'
+import { SLOTS, type SlotGame } from './slots'
 import {
   BadgeDollarSign,
   BadgeCent,
@@ -308,38 +309,68 @@ const createGames = (
   image: gamePlaceholderImage,
 }))
 
-export const popularGames: ReferenceGame[] = [
-  { title: 'Sweet Bonanza 1000', provider: 'Pragmatic Play', image: '/images/games/popular/sweet-bonanza-1000.webp' },
-  { title: 'Golden Empire', provider: 'JILI', image: '/images/games/popular/golden-empire.webp' },
-  { title: 'Super Ace', provider: 'JILI', image: '/images/games/popular/super-ace.webp' },
-  { title: 'Fortune Gems 2', provider: 'JDB', image: '/images/games/popular/fortune-gems-2.webp' },
-  { title: 'Super Ace 2', provider: 'JILI', image: '/images/games/popular/super-ace-2.webp' },
-  { title: 'Gates of Olympus', provider: 'Pragmatic Play', image: '/images/games/popular/gates-of-olympus.webp' },
-  { title: 'Sugar Rush Dice', provider: 'Pragmatic Play', image: '/images/games/popular/sugar-rush-dice.webp' },
-  { title: 'Mega Ace', provider: 'JILI', image: '/images/games/popular/mega-ace.webp' },
-]
+const resolveSlotImage = (game: SlotGame): string => {
+  if (game.image && game.image.startsWith('/images/slots/')) {
+    return game.image
+  }
+  const baseId = game.id.replace(/-hot$|-popular$|-top$/, '')
+  if (baseId === 'chinese-new-year') {
+    return '/images/slots/chinese-new-year-deluxe.webp'
+  }
+  return `/images/slots/${baseId}.webp`
+}
 
-export const newGames: ReferenceGame[] = [
-  { title: 'Wild Hop & Drop', provider: 'Pragmatic Play', image: '/images/games/new-releases/wild-hop-and-drop.webp' },
-  { title: 'Spin & Score Megaways', provider: 'Pragmatic Play', image: '/images/games/new-releases/spin-and-score-megaways.webp' },
-  { title: 'Super Wildrix', provider: 'Play’n GO', image: '/images/games/new-releases/super-wildrix.webp' },
-  { title: 'Snakes & Ladders: Snake Eyes', provider: 'Pragmatic Play', image: '/images/games/new-releases/snakes-and-ladders-snake-eyes.webp' },
-  { title: 'Fortune Rabbit Xtreme', provider: 'PG Soft', image: '/images/games/new-releases/fortune-rabbit-xtreme.webp' },
-  { title: 'Bigger Bass Blizzard', provider: 'Pragmatic Play', image: '/images/games/new-releases/bigger-bass-blizzard.webp' },
-  { title: 'John Hunter: Book of Tut Respin', provider: 'Pragmatic Play', image: '/images/games/new-releases/john-hunter-book-of-tut-respin.webp' },
-  { title: 'Chinese New Year Deluxe', provider: 'PG Soft', image: '/images/games/new-releases/chinese-new-year-deluxe.webp' },
-]
+const parseHotPercent = (val: unknown): number => {
+  if (typeof val === 'number') return val
+  if (typeof val === 'string') return parseFloat(val.replace('%', '').trim()) || 0
+  return 0
+}
 
-export const recommendedGames: ReferenceGame[] = [
-  { title: 'Fortune Gems 2', provider: 'JDB', image: '/images/games/new-releases/fortune-gems-2.webp' },
-  { title: 'Sweet Bonanza 1000', provider: 'Pragmatic Play', image: '/images/games/new-releases/sweet-bonanza-1000.webp' },
-  { title: 'Golden Empire', provider: 'JILI', image: '/images/games/new-releases/golden-empire.webp' },
-  { title: '7 Wheel Money', provider: 'JILI', image: '/images/games/new-releases/7-wheel-money.webp' },
-  { title: '777 Strike', provider: 'JILI', image: '/images/games/new-releases/777-strike.webp' },
-  { title: 'Lucky Neko', provider: 'PG Soft', image: '/images/games/new-releases/lucky-neko.webp' },
-  { title: 'Wild Bandito', provider: 'PG Soft', image: '/images/games/new-releases/wild-bandito.webp' },
-  { title: 'Open Sesame', provider: 'PG Soft', image: '/images/games/new-releases/open-sesame.webp' },
-]
+const buildUniqueSlotGames = (
+  slots: SlotGame[],
+  limit?: number,
+): ReferenceGame[] => {
+  const seenTitles = new Set<string>()
+  const result: ReferenceGame[] = []
+
+  for (const game of slots) {
+    const normTitle = game.title.toLowerCase().trim()
+    if (seenTitles.has(normTitle)) continue
+    seenTitles.add(normTitle)
+    result.push({
+      id: game.id,
+      title: game.title,
+      provider: game.provider,
+      image: resolveSlotImage(game),
+    })
+    if (limit && result.length >= limit) break
+  }
+
+  return result
+}
+
+// Popular Slots: highest livePlayers
+export const popularGames: ReferenceGame[] = buildUniqueSlotGames(
+  [...SLOTS]
+    .filter(g => typeof g.livePlayers === 'number' && g.livePlayers > 0)
+    .sort((a, b) => (b.livePlayers ?? 0) - (a.livePlayers ?? 0)),
+  12,
+)
+
+// New Releases: new: true
+export const newGames: ReferenceGame[] = buildUniqueSlotGames(
+  [...SLOTS]
+    .filter(g => g.new === true)
+    .sort((a, b) => (b.livePlayers ?? 0) - (a.livePlayers ?? 0)),
+)
+
+// Recommended For You: highest hotPercent
+export const recommendedGames: ReferenceGame[] = buildUniqueSlotGames(
+  [...SLOTS]
+    .filter(g => Boolean(g.hotPercent))
+    .sort((a, b) => parseHotPercent(b.hotPercent) - parseHotPercent(a.hotPercent)),
+  12,
+)
 
 export const mobileQuickCategories: GameCategory[] = [
   { label: 'Hot Slots', icon: Flame, accentColor: '#ffb02e', to: '/explore/egames/slots' },
@@ -375,19 +406,28 @@ export const providerLogoByName: Record<string, string> = {
 
 export const faqItems: FaqItem[] = [
   {
-    question: 'How do I create an account?',
-    answer: 'Choose Sign Up and follow the demo registration steps.',
+    question: 'What is ByBet Slot?',
+    answer:
+      'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.',
   },
   {
-    question: 'How do I make a deposit?',
-    answer: 'Deposit controls are presented as a demo and do not process payments.',
+    question: 'Is ByBet legit or a scam?',
+    answer:
+      'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.',
   },
   {
-    question: 'What games are available at Bybet?',
-    answer: 'The interface showcases slots, live tables, original games, and sports categories.',
+    question: 'Is the ByBet app slot compatible with both Android and iOS?',
+    answer:
+      'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.',
   },
   {
-    question: 'How do I contact customer support?',
-    answer: 'Use the support control in the navigation rail or footer.',
+    question: 'How does the ByBet slots casino ensure fairness?',
+    answer:
+      'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.',
+  },
+  {
+    question: 'What makes the ByBet scatter symbol special?',
+    answer:
+      'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.',
   },
 ]

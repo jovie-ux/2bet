@@ -1,11 +1,121 @@
 <script setup lang="ts">
 import { Pause, Play } from 'lucide-vue-next'
-import { JACKPOT_WINNERS } from '~/data/jackpot'
+import { HOMEPAGE_WINNERS, type HomepageWinner } from '~/data/homepage-winners'
+import usernamesList from '~/data/usernames.json'
+
+const PROVIDERS = [
+  { name: 'JILI', logo: '/images/providers/jili.webp' },
+  { name: 'CQ9', logo: '/images/providers/cq9.webp' },
+  { name: 'JDB', logo: '/images/providers/jdb.webp' },
+  { name: 'Pragmatic Play', logo: '/images/providers/pp.webp' },
+  { name: 'PG Soft', logo: '/images/providers/pg.webp' },
+  { name: 'Red Tiger', logo: '/images/providers/red-tiger.webp' },
+]
+
+const SCROLL_SPEED_PX_PER_SEC = 20
 
 const isPaused = ref(false)
-const providerName = (logo: string): string => (
-  logo.split('/').pop()?.replace(/\.[^.]+$/, '').toUpperCase() || 'Game provider'
-)
+const isHovered = ref(false)
+const winners = ref<HomepageWinner[]>([...HOMEPAGE_WINNERS])
+
+const listTrack = ref<HTMLElement | null>(null)
+
+let currentOffset = 0
+let lastTimestamp = 0
+let animationFrameId: number | null = null
+let winnerSeed = 0
+
+const maskUsername = (raw: string): string => {
+  if (!raw) return 'u******8'
+  if (raw.includes('*')) return raw
+  const clean = raw.trim()
+  if (clean.length <= 2) return `${clean[0] || 'u'}******${clean[1] || '8'}`
+  const first = clean[0]
+  const last = clean[clean.length - 1]
+  const starCount = Math.max(5, Math.min(6, clean.length - 2))
+  return `${first}${'*'.repeat(starCount)}${last}`
+}
+
+const formatWinnerDate = (date = new Date()): string => {
+  const day = String(date.getDate()).padStart(2, '0')
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+  return `${day}-${month} ${hours}:${minutes}`
+}
+
+const generateWinnerAmount = (): string => {
+  const isBig = Math.random() < 0.15
+  const val = isBig
+    ? Math.random() * (12500 - 4000) + 4000
+    : Math.random() * (3800 - 450) + 450
+  return `PHP ${val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+}
+
+const generateNewWinner = (): HomepageWinner => {
+  winnerSeed += 1
+  const prov = PROVIDERS[Math.floor(Math.random() * PROVIDERS.length)] || PROVIDERS[0]
+  const uname = usernamesList.length
+    ? (usernamesList[Math.floor(Math.random() * usernamesList.length)] || 'player')
+    : 'player'
+
+  return {
+    id: `winner-${Date.now()}-${winnerSeed}-${Math.random().toString(36).slice(2, 6)}`,
+    provider: prov.name,
+    providerLogo: prov.logo,
+    username: maskUsername(uname),
+    amount: generateWinnerAmount(),
+    date: formatWinnerDate(),
+  }
+}
+
+const step = (timestamp: number) => {
+  if (!lastTimestamp) {
+    lastTimestamp = timestamp
+  }
+  const elapsed = timestamp - lastTimestamp
+  lastTimestamp = timestamp
+
+  const track = listTrack.value
+
+  if (track && !isPaused.value && !isHovered.value) {
+    const delta = Math.min(elapsed, 100)
+    currentOffset += (SCROLL_SPEED_PX_PER_SEC * delta) / 1000
+
+    const firstRow = track.querySelector('.winner-row') as HTMLElement | null
+    if (firstRow) {
+      const nextRow = firstRow.nextElementSibling as HTMLElement | null
+      const shiftAmount = nextRow
+        ? nextRow.offsetTop - firstRow.offsetTop
+        : firstRow.offsetHeight + 8
+
+      if (shiftAmount > 0 && currentOffset >= shiftAmount) {
+        currentOffset -= shiftAmount
+        winners.value.shift()
+        winners.value.push(generateNewWinner())
+      }
+    }
+
+    track.style.transform = `translate3d(0, -${currentOffset.toFixed(2)}px, 0)`
+  }
+
+  animationFrameId = requestAnimationFrame(step)
+}
+
+onMounted(() => {
+  if (typeof window === 'undefined') return
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (!prefersReduced) {
+    animationFrameId = requestAnimationFrame(step)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (animationFrameId !== null) {
+    cancelAnimationFrame(animationFrameId)
+    animationFrameId = null
+  }
+})
 </script>
 
 <template>
@@ -13,7 +123,7 @@ const providerName = (logo: string): string => (
     <header class="player-winners__header">
       <h3 id="player-winners-title">Player Winners</h3>
       <div class="player-winners__actions">
-        <NuxtLink to="/explore/egames/jackpot/jdb">View All</NuxtLink>
+        <NuxtLink to="/explore/egames/jackpot/all">View All</NuxtLink>
         <button
           type="button"
           class="winner-motion-toggle"
@@ -26,20 +136,26 @@ const providerName = (logo: string): string => (
       </div>
     </header>
 
-    <div class="winner-list" :class="{ 'winner-list--paused': isPaused }">
-      <div class="winner-list__track">
+    <div
+      class="winner-list"
+      :class="{ 'winner-list--paused': isPaused }"
+      @mouseenter="isHovered = true"
+      @mouseleave="isHovered = false"
+    >
+      <div
+        ref="listTrack"
+        class="winner-list__track"
+      >
         <ul
-          v-for="copy in 3"
-          :key="copy"
           class="winner-list__group"
-          :aria-hidden="copy > 1 ? true : undefined"
           role="list"
         >
-          <li v-for="winner in JACKPOT_WINNERS" :key="winner.id" class="winner-row">
+          <li v-for="winner in winners" :key="winner.id" class="winner-row">
             <img
               class="winner-row__provider"
               :src="winner.providerLogo"
-              :alt="copy === 1 ? providerName(winner.providerLogo) : ''"
+              :alt="winner.provider"
+              :title="winner.provider"
               width="36"
               height="24"
             >
@@ -134,7 +250,7 @@ const providerName = (logo: string): string => (
 
 .winner-list {
   position: relative;
-  min-height: 320px;
+  min-height: 250px;
   flex: 1;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(transparent, #000 4%, #000 94%, transparent);
@@ -146,7 +262,6 @@ const providerName = (logo: string): string => (
   position: absolute;
   inset: 0 0 auto;
   flex-direction: column;
-  animation: winners-marquee 60s linear infinite;
   will-change: transform;
 }
 
@@ -162,7 +277,7 @@ const providerName = (logo: string): string => (
 .winner-row {
   display: grid;
   min-width: 0;
-  min-height: 76px;
+  min-height: 50px;
   align-items: center;
   padding: 12px;
   border: 1px solid rgba(172, 255, 218, 0.15);
@@ -213,22 +328,12 @@ const providerName = (logo: string): string => (
   white-space: nowrap;
 }
 
-.winner-list--paused .winner-list__track { animation-play-state: paused; }
-
 @container (min-width: 440px) {
   .winner-row { grid-template-columns: 36px minmax(0, 1fr) auto 90px; }
   .winner-row__player { display: contents; }
   .winner-row__player strong { grid-column: 2; grid-row: 1; }
   .winner-row__player span { grid-column: 4; grid-row: 1; text-align: right; }
   .winner-row__amount { grid-column: 3; grid-row: 1; }
-}
-
-@keyframes winners-marquee {
-  to { transform: translateY(-33.333333%); }
-}
-
-@media (hover: hover) {
-  .winner-list:hover .winner-list__track { animation-play-state: paused; }
 }
 
 @media (max-width: 63.99rem) {
@@ -245,7 +350,7 @@ const providerName = (logo: string): string => (
 
 @media (prefers-reduced-motion: reduce) {
   .winner-list { min-height: 0; flex: auto; overflow: visible; -webkit-mask-image: none; mask-image: none; }
-  .winner-list__track { position: static; animation: none; }
-  .winner-list__group[aria-hidden='true'], .winner-motion-toggle { display: none; }
+  .winner-list__track { position: static; }
+  .winner-motion-toggle { display: none; }
 }
 </style>

@@ -8,6 +8,13 @@ const { context: commentContext, openSportsComments, openGameComments, closeComm
 const route = useRoute()
 const mobileViewport = ref(false)
 const normalizedPath = computed(() => route.path.replace(/\/+$/, '') || '/')
+const isCustomerServicePage = computed(() => (
+  normalizedPath.value === '/explore/egames/customer-service'
+  || normalizedPath.value.startsWith('/explore/egames/customer-service/')
+))
+const isCustomerServiceChatPage = computed(() => (
+  /^\/explore\/egames\/customer-service\/[12]$/.test(normalizedPath.value)
+))
 const desktopShellKind = computed<'sports' | 'games' | null>(() => {
   const path = normalizedPath.value
 
@@ -35,7 +42,7 @@ const usesDesktopReferenceShell = computed(() => desktopShellKind.value !== null
 const usesDesktopContentReferenceShell = computed(() => {
   const path = normalizedPath.value
 
-  return path === '/explore/egames/customer-service'
+  return isCustomerServicePage.value
     || path === '/explore/bonuses'
     || path.startsWith('/explore/bonuses/')
     || path.startsWith('/explore/bonus/')
@@ -56,7 +63,7 @@ const usesDesktopContentReferenceShell = computed(() => {
     ].includes(path)
 })
 const isSportsPage = computed(() => route.path.startsWith('/explore/sports/'))
-const isEgamesPage = computed(() => route.path.startsWith('/explore/egames/') && route.path !== '/explore/egames/customer-service')
+const isEgamesPage = computed(() => route.path.startsWith('/explore/egames/') && !isCustomerServicePage.value)
 const isLiveCasinoPage = computed(() => route.path.startsWith('/explore/entertainment/live-casino'))
 const isGameChatPage = computed(() => isEgamesPage.value || isLiveCasinoPage.value)
 const isAffiliatePage = computed(() => route.path === '/affiliate')
@@ -255,7 +262,7 @@ onBeforeUnmount(() => {
           <slot />
         </main>
 
-        <AppFooter />
+        <AppFooter v-if="!isCustomerServiceChatPage" />
       </div>
 
       <CommentPanel
