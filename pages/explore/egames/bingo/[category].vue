@@ -279,7 +279,7 @@ const displayedGames = computed<BingoGame[]>(() => {
 <template>
   <div class="bingo-page w-full min-w-0 pb-16">
     <!-- Top Bar: Category Tabs & Chat -->
-    <div class="sticky-header sticky-header-seal sticky top-[var(--content-sticky-top)] z-30 bg-[#000000] -mx-1 px-1 pb-2">
+    <div class="sticky-header sticky-header-seal sticky top-[var(--content-sticky-top)] z-30  -mx-1 px-1 pb-2">
       <header class="top-nav-bar flex items-center justify-between gap-1.5 rounded-lg bg-[#171817] p-1 overflow-hidden shadow-sm">
         <div class="category-nav-track flex items-center gap-1 min-w-0 flex-1 overflow-x-auto no-scrollbar py-0.5">
           <button
