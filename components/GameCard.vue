@@ -40,7 +40,17 @@ const emit = defineEmits<{
 
 <style scoped>
 .game-card {
+  width: 100%;
+  max-width: 100%;
   min-width: 0;
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .game-card {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .game-cover {
