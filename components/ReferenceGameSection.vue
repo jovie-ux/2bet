@@ -286,7 +286,7 @@ watch(
 
 .reference-game-row {
   display: grid;
-  grid-auto-columns: calc((100% - 1.54rem) / 8);
+  grid-auto-columns: calc((100% - 3.5rem) / 8);
   grid-auto-flow: column;
   grid-template-columns: none;
   overflow-x: auto;
@@ -295,7 +295,13 @@ watch(
   scrollbar-width: none;
   touch-action: pan-x;
   -webkit-overflow-scrolling: touch;
-  gap: 0.22rem;
+  gap: 0.5rem;
+}
+
+@media (min-width: 1600px) {
+  .reference-game-row {
+    grid-auto-columns: calc((100% - 4.5rem) / 10);
+  }
 }
 
 .reference-game-row::-webkit-scrollbar {
@@ -306,6 +312,8 @@ watch(
   display: block;
   position: relative;
   isolation: isolate;
+  width: 100%;
+  max-width: 100%;
   min-width: 0;
   aspect-ratio: 1 / 1;
   padding: 0;
@@ -552,6 +560,7 @@ watch(
   .reference-game {
     display: flex;
     flex-direction: column;
+    width: 100%;
     height: auto;
     aspect-ratio: auto;
     scroll-snap-align: start;

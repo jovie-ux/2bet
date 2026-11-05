@@ -275,7 +275,7 @@ const filteredSections = computed<BingoSectionDisplay[]>(() => {
     availableGames = availableGames.filter(g => g.features && g.features.includes(filterState.value.feature))
   }
 
-  const GAMES_PER_SECTION = 6
+  const GAMES_PER_SECTION = 24
 
   return sectionConfigs.map((cfg) => {
     const allMatchingGames: BingoGame[] = []
@@ -286,6 +286,16 @@ const filteredSections = computed<BingoSectionDisplay[]>(() => {
       if (isGameInBingoCategory(game, cfg.id)) {
         seenIds.add(game.id)
         allMatchingGames.push(game)
+      }
+    }
+
+    if (allMatchingGames.length < 12) {
+      for (const game of availableGames) {
+        if (!seenIds.has(game.id)) {
+          seenIds.add(game.id)
+          allMatchingGames.push(game)
+          if (allMatchingGames.length >= 12) break
+        }
       }
     }
 
@@ -564,12 +574,11 @@ const resetFilters = (): void => {
       <GameRail
         :label="section.title"
         :category="section.id"
-        :games="section.allMatchingGames || section.games"
-        :limit="6"
+        :games="section.games"
         v-slot="{ games }"
       >
         <GameCard
-          v-for="game in (games && games.length ? games : section.games.slice(0, 6))"
+          v-for="game in (games && games.length ? games : section.games)"
           :key="game.id"
           :game="game"
           :activeId="activeGameId"

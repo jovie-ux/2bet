@@ -280,13 +280,25 @@ const filteredSections = computed<JackpotSection[]>(() => {
     const amount = section.showCounter ? getJackpotAmount(section) : 0
     const poolText = amount > 0 ? `₱${jackpotNumberFormatter.format(amount)}` : undefined
 
-    const games = SLOTS.filter((game) => {
+    const jackpotGames = SLOTS.filter((game) => {
       if (game.jackpot !== true && game.Jackpot !== true) return false
       if (normalizeSlotProvider(game.provider) !== normalizeSlotProvider(section.id)) return false
       if (seenIds.has(game.id)) return false
       seenIds.add(game.id)
       return true
-    }).map(game => (poolText ? { ...game, jackpotPool: poolText } : game))
+    })
+
+    if (jackpotGames.length < 15) {
+      const moreGames = SLOTS.filter((game) => {
+        if (normalizeSlotProvider(game.provider) !== normalizeSlotProvider(section.id)) return false
+        if (seenIds.has(game.id)) return false
+        seenIds.add(game.id)
+        return true
+      }).slice(0, 15 - jackpotGames.length)
+      jackpotGames.push(...moreGames)
+    }
+
+    const games = jackpotGames.map(game => (poolText ? { ...game, jackpotPool: poolText } : game))
 
     return { ...section, games, count: games.length }
   })
@@ -436,9 +448,11 @@ watch(activeProvider, () => { activeGameId.value = null })
         :label="`${section.provider} jackpot games`"
         :layout="activeProvider === 'all' ? 'slider' : 'grid'"
         :wide-columns="activeProvider === 'all' ? 8 : 6"
+        :games="section.games"
+        v-slot="{ games }"
       >
         <GameCard
-          v-for="game in section.games"
+          v-for="game in (games && games.length ? games : section.games)"
           :key="game.id"
           :game="game"
           :activeId="activeGameId"
