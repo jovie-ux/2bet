@@ -38,9 +38,23 @@ const partnerLogos = computed(() => {
 
 const footerBrandLogo = computed(() => {
   return effectiveTheme.value === 'light'
-    ? '/brand/bybet-footer-logo-dark.webp'
-    : '/brand/bybet-logo.webp'
+    ? '/brand/2bet-light.webp'
+    : '/brand/2bet-dark.webp'
 })
+
+const legalLogos = [
+  { name: 'ONJN', src: '/footer-logos/onjn.svg', width: 32, height: 32 },
+  { name: '18+', src: '/footer-logos/18-plus.svg', width: 32, height: 32 },
+  { name: 'IBIA', src: '/footer-logos/ibia.svg', width: 129, height: 32 },
+  { name: 'Joc Responsabil', src: '/footer-logos/joc-responsabil.svg', width: 34, height: 32 },
+  { name: 'Rombet', src: '/footer-logos/rombet.svg', width: 108, height: 32 },
+  { name: 'BetBlocker', src: '/footer-logos/betblocker.svg', width: 112, height: 32 },
+]
+
+const consumerLogos = [
+  { name: 'ANPC', src: '/footer-logos/anpc.avif', width: 193, height: 55 },
+  { name: 'SAL — Alternative Dispute Resolution', src: '/footer-logos/sal.svg', width: 175, height: 50 },
+]
 
 const openSections = reactive({
   specialPromotion: true,
@@ -98,8 +112,8 @@ onBeforeUnmount(() => {
         <Transition name="accordion">
           <div v-show="openSections.specialPromotion" class="pt-3 pb-1 text-[13px] sm:text-[14px] text-[#8e9491] space-y-2">
             <div>
-              <NuxtLink to="/explore/bonuses" class="hover:text-white transition-colors inline-block">
-                Your Deposit. Your Reward.
+              <NuxtLink to="/explore/bonus/share-and-earn" class="hover:text-white transition-colors inline-block">
+                分享賺錢計劃
               </NuxtLink>
             </div>
             <div>
@@ -189,29 +203,53 @@ onBeforeUnmount(() => {
             </NuxtLink>
 
             <p>
-              ByBet is an online sports betting and gaming platform designed to provide users with a secure, reliable, and premium wagering experience. We uphold the highest standards of integrity, transparency, and responsible gaming—earning the trust of sports fans and bettors alike.
+              Since 2011, 2bet has been committed to providing a high-quality betting experience for sports enthusiasts worldwide, upholding the principles of reliability and excellent service. Backed by a gold-standard team of global sports betting experts, 2bet delivers an exceptional daily experience to thousands of users with its professional service standards and state-of-the-art betting system. With its outstanding reputation and stable services, 2bet has established a strong foundation of trust, becoming a legitimate and highly respected brand in the online entertainment and betting industry.
             </p>
             <p>
-              Our platform is designed with the user in mind, offering secure technology, seamless navigation, and competitive markets across a wide range of sports and gaming options. ByBet continuously invests in innovation, compliance, and customer protection to ensure a fair and enjoyable experience for every player.
+              2bet offers a wide range of sports betting options from around the world, covering everything from globally renowned events to a diverse selection of sports, ensuring that users have plenty of choices to suit their interests. While enjoying the thrill of the matches, users can also experience greater excitement and entertainment.
             </p>
             <p>
-              At ByBet, player safety and data security are paramount. We implement robust safeguards and follow applicable regulatory requirements to protect personal information and transactions, providing our users with confidence and peace of mind.
+              Currently, 2bet is operated by Excel Network Limited, a company registered in Samoa (registered address: Vaea Street, Le Sanalele Complex, Ground Floor, Saleufi, Apia, Samoa) and holds a legitimate betting license issued under Section 007 of the 2005 Computer Gaming Licensing Act by the Anjouan Offshore Financial Authority, with regulatory oversight managed in collaboration with Anjouan Licensing Services Inc. According to the licensing agreement, 2bet restricts its services in certain regions, including but not limited to Australia, Austria, France, Germany, the United States, and other territories designated as restricted by Anjouan.
             </p>
             <p>
-              Join ByBet today and experience a trusted platform that elevates your sports betting journey to the next level.
+              As 2bet continues to expand, it remains committed to innovation and optimization, striving to set new benchmarks in the sports betting industry while creating a better future for its users. Our customer service team is available 24/7, providing dedicated support via phone to ensure a seamless and secure betting experience anytime, anywhere.
             </p>
 
-            <span class="font-bold text-white pt-2 text-[14px]">Cookies & User Experience</span>
             <p>
-              To enhance your experience and improve platform performance, ByBet uses cookies and similar technologies to collect information from our servers when you access or use the website. By registering with ByBet or continuing to use the platform, you consent to our use of cookies in accordance with our Cookie Policy.
+              In order to improve the user experience, we may use Cookies technology to collect customer information from the server after using this website. If you register at 2bet or continue to use the site, you will be seen as agreeing to our use of cookies.
             </p>
             <p>
-              Please note that deleting or disabling cookies may limit your access to certain features or areas of the platform and may affect overall functionality.
+              Deleting our cookies or disabling our future cookies will prevent you from using certain areas or features of the platform.
             </p>
           </div>
         </Transition>
       </div>
 
+
+      <div class="footer-legal-logos" role="group" aria-label="Legal and responsible gaming logos">
+        <div class="footer-legal-logos__row">
+          <img
+            v-for="logo in legalLogos"
+            :key="logo.name"
+            :src="logo.src"
+            :alt="logo.name"
+            :width="logo.width"
+            :height="logo.height"
+            loading="lazy"
+          >
+        </div>
+        <div class="footer-legal-logos__row footer-legal-logos__row--consumer">
+          <img
+            v-for="logo in consumerLogos"
+            :key="logo.name"
+            :src="logo.src"
+            :alt="logo.name"
+            :width="logo.width"
+            :height="logo.height"
+            loading="lazy"
+          >
+        </div>
+      </div>
 
       <!-- Server Time & Copyright -->
       <div class="text-[11px] sm:text-[12px] mt-5 text-[#717673] space-y-1 mb-8">
@@ -219,50 +257,6 @@ onBeforeUnmount(() => {
         <p>Copyright © {{ new Date().getFullYear() }} ByBet Group. All Rights Reserved.</p>
       </div>
 
-      <!-- Regulatory / Compliance Footer Block (Centered) -->
-      <div class="compliance-footer flex flex-col items-center justify-center text-center gap-3">
-        <!-- Badges: Circular PAGCOR + 21+ Box -->
-        <div class="flex items-center justify-center gap-3">
-          <div class=" rounded-full bg-white flex items-center justify-center shadow">
-            <img
-              src="/responsible-gaming/pagcor.webp"
-              alt="PAGCOR Regulated"
-              class="h-12 w-12 object-cover"
-              loading="lazy"
-            />
-          </div>
-          <div class="h-10 rounded-lg bg-white flex items-center  shadow">
-            <img
-              src="/responsible-gaming/age-restriction.webp"
-              alt="21+ Gambling Can Be Addictive. Know When To Stop."
-              class="h-15 w-auto object-cover"
-              loading="lazy"
-            />
-          </div>
-        </div>
-
-        <!-- Links in Red -->
-        <div class="text-[10px] font-bold text-[#c10001] tracking-wide mt-1">
-          <a href="https://www.pagcor.ph/regulatory" target="_blank" rel="noopener noreferrer" class="hover:underline">WWW.PAGCOR.PH/REGULATORY</a>
-          <span class="mx-2.5">•</span>
-          <a href="mailto:keepitfun@pagcor.ph" class="hover:underline">KEEPITFUN@PAGCOR.PH</a>
-        </div>
-
-        <!-- Warning in Blue -->
-        <p class="text-[12px] font-bold text-[#25408e] max-w-sm uppercase leading-relaxed text-center mt-0.5">
-          GAMBLING DOESN'T GUARANTEE EARNINGS OR <br/>FINANCIAL IMPROVEMENT. STAY WITHIN YOUR<br/> LIMITS.
-        </p>
-
-        <!-- Hotline image banner -->
-        <div class="mt-1 flex items-center justify-center">
-          <img
-            src="/responsible-gaming/support-hotline.webp"
-            alt="Responsible gaming support hotline"
-            class="h-15 w-auto object-contain rounded"
-            loading="lazy"
-          />
-        </div>
-      </div>
     </div>
   </footer>
 </template>
@@ -277,6 +271,35 @@ onBeforeUnmount(() => {
 
 .footer-inner {
   width: 100%;
+}
+
+.footer-legal-logos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+  padding: 20px 16px;
+  border-radius: 8px;
+}
+
+.footer-legal-logos__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px 24px;
+}
+
+.footer-legal-logos__row img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 32px;
+  object-fit: contain;
+}
+
+.footer-legal-logos__row--consumer img {
+  height: 50px;
 }
 
 .accordion-enter-active,

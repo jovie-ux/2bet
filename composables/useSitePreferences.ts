@@ -1,4 +1,5 @@
 export type LocaleCode =
+  | 'pt'
   | 'en'
   | 'en-PH'
   | 'tl'
@@ -11,7 +12,6 @@ export type LocaleCode =
   | 'ja'
   | 'ko'
   | 'th'
-  | 'pt'
   | 'en-IN'
 
 export type ThemePreference = 'auto' | 'light' | 'dark'
@@ -23,24 +23,24 @@ export interface LanguageOption {
   flag: string
 }
 
-export const DEFAULT_LOCALE: LocaleCode = 'en-PH'
+export const DEFAULT_LOCALE: LocaleCode = 'pt'
 export const LANGUAGE_SESSION_KEY = 'bybet-language'
 
 export const languageOptions: LanguageOption[] = [
-  { label: 'English - PH', code: 'en-PH', flag: '🇵🇭' },
   { label: 'English', code: 'en', flag: '🇺🇸' },
-  { label: 'Tagalog', code: 'tl', flag: '🇵🇭' },
+  { label: 'Português', code: 'pt', flag: '🇧🇷' },
   { label: '简体中文', code: 'zh-CN', flag: '🇨🇳' },
+  { label: '繁體中文', code: 'zh-TW', flag: '🇭🇰' },
   { label: 'Tiếng Việt', code: 'vi', flag: '🇻🇳' },
   { label: 'Bahasa Malaysia', code: 'ms', flag: '🇲🇾' },
   { label: 'Bahasa Indonesia', code: 'id', flag: '🇮🇩' },
-  { label: '繁體中文', code: 'zh-TW', flag: '🇭🇰' },
-  { label: 'हिन्दी', code: 'hi', flag: '🇮🇳' },
-  { label: '日本語', code: 'ja', flag: '🇯🇵' },
   { label: '한국어', code: 'ko', flag: '🇰🇷' },
   { label: 'ไทย', code: 'th', flag: '🇹🇭' },
-  { label: 'Português', code: 'pt', flag: '🇧🇷' },
   { label: 'English - HI', code: 'en-IN', flag: '🇮🇳' },
+  { label: 'English - PH', code: 'en-PH', flag: '🇵🇭' },
+  { label: 'Tagalog', code: 'tl', flag: '🇵🇭' },
+  { label: 'हिन्दी', code: 'hi', flag: '🇮🇳' },
+  { label: '日本語', code: 'ja', flag: '🇯🇵' },
 ]
 
 const translations: Partial<Record<LocaleCode, Record<string, string>>> = {
@@ -287,7 +287,7 @@ const translations: Partial<Record<LocaleCode, Record<string, string>>> = {
     Jackpot: 'Jackpot', History: 'Histórico', 'Customer Service': 'Atendimento ao cliente', Bonuses: 'Bônus',
     'Live Plaza': 'Praça ao vivo', Streamer: 'Streamer', 'Expert Predictions': 'Previsões de especialistas',
     Funds: 'Fundos', Me: 'Minha conta', Deposit: 'Depositar', Withdraw: 'Sacar', VIP: 'VIP', English: 'Idioma',
-    Auto: 'Automático', Light: 'Claro', Dark: 'Escuro', Login: 'Entrar', 'Sign Up': 'Cadastrar',
+    Auto: 'Automático', Light: 'Claro', Dark: 'Escuro', Login: 'Login', 'Sign Up': 'Cadastro',
     'View All': 'Ver tudo', 'Popular Slots': 'Slots populares', 'Top Jackpots': 'Maiores jackpots',
     'Featured Providers': 'Provedores em destaque', Promotions: 'Promoções', 'New Releases': 'Novos jogos',
     'Recommended For You': 'Recomendado para você', Explore: 'Explorar', 'Help & Support': 'Ajuda e suporte',
@@ -1059,7 +1059,7 @@ export const useSiteLocale = () => {
   })
 
   const selectedLanguageLabel = computed(() => {
-    return languageOptions.find(option => option.code === locale.value)?.label ?? 'English - PH'
+    return languageOptions.find(option => option.code === locale.value)?.label ?? 'Português'
   })
 
   const translate = (sourceText: string): string => {
@@ -1076,6 +1076,7 @@ export const useSiteLocale = () => {
     if (import.meta.client) {
       document.documentElement.lang = nextLocale
       window.sessionStorage.setItem(LANGUAGE_SESSION_KEY, nextLocale)
+      window.localStorage.setItem(LANGUAGE_SESSION_KEY, nextLocale)
     }
   }
 
@@ -1085,6 +1086,7 @@ export const useSiteLocale = () => {
     }
 
     const savedLocale = window.sessionStorage.getItem(LANGUAGE_SESSION_KEY)
+      || window.localStorage.getItem(LANGUAGE_SESSION_KEY)
     const nextLocale = isLocaleCode(savedLocale)
       ? savedLocale
       : isLocaleCode(localeCookie.value) ? localeCookie.value : DEFAULT_LOCALE

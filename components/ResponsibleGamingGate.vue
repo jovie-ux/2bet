@@ -111,7 +111,7 @@ onBeforeUnmount(restorePageScroll)
             <div class="responsible-gaming-masthead">
               <header class="responsible-gaming-header">
                 <img
-                  src="/brand/bybet-logo.webp"
+                  src="/brand/2bet-logo.webp"
                   alt="ByBet"
                   class="responsible-gaming-logo"
                 >

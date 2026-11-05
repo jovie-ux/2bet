@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { ChevronLeft } from 'lucide-vue-next'
+import BonusCurrencySelector from './BonusCurrencySelector.vue'
 
-withDefaults(defineProps<{ backTo?: string }>(), { backTo: '/' })
+withDefaults(defineProps<{ backTo?: string; currencySelector?: boolean }>(), {
+  backTo: '/',
+  currencySelector: false,
+})
+
+const { selectedCurrency } = useBonusPayments()
 </script>
 
 <template>
@@ -10,7 +16,8 @@ withDefaults(defineProps<{ backTo?: string }>(), { backTo: '/' })
       <ChevronLeft :size="20" aria-hidden="true" />
     </NuxtLink>
     <h1>Bonuses</h1>
-    <NuxtLink to="/explore/account/language" class="mobile-bonus-header__flag" aria-label="Language: Philippines">
+    <BonusCurrencySelector v-if="currencySelector" v-model="selectedCurrency" />
+    <NuxtLink v-else to="/explore/account/language" class="mobile-bonus-header__flag" aria-label="Language: Philippines">
       <img src="/icons/PHP.webp" alt="Philippines" width="24" height="24">
     </NuxtLink>
   </header>

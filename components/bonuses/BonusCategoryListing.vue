@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SeoHeader from '~/components/SeoHeader.vue'
+import BonusCurrencySelector from '~/components/bonuses/BonusCurrencySelector.vue'
 import {
   PROMOTIONS,
   PROMO_CATEGORIES,
@@ -10,6 +11,7 @@ import {
 } from '~/data/promotions'
 
 const props = defineProps<{ category: string }>()
+const { selectedCurrency, selectedCurrencyLabel, filterPromotions } = useBonusPayments()
 const nowMs = ref(Date.now())
 let countdownTimer: ReturnType<typeof setInterval> | null = null
 
@@ -25,9 +27,9 @@ const { isViewed, markAsViewed, loadViewedPromotions } = useViewedPromotions()
 
 const allCategoryPromotions = computed(() => {
   if (props.category === 'all') {
-    return PROMOTIONS
+    return filterPromotions(PROMOTIONS)
   }
-  return PROMOTION_SECTIONS.find(section => section.category === props.category)?.items || []
+  return filterPromotions(PROMOTION_SECTIONS.find(section => section.category === props.category)?.items || [])
 })
 
 const isAllCategoryViewed = computed(() => {
@@ -109,9 +111,7 @@ useAppSeo({
         custom-class="bonus-category-header"
       >
         <template #actions>
-          <span class="philippines-badge" role="img" aria-label="Philippines">
-            <img src="/icons/PHP.webp" alt="Philippines" loading="lazy">
-          </span>
+          <BonusCurrencySelector v-model="selectedCurrency" />
         </template>
       </SeoHeader>
 
@@ -126,6 +126,10 @@ useAppSeo({
         </NuxtLink>
       </nav>
     </div>
+
+    <p v-if="!allCategoryPromotions.length" class="bonus-currency-empty" role="status">
+      No {{ categoryLabel.toLowerCase() }} bonuses assigned to {{ selectedCurrencyLabel }} yet.
+    </p>
 
     <section v-if="featuredPromotions.length" class="featured-grid" aria-label="Featured promotions">
       <NuxtLink
@@ -184,6 +188,13 @@ useAppSeo({
 </template>
 
 <style scoped>
+.bonus-currency-empty {
+  padding: 32px 16px;
+  color: #a9aeaa;
+  font-size: 14px;
+  text-align: center;
+}
+
 .bonus-category-page {
   width: 100%;
   min-width: 0;

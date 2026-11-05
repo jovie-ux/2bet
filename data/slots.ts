@@ -1,3 +1,5 @@
+import { sortRailGames } from '~/utils/gameSort'
+
 export interface SlotGame {
   id: string
   title: string
@@ -32,6 +34,27 @@ export interface SlotCategory {
   emoji?: string
   iconImage?: string
   svg?: string
+}
+
+export interface SlotSection {
+  id: string
+  title: string
+  emoji?: string
+  iconImage?: string
+  iconName?: string
+  count: number
+  hasHelp?: boolean
+  games: SlotGame[]
+  allMatchingGames?: SlotGame[]
+}
+
+export interface SlotSectionConfig {
+  id: string
+  title: string
+  emoji?: string
+  iconImage?: string
+  iconName?: string
+  hasHelp?: boolean
 }
 
 export interface ReferenceGame {
@@ -84,6 +107,16 @@ export const SLOT_CATEGORIES: SlotCategory[] = [
   { key: 'hot', label: 'Hot games', shortLabel: 'Hot...', iconName: 'Flame', emoji: '🔥', iconImage: '/icons/slots/hot.webp' },
   { key: 'cold', label: 'Cold Games', shortLabel: 'Cold...', iconName: 'Snowflake', emoji: '❄️', iconImage: '/icons/slots/cold.webp' },
   { key: 'max-rpt', label: 'Max RTP', shortLabel: 'Max...', iconName: 'Banknote', emoji: '💵', iconImage: '/icons/slots/max-rtp.webp' },
+]
+
+export const SLOT_SECTION_CONFIGS: SlotSectionConfig[] = [
+  { id: 'bonuses', title: 'Bonuses', emoji: '🟡', iconImage: '/icons/slots/bonuses.webp', iconName: 'Percent', hasHelp: false },
+  { id: 'top-pick', title: 'Top Pick', emoji: '👍', iconImage: '/icons/slots/top-pick.webp', iconName: 'ThumbsUp', hasHelp: false },
+  { id: 'top', title: 'Top', emoji: '🏅', iconImage: '/icons/slots/top.webp', iconName: 'Medal', hasHelp: false },
+  { id: 'new', title: 'New', emoji: '🆕', iconImage: '/icons/slots/new.webp', iconName: 'Sparkles', hasHelp: false },
+  { id: 'hot', title: 'Hot games', emoji: '🔥', iconImage: '/icons/slots/hot.webp', iconName: 'Flame', hasHelp: true },
+  { id: 'cold', title: 'Cold Games', emoji: '❄️', iconImage: '/icons/slots/cold.webp', iconName: 'Snowflake', hasHelp: true },
+  { id: 'max-rtp', title: 'Max RTP', emoji: '💵', iconImage: '/icons/slots/max-rtp.webp', iconName: 'Trophy', hasHelp: false },
 ]
 
 export interface SlotProviderOption {
@@ -26428,3 +26461,30 @@ export const SLOTS: SlotGame[] = [
   ...slotsBatch5,
   ...slotsBatch6,
 ]
+
+export const buildSlotSections = (slots: SlotGame[] = SLOTS): SlotSection[] => {
+  return SLOT_SECTION_CONFIGS.map((cfg) => {
+    const seenIds = new Set<string>()
+    const matchingGames: SlotGame[] = []
+
+    for (const game of slots) {
+      if (seenIds.has(game.id)) continue
+      if (isGameInSlotCategory(game, cfg.id)) {
+        seenIds.add(game.id)
+        matchingGames.push(game)
+      }
+    }
+
+    const sortedGames = sortRailGames(matchingGames, { category: cfg.id, label: cfg.title })
+
+    return {
+      ...cfg,
+      count: matchingGames.length,
+      games: sortedGames,
+      allMatchingGames: sortedGames,
+    }
+  })
+}
+
+export const SLOT_SECTIONS: SlotSection[] = buildSlotSections(SLOTS)
+

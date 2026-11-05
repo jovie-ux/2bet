@@ -203,7 +203,7 @@ export const useAppSeo = (options: AppSeoOptions) => {
   })
 
   const image = computed(() => {
-    return resolveVal(options.image) || '/brand/bybet-logo.webp'
+    return resolveVal(options.image) || '/brand/2bet-logo.webp'
   })
 
   const canonicalUrl = computed(() => {

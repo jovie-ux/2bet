@@ -48,7 +48,7 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
 
     <NuxtLink class="brand" to="/" aria-label="ByBet home">
       <img
-        src="/brand/bybet-logo.webp"
+        src="/brand/2bet-logo.webp"
         alt="ByBet"
         width="210"
         height="64"
@@ -58,7 +58,7 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
     </NuxtLink>
 
     <div class="header-actions">
-    
+      <RouletteEntryButton />
       <a
         class="header-glass-icon header-glass-icon--utility"
         :href="externalSiteUrl"
@@ -193,7 +193,6 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
   padding: 0 10px;
   box-shadow: inset 1px 1px #ffffff4d, inset -1px -1px #ffffff80, inset 2px 2px 4px #00000005, inset -4px -4px 8px #00000005, 0 0 4px #0000000a, 0 4px 8px #00000014;
   border-radius: var(--header-button-radius);
-  color: var(--header-text);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -271,9 +270,45 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
     display: none;
   }
 
-  .header-actions > .header-glass-icon--utility,
-  .header-actions > .header-glass-icon--profile {
+}
+
+@media (max-width: 47.99rem) {
+  .app-header-shell {
+    --header-control-size: 30px;
+    --header-action-gap: 10px;
+  }
+
+  .brand {
     display: none;
+  }
+
+  .header-glass-button {
+    font-size: 13px;
+    color: #fff;
+  }
+
+  .header-glass-button--login {
+    min-width: 76px;
+  }
+
+  .header-glass-button--signup {
+    min-width: 92px;
+    margin-left: -6px;
+  }
+}
+
+@media (max-width: 22rem) {
+  .app-header-shell {
+    --header-action-gap: 6px;
+  }
+
+  .header-glass-button--login {
+    min-width: 68px;
+  }
+
+  .header-glass-button--signup {
+    min-width: 80px;
+    margin-left: 0;
   }
 }
 </style>

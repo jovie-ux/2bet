@@ -147,7 +147,7 @@ watch(
         v-for="game in games"
         :key="game.id ?? game.title"
         class="reference-game"
-        :class="{ 'reference-game--fallback': game.image === '/brand/bybet-logo.webp' }"
+        :class="{ 'reference-game--fallback': game.image === '/brand/2bet-logo.webp' }"
         :href="externalSiteUrl"
         target="_blank"
         rel="nofollow noopener noreferrer"
@@ -155,13 +155,13 @@ watch(
       >
         <picture>
           <source
-            v-if="game.image === '/brand/bybet-logo.webp'"
+            v-if="game.image === '/brand/2bet-logo.webp'"
             media="(max-width: 63.99rem)"
             srcset="/reference/mobile-game-fallback.webp"
           >
           <img
             :src="game.image"
-            :alt="game.image === '/brand/bybet-logo.webp'
+            :alt="game.image === '/brand/2bet-logo.webp'
               ? `ByBet placeholder for ${game.title}`
               : `${game.title} slot game artwork`"
             :width="100"

@@ -2,10 +2,13 @@
 import { ChevronRight } from 'lucide-vue-next'
 import SeoHeader from '~/components/SeoHeader.vue'
 import MobileBonusHeader from '~/components/bonuses/MobileBonusHeader.vue'
+import BonusCurrencySelector from '~/components/bonuses/BonusCurrencySelector.vue'
+import VipBenefitsTables from '~/components/bonuses/VipBenefitsTables.vue'
 import PromotionComplianceFooter from '~/components/PromotionComplianceFooter.vue'
 import ReminderModal from '~/components/modals/ReminderModal.vue'
 import {
   PROMOTION_PLACEHOLDER_IMAGES,
+  PROMOTIONS,
   getBonusDetail,
   getPromoBannerUrl,
   getPromoHeaderUrl,
@@ -15,13 +18,24 @@ import {
 const route = useRoute()
 const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
 const { markAsViewed } = useViewedPromotions()
+const { selectedCurrency } = useBonusPayments()
 
 const bonusId = computed(() => {
   const id = route.params.id
-  return Array.isArray(id) ? id[0] : (id as string) || 'spins-bring-spins'
+  return Array.isArray(id) ? id[0] : (id as string) || 'share-and-earn'
 })
 
-const bonus = computed<BonusDetail>(() => getBonusDetail(bonusId.value))
+const bonus = computed<BonusDetail>(() => {
+  const promotion = PROMOTIONS.find(item => item.slug === bonusId.value || item.id === bonusId.value)
+  if (!promotion) {
+    throw createError({ statusCode: 404, statusMessage: 'Promotion not found' })
+  }
+  return getBonusDetail(promotion.slug)
+})
+const promotionTermsPath = computed(() => ({
+  path: '/explore/bonuses/terms-and-condition',
+  query: { promotion: bonus.value.slug },
+}))
 const bannerImageError = ref(false)
 const isReminderOpen = ref(false)
 const reminderMessage = ref('Please login first to join this promotion.')
@@ -62,7 +76,7 @@ const seoKeywords = computed(() => {
 })
 
 const seoImage = computed(() => {
-  const raw = bonusHeaderImageSrc.value || (typeof bonus.value.bannerImage === 'string' ? bonus.value.bannerImage : bonus.value.bannerImage?.banner) || bonus.value.thumbnailImage || '/brand/bybet-logo.webp'
+  const raw = bonusHeaderImageSrc.value || (typeof bonus.value.bannerImage === 'string' ? bonus.value.bannerImage : bonus.value.bannerImage?.banner) || bonus.value.thumbnailImage || '/brand/2bet-logo.webp'
   return raw.startsWith('http') ? raw : `https://bybet.com${raw}`
 })
 
@@ -90,7 +104,7 @@ useAppSeo({
       '@type': 'Organization',
       'name': 'ByBet Philippines',
       'url': 'https://bybet.com',
-      'logo': 'https://bybet.com/brand/bybet-logo.webp',
+      'logo': 'https://bybet.com/brand/2bet-logo.webp',
     },
   })),
 })
@@ -131,14 +145,14 @@ const handleModalOk = (): void => {
 const handleContentClick = (event: MouseEvent): void => {
   const target = (event.target as HTMLElement)?.closest('.promotion-terms-trigger, .text-green-1')
   if (target) {
-    navigateTo('/explore/bonuses/terms-and-condition')
+    navigateTo(promotionTermsPath.value)
   }
 }
 </script>
 
 <template>
   <div class="bonus-detail-page" :class="{ 'bonus-detail-page--with-action': bonus.hasJoinButton }">
-    <MobileBonusHeader back-to="/explore/bonuses" />
+    <MobileBonusHeader back-to="/explore/bonuses" currency-selector />
     <SeoHeader
       class="bonus-detail-desktop-header"
       sticky
@@ -151,26 +165,18 @@ const handleContentClick = (event: MouseEvent): void => {
       custom-class="bonus-detail-header"
     >
       <template #actions>
-        <span class="philippines-badge" role="img" aria-label="Philippines">
-          <img
-                src="/icons/PHP.webp"
-                alt="ByBet"
-                class="h-7 sm:h-5 w-auto object-contain"
-                loading="lazy"
-              />
-            </span>
+        <BonusCurrencySelector v-model="selectedCurrency" />
       </template>
     </SeoHeader>
 
     <main class="bonus-detail-content">
       <section class="promotion-banner h-[250px] sm:h-[235px]" :aria-label="`${bonus.title} banner`">
-        <span class="promotion-banner__save">◎ Save</span>
+        <span v-if="PROMOTIONS.find(item => item.slug === bonus.slug)?.showSaveBadge" class="promotion-banner__save">◎ Save</span>
         <picture v-if="!bannerImageError">
           <source media="(max-width: 63.99rem)" :srcset="bonusBannerImageSrc">
           <img
             :src="bonusHeaderImageSrc"
             :alt="bonus.title"
-            :class="{ 'promotion-banner__image--full-artwork': bonus.slug === 'lucky-rankings' }"
             decoding="async"
             @error="bannerImageError = true"
           >
@@ -181,7 +187,7 @@ const handleContentClick = (event: MouseEvent): void => {
         </div>
       </section>
 
-      <article class="promotion-sheet">
+      <article class="promotion-sheet" lang="zh-Hant">
         <div
           v-if="bonus.contentHtml"
           class="promotion-custom-content"
@@ -289,6 +295,12 @@ const handleContentClick = (event: MouseEvent): void => {
             <div v-if="bonus.eventContent.paragraphs?.length" class="reward-paragraphs">
               <p v-for="paragraph in bonus.eventContent.paragraphs" :key="paragraph">{{ paragraph }}</p>
             </div>
+
+            <VipBenefitsTables
+              v-if="bonus.eventContent.vipRebates?.length && bonus.eventContent.vipBenefits?.length"
+              :rebates="bonus.eventContent.vipRebates"
+              :benefits="bonus.eventContent.vipBenefits"
+            />
 
             <div v-if="bonus.eventContent.linkedParagraphs?.length" class="reward-linked-paragraphs">
               <p v-for="(paragraph, paragraphIndex) in bonus.eventContent.linkedParagraphs" :key="paragraphIndex">
@@ -401,7 +413,7 @@ const handleContentClick = (event: MouseEvent): void => {
           <section class="text-section">
             <h2>Rules:</h2>
             <ul class="promotion-list" :class="{ 'promotion-list--plain': bonus.rulesStyle === 'plain' }">
-              <li v-for="rule in bonus.rules" :key="rule">{{ rule }}</li>
+              <li v-for="(rule, index) in bonus.rules" :key="rule">{{ bonus.rulesStyle === 'plain' ? `${index + 1}.${rule}` : rule }}</li>
             </ul>
           </section>
 
@@ -410,7 +422,7 @@ const handleContentClick = (event: MouseEvent): void => {
             <p>{{ bonus.withdrawalTerms }}</p>
           </section>
 
-          <NuxtLink to="/explore/bonuses/terms-and-condition" class="promotion-terms-link">
+          <NuxtLink :to="promotionTermsPath" class="promotion-terms-link">
             Terms and Conditions for Promotion
           </NuxtLink>
         </template>
@@ -1066,6 +1078,9 @@ const handleContentClick = (event: MouseEvent): void => {
 
 .reward-section__description--white {
   color: #ffffff;
+  padding: 0.7rem 1rem;
+  text-align: center;
+  font-weight: 700;
 }
 
 .reward-paragraphs {

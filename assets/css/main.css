@@ -46,9 +46,9 @@
   --color-primary: 3 98 66;
   --color-secondary: 3 98 66;
   --color-primary-hover: 14 137 96;
-  --main-color: #036242; 
-  --main-highlight: #036242;
-  --header-text: #ffffff;
+  --main-color: #019440; 
+  --main-highlight: #019440;
+  --header-text: #FEDF00;
   color-scheme: dark;
   font-family: 'PingFang SC', 'PingFang', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }

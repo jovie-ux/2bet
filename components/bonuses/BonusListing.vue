@@ -2,6 +2,8 @@
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import SeoHeader from '~/components/SeoHeader.vue'
 import MobileBonusListing from '~/components/bonuses/MobileBonusListing.vue'
+import BonusCurrencySelector from '~/components/bonuses/BonusCurrencySelector.vue'
+import BonusPaymentGroups from '~/components/bonuses/BonusPaymentGroups.vue'
 import PromotionComplianceFooter from '~/components/PromotionComplianceFooter.vue'
 import {
   PROMOTIONS,
@@ -15,6 +17,8 @@ import {
 
 const props = withDefaults(defineProps<{ category?: string }>(), { category: 'all' })
 const { markAsViewed } = useViewedPromotions()
+const { selectedCurrency, filterPromotions } = useBonusPayments()
+const featuredPromotions = computed(() => filterPromotions(PROMOTIONS))
 const selectedCategory = ref(props.category)
 watch(() => props.category, category => { selectedCategory.value = category })
 const categoryPath = (key: string): string => key === 'all'
@@ -39,11 +43,16 @@ onBeforeUnmount(() => {
 })
 
 const visibleSections = computed(() => {
-  if (selectedCategory.value === 'all') {
-    return PROMOTION_SECTIONS
-  }
+  return PROMOTION_SECTIONS
+    .filter(section => (
+      selectedCategory.value === 'all' || section.category === selectedCategory.value
+    ))
+    .map(section => ({ ...section, items: filterPromotions(section.items) }))
+    .filter(section => section.items.length > 0)
+})
 
-  return PROMOTION_SECTIONS.filter(section => section.category === selectedCategory.value)
+watch(selectedCurrency, () => {
+  featuredTrack.value?.scrollTo({ left: 0 })
 })
 
 const scrollFeatured = (direction: -1 | 1): void => {
@@ -57,8 +66,8 @@ const getFeaturedMeta = (promotion: PromotionItem): string => {
   return getPromotionCountdownText(promotion, nowMs.value)
 }
 useAppSeo({
-  title: 'Latest Promotions, Rebates & Deposit Bonuses | ByBet',
-  description: 'Explore all exclusive ByBet promotions: daily deposit matches, unlimited cash rebates, weekly treasure chests, and VIP sports bonuses. Claim today!',
+  title: 'Bonuses & USDT Promotions | 2bet',
+  description: 'Explore 2bet USDT promotions, including 分享賺錢計劃 and VIP特權體系, with event details and rules.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Promotions', path: '/explore/bonuses' },
@@ -66,9 +75,9 @@ useAppSeo({
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'ByBet Promotions & Bonuses',
+    name: '2bet Promotions & Bonuses',
     url: 'https://bybet.com/explore/bonuses',
-    description: 'Explore all exclusive ByBet promotions: daily deposit matches, unlimited cash rebates, weekly treasure chests, and VIP sports bonuses.',
+    description: 'Explore 2bet USDT promotions, including 分享賺錢計劃 and VIP特權體系, with event details and rules.',
   },
 })
 </script>
@@ -80,18 +89,13 @@ useAppSeo({
     <div class="bonuses-sticky sticky-header-seal">
       <SeoHeader
         title="Bonuses"
-        meta-title="Latest Promotions, Rebates & Deposit Bonuses | ByBet"
-        description="Explore all exclusive ByBet promotions: daily deposit matches, unlimited cash rebates, weekly treasure chests, and VIP sports bonuses. Claim today!"
-        keywords="ByBet bonuses, free spins, rebate, deposit rewards, promotions"
+        meta-title="Bonuses & USDT Promotions | 2bet"
+        description="Explore 2bet USDT promotions, including 分享賺錢計劃 and VIP特權體系, with event details and rules."
+        keywords="2bet bonuses, USDT, 分享賺錢計劃, VIP特權體系, promotions"
         custom-class="bonus-page-header"
       >
         <template #actions>
-          <span class="philippines-badge" role="img" aria-label="Philippines"><img
-                src="/icons/PHP.webp"
-                alt="ByBet"
-                class="h-7 sm:h-5 w-auto object-contain"
-                loading="lazy"
-              /></span>
+          <BonusCurrencySelector v-model="selectedCurrency" />
         </template>
       </SeoHeader>
 
@@ -108,8 +112,9 @@ useAppSeo({
       </nav>
     </div>
 
-    <section class="featured-promotions" aria-label="Featured promotions">
+    <section v-if="featuredPromotions.length" class="featured-promotions" aria-label="Featured promotions">
       <button
+        v-if="featuredPromotions.length > 1"
         type="button"
         class="featured-promotions__arrow featured-promotions__arrow--left"
         aria-label="Previous promotions"
@@ -120,7 +125,7 @@ useAppSeo({
 
       <div ref="featuredTrack" class="featured-promotions__track">
         <NuxtLink
-          v-for="promotion in PROMOTIONS"
+          v-for="promotion in featuredPromotions"
           :key="promotion.id"
           :to="`/explore/bonus/${promotion.slug}`"
           class="featured-card"
@@ -145,6 +150,7 @@ useAppSeo({
       </div>
 
       <button
+        v-if="featuredPromotions.length > 1"
         type="button"
         class="featured-promotions__arrow featured-promotions__arrow--right"
         aria-label="Next promotions"
@@ -195,6 +201,7 @@ useAppSeo({
       </section>
     </div>
 
+    <BonusPaymentGroups />
     </div>
   </div>
 </template>

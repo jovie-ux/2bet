@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import {
-  faqItems,
-  newGames,
-  popularGames,
-  providers,
-  recommendedGames,
-} from '~/data/homepage'
+import AllGamesHomepage from '~/components/AllGamesHomepage.vue'
+import { faqItems, type FaqItem } from '~/data/homepage'
+
+const faqs = faqItems
 
 const config = useRuntimeConfig()
 const siteName = computed(() => String(config.public.siteName || 'ByBet').trim())
@@ -15,7 +12,7 @@ const { translate } = useSiteLocale()
 useAppSeo({
   title: 'ByBet Casino PH Slots – Big Spins, Endless Entertainment',
   description: 'Experience top-tier gaming on the ByBet Casino Ph. We provide competitive odds and a vast selection of digital casino titles for every visitor.',
-  image: '/brand/bybet-logo.webp',
+  image: '/brand/2bet-logo.webp',
   includeSiteName: false,
   schema: computed(() => [
     {
@@ -34,7 +31,7 @@ useAppSeo({
       '@type': 'Organization',
       name: siteName.value,
       url: `${siteUrl.value}/`,
-      logo: `${siteUrl.value}/brand/bybet-logo.webp`,
+      logo: `${siteUrl.value}/brand/2bet-logo.webp`,
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer service',
@@ -44,7 +41,7 @@ useAppSeo({
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: faqItems.map(item => ({
+      mainEntity: (faqItems || faqs).map((item: FaqItem) => ({
         '@type': 'Question',
         name: translate(item.question),
         acceptedAnswer: {
@@ -59,45 +56,5 @@ useAppSeo({
 </script>
 
 <template>
-  <div class="home-page">
-    <ReferenceHero />
-    <ReferenceCategoryTabs />
-    <ReferenceGameSection
-      id="popular"
-      title="Popular Slots"
-      variant="popular"
-      :games="popularGames"
-      to="/explore/egames/slots"
-    />
-    <ReferenceGameSection
-      id="new-releases"
-      title="New Releases"
-      variant="new"
-      :games="newGames"
-      to="/explore/egames/slots"
-    />
-    <ReferenceGameSection
-      id="recommended"
-      title="Recommended For You"
-      variant="recommended"
-      :games="recommendedGames"
-      to="/explore/egames/slots"
-    />
-    <ReferenceJackpots />
-    <ReferenceProviders :providers="providers" />
-    <ReferencePromotions />
-  <ReferenceInfo />
-  </div>
+  <AllGamesHomepage :faqs="faqItems" />
 </template>
-
-<style scoped>
-@media (max-width: 63.99rem) {
-  .home-page {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    padding-inline: 0.25rem;
-    padding-bottom: 1.5rem;
-  }
-}
-</style>

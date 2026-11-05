@@ -22,7 +22,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   description: 'ByBet — Premier Online Gaming, Live Casino, Sports Betting, and Slots in the Philippines.',
   keywords: 'ByBet, sports betting, online casino, slots, live casino, Philippines gaming',
-  ogImage: '/brand/bybet-logo.webp',
+  ogImage: '/brand/2bet-logo.webp',
   showBack: true,
   showFlag: true,
   sticky: false,

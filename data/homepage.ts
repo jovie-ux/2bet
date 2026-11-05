@@ -298,7 +298,7 @@ export const createRailItems = (bybetRedirectUrl: string): RailItem[] => [
   { label: 'Auto', icon: Moon, sectionId: null, control: 'theme', surface: true },
 ]
 
-const gamePlaceholderImage = '/brand/bybet-logo.webp'
+const gamePlaceholderImage = '/brand/2bet-logo.webp'
 
 const createGames = (
   titles: string[],

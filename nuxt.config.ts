@@ -42,7 +42,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css', '~/assets/css/light-mode.css'],
   app: {
     head: {
-      htmlAttrs: { lang: 'en' },
+      htmlAttrs: { lang: 'pt' },
       meta: [
         { name: 'theme-color', content: '#080D0B' },
         {
