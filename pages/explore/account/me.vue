@@ -611,9 +611,9 @@ onBeforeUnmount(() => {
     </div>
 
     <!-- Desktop View: Classic Dashboard Layout (>= 1024px) -->
-    <div class="me-desktop-view hidden lg:block w-full min-w-0  pt-1 text-white">
+    <div class="me-desktop-view hidden lg:block w-full min-w-0   text-white">
     <!-- Top Account Card: Login / Sign Up & Action Buttons -->
-    <div class="sticky-header-seal sticky top-[var(--content-sticky-top)] z-20 bg-[#000000] -mx-1 px-1 pt-0.5 pb-1 mb-2">
+    <div class="sticky-header-seal sticky top-[var(--content-sticky-top)] z-20 -mx-1 px-1  pb-1 mb-2">
       <div class="account-card rounded-lg bg-[#141414] px-2 py-3 shadow-sm">
       <div class="px-2">
         <div class="flex items-center gap-1">

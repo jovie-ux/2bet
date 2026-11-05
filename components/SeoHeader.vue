@@ -123,7 +123,7 @@ const handleBack = (): void => {
 <template>
   <div
     v-if="sticky"
-    class="seo-header-sticky-wrapper sticky-header-seal sticky top-[var(--content-sticky-top)] z-20 -mx-1 p-0 pb-1 bg-black rounded-t-xl"
+    class="seo-header-sticky-wrapper sticky-header-seal sticky top-[var(--content-sticky-top)] z-20 -mx-1 p-0 pb-1 rounded-t-xl"
   >
     <header
       class="seo-header flex items-center justify-between  rounded-lg bg-[#1f1f1f] px-2.5  shadow-sm select-none"
