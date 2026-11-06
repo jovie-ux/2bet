@@ -2,8 +2,8 @@
 import LegalPageShell from '~/components/legal/LegalPageShell.vue'
 
 useAppSeo({
-  title: 'Responsible Gaming & Player Protection | ByBet Philippines',
-  description: 'ByBet is committed to safe, responsible entertainment. Learn about PAGCOR self-exclusion, deposit limits, support hotlines, and underage gambling prevention.',
+  title: 'Responsible Gaming & Player Protection | 2Bet Philippines',
+  description: '2Bet is committed to safe, responsible entertainment. Learn about PAGCOR self-exclusion, deposit limits, support hotlines, and underage gambling prevention.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Responsible Gaming', path: '/responsible-gaming' },
@@ -45,7 +45,7 @@ useAppSeo({
       Player Protection Tools
     </h3>
     <p>
-      ByBet provides automated safety tools to help you manage your gaming habits responsibly:
+      2Bet provides automated safety tools to help you manage your gaming habits responsibly:
     </p>
     <ul class="list-disc list-inside space-y-1.5 pl-1 text-[#959799]">
       <li><strong class="text-white/80">Deposit Limits:</strong> Cap your daily, weekly, or monthly deposit amount. Decreasing limits takes effect immediately.</li>
@@ -60,7 +60,7 @@ useAppSeo({
       PAGCOR manages the <strong>National Database for Restricted Persons (NDRP)</strong>, allowing individuals to exclude themselves or be excluded by close family members from all licensed online gaming and land-based casinos throughout the Philippines.
     </p>
     <p>
-      Exclusion periods available: 6 Months, 1 Year, or 5 Years (irrevocable during active term). To submit a self-exclusion application, visit PAGCOR’s official portal or contact ByBet Customer Support to assist with registration.
+      Exclusion periods available: 6 Months, 1 Year, or 5 Years (irrevocable during active term). To submit a self-exclusion application, visit PAGCOR’s official portal or contact 2Bet Customer Support to assist with registration.
     </p>
 
     <h3 class="text-white font-bold text-sm sm:text-[15px] pt-3 mb-1.5">
@@ -92,7 +92,7 @@ useAppSeo({
       Protecting Minors &amp; Parental Controls
     </h3>
     <p>
-      If you share internet-connected computers or mobile devices with children or minors under 21, we strongly recommend installing certified parental filtering software such as Net Nanny, CyberPatrol, or Qustodio to block access to online gaming portals. Always keep your ByBet login credentials and payment cards out of reach.
+      If you share internet-connected computers or mobile devices with children or minors under 21, we strongly recommend installing certified parental filtering software such as Net Nanny, CyberPatrol, or Qustodio to block access to online gaming portals. Always keep your 2Bet login credentials and payment cards out of reach.
     </p>
   </LegalPageShell>
 </template>

@@ -6,6 +6,7 @@ import { getTournamentLogo } from '~/data/sports'
 import type { SportsEvent } from '~/types/sports'
 
 const props = defineProps<{ fixtures: SportsEvent[] }>()
+const { translate } = useSiteLocale()
 const filters = [
   { key: 'all', label: 'All Sports' },
   { key: 'basketball', label: 'Basketball' },
@@ -35,10 +36,10 @@ watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
   <HomepageContentSlider
     id="sports"
     class="homepage-sports-section"
-    title="Sports"
-    description="Big games. Your front-row seat."
+    :title="translate('Sports')"
+    :description="translate('Big games. Your front-row seat.')"
     view-all-to="/explore/sports/popular/league"
-    view-all-label="Explore sports"
+    :view-all-label="translate('Explore sports')"
     :item-count="matches.length"
     :visible-cards="3"
     :items-per-slide="1"
@@ -47,32 +48,32 @@ watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
     <template #header="{ firstVisible, atStart, atEnd, move }">
       <header class="sports-header flex items-center justify-between">
         <div class="sports-heading flex items-center min-w-0">
-          <h2 id="sports-title" class="flex items-center"><img src="/icons/sports/popular.webp" class="allgames-heading-symbol allgames-heading-image" alt="" width="28" height="28">Sports</h2>
-          <p>Big games. Your front-row seat.</p>
+          <h2 id="sports-title" class="flex items-center"><img src="/icons/sports/popular.webp" class="allgames-heading-symbol allgames-heading-image" alt="" width="28" height="28">{{ translate('Sports') }}</h2>
+          <p>{{ translate('Big games. Your front-row seat.') }}</p>
         </div>
-        <NuxtLink to="/explore/sports/popular/league" class="sports-explore inline-flex items-center">Explore sports <ArrowUpRight :size="18" aria-hidden="true" /></NuxtLink>
+        <NuxtLink to="/explore/sports/popular/league" class="sports-explore inline-flex items-center">{{ translate('Explore sports') }} <ArrowUpRight :size="18" aria-hidden="true" /></NuxtLink>
       </header>
 
       <aside class="sports-browse">
-        <span class="sports-browse-label" id="sports-browse-label">BROWSE SPORTS</span>
+        <span class="sports-browse-label" id="sports-browse-label">{{ translate('BROWSE SPORTS') }}</span>
         <div class="sports-filters grid" role="group" aria-labelledby="sports-browse-label">
           <button v-for="filter in filters" :key="filter.key" type="button" class="flex items-center" :data-sport="filter.key" :aria-pressed="activeSport === filter.key" aria-controls="sports-track" @click="activeSport = filter.key">
             <img :src="`/images/sports/sidebar/${filter.key}.webp`" class="sports-filter-icon" alt="" width="24" height="24">
-            <span>{{ filter.label }}</span><span class="sports-filter-count" aria-hidden="true">{{ fixtureCount(filter.key) }}</span>
+            <span>{{ translate(filter.label) }}</span><span class="sports-filter-count" aria-hidden="true">{{ fixtureCount(filter.key) }}</span>
           </button>
         </div>
         <div v-if="currentFixture(firstVisible)" class="sports-browse-league flex items-center" :class="{ 'sports-browse-league--nba': currentFixture(firstVisible)!.sport_key.includes('_nba') }">
           <img :src="getTournamentLogo(currentFixture(firstVisible)!.sport_key)" alt="" width="30" height="42" loading="lazy">
-          <div class="min-w-0"><strong>{{ currentFixture(firstVisible)!.sport_title }}</strong><span>{{ currentSport(firstVisible) }}</span></div>
+          <div class="min-w-0"><strong>{{ currentFixture(firstVisible)!.sport_title }}</strong><span>{{ translate(currentSport(firstVisible)) }}</span></div>
         </div>
       </aside>
 
       <div class="sports-toolbar flex items-center justify-between">
-        <h3 class="sports-fixtures-title flex items-center"><strong>{{ currentFixture(firstVisible)?.sport_title || sportLabel }}</strong><span aria-hidden="true">·</span><span>Upcoming fixtures</span></h3>
+        <h3 class="sports-fixtures-title flex items-center"><strong>{{ currentFixture(firstVisible)?.sport_title || translate(sportLabel) }}</strong><span aria-hidden="true">·</span><span>{{ translate('Upcoming fixtures') }}</span></h3>
         <div class="sports-tools flex items-center">
-          <div class="sports-controls flex items-center" aria-label="Sports slider controls">
-            <button type="button" :disabled="atStart" aria-label="Previous Sports items" aria-controls="sports-track" @click="move(-1)"><ChevronLeft :size="17" aria-hidden="true" /></button>
-            <button type="button" :disabled="atEnd" aria-label="Next Sports items" aria-controls="sports-track" @click="move(1)"><ChevronRight :size="17" aria-hidden="true" /></button>
+          <div class="sports-controls flex items-center" :aria-label="translate('Sports slider controls')">
+            <button type="button" :disabled="atStart" :aria-label="translate('Previous Sports items')" aria-controls="sports-track" @click="move(-1)"><ChevronLeft :size="17" aria-hidden="true" /></button>
+            <button type="button" :disabled="atEnd" :aria-label="translate('Next Sports items')" aria-controls="sports-track" @click="move(1)"><ChevronRight :size="17" aria-hidden="true" /></button>
           </div>
         </div>
       </div>
@@ -80,13 +81,13 @@ watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
 
     <template #default="{ firstVisible }">
       <HomepageSportsCard v-for="(fixture, index) in matches" :key="fixture.id" :fixture="fixture" :highlighted="index === firstVisible - 1" />
-      <div v-if="!matches.length" class="sports-empty" role="status">No {{ sportLabel.toLowerCase() }} fixtures are available for this date.</div>
+      <div v-if="!matches.length" class="sports-empty" role="status">{{ translate('No fixtures are available for this date.') }}</div>
     </template>
 
     <template #footer="{ firstVisible }">
       <div class="sports-slider-footer flex items-center justify-end">
         <span class="sports-progress" aria-hidden="true"><span :style="{ width: matches.length ? `${firstVisible / matches.length * 100}%` : '0%' }" /></span>
-        <span class="sports-position" aria-live="polite" aria-atomic="true"><span class="sr-only">Fixture </span>{{ String(matches.length ? firstVisible : 0).padStart(2, '0') }}<span aria-hidden="true"> / </span><span class="sr-only"> of </span>{{ String(matches.length).padStart(2, '0') }}</span>
+        <span class="sports-position" aria-live="polite" aria-atomic="true"><span class="sr-only">{{ translate('Fixture ') }}</span>{{ String(matches.length ? firstVisible : 0).padStart(2, '0') }}<span aria-hidden="true"> / </span><span class="sr-only">{{ translate(' of ') }}</span>{{ String(matches.length).padStart(2, '0') }}</span>
       </div>
     </template>
   </HomepageContentSlider>

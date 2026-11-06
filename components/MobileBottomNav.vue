@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import UnderMaintenance from '~/components/modals/UnderMaintenance.vue'
-import MobileChatSheet from '~/components/comments/MobileChatSheet.vue'
 import MobileBottomNavIcon from '~/components/MobileBottomNavIcon.vue'
 const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
 
@@ -8,21 +7,20 @@ type NavMode = 'primary' | 'casino' | 'egames' | 'live-plaza'
 
 const { translate } = useSiteLocale()
 const route = useRoute()
-const { context: chatContext } = useCommentPanel()
 const isMaintenanceOpen = ref(false)
 
 const casinoItems = [
   { label: 'Live Casino', icon: '/icons/entertainment/live-casino.webp', to: '/explore/entertainment/live-casino/baccarat' },
   { label: 'Gaming', icon: '/icons/entertainment/gaming.webp', to: bybetRedirectUrl },
-  { label: 'Poker', icon: '/icons/entertainment/poker.webp', to: '/explore/entertainment/live-casino/poker' },
+  { label: 'Poker', icon: '/icons/entertainment/poker.webp', to: '/explore/entertainment/poker' },
   { label: 'Lottery', icon: '/icons/entertainment/lottery.webp', to: '/explore/entertainment/lottery' },
 ]
 
 const eGamesItems = [
   { label: 'Slots', icon: '/icons/egames/slots.webp', to: '/explore/egames/slots' },
-  { label: 'Bingo', icon: '/icons/egames/bingo.webp', to: '/explore/egames/bingo' },
   { label: 'Jackpot', icon: '/icons/egames/jackpot.webp', to: '/explore/egames/jackpot' },
   { label: 'History', icon: '/icons/egames/history.webp', to: bybetRedirectUrl },
+  { label: 'CS', icon: 'CS', to: '/explore/egames/customer-service' },
 ]
 
 const getNavModeForPath = (path: string): NavMode => {
@@ -45,22 +43,9 @@ const doorPosition = ref(activeNavMode.value === 'primary' ? 0 : 4)
 const isNavVisible = ref(true)
 const isDoorAnimating = ref(false)
 const isMobileViewport = ref(false)
-const isPageFooterVisible = ref(false)
-let pageFooterObserver: IntersectionObserver | null = null
-const isCustomerServicePage = computed(() => (
-  route.path === '/explore/egames/customer-service'
-  || route.path.startsWith('/explore/egames/customer-service/')
-))
-const hasChatRoom = computed(() => (
-  (route.path.startsWith('/explore/egames/')
-  && !isCustomerServicePage.value)
-  || route.path.startsWith('/explore/entertainment/live-casino')
-  || route.path.startsWith('/explore/sports/')
-))
-const isChatExpanded = computed(() => isMobileViewport.value && hasChatRoom.value && chatContext.value !== null)
 const isBonusDetailPage = computed(() => route.path.startsWith('/explore/bonus/'))
 const isCustomerServiceChatPage = computed(() => /^\/explore\/egames\/customer-service\/[12]\/?$/.test(route.path))
-const showNavigation = computed(() => !isBonusDetailPage.value && (isDoorAnimating.value || isChatExpanded.value || isNavVisible.value || (hasChatRoom.value && !isPageFooterVisible.value)))
+const showNavigation = computed(() => !isBonusDetailPage.value && (isDoorAnimating.value || isNavVisible.value))
 const updateViewport = (): void => { isMobileViewport.value = window.innerWidth < 1024 }
 
 const SCROLL_DIRECTION_THRESHOLD = 8
@@ -106,20 +91,12 @@ onMounted(() => {
   window.addEventListener('resize', updateViewport, { passive: true })
   lastScrollY = Math.max(window.scrollY, 0)
   window.addEventListener('scroll', handleScroll, { passive: true })
-  const footer = document.getElementById('support')
-  if (footer) {
-    pageFooterObserver = new IntersectionObserver(entries => {
-      isPageFooterVisible.value = entries.some(entry => entry.isIntersecting)
-    })
-    pageFooterObserver.observe(footer)
-  }
 })
 
 onBeforeUnmount(() => {
   doorRequest++
   cancelDoorAnimation()
   window.removeEventListener('resize', updateViewport)
-  pageFooterObserver?.disconnect()
   window.removeEventListener('scroll', handleScroll)
 
   if (scrollFrameId !== null) {
@@ -137,16 +114,12 @@ const isPathActive = (destination: string): boolean => {
 
 const isCasinoItemActive = (item: { label: string; to: string }): boolean => {
   if (item.label === 'Poker') {
-    return (
-      route.path === '/explore/entertainment/live-casino/poker'
-      || route.path.startsWith('/explore/entertainment/live-casino/poker/')
-    )
+    return isPathActive('/explore/entertainment/poker')
   }
   if (item.label === 'Live Casino') {
     return (
-      (route.path.startsWith('/explore/entertainment/live-casino')
-      || route.path === '/explore/entertainment')
-      && !route.path.startsWith('/explore/entertainment/live-casino/poker')
+      route.path.startsWith('/explore/entertainment/live-casino')
+      || route.path === '/explore/entertainment'
     )
   }
   return isPathActive(item.to)
@@ -201,8 +174,8 @@ const regularCells = computed<NavCell[]>(() => [
   ...casinoItems.map(item => ({
     key: 'casino-' + item.label, group: 'casino' as NavMode,
     label: item.label, icon: item.label,
-    to: item.label === 'Poker' || item.label === 'Lottery' ? undefined : item.to,
-    maintenance: item.label === 'Poker' || item.label === 'Lottery',
+    to: item.label === 'Lottery' ? undefined : item.to,
+    maintenance: item.label === 'Lottery',
     active: isCasinoItemActive(item),
   })),
   ...eGamesItems.map(item => ({
@@ -307,7 +280,6 @@ async function changeNavMode(mode: NavMode): Promise<void> {
   const request = ++doorRequest
   const animate = Boolean(import.meta.client
     && isMobileViewport.value
-    && !isChatExpanded.value
     && !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
   const door = navRow.value?.querySelector<HTMLElement>('.mobile-bottom-nav__switch')
   movingDoorRadius.value = animate && door ? getComputedStyle(door).borderRadius : undefined
@@ -376,15 +348,12 @@ const handleNavCell = (cell: NavCell): void => {
     class="mobile-bottom-nav"
     :class="{
       'mobile-bottom-nav--hidden': !showNavigation,
-      'mobile-bottom-nav--chat': hasChatRoom,
-      'mobile-bottom-nav--chat-open': isChatExpanded,
       'mobile-bottom-nav--live-plaza': displayedNavMode === 'live-plaza',
     }"
     :aria-label="displayedNavMode === 'live-plaza' ? 'Live Plaza navigation' : translate('Primary navigation')"
     :aria-hidden="!showNavigation ? 'true' : undefined"
     :inert="!showNavigation"
   >
-    <MobileChatSheet v-if="hasChatRoom && isMobileViewport" v-show="isChatExpanded || !isPageFooterVisible" />
     <div
       ref="navRow"
       class="mobile-bottom-nav__row"
@@ -429,7 +398,10 @@ const handleNavCell = (cell: NavCell): void => {
             </span>
           </span>
           <template v-else>
-            <MobileBottomNavIcon :name="cell.icon" />
+            <span v-if="cell.key === 'egames-CS' || cell.icon === 'CS' || cell.label === 'CS'" class="mobile-bottom-nav__icon-wrap" aria-hidden="true">
+              <svg width="21" height="20" viewBox="0 0 21 20" xmlns="http://www.w3.org/2000/svg" class=""><path d="M16.0527 20C14.7621 19.96 13.7617 18.89 13.7918 17.6V13.92C13.7617 12.64 14.7722 11.58 16.0527 11.54H19.154C19.154 11.54 19.214 11.51 19.214 11.47V10.24C19.4341 5.46 15.7626 1.4 10.9806 1.15H10.6204C8.45956 1.15 6.37871 1.98 4.80806 3.46C3.11737 5.03 2.12696 7.21 2.03692 9.52V11.47C2.03692 11.47 2.06694 11.54 2.10695 11.54H5.20823C6.47875 11.59 7.48916 12.65 7.45915 13.92V17.61C7.48916 18.89 6.48875 19.96 5.20823 20H2.10695C1.26661 19.98 0.596333 19.28 0.626345 18.44V10.25C0.536308 4.68 4.97813 0.1 10.5404 0H10.6204C13.2515 0 15.7826 1.05 17.6433 2.92C19.5441 4.81 20.6246 7.39 20.6246 10.08V18.43C20.6446 19.27 19.9843 19.97 19.154 20H16.0527ZM15.9526 10.19V10.1C15.9827 8.55 15.3324 7.06 14.1819 6.02L14.0719 5.93C13.7617 5.67 13.6917 5.21 13.9318 4.88C14.1419 4.57 14.5621 4.49 14.8722 4.7C16.4829 6.02 17.3932 8 17.3532 10.08V10.16L17.2732 10.18H15.9526V10.19Z" class="fill-icon-3"></path></svg>
+            </span>
+            <MobileBottomNavIcon v-else :name="cell.icon" />
             <span>{{ translate(cell.label) }}</span>
           </template>
         </component>
@@ -485,24 +457,6 @@ const handleNavCell = (cell: NavCell): void => {
 
   .mobile-bottom-nav--live-plaza .mobile-bottom-nav__row {
     height: 58px;
-  }
-
-  .mobile-bottom-nav--chat {
-    background: transparent;
-  }
-
-  .mobile-bottom-nav--chat .mobile-bottom-nav__row {
-    background: rgb(17 17 17 / 94%);
-  }
-
-  .mobile-bottom-nav--chat-open {
-    height: calc(100dvh - var(--header-height));
-    min-height: 0;
-    padding-bottom: 0;
-  }
-
-  .mobile-bottom-nav--chat-open > .mobile-bottom-nav__row {
-    display: none;
   }
 
   .mobile-bottom-nav__row {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MessageCircle, ShoppingBag, GraduationCap, ChartPie, Video, PanelsTopLeft } from 'lucide-vue-next'
+import { ShoppingBag, GraduationCap, ChartPie, Video, PanelsTopLeft } from 'lucide-vue-next'
 
 import type { LiveStreamCatalog } from '~/types/livestream'
 import StreamPlayer from './StreamPlayer.vue'
@@ -109,9 +109,6 @@ const tabs = [
     </div>
     <div class="flex items-center justify-between gap-2 px-2 py-1">
       <div class="flex gap-1">
-        <button type="button" class="grid h-5 w-5 place-items-center rounded-full bg-[var(--main-highlight)] text-white" aria-label="Comments" aria-pressed="true" title="Comments">
-          <MessageCircle :size="18" aria-hidden="true" />
-        </button>
         <a
           v-for="tab in tabs"
           :key="tab.key"

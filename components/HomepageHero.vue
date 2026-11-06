@@ -2,6 +2,7 @@
 import { ArrowDown, ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-vue-next'
 
 const slideDuration = 8000
+const { translate } = useSiteLocale()
 const slides = [
   {
     category: 'Sports',
@@ -160,7 +161,7 @@ onBeforeUnmount(() => {
     :class="{ 'homepage-hero--paused': autoplayPaused }"
     :style="{ '--hero-slide-duration': `${slideDuration}ms` }"
     aria-roledescription="carousel"
-    aria-label="Featured categories"
+    :aria-label="translate('Featured categories')"
     aria-labelledby="homepage-hero-title"
     :data-slide="slide.id"
     @keydown.left.prevent="changeSlide(-1)"
@@ -194,13 +195,13 @@ onBeforeUnmount(() => {
     </Transition>
     <div class="homepage-hero__shade" aria-hidden="true" />
 
-    <div class="homepage-hero__markers flex" aria-label="Choose a featured category">
+    <div class="homepage-hero__markers flex" :aria-label="translate('Choose a featured category')">
       <button
         v-for="(item, index) in slides"
         :key="item.id"
         type="button"
         :class="{ 'is-active': activeIndex === index }"
-        :aria-label="`Show ${item.category}`"
+        :aria-label="translate(item.category)"
         :aria-pressed="activeIndex === index"
         aria-controls="homepage-hero-content"
         @click="selectSlide(index)"
@@ -209,11 +210,11 @@ onBeforeUnmount(() => {
 
     <div id="homepage-hero-content" class="homepage-hero__copy" :aria-live="autoplayPaused ? 'polite' : 'off'" aria-atomic="true">
       <div :key="slide.id" class="homepage-hero__copy-content">
-        <p class="homepage-hero__eyebrow">{{ slide.category }}</p>
-        <h1 id="homepage-hero-title"><span>{{ slide.headline }}</span><span>{{ slide.subheadline }}</span></h1>
-        <p class="homepage-hero__description">{{ slide.description }}</p>
+        <p class="homepage-hero__eyebrow">{{ translate(slide.category) }}</p>
+        <h1 id="homepage-hero-title"><span>{{ translate(slide.headline) }}</span><span>{{ translate(slide.subheadline) }}</span></h1>
+        <p class="homepage-hero__description">{{ translate(slide.description) }}</p>
         <NuxtLink :to="slide.to" class="homepage-hero__action homepage-primary-action inline-flex items-center justify-center">
-          {{ slide.action }} <ArrowRight :size="20" :stroke-width="1.8" aria-hidden="true" />
+          {{ translate(slide.action) }} <ArrowRight :size="20" :stroke-width="1.8" aria-hidden="true" />
         </NuxtLink>
       </div>
     </div>
@@ -221,13 +222,13 @@ onBeforeUnmount(() => {
     <div class="homepage-hero__preview">
       <p class="homepage-hero__counter" aria-hidden="true">{{ slideNumber }} <span>/ {{ String(slides.length).padStart(2, '0') }}</span></p>
       <div class="homepage-hero__preview-row flex">
-        <button type="button" class="homepage-hero__thumbnail overflow-hidden" :aria-label="`Preview ${nextSlide.category}`" aria-controls="homepage-hero-content" @click="changeSlide(1)">
+        <button type="button" class="homepage-hero__thumbnail overflow-hidden" :aria-label="translate(nextSlide.category)" aria-controls="homepage-hero-content" @click="changeSlide(1)">
           <img :src="nextSlide.image" alt="" width="1672" height="941" decoding="async">
-          <span>{{ nextSlide.category }}</span>
+          <span>{{ translate(nextSlide.category) }}</span>
         </button>
         <div class="homepage-hero__arrows flex flex-col">
-          <button type="button" aria-label="Previous featured category" aria-controls="homepage-hero-content" @click="changeSlide(-1)"><ChevronLeft :size="22" :stroke-width="1.5" aria-hidden="true" /></button>
-          <button type="button" aria-label="Next featured category" aria-controls="homepage-hero-content" @click="changeSlide(1)"><ChevronRight :size="22" :stroke-width="1.5" aria-hidden="true" /></button>
+          <button type="button" :aria-label="translate('Previous featured category')" aria-controls="homepage-hero-content" @click="changeSlide(-1)"><ChevronLeft :size="22" :stroke-width="1.5" aria-hidden="true" /></button>
+          <button type="button" :aria-label="translate('Next featured category')" aria-controls="homepage-hero-content" @click="changeSlide(1)"><ChevronRight :size="22" :stroke-width="1.5" aria-hidden="true" /></button>
         </div>
       </div>
     </div>
@@ -235,11 +236,11 @@ onBeforeUnmount(() => {
     <div class="homepage-hero__footer flex items-center justify-between">
       <a href="#sports" class="homepage-hero__scroll inline-flex items-center">
         <span class="homepage-hero__scroll-icon" aria-hidden="true"><ArrowDown :size="17" /></span>
-        <span class="homepage-hero__scroll-label">Scroll to explore</span>
+        <span class="homepage-hero__scroll-label">{{ translate('Scroll to explore') }}</span>
       </a>
-      <button type="button" class="homepage-hero__playback inline-flex items-center" :aria-label="autoplayPaused ? 'Resume hero autoplay' : 'Pause hero autoplay'" :aria-pressed="autoplayPaused" @click="toggleAutoplay">
+      <button type="button" class="homepage-hero__playback inline-flex items-center" :aria-label="translate(autoplayPaused ? 'Resume hero autoplay' : 'Pause hero autoplay')" :aria-pressed="autoplayPaused" @click="toggleAutoplay">
         <Play v-if="autoplayPaused" :size="15" aria-hidden="true" /><Pause v-else :size="15" aria-hidden="true" />
-        <span>{{ autoplayPaused ? 'Play slideshow' : 'Pause slideshow' }}</span>
+        <span>{{ translate(autoplayPaused ? 'Play slideshow' : 'Pause slideshow') }}</span>
       </button>
     </div>
   </section>

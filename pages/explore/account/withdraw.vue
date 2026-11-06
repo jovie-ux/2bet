@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Fast Withdrawals — Instant Payouts via GCash | ByBet',
-  description: 'Withdraw your winnings quickly and securely from ByBet. Enjoy fast payout processing via GCash, Maya, and local bank transfers with 24/7 support.',
+  title: 'Fast Withdrawals — Instant Payouts via GCash | 2Bet',
+  description: 'Withdraw your winnings quickly and securely from 2Bet. Enjoy fast payout processing via GCash, Maya, and local bank transfers with 24/7 support.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Account', path: '/explore/account/me' },

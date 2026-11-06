@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ChevronDown, ChevronUp } from 'lucide-vue-next'
-import { useSiteTheme } from '~/composables/useSitePreferences'
+import { useSiteLocale, useSiteTheme } from '~/composables/useSitePreferences'
 
 const { effectiveTheme } = useSiteTheme()
+const { translate } = useSiteLocale()
 
 const partnerLogos = computed(() => {
   const isLight = effectiveTheme.value === 'light'
@@ -104,7 +105,7 @@ onBeforeUnmount(() => {
           :aria-expanded="openSections.specialPromotion"
           @click="toggleSection('specialPromotion')"
         >
-          <span class="text-[14px] sm:text-[15px] font-bold text-white tracking-tight group-hover:text-[#1fa779] transition-colors">Special Promotion</span>
+          <span class="text-[14px] sm:text-[15px] font-bold text-white tracking-tight group-hover:text-[#1fa779] transition-colors">{{ translate('Special Promotion') }}</span>
           <ChevronUp v-if="openSections.specialPromotion" class="h-4 w-4 text-white/50 group-hover:text-white transition-colors" />
           <ChevronDown v-else class="h-4 w-4 text-white/50 group-hover:text-white transition-colors" />
         </button>
@@ -113,12 +114,12 @@ onBeforeUnmount(() => {
           <div v-show="openSections.specialPromotion" class="pt-3 pb-1 text-[13px] sm:text-[14px] text-[#8e9491] space-y-2">
             <div>
               <NuxtLink to="/explore/bonus/share-and-earn" class="hover:text-white transition-colors inline-block">
-                分享賺錢計劃
+                {{ translate('分享賺錢計劃') }}
               </NuxtLink>
             </div>
             <div>
               <NuxtLink to="/explore/bonuses" class="hover:text-white transition-colors inline-block">
-                Latest Deals
+                {{ translate('Latest Deals') }}
               </NuxtLink>
             </div>
           </div>
@@ -133,19 +134,19 @@ onBeforeUnmount(() => {
           :aria-expanded="openSections.help"
           @click="toggleSection('help')"
         >
-          <span class="text-[14px] sm:text-[15px] font-bold text-white uppercase tracking-wider group-hover:text-[#1fa779] transition-colors">HELP</span>
+          <span class="text-[14px] sm:text-[15px] font-bold text-white uppercase tracking-wider group-hover:text-[#1fa779] transition-colors">{{ translate('HELP') }}</span>
           <ChevronUp v-if="openSections.help" class="h-4 w-4 text-white/50 group-hover:text-white transition-colors" />
           <ChevronDown v-else class="h-4 w-4 text-white/50 group-hover:text-white transition-colors" />
         </button>
 
         <Transition name="accordion">
           <div v-show="openSections.help" class="pt-3 pb-1 text-[13px] sm:text-[14px] text-[#8e9491] space-y-2">
-            <div><NuxtLink to="/explore/egames/customer-service" class="hover:text-white transition-colors inline-block">24/7 Services</NuxtLink></div>
-            <div><NuxtLink to="/game-rules/sports-betting-rules" class="hover:text-white transition-colors inline-block">Game Rules</NuxtLink></div>
-            <div><NuxtLink to="/responsible-gaming" class="hover:text-white transition-colors inline-block">Responsible Gaming</NuxtLink></div>
-            <div><NuxtLink to="/terms-of-use" class="hover:text-white transition-colors inline-block">Terms of Use</NuxtLink></div>
-            <div><NuxtLink to="/privacy-policy" class="hover:text-white transition-colors inline-block">Privacy Policy</NuxtLink></div>
-            <div><NuxtLink to="/about-us" class="hover:text-white transition-colors inline-block">About Us</NuxtLink></div>
+            <div><NuxtLink to="/explore/egames/customer-service" class="hover:text-white transition-colors inline-block">{{ translate('24/7 Services') }}</NuxtLink></div>
+            <div><NuxtLink to="/game-rules/sports-betting-rules" class="hover:text-white transition-colors inline-block">{{ translate('Game Rules') }}</NuxtLink></div>
+            <div><NuxtLink to="/responsible-gaming" class="hover:text-white transition-colors inline-block">{{ translate('Responsible Gaming') }}</NuxtLink></div>
+            <div><NuxtLink to="/terms-of-use" class="hover:text-white transition-colors inline-block">{{ translate('Terms of Use') }}</NuxtLink></div>
+            <div><NuxtLink to="/privacy-policy" class="hover:text-white transition-colors inline-block">{{ translate('Privacy Policy') }}</NuxtLink></div>
+            <div><NuxtLink to="/about-us" class="hover:text-white transition-colors inline-block">{{ translate('About Us') }}</NuxtLink></div>
           </div>
         </Transition>
       </div>
@@ -158,7 +159,7 @@ onBeforeUnmount(() => {
           :aria-expanded="openSections.responsibility"
           @click="toggleSection('responsibility')"
         >
-          <span class="text-[14px] sm:text-[15px] font-bold text-white tracking-tight group-hover:text-[#1fa779] transition-colors">Responsibility & Reputation</span>
+          <span class="text-[14px] sm:text-[15px] font-bold text-white tracking-tight group-hover:text-[#1fa779] transition-colors">{{ translate('Responsibility & Reputation') }}</span>
           <ChevronUp v-if="openSections.responsibility" class="h-4 w-4 text-white/50 group-hover:text-white transition-colors" />
           <ChevronDown v-else class="h-4 w-4 text-white/50 group-hover:text-white transition-colors" />
         </button>
@@ -185,7 +186,7 @@ onBeforeUnmount(() => {
           :aria-expanded="openSections.aboutUs"
           @click="toggleSection('aboutUs')"
         >
-          <span class="text-[14px] sm:text-[15px] font-bold text-white tracking-tight group-hover:text-[#1fa779] transition-colors">About Us</span>
+          <span class="text-[14px] sm:text-[15px] font-bold text-white tracking-tight group-hover:text-[#1fa779] transition-colors">{{ translate('About Us') }}</span>
           <ChevronUp v-if="openSections.aboutUs" class="h-4 w-4 text-white/50 group-hover:text-white transition-colors" />
           <ChevronDown v-else class="h-4 w-4 text-white/50 group-hover:text-white transition-colors" />
         </button>
@@ -196,37 +197,37 @@ onBeforeUnmount(() => {
             <NuxtLink to="/" class="inline-block mb-1">
               <img
                 :src="footerBrandLogo"
-                alt="ByBet"
+                alt="2Bet Logo"
                 class="h-6 sm:h-7 w-auto object-contain"
                 loading="lazy"
               />
             </NuxtLink>
 
             <p>
-              Since 2011, 2bet has been committed to providing a high-quality betting experience for sports enthusiasts worldwide, upholding the principles of reliability and excellent service. Backed by a gold-standard team of global sports betting experts, 2bet delivers an exceptional daily experience to thousands of users with its professional service standards and state-of-the-art betting system. With its outstanding reputation and stable services, 2bet has established a strong foundation of trust, becoming a legitimate and highly respected brand in the online entertainment and betting industry.
+              {{ translate('Since 2011, 2bet has been committed to providing a high-quality betting experience for sports enthusiasts worldwide, upholding the principles of reliability and excellent service. Backed by a gold-standard team of global sports betting experts, 2bet delivers an exceptional daily experience to thousands of users with its professional service standards and state-of-the-art betting system. With its outstanding reputation and stable services, 2bet has established a strong foundation of trust, becoming a legitimate and highly respected brand in the online entertainment and betting industry.') }}
             </p>
             <p>
-              2bet offers a wide range of sports betting options from around the world, covering everything from globally renowned events to a diverse selection of sports, ensuring that users have plenty of choices to suit their interests. While enjoying the thrill of the matches, users can also experience greater excitement and entertainment.
+              {{ translate('2bet offers a wide range of sports betting options from around the world, covering everything from globally renowned events to a diverse selection of sports, ensuring that users have plenty of choices to suit their interests. While enjoying the thrill of the matches, users can also experience greater excitement and entertainment.') }}
             </p>
             <p>
-              Currently, 2bet is operated by Excel Network Limited, a company registered in Samoa (registered address: Vaea Street, Le Sanalele Complex, Ground Floor, Saleufi, Apia, Samoa) and holds a legitimate betting license issued under Section 007 of the 2005 Computer Gaming Licensing Act by the Anjouan Offshore Financial Authority, with regulatory oversight managed in collaboration with Anjouan Licensing Services Inc. According to the licensing agreement, 2bet restricts its services in certain regions, including but not limited to Australia, Austria, France, Germany, the United States, and other territories designated as restricted by Anjouan.
+              {{ translate('Currently, 2bet is operated by Excel Network Limited, a company registered in Samoa (registered address: Vaea Street, Le Sanalele Complex, Ground Floor, Saleufi, Apia, Samoa) and holds a legitimate betting license issued under Section 007 of the 2005 Computer Gaming Licensing Act by the Anjouan Offshore Financial Authority, with regulatory oversight managed in collaboration with Anjouan Licensing Services Inc. According to the licensing agreement, 2bet restricts its services in certain regions, including but not limited to Australia, Austria, France, Germany, the United States, and other territories designated as restricted by Anjouan.') }}
             </p>
             <p>
-              As 2bet continues to expand, it remains committed to innovation and optimization, striving to set new benchmarks in the sports betting industry while creating a better future for its users. Our customer service team is available 24/7, providing dedicated support via phone to ensure a seamless and secure betting experience anytime, anywhere.
+              {{ translate('As 2bet continues to expand, it remains committed to innovation and optimization, striving to set new benchmarks in the sports betting industry while creating a better future for its users. Our customer service team is available 24/7, providing dedicated support via phone to ensure a seamless and secure betting experience anytime, anywhere.') }}
             </p>
 
             <p>
-              In order to improve the user experience, we may use Cookies technology to collect customer information from the server after using this website. If you register at 2bet or continue to use the site, you will be seen as agreeing to our use of cookies.
+              {{ translate('In order to improve the user experience, we may use Cookies technology to collect customer information from the server after using this website. If you register at 2bet or continue to use the site, you will be seen as agreeing to our use of cookies.') }}
             </p>
             <p>
-              Deleting our cookies or disabling our future cookies will prevent you from using certain areas or features of the platform.
+              {{ translate('Deleting our cookies or disabling our future cookies will prevent you from using certain areas or features of the platform.') }}
             </p>
           </div>
         </Transition>
       </div>
 
 
-      <div class="footer-legal-logos" role="group" aria-label="Legal and responsible gaming logos">
+      <div class="footer-legal-logos" role="group" :aria-label="translate('Legal and responsible gaming logos')">
         <div class="footer-legal-logos__row">
           <img
             v-for="logo in legalLogos"
@@ -253,8 +254,8 @@ onBeforeUnmount(() => {
 
       <!-- Server Time & Copyright -->
       <div class="text-[11px] sm:text-[12px] mt-5 text-[#717673] space-y-1 mb-8">
-        <p>Server Time: {{ serverTime }} (GMT+08:00)</p>
-        <p>Copyright © {{ new Date().getFullYear() }} ByBet Group. All Rights Reserved.</p>
+        <p>{{ translate('Server Time') }}: {{ serverTime }} (GMT+08:00)</p>
+        <p>Copyright © {{ new Date().getFullYear() }} 2bet Group. {{ translate('All Rights Reserved.') }}</p>
       </div>
 
     </div>

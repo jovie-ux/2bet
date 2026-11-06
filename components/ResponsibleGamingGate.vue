@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Check } from 'lucide-vue-next'
 
-const SESSION_KEY = 'bybet-responsible-gaming-accepted-v1'
+const SESSION_KEY = '2bet-responsible-gaming-accepted-v1'
 
 const isReady = ref(false)
 const isOpen = ref(false)
@@ -112,7 +112,7 @@ onBeforeUnmount(restorePageScroll)
               <header class="responsible-gaming-header">
                 <img
                   src="/brand/2bet-logo.webp"
-                  alt="ByBet"
+                  alt="2Bet"
                   class="responsible-gaming-logo"
                 >
                 <span class="responsible-gaming-divider" aria-hidden="true" />
@@ -189,7 +189,7 @@ onBeforeUnmount(restorePageScroll)
             <div class="responsible-gaming-copy">
               <p>
                 In line with PAGCOR’s Responsible Gaming (RG) Program and to further strengthen
-                our commitment to promoting responsible gaming, we at ByBet fully support
+                our commitment to promoting responsible gaming, we at 2Bet fully support
                 PAGCOR’s RG initiatives.
               </p>
               <ul>
@@ -226,7 +226,7 @@ onBeforeUnmount(restorePageScroll)
                 <Check :size="8" :stroke-width="3" />
               </span>
               <span>
-                I have read and agree to ByBet’s
+                I have read and agree to 2Bet’s
                 <NuxtLink to="/terms-of-use" target="_blank">Terms of Use</NuxtLink>
               </span>
             </label>

@@ -151,7 +151,7 @@ watch(
         :href="externalSiteUrl"
         target="_blank"
         rel="nofollow noopener noreferrer"
-        :aria-label="`${translate('Play Real')} — ${game.title} by ${game.provider} on ByBet`"
+        :aria-label="`${translate('Play Real')} — ${game.title} by ${game.provider} on 2bet`"
       >
         <picture>
           <source
@@ -162,7 +162,7 @@ watch(
           <img
             :src="game.image"
             :alt="game.image === '/brand/2bet-logo.webp'
-              ? `ByBet placeholder for ${game.title}`
+              ? `2bet placeholder for ${game.title}`
               : `${game.title} slot game artwork`"
             :width="100"
             :height="100"

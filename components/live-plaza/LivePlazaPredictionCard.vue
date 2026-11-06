@@ -33,7 +33,7 @@ const handleAvatarError = (event: Event): void => {
   }
 }
 
-const redirectToByBet = (): void => {
+const redirectTo2Bet = (): void => {
   void navigateTo(bybetRedirectUrl, { external: true })
 }
 
@@ -44,7 +44,7 @@ const handleCardClick = (event: MouseEvent): void => {
     return
   }
 
-  redirectToByBet()
+  redirectTo2Bet()
 }
 
 const handleCardKeydown = (event: KeyboardEvent): void => {
@@ -59,7 +59,7 @@ const handleCardKeydown = (event: KeyboardEvent): void => {
   }
 
   event.preventDefault()
-  redirectToByBet()
+  redirectTo2Bet()
 }
 </script>
 
@@ -68,7 +68,7 @@ const handleCardKeydown = (event: KeyboardEvent): void => {
     class="prediction-card"
     role="link"
     tabindex="0"
-    :aria-label="`Open ${prediction.predictorName}'s prediction on ByBet`"
+    :aria-label="`Open ${prediction.predictorName}'s prediction on 2Bet`"
     @click="handleCardClick"
     @keydown="handleCardKeydown"
   >

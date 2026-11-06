@@ -12,7 +12,7 @@ withDefaults(
   {
     backTo: '/explore/account/me',
     bannerSrc: '/brand/about-hero-banner.webp',
-    bannerAlt: 'ByBet',
+    bannerAlt: '2Bet',
     showDocumentTitle: true,
   }
 )

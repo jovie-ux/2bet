@@ -20,7 +20,8 @@ export const HOMEPAGE_PROMOTIONS = presentation.map(visual => {
   return {
     ...visual,
     ...(match || {}),
-    ...visual,
+    bannerImage: visual.bannerImage,
+    tone: visual.tone,
   }
 })
 

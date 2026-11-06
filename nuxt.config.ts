@@ -22,7 +22,7 @@ const isIndexFollow = environment?.INDEX_FOLLOW === 'true'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  buildDir: environment?.NODE_ENV === 'production' ? 'node_modules/.cache/bybet-nuxt-build' : '.nuxt',
+  buildDir: environment?.NODE_ENV === 'production' ? 'node_modules/.cache/2bet-nuxt-build' : '.nuxt',
   devtools: { enabled: false },
   runtimeConfig: {
     oddsApi: environment?.SPORTS_API || 'https://api.the-odds-api.com/v4',
@@ -31,8 +31,8 @@ export default defineNuxtConfig({
     public: {
       useOddsApi: environment?.USE_ODDS_API === 'true',
       bybetRedirectUrl: environment?.BYBET_REDIRECT_URL || 'https://bybet.com/',
-      siteName: environment?.SITE_NAME || 'ByBet Slots',
-      siteUrl: (environment?.SITE_URL || 'https://bybet.com').replace(/\/+$/, ''),
+      siteName: environment?.SITE_NAME || '2Bet Slots',
+      siteUrl: (environment?.SITE_URL || 'https://2bet.com').replace(/\/+$/, ''),
       indexFollow: isIndexFollow,
     },
     kadarioApi: environment?.KADARIO_API || 'https://live88.eu.cc/',
@@ -55,13 +55,13 @@ export default defineNuxtConfig({
         {
           rel: 'preload',
           as: 'image',
-          href: '/brand/bybet-loader-logo-dark.webp',
+          href: '/brand/2bet-loader-logo-dark.webp',
           fetchpriority: 'high',
         },
         {
           rel: 'preload',
           as: 'image',
-          href: '/brand/bybet-loader-logo.webp',
+          href: '/brand/2bet-loader-logo.webp',
           fetchpriority: 'high',
         },
         {

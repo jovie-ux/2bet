@@ -25,6 +25,7 @@ const emit = defineEmits<{
 }>()
 
 const router = useRouter()
+const { translate } = useSiteLocale()
 
 const handleBack = (): void => {
   emit('back')
@@ -53,8 +54,8 @@ const handleBack = (): void => {
           v-if="showBack"
           type="button"
           class="subpage-header__back-btn"
-          aria-label="Go back"
-          title="Go back"
+          :aria-label="translate('Go back')"
+          :title="translate('Go back')"
           @click="handleBack"
         >
           <ChevronLeft :size="18" :stroke-width="2.6" />
@@ -67,7 +68,7 @@ const handleBack = (): void => {
     <div class="subpage-header__center">
       <slot name="center">
         <h1 v-if="title" class="subpage-header__title">
-          {{ title }}
+          {{ translate(title) }}
         </h1>
       </slot>
     </div>

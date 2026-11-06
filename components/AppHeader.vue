@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MessageCircle, Bell, Headphones, Menu, UserRound, X } from 'lucide-vue-next'
+import { Bell, Headphones, Menu, X } from 'lucide-vue-next'
 
 defineProps<{
   drawerOpen: boolean
@@ -10,25 +10,6 @@ const emit = defineEmits<{
 }>()
 
 const { translate } = useSiteLocale()
-const { context, openSportsComments, openGameComments, closeComments } = useCommentPanel()
-const route = useRoute()
-
-const openPageComments = (): void => {
-  if (context.value) {
-    closeComments()
-    return
-  }
-
-  if (route.path.startsWith('/explore/sports/')) {
-    openSportsComments()
-    void nextTick(() => {
-      document.getElementById('comment-panel')?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
-    })
-    return
-  }
-
-  openGameComments()
-}
 const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
 </script>
 
@@ -46,10 +27,10 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
       <Menu v-else :size="17" />
     </button>
 
-    <NuxtLink class="brand" to="/" aria-label="ByBet home">
+    <NuxtLink class="brand" to="/" aria-label="2bet home">
       <img
         src="/brand/2bet-logo.webp"
-        alt="ByBet"
+        alt="2Bet"
         width="210"
         height="64"
         fetchpriority="high"
@@ -64,7 +45,7 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
         :href="externalSiteUrl"
         target="_blank"
         rel="nofollow noopener noreferrer"
-        aria-label="Open ByBet notifications in a new tab"
+        aria-label="Open 2bet notifications in a new tab"
       >
         <Bell :size="20" :stroke-width="2" />
       </a>
@@ -117,8 +98,8 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
   height: var(--header-height);
   align-items: center;
   padding:
-    0 max(0.55rem, calc((100vw - var(--site-max-width)) / 2 + 0.55rem))
-    0 max(0.85rem, calc((100vw - var(--site-max-width)) / 2 + 0.85rem));
+    0 max(0.55rem, calc((100% - var(--site-max-width)) / 2 + 0.55rem))
+    0 max(0.85rem, calc((100% - var(--site-max-width)) / 2 + 0.85rem));
   pointer-events: none;
   background: transparent;
 }

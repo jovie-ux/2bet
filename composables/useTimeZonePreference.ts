@@ -6,7 +6,7 @@ export interface TimeZoneOption {
 }
 
 export const DEFAULT_TIME_ZONE = 'Asia/Manila'
-export const TIME_ZONE_SESSION_KEY = 'bybet-timezone'
+export const TIME_ZONE_SESSION_KEY = '2bet-timezone'
 
 export const timeZoneOptions: TimeZoneOption[] = [
   { city: 'Manila', country: 'Philippines', offset: 'GMT+08:00', timeZone: 'Asia/Manila' },
@@ -79,7 +79,7 @@ export const useTimeZonePreference = () => {
     default: () => DEFAULT_TIME_ZONE,
     sameSite: 'lax',
   })
-  const timeZone = useState<string>('bybet-timezone-preference', () => {
+  const timeZone = useState<string>('2bet-timezone-preference', () => {
     return isSupportedTimeZone(timeZoneCookie.value) ? timeZoneCookie.value : DEFAULT_TIME_ZONE
   })
 
@@ -106,6 +106,7 @@ export const useTimeZonePreference = () => {
     }
 
     const savedTimeZone = window.sessionStorage.getItem(TIME_ZONE_SESSION_KEY)
+      || window.sessionStorage.getItem('bybet-timezone')
     const nextTimeZone = isSupportedTimeZone(savedTimeZone)
       ? savedTimeZone
       : isSupportedTimeZone(timeZoneCookie.value) ? timeZoneCookie.value : DEFAULT_TIME_ZONE

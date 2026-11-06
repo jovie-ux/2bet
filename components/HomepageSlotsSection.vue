@@ -5,6 +5,7 @@ import { newGames as newSlotGames } from '~/data/homepage'
 import type { ReferenceGame } from '~/data/homepage'
 
 const props = defineProps<{ games: ReferenceGame[] }>()
+const { translate } = useSiteLocale()
 const titleIcon = '/icons/egames/slots.webp'
 const tabs = [
   { key: 'popular', label: 'Popular' },
@@ -12,11 +13,17 @@ const tabs = [
   { key: 'favorites', label: 'Favorites' },
 ] as const
 const activeTab = ref<(typeof tabs)[number]['key']>('popular')
-const favorites = useCookie<string[]>('bybet-slot-favorites', { default: () => [], sameSite: 'lax' })
+const favorites = useCookie<string[]>('2bet-slot-favorites', { default: () => [], sameSite: 'lax' })
 const providerName = (provider: string) => provider === 'PG' ? 'PG Soft' : provider
 const allGames = computed(() => [...new Map([...props.games, ...newSlotGames].map(game => [game.title, game])).values()])
 const providers = [
   { key: 'all', label: 'All', value: 'all' },
+  { key: '2bet', label: '2bet', value: '2bet' },
+  { key: 'lgd', label: 'LGD', value: 'LGD' },
+  { key: 'mg', label: 'MG+', value: 'MG+' },
+  { key: 'netent', label: 'NetEnt', value: 'NetEnt' },
+  { key: 'bs', label: 'BS', value: 'BS' },
+  { key: 'choice', label: 'Choice', value: 'Choice' },
   { key: 'pg', label: 'PG', value: 'PG' },
   { key: 'jili', label: 'JILI', value: 'JILI' },
   { key: 'pp', label: 'PP', value: 'PP' },
@@ -28,8 +35,8 @@ const games = computed(() => activeTab.value === 'new'
   ? newSlotGames
   : activeTab.value === 'favorites' ? allGames.value.filter(game => favorites.value.includes(game.title)) : props.games)
 const emptyMessage = computed(() => activeTab.value === 'favorites'
-  ? 'Save games with the heart icon to see your favorites here.'
-  : 'No games are available in this collection yet.')
+  ? translate('Save games with the heart icon to see your favorites here.')
+  : translate('No games are available in this collection yet.'))
 
 function toggleFavorite(title: string) {
   favorites.value = favorites.value.includes(title) ? favorites.value.filter(saved => saved !== title) : [...favorites.value, title]
@@ -40,10 +47,10 @@ function toggleFavorite(title: string) {
   <HomepageContentSlider
     id="slots"
     class="homepage-slots-section"
-    title="Top Slots"
-    description="Handpicked games from leading providers"
+    :title="translate('Top Slots')"
+    :description="translate('Handpicked games from leading providers')"
     view-all-to="/explore/egames/slots/top"
-    view-all-label="View all"
+    :view-all-label="translate('View all')"
     :item-count="games.length"
     :visible-cards="6"
     :items-per-slide="1"
@@ -52,37 +59,37 @@ function toggleFavorite(title: string) {
     <template #header="{ atStart, atEnd, move }">
       <header class="slots-header flex items-center justify-between">
         <div class="slots-heading flex items-center min-w-0">
-          <h2 id="slots-title" class="flex items-center"><img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" alt="" width="28" height="28">Top Slots</h2>
-          <p>Handpicked games from leading providers</p>
+          <h2 id="slots-title" class="flex items-center"><img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" alt="" width="28" height="28">{{ translate('Top Slots') }}</h2>
+          <p>{{ translate('Handpicked games from leading providers') }}</p>
         </div>
         <div class="slots-actions flex items-center">
-          <NuxtLink to="/explore/egames/slots/top" class="slots-view-all inline-flex items-center">View all <ArrowRight :size="16" aria-hidden="true" /></NuxtLink>
-          <div class="slots-controls flex items-center" aria-label="Top Slots slider controls">
-            <button type="button" :disabled="atStart" aria-label="Previous Top Slots items" aria-controls="slots-track" @click="move(-1)"><ChevronLeft :size="17" aria-hidden="true" /></button>
-            <button type="button" :disabled="atEnd" aria-label="Next Top Slots items" aria-controls="slots-track" @click="move(1)"><ChevronRight :size="17" aria-hidden="true" /></button>
+          <NuxtLink to="/explore/egames/slots/top" class="slots-view-all inline-flex items-center">{{ translate('View all') }} <ArrowRight :size="16" aria-hidden="true" /></NuxtLink>
+          <div class="slots-controls flex items-center" :aria-label="translate('Top Slots slider controls')">
+            <button type="button" :disabled="atStart" :aria-label="translate('Previous Top Slots items')" aria-controls="slots-track" @click="move(-1)"><ChevronLeft :size="17" aria-hidden="true" /></button>
+            <button type="button" :disabled="atEnd" :aria-label="translate('Next Top Slots items')" aria-controls="slots-track" @click="move(1)"><ChevronRight :size="17" aria-hidden="true" /></button>
           </div>
         </div>
       </header>
       <div class="slots-toolbar flex items-center justify-between">
-        <div class="slots-tabs flex items-center" role="group" aria-label="Slot collections">
-          <button v-for="tab in tabs" :key="tab.key" type="button" :data-collection="tab.key" :aria-pressed="activeTab === tab.key" aria-controls="slots-track" @click="activeTab = tab.key">{{ tab.label }}</button>
+        <div class="slots-tabs flex items-center" role="group" :aria-label="translate('Slot collections')">
+          <button v-for="tab in tabs" :key="tab.key" type="button" :data-collection="tab.key" :aria-pressed="activeTab === tab.key" aria-controls="slots-track" @click="activeTab = tab.key">{{ translate(tab.label) }}</button>
         </div>
-        <nav class="slots-provider-pills flex items-center" aria-label="Browse slots by provider">
-          <NuxtLink v-for="provider in providers" :key="provider.key" :to="provider.key === 'all' ? '/explore/egames/slots' : { path: '/explore/egames/slots', query: { provider: provider.value } }" :data-provider="provider.key" :class="{ 'is-all': provider.key === 'all' }">{{ provider.label }}</NuxtLink>
+        <nav class="slots-provider-pills flex items-center" :aria-label="translate('Browse slots by provider')">
+          <NuxtLink v-for="provider in providers" :key="provider.key" :to="provider.key === 'all' ? '/explore/egames/slots' : { path: '/explore/egames/slots', query: { provider: provider.value } }" :data-provider="provider.key" :class="{ 'is-all': provider.key === 'all' }">{{ provider.key === 'all' ? translate(provider.label) : provider.label }}</NuxtLink>
         </nav>
       </div>
     </template>
 
     <article v-for="game in games" :key="game.title" class="slots-game" :data-provider="providerName(game.provider)">
-      <NuxtLink to="/explore/egames/slots/top" class="slots-game-link" :aria-label="`Explore ${game.title} by ${providerName(game.provider)}`">
+      <NuxtLink to="/explore/egames/slots/top" class="slots-game-link" :aria-label="`${translate('Discover')} ${game.title} - ${providerName(game.provider)}`">
         <div class="slots-game-art">
           <img :src="game.image" :alt="game.title" width="420" height="300" loading="lazy">
-          <span v-if="game.title === 'Sweet Bonanza 1000'" class="slots-game-hot">HOT</span>
+          <span v-if="game.title === 'Sweet Bonanza 1000'" class="slots-game-hot">{{ translate('HOT') }}</span>
           <span class="slots-game-play" aria-hidden="true"><Play :size="20" fill="currentColor" /></span>
         </div>
         <div class="slots-game-caption"><h3>{{ game.title }}</h3><p>{{ providerName(game.provider) }}</p></div>
       </NuxtLink>
-      <button type="button" class="slots-favorite" :class="{ 'is-saved': favorites.includes(game.title) }" :aria-pressed="favorites.includes(game.title)" :aria-label="`${favorites.includes(game.title) ? 'Remove' : 'Save'} ${game.title} ${favorites.includes(game.title) ? 'from' : 'to'} favorites`" @click="toggleFavorite(game.title)"><Heart :size="15" :fill="favorites.includes(game.title) ? 'currentColor' : 'none'" aria-hidden="true" /></button>
+      <button type="button" class="slots-favorite" :class="{ 'is-saved': favorites.includes(game.title) }" :aria-pressed="favorites.includes(game.title)" :aria-label="`${game.title} - ${translate('Favorites')}`" @click="toggleFavorite(game.title)"><Heart :size="15" :fill="favorites.includes(game.title) ? 'currentColor' : 'none'" aria-hidden="true" /></button>
     </article>
     <div v-if="!games.length" class="slots-empty" role="status">{{ emptyMessage }}</div>
   </HomepageContentSlider>

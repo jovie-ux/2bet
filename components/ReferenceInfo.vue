@@ -13,7 +13,7 @@ const toggleFaq = (index: number): void => {
 </script>
 
 <template>
-  <section class="app-promotion" aria-label="Bybet app">
+  <section class="app-promotion" aria-label="2bet app">
     <div class="app-promotion-card">
       <div class="app-promotion-media" aria-hidden="true">
         <img
@@ -33,12 +33,12 @@ const toggleFaq = (index: number): void => {
       </div>
       <div class="app-promotion-content">
         <div class="app-promotion-copy">
-          <span class="app-promotion-eyebrow">{{ translate('BYBET APP') }}</span>
+          <span class="app-promotion-eyebrow">{{ translate('2BET APP') }}</span>
           <h2 class="app-promotion-heading">
-            {{ translate('Download ByBet App for Slots, Live Casino and Sports Betting') }}
+            {{ translate('Download 2Bet App for Slots, Live Casino and Sports Betting') }}
           </h2>
           <p class="app-promotion-description">
-            {{ translate('Your favorite slots, live casino games, and sports bets all in one place. Take ByBet with you wherever you go.') }}
+            {{ translate('Your favorite slots, live casino games, and sports bets all in one place. Take 2Bet with you wherever you go.') }}
           </p>
           <NuxtLink class="app-promotion-cta" to="/download-app">  
             <Download class="app-promotion-cta-icon" :size="14" aria-hidden="true" />
@@ -53,9 +53,9 @@ const toggleFaq = (index: number): void => {
   <section class="information-grid">
     <article class="about-panel">
       <div class="about-panel-copy">
-        <h2>{{ translate('Discover ByBet Slots') }}</h2>
-        <p>{{ translate('At ByBet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.') }}</p>
-        <p>{{ translate('Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, ByBet is your home for bigger wins.') }}</p>
+        <h2>{{ translate('Discover 2Bet Slots') }}</h2>
+        <p>{{ translate('At 2Bet, we bring you an exceptional slots experience with thousands of games from the world’s top providers. From classic fruit machines to the latest video slots with blockbuster features, there’s always something new to explore.') }}</p>
+        <p>{{ translate('Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, 2Bet is your home for bigger wins.') }}</p>
         <a class="about-panel-cta" :href="externalSiteUrl" rel="noopener noreferrer">
           {{ translate('Play Now') }}
           <ChevronRight :size="12" aria-hidden="true" />

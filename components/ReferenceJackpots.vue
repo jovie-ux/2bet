@@ -84,14 +84,14 @@ const { translate } = useSiteLocale()
       >
         <span class="jackpot-text">
           <small>{{ translate(jackpot.label) }}</small>
-          <strong>₱{{ formatJackpotAmount(jackpotDisplays[jackpot.key].value) }}</strong>
+          <strong>${{ formatJackpotAmount(jackpotDisplays[jackpot.key].value) }}</strong>
         </span>
       </NuxtLink>
     </div>
 
     <div class="jackpot-bottom-grid">
       <section class="recent-spin-card font-bold" aria-labelledby="recent-spin-title">
-        <span class="panel-eyebrow">{{ translate('Win Jackpot in Bybet') }}</span>
+        <span class="panel-eyebrow">{{ translate('Win Jackpot in 2Bet') }}</span>
         <p>{{ translate('Everyone dreams of that one massive hit, and we provide the perfect stage for those dreams to unfold. We host a wide array of jackpot titles that range from fixed amounts to progressive totals that grow with every single spin across our network. We want our users to feel the rush of adrenaline that comes with chasing a life-changing total.') }}</p>
         <h3 id="recent-spin-title">{{ translate('Sign in to track your wins') }}</h3>
         <p>{{ translate('Log in or create an account to save spins, claim prizes, and view your win history.') }}</p>

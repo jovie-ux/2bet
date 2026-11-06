@@ -5,13 +5,13 @@ import { faqItems, type FaqItem } from '~/data/homepage'
 const faqs = faqItems
 
 const config = useRuntimeConfig()
-const siteName = computed(() => String(config.public.siteName || 'ByBet').trim())
-const siteUrl = computed(() => String(config.public.siteUrl || 'https://bybet.com').replace(/\/+$/, ''))
+const siteName = computed(() => String(config.public.siteName || '2Bet').trim())
+const siteUrl = computed(() => String(config.public.siteUrl || 'https://2bet.com').replace(/\/+$/, ''))
 const { translate } = useSiteLocale()
 
 useAppSeo({
-  title: 'ByBet Casino PH Slots – Big Spins, Endless Entertainment',
-  description: 'Experience top-tier gaming on the ByBet Casino Ph. We provide competitive odds and a vast selection of digital casino titles for every visitor.',
+  title: '2Bet Casino Slots – More Spins, Big Wins',
+  description: 'Experience top-tier gaming on 2Bet Casino. We provide competitive odds and a vast selection of digital casino titles for every visitor.',
   image: '/brand/2bet-logo.webp',
   includeSiteName: false,
   schema: computed(() => [

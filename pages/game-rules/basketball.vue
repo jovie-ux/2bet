@@ -3,8 +3,8 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { basketballRulesHtml } from '~/data/basketball-rules'
 
 useAppSeo({
-  title: 'Basketball Betting Rules (NBA, PBA & FIBA) | ByBet',
-  description: 'Official basketball rules: Overtime inclusion, regulation times (43m NBA, 35m FIBA & PBA), quarter settlements, and player prop conditions on ByBet.',
+  title: 'Basketball Betting Rules (NBA, PBA & FIBA) | 2Bet',
+  description: 'Official basketball rules: Overtime inclusion, regulation times (43m NBA, 35m FIBA & PBA), quarter settlements, and player prop conditions on 2Bet.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Game Rules', path: '/game-rules' },

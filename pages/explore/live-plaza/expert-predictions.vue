@@ -36,8 +36,8 @@ const visiblePredictors = computed(() => {
 const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
 
 useAppSeo({
-  title: 'Expert Predictions & High Hit Rate Tips | ByBet Plaza',
-  description: 'Get daily expert predictions and verified betting tips on ByBet Live Plaza. Boost your wagering strategy with data-driven insights and match previews.',
+  title: 'Expert Predictions & High Hit Rate Tips | 2Bet Plaza',
+  description: 'Get daily expert predictions and verified betting tips on 2Bet Live Plaza. Boost your wagering strategy with data-driven insights and match previews.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Live Plaza', path: '/explore/live-plaza/home' },
@@ -46,8 +46,8 @@ useAppSeo({
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'ByBet Expert Predictions',
-    url: 'https://bybet.com/explore/live-plaza/expert-predictions',
+    name: '2Bet Expert Predictions',
+    url: 'https://2bet.com/explore/live-plaza/expert-predictions',
   },
 })
 
@@ -100,7 +100,7 @@ const filteredPredictions = computed(() => {
 
 const visiblePredictions = computed(() => filteredPredictions.value.slice(0, 10))
 
-const redirectToByBet = (): void => {
+const redirectTo2Bet = (): void => {
   void navigateTo(bybetRedirectUrl, { external: true })
 }
 
@@ -160,7 +160,7 @@ const handleUnlock = (prediction: Prediction): void => {
 }
 
 const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): void => {
-  redirectToByBet()
+  redirectTo2Bet()
 }
 </script>
 
@@ -169,7 +169,7 @@ const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): v
     <SeoHeader
       sticky
       title="Predict"
-      description="Follow expert sports predictions, winning streaks, and real-time forecasts on ByBet."
+      description="Follow expert sports predictions, winning streaks, and real-time forecasts on 2Bet."
       :show-back="false"
       :show-flag="false"
     />
@@ -195,7 +195,7 @@ const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): v
           class="predictor-item"
           :class="{ 'predictor-item--active': selectedPredictorId === predictor.id }"
           :aria-pressed="selectedPredictorId === predictor.id"
-          @click="redirectToByBet"
+          @click="redirectTo2Bet"
         >
           <span class="predictor-item__avatar-wrap">
             <img

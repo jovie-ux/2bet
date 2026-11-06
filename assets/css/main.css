@@ -31,7 +31,7 @@
   --card-gap: clamp(0.22rem, 0.45vw, 0.4rem);
   --radius: 0.62rem;
   --radius-lg: 0.78rem;
-  --site-max-width: 1740px;
+  --site-max-width: 100%;
   --font-hero-title: clamp(1.5rem, 4.5vw, 2.1rem);
   --font-hero-body: clamp(0.5rem, -0.06rem + 1.5vw, 0.72rem);
   --font-section-heading: clamp(0.58rem, -0.1rem + 1.8vw, 0.76rem);

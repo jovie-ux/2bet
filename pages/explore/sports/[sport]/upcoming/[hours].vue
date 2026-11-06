@@ -14,8 +14,8 @@ const sportName = computed(() => {
 const hoursLabel = computed(() => String(route.params.hours).replace('hours', ' Hours'))
 
 useAppSeo({
-  title: computed(() => `Upcoming ${sportName.value} Matches (Next ${hoursLabel.value}) Odds | ByBet`),
-  description: computed(() => `Find upcoming ${sportName.value} fixtures starting within the next ${hoursLabel.value} on ByBet Philippines. Compare competitive match spreads, totals, and lines.`),
+  title: computed(() => `Upcoming ${sportName.value} Matches (Next ${hoursLabel.value}) Odds | 2Bet`),
+  description: computed(() => `Find upcoming ${sportName.value} fixtures starting within the next ${hoursLabel.value} on 2Bet Philippines. Compare competitive match spreads, totals, and lines.`),
   breadcrumbs: computed(() => [
     { name: 'Home', path: '/' },
     { name: 'Sports', path: '/explore/sports/popular' },
@@ -26,9 +26,9 @@ useAppSeo({
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `Upcoming ${sportName.value} Matches (${hoursLabel.value}) - ByBet`,
-    url: `https://bybet.com${route.path}`,
-    description: `Upcoming ${sportName.value} matches scheduled within the next ${hoursLabel.value} on ByBet Philippines.`,
+    name: `Upcoming ${sportName.value} Matches (${hoursLabel.value}) - 2Bet`,
+    url: `https://2bet.com${route.path}`,
+    description: `Upcoming ${sportName.value} matches scheduled within the next ${hoursLabel.value} on 2Bet Philippines.`,
   })),
 })
 

@@ -48,21 +48,21 @@ const logoWidth = computed(() => {
   return Math.round(dimension.value * 0.54)
 })
 
-const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).slice(2, 8)}`
+const gradientId = useId ? useId() : `twobet-spin-${Math.random().toString(36).slice(2, 8)}`
 </script>
 
 <template>
   <div
-    class="bybet-spinner-root"
+    class="2bet-spinner-root"
     :class="[
-      fullscreen ? 'bybet-spinner-root--fullscreen' : overlay ? 'bybet-spinner-root--overlay' : 'bybet-spinner-root--inline',
+      fullscreen ? '2bet-spinner-root--fullscreen' : overlay ? '2bet-spinner-root--overlay' : '2bet-spinner-root--inline',
       customClass,
     ]"
     role="status"
     :aria-label="label || 'Loading...'"
   >
     <div
-      class="bybet-spinner"
+      class="2bet-spinner"
       :style="{
         width: `${dimension}px`,
         height: `${dimension}px`,
@@ -70,7 +70,7 @@ const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).sl
     >
       <!-- Rotating Circular Ring -->
       <div
-        class="bybet-spinner__ring"
+        class="2bet-spinner__ring"
         :style="{ animationDuration: `${speed}s` }"
       >
         <svg
@@ -109,12 +109,12 @@ const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).sl
         </svg>
       </div>
 
-      <!-- Static ByBet Logo in the center (does NOT rotate) -->
-      <div class="bybet-spinner__center">
+      <!-- Static 2bet Logo in the center (does NOT rotate) -->
+      <div class="2bet-spinner__center">
         <img
-          :src="isDarkTheme ? '/brand/2bet-logo.webp' : '/brand/bybet-loader-logo.webp'"
-          alt="ByBet"
-          class="bybet-spinner__logo select-none pointer-events-none object-contain"
+          :src="isDarkTheme ? '/brand/2bet-logo.webp' : '/brand/2bet-light.webp'"
+          alt="2bet"
+          class="2bet-spinner__logo select-none pointer-events-none object-contain"
           :style="{
             width: `${logoWidth}px`,
           }"
@@ -128,7 +128,7 @@ const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).sl
     <!-- Optional Label text -->
     <p
       v-if="label"
-      class="bybet-spinner__label"
+      class="2bet-spinner__label"
       :class="isDarkTheme ? 'text-[#a2a6a4]' : 'text-white'"
     >
       {{ label }}
@@ -137,7 +137,8 @@ const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).sl
 </template>
 
 <style scoped>
-.bybet-spinner-root {
+.\32 bet-spinner-root,
+[class~="2bet-spinner-root"] {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -145,18 +146,21 @@ const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).sl
   gap: 12px;
 }
 
-.bybet-spinner-root--fullscreen {
+.\32 bet-spinner-root--fullscreen,
+[class~="2bet-spinner-root--fullscreen"] {
   position: fixed;
   inset: 0;
   z-index: 99999;
   background-color: var(--page, #000000);
 }
 
-:global(html[data-theme='light']) .bybet-spinner-root--fullscreen {
+:global(html[data-theme='light']) .\32 bet-spinner-root--fullscreen,
+:global(html[data-theme='light']) [class~="2bet-spinner-root--fullscreen"] {
   background-color: var(--page, #eef5f1);
 }
 
-.bybet-spinner-root--overlay {
+.\32 bet-spinner-root--overlay,
+[class~="2bet-spinner-root--overlay"] {
   position: absolute;
   inset: 0;
   z-index: 50;
@@ -164,12 +168,14 @@ const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).sl
   backdrop-filter: blur(4px);
 }
 
-.bybet-spinner-root--inline {
+.\32 bet-spinner-root--inline,
+[class~="2bet-spinner-root--inline"] {
   position: relative;
   display: inline-flex;
 }
 
-.bybet-spinner {
+.\32 bet-spinner,
+[class~="2bet-spinner"] {
   position: relative;
   display: flex;
   align-items: center;
@@ -177,16 +183,17 @@ const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).sl
   flex-shrink: 0;
 }
 
-.bybet-spinner__ring {
+.\32 bet-spinner__ring,
+[class~="2bet-spinner__ring"] {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  animation: bybet-spin 1.1s linear infinite;
+  animation: bet-spin 1.1s linear infinite;
   will-change: transform;
 }
 
-@keyframes bybet-spin {
+@keyframes bet-spin {
   0% {
     transform: rotate(0deg);
   }
@@ -195,7 +202,8 @@ const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).sl
   }
 }
 
-.bybet-spinner__center {
+.\32 bet-spinner__center,
+[class~="2bet-spinner__center"] {
   position: absolute;
   inset: 0;
   display: flex;
@@ -206,14 +214,16 @@ const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).sl
   z-index: 2;
 }
 
-.bybet-spinner__logo {
+.\32 bet-spinner__logo,
+[class~="2bet-spinner__logo"] {
   display: block;
   height: auto;
   max-width: 70%;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
 }
 
-.bybet-spinner__label {
+.\32 bet-spinner__label,
+[class~="2bet-spinner__label"] {
   margin: 0;
   font-size: 13px;
   font-weight: 600;
@@ -221,4 +231,3 @@ const gradientId = useId ? useId() : `bybet-spin-${Math.random().toString(36).sl
   text-align: center;
 }
 </style>
-

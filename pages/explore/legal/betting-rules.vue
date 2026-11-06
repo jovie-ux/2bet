@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Official Sports Betting Rules & Guidelines | ByBet',
-  description: 'Read comprehensive sports betting rules and settlement standards on ByBet. Learn about market types, void bet policies, and settlement criteria.',
+  title: 'Official Sports Betting Rules & Guidelines | 2Bet',
+  description: 'Read comprehensive sports betting rules and settlement standards on 2Bet. Learn about market types, void bet policies, and settlement criteria.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Legal', path: '/explore/legal/general-terms' },

@@ -44,7 +44,7 @@ const queueJackpotSave = (key: JackpotTierKey, value: number): void => {
 
   if (typeof localStorage !== 'undefined') {
     try {
-      localStorage.setItem(`bybet-jackpot:${key}`, String(value))
+      localStorage.setItem(`2bet-jackpot:${key}`, String(value))
     } catch {}
   }
 
@@ -256,7 +256,7 @@ export const useJackpotCounter = (options: JackpotCounterOptions) => {
   onMounted(() => {
     // 1. Immediately hydrate from localStorage if available to preserve value across refreshes
     if (typeof localStorage !== 'undefined') {
-      const cached = localStorage.getItem(`bybet-jackpot:${options.key}`)
+      const cached = localStorage.getItem(`2bet-jackpot:${options.key}`) || localStorage.getItem(`bybet-jackpot:${options.key}`)
       if (cached) {
         const parsed = Number(cached)
         if (!Number.isNaN(parsed) && parsed > 0) {
@@ -275,7 +275,7 @@ export const useJackpotCounter = (options: JackpotCounterOptions) => {
           displayAmount.value = serverVal
           if (typeof localStorage !== 'undefined') {
             try {
-              localStorage.setItem(`bybet-jackpot:${options.key}`, String(serverVal))
+              localStorage.setItem(`2bet-jackpot:${options.key}`, String(serverVal))
             } catch {}
           }
         }

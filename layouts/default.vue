@@ -4,7 +4,7 @@ import MobileBottomNav from '~/components/MobileBottomNav.vue'
 import CommentPanel from '~/components/comments/CommentPanel.vue'
 import MobileLivePlazaHeader from '~/components/live-plaza/MobileLivePlazaHeader.vue'
 
-const { context: commentContext, openSportsComments, openGameComments, closeComments } = useCommentPanel()
+const { context: commentContext, openSportsComments, closeComments } = useCommentPanel()
 const route = useRoute()
 const mobileViewport = ref(false)
 const normalizedPath = computed(() => route.path.replace(/\/+$/, '') || '/')
@@ -15,7 +15,7 @@ const isCustomerServicePage = computed(() => (
 const isCustomerServiceChatPage = computed(() => (
   /^\/explore\/egames\/customer-service\/[12]$/.test(normalizedPath.value)
 ))
-const desktopShellKind = computed<'sports' | 'games' | null>(() => {
+const desktopShellKind = computed<'sports' | null>(() => {
   const path = normalizedPath.value
 
   if (
@@ -23,17 +23,6 @@ const desktopShellKind = computed<'sports' | 'games' | null>(() => {
     || /^\/explore\/sports\/[^/]+\/[^/]+(?:\/.*)?$/.test(path)
   ) {
     return 'sports'
-  }
-
-  if (
-    /^\/explore\/entertainment\/live-casino\/[^/]+(?:\/.*)?$/.test(path)
-    || path === '/explore/egames/slots'
-    || path.startsWith('/explore/egames/slots/')
-    || path === '/explore/egames/bingo'
-    || path.startsWith('/explore/egames/bingo/')
-    || /^\/explore\/egames\/jackpot\/[^/]+(?:\/.*)?$/.test(path)
-  ) {
-    return 'games'
   }
 
   return null
@@ -46,13 +35,16 @@ const usesDesktopContentReferenceShell = computed(() => {
     || path === '/explore/bonuses'
     || path.startsWith('/explore/bonuses/')
     || path.startsWith('/explore/bonus/')
+    || path === '/explore/live-plaza'
     || path.startsWith('/explore/live-plaza/')
-    || path === '/explore/account/me'
+    || path === '/explore/account'
     || path.startsWith('/explore/account/')
-    || path.startsWith('/tutorial/transactions/')
-    || path.startsWith('/game-rules/')
-    || path === '/tutorial/mock-betting'
+    || path.startsWith('/explore/help/')
+    || path.startsWith('/explore/legal/')
     || path === '/tutorial'
+    || path.startsWith('/tutorial/')
+    || path === '/game-rules'
+    || path.startsWith('/game-rules/')
     || [
       '/responsible-gaming',
       '/privacy-policy',
@@ -65,7 +57,7 @@ const usesDesktopContentReferenceShell = computed(() => {
 const isSportsPage = computed(() => route.path.startsWith('/explore/sports/'))
 const isEgamesPage = computed(() => route.path.startsWith('/explore/egames/') && !isCustomerServicePage.value)
 const isLiveCasinoPage = computed(() => route.path.startsWith('/explore/entertainment/live-casino'))
-const isGameChatPage = computed(() => isEgamesPage.value || isLiveCasinoPage.value)
+const isPokerPage = computed(() => /^\/explore\/entertainment\/poker(?:\/|$)/.test(route.path))
 const isAffiliatePage = computed(() => route.path === '/affiliate')
 const isBonusesPage = computed(() => /^\/explore\/bonuses?(?:\/|$)/.test(route.path))
 const isLivePlazaPage = computed(() => route.path.startsWith('/explore/live-plaza'))
@@ -111,6 +103,8 @@ const shouldExpandRailByDefault = (): boolean => {
     || isBonusesPage.value
     || isLivePlazaPage.value
     || isJackpotPage.value
+    || isPokerPage.value
+    || isLiveCasinoPage.value
     || usesDesktopReferenceShell.value
     || usesDesktopContentReferenceShell.value
 }
@@ -124,8 +118,6 @@ watch(() => route.path, () => {
     closeComments()
   } else if (desktopShellKind.value === 'sports') {
     openSportsComments()
-  } else if (desktopShellKind.value === 'games') {
-    openGameComments()
   } else {
     closeComments()
   }
@@ -200,7 +192,6 @@ const handleResize = (): void => {
     mobileViewport.value = nextMobile
     if (nextMobile) closeComments()
     else if (desktopShellKind.value === 'sports') openSportsComments()
-    else if (desktopShellKind.value === 'games') openGameComments()
     else closeComments()
   }
 }
@@ -235,6 +226,7 @@ onBeforeUnmount(() => {
       'site-shell--desktop-reference': usesDesktopReferenceShell,
       'site-shell--desktop-content-reference': usesDesktopContentReferenceShell,
       'site-shell--bonuses': isBonusesPage,
+      'site-shell--live-casino': isLiveCasinoPage,
       'site-shell--live-plaza': isLivePlazaPage,
       'site-shell--me': route.path === '/explore/account/me',
       'site-shell--dedicated-header': isDedicatedMobileHeaderPage,
@@ -266,14 +258,13 @@ onBeforeUnmount(() => {
       </div>
 
       <CommentPanel
-        v-if="commentContext && !mobileViewport"
-        :key="isSportsPage ? 'sports-sidebar' : isGameChatPage ? 'casino-sidebar' : 'game-dialog'"
+        v-if="commentContext && !mobileViewport && isSportsPage"
+        key="sports-sidebar"
         :docked="isDockedChatPage"
       />
     </div>
 
     <MobileBottomNav />
-    <ResponsibleGamingGate />
 
     <Transition name="toast">
       <div v-if="toastMessage" class="demo-toast" role="status">
@@ -306,14 +297,20 @@ onBeforeUnmount(() => {
   --sidebar-width: 72px;
 }
 
+.site-shell--live-casino {
+  --site-max-width: 100vw;
+  max-width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .site-shell--live-casino:not(.site-shell--rail-collapsed) { --sidebar-width: 180px; }
+  .site-shell--live-casino { --content-gutter: 8px; }
+  .site-shell--live-casino .page-content { padding-right: 12px; }
+}
+
 .site-shell--sports-chat {
   --comment-width: min(375px, 23.4375rem);
   --comment-panel-width: 23.4375rem;
-}
-
-.site-shell--bonuses {
-  --site-max-width: 100%;
-  max-width: 100%;
 }
 
 .app-header-underlay,
@@ -423,6 +420,14 @@ onBeforeUnmount(() => {
 }
 
 @media (min-width: 64rem) {
+  .site-shell .app-header-occlusion-plate {
+    right: var(--comment-width);
+    left: var(--sidebar-width);
+    width: auto;
+    margin: 0;
+    transform: none;
+  }
+
   .site-shell--desktop-content-reference {
     --desktop-content-max-width: 1368px;
     --desktop-content-offset: max(0px, calc((100% - var(--desktop-content-max-width)) / 2));
@@ -454,6 +459,11 @@ onBeforeUnmount(() => {
   .site-shell--desktop-content-reference :deep(.join-bar) {
     right: var(--desktop-content-offset);
     left: calc(var(--desktop-content-offset) + var(--sidebar-width));
+  }
+
+  .site-shell--desktop-content-reference :deep(.app-header-shell) {
+    padding-left: max(0.85rem, calc(var(--desktop-content-offset) + 0.85rem));
+    padding-right: max(0.55rem, calc(var(--desktop-content-offset) + 0.55rem));
   }
 
   .site-shell--desktop-reference {

@@ -5,8 +5,8 @@ const { showDemoMessage } = useDemoInteraction()
 const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
 
 useAppSeo({
-  title: 'Download ByBet App — Android APK & iOS | Official Mobile',
-  description: 'Download the official ByBet mobile app for Android and iOS devices. Enjoy real-time sports odds, seamless live casino streams, and lightning-fast deposits.',
+  title: 'Download 2Bet App — Android APK & iOS | Official Mobile',
+  description: 'Download the official 2Bet mobile app for Android and iOS devices. Enjoy real-time sports odds, seamless live casino streams, and lightning-fast deposits.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Download App', path: '/download-app' },
@@ -14,7 +14,7 @@ useAppSeo({
   schema: {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'ByBet Mobile App',
+    name: '2Bet Mobile App',
     operatingSystem: 'Android, iOS',
     applicationCategory: 'GameApplication',
     offers: {
@@ -39,14 +39,14 @@ onMounted(() => {
 })
 
 const handleGooglePlay = (): void => {
-  showDemoMessage('Downloading ByBet Official Android App from Google Play...')
+  showDemoMessage('Downloading 2Bet Official Android App from Google Play...')
   if (import.meta.client) {
     window.open('https://play.google.com/store/apps/details?id=com.bygame.sports&hl=en')
   }
 }
 
 const handleAppStore = (): void => {
-  showDemoMessage('Redirecting to ByBet on the Apple App Store...')
+  showDemoMessage('Redirecting to 2Bet on the Apple App Store...')
   if (import.meta.client) {
     window.open('https://apps.apple.com/ph/app/bygame/id6748813909')
   }
@@ -69,7 +69,7 @@ const handleAppStore = (): void => {
         <div class="w-full flex items-center justify-center pt-1 pb-3 sm:py-4">
           <img
             src="/images/app/league-player.webp"
-            alt="ByBet App League"
+            alt="2Bet App League"
             class="w-full max-w-[340px] sm:max-w-[440px] h-auto object-contain select-none pointer-events-none drop-shadow-2xl mx-auto block"
             loading="eager"
           />

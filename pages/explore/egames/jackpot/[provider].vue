@@ -1,18 +1,10 @@
 <script setup lang="ts">
-import {
-  MessageCircle,
-  ChevronRight,
-  Play,
-  User,
-} from 'lucide-vue-next'
+import { ChevronRight } from 'lucide-vue-next'
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import usernamesList from '~/data/usernames.json'
 import {
   JACKPOT_NAV_TABS,
   JACKPOT_SECTIONS,
-  JACKPOT_WINNERS,
   type JackpotSection,
-  type JackpotWinner,
 } from '~/data/jackpot'
 import {
   JDB_JACKPOT_COUNTER,
@@ -22,7 +14,8 @@ import {
 } from '~/composables/useJackpotCounter'
 import GameCard from '~/components/game-cards/GameCard.vue'
 import GameRail from '~/components/game-cards/GameRail.vue'
-import { SLOTS, normalizeSlotProvider } from '~/data/slots'
+import JackpotWinnersCard from '~/components/jackpot/JackpotWinnersCard.vue'
+import { SLOTS, getStandaloneJackpotGames, normalizeSlotProvider } from '~/data/slots'
 import { getProviderLogoForTheme } from '~/utils/providerLogo'
 
 const JACKPOT_REFRESH_INTERVAL_MS = 60_000
@@ -51,7 +44,7 @@ const JACKPOT_INCREMENT_RANGES: Record<string, readonly [number, number]> = {
   jdb: [12, 120],
 }
 
-const JACKPOT_SECTION_ORDER = ['jili', 'cq9', 'jdb']
+const JACKPOT_SECTION_ORDER = ['jdb']
 
 const jackpotNumberFormatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 2,
@@ -78,8 +71,8 @@ const providerName = computed(() => {
 })
 
 useAppSeo({
-  title: computed(() => `${providerName.value} Progressive Jackpots — Casino Slots | ByBet`),
-  description: computed(() => `Spin high-paying progressive jackpot slots from ${providerName.value} on ByBet Philippines. Live prize counters, daily winners, and mega jackpot payouts.`),
+  title: computed(() => `${providerName.value} Progressive Jackpots — Casino Slots | 2Bet`),
+  description: computed(() => `Spin high-paying progressive jackpot slots from ${providerName.value} on 2Bet Philippines. Live prize counters, daily winners, and mega jackpot payouts.`),
   breadcrumbs: computed(() => [
     { name: 'Home', path: '/' },
     { name: 'Jackpots', path: '/explore/egames/jackpot/all' },
@@ -88,18 +81,18 @@ useAppSeo({
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${providerName.value} Progressive Jackpots - ByBet`,
-    url: `https://bybet.com/explore/egames/jackpot/${activeProvider.value}`,
+    name: `${providerName.value} Progressive Jackpots - 2Bet`,
+    url: `https://2bet.com/explore/egames/jackpot/${activeProvider.value}`,
   })),
 })
 
 const activeGameId = ref<string | null>(null)
-const currentWinners = ref<JackpotWinner[]>([...JACKPOT_WINNERS])
+const currentWinners = useJackpotWinners()
+const standaloneJackpotGames = computed(() => getStandaloneJackpotGames())
 const jackpotAmounts = ref<Record<string, number>>(
   Object.fromEntries(JACKPOT_SECTIONS.map(section => [section.id, section.jackpotAmount])),
 )
 const jackpotRevision = ref(0)
-let winnerTimer: ReturnType<typeof setTimeout> | null = null
 let jackpotClockTimer: ReturnType<typeof setInterval> | null = null
 
 const { displayAmount: jdbDisplay } = useJackpotCounter(JDB_JACKPOT_COUNTER)
@@ -115,54 +108,6 @@ const storeAmounts: Record<string, Ref<number>> = {
 watch([jdbDisplay, jiliDisplay, cq9Display], () => {
   jackpotRevision.value += 1
 })
-
-const WINNER_PROVIDER_LOGO = '/images/providers/jdb.webp'
-
-const maskUsername = (name: string): string => {
-  if (name.includes('*')) return name
-  const clean = name.replace(/[^a-zA-Z0-9]/g, '')
-  if (clean.length <= 2) return `${clean[0] || 'u'}******${clean[1] || '8'}`
-  const first = clean[0]
-  const last = clean[clean.length - 1]
-  const starCount = Math.max(5, Math.min(6, clean.length - 2))
-  return `${first}${'*'.repeat(starCount)}${last}`
-}
-
-const formatDateTime = (date = new Date()): string => {
-  const day = String(date.getDate()).padStart(2, '0')
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const hours = String(date.getHours()).padStart(2, '0')
-  const minutes = String(date.getMinutes()).padStart(2, '0')
-  return `${day}-${month} ${hours}:${minutes}`
-}
-
-const generateRandomAmount = (): string => {
-  const val = Math.random() < 0.15
-    ? Math.random() * (12000 - 3000) + 3000
-    : Math.random() * (2200 - 450) + 450
-  return `PHP ${val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
-}
-
-const addNewWinner = (): void => {
-  const randomUsername = usernamesList[Math.floor(Math.random() * usernamesList.length)] || 'player_99'
-  const newWinner: JackpotWinner = {
-    id: `winner-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-    providerLogo: WINNER_PROVIDER_LOGO,
-    username: maskUsername(randomUsername),
-    amount: generateRandomAmount(),
-    date: formatDateTime(),
-  }
-  currentWinners.value = [newWinner, ...currentWinners.value.slice(0, 4)]
-}
-
-const scheduleRandomWinner = (): void => {
-  if (!import.meta.client) return
-  const delay = Math.floor(Math.random() * (60000 - 5000 + 1)) + 5000
-  winnerTimer = setTimeout(() => {
-    addNewWinner()
-    scheduleRandomWinner()
-  }, delay)
-}
 
 const getJackpotAmount = (section: JackpotSection): number => {
   if (storeAmounts[section.id]) {
@@ -184,7 +129,7 @@ const getJackpotSeparatorImage = (character: string): string | undefined => {
 }
 
 const getJackpotLabel = (section: JackpotSection): string => {
-  return `${section.provider} live jackpot: PHP ${jackpotNumberFormatter.format(getJackpotAmount(section))}`
+  return `${section.provider} live jackpot: $${jackpotNumberFormatter.format(getJackpotAmount(section))}`
 }
 
 const refreshJackpotAmounts = (): void => {
@@ -210,7 +155,6 @@ const handleDocumentClick = (event: MouseEvent): void => {
 onMounted(() => {
   if (import.meta.client) {
     document.addEventListener('click', handleDocumentClick)
-    scheduleRandomWinner()
     jackpotClockTimer = setInterval(refreshJackpotAmounts, JACKPOT_REFRESH_INTERVAL_MS)
   }
 })
@@ -218,10 +162,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   if (import.meta.client) {
     document.removeEventListener('click', handleDocumentClick)
-    if (winnerTimer) {
-      clearTimeout(winnerTimer)
-      winnerTimer = null
-    }
     if (jackpotClockTimer) {
       clearInterval(jackpotClockTimer)
       jackpotClockTimer = null
@@ -229,17 +169,8 @@ onBeforeUnmount(() => {
   }
 })
 
-const { context: commentContext, openGameComments, closeComments } = useCommentPanel()
 const { showDemoMessage } = useDemoInteraction()
 const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
-
-const toggleChat = (): void => {
-  if (commentContext.value) {
-    closeComments()
-  } else {
-    openGameComments()
-  }
-}
 
 const selectTab = (key: string): void => {
   router.push(`/explore/egames/jackpot/${key.toLowerCase()}`)
@@ -270,15 +201,17 @@ const handleDemo = (game: any): void => {
 
 const filteredSections = computed<JackpotSection[]>(() => {
   const sections = activeProvider.value === 'all'
-    ? [...JACKPOT_SECTIONS].sort((left, right) => (
-        JACKPOT_SECTION_ORDER.indexOf(left.id) - JACKPOT_SECTION_ORDER.indexOf(right.id)
-      ))
+    ? [...JACKPOT_SECTIONS]
+        .filter(s => s.id.toLowerCase() !== 'jili' && s.id.toLowerCase() !== 'cq9')
+        .sort((left, right) => (
+          JACKPOT_SECTION_ORDER.indexOf(left.id) - JACKPOT_SECTION_ORDER.indexOf(right.id)
+        ))
     : JACKPOT_SECTIONS.filter((s) => s.id.toLowerCase() === activeProvider.value)
 
   return sections.map((section) => {
     const seenIds = new Set<string>()
     const amount = section.showCounter ? getJackpotAmount(section) : 0
-    const poolText = amount > 0 ? `₱${jackpotNumberFormatter.format(amount)}` : undefined
+    const poolText = amount > 0 ? `$${jackpotNumberFormatter.format(amount)}` : undefined
 
     const games = SLOTS.filter((game) => {
       if (game.jackpot !== true && game.Jackpot !== true) return false
@@ -292,7 +225,16 @@ const filteredSections = computed<JackpotSection[]>(() => {
   })
 })
 
-watch(activeProvider, () => { activeGameId.value = null })
+watch(
+  activeProvider,
+  (p) => {
+    if (p === 'jili' || p === 'cq9') {
+      router.replace('/explore/egames/jackpot/all')
+    }
+    activeGameId.value = null
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
@@ -326,30 +268,6 @@ watch(activeProvider, () => { activeGameId.value = null })
             />
           </button>
         </div>
-
-        <!-- Right Chat Toggle -->
-        <button
-          type="button"
-          class="nav-tab nav-tab--chat flex min-w-[56px] shrink-0 cursor-pointer select-none flex-col items-center justify-center rounded-xl px-2.5 py-1 transition-all hidden sm:flex"
-          :class="commentContext ? 'text-[#7a807d] font-semibold ' : 'text-[#7a807d] '"
-          aria-label="Toggle chat room"
-          @click="toggleChat"
-        >
-          <svg
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 mb-0.5 shrink-0"
-          >
-            <path
-              fill="currentColor"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M5.17487 19.8675L7.9565 18.1075C8.63891 18.2396 9.31883 18.308 10 18.308C15.4956 18.308 20 14.2442 20 9.15401C20 4.06434 15.4954 0 10 0C4.50461 0 0 4.06434 0 9.15401C0 12.0413 1.46921 14.6858 3.88947 16.3963L3.85501 19.0683C3.84572 19.7874 4.5896 20.2378 5.17487 19.8675ZM5.50007 10.9998C6.32849 10.9998 7.00007 10.3282 7.00007 9.49982C7.00007 8.67139 6.32849 7.99982 5.50007 7.99982C4.67164 7.99982 4.00007 8.67139 4.00007 9.49982C4.00007 10.3282 4.67164 10.9998 5.50007 10.9998ZM12.0001 9.49982C12.0001 10.3282 11.3285 10.9998 10.5001 10.9998C9.67164 10.9998 9.00007 10.3282 9.00007 9.49982C9.00007 8.67139 9.67164 7.99982 10.5001 7.99982C11.3285 7.99982 12.0001 8.67139 12.0001 9.49982C12.0001 10.3282 11.3285 10.9998 10.5001 10.9998ZM15.5001 10.9998C16.3285 10.9998 17.0001 10.3282 17.0001 9.49982C17.0001 8.67139 16.3285 7.99982 15.5001 7.99982C14.6716 7.99982 14.0001 8.67139 14.0001 9.49982C14.0001 10.3282 14.6716 10.9998 15.5001 10.9998Z"
-            />
-          </svg>
-          <span class="text-[11px] leading-tight">Chat</span>
-        </button>
       </header>
     </div>
 
@@ -454,41 +372,50 @@ watch(activeProvider, () => { activeGameId.value = null })
       </p>
     </section>
 
-    <!-- Winners List Card (Shown only on JDB jackpot page) -->
-    <div
-      v-if="activeProvider === 'jdb' || activeProvider === 'all'"
-      class="winners-card rounded-md bg-[#171817] shadow-sm mb-8"
+    <section
+      v-if="activeProvider === 'all'"
+      class="standalone-jackpot-section mb-5 min-w-0"
+      aria-labelledby="standalone-jackpot-title"
     >
-      <div class="flex items-center justify-between pt-2 px-4">
-        <h3 class="font-bold text-white text-[16px]">Winners List</h3>
-        
+      <div class="mb-2 flex items-center justify-between gap-3">
+        <NuxtLink
+          id="standalone-jackpot-title"
+          to="/explore/egames/jackpot/standalone"
+          class="flex min-w-0 items-center gap-1.5 text-[15px] font-bold text-white transition-colors hover:text-[var(--main-color)]"
+        >
+          <span aria-hidden="true">🎰</span>
+          <span class="truncate">Standalone Jackpot Game</span>
+        </NuxtLink>
+        <NuxtLink
+          to="/explore/egames/jackpot/standalone"
+          class="flex shrink-0 items-center gap-0.5 rounded-full bg-[#202220] px-2.5 py-0.5 text-[11px] font-medium text-[#8e9491] transition-colors hover:bg-[#282a29] hover:text-white"
+          aria-label="View all standalone jackpot games"
+        >
+          <span>{{ standaloneJackpotGames.length }}</span>
+          <ChevronRight class="h-3 w-3" />
+        </NuxtLink>
       </div>
 
-      <TransitionGroup name="winner-fade" tag="div" class="divide-y divide-white/5">
-        <div
-          v-for="winner in currentWinners"
-          :key="winner.id"
-          class="winner-item flex items-center justify-between py-1.5 text-[12px] transition-colors  px-2 "
-        >
-          <!-- Left: Provider Logo + Masked Username -->
-          <div class="flex items-center gap-3">
-            <img
-              :src="themedProviderLogo(winner.providerLogo)"
-              alt=""
-              class="h-4 max-w-[36px] object-contain opacity-80"
-              :class="{ 'brightness-125': effectiveTheme === 'dark' }"
-            />
-            <span class="text-white font-mono">{{ winner.username }}</span>
-          </div>
+      <GameRail label="Standalone jackpot games" layout="slider" :wide-columns="11">
+        <GameCard
+          v-for="game in standaloneJackpotGames"
+          :key="game.id"
+          :game="game"
+          :activeId="activeGameId"
+          displayCategory="jackpot"
+          @select="handleCardClick"
+          @info="showGameDetails"
+          @start="handleStartNow"
+          @demo="handleDemo"
+        />
+      </GameRail>
+    </section>
 
-          <!-- Center: Won Amount -->
-          <span class="text-white ">{{ winner.amount }}</span>
-
-          <!-- Right: Date Time -->
-          <span class="text-[#626664] text-[11px] font-mono">{{ winner.date }}</span>
-        </div>
-      </TransitionGroup>
-    </div>
+    <!-- Winners List Card (Shown only on JDB jackpot page) -->
+    <JackpotWinnersCard
+      v-if="activeProvider === 'jdb' || activeProvider === 'all'"
+      :winners="currentWinners"
+    />
 
   </div>
 </template>
@@ -666,10 +593,6 @@ watch(activeProvider, () => { activeGameId.value = null })
   filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.48));
 }
 
-.winner-item:nth-child(even) {
-  background-color: #000;
-}
-
 @keyframes jackpot-digit-pop {
   0% {
     opacity: 0;
@@ -753,20 +676,5 @@ watch(activeProvider, () => { activeGameId.value = null })
   }
 }
 
-.winner-fade-enter-active {
-  transition: all 400ms ease-out;
-}
-.winner-fade-leave-active {
-  transition: all 300ms ease-in;
-  display: none;
-}
-.winner-fade-enter-from {
-  opacity: 0;
-  transform: translateY(-8px);
-}
-.winner-fade-leave-to {
-  opacity: 0;
-  transform: translateY(8px);
-}
 </style>
 

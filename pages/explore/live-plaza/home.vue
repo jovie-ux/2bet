@@ -19,8 +19,8 @@ const popularGameSortOptions: Array<{ value: PopularGameSort; label: string }> =
 ]
 
 useAppSeo({
-  title: 'Live Plaza — Popular Games & Expert Predictions | ByBet',
-  description: 'Explore ByBet Live Plaza for trending sports broadcasts, expert game predictions, verified hit rates, and real-time community betting discussions.',
+  title: 'Live Plaza — Popular Games & Expert Predictions | 2Bet',
+  description: 'Explore 2Bet Live Plaza for trending sports broadcasts, expert game predictions, verified hit rates, and real-time community betting discussions.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Live Plaza', path: '/explore/live-plaza/home' },
@@ -28,15 +28,15 @@ useAppSeo({
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'ByBet Live Plaza',
-    url: 'https://bybet.com/explore/live-plaza/home',
+    name: '2Bet Live Plaza',
+    url: 'https://2bet.com/explore/live-plaza/home',
   },
 })
 
 const { showDemoMessage } = useDemoInteraction()
 const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
 
-const redirectToByBet = (): void => {
+const redirectTo2Bet = (): void => {
   void navigateTo(bybetRedirectUrl, { external: true })
 }
 const {
@@ -116,7 +116,7 @@ const handleEscape = (event: KeyboardEvent): void => {
 }
 
 const handleGameClick = (_game?: PopularGame): void => {
-  redirectToByBet()
+  redirectTo2Bet()
 }
 
 const handleUnlock = (prediction: Prediction): void => {
@@ -130,7 +130,7 @@ const handleUnlock = (prediction: Prediction): void => {
 }
 
 const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): void => {
-  redirectToByBet()
+  redirectTo2Bet()
 }
 
 onMounted(() => {
@@ -149,7 +149,7 @@ onBeforeUnmount(() => {
     <SeoHeader
       sticky
       title="Live Plaza"
-      description="Live Plaza on ByBet Philippines. Real-time game streaming, popular matches, and expert sports predictions."
+      description="Live Plaza on 2Bet Philippines. Real-time game streaming, popular matches, and expert sports predictions."
       :show-back="false"
       :show-flag="false"
     />

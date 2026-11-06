@@ -42,7 +42,7 @@ const applyTextSize = (size: TextSize) => {
   textSizeLevel.value = size
   if (import.meta.client) {
     try {
-      localStorage.setItem('bybet-game-rules-text-size', size)
+      localStorage.setItem('2bet-game-rules-text-size', size)
     } catch {}
     const root = document.querySelector('.site-shell') || document.documentElement
     root.classList.remove('rules-text-80', 'rules-text-100', 'rules-text-120', 'rules-text-normal', 'rules-text-large', 'rules-text-xlarge')
@@ -96,7 +96,7 @@ const scrollToActiveTab = () => {
 onMounted(() => {
   if (import.meta.client) {
     try {
-      const saved = localStorage.getItem('bybet-game-rules-text-size') as TextSize | null
+      const saved = (localStorage.getItem('2bet-game-rules-text-size') || localStorage.getItem('bybet-game-rules-text-size')) as TextSize | null
       if (saved && ['80%', '100%', '120%'].includes(saved)) {
         applyTextSize(saved)
       } else {

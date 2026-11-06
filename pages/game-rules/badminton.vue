@@ -3,8 +3,8 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { badmintonRulesHtml } from '~/data/badminton-rules'
 
 useAppSeo({
-  title: 'Badminton Betting Rules & Settlement Standards | ByBet',
-  description: 'Official ByBet badminton rules: BWF 21-point rally scoring, best of 3/5 games, retirement settlements, game handicaps, player totals, and walkover terms.',
+  title: 'Badminton Betting Rules & Settlement Standards | 2Bet',
+  description: 'Official 2Bet badminton rules: BWF 21-point rally scoring, best of 3/5 games, retirement settlements, game handicaps, player totals, and walkover terms.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Game Rules', path: '/game-rules' },

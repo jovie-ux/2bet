@@ -30,7 +30,7 @@ interface QuestionCategory {
 const router = useRouter()
 const runtimeConfig = useRuntimeConfig()
 const bybetRedirectUrl = runtimeConfig.public.bybetRedirectUrl
-const affiliateSystemUrl = 'https://partnerships.bybet.com/'
+const affiliateSystemUrl = 'https://partnerships.2bet.com/'
 
 const activeTab = ref<AffiliateTabId>('cooperation')
 const activeQuestionTab = ref<QuestionTabId>('information')
@@ -45,8 +45,8 @@ const copiedContact = ref<'phone' | 'email' | null>(null)
 let copyResetTimer: ReturnType<typeof setTimeout> | null = null
 
 useAppSeo({
-  title: 'Affiliate Partnership Program — Earn Up to 50% | ByBet',
-  description: 'Join the official ByBet Affiliate Program. Earn up to 50% revenue commission, access dedicated marketing support, and enjoy reliable weekly payouts.',
+  title: 'Affiliate Partnership Program — Earn Up to 50% | 2Bet',
+  description: 'Join the official 2Bet Affiliate Program. Earn up to 50% revenue commission, access dedicated marketing support, and enjoy reliable weekly payouts.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Affiliate Program', path: '/affiliate' },
@@ -65,7 +65,7 @@ const affiliateTabs: AffiliateTab[] = [
 const cooperationSteps = [
   { step: 'Step 1', label: 'Get Affiliate Now', icon: LinkIcon, tone: 'red' },
   { step: 'Step 2', label: 'Get Affiliation Promotion Link', icon: Network, tone: 'gold' },
-  { step: 'Step 3', label: 'Promote ByBet on the Internet', icon: Share2, tone: 'green' },
+  { step: 'Step 3', label: 'Promote 2Bet on the Internet', icon: Share2, tone: 'green' },
 ]
 
 const products = [
@@ -115,19 +115,19 @@ const questionCategories: QuestionCategory[] = [
     title: 'Information',
     items: [
       {
-        question: 'What is ByBet affiliate program?',
-        answer: 'ByBet is your business partner. If players successfully sign up as ByBet players through any of your promotional banners or promotion links and make deposits and valid bets, you can get commission from the net profits from their bets.',
+        question: 'What is 2Bet affiliate program?',
+        answer: '2Bet is your business partner. If players successfully sign up as 2Bet players through any of your promotional banners or promotion links and make deposits and valid bets, you can get commission from the net profits from their bets.',
       },
       {
-        question: 'Advantages of joining ByBet affiliate program.',
-        answer: 'ByBet has been well-known in the industry for more than 10 years with an excellent reputation. Our philosophy is to provide the great games and pay the players on time.\nJoining ByBet is completely free. You only need to own the promotional websites to receive promotional tools such as advertising banners and affiliate links.\nByBet does have a commission cap. The more players bet, the more profit you will earn. You can earn generous commission from the players you referred anytime. Enjoy your free working hours by working from your home.',
+        question: 'Advantages of joining 2Bet affiliate program.',
+        answer: '2Bet has been well-known in the industry for more than 10 years with an excellent reputation. Our philosophy is to provide the great games and pay the players on time.\nJoining 2Bet is completely free. You only need to own the promotional websites to receive promotional tools such as advertising banners and affiliate links.\nByBet does have a commission cap. The more players bet, the more profit you will earn. You can earn generous commission from the players you referred anytime. Enjoy your free working hours by working from your home.',
       },
       {
         question: "Can I join even when I don't have my own website?",
         answer: 'Owning your own website is definitely the best way to promote our business. Even without it, we will also provide the promotion links and banners for you. If you have other promotional ideas that you want to share with us, please feel free to contact and discuss with our affiliate team.',
       },
       {
-        question: 'What incentive does ByBet give to affiliates with good performing?',
+        question: 'What incentive does 2Bet give to affiliates with good performing?',
         answer: 'Your promotional performance is directly proportional to your income. The higher turnover from your players, the more commission. The current commission is tiered, the lowest commission starts at 30% and goes up to 50%. Please Click "Commission System" to discover more in details! Should you have any requests for the commission, please contact our affiliate team to discuss further.',
       },
     ],
@@ -138,20 +138,20 @@ const questionCategories: QuestionCategory[] = [
     title: 'Share',
     items: [
       {
-        question: 'Which promotional links can I use to promote ByBet?',
-        answer: 'After you have successfully registered as an affiliate, you need to log in to the ByBet affiliate page to view your own promotional link.',
+        question: 'Which promotional links can I use to promote 2Bet?',
+        answer: 'After you have successfully registered as an affiliate, you need to log in to the 2Bet affiliate page to view your own promotional link.',
       },
       {
-        question: 'Can I use the ByBet logo and its other content on my website?',
-        answer: "Once you join our affiliate program, you will use only the promotional links we provide. You are not allowed to make any changes to the content without the ByBet's permission.",
+        question: 'Can I use the 2Bet logo and its other content on my website?',
+        answer: "Once you join our affiliate program, you will use only the promotional links we provide. You are not allowed to make any changes to the content without the 2Bet's permission.",
       },
       {
         question: 'Where should I put the promotional link and pictures on my website?',
         answer: 'You can place promotional banners and links on your website or other high-traffic pages in order to bring more referrals. You can also contact our affiliate department to work out the best promotion plan.',
       },
       {
-        question: 'How does ByBet know that players came through my website?',
-        answer: 'If a player registers through your promotional link, the ByBet system will automatically record the source of this registration and it will also display player information on affiliate panel. Through this process, we can easily trace down where the player came from.',
+        question: 'How does 2Bet know that players came through my website?',
+        answer: 'If a player registers through your promotional link, the 2Bet system will automatically record the source of this registration and it will also display player information on affiliate panel. Through this process, we can easily trace down where the player came from.',
       },
     ],
   },
@@ -162,7 +162,7 @@ const questionCategories: QuestionCategory[] = [
     items: [
       {
         question: 'How do I earn commission?',
-        answer: 'Once you put our promotional links on your website and when the users click on the ByBet promotional banners/link or visit our website through email, register, deposit and play to become valid players, you can earn commission from the net profit generated by the players you referred. The more referrals you get to us, the more income you will generate.',
+        answer: 'Once you put our promotional links on your website and when the users click on the 2Bet promotional banners/link or visit our website through email, register, deposit and play to become valid players, you can earn commission from the net profit generated by the players you referred. The more referrals you get to us, the more income you will generate.',
       },
       {
         question: 'What is a valid player?',
@@ -181,7 +181,7 @@ const questionCategories: QuestionCategory[] = [
     items: [
       {
         question: "I'm not sure if my referral link is working fine or not. How do I know if my referrals are working?",
-        answer: 'You can log in to the ByBet agent panel and click on the promotion URL to check whether your exclusive link is displayed normally. In addition, you can view your referred member registration status. Should you have any questions, please contact our 24/7 customer service.',
+        answer: 'You can log in to the 2Bet agent panel and click on the promotion URL to check whether your exclusive link is displayed normally. In addition, you can view your referred member registration status. Should you have any questions, please contact our 24/7 customer service.',
       },
       {
         question: 'What can I do if I forgot my password?',
@@ -197,10 +197,10 @@ const questionCategories: QuestionCategory[] = [
       },
       {
         question: 'Can you provide more information about the members I referred?',
-        answer: 'For security reason, ByBet will not provide any personal information. We will guarantee the security and privacy of personal information both for agents and players. In order to help the affiliate manage and track the downline members better, the affiliate page shows their betting activities.',
+        answer: 'For security reason, 2Bet will not provide any personal information. We will guarantee the security and privacy of personal information both for agents and players. In order to help the affiliate manage and track the downline members better, the affiliate page shows their betting activities.',
       },
       {
-        question: 'Does ByBet accept global partnership?',
+        question: 'Does 2Bet accept global partnership?',
         answer: 'We welcome the partners from all around the world. If you are interested in working with us, you can directly log in our website or contact our affiliate team to learn more about the partnership.',
       },
     ],
@@ -298,7 +298,7 @@ onBeforeUnmount(() => {
           </ol>
           <div class="cooperation-description">
             <strong>Complete three easy steps to start earning high commission!</strong>
-            <p>ByBet has been well-known in the industry for more than 10 years with excellent reputation. Players able to use all types of smart devices to enjoy the excellent gaming experience, is a reliable guarantee for your profit. A well-designed commission system makes it easier for you to make money. Get up to 50% commission every month.</p>
+            <p>2Bet has been well-known in the industry for more than 10 years with excellent reputation. Players able to use all types of smart devices to enjoy the excellent gaming experience, is a reliable guarantee for your profit. A well-designed commission system makes it easier for you to make money. Get up to 50% commission every month.</p>
           </div>
         </div>
 
@@ -318,8 +318,8 @@ onBeforeUnmount(() => {
             </article>
           </div>
           <p class="products-copy">
-            ByBet integrates premium gaming resources from around the world and is committed to delivering a secure, professional, and seamless entertainment experience. No matter which device players use, we strive to provide a high-quality gaming experience at every touchpoint.<br>
-            As a platform licensed by the Philippine Amusement and Gaming Corporation (PAGCOR), ByBet provides partners with a compliant and reliable foundation for building strong and sustainable business relationships.
+            2Bet integrates premium gaming resources from around the world and is committed to delivering a secure, professional, and seamless entertainment experience. No matter which device players use, we strive to provide a high-quality gaming experience at every touchpoint.<br>
+            As a platform licensed by the Philippine Amusement and Gaming Corporation (PAGCOR), 2Bet provides partners with a compliant and reliable foundation for building strong and sustainable business relationships.
           </p>
         </div>
       </section>
@@ -335,14 +335,14 @@ onBeforeUnmount(() => {
             <li v-for="point in advantage.points" :key="point">{{ point }}</li>
           </ul>
         </article>
-        <p class="advantages-note">ByBet provides multi-gradient rebates. The more profit your downline players generate on the platform, the more commissions you can receive. Please refer to the details shown on your management centre.</p>
+        <p class="advantages-note">2Bet provides multi-gradient rebates. The more profit your downline players generate on the platform, the more commissions you can receive. Please refer to the details shown on your management centre.</p>
       </section>
 
       <section v-else-if="activeTab === 'commission'" class="affiliate-panel">
         <div class="affiliate-surface commission-panel">
           <span class="commission-flag" aria-label="Philippines"><img
                 src="/icons/PHP.webp"
-                alt="ByBet"
+                alt="2Bet"
                 class="h-7 sm:h-5 w-auto object-contain"
                 loading="lazy"
               /></span>
@@ -350,7 +350,7 @@ onBeforeUnmount(() => {
           <p>Affiliates receive commissions based on a percentage of the monthly net revenue generated from sports betting, online casino, slot games, and other gaming products.</p>
 
           <h3>Commission Program</h3>
-          <p>ByBet Commissions will be calculated as a percentage based on the monthly net income of sports betting, live dealers, slot machines and lotteries. Net income is defined as: the company's gross profit from sports betting, live dealers, slot machines and lotteries minus customer transaction costs, wrong payment collection, taxes, platform fees, bonuses and other rewards, etc. Referral fees and commissions are calculated based on ByBet statistical methods and data collection methods.</p>
+          <p>2Bet Commissions will be calculated as a percentage based on the monthly net income of sports betting, live dealers, slot machines and lotteries. Net income is defined as: the company's gross profit from sports betting, live dealers, slot machines and lotteries minus customer transaction costs, wrong payment collection, taxes, platform fees, bonuses and other rewards, etc. Referral fees and commissions are calculated based on 2Bet statistical methods and data collection methods.</p>
 
           <div class="commission-table-wrap">
             <table class="commission-table">
@@ -411,8 +411,8 @@ onBeforeUnmount(() => {
           </div>
           <div class="contact-row">
             <span class="contact-icon contact-icon--email"><Mail :size="25" /></span>
-            <span class="contact-copy"><strong>Agent Email</strong><small>partnerships@bybet.com</small></span>
-            <button type="button" @click="copyContact('email', 'partnerships@bybet.com')">
+            <span class="contact-copy"><strong>Agent Email</strong><small>partnerships@2bet.com</small></span>
+            <button type="button" @click="copyContact('email', 'partnerships@2bet.com')">
               <Check v-if="copiedContact === 'email'" :size="15" />
               <Copy v-else :size="15" />
               {{ copiedContact === 'email' ? 'Copied' : 'Copy' }}

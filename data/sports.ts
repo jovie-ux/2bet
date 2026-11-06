@@ -904,7 +904,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -941,7 +941,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -978,7 +978,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1019,7 +1019,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1056,7 +1056,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1097,7 +1097,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1138,7 +1138,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1162,7 +1162,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1186,7 +1186,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1214,7 +1214,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1238,7 +1238,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1266,7 +1266,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1294,7 +1294,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1322,7 +1322,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1350,7 +1350,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1374,7 +1374,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1402,7 +1402,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1426,7 +1426,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1454,7 +1454,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1478,7 +1478,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1506,7 +1506,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1530,7 +1530,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1558,7 +1558,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1582,7 +1582,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1610,7 +1610,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1634,7 +1634,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1662,7 +1662,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1699,7 +1699,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1740,7 +1740,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1781,7 +1781,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1804,7 +1804,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1831,7 +1831,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1858,7 +1858,7 @@ export const SAMPLE_MATCH_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_bookmaker',
-          title: 'ByBet Sportsbook',
+          title: '2Bet Sportsbook',
           markets: [
             {
               key: 'h2h',
@@ -1891,7 +1891,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -1919,7 +1919,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -1947,7 +1947,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -1975,7 +1975,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -2004,7 +2004,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -2032,7 +2032,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -2060,7 +2060,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -2088,7 +2088,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -2116,7 +2116,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -2144,7 +2144,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -2172,7 +2172,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -2201,7 +2201,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -2230,7 +2230,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -2258,7 +2258,7 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     bookmakers: [
       {
         key: 'bybet_live',
-        title: 'ByBet Live',
+        title: '2Bet Live',
         markets: [
           {
             key: 'h2h',
@@ -2286,7 +2286,7 @@ export const SAMPLE_OUTRIGHT_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_outright',
-          title: 'ByBet Futures',
+          title: '2Bet Futures',
           markets: [
             {
               key: 'outrights',
@@ -2318,7 +2318,7 @@ export const SAMPLE_OUTRIGHT_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_outright',
-          title: 'ByBet Futures',
+          title: '2Bet Futures',
           markets: [
             {
               key: 'outrights',
@@ -2348,7 +2348,7 @@ export const SAMPLE_OUTRIGHT_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_outright',
-          title: 'ByBet Futures',
+          title: '2Bet Futures',
           markets: [
             {
               key: 'outrights',
@@ -2380,7 +2380,7 @@ export const SAMPLE_OUTRIGHT_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_outright',
-          title: 'ByBet Futures',
+          title: '2Bet Futures',
           markets: [
             {
               key: 'outrights',
@@ -2412,7 +2412,7 @@ export const SAMPLE_OUTRIGHT_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_outright',
-          title: 'ByBet Futures',
+          title: '2Bet Futures',
           markets: [
             {
               key: 'outrights',
@@ -2440,7 +2440,7 @@ export const SAMPLE_OUTRIGHT_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_outright',
-          title: 'ByBet Futures',
+          title: '2Bet Futures',
           markets: [
             {
               key: 'outrights',
@@ -2468,7 +2468,7 @@ export const SAMPLE_OUTRIGHT_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_outright',
-          title: 'ByBet Futures',
+          title: '2Bet Futures',
           markets: [
             {
               key: 'outrights',
@@ -2498,7 +2498,7 @@ export const SAMPLE_OUTRIGHT_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_outright',
-          title: 'ByBet Futures',
+          title: '2Bet Futures',
           markets: [
             {
               key: 'outrights',
@@ -2527,7 +2527,7 @@ export const SAMPLE_OUTRIGHT_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_outright',
-          title: 'ByBet Futures',
+          title: '2Bet Futures',
           markets: [
             {
               key: 'outrights',
@@ -2554,7 +2554,7 @@ export const SAMPLE_OUTRIGHT_EVENTS: Record<string, SportsEvent[]> = {
       bookmakers: [
         {
           key: 'bybet_outright',
-          title: 'ByBet Futures',
+          title: '2Bet Futures',
           markets: [
             {
               key: 'outrights',

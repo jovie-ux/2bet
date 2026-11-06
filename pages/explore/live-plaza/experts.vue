@@ -19,8 +19,8 @@ const sortOptions: Array<{ value: ExpertSort; label: string }> = [
 const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
 
 useAppSeo({
-  title: 'Top Sports Betting Experts & Tipsters | ByBet Plaza',
-  description: 'Discover verified sports betting experts on ByBet Live Plaza. Compare accuracy hit rates, win streaks, and recent forecasts for NBA, football, and more.',
+  title: 'Top Sports Betting Experts & Tipsters | 2Bet Plaza',
+  description: 'Discover verified sports betting experts on 2Bet Live Plaza. Compare accuracy hit rates, win streaks, and recent forecasts for NBA, football, and more.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Live Plaza', path: '/explore/live-plaza/home' },
@@ -29,8 +29,8 @@ useAppSeo({
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'ByBet Sports Experts',
-    url: 'https://bybet.com/explore/live-plaza/experts',
+    name: '2Bet Sports Experts',
+    url: 'https://2bet.com/explore/live-plaza/experts',
   },
 })
 

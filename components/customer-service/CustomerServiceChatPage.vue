@@ -4,21 +4,23 @@ const props = defineProps<{
 }>()
 
 const { closeComments } = useCommentPanel()
-const chatUrl = 'https://cs14.fkldcs601.com/#/index?source=ByBet&needNav=1&lang=en&vipType=0&isPC=1&darkMode=1&deviceCode=8437786d-b221-41e6-aaa2-7d51b11ad429&deviceId=8437786d-b221-41e6-aaa2-7d51b11ad429'
+const { translate, locale } = useSiteLocale()
+const langParam = computed(() => (locale.value === 'pt' ? 'pt' : (locale.value || 'en')))
+const chatUrl = computed(() => `https://cs11.levxfemf.app/#/index?source=2bet&needNav=1&lang=${langParam.value}&vipType=0&isPC=1&darkMode=1&deviceCode=4ff68888-f34d-49fb-ab39-e0ff581e41b8&deviceId=4ff68888-f34d-49fb-ab39-e0ff581e41b8`)
 
 useAppSeo({
-  title: `24/7 Services ${props.serviceNumber} | ByBet Philippines`,
-  description: `Chat with ByBet 24/7 Customer Service ${props.serviceNumber} for account, deposit, withdrawal, promotion, and verification assistance.`,
-  breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Customer Service', path: '/explore/egames/customer-service' },
-    { name: `24/7 Services ${props.serviceNumber}`, path: `/explore/egames/customer-service/${props.serviceNumber}` },
-  ],
+  title: computed(() => locale.value === 'pt' ? `Atendimento 24/7 - Canal ${props.serviceNumber} | 2Bet` : `24/7 Services ${props.serviceNumber} | 2Bet Philippines`),
+  description: computed(() => locale.value === 'pt' ? `Converse com o suporte 24/7 da 2Bet (Canal ${props.serviceNumber}) para assistência com conta, depósitos, saques e promoções.` : `Chat with 2Bet 24/7 Customer Service ${props.serviceNumber} for account, deposit, withdrawal, promotion, and verification assistance.`),
+  breadcrumbs: computed(() => [
+    { name: translate('Home'), path: '/' },
+    { name: translate('Customer Service'), path: '/explore/egames/customer-service' },
+    { name: `${translate('24/7 Services')} ${props.serviceNumber}`, path: `/explore/egames/customer-service/${props.serviceNumber}` },
+  ]),
   schema: {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    name: `ByBet 24/7 Customer Service ${props.serviceNumber}`,
-    url: `https://bybet.com/explore/egames/customer-service/${props.serviceNumber}`,
+    name: `2Bet 24/7 Customer Service ${props.serviceNumber}`,
+    url: `https://2bet.com/explore/egames/customer-service/${props.serviceNumber}`,
   },
 })
 
@@ -32,8 +34,8 @@ onMounted(() => {
     <SeoHeader
       sticky
       title="24/7 Services"
-      :meta-title="`24/7 Services ${serviceNumber} | ByBet Philippines`"
-      :description="`Chat with ByBet 24/7 Customer Service ${serviceNumber} for fast assistance.`"
+      :meta-title="`24/7 Services ${serviceNumber} | 2Bet Philippines`"
+      :description="`Chat with 2Bet 24/7 Customer Service ${serviceNumber} for fast assistance.`"
       back-to="/explore/egames/customer-service"
     />
 

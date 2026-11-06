@@ -11,8 +11,8 @@ const {
 } = useTimeZonePreference()
 
 useAppSeo({
-  title: 'Time Zone Settings — Match Schedule Preference | ByBet',
-  description: 'Adjust your display time zone on ByBet to ensure sports match schedules, live in-play start times, and event countdowns match your local clock.',
+  title: 'Time Zone Settings — Match Schedule Preference | 2Bet',
+  description: 'Adjust your display time zone on 2Bet to ensure sports match schedules, live in-play start times, and event countdowns match your local clock.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Account', path: '/explore/account/me' },

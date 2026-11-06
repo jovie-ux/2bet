@@ -3,8 +3,8 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { tennisRulesHtml } from '~/data/tennis-rules'
 
 useAppSeo({
-  title: 'Tennis Betting Rules & Retirement Settlement | ByBet',
-  description: 'Official tennis betting rules. Player retirements, walkovers, game handicap, set betting, rain interruptions, and super tiebreak conditions on ByBet.',
+  title: 'Tennis Betting Rules & Retirement Settlement | 2Bet',
+  description: 'Official tennis betting rules. Player retirements, walkovers, game handicap, set betting, rain interruptions, and super tiebreak conditions on 2Bet.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Game Rules', path: '/game-rules' },

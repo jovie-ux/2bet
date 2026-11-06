@@ -6,8 +6,8 @@ import MobileSportsNav from '~/components/sports/MobileSportsNav.vue'
 const route = useRoute()
 
 useAppSeo({
-  title: 'Live In-Play Sports Betting — Real-Time Odds | ByBet',
-  description: 'Bet live in-play on ongoing football, basketball, tennis, and esports matches at ByBet Philippines. Instant odds updates, live scores, and fast cash out.',
+  title: 'Live In-Play Sports Betting — Real-Time Odds | 2Bet',
+  description: 'Bet live in-play on ongoing football, basketball, tennis, and esports matches at 2Bet Philippines. Instant odds updates, live scores, and fast cash out.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Sports', path: '/explore/sports/popular' },
@@ -16,8 +16,8 @@ useAppSeo({
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Live Sports Betting - ByBet',
-    url: 'https://bybet.com/explore/sports/live',
+    name: 'Live Sports Betting - 2Bet',
+    url: 'https://2bet.com/explore/sports/live',
   },
 })
 

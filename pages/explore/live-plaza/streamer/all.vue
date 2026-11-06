@@ -2,8 +2,8 @@
 import { ChevronLeft, Search, X } from 'lucide-vue-next'
 
 useAppSeo({
-  title: 'Browse All Live Plaza Streamers & Channels | ByBet',
-  description: 'Discover every live streaming channel on ByBet Live Plaza. Watch real-time match reactions, casino gameplay, and connect with top sports creators.',
+  title: 'Browse All Live Plaza Streamers & Channels | 2Bet',
+  description: 'Discover every live streaming channel on 2Bet Live Plaza. Watch real-time match reactions, casino gameplay, and connect with top sports creators.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Live Plaza', path: '/explore/live-plaza/home' },
@@ -32,7 +32,7 @@ const handleBack = (): void => {
     <SeoHeader
       sticky
       :title="translate('All Streamers')"
-      description="Watch and follow top casino, sports, and gaming streamers live on ByBet Philippines."
+      description="Watch and follow top casino, sports, and gaming streamers live on 2Bet Philippines."
       back-to="/explore/live-plaza/streamer"
     />
 

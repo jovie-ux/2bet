@@ -15,33 +15,33 @@ interface TabMeta {
 const tabMetaMap: Record<string, TabMeta> = {
   league: {
     label: 'Leagues',
-    title: 'Popular Sports Leagues — Live Odds & Matches | ByBet',
-    description: 'Bet on premier sports leagues worldwide at ByBet Philippines. Real-time handicap lines, moneyline odds, and parlays across world-class tournaments.',
+    title: 'Popular Sports Leagues — Live Odds & Matches | 2Bet',
+    description: 'Bet on premier sports leagues worldwide at 2Bet Philippines. Real-time handicap lines, moneyline odds, and parlays across world-class tournaments.',
   },
   inplay: {
     label: 'In-Play Live',
-    title: 'Popular In-Play Live Betting — Real-Time Odds | ByBet',
-    description: 'Place live in-play sports bets on top matches at ByBet Philippines. Instant real-time odds updates, dynamic game stats, and fast bet cash-out 24/7.',
+    title: 'Popular In-Play Live Betting — Real-Time Odds | 2Bet',
+    description: 'Place live in-play sports bets on top matches at 2Bet Philippines. Instant real-time odds updates, dynamic game stats, and fast bet cash-out 24/7.',
   },
   upcoming: {
     label: 'Upcoming',
-    title: 'Popular Upcoming Sports Matches & Betting Odds | ByBet',
-    description: 'Check upcoming sports fixtures and early match schedules on ByBet Philippines. Compare betting lines and point spreads for football, basketball, and more.',
+    title: 'Popular Upcoming Sports Matches & Betting Odds | 2Bet',
+    description: 'Check upcoming sports fixtures and early match schedules on 2Bet Philippines. Compare betting lines and point spreads for football, basketball, and more.',
   },
   'pre-match': {
     label: 'Pre-Match',
-    title: 'Popular Pre-Match Sports Odds & Match Previews | ByBet',
-    description: 'Browse pre-match betting odds and match stats for major sports leagues on ByBet Philippines. Lock in competitive lines before tipoff or kickoff.',
+    title: 'Popular Pre-Match Sports Odds & Match Previews | 2Bet',
+    description: 'Browse pre-match betting odds and match stats for major sports leagues on 2Bet Philippines. Lock in competitive lines before tipoff or kickoff.',
   },
   'smart-pick': {
     label: 'Smart Pick',
-    title: 'Popular Smart Pick Sports AI Betting Insights | ByBet',
-    description: 'Explore AI-driven Smart Pick sports predictions and algorithmic tips at ByBet Philippines. Boost your betting strategy with verified data insights.',
+    title: 'Popular Smart Pick Sports AI Betting Insights | 2Bet',
+    description: 'Explore AI-driven Smart Pick sports predictions and algorithmic tips at 2Bet Philippines. Boost your betting strategy with verified data insights.',
   },
   outright: {
     label: 'Outrights',
-    title: 'Popular Championship Outrights & Futures Odds | ByBet',
-    description: 'Bet on championship outrights and tournament futures at ByBet Philippines. Long-term betting odds for NBA champions, Premier League winners, and more.',
+    title: 'Popular Championship Outrights & Futures Odds | 2Bet',
+    description: 'Bet on championship outrights and tournament futures at 2Bet Philippines. Long-term betting odds for NBA champions, Premier League winners, and more.',
   },
 }
 
@@ -49,8 +49,8 @@ const currentTab = computed(() => {
   const t = String(route.params.tab || 'league')
   return tabMetaMap[t] || {
     label: 'Matches',
-    title: 'Popular Sports Betting Odds & Live Matches | ByBet',
-    description: 'Explore popular sports betting matches with competitive odds, live spreads, and moneyline wagers on the official ByBet Philippines platform.',
+    title: 'Popular Sports Betting Odds & Live Matches | 2Bet',
+    description: 'Explore popular sports betting matches with competitive odds, live spreads, and moneyline wagers on the official 2Bet Philippines platform.',
   }
 })
 
@@ -65,8 +65,8 @@ useAppSeo({
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: currentTab.value.title.replace(' | ByBet', ''),
-    url: `https://bybet.com/explore/sports/popular/${route.params.tab}`,
+    name: currentTab.value.title.replace(' | 2Bet', ''),
+    url: `https://2bet.com/explore/sports/popular/${route.params.tab}`,
     description: currentTab.value.description,
   })),
 })

@@ -135,13 +135,13 @@ const handleSystemThemeChange = (): void => {
 }
 
 onMounted(() => {
-  const savedLanguage = window.localStorage.getItem('bybet-language')
+  const savedLanguage = window.localStorage.getItem('2bet-language') || window.localStorage.getItem('bybet-language')
   const savedLanguageOption = languageOptions.find(option => option.code === savedLanguage)
   if (savedLanguageOption) {
     setLocale(savedLanguageOption.code)
   }
 
-  const savedTheme = window.localStorage.getItem('bybet-theme')
+  const savedTheme = window.localStorage.getItem('2bet-theme') || window.localStorage.getItem('bybet-theme')
   if (savedTheme === 'auto' || savedTheme === 'light' || savedTheme === 'dark') {
     setThemePreference(savedTheme)
   }
@@ -301,7 +301,7 @@ onBeforeUnmount(() => {
   z-index: 40;
   top: var(--header-height);
   bottom: 0;
-  left: max(0px, calc((100vw - var(--site-max-width)) / 2));
+  left: max(0px, calc((100% - var(--site-max-width)) / 2));
   width: var(--sidebar-width);
   pointer-events: none;
   transition: width 180ms ease;

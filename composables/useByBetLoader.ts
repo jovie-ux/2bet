@@ -1,6 +1,6 @@
-export const useByBetLoader = () => {
-  const isLoading = useState<boolean>('bybet-global-loading', () => true)
-  const loadingLabel = useState<string>('bybet-global-loading-label', () => '')
+export const use2BetLoader = () => {
+  const isLoading = useState<boolean>('2bet-global-loading', () => true)
+  const loadingLabel = useState<string>('2bet-global-loading-label', () => '')
 
   const showLoader = (label = ''): void => {
     loadingLabel.value = label
@@ -65,5 +65,7 @@ export const useByBetLoader = () => {
     checkAssetsAndDismiss,
   }
 }
+
+export const useByBetLoader = use2BetLoader
 
 

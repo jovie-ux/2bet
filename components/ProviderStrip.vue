@@ -24,7 +24,7 @@ const providerLogo = (provider: string): string => {
         :href="externalSiteUrl"
         target="_blank"
         rel="nofollow noopener noreferrer"
-        :aria-label="`Browse ${provider} games on ByBet in a new tab`"
+        :aria-label="`Browse ${provider} games on 2bets in a new tab`"
       >
         <img
           v-if="providerLogo(provider)"

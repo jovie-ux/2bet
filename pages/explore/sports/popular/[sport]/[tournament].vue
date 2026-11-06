@@ -17,8 +17,8 @@ const tournamentName = computed(() => {
 })
 
 useAppSeo({
-  title: computed(() => `${tournamentName.value} Odds & Lines — ${sportName.value} | ByBet`),
-  description: computed(() => `Bet on ${tournamentName.value} with competitive ${sportName.value} odds at ByBet Philippines. Pre-match lines, moneylines, spreads, over/under totals, and live markets.`),
+  title: computed(() => `${tournamentName.value} Odds & Lines — ${sportName.value} | 2Bet`),
+  description: computed(() => `Bet on ${tournamentName.value} with competitive ${sportName.value} odds at 2Bet Philippines. Pre-match lines, moneylines, spreads, over/under totals, and live markets.`),
   breadcrumbs: computed(() => [
     { name: 'Home', path: '/' },
     { name: 'Sports', path: '/explore/sports/popular' },
@@ -28,9 +28,9 @@ useAppSeo({
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${tournamentName.value} ${sportName.value} Betting - ByBet`,
-    url: `https://bybet.com${route.path}`,
-    description: `Bet on ${tournamentName.value} ${sportName.value} at ByBet Philippines with competitive betting odds and live lines.`,
+    name: `${tournamentName.value} ${sportName.value} Betting - 2Bet`,
+    url: `https://2bet.com${route.path}`,
+    description: `Bet on ${tournamentName.value} ${sportName.value} at 2Bet Philippines with competitive betting odds and live lines.`,
   })),
 })
 

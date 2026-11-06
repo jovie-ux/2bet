@@ -3,7 +3,7 @@
 .allgames-shell--expanded { --sidebar-width: 190px; }
 .allgames-main { --allgames-heading-size: 32px; --homepage-display-font: Impact,'Arial Narrow','Manrope',sans-serif; --homepage-body-font: 'Manrope','Segoe UI',sans-serif; --homepage-display-weight: 400; --homepage-body-weight: 600; font-family: var(--homepage-body-font); font-weight: var(--homepage-body-weight); }
 .allgames-main h2 { font-family: var(--homepage-display-font); }
-.allgames-main { --allgames-accent: #62ddb0; --allgames-edge: #ffffff14; --allgames-content-padding: .55rem; min-width: 0; margin-left: calc(var(--sidebar-width) + var(--content-gutter) + 10px); margin-right: var(--content-gutter); padding-bottom: 8px; color: #f6f8f7; background: transparent; font-size: 14px; line-height: 1.45; transition: margin-left 180ms ease; container-type: inline-size; }
+.allgames-main { --allgames-accent: #62ddb0; --allgames-edge: #ffffff14; --allgames-content-padding: .55rem; min-width: 0;  margin-right: var(--content-gutter); padding-bottom: 8px; color: #f6f8f7;  font-size: 14px; line-height: 1.45; transition: margin-left 180ms ease; container-type: inline-size; }
 .allgames-main :is(h1,h2,h3,p) { margin: 0; }
 .allgames-main a { color: inherit; text-decoration: none; }
 .allgames-main :is(a,button,summary):focus-visible { outline: 2px solid var(--allgames-accent); outline-offset: 4px; }

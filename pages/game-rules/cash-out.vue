@@ -3,8 +3,8 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { cashOutRulesHtml } from '~/data/cash-out-rules'
 
 useAppSeo({
-  title: 'Cash Out Rules, Terms & Settlement Standards | ByBet',
-  description: 'Official ByBet Cash Out rules: full and partial cash out unit stake rules, settlement for interrupted events, reversal protocols, and accumulator terms.',
+  title: 'Cash Out Rules, Terms & Settlement Standards | 2Bet',
+  description: 'Official 2Bet Cash Out rules: full and partial cash out unit stake rules, settlement for interrupted events, reversal protocols, and accumulator terms.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Game Rules', path: '/game-rules' },

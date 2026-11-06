@@ -44,8 +44,8 @@ const handleImgError = (event: Event): void => {
         <!-- Top Decorative Section -->
         <div class="card-header-deco">
           <div class="brand-header">
-            <div class="brand-logo">ByBet</div>
-            <span class="brand-name">ByBet</span>
+            <div class="brand-logo">2Bet</div>
+            <span class="brand-name">2Bet</span>
           </div>
           <div class="deco-people">
             <img :src="'/images/share-people.webp'" alt="People" @error="handleImgError" />

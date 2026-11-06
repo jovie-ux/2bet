@@ -76,7 +76,7 @@ useAppSeo({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: '2bet Promotions & Bonuses',
-    url: 'https://bybet.com/explore/bonuses',
+    url: 'https://2bet.com/explore/bonuses',
     description: 'Explore 2bet USDT promotions, including 分享賺錢計劃 and VIP特權體系, with event details and rules.',
   },
 })

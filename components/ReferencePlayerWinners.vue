@@ -2,14 +2,21 @@
 import { Pause, Play } from 'lucide-vue-next'
 import { HOMEPAGE_WINNERS, type HomepageWinner } from '~/data/homepage-winners'
 import usernamesList from '~/data/usernames.json'
+import { generateWinnerWinning } from '~/utils/winnerCurrency'
 
 const PROVIDERS = [
-  { name: 'JILI', logo: '/images/providers/jili.webp' },
-  { name: 'CQ9', logo: '/images/providers/cq9.webp' },
-  { name: 'JDB', logo: '/images/providers/jdb.webp' },
   { name: 'Pragmatic Play', logo: '/images/providers/pp.webp' },
   { name: 'PG Soft', logo: '/images/providers/pg.webp' },
+  { name: 'JILI', logo: '/images/providers/jili.webp' },
+  { name: 'JDB', logo: '/images/providers/jdb.webp' },
+  { name: 'CQ9', logo: '/images/providers/cq9.webp' },
   { name: 'Red Tiger', logo: '/images/providers/red-tiger.webp' },
+  { name: 'NetEnt', logo: '/images/providers/netent.webp' },
+  { name: 'Microgaming', logo: '/images/providers/mg.webp' },
+  { name: 'BetSoft', logo: '/images/providers/bs.webp' },
+  { name: 'Choice Gaming', logo: '/images/providers/choice.webp' },
+  { name: 'LGD Gaming', logo: '/images/providers/lgd.webp' },
+  { name: '2Bet', logo: '/images/providers/2bet.webp' },
 ]
 
 const SCROLL_SPEED_PX_PER_SEC = 20
@@ -45,11 +52,7 @@ const formatWinnerDate = (date = new Date()): string => {
 }
 
 const generateWinnerAmount = (): string => {
-  const isBig = Math.random() < 0.15
-  const val = isBig
-    ? Math.random() * (12500 - 4000) + 4000
-    : Math.random() * (3800 - 450) + 450
-  return `PHP ${val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+  return generateWinnerWinning(100, 1000)
 }
 
 const generateNewWinner = (): HomepageWinner => {

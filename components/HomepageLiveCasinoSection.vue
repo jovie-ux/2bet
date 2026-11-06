@@ -4,6 +4,7 @@ import HomepageContentSlider from '~/components/HomepageContentSlider.vue'
 import type { HomepageCasinoCategory } from '~/data/homepage-casino'
 
 const props = defineProps<{ categories: HomepageCasinoCategory[] }>()
+const { translate } = useSiteLocale()
 const quickCategories = computed(() => props.categories.slice(0, 6))
 const titleIcon = '/icons/entertainment/live-casino.webp'
 const categoryIcons: Record<string, string> = {
@@ -27,31 +28,31 @@ function categoryIcon(key: string) {
   <HomepageContentSlider
     id="live-casino"
     class="homepage-live-casino-section"
-    title="Live Casino"
-    description="Real dealers. Real games. Real excitement."
+    :title="translate('Live Casino')"
+    :description="translate('Real dealers. Real games. Real excitement.')"
     view-all-to="/explore/entertainment/live-casino"
-    view-all-label="View all live casino"
+    :view-all-label="translate('View all live casino')"
     :item-count="categories.length"
     :visible-cards="4"
     :items-per-slide="1"
   >
     <template #header="{ atStart, atEnd, move }">
       <header class="live-section-header flex items-center justify-between">
-        <div class="live-heading flex items-center min-w-0"><h2 id="live-casino-title"><img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" alt="" width="28" height="28">Live Casino</h2><p>Real dealers. Real games. Real excitement.</p></div>
+        <div class="live-heading flex items-center min-w-0"><h2 id="live-casino-title"><img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" alt="" width="28" height="28">{{ translate('Live Casino') }}</h2><p>{{ translate('Real dealers. Real games. Real excitement.') }}</p></div>
         <div class="live-header-actions flex items-center">
-          <NuxtLink to="/explore/entertainment/live-casino" class="live-view-all">View all live casino <ArrowRight :size="16" aria-hidden="true" /></NuxtLink>
-          <div class="live-carousel-controls flex items-center" aria-label="Live Casino slider controls">
-            <button type="button" :disabled="atStart" aria-label="Previous Live Casino items" aria-controls="live-casino-track" @click="move(-1)"><ChevronLeft :size="17" aria-hidden="true" /></button>
-            <button type="button" :disabled="atEnd" aria-label="Next Live Casino items" aria-controls="live-casino-track" @click="move(1)"><ChevronRight :size="17" aria-hidden="true" /></button>
+          <NuxtLink to="/explore/entertainment/live-casino" class="live-view-all">{{ translate('View all live casino') }} <ArrowRight :size="16" aria-hidden="true" /></NuxtLink>
+          <div class="live-carousel-controls flex items-center" :aria-label="translate('Live Casino slider controls')">
+            <button type="button" :disabled="atStart" :aria-label="translate('Previous Live Casino items')" aria-controls="live-casino-track" @click="move(-1)"><ChevronLeft :size="17" aria-hidden="true" /></button>
+            <button type="button" :disabled="atEnd" :aria-label="translate('Next Live Casino items')" aria-controls="live-casino-track" @click="move(1)"><ChevronRight :size="17" aria-hidden="true" /></button>
           </div>
         </div>
       </header>
       <nav class="live-table-directory" aria-labelledby="live-table-directory-title">
-        <h3 id="live-table-directory-title">Find your table</h3>
+        <h3 id="live-table-directory-title">{{ translate('Find your table') }}</h3>
         <div class="live-table-links">
           <NuxtLink v-for="game in quickCategories" :key="game.key" :to="`/explore/entertainment/live-casino/${game.category}`">
             <img :src="categoryIcon(game.key)" class="live-sidebar-icon" alt="" width="28" height="28" decoding="async">
-            <span>{{ game.key === 'sicbo' ? 'Sic Bo' : game.title }}</span>
+            <span>{{ translate(game.key === 'sicbo' ? 'Sic Bo' : game.title) }}</span>
           </NuxtLink>
         </div>
       </nav>
@@ -62,15 +63,15 @@ function categoryIcon(key: string) {
       :to="`/explore/entertainment/live-casino/${game.category}`"
       class="live-dealer-card"
       :data-category="game.category"
-      :aria-label="`Explore ${game.title} tables`"
-      :title="game.title"
+      :aria-label="translate(game.title)"
+      :title="translate(game.title)"
     >
       <div class="live-dealer-art">
-        <img :src="game.image" :alt="`${game.title} live casino`" width="1086" height="1448" loading="lazy" decoding="async">
-        <span class="allgames-card-live-badge"><i /> LIVE</span>
+        <img :src="game.image" :alt="translate(game.title)" width="1086" height="1448" loading="lazy" decoding="async">
+        <span class="allgames-card-live-badge"><i /> {{ translate('LIVE') }}</span>
       </div>
       <div class="live-dealer-caption">
-        <div><h3>{{ game.title }}</h3><p>{{ descriptions[game.key] || game.description }}</p></div>
+        <div><h3>{{ translate(game.title) }}</h3><p>{{ translate(descriptions[game.key] || game.description) }}</p></div>
         <span class="live-dealer-arrow" aria-hidden="true"><ArrowRight :size="16" /></span>
       </div>
     </NuxtLink>

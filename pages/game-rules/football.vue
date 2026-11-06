@@ -3,8 +3,8 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { footballRulesHtml } from '~/data/football-rules'
 
 useAppSeo({
-  title: 'Football / Soccer Betting Rules & Settlement | ByBet',
-  description: 'Official ByBet football rules: 90-minute regulation time, goalscorer terms, card and corner counting, VAR protocols, and abandoned match settlements.',
+  title: 'Football / Soccer Betting Rules & Settlement | 2Bet',
+  description: 'Official 2Bet football rules: 90-minute regulation time, goalscorer terms, card and corner counting, VAR protocols, and abandoned match settlements.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Game Rules', path: '/game-rules' },

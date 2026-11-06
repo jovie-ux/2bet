@@ -262,6 +262,7 @@ export const createRailItems = (bybetRedirectUrl: string): RailItem[] => [
     children: [
       { label: 'Live Casino', iconImage: '/icons/entertainment/live-casino.webp', to: '/explore/entertainment/live-casino', accentColor: '#e2c37b' },
       { label: 'Gaming', iconImage: '/icons/entertainment/gaming.webp', to: '/explore/entertainment/gaming', accentColor: '#777cff', underMaintenance: true },
+      { label: 'Poker', iconImage: '/icons/entertainment/poker.webp', to: '/explore/entertainment/poker', accentColor: '#e2c37b' },
     ],
   },
   {
@@ -305,7 +306,7 @@ const createGames = (
   providers: string[],
 ): ReferenceGame[] => titles.map((title, index) => ({
   title,
-  provider: providers[index] ?? 'Bybet',
+  provider: providers[index] ?? '2Bet',
   image: gamePlaceholderImage,
 }))
 
@@ -393,6 +394,12 @@ export const providers = [
   'CQ9',
   'JDB',
   'RED TIGER',
+  '2bet',
+  'LGD',
+  'MG+',
+  'NetEnt',
+  'Choice',
+  'BS',
 ]
 
 export const providerLogoByName: Record<string, string> = {
@@ -402,31 +409,51 @@ export const providerLogoByName: Record<string, string> = {
   CQ9: '/images/providers/cq9.webp',
   JDB: '/images/providers/jdb.webp',
   'RED TIGER': '/images/providers/red-tiger.webp',
+  '2bet': '/images/providers/2bet.webp',
+  '2BET': '/images/providers/2bet.webp',
+  'AI Casino': '/images/providers/ai-casino.webp',
+  'AI CASINO': '/images/providers/ai-casino.webp',
+  LGD: '/images/providers/lgd.webp',
+  'LGD GAMING': '/images/providers/lgd.webp',
+  'MG+': '/images/providers/mg.webp',
+  MG: '/images/providers/mg.webp',
+  Microgaming: '/images/providers/mg.webp',
+  MICROGAMING: '/images/providers/mg.webp',
+  NetEnt: '/images/providers/netent.webp',
+  NETENT: '/images/providers/netent.webp',
+  Choice: '/images/providers/choice.webp',
+  'CHOICE GAMING': '/images/providers/choice.webp',
+  BS: '/images/providers/bs.webp',
+  BETSOFT: '/images/providers/bs.webp',
+  DB: '/images/providers/db.webp',
+  KY: '/images/providers/ky.webp',
+  V8: '/images/providers/v8.webp',
+  KS: '/images/providers/ks.webp',
 }
 
 export const faqItems: FaqItem[] = [
   {
-    question: 'What is ByBet Slot?',
+    question: 'What is 2Bet Slot?',
     answer:
-      'ByBet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the ByBet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the ByBet app slot for mobile convenience.',
+      '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.',
   },
   {
-    question: 'Is ByBet legit or a scam?',
+    question: 'Is 2Bet legit or a scam?',
     answer:
-      'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the ByBet scatter symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.',
+      'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.',
   },
   {
-    question: 'Is the ByBet app slot compatible with both Android and iOS?',
+    question: 'Is the 2Bet app slot compatible with both Android and iOS?',
     answer:
       'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.',
   },
   {
-    question: 'How does the ByBet slots casino ensure fairness?',
+    question: 'How does the 2Bet slots casino ensure fairness?',
     answer:
       'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.',
   },
   {
-    question: 'What makes the ByBet scatter symbol special?',
+    question: 'What makes the 2Bet slots symbol special?',
     answer:
       'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.',
   },

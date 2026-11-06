@@ -15,8 +15,8 @@ const selectedSports = computed(() => [sportNames[String(route.params.sport)] ??
 const sportDisplayName = computed(() => sportNames[String(route.params.sport)] ?? 'Sports')
 
 useAppSeo({
-  title: computed(() => `${sportDisplayName.value} Betting Odds, Lines & Live Matches | ByBet`),
-  description: computed(() => `Bet on ${sportDisplayName.value} at ByBet Philippines. Competitive point spreads, moneylines, over/under totals, and futures across premier global leagues.`),
+  title: computed(() => `${sportDisplayName.value} Betting Odds, Lines & Live Matches | 2Bet`),
+  description: computed(() => `Bet on ${sportDisplayName.value} at 2Bet Philippines. Competitive point spreads, moneylines, over/under totals, and futures across premier global leagues.`),
   breadcrumbs: computed(() => [
     { name: 'Home', path: '/' },
     { name: 'Sports', path: '/explore/sports/popular' },
@@ -25,9 +25,9 @@ useAppSeo({
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${sportDisplayName.value} Sports Betting - ByBet`,
-    url: `https://bybet.com/explore/sports/${route.params.sport}`,
-    description: `Bet on ${sportDisplayName.value} at ByBet Philippines with competitive point spreads, moneylines, over/under totals, and futures.`,
+    name: `${sportDisplayName.value} Sports Betting - 2Bet`,
+    url: `https://2bet.com/explore/sports/${route.params.sport}`,
+    description: `Bet on ${sportDisplayName.value} at 2Bet Philippines with competitive point spreads, moneylines, over/under totals, and futures.`,
   })),
 })
 

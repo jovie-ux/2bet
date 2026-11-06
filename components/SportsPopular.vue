@@ -100,7 +100,7 @@ const tabPath = (key: string): string => {
   return `${route.path}?tab=${slug}`
 }
 
-const redirectsToByBet = (key: string): boolean => key === 'smart-pick' || key === 'outright'
+const redirectsTo2Bet = (key: string): boolean => key === 'smart-pick' || key === 'outright'
 
 const selectedSport = ref('')
 const now = ref(Date.now())
@@ -297,8 +297,8 @@ onBeforeUnmount(() => {
         <NuxtLink
           v-for="tab in visibleTabs"
           :key="tab.key"
-          :to="redirectsToByBet(tab.key) ? bybetRedirectUrl : tabPath(tab.key)"
-          :external="redirectsToByBet(tab.key)"
+          :to="redirectsTo2Bet(tab.key) ? bybetRedirectUrl : tabPath(tab.key)"
+          :external="redirectsTo2Bet(tab.key)"
           :class="{ selected: activeTab === tab.key }"
           :aria-current="activeTab === tab.key ? 'page' : undefined"
         >

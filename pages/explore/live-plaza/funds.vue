@@ -2,8 +2,8 @@
 import DepositReminderModal from '~/components/modals/DepositReminderModal.vue'
 
 useAppSeo({
-  title: 'Live Plaza Funds & Reward Management | ByBet Platform',
-  description: 'Manage your Live Plaza streamer tips, gift balances, and reward distributions on ByBet. Secure wallet operations for community streaming interactions.',
+  title: 'Live Plaza Funds & Reward Management | 2Bet Platform',
+  description: 'Manage your Live Plaza streamer tips, gift balances, and reward distributions on 2Bet. Secure wallet operations for community streaming interactions.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Live Plaza', path: '/explore/live-plaza/home' },

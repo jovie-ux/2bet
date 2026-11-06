@@ -16,11 +16,12 @@ const props = withDefaults(defineProps<{
 }>(), { visibleCards: 5 })
 
 const track = ref<HTMLElement | null>(null)
+const { translate } = useSiteLocale()
 const sectionIdentity = computed(() => ({
-  slots: { icon: Dices, label: 'THE SPIN COLLECTION' },
-  'live-casino': { icon: Spade, label: 'A SEAT AT THE TABLE' },
-  bingo: { icon: CircleDot, label: 'FIND YOUR LUCKY NUMBERS' },
-  promotions: { icon: Gift, label: 'A LITTLE SOMETHING EXTRA' },
+  slots: { icon: Dices, label: translate('THE SPIN COLLECTION') },
+  'live-casino': { icon: Spade, label: translate('A SEAT AT THE TABLE') },
+  bingo: { icon: CircleDot, label: translate('FIND YOUR LUCKY NUMBERS') },
+  promotions: { icon: Gift, label: translate('A LITTLE SOMETHING EXTRA') },
 }[props.id]))
 const atStart = ref(true)
 const atEnd = ref(false)

@@ -3,8 +3,8 @@ import { History, Trash2, Gamepad2, ArrowRight } from 'lucide-vue-next'
 import GameCard from '~/components/game-cards/GameCard.vue'
 
 useAppSeo({
-  title: 'E-Games History — Slots & Casino Session Logs | ByBet',
-  description: 'View your past slot rounds, bingo games, wager amounts, and win records on ByBet. Complete transparency for all electronic gaming sessions.',
+  title: 'E-Games History — Slots & Casino Session Logs | 2Bet',
+  description: 'View your past slot rounds, bingo games, wager amounts, and win records on 2Bet. Complete transparency for all electronic gaming sessions.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'E-Games', path: '/explore/egames/slots' },

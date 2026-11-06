@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Sports Betting Rules & Settlement Directory | ByBet',
-  description: 'Complete directory of ByBet sports betting rules. Understand settlement standards for football, basketball, tennis, baseball, cash out, and parlays.',
+  title: 'Sports Betting Rules & Settlement Directory | 2Bet',
+  description: 'Complete directory of 2Bet sports betting rules. Understand settlement standards for football, basketball, tennis, baseball, cash out, and parlays.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Game Rules', path: '/game-rules' },
@@ -9,8 +9,8 @@ useAppSeo({
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'ByBet Sports Betting Rules Directory',
-    url: 'https://bybet.com/game-rules',
+    name: '2Bet Sports Betting Rules Directory',
+    url: 'https://2bet.com/game-rules',
   },
 })
 

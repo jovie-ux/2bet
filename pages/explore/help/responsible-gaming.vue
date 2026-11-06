@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Responsible Gaming & Player Assistance | ByBet Philippines',
-  description: 'ByBet is dedicated to safe and responsible gaming. Learn about player protection tools, deposit limits, and support hotlines in the Philippines.',
+  title: 'Responsible Gaming & Player Assistance | 2Bet Philippines',
+  description: '2Bet is dedicated to safe and responsible gaming. Learn about player protection tools, deposit limits, and support hotlines in the Philippines.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Help', path: '/explore/help/contact-us' },

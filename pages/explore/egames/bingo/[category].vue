@@ -56,8 +56,8 @@ const categoryLabel = computed(() => {
 })
 
 useAppSeo({
-  title: computed(() => `${categoryLabel.value} Bingo Games — Play Online | ByBet`),
-  description: computed(() => `Enjoy ${categoryLabel.value} bingo games on ByBet Philippines. Exciting patterns, automatic daubing, high RTP payouts, and rewarding community rounds.`),
+  title: computed(() => `${categoryLabel.value} Bingo Games — Play Online | 2Bet`),
+  description: computed(() => `Enjoy ${categoryLabel.value} bingo games on 2Bet Philippines. Exciting patterns, automatic daubing, high RTP payouts, and rewarding community rounds.`),
   breadcrumbs: computed(() => [
     { name: 'Home', path: '/' },
     { name: 'Bingo', path: '/explore/egames/bingo' },
@@ -66,8 +66,8 @@ useAppSeo({
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${categoryLabel.value} Bingo - ByBet`,
-    url: `https://bybet.com/explore/egames/bingo/${activeCategory.value}`,
+    name: `${categoryLabel.value} Bingo - 2Bet`,
+    url: `https://2bet.com/explore/egames/bingo/${activeCategory.value}`,
   })),
 })
 
@@ -90,17 +90,8 @@ const filterState = ref({
   winningLine: 'All',
 })
 
-const { context: commentContext, openGameComments, closeComments } = useCommentPanel()
 const { showDemoMessage } = useDemoInteraction()
 const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
-
-const toggleChat = (): void => {
-  if (commentContext.value) {
-    closeComments()
-  } else {
-    openGameComments()
-  }
-}
 
 const selectCategory = (key: string): void => {
   if (isSearchOpen.value) {
@@ -137,7 +128,7 @@ const {
   addToHistory,
   removeHistoryItem,
   clearHistory,
-} = useSearchHistory('bybet_bingo_search_history', ['Super Bingo', 'Fortune Bingo'])
+} = useSearchHistory('2bet_bingo_search_history', ['Super Bingo', 'Fortune Bingo'])
 
 const clearSearch = (): void => {
   searchQuery.value = ''
@@ -304,29 +295,6 @@ const displayedGames = computed<BingoGame[]>(() => {
             <span class="text-[12px] sm:text-[10px] leading-tight whitespace-nowrap">{{ cat.shortLabel }}</span>
           </button>
         </div>
-
-        <button
-          type="button"
-          class="nav-tab nav-tab--chat flex flex-col items-center justify-center min-w-[48px] py-1 px-2 rounded-md transition-all cursor-pointer select-none shrink-0 hidden sm:flex"
-          :class="commentContext ? 'text-[#959799]' : 'text-[#959799]'"
-          aria-label="Toggle chat room"
-          @click="toggleChat"
-        >
-          <svg
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 mb-0.5 shrink-0"
-          >
-            <path
-              fill="currentColor"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M5.17487 19.8675L7.9565 18.1075C8.63891 18.2396 9.31883 18.308 10 18.308C15.4956 18.308 20 14.2442 20 9.15401C20 4.06434 15.4954 0 10 0C4.50461 0 0 4.06434 0 9.15401C0 12.0413 1.46921 14.6858 3.88947 16.3963L3.85501 19.0683C3.84572 19.7874 4.5896 20.2378 5.17487 19.8675ZM5.50007 10.9998C6.32849 10.9998 7.00007 10.3282 7.00007 9.49982C7.00007 8.67139 6.32849 7.99982 5.50007 7.99982C4.67164 7.99982 4.00007 8.67139 4.00007 9.49982C4.00007 10.3282 4.67164 10.9998 5.50007 10.9998ZM12.0001 9.49982C12.0001 10.3282 11.3285 10.9998 10.5001 10.9998C9.67164 10.9998 9.00007 10.3282 9.00007 9.49982C9.00007 8.67139 9.67164 7.99982 10.5001 7.99982C11.3285 7.99982 12.0001 8.67139 12.0001 9.49982C12.0001 10.3282 11.3285 10.9998 10.5001 10.9998ZM15.5001 10.9998C16.3285 10.9998 17.0001 10.3282 17.0001 9.49982C17.0001 8.67139 16.3285 7.99982 15.5001 7.99982C14.6716 7.99982 14.0001 8.67139 14.0001 9.49982C14.0001 10.3282 14.6716 10.9998 15.5001 10.9998Z"
-            />
-          </svg>
-          <span class="text-[12px] sm:text-[10px] leading-tight whitespace-nowrap">Chat</span>
-        </button>
       </header>
 
       <!-- Provider Filter Bar & Search / Filter Icons -->

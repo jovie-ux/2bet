@@ -22,9 +22,9 @@ interface HeroSlide {
 
 const slides: HeroSlide[] = [
   {
-    eyebrow: 'BYBET SLOTS',
+    eyebrow: '2bet SLOTS',
     titleTop: 'SPIN BIG WINS',
-    titleBottom: 'AT BYBET',
+    titleBottom: 'AT 2bet',
     description: 'Thousands of Slot Games | Big Jackpots • Daily Bonuses',
     primaryAction: 'Play Now',
     secondaryAction: 'Explore Games',
@@ -36,7 +36,7 @@ const slides: HeroSlide[] = [
     imageAlt: 'Slot reels with a fantasy king, dragon, coins, and gems',
   },
   {
-    eyebrow: 'BYBET PROMOTIONS',
+    eyebrow: '2bet PROMOTIONS',
     titleTop: 'MORE REWARDS',
     titleBottom: 'AWAIT YOU',
     description: 'Open a world of bonuses, gifts, and promotions',
@@ -50,7 +50,7 @@ const slides: HeroSlide[] = [
     imageAlt: 'Treasure chest filled with gold coins and colorful gemstones',
   },
   {
-    eyebrow: 'BYBET VIP',
+    eyebrow: '2bet VIP',
     titleTop: 'REIGN ABOVE',
     titleBottom: 'THE REST',
     description: 'Discover elevated rewards made for VIP players',

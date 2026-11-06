@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Terms of Service & User Agreement | ByBet Philippines',
-  description: 'Read the ByBet Terms of Service governing platform usage, account security, payment transactions, and regulatory compliance standards.',
+  title: 'Terms of Service & User Agreement | 2Bet Philippines',
+  description: 'Read the 2Bet Terms of Service governing platform usage, account security, payment transactions, and regulatory compliance standards.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Legal', path: '/explore/legal/general-terms' },

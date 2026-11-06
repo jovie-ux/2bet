@@ -100,9 +100,7 @@ export const SLOT_CATEGORY_SVGS: Record<string, string> = {
 
 export const SLOT_CATEGORIES: SlotCategory[] = [
   { key: 'home', label: 'Home', shortLabel: 'Home', iconName: 'House' },
-  { key: 'bonus', label: 'Bonus', shortLabel: 'Bonus', iconName: 'Percent', emoji: '🟡', iconImage: '/icons/slots/bonuses.webp', svg: SLOT_CATEGORY_SVGS.bonus },
   { key: 'top-pick', label: 'Top Pick', shortLabel: 'Top Pick', iconName: 'ThumbsUp', emoji: '👍', iconImage: '/icons/slots/top-pick.webp' },
-  { key: 'top', label: 'Top', shortLabel: 'Top', iconName: 'Medal', emoji: '🏅', iconImage: '/icons/slots/top.webp' },
   { key: 'new', label: 'New', shortLabel: 'New', iconName: 'Sparkles', emoji: '🆕', iconImage: '/icons/slots/new.webp' },
   { key: 'hot', label: 'Hot games', shortLabel: 'Hot...', iconName: 'Flame', emoji: '🔥', iconImage: '/icons/slots/hot.webp' },
   { key: 'cold', label: 'Cold Games', shortLabel: 'Cold...', iconName: 'Snowflake', emoji: '❄️', iconImage: '/icons/slots/cold.webp' },
@@ -110,9 +108,7 @@ export const SLOT_CATEGORIES: SlotCategory[] = [
 ]
 
 export const SLOT_SECTION_CONFIGS: SlotSectionConfig[] = [
-  { id: 'bonuses', title: 'Bonuses', emoji: '🟡', iconImage: '/icons/slots/bonuses.webp', iconName: 'Percent', hasHelp: false },
   { id: 'top-pick', title: 'Top Pick', emoji: '👍', iconImage: '/icons/slots/top-pick.webp', iconName: 'ThumbsUp', hasHelp: false },
-  { id: 'top', title: 'Top', emoji: '🏅', iconImage: '/icons/slots/top.webp', iconName: 'Medal', hasHelp: false },
   { id: 'new', title: 'New', emoji: '🆕', iconImage: '/icons/slots/new.webp', iconName: 'Sparkles', hasHelp: false },
   { id: 'hot', title: 'Hot games', emoji: '🔥', iconImage: '/icons/slots/hot.webp', iconName: 'Flame', hasHelp: true },
   { id: 'cold', title: 'Cold Games', emoji: '❄️', iconImage: '/icons/slots/cold.webp', iconName: 'Snowflake', hasHelp: true },
@@ -133,6 +129,12 @@ export const SLOT_PROVIDERS: SlotProviderOption[] = [
   { key: 'CQ9', label: 'CQ9', logo: '/images/providers/cq9.webp' },
   { key: 'JDB', label: 'JDB', logo: '/images/providers/jdb.webp' },
   { key: 'Red Tiger', label: 'Red Tiger', logo: '/images/providers/red-tiger.webp' },
+  { key: '2bet', label: '2bet', logo: '/images/providers/2bet.webp' },
+  { key: 'LGD', label: 'LGD', logo: '/images/providers/lgd.webp' },
+  { key: 'MG+', label: 'MG+', logo: '/images/providers/mg.webp' },
+  { key: 'NetEnt', label: 'NetEnt', logo: '/images/providers/netent.webp' },
+  { key: 'Choice', label: 'Choice', logo: '/images/providers/choice.webp' },
+  { key: 'BS', label: 'BS', logo: '/images/providers/bs.webp' },
 ]
 
 export const normalizeSlotProvider = (provider: string): string => {
@@ -143,6 +145,12 @@ export const normalizeSlotProvider = (provider: string): string => {
   if (p === 'jili') return 'jili'
   if (p === 'cq9') return 'cq9'
   if (p === 'red tiger' || p === 'redtiger' || p === 'unknown') return 'red tiger'
+  if (p === '2bet' || p === 'ai casino' || p === 'aicasino') return '2bet'
+  if (p === 'lgd' || p === 'lgd gaming') return 'lgd'
+  if (p === 'mg+' || p === 'mg' || p === 'microgaming') return 'mg+'
+  if (p === 'netent') return 'netent'
+  if (p === 'choice' || p === 'choice gaming') return 'choice'
+  if (p === 'bs' || p === 'betsoft') return 'bs'
   return p
 }
 
@@ -154,6 +162,12 @@ export const getSlotProviderLogo = (provider: string): string => {
   if (norm === 'jili') return '/images/providers/jili.webp'
   if (norm === 'cq9') return '/images/providers/cq9.webp'
   if (norm === 'red tiger') return '/images/providers/red-tiger.webp'
+  if (norm === '2bet') return '/images/providers/2bet.webp'
+  if (norm === 'lgd') return '/images/providers/lgd.webp'
+  if (norm === 'mg+' || norm === 'mg') return '/images/providers/mg.webp'
+  if (norm === 'netent') return '/images/providers/netent.webp'
+  if (norm === 'choice') return '/images/providers/choice.webp'
+  if (norm === 'bs') return '/images/providers/bs.webp'
   return ''
 }
 
@@ -301,9 +315,10 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "super-ace",
     "title": "Super Ace",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/super-ace.webp",
     "category": [
+      "hot",
       "bonus",
       "top-pick",
       "top",
@@ -316,7 +331,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "243",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "95.8%",
     "livePlayers": 8592,
     "rtpPercent": "97.0%",
@@ -395,9 +409,10 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "fortune-gems",
     "title": "Fortune Gems",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/fortune-gems.webp",
     "category": [
+      "hot",
       "bonus",
       "top-pick",
       "top",
@@ -410,7 +425,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "243",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "92.3%",
     "livePlayers": 1759,
     "rtpPercent": "97.0%"
@@ -561,9 +575,10 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "money-coming",
     "title": "Money Coming",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/money-coming.webp",
     "category": [
+      "hot",
       "bonus",
       "top-pick",
       "top",
@@ -576,7 +591,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "92.9%",
     "livePlayers": 630,
     "rtpPercent": "97.0%",
@@ -658,9 +672,11 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "circus-joker-4096",
     "title": "Circus Joker 4096",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/circus-joker-4096.webp",
     "category": [
+      "hot",
+      "top-pick",
       "bonus",
       "top",
       "cold",
@@ -672,7 +688,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "4096",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "95.1%",
     "livePlayers": 409,
     "rtpPercent": "97.0%"
@@ -703,11 +718,12 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "pirate-queen-2",
     "title": "Pirate Queen 2",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/pirate-queen-2.webp",
     "category": [
-      "bonus",
+      "hot",
       "top-pick",
+      "bonus",
       "top",
       "cold",
       "max-rpt"
@@ -718,7 +734,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "95.4%",
     "livePlayers": 225,
     "rtpPercent": "97.0%"
@@ -954,11 +969,12 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "ali-baba",
     "title": "Ali Baba",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/ali-baba.webp",
     "category": [
-      "bonus",
+      "hot",
       "top-pick",
+      "bonus",
       "top",
       "cold",
       "max-rpt"
@@ -969,7 +985,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "91.1%",
     "livePlayers": 109,
     "rtpPercent": "97.0%"
@@ -1094,9 +1109,10 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "lucky-jaguar",
     "title": "Lucky Jaguar",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/lucky-jaguar.webp",
     "category": [
+      "hot",
       "bonus",
       "top-pick",
       "top",
@@ -1108,7 +1124,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "livePlayers": 54,
     "rtpPercent": "97.0%"
   },
@@ -1272,9 +1287,10 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "3-charge-buffalo",
     "title": "3 Charge Buffalo",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/3-charge-buffalo.webp",
     "category": [
+      "hot",
       "bonus",
       "top",
       "cold",
@@ -1286,7 +1302,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "88.4%",
     "livePlayers": 51,
     "rtpPercent": "96.2%"
@@ -1453,10 +1468,11 @@ const slotsBatch1: SlotGame[] = [
   },
   {
     "id": "shogun",
-    "title": "Shogun",
-    "provider": "JILI",
+    "title": "Shōgun",
+    "provider": "2bet",
     "image": "/images/slots/shogun.webp",
     "category": [
+      "hot",
       "bonus",
       "top",
       "cold",
@@ -1468,7 +1484,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "72.4%",
     "livePlayers": 4,
     "rtpPercent": "97.0%"
@@ -1991,9 +2006,10 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "sweet-magic",
     "title": "Sweet Magic",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/sweet-magic.webp",
     "category": [
+      "hot",
       "bonus",
       "top",
       "cold",
@@ -2005,7 +2021,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "86.0%",
     "livePlayers": 21,
     "rtpPercent": "97.0%"
@@ -2057,9 +2072,10 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "bubble-beauty",
     "title": "Bubble Beauty",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/bubble-beauty.webp",
     "category": [
+      "hot",
       "bonus",
       "top",
       "cold",
@@ -2071,7 +2087,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "66.4%",
     "livePlayers": 15,
     "rtpPercent": "97.0%",
@@ -2441,9 +2456,10 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "lucky-coming",
     "title": "Lucky Coming",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/lucky-coming.webp",
     "category": [
+      "hot",
       "bonus",
       "top",
       "cold",
@@ -2455,7 +2471,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "79.0%",
     "livePlayers": 2,
     "rtpPercent": "97.0%"
@@ -2552,9 +2567,11 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "3-coin-wild-horse",
     "title": "3 Coin Wild Horse",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/3-coin-wild-horse.webp",
     "category": [
+      "hot",
+      "top-pick",
       "bonus",
       "top",
       "cold",
@@ -2567,7 +2584,6 @@ const slotsBatch1: SlotGame[] = [
       "Prize Pool"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "84.0%",
     "livePlayers": 13,
     "rtpPercent": "97.0%"
@@ -2903,12 +2919,12 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "agent-ace",
     "title": "Agent Ace",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/agent-ace.webp",
     "category": [
+      "hot",
       "bonus",
       "top",
-      "hot",
       "max-rpt"
     ],
     "theme": "Entertainment",
@@ -2917,7 +2933,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "hotPercent": "106.9%",
     "livePlayers": 12,
     "rtpPercent": "97.0%"
@@ -3231,9 +3246,10 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "happy-taxi",
     "title": "Happy Taxi",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/happy-taxi.webp",
     "category": [
+      "hot",
       "bonus",
       "top",
       "cold",
@@ -3245,7 +3261,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "88.0%",
     "livePlayers": 16,
     "rtpPercent": "97.0%"
@@ -3679,9 +3694,11 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "lucky-doggy",
     "title": "Lucky Doggy",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/lucky-doggy.webp",
     "category": [
+      "hot",
+      "top-pick",
       "bonus",
       "top",
       "cold",
@@ -3693,7 +3710,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "56.7%",
     "livePlayers": 1,
     "rtpPercent": "97.0%"
@@ -3785,7 +3801,7 @@ const slotsBatch1: SlotGame[] = [
   },
   {
     "id": "release-the-kraken-megawaystm",
-    "title": "Release the Kraken Megaways\u2122",
+    "title": "Release the Kraken Megaways™",
     "provider": "PP",
     "image": "/images/slots/release-the-kraken-megawaystm.webp",
     "category": [
@@ -3809,9 +3825,10 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "chin-shi-huang",
     "title": "Chin Shi Huang",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/chin-shi-huang.webp",
     "category": [
+      "hot",
       "bonus",
       "top",
       "cold",
@@ -3823,7 +3840,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "38.0%",
     "livePlayers": 6,
     "rtpPercent": "97.0%"
@@ -3831,12 +3847,13 @@ const slotsBatch1: SlotGame[] = [
   {
     "id": "3-coin-treasures",
     "title": "3 Coin Treasures",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/3-coin-treasures.webp",
     "category": [
+      "hot",
+      "top-pick",
       "bonus",
       "top",
-      "hot",
       "max-rpt"
     ],
     "theme": "Adventures",
@@ -3845,7 +3862,6 @@ const slotsBatch1: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "hotPercent": "104.8%",
     "livePlayers": 22,
     "rtpPercent": "97.0%"
@@ -4601,7 +4617,7 @@ const slotsBatch1: SlotGame[] = [
   },
   {
     "id": "the-dog-house-muttley-crew",
-    "title": "The Dog House \u2013 Muttley Crew",
+    "title": "The Dog House – Muttley Crew",
     "provider": "PP",
     "image": "/images/slots/the-dog-house-muttley-crew.webp",
     "category": [
@@ -5135,7 +5151,7 @@ const slotsBatch1: SlotGame[] = [
   },
   {
     "id": "medusa-s-stone",
-    "title": "Medusa\u2019s Stone",
+    "title": "Medusa’s Stone",
     "provider": "PP",
     "image": "/images/slots/medusa-s-stone.webp",
     "category": [
@@ -5550,7 +5566,7 @@ const slotsBatch1: SlotGame[] = [
   },
   {
     "id": "saiyan-maniatm",
-    "title": "Saiyan Mania\u2122",
+    "title": "Saiyan Mania™",
     "provider": "PP",
     "image": "/images/slots/saiyan-maniatm.webp",
     "category": [
@@ -6335,7 +6351,7 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "anime-mecha-megawaystm",
-    "title": "Anime Mecha Megaways\u2122",
+    "title": "Anime Mecha Megaways™",
     "provider": "PP",
     "image": "/images/slots/anime-mecha-megawaystm.webp",
     "category": [
@@ -6394,7 +6410,7 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "big-bass-hold-spinner-megawaystm",
-    "title": "Big Bass Hold & Spinner Megaways\u2122",
+    "title": "Big Bass Hold & Spinner Megaways™",
     "provider": "PP",
     "image": "/images/slots/big-bass-hold-spinner-megawaystm.webp",
     "category": [
@@ -6415,7 +6431,7 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "money-stacks-megawaystm",
-    "title": "Money Stacks Megaways\u2122",
+    "title": "Money Stacks Megaways™",
     "provider": "PP",
     "image": "/images/slots/money-stacks-megawaystm.webp",
     "category": [
@@ -6631,7 +6647,7 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "floating-dragon-new-year-festival-ultra-megawaystm-hold-spin",
-    "title": "Floating Dragon New Year Festival Ultra Megaways\u2122 Hold & Spin",
+    "title": "Floating Dragon New Year Festival Ultra Megaways™ Hold & Spin",
     "provider": "PP",
     "image": "/images/slots/floating-dragon-new-year-festival-ultra-megawaystm-hold-spin.webp",
     "category": [
@@ -6891,7 +6907,7 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "might-of-freya-megawaystm",
-    "title": "Might of Freya Megaways\u2122",
+    "title": "Might of Freya Megaways™",
     "provider": "PP",
     "image": "/images/slots/might-of-freya-megawaystm.webp",
     "category": [
@@ -6929,7 +6945,7 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "ancient-island-megawaystm",
-    "title": "Ancient Island Megaways\u2122",
+    "title": "Ancient Island Megaways™",
     "provider": "PP",
     "image": "/images/slots/ancient-island-megawaystm.webp",
     "category": [
@@ -7144,7 +7160,7 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "witch-heart-megawaystm",
-    "title": "Witch Heart Megaways\u2122",
+    "title": "Witch Heart Megaways™",
     "provider": "PP",
     "image": "/images/slots/witch-heart-megawaystm.webp",
     "category": [
@@ -7268,10 +7284,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "ways-of-the-qilin",
     "title": "Ways of the Qilin",
-    "provider": "PG",
-    "providerLogo": "/images/providers/pg.webp",
+    "provider": "2bet",
     "image": "/images/slots/ways-of-the-qilin.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "cold",
@@ -7357,10 +7373,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "lucky-neko",
     "title": "Lucky Neko",
-    "provider": "PG",
-    "providerLogo": "/images/providers/pg.webp",
+    "provider": "2bet",
     "image": "/images/slots/lucky-neko.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "cold",
@@ -7379,10 +7395,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "boxing-king",
     "title": "Boxing King",
-    "provider": "JILI",
-    "providerLogo": "/images/providers/jili.webp",
+    "provider": "2bet",
     "image": "/images/slots/boxing-king.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "cold",
@@ -7492,10 +7508,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "wild-bandito",
     "title": "Wild Bandito",
-    "provider": "PG",
-    "providerLogo": "/images/providers/pg.webp",
+    "provider": "2bet",
     "image": "/images/slots/wild-bandito.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "cold",
@@ -7556,11 +7572,11 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "fortune-ox",
-    "title": "Fortune Ox",
-    "provider": "PG",
-    "providerLogo": "/images/providers/pg.webp",
+    "title": "Fortune-Ox",
+    "provider": "2bet",
     "image": "/images/slots/fortune-ox.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "cold",
@@ -7644,10 +7660,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "treasures-of-aztec",
     "title": "Treasures of Aztec",
-    "provider": "PG",
-    "providerLogo": "/images/providers/pg.webp",
+    "provider": "2bet",
     "image": "/images/slots/treasures-of-aztec.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "cold",
@@ -7733,13 +7749,12 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "mahjong-ways",
     "title": "Mahjong Ways",
-    "provider": "PG",
-    "providerLogo": "/images/providers/pg.webp",
+    "provider": "2bet",
     "image": "/images/slots/mahjong-ways.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
-      "hot",
       "max-rpt"
     ],
     "theme": "Others",
@@ -7754,10 +7769,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "fortune-gems-3",
     "title": "Fortune Gems 3",
-    "provider": "JILI",
-    "providerLogo": "/images/providers/jili.webp",
+    "provider": "2bet",
     "image": "/images/slots/fortune-gems-3.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "cold",
@@ -7775,13 +7790,12 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "money-tree",
     "title": "Money Tree",
-    "provider": "CQ9",
-    "providerLogo": "/images/providers/cq9.webp",
+    "provider": "2bet",
     "image": "/images/slots/money-tree.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
-      "hot",
       "max-rpt"
     ],
     "theme": "Foods",
@@ -7817,10 +7831,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "cocktail-nights",
     "title": "Cocktail Nights",
-    "provider": "PG",
-    "providerLogo": "/images/providers/pg.webp",
+    "provider": "2bet",
     "image": "/images/slots/cocktail-nights.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "cold",
@@ -7838,10 +7852,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "charge-buffalo-ascent",
     "title": "Charge Buffalo Ascent",
-    "provider": "JILI",
-    "providerLogo": "/images/providers/jili.webp",
+    "provider": "2bet",
     "image": "/images/slots/charge-buffalo-ascent.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "cold",
@@ -7879,7 +7893,7 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "dragon-s-luck-megawaystm",
-    "title": "Dragon's Luck MegaWays\u2122",
+    "title": "Dragon's Luck MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/dragon-s-luck-megawaystm.webp",
@@ -7963,11 +7977,11 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "wild-bounty-showdown",
-    "title": "Wild Bounty Showdown",
-    "provider": "PG",
-    "providerLogo": "/images/providers/pg.webp",
+    "title": "Wild Bounty ShowDown",
+    "provider": "2bet",
     "image": "/images/slots/wild-bounty-showdown.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "max-rpt"
@@ -8045,7 +8059,7 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "mummy-s-jewels",
-    "title": "Mummy\u2019s Jewels",
+    "title": "Mummy’s Jewels",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/mummy-s-jewels.webp",
@@ -8146,7 +8160,7 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "dragons-clusterbustertm",
-    "title": "Dragons Clusterbuster\u2122",
+    "title": "Dragons Clusterbuster™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/dragons-clusterbustertm.webp",
@@ -8168,13 +8182,12 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "pinata-wins",
     "title": "Pinata Wins",
-    "provider": "PG",
-    "providerLogo": "/images/providers/pg.webp",
+    "provider": "2bet",
     "image": "/images/slots/pinata-wins.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
-      "hot",
       "max-rpt"
     ],
     "theme": "Entertainment",
@@ -8227,10 +8240,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "fortune-rabbit",
     "title": "Fortune Rabbit",
-    "provider": "PG",
-    "providerLogo": "/images/providers/pg.webp",
+    "provider": "2bet",
     "image": "/images/slots/fortune-rabbit.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "cold",
@@ -8291,13 +8304,12 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "anubis-wrath",
     "title": "Anubis Wrath",
-    "provider": "PG",
-    "providerLogo": "/images/providers/pg.webp",
+    "provider": "2bet",
     "image": "/images/slots/anubis-wrath.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
-      "hot",
       "max-rpt"
     ],
     "theme": "Myth & History",
@@ -8438,10 +8450,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "super-ace-joker",
     "title": "Super Ace Joker",
-    "provider": "JILI",
-    "providerLogo": "/images/providers/jili.webp",
+    "provider": "2bet",
     "image": "/images/slots/super-ace-joker.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "cold",
@@ -8563,7 +8575,7 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "mr-treasure-s-fortune",
-    "title": "Mr. Treasure\u2019s Fortune",
+    "title": "Mr. Treasure’s Fortune",
     "provider": "PG",
     "providerLogo": "/images/providers/pg.webp",
     "image": "/images/slots/mr-treasure-s-fortune.webp",
@@ -8627,10 +8639,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "fortune-coins",
     "title": "Fortune Coins",
-    "provider": "JILI",
-    "providerLogo": "/images/providers/jili.webp",
+    "provider": "2bet",
     "image": "/images/slots/fortune-coins.webp",
     "category": [
+      "hot",
       "top-pick",
       "top",
       "cold",
@@ -9397,9 +9409,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "money-coming-2",
     "title": "Money Coming 2",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/money-coming-2.webp",
     "category": [
+      "hot",
       "top",
       "cold",
       "max-rpt"
@@ -9409,7 +9422,6 @@ const slotsBatch2: SlotGame[] = [
       "Prize Pool"
     ],
     "winningLine": "20 lines",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "89.9%",
     "livePlayers": 10,
     "rtpPercent": "96.1%"
@@ -10089,9 +10101,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "jurassic-kingdom",
     "title": "Jurassic Kingdom",
-    "provider": "PG",
+    "provider": "2bet",
     "image": "/images/slots/jurassic-kingdom.webp",
     "category": [
+      "hot",
       "top",
       "cold",
       "max-rpt"
@@ -10101,7 +10114,6 @@ const slotsBatch2: SlotGame[] = [
       "Free Spins"
     ],
     "winningLine": "243",
-    "providerLogo": "/images/providers/pg.webp",
     "coldPercent": "85.0%",
     "livePlayers": 7,
     "rtpPercent": "96.7%"
@@ -10128,11 +10140,12 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "legacy-of-egypt",
     "title": "Legacy of Egypt",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/legacy-of-egypt.webp",
     "category": [
-      "top",
       "hot",
+      "top-pick",
+      "top",
       "cold",
       "max-rpt"
     ],
@@ -10141,7 +10154,6 @@ const slotsBatch2: SlotGame[] = [
       "Free Spins"
     ],
     "winningLine": "243",
-    "providerLogo": "/images/providers/jili.webp",
     "hotPercent": "99.7%",
     "coldPercent": "95.8%",
     "livePlayers": 5,
@@ -10597,7 +10609,7 @@ const slotsBatch2: SlotGame[] = [
   },
   {
     "id": "the-queen-s-banquet",
-    "title": "The Queen\u2019s Banquet",
+    "title": "The Queen’s Banquet",
     "provider": "PG",
     "image": "/images/slots/the-queen-s-banquet.webp",
     "category": [
@@ -10619,9 +10631,10 @@ const slotsBatch2: SlotGame[] = [
   {
     "id": "lucky-ball",
     "title": "Lucky Ball",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/lucky-ball.webp",
     "category": [
+      "hot",
       "top",
       "cold",
       "max-rpt"
@@ -10632,7 +10645,6 @@ const slotsBatch2: SlotGame[] = [
       "Prize Pool"
     ],
     "winningLine": "Pay Anywhere",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "89.9%",
     "livePlayers": 7,
     "rtpPercent": "97.0%"
@@ -10847,7 +10859,7 @@ const slotsBatch3: SlotGame[] = [
   },
   {
     "id": "treasure-mine-power-reelstm",
-    "title": "Treasure Mine Power Reels\u2122",
+    "title": "Treasure Mine Power Reels™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/treasure-mine-power-reelstm.webp",
@@ -11130,11 +11142,11 @@ const slotsBatch3: SlotGame[] = [
   {
     "id": "queen-of-bounty",
     "title": "Queen of Bounty",
-    "provider": "PG",
+    "provider": "2bet",
     "image": "/images/slots/queen-of-bounty.webp",
     "category": [
-      "top",
       "hot",
+      "top",
       "max-rpt"
     ],
     "theme": "Entertainment",
@@ -11142,7 +11154,6 @@ const slotsBatch3: SlotGame[] = [
       "Free Spins"
     ],
     "winningLine": "All Ways",
-    "providerLogo": "/images/providers/pg.webp",
     "hotPercent": "107.5%",
     "livePlayers": 7,
     "rtpPercent": "96.7%"
@@ -11226,7 +11237,7 @@ const slotsBatch3: SlotGame[] = [
   },
   {
     "id": "aztec-gems-megawaystm",
-    "title": "Aztec Gems Megaways\u2122",
+    "title": "Aztec Gems Megaways™",
     "provider": "PP",
     "image": "/images/slots/aztec-gems-megawaystm.webp",
     "category": [
@@ -11384,9 +11395,10 @@ const slotsBatch3: SlotGame[] = [
   {
     "id": "jackpot-joker",
     "title": "Jackpot Joker",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/jackpot-joker.webp",
     "category": [
+      "hot",
       "top",
       "cold",
       "max-rpt"
@@ -11396,7 +11408,6 @@ const slotsBatch3: SlotGame[] = [
       "Buy Spins"
     ],
     "winningLine": "All Ways",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "89.7%",
     "livePlayers": 6,
     "rtpPercent": "97.0%"
@@ -11824,9 +11835,10 @@ const slotsBatch3: SlotGame[] = [
   {
     "id": "candy-baby",
     "title": "Candy Baby",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/candy-baby.webp",
     "category": [
+      "hot",
       "top",
       "cold",
       "max-rpt"
@@ -11837,7 +11849,6 @@ const slotsBatch3: SlotGame[] = [
       "Auto Game"
     ],
     "winningLine": "1024",
-    "providerLogo": "/images/providers/jili.webp",
     "coldPercent": "76.0%",
     "livePlayers": 29,
     "rtpPercent": "97.0%"
@@ -12095,11 +12106,11 @@ const slotsBatch3: SlotGame[] = [
   {
     "id": "sin-city",
     "title": "Sin City",
-    "provider": "JILI",
+    "provider": "LGD",
     "image": "/images/slots/sin-city.webp",
     "category": [
-      "top",
       "hot",
+      "top",
       "max-rpt"
     ],
     "theme": "Movie",
@@ -12107,7 +12118,6 @@ const slotsBatch3: SlotGame[] = [
       "Prize Pool"
     ],
     "winningLine": "243",
-    "providerLogo": "/images/providers/jili.webp",
     "hotPercent": "120.4%",
     "livePlayers": 2,
     "rtpPercent": "97.0%"
@@ -12252,9 +12262,10 @@ const slotsBatch3: SlotGame[] = [
   {
     "id": "war-of-dragons",
     "title": "War Of Dragons",
-    "provider": "JILI",
+    "provider": "2bet",
     "image": "/images/slots/war-of-dragons.webp",
     "category": [
+      "hot",
       "top",
       "max-rpt"
     ],
@@ -12263,7 +12274,6 @@ const slotsBatch3: SlotGame[] = [
       "Free Spins"
     ],
     "winningLine": "243",
-    "providerLogo": "/images/providers/jili.webp",
     "livePlayers": 5,
     "rtpPercent": "97.0%"
   },
@@ -12345,7 +12355,7 @@ const slotsBatch3: SlotGame[] = [
   },
   {
     "id": "sugarlicious-everywaytm",
-    "title": "Sugarlicious EveryWay\u2122",
+    "title": "Sugarlicious EveryWay™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/sugarlicious-everywaytm.webp",
@@ -12840,7 +12850,7 @@ const slotsBatch3: SlotGame[] = [
   },
   {
     "id": "egypt-megawaystm",
-    "title": "Egypt Megaways\u2122",
+    "title": "Egypt Megaways™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/egypt-megawaystm.webp",
@@ -13451,7 +13461,7 @@ const slotsBatch3: SlotGame[] = [
   },
   {
     "id": "big-cat-rescue-megawaystm",
-    "title": "Big Cat Rescue Megaways\u2122",
+    "title": "Big Cat Rescue Megaways™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/big-cat-rescue-megawaystm.webp",
@@ -14379,10 +14389,10 @@ const slotsBatch3: SlotGame[] = [
   {
     "id": "royal-gems",
     "title": "Royal Gems",
-    "provider": "Red Tiger",
-    "providerLogo": "/images/providers/red-tiger.webp",
+    "provider": "Choice",
     "image": "/images/slots/royal-gems.webp",
     "category": [
+      "hot",
       "top",
       "max-rpt"
     ],
@@ -14627,7 +14637,7 @@ const slotsBatch3: SlotGame[] = [
   },
   {
     "id": "genie-s-gem-bonanza",
-    "title": "Genie\u2019s Gem Bonanza",
+    "title": "Genie’s Gem Bonanza",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/genie-s-gem-bonanza.webp",
@@ -14797,10 +14807,11 @@ const slotsBatch3: SlotGame[] = [
   {
     "id": "arena-fighter",
     "title": "Arena Fighter",
-    "provider": "JILI",
-    "providerLogo": "/images/providers/jili.webp",
+    "provider": "2bet",
     "image": "/images/slots/arena-fighter.webp",
     "category": [
+      "hot",
+      "top-pick",
       "max-rpt"
     ],
     "rtpPercent": "97.0%",
@@ -15797,7 +15808,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "big-bass-bonanza-reel-action",
-    "title": "Big Bass Bonanza \u2013 Reel Action",
+    "title": "Big Bass Bonanza – Reel Action",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/big-bass-bonanza-reel-action.webp",
@@ -15813,7 +15824,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "big-bass-mission-fishin",
-    "title": "Big Bass Mission Fishin\u2019",
+    "title": "Big Bass Mission Fishin’",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/big-bass-mission-fishin.webp",
@@ -16021,7 +16032,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "escape-the-pyramid-fire-ice",
-    "title": "Escape the Pyramid \u2013 Fire & Ice",
+    "title": "Escape the Pyramid – Fire & Ice",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/escape-the-pyramid-fire-ice.webp",
@@ -16051,7 +16062,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "fonzo-s-feline-fortunes",
-    "title": "Fonzo\u2019s Feline Fortunes",
+    "title": "Fonzo’s Feline Fortunes",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/fonzo-s-feline-fortunes.webp",
@@ -16114,7 +16125,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "joker-s-jewels-hot",
-    "title": "Joker\u2019s Jewels Hot",
+    "title": "Joker’s Jewels Hot",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/joker-s-jewels-hot.webp",
@@ -16193,7 +16204,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "steamin-reels",
-    "title": "Steamin\u2019 Reels",
+    "title": "Steamin’ Reels",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/steamin-reels.webp",
@@ -16529,7 +16540,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "mermaid-s-treasure-trove",
-    "title": "Mermaid\u2019s Treasure Trove",
+    "title": "Mermaid’s Treasure Trove",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/mermaid-s-treasure-trove.webp",
@@ -16849,7 +16860,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "gold-party-2-after-hours",
-    "title": "Gold Party 2 \u2013 After Hours",
+    "title": "Gold Party 2 – After Hours",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/gold-party-2-after-hours.webp",
@@ -16944,7 +16955,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "lucky-s-wild-pub-2",
-    "title": "Lucky\u2019s Wild Pub 2",
+    "title": "Lucky’s Wild Pub 2",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/lucky-s-wild-pub-2.webp",
@@ -16960,7 +16971,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "lucky-s-wild-pub",
-    "title": "Lucky\u2019s Wild Pub",
+    "title": "Lucky’s Wild Pub",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/lucky-s-wild-pub.webp",
@@ -17412,7 +17423,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "joker-s-jewels-cash",
-    "title": "Joker\u2019s Jewels Cash",
+    "title": "Joker’s Jewels Cash",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/joker-s-jewels-cash.webp",
@@ -17428,7 +17439,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "joker-s-jewels-hold-spin",
-    "title": "Joker\u2019s Jewels Hold & Spin",
+    "title": "Joker’s Jewels Hold & Spin",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/joker-s-jewels-hold-spin.webp",
@@ -17701,7 +17712,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "mummy-s-jewels-100",
-    "title": "Mummy\u2019s Jewels 100",
+    "title": "Mummy’s Jewels 100",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/mummy-s-jewels-100.webp",
@@ -17878,7 +17889,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "john-hunter-and-galileo-s-secrets",
-    "title": "John Hunter and Galileo\u2019s Secrets",
+    "title": "John Hunter and Galileo’s Secrets",
     "provider": "PP",
     "providerLogo": "/images/providers/pp.webp",
     "image": "/images/slots/john-hunter-and-galileo-s-secrets.webp",
@@ -18634,7 +18645,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "chicagoii",
-    "title": "CHICAGO\u2161",
+    "title": "CHICAGOⅡ",
     "provider": "CQ9",
     "providerLogo": "/images/providers/cq9.webp",
     "image": "/images/slots/chicagoii.webp",
@@ -18666,7 +18677,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "jelly-multihopstm",
-    "title": "Jelly Multihops\u2122",
+    "title": "Jelly Multihops™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/jelly-multihopstm.webp",
@@ -18769,7 +18780,7 @@ const slotsBatch4: SlotGame[] = [
     "providerLogo": "/images/providers/cq9.webp",
     "image": "/images/slots/lucky-bats-jp.webp",
     "category": [
-      "jackpot",
+      "jackpot"
     ],
     "rtpPercent": "96.1%",
     "theme": "Myth & History",
@@ -19087,7 +19098,7 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "dragon-s-treasure",
-    "title": "Dragon\u2019s Treasure",
+    "title": "Dragon’s Treasure",
     "provider": "CQ9",
     "providerLogo": "/images/providers/cq9.webp",
     "image": "/images/slots/dragon-s-treasure.webp",
@@ -19119,11 +19130,11 @@ const slotsBatch4: SlotGame[] = [
   },
   {
     "id": "muaythai",
-    "title": "MuayThai",
-    "provider": "CQ9",
-    "providerLogo": "/images/providers/cq9.webp",
+    "title": "Muaythai",
+    "provider": "LGD",
     "image": "/images/slots/muaythai.webp",
     "category": [
+      "hot",
       "max-rpt"
     ],
     "rtpPercent": "96.1%",
@@ -19443,10 +19454,10 @@ const slotsBatch5: SlotGame[] = [
   {
     "id": "treasure-pirate",
     "title": "Treasure Pirate",
-    "provider": "CQ9",
-    "providerLogo": "/images/providers/cq9.webp",
+    "provider": "2bet",
     "image": "/images/slots/treasure-pirate.webp",
     "category": [
+      "hot",
       "max-rpt"
     ],
     "rtpPercent": "96.1%",
@@ -20841,10 +20852,10 @@ const slotsBatch5: SlotGame[] = [
   {
     "id": "poseidon",
     "title": "Poseidon",
-    "provider": "CQ9",
-    "providerLogo": "/images/providers/cq9.webp",
+    "provider": "2bet",
     "image": "/images/slots/poseidon.webp",
     "category": [
+      "hot",
       "max-rpt"
     ],
     "rtpPercent": "96.0%",
@@ -22168,7 +22179,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "sea-boat-adventure-megawaystm",
-    "title": "Sea Boat Adventure MegaWays\u2122",
+    "title": "Sea Boat Adventure MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/sea-boat-adventure-megawaystm.webp",
@@ -22409,7 +22420,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "blobsters-clusterbustertm",
-    "title": "Blobsters ClusterBuster\u2122",
+    "title": "Blobsters ClusterBuster™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/blobsters-clusterbustertm.webp",
@@ -22425,7 +22436,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "blood-suckerstm-megawaystm",
-    "title": "Blood Suckers\u2122 Megaways\u2122",
+    "title": "Blood Suckers™ Megaways™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/blood-suckerstm-megawaystm.webp",
@@ -22457,7 +22468,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "bugsy-s-bar",
-    "title": "Bugsy\u2019s Bar",
+    "title": "Bugsy’s Bar",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/bugsy-s-bar.webp",
@@ -22520,7 +22531,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "cirque-d-la-fortune",
-    "title": "Cirque D\u0435 La Fortune",
+    "title": "Cirque Dе La Fortune",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/cirque-d-la-fortune.webp",
@@ -22646,7 +22657,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "doggy-riches-megawaystm",
-    "title": "Doggy Riches Megaways\u2122",
+    "title": "Doggy Riches Megaways™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/doggy-riches-megawaystm.webp",
@@ -22678,7 +22689,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "dragon-s-fire-megawaystm",
-    "title": "Dragon's Fire MegaWays\u2122",
+    "title": "Dragon's Fire MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/dragon-s-fire-megawaystm.webp",
@@ -22725,7 +22736,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "egypt-clusterbustertm",
-    "title": "Egypt Clusterbuster\u2122",
+    "title": "Egypt Clusterbuster™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/egypt-clusterbustertm.webp",
@@ -22821,7 +22832,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "gems-inferno-megawaystm",
-    "title": "Gems Inferno Megaways\u2122",
+    "title": "Gems Inferno Megaways™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/gems-inferno-megawaystm.webp",
@@ -22903,7 +22914,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "gods-of-troy-megawaystm",
-    "title": "Gods of Troy MegaWays\u2122",
+    "title": "Gods of Troy MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/gods-of-troy-megawaystm.webp",
@@ -22936,7 +22947,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "golden-leprechaun-megawaystm",
-    "title": "Golden Leprechaun MegaWays\u2122",
+    "title": "Golden Leprechaun MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/golden-leprechaun-megawaystm.webp",
@@ -22984,7 +22995,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "gonzo-s-questtm-megawaystm",
-    "title": "Gonzo's Quest\u2122 MegaWays\u2122",
+    "title": "Gonzo's Quest™ MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/gonzo-s-questtm-megawaystm.webp",
@@ -23001,7 +23012,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "good-luck-clusterbustertm",
-    "title": "Good Luck Clusterbuster\u2122",
+    "title": "Good Luck Clusterbuster™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/good-luck-clusterbustertm.webp",
@@ -23081,7 +23092,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "judgement-day-megawaystm",
-    "title": "Judgement Day Megaways\u2122",
+    "title": "Judgement Day Megaways™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/judgement-day-megawaystm.webp",
@@ -23097,7 +23108,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "legend-of-forbidden-love-megawaystm",
-    "title": "Legend of Forbidden Love Megaways\u2122",
+    "title": "Legend of Forbidden Love Megaways™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/legend-of-forbidden-love-megawaystm.webp",
@@ -23146,7 +23157,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "majestic-mysteries-power-reelstm",
-    "title": "Majestic Mysteries Power Reels\u2122",
+    "title": "Majestic Mysteries Power Reels™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/majestic-mysteries-power-reelstm.webp",
@@ -23228,7 +23239,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "piggy-riches-2tm-megawaystm",
-    "title": "Piggy Riches 2\u2122 MegaWays\u2122",
+    "title": "Piggy Riches 2™ MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/piggy-riches-2tm-megawaystm.webp",
@@ -23245,7 +23256,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "primate-king-megawaystm",
-    "title": "Primate King MegaWays\u2122",
+    "title": "Primate King MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/primate-king-megawaystm.webp",
@@ -23278,7 +23289,7 @@ const slotsBatch5: SlotGame[] = [
   },
   {
     "id": "risque-megawaystm",
-    "title": "Risque Megaways\u2122",
+    "title": "Risque Megaways™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/risque-megawaystm.webp",
@@ -23522,7 +23533,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "viking-s-legacy-everywaytm",
-    "title": "Viking's Legacy EveryWay\u2122",
+    "title": "Viking's Legacy EveryWay™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/viking-s-legacy-everywaytm.webp",
@@ -23653,7 +23664,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "zeus-lightning-megawaystm",
-    "title": "Zeus Lightning MegaWays\u2122",
+    "title": "Zeus Lightning MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/zeus-lightning-megawaystm.webp",
@@ -23670,7 +23681,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "10-001-nights-megawaystm",
-    "title": "10,001 Nights MegaWays\u2122",
+    "title": "10,001 Nights MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/10-001-nights-megawaystm.webp",
@@ -23718,7 +23729,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "athens-megawaystm",
-    "title": "Athens MegaWays\u2122",
+    "title": "Athens MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/athens-megawaystm.webp",
@@ -23735,7 +23746,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "bass-boss-megawaystm",
-    "title": "Bass Boss MegaWays\u2122",
+    "title": "Bass Boss MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/bass-boss-megawaystm.webp",
@@ -23766,7 +23777,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "buffalo-mania-megawaystm",
-    "title": "Buffalo Mania MegaWays\u2122",
+    "title": "Buffalo Mania MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/buffalo-mania-megawaystm.webp",
@@ -23878,7 +23889,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "dragons-lock",
-    "title": "Dragons\u2019 Lock",
+    "title": "Dragons’ Lock",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/dragons-lock.webp",
@@ -24135,7 +24146,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "trillionaire-megawaystm",
-    "title": "Trillionaire MegaWays\u2122",
+    "title": "Trillionaire MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/trillionaire-megawaystm.webp",
@@ -24168,7 +24179,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "vault-cracker-megawaystm",
-    "title": "Vault Cracker MegaWays\u2122",
+    "title": "Vault Cracker MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/vault-cracker-megawaystm.webp",
@@ -24281,7 +24292,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "wings-of-ra-megawaystm",
-    "title": "Wings of Ra Megaways\u2122",
+    "title": "Wings of Ra Megaways™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/wings-of-ra-megawaystm.webp",
@@ -24878,7 +24889,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "fortune-house-power-reelstm",
-    "title": "Fortune House Power Reels\u2122",
+    "title": "Fortune House Power Reels™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/fortune-house-power-reelstm.webp",
@@ -24893,7 +24904,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "get-the-gold-infinireelstm",
-    "title": "Get the Gold INFINIREELS\u2122",
+    "title": "Get the Gold INFINIREELS™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/get-the-gold-infinireelstm.webp",
@@ -25030,7 +25041,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "jingle-ways-megawaystm",
-    "title": "Jingle Ways Megaways\u2122",
+    "title": "Jingle Ways Megaways™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/jingle-ways-megawaystm.webp",
@@ -25516,7 +25527,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "nft-megawaystm",
-    "title": "NFT Megaways\u2122",
+    "title": "NFT Megaways™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/nft-megawaystm.webp",
@@ -25637,7 +25648,7 @@ const slotsBatch6: SlotGame[] = [
   },
   {
     "id": "piggy-richestm-megawaystm",
-    "title": "Piggy Riches\u2122 MegaWays\u2122",
+    "title": "Piggy Riches™ MegaWays™",
     "provider": "Red Tiger",
     "providerLogo": "/images/providers/red-tiger.webp",
     "image": "/images/slots/piggy-richestm-megawaystm.webp",
@@ -26135,10 +26146,11 @@ const slotsBatch6: SlotGame[] = [
   {
     "id": "three-kingdoms",
     "title": "Three Kingdoms",
-    "provider": "Red Tiger",
-    "providerLogo": "/images/providers/red-tiger.webp",
+    "provider": "LGD",
     "image": "/images/slots/three-kingdoms.webp",
     "category": [
+      "hot",
+      "top-pick",
       "max-rpt"
     ],
     "theme": "Myth & History",
@@ -26450,6 +26462,12708 @@ const slotsBatch6: SlotGame[] = [
       "Buy Spins",
       "Free Spins"
     ]
+  },
+  {
+    "id": "3-luckyion",
+    "title": "3 LUCKYION",
+    "provider": "2bet",
+    "image": "/images/slots/3-luckyion.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "massive-gold",
+    "title": "Massive Gold",
+    "provider": "MG+",
+    "image": "/images/slots/massive-gold.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Prize Pool"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "slot-3",
+    "title": "秘密宝藏",
+    "provider": "LGD",
+    "image": "/images/slots/slot-3.webp",
+    "category": [
+      "top-pick"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "wild-mining-xxxtreme",
+    "title": "Wild Mining XXXtreme",
+    "provider": "NetEnt",
+    "image": "/images/slots/wild-mining-xxxtreme.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "almighty-zeus-empire",
+    "title": "Almighty Zeus Empire",
+    "provider": "MG+",
+    "image": "/images/slots/almighty-zeus-empire.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Prize Pool"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "saiyan-battle",
+    "title": "Saiyan Battle",
+    "provider": "LGD",
+    "image": "/images/slots/saiyan-battle.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Anime",
+    "features": [
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "parthenon-quest-for-immortalitytm",
+    "title": "Parthenon: Quest for Immortality™",
+    "provider": "NetEnt",
+    "image": "/images/slots/parthenon-quest-for-immortalitytm.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Prize Pool"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "wildfire-wins",
+    "title": "Wildfire Wins",
+    "provider": "MG+",
+    "image": "/images/slots/wildfire-wins.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "aladdin-s-wish",
+    "title": "Aladdin's Wish",
+    "provider": "LGD",
+    "image": "/images/slots/aladdin-s-wish.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Movie",
+    "features": [
+      "Prize Pool"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "milkshaketm-xxxtreme",
+    "title": "Milkshake™ XXXtreme",
+    "provider": "NetEnt",
+    "image": "/images/slots/milkshaketm-xxxtreme.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "queen-of-cairo",
+    "title": "Queen of Cairo",
+    "provider": "MG+",
+    "image": "/images/slots/queen-of-cairo.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "im-king",
+    "title": "IM King",
+    "provider": "LGD",
+    "image": "/images/slots/im-king.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "fruit-shoptm-megawaystm",
+    "title": "Fruit Shop™ Megaways™",
+    "provider": "NetEnt",
+    "image": "/images/slots/fruit-shoptm-megawaystm.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "splash-of-riches",
+    "title": "Splash of Riches",
+    "provider": "MG+",
+    "image": "/images/slots/splash-of-riches.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Prize Pool"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "rock-night2-scorchin777",
+    "title": "Rock Night2-SCORCHIN777",
+    "provider": "LGD",
+    "image": "/images/slots/rock-night2-scorchin777.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "blood-suckerstm",
+    "title": "Blood Suckers™",
+    "provider": "NetEnt",
+    "image": "/images/slots/blood-suckerstm.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "roma-x-deluxe",
+    "title": "Roma X Deluxe",
+    "provider": "2bet",
+    "image": "/images/slots/roma-x-deluxe.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game",
+      "Buy Spins"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "mummy-lock-riches",
+    "title": "Mummy Lock Riches",
+    "provider": "MG+",
+    "image": "/images/slots/mummy-lock-riches.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "field-of-honor",
+    "title": "Field Of Honor",
+    "provider": "LGD",
+    "image": "/images/slots/field-of-honor.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "101-candies",
+    "title": "101 Candies",
+    "provider": "NetEnt",
+    "image": "/images/slots/101-candies.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "night-fall-hunting",
+    "title": "Night fall Hunting",
+    "provider": "2bet",
+    "image": "/images/slots/night-fall-hunting.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "sweet-jar-combo",
+    "title": "Sweet Jar Combo",
+    "provider": "MG+",
+    "image": "/images/slots/sweet-jar-combo.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "nezha-legend",
+    "title": "Nezha Legend",
+    "provider": "LGD",
+    "image": "/images/slots/nezha-legend.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "big-money-wheel",
+    "title": "Big Money Wheel",
+    "provider": "NetEnt",
+    "image": "/images/slots/big-money-wheel.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "go-fishing-reelin-fortunes",
+    "title": "Go! Fishing: Reelin' Fortunes",
+    "provider": "MG+",
+    "image": "/images/slots/go-fishing-reelin-fortunes.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game",
+      "Prize Pool"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "mahjong-king",
+    "title": "MAHJONG KING",
+    "provider": "LGD",
+    "image": "/images/slots/mahjong-king.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "rage-of-the-seastm",
+    "title": "Rage of the Seas™",
+    "provider": "NetEnt",
+    "image": "/images/slots/rage-of-the-seastm.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "candy-rush-wilds",
+    "title": "Candy Rush Wilds",
+    "provider": "MG+",
+    "image": "/images/slots/candy-rush-wilds.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game",
+      "Buy Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "starbursttm",
+    "title": "Starburst™",
+    "provider": "NetEnt",
+    "image": "/images/slots/starbursttm.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "sugar-craze-bonanza",
+    "title": "Sugar Craze Bonanza",
+    "provider": "MG+",
+    "image": "/images/slots/sugar-craze-bonanza.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "treasure-hunt-trip",
+    "title": "Treasure Hunt Trip",
+    "provider": "LGD",
+    "image": "/images/slots/treasure-hunt-trip.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "gordon-ramsay-hell-s-kitchen",
+    "title": "Gordon Ramsay Hell’s Kitchen",
+    "provider": "NetEnt",
+    "image": "/images/slots/gordon-ramsay-hell-s-kitchen.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "ancient-fortunes-poseidon-megaways-tm",
+    "title": "Ancient Fortunes: Poseidon Megaways ™",
+    "provider": "MG+",
+    "image": "/images/slots/ancient-fortunes-poseidon-megaways-tm.webp",
+    "category": [
+      "cold",
+      "top-pick"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game",
+      "Buy Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "Megaways"
+  },
+  {
+    "id": "3d-slot",
+    "title": "3D Slot",
+    "provider": "LGD",
+    "image": "/images/slots/3d-slot.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "big-bang-boom",
+    "title": "Big Bang Boom",
+    "provider": "NetEnt",
+    "image": "/images/slots/big-bang-boom.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "aztec-triple-riches-power-combo",
+    "title": "Aztec Triple Riches Power Combo",
+    "provider": "MG+",
+    "image": "/images/slots/aztec-triple-riches-power-combo.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "investiture-of-gods",
+    "title": "Investiture of Gods",
+    "provider": "LGD",
+    "image": "/images/slots/investiture-of-gods.webp",
+    "category": [
+      "cold",
+      "top-pick"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "starbursttm-xxxtreme",
+    "title": "Starburst™ XXXtreme",
+    "provider": "NetEnt",
+    "image": "/images/slots/starbursttm-xxxtreme.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "almighty-poseidon-empire",
+    "title": "Almighty Poseidon Empire",
+    "provider": "MG+",
+    "image": "/images/slots/almighty-poseidon-empire.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game",
+      "Prize Pool"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "four-beauties",
+    "title": "Four Beauties",
+    "provider": "LGD",
+    "image": "/images/slots/four-beauties.webp",
+    "category": [
+      "cold",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "cupcakestm",
+    "title": "Cupcakes™",
+    "provider": "NetEnt",
+    "image": "/images/slots/cupcakestm.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "piratequeen",
+    "title": "PirateQueen",
+    "provider": "2bet",
+    "image": "/images/slots/piratequeen.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "gold-blitz-extreme",
+    "title": "Gold Blitz Extreme",
+    "provider": "MG+",
+    "image": "/images/slots/gold-blitz-extreme.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game",
+      "Prize Pool"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "tales-of-wusong",
+    "title": "Tales Of Wusong",
+    "provider": "LGD",
+    "image": "/images/slots/tales-of-wusong.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "buster-s-bones",
+    "title": "Buster's Bones",
+    "provider": "NetEnt",
+    "image": "/images/slots/buster-s-bones.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "3-pot-dragons",
+    "title": "3 Pot Dragons",
+    "provider": "2bet",
+    "image": "/images/slots/3-pot-dragons.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "gold-infinity",
+    "title": "Gold Infinity",
+    "provider": "MG+",
+    "image": "/images/slots/gold-infinity.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "dragon-auto-chess",
+    "title": "Dragon Auto Chess",
+    "provider": "LGD",
+    "image": "/images/slots/dragon-auto-chess.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "twin-spintm",
+    "title": "Twin Spin™",
+    "provider": "NetEnt",
+    "image": "/images/slots/twin-spintm.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "10 lines"
+  },
+  {
+    "id": "bonnys-treasures",
+    "title": "Bonnys Treasures",
+    "provider": "MG+",
+    "image": "/images/slots/bonnys-treasures.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "shokudo",
+    "title": "Shokudo",
+    "provider": "LGD",
+    "image": "/images/slots/shokudo.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "dark-king-forbidden-richestm",
+    "title": "Dark King: Forbidden Riches™",
+    "provider": "NetEnt",
+    "image": "/images/slots/dark-king-forbidden-richestm.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "starburst-galaxy",
+    "title": "Starburst Galaxy",
+    "provider": "NetEnt",
+    "image": "/images/slots/starburst-galaxy.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "10 lines"
+  },
+  {
+    "id": "gold-empire",
+    "title": "Gold Empire",
+    "provider": "2bet",
+    "image": "/images/slots/gold-empire.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "trollpot-5000tm",
+    "title": "Trollpot 5000™",
+    "provider": "NetEnt",
+    "image": "/images/slots/trollpot-5000tm.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "crab-traptm",
+    "title": "Crab Trap™",
+    "provider": "NetEnt",
+    "image": "/images/slots/crab-traptm.webp",
+    "category": [
+      "hot",
+      "top-pick"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  }
+]
+
+const slotsBatch7: SlotGame[] = [
+  {
+    "id": "3-pots-of-wishestm",
+    "title": "3 Pots of Wishes™",
+    "provider": "BS",
+    "image": "/images/slots/3-pots-of-wishestm.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "new": true,
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "the-oil-baronstm",
+    "title": "THE Oil Barons™",
+    "provider": "BS",
+    "image": "/images/slots/the-oil-baronstm.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "new": true,
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "once-again-upon-a-timetm",
+    "title": "Once Again Upon a Time™",
+    "provider": "BS",
+    "image": "/images/slots/once-again-upon-a-timetm.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "new": true,
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-king-of-social-mediatm",
+    "title": "THE King of Social Media™",
+    "provider": "BS",
+    "image": "/images/slots/the-king-of-social-mediatm.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "new": true,
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "3-pots-of-olympustm",
+    "title": "3 Pots of Olympus™",
+    "provider": "BS",
+    "image": "/images/slots/3-pots-of-olympustm.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "new": true,
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "the-jealous-extm",
+    "title": "THE Jealous Ex™",
+    "provider": "BS",
+    "image": "/images/slots/the-jealous-extm.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "new": true,
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "after-night-falls-2tm",
+    "title": "After Night Falls 2™",
+    "provider": "BS",
+    "image": "/images/slots/after-night-falls-2tm.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "new": true,
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "the-auction-housetm",
+    "title": "THE Auction House™",
+    "provider": "BS",
+    "image": "/images/slots/the-auction-housetm.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "new": true,
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "super-stampedetm",
+    "title": "Super Stampede™",
+    "provider": "BS",
+    "image": "/images/slots/super-stampedetm.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "new": true,
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "coins-of-dragon-hold-wintm",
+    "title": "Coins of Dragon - Hold & Win™",
+    "provider": "BS",
+    "image": "/images/slots/coins-of-dragon-hold-wintm.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "new": true,
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "baccarat",
+    "title": "Baccarat",
+    "provider": "NetEnt",
+    "image": "/images/slots/baccarat.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ]
+  },
+  {
+    "id": "codex-of-fortunetm",
+    "title": "Codex of Fortune™",
+    "provider": "NetEnt",
+    "image": "/images/slots/codex-of-fortunetm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "the-slotfather-jp",
+    "title": "The Slotfather JP",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/the-slotfather-jp.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "rtpPercent": "97.9%",
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "armor-crisis",
+    "title": "Armor Crisis",
+    "provider": "LGD",
+    "image": "/images/slots/armor-crisis.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "dinosaur-world",
+    "title": "Dinosaur World",
+    "provider": "LGD",
+    "image": "/images/slots/dinosaur-world.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "vip-american-roulette",
+    "title": "VIP American Roulette",
+    "provider": "BS",
+    "image": "/images/slots/vip-american-roulette.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ]
+  },
+  {
+    "id": "good-girl-bad-girl",
+    "title": "Good Girl/Bad Girl",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/good-girl-bad-girl.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "rtpPercent": "97.7%",
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "gypsy-rose",
+    "title": "Gypsy Rose",
+    "provider": "BS",
+    "image": "/images/slots/gypsy-rose.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "magic-bean-legend",
+    "title": "Magic Bean Legend",
+    "provider": "LGD",
+    "image": "/images/slots/magic-bean-legend.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "safari-sam",
+    "title": "Safari Sam",
+    "provider": "BS",
+    "image": "/images/slots/safari-sam.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "curious-machine-plus",
+    "title": "Curious Machine PLUS",
+    "provider": "BS",
+    "image": "/images/slots/curious-machine-plus.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "quest-to-the-west",
+    "title": "Quest To The West",
+    "provider": "BS",
+    "image": "/images/slots/quest-to-the-west.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "cheeky-emojis",
+    "title": "Cheeky Emojis",
+    "provider": "LGD",
+    "image": "/images/slots/cheeky-emojis.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "street-dance-of-china",
+    "title": "Street Dance of China",
+    "provider": "LGD",
+    "image": "/images/slots/street-dance-of-china.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "demon-hunt-to-west",
+    "title": "Demon Hunt to West",
+    "provider": "LGD",
+    "image": "/images/slots/demon-hunt-to-west.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "happy-farm",
+    "title": "Happy Farm",
+    "provider": "LGD",
+    "image": "/images/slots/happy-farm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "25 lines"
+  },
+  {
+    "id": "nightclub",
+    "title": "Nightclub",
+    "provider": "LGD",
+    "image": "/images/slots/nightclub.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "battle-of-red-cliffs",
+    "title": "Battle of Red Cliffs",
+    "provider": "LGD",
+    "image": "/images/slots/battle-of-red-cliffs.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "retro-reels",
+    "title": "Retro Reels",
+    "provider": "MG+",
+    "image": "/images/slots/retro-reels.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "retro-reels-diamond-glitz",
+    "title": "Retro Reels - Diamond Glitz",
+    "provider": "MG+",
+    "image": "/images/slots/retro-reels-diamond-glitz.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "retro-reels-extreme-heat",
+    "title": "Retro Reels - Extreme Heat",
+    "provider": "MG+",
+    "image": "/images/slots/retro-reels-extreme-heat.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "wealthy-god-arriving",
+    "title": "Wealthy God Arriving",
+    "provider": "LGD",
+    "image": "/images/slots/wealthy-god-arriving.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "sushi-bar",
+    "title": "Sushi Bar",
+    "provider": "BS",
+    "image": "/images/slots/sushi-bar.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "at-the-copa",
+    "title": "At The Copa",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/at-the-copa.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "rtpPercent": "97.4%",
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "under-the-bed",
+    "title": "Under the Bed",
+    "provider": "BS",
+    "image": "/images/slots/under-the-bed.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "boxing-arena",
+    "title": "Boxing Arena",
+    "provider": "LGD",
+    "image": "/images/slots/boxing-arena.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "bikini-party",
+    "title": "Bikini Party",
+    "provider": "MG+",
+    "image": "/images/slots/bikini-party.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dragon-dance",
+    "title": "Dragon Dance",
+    "provider": "MG+",
+    "image": "/images/slots/dragon-dance.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lucky-riches-hyperspins",
+    "title": "Lucky Riches Hyperspins",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-riches-hyperspins.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "reel-gems",
+    "title": "Reel Gems",
+    "provider": "MG+",
+    "image": "/images/slots/reel-gems.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "wild-orient",
+    "title": "Wild Orient",
+    "provider": "MG+",
+    "image": "/images/slots/wild-orient.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "vip-european-roulette",
+    "title": "VIP European Roulette",
+    "provider": "BS",
+    "image": "/images/slots/vip-european-roulette.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ]
+  },
+  {
+    "id": "sugar-pop",
+    "title": "Sugar Pop",
+    "provider": "BS",
+    "image": "/images/slots/sugar-pop.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "crazy-alchemist",
+    "title": "Crazy Alchemist",
+    "provider": "LGD",
+    "image": "/images/slots/crazy-alchemist.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "bikini-party-2",
+    "title": "Bikini Party",
+    "provider": "LGD",
+    "image": "/images/slots/bikini-party-2.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "candy-kingdom",
+    "title": "Candy Kingdom",
+    "provider": "LGD",
+    "image": "/images/slots/candy-kingdom.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "eye-of-egypt",
+    "title": "Eye Of Egypt",
+    "provider": "LGD",
+    "image": "/images/slots/eye-of-egypt.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "legendary-tales",
+    "title": "Legendary Tales",
+    "provider": "LGD",
+    "image": "/images/slots/legendary-tales.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "sailor-princess",
+    "title": "Sailor Princess",
+    "provider": "LGD",
+    "image": "/images/slots/sailor-princess.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "secret-date",
+    "title": "Secret Date",
+    "provider": "LGD",
+    "image": "/images/slots/secret-date.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "oni-hunter",
+    "title": "Oni Hunter",
+    "provider": "MG+",
+    "image": "/images/slots/oni-hunter.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "oni-hunter-plus",
+    "title": "Oni Hunter Plus",
+    "provider": "MG+",
+    "image": "/images/slots/oni-hunter-plus.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Buy Spins",
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "west-wild",
+    "title": "West Wild",
+    "provider": "LGD",
+    "image": "/images/slots/west-wild.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "after-night-falls",
+    "title": "After Night Falls",
+    "provider": "BS",
+    "image": "/images/slots/after-night-falls.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "greedy-goblins",
+    "title": "Greedy Goblins",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/greedy-goblins.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "rtpPercent": "97.2%",
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "puppy-love-plus",
+    "title": "Puppy Love PLUS",
+    "provider": "BS",
+    "image": "/images/slots/puppy-love-plus.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "germ-lab",
+    "title": "Germ Lab",
+    "provider": "LGD",
+    "image": "/images/slots/germ-lab.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "blood-wolf-legend",
+    "title": "Blood Wolf legend",
+    "provider": "LGD",
+    "image": "/images/slots/blood-wolf-legend.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "blue-sea",
+    "title": "Blue Sea",
+    "provider": "LGD",
+    "image": "/images/slots/blue-sea.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "casino-tycoon",
+    "title": "Casino Tycoon",
+    "provider": "LGD",
+    "image": "/images/slots/casino-tycoon.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "clash-of-three-kingdoms",
+    "title": "Clash of Three kingdoms",
+    "provider": "LGD",
+    "image": "/images/slots/clash-of-three-kingdoms.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "heroes-of-the-east",
+    "title": "Heroes of the East",
+    "provider": "LGD",
+    "image": "/images/slots/heroes-of-the-east.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "ice-and-fire",
+    "title": "Ice And Fire",
+    "provider": "LGD",
+    "image": "/images/slots/ice-and-fire.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "magician",
+    "title": "Magician",
+    "provider": "LGD",
+    "image": "/images/slots/magician.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "mystic-museum",
+    "title": "Mystic Museum",
+    "provider": "LGD",
+    "image": "/images/slots/mystic-museum.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "mystical-stones",
+    "title": "Mystical Stones",
+    "provider": "LGD",
+    "image": "/images/slots/mystical-stones.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "happy-piggy-new-year",
+    "title": "Happy Piggy New Year",
+    "provider": "LGD",
+    "image": "/images/slots/happy-piggy-new-year.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "infinity-club",
+    "title": "Infinity Club",
+    "provider": "LGD",
+    "image": "/images/slots/infinity-club.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dragon-legend",
+    "title": "Dragon Legend",
+    "provider": "Choice",
+    "image": "/images/slots/dragon-legend.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "kung-fu-legends",
+    "title": "Kung Fu Legends",
+    "provider": "Choice",
+    "image": "/images/slots/kung-fu-legends.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "national-carnival",
+    "title": "National Carnival",
+    "provider": "LGD",
+    "image": "/images/slots/national-carnival.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "street-dance-show",
+    "title": "Street Dance Show",
+    "provider": "LGD",
+    "image": "/images/slots/street-dance-show.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "tomb-shadow",
+    "title": "Tomb Shadow",
+    "provider": "LGD",
+    "image": "/images/slots/tomb-shadow.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "treasure-hunt-trip-2",
+    "title": "Treasure Hunt Trip 2",
+    "provider": "LGD",
+    "image": "/images/slots/treasure-hunt-trip-2.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "slot-76",
+    "title": "秘密宝藏",
+    "provider": "LGD",
+    "image": "/images/slots/slot-76.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "secrets-of-pentagram",
+    "title": "Secrets of Pentagram",
+    "provider": "LGD",
+    "image": "/images/slots/secrets-of-pentagram.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "the-tipsy-tourist",
+    "title": "The Tipsy Tourist",
+    "provider": "BS",
+    "image": "/images/slots/the-tipsy-tourist.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "the-angler",
+    "title": "The Angler",
+    "provider": "BS",
+    "image": "/images/slots/the-angler.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "dim-sum-prize",
+    "title": "Dim Sum Prize",
+    "provider": "BS",
+    "image": "/images/slots/dim-sum-prize.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "baseball-frenzy",
+    "title": "Baseball Frenzy",
+    "provider": "LGD",
+    "image": "/images/slots/baseball-frenzy.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "dragonphoenix-prosper",
+    "title": "DragonPhoenix Prosper",
+    "provider": "LGD",
+    "image": "/images/slots/dragonphoenix-prosper.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "sexy-girls",
+    "title": "Sexy Girls",
+    "provider": "LGD",
+    "image": "/images/slots/sexy-girls.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "blood-street",
+    "title": "Blood Street",
+    "provider": "LGD",
+    "image": "/images/slots/blood-street.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "legendary-hegemony",
+    "title": "Legendary Hegemony",
+    "provider": "LGD",
+    "image": "/images/slots/legendary-hegemony.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "love-fighters",
+    "title": "Love Fighters",
+    "provider": "LGD",
+    "image": "/images/slots/love-fighters.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "ninja",
+    "title": "NINJA",
+    "provider": "LGD",
+    "image": "/images/slots/ninja.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "truffle-butter",
+    "title": "Truffle Butter",
+    "provider": "LGD",
+    "image": "/images/slots/truffle-butter.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "golden-dragon",
+    "title": "Golden Dragon",
+    "provider": "Choice",
+    "image": "/images/slots/golden-dragon.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "go-gold",
+    "title": "Go Gold",
+    "provider": "Choice",
+    "image": "/images/slots/go-gold.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "seiya",
+    "title": "Seiya",
+    "provider": "LGD",
+    "image": "/images/slots/seiya.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Anime",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "4x4-battle",
+    "title": "4X4 BATTLE",
+    "provider": "LGD",
+    "image": "/images/slots/4x4-battle.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "wrath-of-thor",
+    "title": "Wrath of Thor",
+    "provider": "LGD",
+    "image": "/images/slots/wrath-of-thor.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky7",
+    "title": "Lucky7",
+    "provider": "BS",
+    "image": "/images/slots/lucky7.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-true-sheriff",
+    "title": "The True Sheriff",
+    "provider": "BS",
+    "image": "/images/slots/the-true-sheriff.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "back-to-venus",
+    "title": "Back to Venus",
+    "provider": "BS",
+    "image": "/images/slots/back-to-venus.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "monster-pop",
+    "title": "Monster Pop",
+    "provider": "BS",
+    "image": "/images/slots/monster-pop.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "jungle-stripes",
+    "title": "Jungle Stripes",
+    "provider": "BS",
+    "image": "/images/slots/jungle-stripes.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "mr-macau",
+    "title": "Mr. Macau",
+    "provider": "BS",
+    "image": "/images/slots/mr-macau.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "bird-island",
+    "title": "Bird Island",
+    "provider": "LGD",
+    "image": "/images/slots/bird-island.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "crazy-go-go-go",
+    "title": "Crazy GO GO GO",
+    "provider": "LGD",
+    "image": "/images/slots/crazy-go-go-go.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "little-big-garden",
+    "title": "Little Big Garden",
+    "provider": "LGD",
+    "image": "/images/slots/little-big-garden.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "secrets-of-atlantistm",
+    "title": "Secrets of Atlantis™",
+    "provider": "NetEnt",
+    "image": "/images/slots/secrets-of-atlantistm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "hotlinetm",
+    "title": "Hotline™",
+    "provider": "NetEnt",
+    "image": "/images/slots/hotlinetm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "jack-hammer-2-fishy-business",
+    "title": "Jack Hammer 2: Fishy Business",
+    "provider": "NetEnt",
+    "image": "/images/slots/jack-hammer-2-fishy-business.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "ocean-park",
+    "title": "Ocean Park",
+    "provider": "LGD",
+    "image": "/images/slots/ocean-park.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "king-of-pirate",
+    "title": "KING OF PIRATE",
+    "provider": "LGD",
+    "image": "/images/slots/king-of-pirate.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "happiness-overflow",
+    "title": "Happiness Overflow",
+    "provider": "LGD",
+    "image": "/images/slots/happiness-overflow.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky-combo",
+    "title": "Lucky Combo",
+    "provider": "Choice",
+    "image": "/images/slots/lucky-combo.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "flyx",
+    "title": "FlyX",
+    "provider": "MG+",
+    "image": "/images/slots/flyx.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ]
+  },
+  {
+    "id": "steam-towertm",
+    "title": "Steam Tower™",
+    "provider": "NetEnt",
+    "image": "/images/slots/steam-towertm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dim-sum-master",
+    "title": "Dim Sum Master",
+    "provider": "Choice",
+    "image": "/images/slots/dim-sum-master.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "wandering-planet",
+    "title": "Wandering Planet",
+    "provider": "LGD",
+    "image": "/images/slots/wandering-planet.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "alice-adventures",
+    "title": "Alice Adventures",
+    "provider": "Choice",
+    "image": "/images/slots/alice-adventures.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "whack-a-mole",
+    "title": "Whack-A-Mole",
+    "provider": "LGD",
+    "image": "/images/slots/whack-a-mole.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Auto Game"
+    ]
+  },
+  {
+    "id": "chinese-paladin",
+    "title": "Chinese Paladin",
+    "provider": "LGD",
+    "image": "/images/slots/chinese-paladin.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Anime",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "mahjong-ways-2",
+    "title": "Mahjong Ways 2",
+    "provider": "2bet",
+    "image": "/images/slots/mahjong-ways-2.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "cai-shen-wins",
+    "title": "Cai Shen Wins",
+    "provider": "2bet",
+    "image": "/images/slots/cai-shen-wins.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "a-night-in-paris-jp",
+    "title": "A Night In Paris JP",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/a-night-in-paris-jp.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "rtpPercent": "96.9%",
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "a-night-in-paris-jp-2",
+    "title": "A Night In Paris JP",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/a-night-in-paris-jp-2.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "rtpPercent": "96.9%",
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "bamboo-rush",
+    "title": "Bamboo Rush",
+    "provider": "BS",
+    "image": "/images/slots/bamboo-rush.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "total-overdrive",
+    "title": "Total Overdrive",
+    "provider": "BS",
+    "image": "/images/slots/total-overdrive.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "gears-of-time",
+    "title": "Gears of Time",
+    "provider": "BS",
+    "image": "/images/slots/gears-of-time.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "blood-suckers-iitm",
+    "title": "Blood Suckers II™",
+    "provider": "NetEnt",
+    "image": "/images/slots/blood-suckers-iitm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "crazy-basketball",
+    "title": "Crazy Basketball",
+    "provider": "LGD",
+    "image": "/images/slots/crazy-basketball.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "sexy-camgirl",
+    "title": "Sexy Camgirl",
+    "provider": "LGD",
+    "image": "/images/slots/sexy-camgirl.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dazzle-metm",
+    "title": "Dazzle Me™",
+    "provider": "NetEnt",
+    "image": "/images/slots/dazzle-metm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "monopoly",
+    "title": "Monopoly",
+    "provider": "LGD",
+    "image": "/images/slots/monopoly.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "guns-n-roses-video-slotstm",
+    "title": "Guns N' Roses Video Slots™",
+    "provider": "NetEnt",
+    "image": "/images/slots/guns-n-roses-video-slotstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Buy Spins",
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "mahjong-streak",
+    "title": "Mahjong Streak",
+    "provider": "Choice",
+    "image": "/images/slots/mahjong-streak.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "coins-of-egypttm",
+    "title": "Coins of Egypt™",
+    "provider": "NetEnt",
+    "image": "/images/slots/coins-of-egypttm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "jack-hammertm",
+    "title": "Jack Hammer™",
+    "provider": "NetEnt",
+    "image": "/images/slots/jack-hammertm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "jimi-hendrix-online-slottm",
+    "title": "Jimi Hendrix Online Slot™",
+    "provider": "NetEnt",
+    "image": "/images/slots/jimi-hendrix-online-slottm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "king-of-slotstm",
+    "title": "King of Slots™",
+    "provider": "NetEnt",
+    "image": "/images/slots/king-of-slotstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "long-paotm",
+    "title": "Long Pao™",
+    "provider": "NetEnt",
+    "image": "/images/slots/long-paotm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "motorhead-video-slottm",
+    "title": "Motörhead Video Slot™",
+    "provider": "NetEnt",
+    "image": "/images/slots/motorhead-video-slottm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "neon-staxxtm",
+    "title": "Neon Staxx™",
+    "provider": "NetEnt",
+    "image": "/images/slots/neon-staxxtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "happy-new-year",
+    "title": "Happy New Year",
+    "provider": "LGD",
+    "image": "/images/slots/happy-new-year.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "reel-rushtm",
+    "title": "Reel Rush™",
+    "provider": "NetEnt",
+    "image": "/images/slots/reel-rushtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "scudamore-s-super-stakes",
+    "title": "Scudamore's Super Stakes",
+    "provider": "NetEnt",
+    "image": "/images/slots/scudamore-s-super-stakes.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "5-reel-drive",
+    "title": "5 Reel Drive",
+    "provider": "MG+",
+    "image": "/images/slots/5-reel-drive.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "big-top",
+    "title": "Big Top",
+    "provider": "MG+",
+    "image": "/images/slots/big-top.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "carnaval",
+    "title": "Carnaval",
+    "provider": "MG+",
+    "image": "/images/slots/carnaval.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lucky-twins",
+    "title": "Lucky Twins",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-twins.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "pong-pong-mahjong-jackpots",
+    "title": "Pong Pong Mahjong Jackpots",
+    "provider": "MG+",
+    "image": "/images/slots/pong-pong-mahjong-jackpots.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Prize Pool",
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "reel-thunder",
+    "title": "Reel Thunder",
+    "provider": "MG+",
+    "image": "/images/slots/reel-thunder.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "treasure-palace",
+    "title": "Treasure Palace",
+    "provider": "MG+",
+    "image": "/images/slots/treasure-palace.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "15 lines"
+  },
+  {
+    "id": "what-a-hoot",
+    "title": "What A Hoot",
+    "provider": "MG+",
+    "image": "/images/slots/what-a-hoot.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "super-strikertm",
+    "title": "Super Striker™",
+    "provider": "NetEnt",
+    "image": "/images/slots/super-strikertm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "victorioustm",
+    "title": "Victorious™",
+    "provider": "NetEnt",
+    "image": "/images/slots/victorioustm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "monster-pop-2",
+    "title": "Monster Pop",
+    "provider": "LGD",
+    "image": "/images/slots/monster-pop-2.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "slots-angels",
+    "title": "Slots Angels",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/slots-angels.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "rtpPercent": "96.8%",
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "frankenslot-s-monster",
+    "title": "Frankenslot’s Monster",
+    "provider": "BS",
+    "image": "/images/slots/frankenslot-s-monster.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "arcane-reel-chaostm",
+    "title": "Arcane: Reel Chaos™",
+    "provider": "NetEnt",
+    "image": "/images/slots/arcane-reel-chaostm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "butterfly-staxxtm",
+    "title": "Butterfly Staxx™",
+    "provider": "NetEnt",
+    "image": "/images/slots/butterfly-staxxtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "joust-for-a-spouse",
+    "title": "Joust for a spouse",
+    "provider": "LGD",
+    "image": "/images/slots/joust-for-a-spouse.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "spinata-grandetm",
+    "title": "Spiñata Grande™",
+    "provider": "NetEnt",
+    "image": "/images/slots/spinata-grandetm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dead-or-alivetm",
+    "title": "Dead or Alive™",
+    "provider": "NetEnt",
+    "image": "/images/slots/dead-or-alivetm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "9 lines"
+  },
+  {
+    "id": "dead-or-alive-2tm",
+    "title": "Dead or Alive 2™",
+    "provider": "NetEnt",
+    "image": "/images/slots/dead-or-alive-2tm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dead-or-alive-2tm-feature-buy",
+    "title": "Dead or Alive 2™ Feature Buy",
+    "provider": "NetEnt",
+    "image": "/images/slots/dead-or-alive-2tm-feature-buy.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Buy Spins",
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "football-champions-cuptm",
+    "title": "Football: Champions Cup™",
+    "provider": "NetEnt",
+    "image": "/images/slots/football-champions-cuptm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "galaxy-wars",
+    "title": "Galaxy Wars",
+    "provider": "LGD",
+    "image": "/images/slots/galaxy-wars.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "ghost-piratestm",
+    "title": "Ghost Pirates™",
+    "provider": "NetEnt",
+    "image": "/images/slots/ghost-piratestm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "golden-rat",
+    "title": "Golden Rat",
+    "provider": "LGD",
+    "image": "/images/slots/golden-rat.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "pocket-soccer",
+    "title": "Pocket Soccer",
+    "provider": "Choice",
+    "image": "/images/slots/pocket-soccer.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "hotpot-feast",
+    "title": "Hotpot Feast",
+    "provider": "LGD",
+    "image": "/images/slots/hotpot-feast.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "fruit-spintm",
+    "title": "Fruit Spin™",
+    "provider": "NetEnt",
+    "image": "/images/slots/fruit-spintm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "joker-protm",
+    "title": "Joker Pro™",
+    "provider": "NetEnt",
+    "image": "/images/slots/joker-protm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "10 lines"
+  },
+  {
+    "id": "king-of-3-kingdomstm",
+    "title": "King of 3 Kingdoms™",
+    "provider": "NetEnt",
+    "image": "/images/slots/king-of-3-kingdomstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "who-is-daddy",
+    "title": "Who Is Daddy",
+    "provider": "LGD",
+    "image": "/images/slots/who-is-daddy.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "merry-xmas",
+    "title": "Merry Xmas",
+    "provider": "LGD",
+    "image": "/images/slots/merry-xmas.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "secret-of-the-stonestm",
+    "title": "Secret of the Stones™",
+    "provider": "NetEnt",
+    "image": "/images/slots/secret-of-the-stonestm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "basketball-star-deluxe",
+    "title": "Basketball Star Deluxe",
+    "provider": "MG+",
+    "image": "/images/slots/basketball-star-deluxe.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "break-away-deluxe",
+    "title": "Break Away Deluxe",
+    "provider": "MG+",
+    "image": "/images/slots/break-away-deluxe.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "break-away-lucky-wilds",
+    "title": "Break Away Lucky Wilds",
+    "provider": "MG+",
+    "image": "/images/slots/break-away-lucky-wilds.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "emperor-of-the-sea-deluxe",
+    "title": "Emperor of the Sea Deluxe",
+    "provider": "MG+",
+    "image": "/images/slots/emperor-of-the-sea-deluxe.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "football-star-deluxe",
+    "title": "Football Star Deluxe",
+    "provider": "MG+",
+    "image": "/images/slots/football-star-deluxe.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "gods-pyramids-power-combo",
+    "title": "Gods & Pyramids Power Combo",
+    "provider": "MG+",
+    "image": "/images/slots/gods-pyramids-power-combo.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "high-society",
+    "title": "High Society",
+    "provider": "MG+",
+    "image": "/images/slots/high-society.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "immortal-romance",
+    "title": "Immortal Romance",
+    "provider": "MG+",
+    "image": "/images/slots/immortal-romance.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "9 lines"
+  },
+  {
+    "id": "lucky-twins-catcher",
+    "title": "Lucky Twins Catcher",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-twins-catcher.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "rugby-star-deluxe",
+    "title": "Rugby Star Deluxe",
+    "provider": "MG+",
+    "image": "/images/slots/rugby-star-deluxe.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "tiger-s-treasures",
+    "title": "Tiger's Treasures",
+    "provider": "MG+",
+    "image": "/images/slots/tiger-s-treasures.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "candy-house",
+    "title": "Candy House",
+    "provider": "LGD",
+    "image": "/images/slots/candy-house.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "warlords-crystals-of-powertm",
+    "title": "Warlords: Crystals of Power™",
+    "provider": "NetEnt",
+    "image": "/images/slots/warlords-crystals-of-powertm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "who-s-the-bridetm",
+    "title": "Who's the Bride™",
+    "provider": "NetEnt",
+    "image": "/images/slots/who-s-the-bridetm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "wild-ape-3258",
+    "title": "Wild Ape #3258",
+    "provider": "2bet",
+    "image": "/images/slots/wild-ape-3258.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "rich-asians",
+    "title": "Rich Asians",
+    "provider": "LGD",
+    "image": "/images/slots/rich-asians.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "copy-cats",
+    "title": "Copy Cats",
+    "provider": "NetEnt",
+    "image": "/images/slots/copy-cats.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "fairytale-legends-hansel-and-greteltm",
+    "title": "Fairytale Legends: Hansel and Gretel™",
+    "provider": "NetEnt",
+    "image": "/images/slots/fairytale-legends-hansel-and-greteltm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "fruit-shoptm",
+    "title": "Fruit Shop™",
+    "provider": "NetEnt",
+    "image": "/images/slots/fruit-shoptm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "15 lines"
+  },
+  {
+    "id": "fruit-shop-christmas-editiontm",
+    "title": "Fruit Shop Christmas Edition™",
+    "provider": "NetEnt",
+    "image": "/images/slots/fruit-shop-christmas-editiontm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "15 lines"
+  },
+  {
+    "id": "legend-of-the-king",
+    "title": "Legend of the King",
+    "provider": "LGD",
+    "image": "/images/slots/legend-of-the-king.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "drive-multiplier-mayhemtm",
+    "title": "Drive: Multiplier Mayhem™",
+    "provider": "NetEnt",
+    "image": "/images/slots/drive-multiplier-mayhemtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "secrets-of-christmastm",
+    "title": "Secrets of Christmas™",
+    "provider": "NetEnt",
+    "image": "/images/slots/secrets-of-christmastm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "15 lines"
+  },
+  {
+    "id": "break-away-ultra",
+    "title": "Break Away Ultra",
+    "provider": "MG+",
+    "image": "/images/slots/break-away-ultra.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "bust-the-bank",
+    "title": "Bust the Bank",
+    "provider": "MG+",
+    "image": "/images/slots/bust-the-bank.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "dragon-shard",
+    "title": "Dragon Shard",
+    "provider": "MG+",
+    "image": "/images/slots/dragon-shard.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky-little-gods",
+    "title": "Lucky Little Gods",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-little-gods.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "queen-of-the-crystal-rays",
+    "title": "Queen of the Crystal Rays",
+    "provider": "MG+",
+    "image": "/images/slots/queen-of-the-crystal-rays.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "scrooge",
+    "title": "Scrooge",
+    "provider": "MG+",
+    "image": "/images/slots/scrooge.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "the-incredible-balloon-machine",
+    "title": "The Incredible Balloon Machine",
+    "provider": "MG+",
+    "image": "/images/slots/the-incredible-balloon-machine.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "space-warstm",
+    "title": "Space Wars™",
+    "provider": "NetEnt",
+    "image": "/images/slots/space-warstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "stickerstm",
+    "title": "Stickers™",
+    "provider": "NetEnt",
+    "image": "/images/slots/stickerstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "sweety-honey-fruitytm",
+    "title": "Sweety Honey Fruity™",
+    "provider": "NetEnt",
+    "image": "/images/slots/sweety-honey-fruitytm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "15 lines"
+  },
+  {
+    "id": "the-wolf-s-banetm",
+    "title": "The Wolf's Bane™",
+    "provider": "NetEnt",
+    "image": "/images/slots/the-wolf-s-banetm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "tales-of-white-snake",
+    "title": "Tales of White Snake",
+    "provider": "LGD",
+    "image": "/images/slots/tales-of-white-snake.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "battle-field",
+    "title": "Battle Field",
+    "provider": "LGD",
+    "image": "/images/slots/battle-field.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "25 lines"
+  },
+  {
+    "id": "wild-wild-west-the-great-train-heisttm",
+    "title": "Wild Wild West: The Great Train Heist™",
+    "provider": "NetEnt",
+    "image": "/images/slots/wild-wild-west-the-great-train-heisttm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "15 lines"
+  },
+  {
+    "id": "true-illusions",
+    "title": "True Illusions",
+    "provider": "BS",
+    "image": "/images/slots/true-illusions.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "weekend-in-vegas",
+    "title": "Weekend In Vegas",
+    "provider": "BS",
+    "image": "/images/slots/weekend-in-vegas.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-slotfather-part-ii",
+    "title": "The SlotFather Part II",
+    "provider": "BS",
+    "image": "/images/slots/the-slotfather-part-ii.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-slotfather-book-of-wins-hold-win",
+    "title": "The Slotfather: Book of Wins - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/the-slotfather-book-of-wins-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Buy Spins",
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "10 lines"
+  },
+  {
+    "id": "stampede-gold",
+    "title": "Stampede Gold",
+    "provider": "BS",
+    "image": "/images/slots/stampede-gold.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "treasures-of-cleopatra",
+    "title": "Treasures Of Cleopatra",
+    "provider": "BS",
+    "image": "/images/slots/treasures-of-cleopatra.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "finn-and-the-swirly-spintm",
+    "title": "Finn and the Swirly Spin™",
+    "provider": "NetEnt",
+    "image": "/images/slots/finn-and-the-swirly-spintm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "finn-and-the-candy-spin",
+    "title": "Finn and The Candy Spin",
+    "provider": "NetEnt",
+    "image": "/images/slots/finn-and-the-candy-spin.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "witch-winnings",
+    "title": "Witch Winnings",
+    "provider": "LGD",
+    "image": "/images/slots/witch-winnings.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "25 lines"
+  },
+  {
+    "id": "golden-goal",
+    "title": "Golden Goal",
+    "provider": "Choice",
+    "image": "/images/slots/golden-goal.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "moonshine-riches",
+    "title": "Moonshine Riches",
+    "provider": "NetEnt",
+    "image": "/images/slots/moonshine-riches.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "ozzy-osbourne-video-slotstm",
+    "title": "Ozzy Osbourne Video Slots™",
+    "provider": "NetEnt",
+    "image": "/images/slots/ozzy-osbourne-video-slotstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "pirate-s-treasure",
+    "title": "Pirate's Treasure",
+    "provider": "LGD",
+    "image": "/images/slots/pirate-s-treasure.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "age-of-discovery",
+    "title": "Age Of Discovery",
+    "provider": "MG+",
+    "image": "/images/slots/age-of-discovery.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "alaskan-fishing",
+    "title": "Alaskan Fishing",
+    "provider": "MG+",
+    "image": "/images/slots/alaskan-fishing.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "astro-legends-lyra-and-erion",
+    "title": "Astro Legends: Lyra and Erion",
+    "provider": "MG+",
+    "image": "/images/slots/astro-legends-lyra-and-erion.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "book-of-oz-lock-n-spin",
+    "title": "Book of Oz Lock 'N Spin",
+    "provider": "MG+",
+    "image": "/images/slots/book-of-oz-lock-n-spin.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "10 lines"
+  },
+  {
+    "id": "breakaway-max",
+    "title": "Breakaway MAX",
+    "provider": "MG+",
+    "image": "/images/slots/breakaway-max.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "happy-holidays",
+    "title": "Happy Holidays",
+    "provider": "MG+",
+    "image": "/images/slots/happy-holidays.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "kings-of-cash",
+    "title": "Kings Of Cash",
+    "provider": "MG+",
+    "image": "/images/slots/kings-of-cash.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "max-damage-and-the-alien-attack",
+    "title": "Max Damage and the Alien Attack",
+    "provider": "MG+",
+    "image": "/images/slots/max-damage-and-the-alien-attack.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "thunderstruck-ii",
+    "title": "ThunderStruck II",
+    "provider": "MG+",
+    "image": "/images/slots/thunderstruck-ii.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "titans-of-the-sun-theia",
+    "title": "Titans of the Sun - Theia",
+    "provider": "MG+",
+    "image": "/images/slots/titans-of-the-sun-theia.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "twin-spin-deluxe",
+    "title": "Twin Spin Deluxe",
+    "provider": "NetEnt",
+    "image": "/images/slots/twin-spin-deluxe.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "10 lines"
+  },
+  {
+    "id": "wild-turkeytm",
+    "title": "Wild Turkey™",
+    "provider": "NetEnt",
+    "image": "/images/slots/wild-turkeytm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "wings-of-richestm",
+    "title": "Wings of Riches™",
+    "provider": "NetEnt",
+    "image": "/images/slots/wings-of-richestm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-wish-mastertm",
+    "title": "The Wish Master™",
+    "provider": "NetEnt",
+    "image": "/images/slots/the-wish-mastertm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "pinocchio",
+    "title": "Pinocchio",
+    "provider": "BS",
+    "image": "/images/slots/pinocchio.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "event-horizon",
+    "title": "Event Horizon",
+    "provider": "BS",
+    "image": "/images/slots/event-horizon.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "wolf-moon-rising",
+    "title": "Wolf Moon Rising",
+    "provider": "BS",
+    "image": "/images/slots/wolf-moon-rising.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "take-the-kingdom",
+    "title": "Take The Kingdom",
+    "provider": "BS",
+    "image": "/images/slots/take-the-kingdom.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "tiger-s-luck-hold-win",
+    "title": "Tiger's Luck - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/tiger-s-luck-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "chilli-pop-get-em-all-hold-win",
+    "title": "Chilli Pop: Get Em All - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/chilli-pop-get-em-all-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "a-big-catch-hold-win",
+    "title": "A Big Catch - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/a-big-catch-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "super-sugar-pop-hold-win",
+    "title": "Super Sugar Pop - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/super-sugar-pop-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "ultimate-golden-dragon-inferno-hold-wintm",
+    "title": "Ultimate Golden Dragon Inferno - Hold & Win™",
+    "provider": "BS",
+    "image": "/images/slots/ultimate-golden-dragon-inferno-hold-wintm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "glory-of-heroes",
+    "title": "Glory of Heroes",
+    "provider": "LGD",
+    "image": "/images/slots/glory-of-heroes.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "draculatm",
+    "title": "Dracula™",
+    "provider": "NetEnt",
+    "image": "/images/slots/draculatm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "eggomatictm",
+    "title": "EggOMatic™",
+    "provider": "NetEnt",
+    "image": "/images/slots/eggomatictm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "tavern-treasures",
+    "title": "Tavern Treasures",
+    "provider": "Choice",
+    "image": "/images/slots/tavern-treasures.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "mythic-maidentm",
+    "title": "Mythic Maiden™",
+    "provider": "NetEnt",
+    "image": "/images/slots/mythic-maidentm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "office-party",
+    "title": "Office Party",
+    "provider": "MG+",
+    "image": "/images/slots/office-party.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  }
+]
+
+const slotsBatch8: SlotGame[] = [
+  {
+    "id": "reel-rush-2",
+    "title": "Reel Rush 2",
+    "provider": "NetEnt",
+    "image": "/images/slots/reel-rush-2.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "wild-gods",
+    "title": "Wild Gods",
+    "provider": "Choice",
+    "image": "/images/slots/wild-gods.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "matching-777",
+    "title": "Matching 777",
+    "provider": "Choice",
+    "image": "/images/slots/matching-777.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "basketball-master-2",
+    "title": "Basketball Master 2",
+    "provider": "LGD",
+    "image": "/images/slots/basketball-master-2.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-legend-of-shangri-la-cluster-paystm",
+    "title": "The Legend of Shangri-La: Cluster Pays™",
+    "provider": "NetEnt",
+    "image": "/images/slots/the-legend-of-shangri-la-cluster-paystm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "108-heroes",
+    "title": "108 Heroes",
+    "provider": "MG+",
+    "image": "/images/slots/108-heroes.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "almighty-zeus-wilds",
+    "title": "Almighty Zeus Wilds",
+    "provider": "MG+",
+    "image": "/images/slots/almighty-zeus-wilds.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "beautiful-bones",
+    "title": "Beautiful Bones",
+    "provider": "MG+",
+    "image": "/images/slots/beautiful-bones.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "bookie-of-odds",
+    "title": "Bookie of Odds",
+    "provider": "MG+",
+    "image": "/images/slots/bookie-of-odds.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "10 lines"
+  },
+  {
+    "id": "book-of-oz",
+    "title": "Book of Oz",
+    "provider": "MG+",
+    "image": "/images/slots/book-of-oz.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "10 lines"
+  },
+  {
+    "id": "bush-telegraph",
+    "title": "Bush Telegraph",
+    "provider": "MG+",
+    "image": "/images/slots/bush-telegraph.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "circus-jugglers-jackpots",
+    "title": "Circus Jugglers Jackpots",
+    "provider": "MG+",
+    "image": "/images/slots/circus-jugglers-jackpots.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Prize Pool",
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "fish-party",
+    "title": "Fish Party",
+    "provider": "MG+",
+    "image": "/images/slots/fish-party.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "golden-era",
+    "title": "Golden Era",
+    "provider": "MG+",
+    "image": "/images/slots/golden-era.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lucky-little-dragons",
+    "title": "Lucky Little Dragons",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-little-dragons.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lucky-twins-wilds",
+    "title": "Lucky Twins Wilds",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-twins-wilds.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "mermaids-millions",
+    "title": "Mermaids Millions",
+    "provider": "MG+",
+    "image": "/images/slots/mermaids-millions.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "playboy",
+    "title": "Playboy",
+    "provider": "MG+",
+    "image": "/images/slots/playboy.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "pong-pong-mahjong",
+    "title": "Pong Pong Mahjong",
+    "provider": "MG+",
+    "image": "/images/slots/pong-pong-mahjong.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "starlight-kiss",
+    "title": "Starlight Kiss",
+    "provider": "MG+",
+    "image": "/images/slots/starlight-kiss.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "twin-happinesstm",
+    "title": "Twin Happiness™",
+    "provider": "NetEnt",
+    "image": "/images/slots/twin-happinesstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "royal-theatre",
+    "title": "Royal Theatre",
+    "provider": "Choice",
+    "image": "/images/slots/royal-theatre.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "sex-and-zen",
+    "title": "Sex and Zen",
+    "provider": "Choice",
+    "image": "/images/slots/sex-and-zen.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-kingdom-of-cardia",
+    "title": "The Kingdom Of Cardia",
+    "provider": "BS",
+    "image": "/images/slots/the-kingdom-of-cardia.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-governor",
+    "title": "The Governor",
+    "provider": "BS",
+    "image": "/images/slots/the-governor.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "under-the-sea",
+    "title": "Under The Sea",
+    "provider": "BS",
+    "image": "/images/slots/under-the-sea.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "birds",
+    "title": "Birds!",
+    "provider": "BS",
+    "image": "/images/slots/birds.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "sugarpop-2-double-dipped",
+    "title": "SugarPop 2: Double Dipped",
+    "provider": "BS",
+    "image": "/images/slots/sugarpop-2-double-dipped.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "gemmed",
+    "title": "Gemmed!",
+    "provider": "BS",
+    "image": "/images/slots/gemmed.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "book-of-darkness",
+    "title": "Book of Darkness",
+    "provider": "BS",
+    "image": "/images/slots/book-of-darkness.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "10 lines"
+  },
+  {
+    "id": "golden-dragon-inferno",
+    "title": "Golden Dragon Inferno",
+    "provider": "BS",
+    "image": "/images/slots/golden-dragon-inferno.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "super-golden-dragon-inferno",
+    "title": "Super Golden Dragon Inferno",
+    "provider": "BS",
+    "image": "/images/slots/super-golden-dragon-inferno.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "wish-granted",
+    "title": "Wish Granted",
+    "provider": "BS",
+    "image": "/images/slots/wish-granted.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "72-fortunes",
+    "title": "72 Fortunes",
+    "provider": "BS",
+    "image": "/images/slots/72-fortunes.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "rockstar-world-tour-hold-win",
+    "title": "Rockstar: World Tour - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/rockstar-world-tour-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "aloha-cluster-paystm",
+    "title": "Aloha! Cluster Pays™",
+    "provider": "NetEnt",
+    "image": "/images/slots/aloha-cluster-paystm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "creature-from-the-black-lagoontm",
+    "title": "Creature from the Black Lagoon™",
+    "provider": "NetEnt",
+    "image": "/images/slots/creature-from-the-black-lagoontm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Movie",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "fairytale-legends-mirror-mirrortm",
+    "title": "Fairytale Legends: Mirror Mirror™",
+    "provider": "NetEnt",
+    "image": "/images/slots/fairytale-legends-mirror-mirrortm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "fruit-casetm",
+    "title": "Fruit Case™",
+    "provider": "NetEnt",
+    "image": "/images/slots/fruit-casetm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "golden-grimoiretm",
+    "title": "Golden Grimoire™",
+    "provider": "NetEnt",
+    "image": "/images/slots/golden-grimoiretm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "jingle-spintm",
+    "title": "Jingle Spin™",
+    "provider": "NetEnt",
+    "image": "/images/slots/jingle-spintm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "jungle-spirit-call-of-the-wildtm",
+    "title": "Jungle Spirit: Call of the Wild™",
+    "provider": "NetEnt",
+    "image": "/images/slots/jungle-spirit-call-of-the-wildtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "devil-s-finger",
+    "title": "Devil's Finger",
+    "provider": "MG+",
+    "image": "/images/slots/devil-s-finger.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "pyramid-quest-for-immortalitytm",
+    "title": "Pyramid: Quest for Immortality™",
+    "provider": "NetEnt",
+    "image": "/images/slots/pyramid-quest-for-immortalitytm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "rise-of-mayatm",
+    "title": "Rise of Maya™",
+    "provider": "NetEnt",
+    "image": "/images/slots/rise-of-mayatm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "mahjong-slot",
+    "title": "Mahjong Slot",
+    "provider": "Choice",
+    "image": "/images/slots/mahjong-slot.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "candy-quest",
+    "title": "Candy Quest",
+    "provider": "Choice",
+    "image": "/images/slots/candy-quest.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "magic-dragon",
+    "title": "Magic Dragon",
+    "provider": "Choice",
+    "image": "/images/slots/magic-dragon.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "gold-class-deluxe",
+    "title": "Gold Class Deluxe",
+    "provider": "Choice",
+    "image": "/images/slots/gold-class-deluxe.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "3-angels-power-combo",
+    "title": "3 Angels Power Combo",
+    "provider": "MG+",
+    "image": "/images/slots/3-angels-power-combo.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "3-blazing-volcanoes-power-combo",
+    "title": "3 Blazing Volcanoes Power Combo",
+    "provider": "MG+",
+    "image": "/images/slots/3-blazing-volcanoes-power-combo.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "4-diamond-bluestm-megawaystm",
+    "title": "4 Diamond Blues™ - Megaways™",
+    "provider": "MG+",
+    "image": "/images/slots/4-diamond-bluestm-megawaystm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "9-masks-of-firetm-hyperspinstm",
+    "title": "9 Masks of Fire™ HyperSpins™",
+    "provider": "MG+",
+    "image": "/images/slots/9-masks-of-firetm-hyperspinstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "asian-beauty",
+    "title": "Asian Beauty",
+    "provider": "MG+",
+    "image": "/images/slots/asian-beauty.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "badminton-hero",
+    "title": "Badminton Hero",
+    "provider": "MG+",
+    "image": "/images/slots/badminton-hero.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "basketball-star",
+    "title": "Basketball Star",
+    "provider": "MG+",
+    "image": "/images/slots/basketball-star.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "cool-wolf",
+    "title": "Cool Wolf",
+    "provider": "MG+",
+    "image": "/images/slots/cool-wolf.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dragonz",
+    "title": "Dragonz",
+    "provider": "MG+",
+    "image": "/images/slots/dragonz.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "dream-date",
+    "title": "Dream Date",
+    "provider": "MG+",
+    "image": "/images/slots/dream-date.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "eagle-s-wings",
+    "title": "Eagle's Wings",
+    "provider": "MG+",
+    "image": "/images/slots/eagle-s-wings.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "fortunium",
+    "title": "Fortunium",
+    "provider": "MG+",
+    "image": "/images/slots/fortunium.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "happy-lucky-cats",
+    "title": "Happy Lucky Cats",
+    "provider": "MG+",
+    "image": "/images/slots/happy-lucky-cats.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "ingots-of-cai-shen",
+    "title": "Ingots of Cai Shen",
+    "provider": "MG+",
+    "image": "/images/slots/ingots-of-cai-shen.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "king-tusk",
+    "title": "King Tusk",
+    "provider": "MG+",
+    "image": "/images/slots/king-tusk.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "kitsune-adventure",
+    "title": "Kitsune Adventure",
+    "provider": "MG+",
+    "image": "/images/slots/kitsune-adventure.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Anime",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "long-mu-fortunes",
+    "title": "Long Mu Fortunes",
+    "provider": "MG+",
+    "image": "/images/slots/long-mu-fortunes.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky-koi",
+    "title": "Lucky Koi",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-koi.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "maui-mischief",
+    "title": "Maui Mischief",
+    "provider": "MG+",
+    "image": "/images/slots/maui-mischief.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "pure-platinum",
+    "title": "Pure Platinum",
+    "provider": "MG+",
+    "image": "/images/slots/pure-platinum.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "rugby-star",
+    "title": "Rugby Star",
+    "provider": "MG+",
+    "image": "/images/slots/rugby-star.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "santa-s-wild-ride",
+    "title": "Santa's Wild Ride",
+    "provider": "MG+",
+    "image": "/images/slots/santa-s-wild-ride.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "shamrock-holmes-megawaystm",
+    "title": "Shamrock Holmes Megaways™",
+    "provider": "MG+",
+    "image": "/images/slots/shamrock-holmes-megawaystm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "soccer-striker",
+    "title": "Soccer Striker",
+    "provider": "MG+",
+    "image": "/images/slots/soccer-striker.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "sterling-silver",
+    "title": "Sterling Silver",
+    "provider": "MG+",
+    "image": "/images/slots/sterling-silver.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "untamed-giant-panda",
+    "title": "Untamed - Giant Panda",
+    "provider": "MG+",
+    "image": "/images/slots/untamed-giant-panda.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "wanted-outlaws",
+    "title": "Wanted Outlaws",
+    "provider": "MG+",
+    "image": "/images/slots/wanted-outlaws.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "sushi-slot",
+    "title": "Sushi Slot",
+    "provider": "Choice",
+    "image": "/images/slots/sushi-slot.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky-fast-food",
+    "title": "Lucky Fast Food",
+    "provider": "Choice",
+    "image": "/images/slots/lucky-fast-food.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "wild-worlds-tm",
+    "title": "Wild Worlds ™",
+    "provider": "NetEnt",
+    "image": "/images/slots/wild-worlds-tm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "wonderland-protector",
+    "title": "Wonderland Protector",
+    "provider": "NetEnt",
+    "image": "/images/slots/wonderland-protector.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "charms-clovers",
+    "title": "Charms & Clovers",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/charms-clovers.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "rtpPercent": "96.3%",
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "stacked",
+    "title": "Stacked",
+    "provider": "BS",
+    "image": "/images/slots/stacked.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "safari-sam-2",
+    "title": "Safari Sam 2",
+    "provider": "BS",
+    "image": "/images/slots/safari-sam-2.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "wilds-of-fortune",
+    "title": "Wilds Of Fortune",
+    "provider": "BS",
+    "image": "/images/slots/wilds-of-fortune.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "asgardian-stonestm",
+    "title": "Asgardian Stones™",
+    "provider": "NetEnt",
+    "image": "/images/slots/asgardian-stonestm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "butterfly-staxx-2tm",
+    "title": "Butterfly Staxx 2™",
+    "provider": "NetEnt",
+    "image": "/images/slots/butterfly-staxx-2tm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "cash-o-matictm",
+    "title": "Cash-o-Matic™",
+    "provider": "NetEnt",
+    "image": "/images/slots/cash-o-matictm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "crazy-circus",
+    "title": "Crazy Circus",
+    "provider": "LGD",
+    "image": "/images/slots/crazy-circus.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "fairytale-legends-red-riding-hoodtm",
+    "title": "Fairytale Legends: Red Riding Hood™",
+    "provider": "NetEnt",
+    "image": "/images/slots/fairytale-legends-red-riding-hoodtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "flowerstm",
+    "title": "Flowers™",
+    "provider": "NetEnt",
+    "image": "/images/slots/flowerstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "flowers-christmas-edition",
+    "title": "Flowers Christmas Edition",
+    "provider": "NetEnt",
+    "image": "/images/slots/flowers-christmas-edition.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "fruit-slot-2",
+    "title": "Fruit Slot 2",
+    "provider": "Choice",
+    "image": "/images/slots/fruit-slot-2.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "jin-yu-man-tang",
+    "title": "Jin Yu Man Tang",
+    "provider": "LGD",
+    "image": "/images/slots/jin-yu-man-tang.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "happy-richestm",
+    "title": "Happy Riches™",
+    "provider": "NetEnt",
+    "image": "/images/slots/happy-richestm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-invisible-mantm",
+    "title": "The Invisible Man™",
+    "provider": "NetEnt",
+    "image": "/images/slots/the-invisible-mantm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Movie",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "jack-and-the-beanstalk-remastered",
+    "title": "Jack and the Beanstalk Remastered",
+    "provider": "NetEnt",
+    "image": "/images/slots/jack-and-the-beanstalk-remastered.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "jumanji",
+    "title": "Jumanji",
+    "provider": "NetEnt",
+    "image": "/images/slots/jumanji.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Movie",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "piggy-richestm",
+    "title": "Piggy Riches™",
+    "provider": "NetEnt",
+    "image": "/images/slots/piggy-richestm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "captain-s-treasure",
+    "title": "Captain's Treasure",
+    "provider": "LGD",
+    "image": "/images/slots/captain-s-treasure.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "santa-vs-rudolftm",
+    "title": "Santa vs Rudolf™",
+    "provider": "NetEnt",
+    "image": "/images/slots/santa-vs-rudolftm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "garden-vintage",
+    "title": "Garden Vintage",
+    "provider": "Choice",
+    "image": "/images/slots/garden-vintage.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "samurai",
+    "title": "Samurai",
+    "provider": "Choice",
+    "image": "/images/slots/samurai.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "kong-attack",
+    "title": "Kong Attack",
+    "provider": "Choice",
+    "image": "/images/slots/kong-attack.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "scruffy-ducktm",
+    "title": "Scruffy Duck™",
+    "provider": "NetEnt",
+    "image": "/images/slots/scruffy-ducktm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "25000-talons",
+    "title": "25000 Talons",
+    "provider": "MG+",
+    "image": "/images/slots/25000-talons.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "banana-odyssey",
+    "title": "Banana Odyssey",
+    "provider": "MG+",
+    "image": "/images/slots/banana-odyssey.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "crazy-rich-tigers",
+    "title": "Crazy Rich Tigers",
+    "provider": "MG+",
+    "image": "/images/slots/crazy-rich-tigers.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "exotic-cats",
+    "title": "Exotic Cats",
+    "provider": "MG+",
+    "image": "/images/slots/exotic-cats.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "jungle-jim-and-the-lost-sphinx",
+    "title": "Jungle Jim and the Lost Sphinx",
+    "provider": "MG+",
+    "image": "/images/slots/jungle-jim-and-the-lost-sphinx.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "jungle-jim-el-dorado",
+    "title": "Jungle Jim - El Dorado",
+    "provider": "MG+",
+    "image": "/images/slots/jungle-jim-el-dorado.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "kathmandu",
+    "title": "Kathmandu",
+    "provider": "MG+",
+    "image": "/images/slots/kathmandu.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lightning-fortunes",
+    "title": "Lightning Fortunes",
+    "provider": "MG+",
+    "image": "/images/slots/lightning-fortunes.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky-leprechaun",
+    "title": "Lucky Leprechaun",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-leprechaun.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lucky-leprechaun-clusters",
+    "title": "Lucky Leprechaun Clusters",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-leprechaun-clusters.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "playboy-wilds",
+    "title": "Playboy Wilds",
+    "provider": "MG+",
+    "image": "/images/slots/playboy-wilds.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "reel-spinner",
+    "title": "Reel Spinner",
+    "provider": "MG+",
+    "image": "/images/slots/reel-spinner.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "silver-fang",
+    "title": "Silver Fang",
+    "provider": "MG+",
+    "image": "/images/slots/silver-fang.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-twisted-circus",
+    "title": "The Twisted Circus",
+    "provider": "MG+",
+    "image": "/images/slots/the-twisted-circus.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "tiki-reward",
+    "title": "Tiki Reward",
+    "provider": "MG+",
+    "image": "/images/slots/tiki-reward.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "wild-catch-new",
+    "title": "Wild Catch (New)",
+    "provider": "MG+",
+    "image": "/images/slots/wild-catch-new.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "star-generation",
+    "title": "Star Generation",
+    "provider": "LGD",
+    "image": "/images/slots/star-generation.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "wild-watertm",
+    "title": "Wild Water™",
+    "provider": "NetEnt",
+    "image": "/images/slots/wild-watertm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "witchcraft-academy",
+    "title": "Witchcraft Academy",
+    "provider": "NetEnt",
+    "image": "/images/slots/witchcraft-academy.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "wolf-cubtm",
+    "title": "Wolf Cub™",
+    "provider": "NetEnt",
+    "image": "/images/slots/wolf-cubtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "3-million-b-c",
+    "title": "3 Million B.C.",
+    "provider": "BS",
+    "image": "/images/slots/3-million-b-c.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "mahjong-rich-ways",
+    "title": "Mahjong Rich Ways",
+    "provider": "2bet",
+    "image": "/images/slots/mahjong-rich-ways.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "the-exterminator",
+    "title": "The Exterminator",
+    "provider": "BS",
+    "image": "/images/slots/the-exterminator.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "mega-glam-life",
+    "title": "Mega Glam Life",
+    "provider": "BS",
+    "image": "/images/slots/mega-glam-life.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "carnaval-forever",
+    "title": "Carnaval Forever",
+    "provider": "BS",
+    "image": "/images/slots/carnaval-forever.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "golden-horns",
+    "title": "Golden Horns",
+    "provider": "BS",
+    "image": "/images/slots/golden-horns.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "hat-trick-hero",
+    "title": "Hat Trick Hero",
+    "provider": "BS",
+    "image": "/images/slots/hat-trick-hero.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "stay-frosty",
+    "title": "Stay Frosty",
+    "provider": "BS",
+    "image": "/images/slots/stay-frosty.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "thai-blossom",
+    "title": "Thai Blossom",
+    "provider": "BS",
+    "image": "/images/slots/thai-blossom.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "captain-s-quest-treasure-island",
+    "title": "Captain's Quest: Treasure Island",
+    "provider": "BS",
+    "image": "/images/slots/captain-s-quest-treasure-island.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "rags-to-witches",
+    "title": "Rags to Witches",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/rags-to-witches.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "rtpPercent": "96.2%",
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "sleighin-it-njp",
+    "title": "Sleighin' It NJP",
+    "provider": "BS",
+    "image": "/images/slots/sleighin-it-njp.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Prize Pool",
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "bounding-luck",
+    "title": "Bounding Luck",
+    "provider": "BS",
+    "image": "/images/slots/bounding-luck.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "pho-sho",
+    "title": "Pho Sho",
+    "provider": "BS",
+    "image": "/images/slots/pho-sho.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "april-fury-and-the-chamber-of-scarabs",
+    "title": "April Fury and the Chamber of Scarabs",
+    "provider": "BS",
+    "image": "/images/slots/april-fury-and-the-chamber-of-scarabs.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "rise-of-triton",
+    "title": "Rise of Triton",
+    "provider": "BS",
+    "image": "/images/slots/rise-of-triton.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "enchanted-forest-of-fortune-hold-win",
+    "title": "Enchanted: Forest of Fortune - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/enchanted-forest-of-fortune-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "triple-lucky-8-s",
+    "title": "Triple Lucky 8's",
+    "provider": "BS",
+    "image": "/images/slots/triple-lucky-8-s.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "tycoons-billionaire-bucks-hold-win",
+    "title": "Tycoons: Billionaire Bucks - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/tycoons-billionaire-bucks-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "take-the-vault-hold-win",
+    "title": "Take the Vault - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/take-the-vault-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "heist-bank-rush-hold-win",
+    "title": "Heist: Bank Rush - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/heist-bank-rush-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "caishen-god-of-fortune-hold-win",
+    "title": "Caishen: God of Fortune - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/caishen-god-of-fortune-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "diamond-mines",
+    "title": "Diamond Mines",
+    "provider": "BS",
+    "image": "/images/slots/diamond-mines.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "coins-of-leprechaun-hold-win",
+    "title": "Coins Of Leprechaun - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/coins-of-leprechaun-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "berry-bursttm",
+    "title": "Berry burst™",
+    "provider": "NetEnt",
+    "image": "/images/slots/berry-bursttm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "berryburst-max",
+    "title": "Berryburst MAX",
+    "provider": "NetEnt",
+    "image": "/images/slots/berryburst-max.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Buy Spins",
+      "Free Spins"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "big-red",
+    "title": "Big Red",
+    "provider": "LGD",
+    "image": "/images/slots/big-red.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "castle-guardian",
+    "title": "Castle Guardian",
+    "provider": "LGD",
+    "image": "/images/slots/castle-guardian.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "east-sea-dragon-kingtm",
+    "title": "East Sea Dragon King™",
+    "provider": "NetEnt",
+    "image": "/images/slots/east-sea-dragon-kingtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "gods-of-gold-infinireelstm",
+    "title": "Gods Of Gold: InfiniReels™",
+    "provider": "NetEnt",
+    "image": "/images/slots/gods-of-gold-infinireelstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "halloween-jacktm",
+    "title": "Halloween Jack™",
+    "provider": "NetEnt",
+    "image": "/images/slots/halloween-jacktm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "jack-and-the-beanstalktm",
+    "title": "Jack and the Beanstalk™",
+    "provider": "NetEnt",
+    "image": "/images/slots/jack-and-the-beanstalktm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "jungle-spirit-megawaystm",
+    "title": "Jungle Spirit Megaways™",
+    "provider": "NetEnt",
+    "image": "/images/slots/jungle-spirit-megawaystm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "koi-princesstm",
+    "title": "Koi Princess™",
+    "provider": "NetEnt",
+    "image": "/images/slots/koi-princesstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "mummytm-megawaystm",
+    "title": "Mummy™ MegaWays™",
+    "provider": "NetEnt",
+    "image": "/images/slots/mummytm-megawaystm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "narcostm",
+    "title": "Narcos™",
+    "provider": "NetEnt",
+    "image": "/images/slots/narcostm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "oops",
+    "title": "Oops",
+    "provider": "MG+",
+    "image": "/images/slots/oops.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ]
+  },
+  {
+    "id": "preach-tv",
+    "title": "Preach TV",
+    "provider": "MG+",
+    "image": "/images/slots/preach-tv.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Auto Game"
+    ]
+  },
+  {
+    "id": "casino-night",
+    "title": "Casino Night",
+    "provider": "Choice",
+    "image": "/images/slots/casino-night.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "serengeti-kingstm",
+    "title": "Serengeti Kings™",
+    "provider": "NetEnt",
+    "image": "/images/slots/serengeti-kingstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "10000-fortunes",
+    "title": "10000 Fortunes",
+    "provider": "MG+",
+    "image": "/images/slots/10000-fortunes.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "10000-wishes",
+    "title": "10000 Wishes",
+    "provider": "MG+",
+    "image": "/images/slots/10000-wishes.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "9-masks-of-fire",
+    "title": "9 Masks Of Fire",
+    "provider": "MG+",
+    "image": "/images/slots/9-masks-of-fire.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "9-pots-of-gold",
+    "title": "9 Pots of Gold",
+    "provider": "MG+",
+    "image": "/images/slots/9-pots-of-gold.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "abracatdabra",
+    "title": "AbraCatDabra",
+    "provider": "MG+",
+    "image": "/images/slots/abracatdabra.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "almighty-athena-empire",
+    "title": "Almighty Athena Empire",
+    "provider": "MG+",
+    "image": "/images/slots/almighty-athena-empire.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "almighty-dionysus-empire",
+    "title": "Almighty Dionysus Empire",
+    "provider": "MG+",
+    "image": "/images/slots/almighty-dionysus-empire.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "amazon-kingdom",
+    "title": "Amazon Kingdom",
+    "provider": "MG+",
+    "image": "/images/slots/amazon-kingdom.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "amazon-lost-gold",
+    "title": "Amazon - Lost Gold",
+    "provider": "MG+",
+    "image": "/images/slots/amazon-lost-gold.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "andvari-the-golden-fish",
+    "title": "Andvari the Golden Fish",
+    "provider": "MG+",
+    "image": "/images/slots/andvari-the-golden-fish.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "anvil-and-ore",
+    "title": "Anvil and Ore",
+    "provider": "MG+",
+    "image": "/images/slots/anvil-and-ore.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "aurora-wilds",
+    "title": "Aurora Wilds",
+    "provider": "MG+",
+    "image": "/images/slots/aurora-wilds.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "bass-catch-super-up",
+    "title": "Bass Catch Super UP",
+    "provider": "MG+",
+    "image": "/images/slots/bass-catch-super-up.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "blazing-mammoth",
+    "title": "Blazing Mammoth",
+    "provider": "MG+",
+    "image": "/images/slots/blazing-mammoth.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "bountiful-birds",
+    "title": "Bountiful Birds",
+    "provider": "MG+",
+    "image": "/images/slots/bountiful-birds.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "break-away",
+    "title": "Break Away",
+    "provider": "MG+",
+    "image": "/images/slots/break-away.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "bronco-big-bounty",
+    "title": "Bronco Big Bounty",
+    "provider": "MG+",
+    "image": "/images/slots/bronco-big-bounty.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "carnaval-fiesta",
+    "title": "Carnaval Fiesta",
+    "provider": "MG+",
+    "image": "/images/slots/carnaval-fiesta.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "cash-of-kingdoms",
+    "title": "Cash of Kingdoms",
+    "provider": "MG+",
+    "image": "/images/slots/cash-of-kingdoms.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "cricket-star",
+    "title": "Cricket Star",
+    "provider": "MG+",
+    "image": "/images/slots/cricket-star.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "diamond-diva-oink-bonanza",
+    "title": "Diamond Diva Oink Bonanza",
+    "provider": "MG+",
+    "image": "/images/slots/diamond-diva-oink-bonanza.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "dragon-s-loot-link-win-4tune",
+    "title": "Dragon's Loot Link&Win 4Tune",
+    "provider": "MG+",
+    "image": "/images/slots/dragon-s-loot-link-win-4tune.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Prize Pool",
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "football-star",
+    "title": "Football Star",
+    "provider": "MG+",
+    "image": "/images/slots/football-star.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "incan-adventure",
+    "title": "Incan Adventure",
+    "provider": "MG+",
+    "image": "/images/slots/incan-adventure.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "jade-shuriken",
+    "title": "Jade Shuriken",
+    "provider": "MG+",
+    "image": "/images/slots/jade-shuriken.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "kodiak-kingdom",
+    "title": "Kodiak Kingdom",
+    "provider": "MG+",
+    "image": "/images/slots/kodiak-kingdom.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "loaded",
+    "title": "Loaded",
+    "provider": "MG+",
+    "image": "/images/slots/loaded.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky-twins-9-lions",
+    "title": "Lucky Twins & 9 Lions",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-twins-9-lions.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky-twins-link-and-win",
+    "title": "Lucky Twins Link and Win",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-twins-link-and-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Prize Pool",
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "luna-princess-link-merge",
+    "title": "Luna Princess Link&Merge",
+    "provider": "MG+",
+    "image": "/images/slots/luna-princess-link-merge.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Prize Pool",
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "money-on-reels",
+    "title": "Money on Reels",
+    "provider": "MG+",
+    "image": "/images/slots/money-on-reels.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "moonlight-romance-the-awakening",
+    "title": "Moonlight Romance - The Awakening",
+    "provider": "MG+",
+    "image": "/images/slots/moonlight-romance-the-awakening.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "ping-pong-star",
+    "title": "Ping Pong Star",
+    "provider": "MG+",
+    "image": "/images/slots/ping-pong-star.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "playboy-fortunes",
+    "title": "Playboy Fortunes",
+    "provider": "MG+",
+    "image": "/images/slots/playboy-fortunes.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "queens-of-ra",
+    "title": "Queens of Ra",
+    "provider": "MG+",
+    "image": "/images/slots/queens-of-ra.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "silver-seas",
+    "title": "Silver Seas",
+    "provider": "MG+",
+    "image": "/images/slots/silver-seas.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "solar-wilds",
+    "title": "Solar Wilds",
+    "provider": "MG+",
+    "image": "/images/slots/solar-wilds.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "suntide",
+    "title": "SunTide",
+    "provider": "MG+",
+    "image": "/images/slots/suntide.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "sure-win",
+    "title": "Sure Win",
+    "provider": "MG+",
+    "image": "/images/slots/sure-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "sweet-jar-xmas-combo",
+    "title": "Sweet Jar Xmas Combo",
+    "provider": "MG+",
+    "image": "/images/slots/sweet-jar-xmas-combo.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "tiger-s-eye",
+    "title": "Tiger's Eye",
+    "provider": "MG+",
+    "image": "/images/slots/tiger-s-eye.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "tigers-ice",
+    "title": "Tigers Ice",
+    "provider": "MG+",
+    "image": "/images/slots/tigers-ice.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "tippy-tavern",
+    "title": "Tippy Tavern",
+    "provider": "MG+",
+    "image": "/images/slots/tippy-tavern.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "win-sum-dim-sum",
+    "title": "Win Sum Dim Sum",
+    "provider": "MG+",
+    "image": "/images/slots/win-sum-dim-sum.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "wrath-of-seth-split",
+    "title": "Wrath of Seth-Split",
+    "provider": "MG+",
+    "image": "/images/slots/wrath-of-seth-split.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "spinsanetm",
+    "title": "Spinsane™",
+    "provider": "NetEnt",
+    "image": "/images/slots/spinsanetm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "turn-your-fortunetm",
+    "title": "Turn Your Fortune™",
+    "provider": "NetEnt",
+    "image": "/images/slots/turn-your-fortunetm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "nordic-saga",
+    "title": "Nordic Saga",
+    "provider": "LGD",
+    "image": "/images/slots/nordic-saga.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "steampunk-wars",
+    "title": "Steampunk Wars",
+    "provider": "Choice",
+    "image": "/images/slots/steampunk-wars.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "dr-jekyll-mr-hyde-2",
+    "title": "Dr. Jekyll & Mr. Hyde 2",
+    "provider": "BS",
+    "image": "/images/slots/dr-jekyll-mr-hyde-2.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "mamma-mia-2",
+    "title": "MAMMA MIA 2",
+    "provider": "BS",
+    "image": "/images/slots/mamma-mia-2.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-gem-master",
+    "title": "The Gem Master",
+    "provider": "BS",
+    "image": "/images/slots/the-gem-master.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "the-bonus-day",
+    "title": "The Bonus Day",
+    "provider": "BS",
+    "image": "/images/slots/the-bonus-day.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dr-jekyll-mr-hyde",
+    "title": "Dr. Jekyll & Mr. Hyde",
+    "provider": "BS",
+    "image": "/images/slots/dr-jekyll-mr-hyde.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "gold-canyon",
+    "title": "Gold Canyon",
+    "provider": "BS",
+    "image": "/images/slots/gold-canyon.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "the-hive",
+    "title": "The Hive",
+    "provider": "BS",
+    "image": "/images/slots/the-hive.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "primal-hunt",
+    "title": "Primal Hunt",
+    "provider": "BS",
+    "image": "/images/slots/primal-hunt.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "mystic-hive",
+    "title": "Mystic Hive",
+    "provider": "BS",
+    "image": "/images/slots/mystic-hive.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "wild-drops",
+    "title": "Wild Drops",
+    "provider": "BS",
+    "image": "/images/slots/wild-drops.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "sleighin-it",
+    "title": "Sleighin' It",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/sleighin-it.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "rtpPercent": "96.1%",
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "hearts-desire",
+    "title": "Hearts Desire",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/hearts-desire.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "rtpPercent": "96.1%",
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "coins-of-ra-hold-win",
+    "title": "Coins of Ra - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/coins-of-ra-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "coins-of-alkemor-hold-win",
+    "title": "Coins of Alkemor - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/coins-of-alkemor-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "coins-of-zeus-hold-win",
+    "title": "Coins Of Zeus - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/coins-of-zeus-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "coins-of-christmas-hold-win",
+    "title": "Coins Of Christmas - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/coins-of-christmas-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "coins-of-alkemor-extreme-magic-hold-win",
+    "title": "Coins of Alkemor: Extreme Magic - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/coins-of-alkemor-extreme-magic-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "3-pots-of-lunar-wolf-hold-win",
+    "title": "3 Pots of Lunar Wolf - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/3-pots-of-lunar-wolf-hold-win.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "babylon-riches",
+    "title": "Babylon Riches",
+    "provider": "NetEnt",
+    "image": "/images/slots/babylon-riches.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "bollywood-story",
+    "title": "Bollywood Story",
+    "provider": "NetEnt",
+    "image": "/images/slots/bollywood-story.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "cursed-treasure",
+    "title": "Cursed treasure",
+    "provider": "NetEnt",
+    "image": "/images/slots/cursed-treasure.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dazzle-metm-christmas",
+    "title": "Dazzle Me™ Christmas",
+    "provider": "NetEnt",
+    "image": "/images/slots/dazzle-metm-christmas.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "dazzle-metm-megawaystm",
+    "title": "Dazzle Me™ Megaways™",
+    "provider": "NetEnt",
+    "image": "/images/slots/dazzle-metm-megawaystm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "don-t-eat-the-candytm",
+    "title": "Don’t Eat the Candy™",
+    "provider": "NetEnt",
+    "image": "/images/slots/don-t-eat-the-candytm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "double-stackstm",
+    "title": "Double Stacks™",
+    "provider": "NetEnt",
+    "image": "/images/slots/double-stackstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dragons-playgroundtm",
+    "title": "Dragons Playground™",
+    "provider": "NetEnt",
+    "image": "/images/slots/dragons-playgroundtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "druid-s-magictm",
+    "title": "Druid’s Magic™",
+    "provider": "NetEnt",
+    "image": "/images/slots/druid-s-magictm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "elk-huntertm",
+    "title": "Elk Hunter™",
+    "provider": "NetEnt",
+    "image": "/images/slots/elk-huntertm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lightstm",
+    "title": "Lights™",
+    "provider": "NetEnt",
+    "image": "/images/slots/lightstm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "fruit-shop-frenzytm",
+    "title": "Fruit Shop Frenzy™",
+    "provider": "NetEnt",
+    "image": "/images/slots/fruit-shop-frenzytm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "17 lines"
+  },
+  {
+    "id": "gem-crushtm",
+    "title": "Gem Crush™",
+    "provider": "NetEnt",
+    "image": "/images/slots/gem-crushtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "gladiator-clashtm",
+    "title": "Gladiator Clash™",
+    "provider": "NetEnt",
+    "image": "/images/slots/gladiator-clashtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "finn-s-golden-taverntm",
+    "title": "Finn's Golden Tavern™",
+    "provider": "NetEnt",
+    "image": "/images/slots/finn-s-golden-taverntm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "gonzo-s-goldtm",
+    "title": "Gonzo’s Gold™",
+    "provider": "NetEnt",
+    "image": "/images/slots/gonzo-s-goldtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "good-old-7-stm",
+    "title": "Good Old 7’s™",
+    "provider": "NetEnt",
+    "image": "/images/slots/good-old-7-stm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "grand-spinntm",
+    "title": "Grand Spinn™",
+    "provider": "NetEnt",
+    "image": "/images/slots/grand-spinntm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "10 lines"
+  },
+  {
+    "id": "jingle-bells-bonanzatm",
+    "title": "Jingle Bells Bonanza™",
+    "provider": "NetEnt",
+    "image": "/images/slots/jingle-bells-bonanzatm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  }
+]
+
+const slotsBatch9: SlotGame[] = [
+  {
+    "id": "leprechaun-joytm",
+    "title": "Leprechaun Joy™",
+    "provider": "NetEnt",
+    "image": "/images/slots/leprechaun-joytm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "mine-blowntm",
+    "title": "Mine Blown™",
+    "provider": "NetEnt",
+    "image": "/images/slots/mine-blowntm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "ms-robin-hoodtm",
+    "title": "Ms Robin Hood™",
+    "provider": "NetEnt",
+    "image": "/images/slots/ms-robin-hoodtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "pirates-partytm",
+    "title": "Pirates Party™",
+    "provider": "NetEnt",
+    "image": "/images/slots/pirates-partytm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "reef-raidertm",
+    "title": "Reef Raider™",
+    "provider": "NetEnt",
+    "image": "/images/slots/reef-raidertm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "space-odyssey",
+    "title": "Space Odyssey",
+    "provider": "Choice",
+    "image": "/images/slots/space-odyssey.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "basketball-master",
+    "title": "Basketball Master",
+    "provider": "LGD",
+    "image": "/images/slots/basketball-master.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "silverback-goldtm",
+    "title": "Silverback Gold™",
+    "provider": "NetEnt",
+    "image": "/images/slots/silverback-goldtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "15-tridents",
+    "title": "15 Tridents",
+    "provider": "MG+",
+    "image": "/images/slots/15-tridents.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "3rd-base",
+    "title": "3rd Base",
+    "provider": "MG+",
+    "image": "/images/slots/3rd-base.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "777-mega-deluxetm",
+    "title": "777 Mega Deluxe™",
+    "provider": "MG+",
+    "image": "/images/slots/777-mega-deluxetm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "777-super-bigbuilduptm-deluxetm",
+    "title": "777 Super BigBuildUp™ Deluxe™",
+    "provider": "MG+",
+    "image": "/images/slots/777-super-bigbuilduptm-deluxetm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "a-dark-matter",
+    "title": "A Dark Matter",
+    "provider": "MG+",
+    "image": "/images/slots/a-dark-matter.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "adventure-palace",
+    "title": "Adventure Palace",
+    "provider": "MG+",
+    "image": "/images/slots/adventure-palace.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "bars-and-stripes",
+    "title": "Bars And Stripes",
+    "provider": "MG+",
+    "image": "/images/slots/bars-and-stripes.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "big-kahuna",
+    "title": "Big Kahuna",
+    "provider": "MG+",
+    "image": "/images/slots/big-kahuna.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "book-of-king-arthur",
+    "title": "Book of King Arthur",
+    "provider": "MG+",
+    "image": "/images/slots/book-of-king-arthur.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "10 lines"
+  },
+  {
+    "id": "boom-pirates",
+    "title": "Boom Pirates",
+    "provider": "MG+",
+    "image": "/images/slots/boom-pirates.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "break-away-candy-link-merge",
+    "title": "Break Away Candy Link&Merge",
+    "provider": "MG+",
+    "image": "/images/slots/break-away-candy-link-merge.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "break-away-gold",
+    "title": "Break Away Gold",
+    "provider": "MG+",
+    "image": "/images/slots/break-away-gold.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "bubble-beez",
+    "title": "Bubble Beez",
+    "provider": "MG+",
+    "image": "/images/slots/bubble-beez.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "burning-desire",
+    "title": "Burning Desire",
+    "provider": "MG+",
+    "image": "/images/slots/burning-desire.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "diamond-inferno",
+    "title": "Diamond Inferno",
+    "provider": "MG+",
+    "image": "/images/slots/diamond-inferno.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "fish-em-up",
+    "title": "Fish Em Up",
+    "provider": "MG+",
+    "image": "/images/slots/fish-em-up.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "fishin-pots-of-goldtm-gold-blitztm",
+    "title": "Fishin’ Pots of Gold™ Gold Blitz™",
+    "provider": "MG+",
+    "image": "/images/slots/fishin-pots-of-goldtm-gold-blitztm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Prize Pool",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "fruit-blast",
+    "title": "Fruit Blast",
+    "provider": "MG+",
+    "image": "/images/slots/fruit-blast.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "golden-stallion",
+    "title": "Golden Stallion",
+    "provider": "MG+",
+    "image": "/images/slots/golden-stallion.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "ladies-nite",
+    "title": "Ladies Nite",
+    "provider": "MG+",
+    "image": "/images/slots/ladies-nite.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "legacy-of-oz-tm",
+    "title": "Legacy of Oz ™",
+    "provider": "MG+",
+    "image": "/images/slots/legacy-of-oz-tm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "legend-of-the-moon-lovers",
+    "title": "Legend of the Moon Lovers",
+    "provider": "MG+",
+    "image": "/images/slots/legend-of-the-moon-lovers.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "leprechaun-strike",
+    "title": "Leprechaun Strike",
+    "provider": "MG+",
+    "image": "/images/slots/leprechaun-strike.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "life-of-riches",
+    "title": "Life Of Riches",
+    "provider": "MG+",
+    "image": "/images/slots/life-of-riches.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky-bachelors",
+    "title": "Lucky Bachelors",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-bachelors.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lucky-clucks",
+    "title": "Lucky Clucks",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-clucks.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky-firecracker",
+    "title": "Lucky Firecracker",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-firecracker.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky-twins-powerclusters",
+    "title": "Lucky Twins PowerClusters",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-twins-powerclusters.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "lucky-twins-wilds-jackpots",
+    "title": "Lucky Twins Wilds Jackpots",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-twins-wilds-jackpots.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Prize Pool",
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "mega-money-multiplier",
+    "title": "Mega Money Multiplier",
+    "provider": "MG+",
+    "image": "/images/slots/mega-money-multiplier.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "mr-pigg-e-bank",
+    "title": "Mr. Pigg E. Bank",
+    "provider": "MG+",
+    "image": "/images/slots/mr-pigg-e-bank.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "neptune-s-riches-ocean-of-wilds",
+    "title": "Neptune's Riches: Ocean of Wilds",
+    "provider": "MG+",
+    "image": "/images/slots/neptune-s-riches-ocean-of-wilds.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "plenty-of-presents",
+    "title": "Plenty of Presents",
+    "provider": "MG+",
+    "image": "/images/slots/plenty-of-presents.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "rome-fight-for-gold",
+    "title": "Rome: Fight For Gold",
+    "provider": "MG+",
+    "image": "/images/slots/rome-fight-for-gold.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "showdown-saloon",
+    "title": "Showdown Saloon",
+    "provider": "MG+",
+    "image": "/images/slots/showdown-saloon.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "spring-break",
+    "title": "Spring Break",
+    "provider": "MG+",
+    "image": "/images/slots/spring-break.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "sugar-mania-8000",
+    "title": "Sugar Mania 8000",
+    "provider": "MG+",
+    "image": "/images/slots/sugar-mania-8000.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "summertime",
+    "title": "Summertime",
+    "provider": "MG+",
+    "image": "/images/slots/summertime.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "thunderstruck",
+    "title": "Thunderstruck",
+    "provider": "MG+",
+    "image": "/images/slots/thunderstruck.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "thunderstruck-stormchaser",
+    "title": "Thunderstruck Stormchaser",
+    "provider": "MG+",
+    "image": "/images/slots/thunderstruck-stormchaser.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "thunderstruck-wild-lightning",
+    "title": "Thunderstruck Wild Lightning",
+    "provider": "MG+",
+    "image": "/images/slots/thunderstruck-wild-lightning.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "tiki-tiki-boomtm",
+    "title": "Tiki Tiki Boom™",
+    "provider": "MG+",
+    "image": "/images/slots/tiki-tiki-boomtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "treasure-gems",
+    "title": "Treasure Gems",
+    "provider": "MG+",
+    "image": "/images/slots/treasure-gems.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "trojan-kingdom",
+    "title": "Trojan Kingdom",
+    "provider": "MG+",
+    "image": "/images/slots/trojan-kingdom.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "wicked-tales-dark-red",
+    "title": "Wicked Tales: Dark Red",
+    "provider": "MG+",
+    "image": "/images/slots/wicked-tales-dark-red.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "wildfire-wins-extreme",
+    "title": "Wildfire Wins Extreme",
+    "provider": "MG+",
+    "image": "/images/slots/wildfire-wins-extreme.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "space-wars-megawaystm-xxxtreme",
+    "title": "Space Wars Megaways™ XXXtreme",
+    "provider": "NetEnt",
+    "image": "/images/slots/space-wars-megawaystm-xxxtreme.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Buy Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "ticket-to-wildtm",
+    "title": "Ticket To Wild™",
+    "provider": "NetEnt",
+    "image": "/images/slots/ticket-to-wildtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "wild-bazaartm",
+    "title": "Wild Bazaar™",
+    "provider": "NetEnt",
+    "image": "/images/slots/wild-bazaartm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "wilderlandtm",
+    "title": "Wilderland™",
+    "provider": "NetEnt",
+    "image": "/images/slots/wilderlandtm.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "money-pot",
+    "title": "Money Pot",
+    "provider": "2bet",
+    "image": "/images/slots/money-pot.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "crazy-777",
+    "title": "Crazy 777",
+    "provider": "2bet",
+    "image": "/images/slots/crazy-777.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "bubble-beauty-2",
+    "title": "Bubble Beauty",
+    "provider": "2bet",
+    "image": "/images/slots/bubble-beauty-2.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "crazy-777-2",
+    "title": "Crazy 777 2",
+    "provider": "2bet",
+    "image": "/images/slots/crazy-777-2.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "roma-x",
+    "title": "Roma X",
+    "provider": "2bet",
+    "image": "/images/slots/roma-x.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "fortune-pig",
+    "title": "Fortune Pig",
+    "provider": "2bet",
+    "image": "/images/slots/fortune-pig.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "treasure-ques",
+    "title": "Treasure Ques",
+    "provider": "2bet",
+    "image": "/images/slots/treasure-ques.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "midnight-bandits",
+    "title": "Midnight Bandits",
+    "provider": "BS",
+    "image": "/images/slots/midnight-bandits.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "the-robbery",
+    "title": "The Robbery",
+    "provider": "BS",
+    "image": "/images/slots/the-robbery.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "faerie-spells",
+    "title": "Faerie Spells",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/faerie-spells.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "hot"
+    ],
+    "rtpPercent": "96.0%",
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "chillipop",
+    "title": "ChilliPop",
+    "provider": "BS",
+    "image": "/images/slots/chillipop.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "take-the-bank",
+    "title": "Take The Bank",
+    "provider": "BS",
+    "image": "/images/slots/take-the-bank.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "dragon-phoenix",
+    "title": "Dragon & Phoenix",
+    "provider": "BS",
+    "image": "/images/slots/dragon-phoenix.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "take-santa-s-shop",
+    "title": "Take Santa's Shop",
+    "provider": "BS",
+    "image": "/images/slots/take-santa-s-shop.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "tower-of-fortuna",
+    "title": "Tower of Fortuna",
+    "provider": "BS",
+    "image": "/images/slots/tower-of-fortuna.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "7-fortune-frenzy",
+    "title": "7 Fortune Frenzy",
+    "provider": "BS",
+    "image": "/images/slots/7-fortune-frenzy.webp",
+    "category": [
+      "hot"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  }
+]
+
+const slotsBatch10: SlotGame[] = [
+  {
+    "id": "the-neighbor-warstm",
+    "title": "THE Neighbor Wars™",
+    "provider": "BS",
+    "image": "/images/slots/the-neighbor-warstm.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "cold"
+    ],
+    "new": true,
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "gold-nugget-rush-2tm",
+    "title": "Gold Nugget Rush 2™",
+    "provider": "BS",
+    "image": "/images/slots/gold-nugget-rush-2tm.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "cold"
+    ],
+    "new": true,
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "108-heroes-multiplier-fortunes",
+    "title": "108 Heroes Multiplier Fortunes",
+    "provider": "MG+",
+    "image": "/images/slots/108-heroes-multiplier-fortunes.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "8-golden-skulls-of-the-holly-roger-megawaystm",
+    "title": "8 Golden Skulls of the Holly Roger Megaways™",
+    "provider": "MG+",
+    "image": "/images/slots/8-golden-skulls-of-the-holly-roger-megawaystm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "9-blazing-diamonds",
+    "title": "9 Blazing Diamonds",
+    "provider": "MG+",
+    "image": "/images/slots/9-blazing-diamonds.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "9 lines"
+  },
+  {
+    "id": "9-mad-hats",
+    "title": "9 Mad Hats",
+    "provider": "MG+",
+    "image": "/images/slots/9-mad-hats.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "9 lines"
+  },
+  {
+    "id": "9-skulls-of-gold",
+    "title": "9 Skulls of Gold",
+    "provider": "MG+",
+    "image": "/images/slots/9-skulls-of-gold.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "9 lines"
+  },
+  {
+    "id": "agent-jane-blonde-returns",
+    "title": "Agent Jane Blonde Returns",
+    "provider": "MG+",
+    "image": "/images/slots/agent-jane-blonde-returns.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "age-of-conquest",
+    "title": "Age of Conquest",
+    "provider": "MG+",
+    "image": "/images/slots/age-of-conquest.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "alchemist-stone",
+    "title": "Alchemist Stone",
+    "provider": "MG+",
+    "image": "/images/slots/alchemist-stone.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "arctic-enchantress",
+    "title": "Arctic Enchantress",
+    "provider": "MG+",
+    "image": "/images/slots/arctic-enchantress.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "arctic-wolf-triple-riches",
+    "title": "Arctic Wolf Triple Riches",
+    "provider": "MG+",
+    "image": "/images/slots/arctic-wolf-triple-riches.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "augustus",
+    "title": "Augustus",
+    "provider": "MG+",
+    "image": "/images/slots/augustus.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "big-top-v90",
+    "title": "Big Top v90",
+    "provider": "MG+",
+    "image": "/images/slots/big-top-v90.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "break-away-v90",
+    "title": "Break Away v90",
+    "provider": "MG+",
+    "image": "/images/slots/break-away-v90.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "bust-the-mansion",
+    "title": "Bust The Mansion",
+    "provider": "MG+",
+    "image": "/images/slots/bust-the-mansion.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "cairo-link-and-win",
+    "title": "Cairo Link and Win",
+    "provider": "MG+",
+    "image": "/images/slots/cairo-link-and-win.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Prize Pool",
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "candy-dreams",
+    "title": "Candy Dreams",
+    "provider": "MG+",
+    "image": "/images/slots/candy-dreams.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "candyland-blast",
+    "title": "Candyland Blast",
+    "provider": "MG+",
+    "image": "/images/slots/candyland-blast.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "cashoccino",
+    "title": "CashOccino",
+    "provider": "MG+",
+    "image": "/images/slots/cashoccino.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "cashville",
+    "title": "Cashville",
+    "provider": "MG+",
+    "image": "/images/slots/cashville.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "catpurry",
+    "title": "CatPurry",
+    "provider": "MG+",
+    "image": "/images/slots/catpurry.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "cats-of-the-caribbean",
+    "title": "Cats of the Caribbean",
+    "provider": "MG+",
+    "image": "/images/slots/cats-of-the-caribbean.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "chicago-gold",
+    "title": "Chicago Gold",
+    "provider": "MG+",
+    "image": "/images/slots/chicago-gold.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "classic-243",
+    "title": "Classic 243",
+    "provider": "MG+",
+    "image": "/images/slots/classic-243.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "cossacks-the-wild-hunt",
+    "title": "Cossacks: The Wild Hunt",
+    "provider": "MG+",
+    "image": "/images/slots/cossacks-the-wild-hunt.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "couch-potato",
+    "title": "Couch Potato",
+    "provider": "MG+",
+    "image": "/images/slots/couch-potato.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "crazy-chameleons",
+    "title": "Crazy Chameleons",
+    "provider": "MG+",
+    "image": "/images/slots/crazy-chameleons.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "cuoi-and-the-banyan-tree",
+    "title": "Cuoi and the Banyan Tree",
+    "provider": "MG+",
+    "image": "/images/slots/cuoi-and-the-banyan-tree.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "deadmau5",
+    "title": "deadmau5",
+    "provider": "MG+",
+    "image": "/images/slots/deadmau5.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "deco-diamonds",
+    "title": "Deco Diamonds",
+    "provider": "MG+",
+    "image": "/images/slots/deco-diamonds.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dia-del-mariachi-megaways",
+    "title": "Dia del Mariachi Megaways",
+    "provider": "MG+",
+    "image": "/images/slots/dia-del-mariachi-megaways.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "divine-diamonds",
+    "title": "Divine Diamonds",
+    "provider": "MG+",
+    "image": "/images/slots/divine-diamonds.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dolphin-quest",
+    "title": "Dolphin Quest",
+    "provider": "MG+",
+    "image": "/images/slots/dolphin-quest.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "double-wammy",
+    "title": "Double Wammy",
+    "provider": "MG+",
+    "image": "/images/slots/double-wammy.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dragon-s-breath",
+    "title": "Dragon's Breath",
+    "provider": "MG+",
+    "image": "/images/slots/dragon-s-breath.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "elven-gold",
+    "title": "Elven Gold",
+    "provider": "MG+",
+    "image": "/images/slots/elven-gold.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "emoticoins",
+    "title": "EmotiCoins",
+    "provider": "MG+",
+    "image": "/images/slots/emoticoins.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "flower-fortunes-asia",
+    "title": "Flower Fortunes Asia",
+    "provider": "MG+",
+    "image": "/images/slots/flower-fortunes-asia.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "football-finals-x-up",
+    "title": "Football Finals X UP",
+    "provider": "MG+",
+    "image": "/images/slots/football-finals-x-up.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "fortune-dragontm",
+    "title": "Fortune Dragon™",
+    "provider": "MG+",
+    "image": "/images/slots/fortune-dragontm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "goldaur-guardians",
+    "title": "Goldaur Guardians",
+    "provider": "MG+",
+    "image": "/images/slots/goldaur-guardians.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "golden-dragons",
+    "title": "Golden Dragons",
+    "provider": "MG+",
+    "image": "/images/slots/golden-dragons.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "gold-factory",
+    "title": "Gold Factory",
+    "provider": "MG+",
+    "image": "/images/slots/gold-factory.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "harveys",
+    "title": "Harveys",
+    "provider": "MG+",
+    "image": "/images/slots/harveys.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "hidden-palace-treasures",
+    "title": "Hidden Palace Treasures",
+    "provider": "MG+",
+    "image": "/images/slots/hidden-palace-treasures.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "hidden-treasures-of-river-kwai",
+    "title": "Hidden Treasures of River Kwai",
+    "provider": "MG+",
+    "image": "/images/slots/hidden-treasures-of-river-kwai.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "hip-hop-thai",
+    "title": "Hip Hop Thai",
+    "provider": "MG+",
+    "image": "/images/slots/hip-hop-thai.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "hot-chilies",
+    "title": "Hot chilies",
+    "provider": "MG+",
+    "image": "/images/slots/hot-chilies.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "15 lines"
+  },
+  {
+    "id": "hound-hotel",
+    "title": "Hound Hotel",
+    "provider": "MG+",
+    "image": "/images/slots/hound-hotel.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "hyper-star",
+    "title": "Hyper Star",
+    "provider": "MG+",
+    "image": "/images/slots/hyper-star.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "hyper-striketm",
+    "title": "Hyper Strike™",
+    "provider": "MG+",
+    "image": "/images/slots/hyper-striketm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "ice-pop-party",
+    "title": "Ice Pop Party",
+    "provider": "MG+",
+    "image": "/images/slots/ice-pop-party.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "immortal-romance-v90",
+    "title": "Immortal Romance v90",
+    "provider": "MG+",
+    "image": "/images/slots/immortal-romance-v90.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "isis",
+    "title": "Isis",
+    "provider": "MG+",
+    "image": "/images/slots/isis.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "joyful-joker-megaways",
+    "title": "Joyful Joker Megaways",
+    "provider": "MG+",
+    "image": "/images/slots/joyful-joker-megaways.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "jurassic-world",
+    "title": "Jurassic World",
+    "provider": "MG+",
+    "image": "/images/slots/jurassic-world.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Movie",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "jurassic-world-raptor-riches",
+    "title": "Jurassic World Raptor Riches",
+    "provider": "MG+",
+    "image": "/images/slots/jurassic-world-raptor-riches.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Movie",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "king-of-the-ring",
+    "title": "King of the Ring",
+    "provider": "MG+",
+    "image": "/images/slots/king-of-the-ring.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "kitty-cabana",
+    "title": "Kitty Cabana",
+    "provider": "MG+",
+    "image": "/images/slots/kitty-cabana.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "kung-pao-panda",
+    "title": "Kung Pao Panda",
+    "provider": "MG+",
+    "image": "/images/slots/kung-pao-panda.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "ladies-nite-2-turn-wild",
+    "title": "Ladies Nite 2 Turn Wild",
+    "provider": "MG+",
+    "image": "/images/slots/ladies-nite-2-turn-wild.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "ladies-nite-v90",
+    "title": "Ladies Nite v90",
+    "provider": "MG+",
+    "image": "/images/slots/ladies-nite-v90.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lady-in-red",
+    "title": "Lady In Red",
+    "provider": "MG+",
+    "image": "/images/slots/lady-in-red.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lucky-koi-v90",
+    "title": "Lucky Koi V90",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-koi-v90.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky-silat",
+    "title": "Lucky Silat",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-silat.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lucky-thai-lanterns",
+    "title": "Lucky Thai Lanterns",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-thai-lanterns.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "mad-hatters",
+    "title": "Mad Hatters",
+    "provider": "MG+",
+    "image": "/images/slots/mad-hatters.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "makan-makan",
+    "title": "Makan Makan",
+    "provider": "MG+",
+    "image": "/images/slots/makan-makan.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "money-mines",
+    "title": "Money Mines",
+    "provider": "MG+",
+    "image": "/images/slots/money-mines.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Auto Game"
+    ]
+  },
+  {
+    "id": "monster-wheels",
+    "title": "Monster Wheels",
+    "provider": "MG+",
+    "image": "/images/slots/monster-wheels.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "munchkins",
+    "title": "Munchkins",
+    "provider": "MG+",
+    "image": "/images/slots/munchkins.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "noble-sky",
+    "title": "Noble Sky",
+    "provider": "MG+",
+    "image": "/images/slots/noble-sky.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "oink-country-love",
+    "title": "Oink Country Love",
+    "provider": "MG+",
+    "image": "/images/slots/oink-country-love.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "party-island",
+    "title": "Party Island",
+    "provider": "MG+",
+    "image": "/images/slots/party-island.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "peek-a-boo-5-reel",
+    "title": "Peek-a-Boo - 5 Reel",
+    "provider": "MG+",
+    "image": "/images/slots/peek-a-boo-5-reel.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "pho-win",
+    "title": "Pho Win",
+    "provider": "MG+",
+    "image": "/images/slots/pho-win.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "pile-em-uptm",
+    "title": "Pile Em Up™",
+    "provider": "MG+",
+    "image": "/images/slots/pile-em-uptm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "pollen-party",
+    "title": "Pollen Party",
+    "provider": "MG+",
+    "image": "/images/slots/pollen-party.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "pretty-kitty",
+    "title": "Pretty Kitty",
+    "provider": "MG+",
+    "image": "/images/slots/pretty-kitty.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "rabbit-in-the-hat",
+    "title": "Rabbit In The Hat",
+    "provider": "MG+",
+    "image": "/images/slots/rabbit-in-the-hat.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "reel-gems-v90",
+    "title": "Reel Gems v90",
+    "provider": "MG+",
+    "image": "/images/slots/reel-gems-v90.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "rocky-s-gold-ultraways",
+    "title": "Rocky's Gold UltraWays",
+    "provider": "MG+",
+    "image": "/images/slots/rocky-s-gold-ultraways.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "rome-supermatch",
+    "title": "Rome Supermatch",
+    "provider": "MG+",
+    "image": "/images/slots/rome-supermatch.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "tomb-raider-secret-of-the-sword",
+    "title": "Tomb Raider Secret of the Sword",
+    "provider": "MG+",
+    "image": "/images/slots/tomb-raider-secret-of-the-sword.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Movie",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "santa-paws",
+    "title": "Santa Paws",
+    "provider": "MG+",
+    "image": "/images/slots/santa-paws.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "secrets-of-sengoku",
+    "title": "Secrets of Sengoku",
+    "provider": "MG+",
+    "image": "/images/slots/secrets-of-sengoku.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "sherlock-of-london-online-slot",
+    "title": "Sherlock Of London Online Slot",
+    "provider": "MG+",
+    "image": "/images/slots/sherlock-of-london-online-slot.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "silver-lioness-4x",
+    "title": "Silver Lioness 4x",
+    "provider": "MG+",
+    "image": "/images/slots/silver-lioness-4x.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "1024"
+  },
+  {
+    "id": "sisters-of-oz-jackpots",
+    "title": "Sisters of Oz: Jackpots",
+    "provider": "MG+",
+    "image": "/images/slots/sisters-of-oz-jackpots.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "six-acrobats",
+    "title": "Six Acrobats",
+    "provider": "MG+",
+    "image": "/images/slots/six-acrobats.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "so-many-monsters",
+    "title": "So Many Monsters",
+    "provider": "MG+",
+    "image": "/images/slots/so-many-monsters.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "so-much-candy",
+    "title": "So Much Candy",
+    "provider": "MG+",
+    "image": "/images/slots/so-much-candy.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "so-much-sushi",
+    "title": "So Much Sushi",
+    "provider": "MG+",
+    "image": "/images/slots/so-much-sushi.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "songkran-party",
+    "title": "Songkran Party",
+    "provider": "MG+",
+    "image": "/images/slots/songkran-party.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "sugar-parade",
+    "title": "Sugar Parade",
+    "provider": "MG+",
+    "image": "/images/slots/sugar-parade.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "summer-holiday",
+    "title": "Summer Holiday",
+    "provider": "MG+",
+    "image": "/images/slots/summer-holiday.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "supe-it-up",
+    "title": "Supe It Up",
+    "provider": "MG+",
+    "image": "/images/slots/supe-it-up.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "tarzan",
+    "title": "Tarzan",
+    "provider": "MG+",
+    "image": "/images/slots/tarzan.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "tarzan-and-the-jewels-of-opar",
+    "title": "TARZAN® and the Jewels of Opar",
+    "provider": "MG+",
+    "image": "/images/slots/tarzan-and-the-jewels-of-opar.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-finer-reels-of-life",
+    "title": "The Finer Reels of Life",
+    "provider": "MG+",
+    "image": "/images/slots/the-finer-reels-of-life.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-golden-mask-dance",
+    "title": "The Golden Mask Dance",
+    "provider": "MG+",
+    "image": "/images/slots/the-golden-mask-dance.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "the-gold-swallow",
+    "title": "The Gold Swallow",
+    "provider": "MG+",
+    "image": "/images/slots/the-gold-swallow.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "the-great-albini",
+    "title": "The Great Albini",
+    "provider": "MG+",
+    "image": "/images/slots/the-great-albini.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-great-albini-2",
+    "title": "The Great Albini 2",
+    "provider": "MG+",
+    "image": "/images/slots/the-great-albini-2.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-immortal-sumo",
+    "title": "The Immortal Sumo",
+    "provider": "MG+",
+    "image": "/images/slots/the-immortal-sumo.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "the-phantom-of-the-opera",
+    "title": "The Phantom of the Opera",
+    "provider": "MG+",
+    "image": "/images/slots/the-phantom-of-the-opera.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "thunderstruck-v90",
+    "title": "Thunderstruck v90",
+    "provider": "MG+",
+    "image": "/images/slots/thunderstruck-v90.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "tiki-vikings",
+    "title": "Tiki Vikings",
+    "provider": "MG+",
+    "image": "/images/slots/tiki-vikings.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "timelines",
+    "title": "Timelines",
+    "provider": "MG+",
+    "image": "/images/slots/timelines.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "tomb-raider",
+    "title": "Tomb Raider",
+    "provider": "MG+",
+    "image": "/images/slots/tomb-raider.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Movie",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "treasures-of-kilauea",
+    "title": "Treasures of Kilauea",
+    "provider": "MG+",
+    "image": "/images/slots/treasures-of-kilauea.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "vinyl-countdown",
+    "title": "Vinyl Countdown",
+    "provider": "MG+",
+    "image": "/images/slots/vinyl-countdown.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "voila",
+    "title": "Voila!",
+    "provider": "MG+",
+    "image": "/images/slots/voila.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "western-gold-2",
+    "title": "Western Gold 2",
+    "provider": "MG+",
+    "image": "/images/slots/western-gold-2.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Buy Spins",
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "wwe-clash-of-the-wilds",
+    "title": "WWE: Clash of the Wilds",
+    "provider": "MG+",
+    "image": "/images/slots/wwe-clash-of-the-wilds.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "zeus-thunder-power",
+    "title": "Zeus Thunder Power",
+    "provider": "MG+",
+    "image": "/images/slots/zeus-thunder-power.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "zombie-hoard",
+    "title": "Zombie Hoard",
+    "provider": "MG+",
+    "image": "/images/slots/zombie-hoard.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "gold-diggers",
+    "title": "Gold Diggers",
+    "provider": "BS",
+    "image": "/images/slots/gold-diggers.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lost",
+    "title": "Lost",
+    "provider": "BS",
+    "image": "/images/slots/lost.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "2-million-b-c",
+    "title": "2 Million B.C.",
+    "provider": "BS",
+    "image": "/images/slots/2-million-b-c.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-glam-life",
+    "title": "The Glam Life",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/the-glam-life.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "cold"
+    ],
+    "rtpPercent": "92.0%",
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "arrival",
+    "title": "Arrival",
+    "provider": "BS",
+    "image": "/images/slots/arrival.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "gladiator",
+    "title": "Gladiator",
+    "provider": "BS",
+    "image": "/images/slots/gladiator.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "barbary-coast",
+    "title": "Barbary Coast",
+    "provider": "BS",
+    "image": "/images/slots/barbary-coast.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "mamma-mia",
+    "title": "Mamma Mia",
+    "provider": "BS",
+    "image": "/images/slots/mamma-mia.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "mr-vegas",
+    "title": "Mr. Vegas",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/mr-vegas.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "cold"
+    ],
+    "rtpPercent": "93.6%",
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "rook-s-revenge",
+    "title": "Rook's Revenge",
+    "provider": "BS",
+    "image": "/images/slots/rook-s-revenge.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "more-gold-diggin",
+    "title": "More Gold Diggin",
+    "provider": "BS",
+    "image": "/images/slots/more-gold-diggin.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "sin-city-nights",
+    "title": "Sin City Nights",
+    "provider": "BS",
+    "image": "/images/slots/sin-city-nights.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "heist",
+    "title": "Heist",
+    "provider": "BS",
+    "image": "/images/slots/heist.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "rockstar",
+    "title": "Rockstar",
+    "provider": "BS",
+    "image": "/images/slots/rockstar.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "treasure-room",
+    "title": "Treasure Room",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/treasure-room.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "cold"
+    ],
+    "rtpPercent": "94.0%",
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "fire-forge",
+    "title": "Fire Forge",
+    "provider": "MG+",
+    "image": "/images/slots/fire-forge.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lucky-twins-jackpot",
+    "title": "Lucky Twins Jackpot",
+    "provider": "MG+",
+    "image": "/images/slots/lucky-twins-jackpot.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Prize Pool",
+      "Free Spins"
+    ],
+    "winningLine": "15 lines"
+  },
+  {
+    "id": "paco-and-the-popping-peppers",
+    "title": "Paco and the Popping Peppers",
+    "provider": "BS",
+    "image": "/images/slots/paco-and-the-popping-peppers.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "viking-age",
+    "title": "Viking Age",
+    "provider": "BS",
+    "image": "/images/slots/viking-age.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "treasures-of-lion-city",
+    "title": "Treasures of Lion City",
+    "provider": "MG+",
+    "image": "/images/slots/treasures-of-lion-city.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "black-gold",
+    "title": "Black Gold",
+    "provider": "BS",
+    "image": "/images/slots/black-gold.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "giovanni-s-gems",
+    "title": "Giovanni's Gems",
+    "provider": "BS",
+    "image": "/images/slots/giovanni-s-gems.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "basketball-star-on-fire",
+    "title": "Basketball Star on Fire",
+    "provider": "MG+",
+    "image": "/images/slots/basketball-star-on-fire.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "at-the-movies",
+    "title": "At The Movies",
+    "provider": "BS",
+    "image": "/images/slots/at-the-movies.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "triple-juicy-drops",
+    "title": "Triple Juicy Drops",
+    "provider": "BS",
+    "image": "/images/slots/triple-juicy-drops.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "house-of-fun",
+    "title": "House of Fun",
+    "provider": "BS",
+    "image": "/images/slots/house-of-fun.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "alkemor-s-tower",
+    "title": "Alkemor's Tower",
+    "provider": "BS",
+    "image": "/images/slots/alkemor-s-tower.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "blood-eternal",
+    "title": "Blood Eternal",
+    "provider": "BS",
+    "image": "/images/slots/blood-eternal.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "jumbo-joker",
+    "title": "Jumbo Joker",
+    "provider": "BS",
+    "image": "/images/slots/jumbo-joker.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "the-golden-owl-of-athena",
+    "title": "The Golden Owl of Athena",
+    "provider": "BS",
+    "image": "/images/slots/the-golden-owl-of-athena.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "super-sweets",
+    "title": "Super Sweets",
+    "provider": "BS",
+    "image": "/images/slots/super-sweets.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "excaliburtm",
+    "title": "Excalibur™",
+    "provider": "NetEnt",
+    "image": "/images/slots/excaliburtm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "mystic-gems",
+    "title": "Mystic Gems",
+    "provider": "Choice",
+    "image": "/images/slots/mystic-gems.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "a-tale-of-elves",
+    "title": "A Tale of Elves",
+    "provider": "MG+",
+    "image": "/images/slots/a-tale-of-elves.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "cricket-star-scratch",
+    "title": "Cricket Star Scratch",
+    "provider": "MG+",
+    "image": "/images/slots/cricket-star-scratch.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Auto Game"
+    ]
+  },
+  {
+    "id": "madder-scientist",
+    "title": "Madder Scientist",
+    "provider": "BS",
+    "image": "/images/slots/madder-scientist.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "mega-gems",
+    "title": "Mega Gems",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/mega-gems.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "cold"
+    ],
+    "rtpPercent": "95.1%",
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "fire-steel",
+    "title": "Fire & Steel",
+    "provider": "BS",
+    "image": "/images/slots/fire-steel.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "tiger-s-claw",
+    "title": "Tiger's Claw",
+    "provider": "BS",
+    "image": "/images/slots/tiger-s-claw.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "kensei-blades",
+    "title": "Kensei Blades",
+    "provider": "BS",
+    "image": "/images/slots/kensei-blades.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "basketball-star-wilds",
+    "title": "Basketball Star Wilds",
+    "provider": "MG+",
+    "image": "/images/slots/basketball-star-wilds.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "immortal-romance-video-bingo",
+    "title": "Immortal Romance Video Bingo",
+    "provider": "MG+",
+    "image": "/images/slots/immortal-romance-video-bingo.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Auto Game"
+    ]
+  },
+  {
+    "id": "once-upon-a-time",
+    "title": "Once Upon A Time",
+    "provider": "BS",
+    "image": "/images/slots/once-upon-a-time.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "fa-fa-twins",
+    "title": "Fa-Fa Twins",
+    "provider": "BS",
+    "image": "/images/slots/fa-fa-twins.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "kawaii-kitty",
+    "title": "Kawaii Kitty",
+    "provider": "BS",
+    "image": "/images/slots/kawaii-kitty.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Anime",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "stampede",
+    "title": "Stampede",
+    "provider": "BS",
+    "image": "/images/slots/stampede.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "reels-of-wealth",
+    "title": "Reels of Wealth",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/reels-of-wealth.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "cold"
+    ],
+    "rtpPercent": "95.2%",
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "ogre-empire",
+    "title": "Ogre Empire",
+    "provider": "BS",
+    "image": "/images/slots/ogre-empire.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "fruitbat-crazy",
+    "title": "Fruitbat Crazy",
+    "provider": "BS",
+    "image": "/images/slots/fruitbat-crazy.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "primal-wilderness",
+    "title": "Primal Wilderness",
+    "provider": "BS",
+    "image": "/images/slots/primal-wilderness.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "cool-buck-5-reel",
+    "title": "Cool Buck - 5 Reel",
+    "provider": "MG+",
+    "image": "/images/slots/cool-buck-5-reel.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "magic-of-sahara",
+    "title": "Magic of Sahara",
+    "provider": "MG+",
+    "image": "/images/slots/magic-of-sahara.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "four-seasons",
+    "title": "Four Seasons",
+    "provider": "BS",
+    "image": "/images/slots/four-seasons.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "great-88",
+    "title": "Great 88",
+    "provider": "BS",
+    "image": "/images/slots/great-88.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "15 lines"
+  },
+  {
+    "id": "lost-mystery-chest",
+    "title": "Lost Mystery Chest",
+    "provider": "BS",
+    "image": "/images/slots/lost-mystery-chest.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "gold-tiger-ascent",
+    "title": "Gold Tiger Ascent",
+    "provider": "BS",
+    "image": "/images/slots/gold-tiger-ascent.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "take-olympus",
+    "title": "Take Olympus",
+    "provider": "BS",
+    "image": "/images/slots/take-olympus.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "Pay Anywhere"
+  },
+  {
+    "id": "alkemor-s-elements",
+    "title": "Alkemor's Elements",
+    "provider": "BS",
+    "image": "/images/slots/alkemor-s-elements.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "break-da-bank-again",
+    "title": "Break da Bank Again",
+    "provider": "MG+",
+    "image": "/images/slots/break-da-bank-again.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "huangdi-the-yellow-emperor",
+    "title": "Huangdi - The Yellow Emperor",
+    "provider": "MG+",
+    "image": "/images/slots/huangdi-the-yellow-emperor.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "dragon-kings",
+    "title": "Dragon Kings",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/dragon-kings.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "cold"
+    ],
+    "rtpPercent": "95.5%",
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "book-of-helios",
+    "title": "Book of Helios",
+    "provider": "BS",
+    "image": "/images/slots/book-of-helios.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "10 lines"
+  },
+  {
+    "id": "centre-court",
+    "title": "Centre Court",
+    "provider": "MG+",
+    "image": "/images/slots/centre-court.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Sports",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "halloweenies",
+    "title": "Halloweenies",
+    "provider": "MG+",
+    "image": "/images/slots/halloweenies.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Auto Game"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "genie-s-fortune-formerly-three-wishes",
+    "title": "Genie's Fortune (formerly Three Wishes)",
+    "provider": "BS",
+    "image": "/images/slots/genie-s-fortune-formerly-three-wishes.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "the-slotfather",
+    "title": "The Slotfather",
+    "provider": "BS",
+    "image": "/images/slots/the-slotfather.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "legend-of-the-nile",
+    "title": "Legend of the Nile",
+    "provider": "BS",
+    "jackpot": true,
+    "image": "/images/slots/legend-of-the-nile.webp",
+    "category": [
+      "bonus",
+      "bonuses",
+      "cold"
+    ],
+    "rtpPercent": "95.6%",
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "gemini-joker",
+    "title": "Gemini Joker",
+    "provider": "BS",
+    "image": "/images/slots/gemini-joker.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "happy-monster-claw",
+    "title": "Happy Monster Claw",
+    "provider": "MG+",
+    "image": "/images/slots/happy-monster-claw.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "fruit-slot",
+    "title": "Fruit Slot",
+    "provider": "Choice",
+    "image": "/images/slots/fruit-slot.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "break-da-bank",
+    "title": "Break da Bank",
+    "provider": "MG+",
+    "image": "/images/slots/break-da-bank.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "fruit-vs-candy",
+    "title": "Fruit vs Candy",
+    "provider": "MG+",
+    "image": "/images/slots/fruit-vs-candy.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lara-croft-temples-and-tombs",
+    "title": "Lara Croft: Temples and Tombs",
+    "provider": "MG+",
+    "image": "/images/slots/lara-croft-temples-and-tombs.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Movie",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "lost-vegas",
+    "title": "Lost Vegas",
+    "provider": "MG+",
+    "image": "/images/slots/lost-vegas.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "7th-heaven",
+    "title": "7th Heaven",
+    "provider": "BS",
+    "image": "/images/slots/7th-heaven.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "a-christmas-carol",
+    "title": "A Christmas Carol",
+    "provider": "BS",
+    "image": "/images/slots/a-christmas-carol.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "magic-shoppe",
+    "title": "Magic Shoppe",
+    "provider": "BS",
+    "image": "/images/slots/magic-shoppe.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "viking-voyage",
+    "title": "Viking Voyage",
+    "provider": "BS",
+    "image": "/images/slots/viking-voyage.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "spinfinity-man",
+    "title": "Spinfinity Man",
+    "provider": "BS",
+    "image": "/images/slots/spinfinity-man.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Science Fiction",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "caishen-s-arrival",
+    "title": "Caishen's Arrival",
+    "provider": "BS",
+    "image": "/images/slots/caishen-s-arrival.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "charms-treasures",
+    "title": "Charms & Treasures",
+    "provider": "BS",
+    "image": "/images/slots/charms-treasures.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "hot-lucky-7-s",
+    "title": "Hot Lucky 7's",
+    "provider": "BS",
+    "image": "/images/slots/hot-lucky-7-s.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Auto Game"
+    ],
+    "winningLine": "5 lines"
+  },
+  {
+    "id": "cornelius-milk-hunter-megawaystm",
+    "title": "Cornelius Milk Hunter Megaways™",
+    "provider": "NetEnt",
+    "image": "/images/slots/cornelius-milk-hunter-megawaystm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "117649"
+  },
+  {
+    "id": "great-gatsby",
+    "title": "Great Gatsby",
+    "provider": "LGD",
+    "image": "/images/slots/great-gatsby.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "beijing-opera",
+    "title": "Beijing opera",
+    "provider": "LGD",
+    "image": "/images/slots/beijing-opera.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Entertainment",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "reel-stealtm",
+    "title": "Reel Steal™",
+    "provider": "NetEnt",
+    "image": "/images/slots/reel-stealtm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "god-of-wu-fortune",
+    "title": "God of Wu Fortune",
+    "provider": "Choice",
+    "image": "/images/slots/god-of-wu-fortune.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "fortune-girl",
+    "title": "Fortune Girl",
+    "provider": "MG+",
+    "image": "/images/slots/fortune-girl.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "secret-romance",
+    "title": "Secret Romance",
+    "provider": "MG+",
+    "image": "/images/slots/secret-romance.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Romantic",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "tally-ho",
+    "title": "Tally Ho",
+    "provider": "MG+",
+    "image": "/images/slots/tally-ho.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "boomanji",
+    "title": "Boomanji",
+    "provider": "BS",
+    "image": "/images/slots/boomanji.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Adventures",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "fruit-zen",
+    "title": "Fruit Zen",
+    "provider": "BS",
+    "image": "/images/slots/fruit-zen.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "yak-yeti-roll",
+    "title": "Yak Yeti & Roll",
+    "provider": "BS",
+    "image": "/images/slots/yak-yeti-roll.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "spring-tails",
+    "title": "Spring Tails",
+    "provider": "BS",
+    "image": "/images/slots/spring-tails.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lava-gold",
+    "title": "Lava Gold",
+    "provider": "BS",
+    "image": "/images/slots/lava-gold.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "243"
+  },
+  {
+    "id": "trinity-reels",
+    "title": "Trinity Reels",
+    "provider": "BS",
+    "image": "/images/slots/trinity-reels.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "rags-to-witches-njp",
+    "title": "Rags to Witches NJP",
+    "provider": "BS",
+    "image": "/images/slots/rags-to-witches-njp.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "coins-of-ra-power-hold-win",
+    "title": "Coins Of Ra Power - Hold & Win",
+    "provider": "BS",
+    "image": "/images/slots/coins-of-ra-power-hold-win.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Myth & History",
+    "features": [
+      "Free Spins",
+      "Prize Pool"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "lock-and-pop",
+    "title": "Lock and Pop",
+    "provider": "NetEnt",
+    "image": "/images/slots/lock-and-pop.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "magic-maid-cafetm",
+    "title": "Magic Maid Cafe™",
+    "provider": "NetEnt",
+    "image": "/images/slots/magic-maid-cafetm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Anime",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "ocean-s-treasuretm",
+    "title": "Ocean's Treasure™",
+    "provider": "NetEnt",
+    "image": "/images/slots/ocean-s-treasuretm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "african-wilds",
+    "title": "African Wilds",
+    "provider": "MG+",
+    "image": "/images/slots/african-wilds.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "cash-n-riches-megawaystm",
+    "title": "Cash 'N Riches Megaways™",
+    "provider": "MG+",
+    "image": "/images/slots/cash-n-riches-megawaystm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "gallo-gold-bruno-stm-megawaystm",
+    "title": "Gallo Gold Bruno's™ Megaways™",
+    "provider": "MG+",
+    "image": "/images/slots/gallo-gold-bruno-stm-megawaystm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Others",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "wacky-panda",
+    "title": "Wacky Panda",
+    "provider": "MG+",
+    "image": "/images/slots/wacky-panda.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "20 lines"
+  },
+  {
+    "id": "wolf-blazetm-megawaystm",
+    "title": "Wolf Blaze™ Megaways™",
+    "provider": "MG+",
+    "image": "/images/slots/wolf-blazetm-megawaystm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Nature",
+    "features": [
+      "Free Spins",
+      "Buy Spins"
+    ],
+    "winningLine": "All Ways"
+  },
+  {
+    "id": "strolling-staxx-cubic-fruitstm",
+    "title": "Strolling Staxx: Cubic Fruits™",
+    "provider": "NetEnt",
+    "image": "/images/slots/strolling-staxx-cubic-fruitstm.webp",
+    "category": [
+      "cold"
+    ],
+    "theme": "Foods",
+    "features": [
+      "Free Spins"
+    ],
+    "winningLine": "All Ways"
   }
 ]
 
@@ -26460,7 +39174,46 @@ export const SLOTS: SlotGame[] = [
   ...slotsBatch4,
   ...slotsBatch5,
   ...slotsBatch6,
+  ...slotsBatch7,
+  ...slotsBatch8,
+  ...slotsBatch9,
+  ...slotsBatch10,
 ]
+
+const STANDALONE_JACKPOT_GAME_IDS = [
+  'rags-to-witches',
+  'sleighin-it',
+  'hearts-desire',
+  'reels-of-wealth',
+  'faerie-spells',
+  'dragon-kings',
+  'legend-of-the-nile',
+  'treasure-room',
+  'the-glam-life',
+  'mr-vegas',
+  'slots-angels',
+  'at-the-copa',
+  'greedy-goblins',
+  'the-slotfather-jp',
+  'a-night-in-paris-jp',
+  'a-night-in-paris-jp-2',
+  'good-girl-bad-girl',
+  'mega-gems',
+  'charms-clovers',
+]
+
+const standaloneJackpotOrder = new Map<string, number>(
+  STANDALONE_JACKPOT_GAME_IDS.map((id, index) => [id, index]),
+)
+
+export const getStandaloneJackpotGames = (slots: SlotGame[] = SLOTS): SlotGame[] => {
+  return slots
+    .filter(game => normalizeSlotProvider(game.provider) === 'bs' && game.jackpot === true)
+    .sort((left, right) => (
+      (standaloneJackpotOrder.get(left.id) ?? Number.MAX_SAFE_INTEGER)
+      - (standaloneJackpotOrder.get(right.id) ?? Number.MAX_SAFE_INTEGER)
+    ))
+}
 
 export const buildSlotSections = (slots: SlotGame[] = SLOTS): SlotSection[] => {
   return SLOT_SECTION_CONFIGS.map((cfg) => {

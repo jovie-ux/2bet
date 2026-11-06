@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Interactive Casino Game Guides & Rules | ByBet Help',
-  description: 'Read comprehensive game guides and gameplay walkthroughs for ByBet slots and table games. Understand payout mechanics, bonus rounds, and odds.',
+  title: 'Interactive Casino Game Guides & Rules | 2Bet Help',
+  description: 'Read comprehensive game guides and gameplay walkthroughs for 2Bet slots and table games. Understand payout mechanics, bonus rounds, and odds.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Tutorials', path: '/tutorial' },

@@ -1,4 +1,4 @@
-# Bybet Casino Landing Page
+# 2bet Casino Landing Page
 
 A responsive Nuxt 3 casino interface demo built with Vue 3, TypeScript, Tailwind CSS, and Lucide icons.
 

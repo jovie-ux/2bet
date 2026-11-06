@@ -3,8 +3,8 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { outrightRulesHtml } from '~/data/outright-rules'
 
 useAppSeo({
-  title: 'Outright Betting Rules & Tournament Futures | ByBet',
-  description: 'Official ByBet Outright and Futures rules: All-In Ante-Post terms, Dead Heat tie reductions, regular season finishing positions, and monthly cutoff terms.',
+  title: 'Outright Betting Rules & Tournament Futures | 2Bet',
+  description: 'Official 2Bet Outright and Futures rules: All-In Ante-Post terms, Dead Heat tie reductions, regular season finishing positions, and monthly cutoff terms.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Game Rules', path: '/game-rules' },

@@ -27,7 +27,7 @@ onBeforeUnmount(() => observer?.disconnect())
     :href="bybetRedirectUrl"
     target="_blank"
     rel="noopener noreferrer"
-    :aria-label="`Watch ${label} on ByBet`"
+    :aria-label="`Watch ${label} on 2Bet`"
     :title="`Watch ${label}`"
     class="relative block h-3 w-4 shrink-0 overflow-hidden rounded-md border border-white/15 bg-neutral-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400"
   >

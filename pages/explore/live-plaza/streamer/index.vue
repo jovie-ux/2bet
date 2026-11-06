@@ -2,8 +2,8 @@
 import { ChevronRight } from 'lucide-vue-next'
 
 useAppSeo({
-  title: 'Live Streamers & Match Broadcasts | ByBet Live Plaza',
-  description: 'Watch live sports broadcasts and interactive game streams on ByBet Live Plaza. Follow your favorite streamers and view real-time match betting tips.',
+  title: 'Live Streamers & Match Broadcasts | 2Bet Live Plaza',
+  description: 'Watch live sports broadcasts and interactive game streams on 2Bet Live Plaza. Follow your favorite streamers and view real-time match betting tips.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Live Plaza', path: '/explore/live-plaza/home' },
@@ -12,8 +12,8 @@ useAppSeo({
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'ByBet Live Streamers',
-    url: 'https://bybet.com/explore/live-plaza/streamer',
+    name: '2Bet Live Streamers',
+    url: 'https://2bet.com/explore/live-plaza/streamer',
   },
 })
 
@@ -31,7 +31,7 @@ const handleAllStreamersClick = (): void => {
     <SeoHeader
       sticky
       :title="translate('Streamer')"
-      description="Live streaming channels, interactive hosts, and gaming influencers on ByBet Philippines."
+      description="Live streaming channels, interactive hosts, and gaming influencers on 2Bet Philippines."
       :show-back="false"
     />
 

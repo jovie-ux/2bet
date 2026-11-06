@@ -3,8 +3,8 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { tableTennisRulesHtml } from '~/data/table-tennis-rules'
 
 useAppSeo({
-  title: 'Table Tennis Betting Rules & Match Settlement | ByBet',
-  description: 'Official ByBet table tennis rules: ITTF scoring standards, retirement settlement rules, set and point handicaps, Over/Under lines, and in-play markets.',
+  title: 'Table Tennis Betting Rules & Match Settlement | 2Bet',
+  description: 'Official 2Bet table tennis rules: ITTF scoring standards, retirement settlement rules, set and point handicaps, Over/Under lines, and in-play markets.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Game Rules', path: '/game-rules' },

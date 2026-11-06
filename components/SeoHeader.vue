@@ -20,8 +20,8 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  description: 'ByBet — Premier Online Gaming, Live Casino, Sports Betting, and Slots in the Philippines.',
-  keywords: 'ByBet, sports betting, online casino, slots, live casino, Philippines gaming',
+  description: undefined,
+  keywords: undefined,
   ogImage: '/brand/2bet-logo.webp',
   showBack: true,
   showFlag: true,
@@ -39,12 +39,14 @@ const emit = defineEmits<{
 const router = useRouter()
 const route = useRoute()
 const config = useRuntimeConfig()
+const { locale, translate } = useSiteLocale()
+
 const siteName = computed(() =>
-  String(config.public.siteName || 'ByBet Slots')
+  String(config.public.siteName || '2Bet Slots')
     .trim()
     .replace(/^['"]+|['"]+$/g, ''),
 )
-const siteUrl = computed(() => String(config.public.siteUrl || 'https://bybet.com').replace(/\/+$/, ''))
+const siteUrl = computed(() => String(config.public.siteUrl || 'https://2bet.com').replace(/\/+$/, ''))
 
 const isHomepage = computed(() => isHomepageRoute(route.path))
 
@@ -62,8 +64,10 @@ const shouldIncludeCheckMore = computed(() => {
   return !isHomepage.value
 })
 
+const displayTitle = computed(() => translate(props.title))
+
 const fullTitle = computed(() => {
-  return formatSeoTitle(props.metaTitle || props.title, siteName.value, shouldIncludeSiteName.value)
+  return formatSeoTitle(props.metaTitle || props.title, siteName.value, shouldIncludeSiteName.value, locale.value)
 })
 
 const fullDescription = computed(() => {
@@ -72,7 +76,16 @@ const fullDescription = computed(() => {
     siteName.value,
     isHomepage.value,
     shouldIncludeCheckMore.value,
+    locale.value,
   )
+})
+
+const keywords = computed(() => {
+  if (props.keywords) return props.keywords
+  if (locale.value === 'pt') {
+    return `${siteName.value}, apostas esportivas, cassino online, slots, cassino ao vivo, jogos online`
+  }
+  return `${siteName.value}, sports betting, online casino, slots, live casino, Philippines gaming`
 })
 
 const robots = computed(() => {
@@ -87,7 +100,7 @@ useSeoMeta({
   ogSiteName: siteName,
   description: fullDescription,
   ogDescription: fullDescription,
-  keywords: () => props.keywords,
+  keywords,
   ogImage: () => props.ogImage,
   ogType: () => props.ogType || 'website',
   twitterTitle: fullTitle,
@@ -135,7 +148,7 @@ const handleBack = (): void => {
           v-if="showBack"
           type="button"
           class="flex items-center justify-center h-6 w-6 bg-[#141414] rounded-full text-[#1FA779] transition-colors cursor-pointer shrink-0"
-          aria-label="Go back"
+          :aria-label="translate('Go back')"
           @click="handleBack"
         >
           <ChevronLeft class="h-3 w-3" />
@@ -144,7 +157,7 @@ const handleBack = (): void => {
         <!-- Page Title (SEO H1) -->
         <h1 class="text-[16px] font-bold text-white tracking-tight truncate leading-tight">
           <slot name="title">
-            {{ title }}
+            {{ displayTitle }}
           </slot>
         </h1>
       </div>
@@ -164,7 +177,7 @@ const handleBack = (): void => {
         v-if="showBack"
         type="button"
         class="flex items-center justify-center h-6 w-6 bg-[#141414] rounded-full text-[#1FA779] transition-colors cursor-pointer shrink-0"
-        aria-label="Go back"
+        :aria-label="translate('Go back')"
         @click="handleBack"
       >
         <ChevronLeft class="h-3 w-3" />
@@ -173,7 +186,7 @@ const handleBack = (): void => {
       <!-- Page Title (SEO H1) -->
       <h1 class="text-[15px] font-bold text-white tracking-tight truncate leading-tight">
         <slot name="title">
-          {{ title }}
+          {{ displayTitle }}
         </slot>
       </h1>
     </div>

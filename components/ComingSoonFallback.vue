@@ -4,6 +4,7 @@ import { formatSeoDescription, isHomepageRoute } from '~/composables/useAppSeo'
 
 const route = useRoute()
 const router = useRouter()
+const { translate, locale } = useSiteLocale()
 
 const pathSegments = computed(() => {
   const routePath = route.params.path
@@ -46,16 +47,20 @@ const props = withDefaults(
 
 if (!props.disableSeo) {
   const config = useRuntimeConfig()
-  const siteName = String(config.public.siteName || 'ByBet Slots')
+  const siteName = String(config.public.siteName || '2bet Slots')
     .trim()
     .replace(/^['"]+|['"]+$/g, '')
   const description = computed(() => {
-    const raw = `${pageTitle.value} in ${sectionTitle.value} is coming soon to ByBet.`
-    return formatSeoDescription(raw, siteName, isHomepageRoute(route.path))
+    const raw = locale.value === 'pt'
+      ? `${translate(pageTitle.value)} em ${translate(sectionTitle.value)} estará disponível em breve na 2Bet.`
+      : `${pageTitle.value} in ${sectionTitle.value} is coming soon to 2Bet.`
+    return formatSeoDescription(raw, siteName, isHomepageRoute(route.path), false, locale.value)
   })
 
   useSeoMeta({
-    title: () => `${pageTitle.value} — Coming Soon | ByBet`,
+    title: () => locale.value === 'pt'
+      ? `${translate(pageTitle.value)} — Em breve | 2Bet`
+      : `${pageTitle.value} — Coming Soon | 2Bet`,
     description,
     ogDescription: description,
     twitterDescription: description,
@@ -71,24 +76,24 @@ if (!props.disableSeo) {
         <Clock3 :size="30" />
         <Sparkles :size="14" />
       </span>
-      <nav aria-label="Breadcrumb">
-        <NuxtLink to="/">Home</NuxtLink>
+      <nav :aria-label="translate('Breadcrumb')">
+        <NuxtLink to="/">{{ translate('Home') }}</NuxtLink>
         <span>/</span>
-        <span>{{ sectionTitle }}</span>
+        <span>{{ translate(sectionTitle) }}</span>
       </nav>
-      <p class="eyebrow">{{ sectionTitle }}</p>
-      <h1>{{ pageTitle }}</h1>
+      <p class="eyebrow">{{ translate(sectionTitle) }}</p>
+      <h1>{{ translate(pageTitle) }}</h1>
       <p class="description">
-        This experience is being prepared. Check back soon for something new.
+        {{ translate('This experience is being prepared. Check back soon for something new.') }}
       </p>
       <div class="page-actions">
         <NuxtLink to="/">
           <Home :size="15" aria-hidden="true" />
-          Back to Home
+          {{ translate('Back to Home') }}
         </NuxtLink>
         <button type="button" @click="router.back()">
           <ArrowLeft :size="15" aria-hidden="true" />
-          Go Back
+          {{ translate('Go Back') }}
         </button>
       </div>
     </div>

@@ -17,8 +17,8 @@ const leagueName = computed(() => {
 })
 
 useAppSeo({
-  title: computed(() => `${leagueName.value} Betting Odds & Live Match Lines | ByBet`),
-  description: computed(() => `Bet on ${leagueName.value} ${sportName.value} at ByBet Philippines. Competitive odds, Asian handicaps, moneylines, over/under totals, and tournament futures.`),
+  title: computed(() => `${leagueName.value} Betting Odds & Live Match Lines | 2Bet`),
+  description: computed(() => `Bet on ${leagueName.value} ${sportName.value} at 2Bet Philippines. Competitive odds, Asian handicaps, moneylines, over/under totals, and tournament futures.`),
   breadcrumbs: computed(() => [
     { name: 'Home', path: '/' },
     { name: 'Sports', path: '/explore/sports/popular' },
@@ -28,9 +28,9 @@ useAppSeo({
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${leagueName.value} ${sportName.value} Betting - ByBet`,
-    url: `https://bybet.com${route.path}`,
-    description: `Bet on ${leagueName.value} ${sportName.value} at ByBet Philippines with top odds and live markets.`,
+    name: `${leagueName.value} ${sportName.value} Betting - 2Bet`,
+    url: `https://2bet.com${route.path}`,
+    description: `Bet on ${leagueName.value} ${sportName.value} at 2Bet Philippines with top odds and live markets.`,
   })),
 })
 

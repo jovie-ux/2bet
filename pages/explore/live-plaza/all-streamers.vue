@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'All Sports & Casino Streamers — Live Plaza | ByBet',
-  description: 'Browse and follow top sports streamers, live casino hosts, and gaming commentators on ByBet Live Plaza. Join interactive broadcasts with live chat.',
+  title: 'All Sports & Casino Streamers — Live Plaza | 2Bet',
+  description: 'Browse and follow top sports streamers, live casino hosts, and gaming commentators on 2Bet Live Plaza. Join interactive broadcasts with live chat.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Live Plaza', path: '/explore/live-plaza/home' },

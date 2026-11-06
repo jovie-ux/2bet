@@ -156,6 +156,23 @@ const PROVIDER_LOGO_BY_NAME: Record<string, string> = {
   REDTIGER: '/images/providers/red-tiger.webp',
   'RED-TIGER': '/images/providers/red-tiger.webp',
   UNKNOWN: '/images/providers/red-tiger.webp',
+  LGD: '/images/providers/lgd.webp',
+  'LGD GAMING': '/images/providers/lgd.webp',
+  NETENT: '/images/providers/netent.webp',
+  CHOICE: '/images/providers/choice.webp',
+  'CHOICE GAMING': '/images/providers/choice.webp',
+  BS: '/images/providers/bs.webp',
+  BETSOFT: '/images/providers/bs.webp',
+  'MG+': '/images/providers/mg.webp',
+  MG: '/images/providers/mg.webp',
+  MICROGAMING: '/images/providers/mg.webp',
+  '2BET': '/images/providers/2bet.webp',
+  'AI CASINO': '/images/providers/ai-casino.webp',
+  AICASINO: '/images/providers/ai-casino.webp',
+  DB: '/images/providers/db.webp',
+  KY: '/images/providers/ky.webp',
+  V8: '/images/providers/v8.webp',
+  KS: '/images/providers/ks.webp',
 }
 
 const resolveProviderLogo = (providerName?: string, explicitLogo?: string): string => {
@@ -302,19 +319,20 @@ const showJackpotPool = computed(() => {
 })
 
 const displayJackpotPool = computed(() => {
-  if (props.game.jackpotPool) return props.game.jackpotPool
+  if (props.game.jackpotPool) return props.game.jackpotPool.replace(/^₱/, '$')
   const price = props.game.JackpotPrice ?? props.game.jackpotPrice
   if (typeof price === 'number' && price > 0) {
-    return `₱${price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    return `$${price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
   }
   if (typeof price === 'string' && price.trim()) {
-    return price.startsWith('₱') ? price : `₱${price}`
+    const cleaned = price.trim().replace(/^₱/, '$')
+    return cleaned.startsWith('$') ? cleaned : `$${cleaned}`
   }
   if (isJackpotGame.value) {
     const prov = normalizeSlotProvider(props.game.provider)
     const sec = JACKPOT_SECTIONS.find(s => normalizeSlotProvider(s.id) === prov || normalizeSlotProvider(s.provider) === prov)
     if (sec && sec.showCounter && sec.jackpotAmount > 0) {
-      return `₱${sec.jackpotAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+      return `$${sec.jackpotAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
     }
   }
   return ''

@@ -89,8 +89,8 @@ onBeforeUnmount(() => {
 })
 
 useAppSeo({
-  title: () => `${categoryLabel.value} Bonuses & Promotions | ByBet`,
-  description: () => `Explore ${categoryLabel.value.toLowerCase()} bonuses and promotions available at ByBet Philippines.`,
+  title: () => `${categoryLabel.value} Bonuses & Promotions | 2Bet`,
+  description: () => `Explore ${categoryLabel.value.toLowerCase()} bonuses and promotions available at 2Bet Philippines.`,
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Bonuses', path: '/explore/bonuses' },
@@ -104,9 +104,9 @@ useAppSeo({
     <div class="bonus-category-sticky sticky-header-seal">
       <SeoHeader
         title="Bonuses"
-        :meta-title="`${categoryLabel} Bonuses & Promotions | ByBet`"
-        :description="`Explore ${categoryLabel.toLowerCase()} bonuses and promotions available at ByBet Philippines.`"
-        keywords="ByBet bonuses, promotions, deposit rewards, rebates"
+        :meta-title="`${categoryLabel} Bonuses & Promotions | 2Bet`"
+        :description="`Explore ${categoryLabel.toLowerCase()} bonuses and promotions available at 2Bet Philippines.`"
+        keywords="2Bet bonuses, promotions, deposit rewards, rebates"
         back-to="/explore/bonuses"
         custom-class="bonus-category-header"
       >

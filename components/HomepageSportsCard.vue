@@ -5,11 +5,13 @@ import type { SportsEvent } from '~/types/sports'
 
 const props = withDefaults(defineProps<{ fixture: SportsEvent; highlighted?: boolean }>(), { highlighted: false })
 const { timeZone } = useTimeZonePreference()
+const { locale, translate } = useSiteLocale()
 const kickoff = computed(() => {
   const date = new Date(props.fixture.commence_time)
+  const formatLocale = locale.value === 'pt' ? 'pt-BR' : 'en-US'
   return {
     time: new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: timeZone.value }).format(date),
-    date: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: timeZone.value }).format(date),
+    date: new Intl.DateTimeFormat(formatLocale, { month: 'short', day: 'numeric', year: 'numeric', timeZone: timeZone.value }).format(date),
   }
 })
 const teamImages: Record<string, string> = {
@@ -68,7 +70,7 @@ const teams = computed(() => [props.fixture.home_team, props.fixture.away_team].
   const [red = 0, green = 0, blue = 0] = accent.split(' ').map(Number)
   const brightness = (red * 299 + green * 587 + blue * 114) / 1000
   return {
-    name: name || 'To be confirmed',
+    name: name || translate('To be confirmed'),
     image: teamImages[name || ''],
     accent,
     hoverAccent: hoverTeamAccents[name || ''] || accent,
@@ -78,7 +80,7 @@ const teams = computed(() => [props.fixture.home_team, props.fixture.away_team].
   }
 }))
 const destination = computed(() => `/explore/sports/${props.fixture.sport_key.split('_')[0] || 'basketball'}/upcoming/1hours`)
-const sportName = computed(() => ({ basketball: 'Basketball', soccer: 'Football', tennis: 'Tennis' }[props.fixture.sport_key.split('_')[0] || ''] || 'Sports'))
+const sportName = computed(() => translate(({ basketball: 'Basketball', soccer: 'Football', tennis: 'Tennis' }[props.fixture.sport_key.split('_')[0] || ''] || 'Sports')))
 </script>
 
 <template>
@@ -88,14 +90,14 @@ const sportName = computed(() => ({ basketball: 'Basketball', soccer: 'Football'
     :class="{ 'sports-match-card--highlighted': highlighted }"
     :data-sport="fixture.sport_key.split('_')[0]"
     :style="{ '--home-arena-hue': teams[0]!.arenaHue, '--away-arena-hue': teams[1]!.arenaHue, '--home-hover-color': teams[0]!.hoverAccent, '--away-hover-color': teams[1]!.hoverAccent }"
-    :aria-label="`Match preview: ${fixture.home_team} versus ${fixture.away_team} in ${fixture.sport_title}`"
+    :aria-label="`${fixture.home_team} ${translate('VS')} ${fixture.away_team} - ${fixture.sport_title}`"
   >
     <div class="sports-match-heading flex items-center justify-between">
       <span class="sports-league flex items-center min-w-0">
         <img :src="getTournamentLogo(fixture.sport_key)" :class="{ 'sports-league-logo--nba': fixture.sport_key.includes('_nba') }" alt="" width="18" height="26" loading="lazy">
         <span class="sports-league-copy flex items-center min-w-0"><strong :title="fixture.sport_title">{{ fixture.sport_title }}</strong><span aria-hidden="true">&middot;</span><span class="sports-league-sport">{{ sportName }}</span></span>
       </span>
-      <span class="sports-match-status inline-flex items-center"><span aria-hidden="true" />Upcoming</span>
+      <span class="sports-match-status inline-flex items-center"><span aria-hidden="true" />{{ translate('Upcoming') }}</span>
     </div>
 
     <div class="sports-match-arena">
@@ -113,7 +115,7 @@ const sportName = computed(() => ({ basketball: 'Basketball', soccer: 'Football'
         </div>
 
         <div class="sports-match-center flex flex-col items-center">
-          <span class="sports-versus" aria-hidden="true">VS</span>
+          <span class="sports-versus" aria-hidden="true">{{ translate('VS') }}</span>
           <time class="sports-kickoff flex flex-col items-center justify-center" :datetime="fixture.commence_time">
             <strong>{{ kickoff.time }}</strong>
             <span>{{ kickoff.date }}</span>
@@ -132,7 +134,7 @@ const sportName = computed(() => ({ basketball: 'Basketball', soccer: 'Football'
 
     <div class="sports-match-footer flex items-center justify-between">
       <p class="sports-match-category">{{ sportName }}<span aria-hidden="true"> &middot; </span>{{ fixture.sport_title }}</p>
-      <span class="sports-preview inline-flex items-center justify-center">View match <ArrowRight :size="16" :stroke-width="1.8" aria-hidden="true" /></span>
+      <span class="sports-preview inline-flex items-center justify-center">{{ translate('View match') }} <ArrowRight :size="16" :stroke-width="1.8" aria-hidden="true" /></span>
     </div>
   </NuxtLink>
 </template>

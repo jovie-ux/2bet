@@ -3,8 +3,8 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { parlaysRulesHtml } from '~/data/parlays-rules'
 
 useAppSeo({
-  title: 'Parlay & Multiples Combo Bet Settlement Rules | ByBet',
-  description: 'Official ByBet rules for Parlays and Multiples: Trixie, Yankee, Super Yankee, Heinz, Goliath, system block permutations, and pushed leg settlement terms.',
+  title: 'Parlay & Multiples Combo Bet Settlement Rules | 2Bet',
+  description: 'Official 2Bet rules for Parlays and Multiples: Trixie, Yankee, Super Yankee, Heinz, Goliath, system block permutations, and pushed leg settlement terms.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Game Rules', path: '/game-rules' },

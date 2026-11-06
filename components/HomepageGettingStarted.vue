@@ -8,6 +8,8 @@ const props = withDefaults(defineProps<{
   faqs: () => faqItems,
 })
 
+const { translate } = useSiteLocale()
+
 const steps = [
   { title: 'Discover', description: 'Browse our games and features.', to: '/explore/egames/slots', image: '/icons/casino-steps/choose-table.webp' },
   { title: 'Choose', description: 'Find what you love across every category.', to: '/explore/entertainment/live-casino/baccarat', image: '/icons/casino-steps/check-rules.webp' },
@@ -23,18 +25,18 @@ function showAllFaqs() {
 <template>
   <div class="homepage-getting-started grid">
     <section class="homepage-start-panel" aria-labelledby="allgames-start-title">
-      <p class="help-eyebrow">GET STARTED <span aria-hidden="true" /></p>
-      <h2 id="allgames-start-title" class="allgames-section-title">Your next favorite starts here.</h2>
-      <p class="getting-started-intro">Explore 2Bet in three simple steps.</p>
+      <p class="help-eyebrow">{{ translate('GET STARTED') }} <span aria-hidden="true" /></p>
+      <h2 id="allgames-start-title" class="allgames-section-title">{{ translate('Your next favorite starts here.') }}</h2>
+      <p class="getting-started-intro">{{ translate('Explore 2Bet in three simple steps.') }}</p>
 
-      <ol class="getting-started-steps grid" aria-label="Get started in three steps">
+      <ol class="getting-started-steps grid" :aria-label="translate('Get started in three steps')">
         <li v-for="(step, index) in steps" :key="step.title" class="min-w-0">
           <NuxtLink :to="step.to" class="getting-started-card">
             <span class="getting-started-icon" aria-hidden="true"><img :src="step.image" alt="" width="128" height="128" loading="lazy" decoding="async"></span>
             <div class="getting-started-card-copy">
-              <span class="getting-started-number">STEP 0{{ index + 1 }}</span>
-              <strong>{{ step.title }}</strong>
-              <p>{{ step.description }}</p>
+              <span class="getting-started-number">{{ translate('STEP') }} 0{{ index + 1 }}</span>
+              <strong>{{ translate(step.title) }}</strong>
+              <p>{{ translate(step.description) }}</p>
             </div>
             <ArrowUpRight class="getting-started-card-arrow" :size="18" aria-hidden="true" />
           </NuxtLink>
@@ -42,24 +44,24 @@ function showAllFaqs() {
       </ol>
 
       <div class="getting-started-actions flex">
-        <NuxtLink to="/explore/egames/slots" class="getting-started-explore homepage-primary-action">Explore all games <ArrowRight :size="20" :stroke-width="1.8" aria-hidden="true" /></NuxtLink>
-        <p>Choose your experience. Play at your pace.</p>
+        <NuxtLink to="/explore/egames/slots" class="getting-started-explore homepage-primary-action">{{ translate('Explore all games') }} <ArrowRight :size="20" :stroke-width="1.8" aria-hidden="true" /></NuxtLink>
+        <p>{{ translate('Choose your experience. Play at your pace.') }}</p>
       </div>
     </section>
 
     <section class="getting-started-faq" aria-labelledby="allgames-faq-title">
-      <p class="help-eyebrow">HERE TO HELP <span aria-hidden="true" /></p>
+      <p class="help-eyebrow">{{ translate('HERE TO HELP') }} <span aria-hidden="true" /></p>
       <div class="getting-started-faq-heading flex">
-        <h2 id="allgames-faq-title" class="allgames-section-title">A little help, before you play.</h2>
-        <button type="button" class="getting-started-all-faqs" aria-controls="homepage-faq-list" @click="showAllFaqs">View all FAQs <ArrowUpRight :size="16" aria-hidden="true" /></button>
+        <h2 id="allgames-faq-title" class="allgames-section-title">{{ translate('A little help, before you play.') }}</h2>
+        <button type="button" class="getting-started-all-faqs" aria-controls="homepage-faq-list" @click="showAllFaqs">{{ translate('View all FAQs') }} <ArrowUpRight :size="16" aria-hidden="true" /></button>
       </div>
       <div id="homepage-faq-list" class="getting-started-faq-list grid">
         <details v-for="(faq, index) in (props.faqs || faqItems)" :key="faq.question" ref="faqDetails" :open="index === 0">
           <summary>
-            {{ faq.question }}
+            {{ translate(faq.question) }}
             <span class="getting-started-faq-toggle" aria-hidden="true"><Plus class="faq-plus" :size="22" /><Minus class="faq-minus" :size="22" /></span>
           </summary>
-          <p>{{ faq.answer }}</p>
+          <p>{{ translate(faq.answer) }}</p>
         </details>
       </div>
     </section>

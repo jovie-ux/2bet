@@ -14,32 +14,6 @@ const visibleCount = computed(() => filterPromotions(PROMOTIONS).length)
 </script>
 
 <template>
-  <section class="bonus-payments" aria-label="Payments">
-    <h2 class="bonus-payments__title">Payments</h2>
-
-    <div class="bonus-payments__filters" aria-label="Filter bonuses by payment currency">
-      <button
-        type="button"
-        :aria-pressed="selectedCurrency === 'all'"
-        @click="selectedCurrency = 'all'"
-      >All <span>{{ PROMOTIONS.length }}</span></button>
-      <button
-        v-for="group in groups"
-        :key="group.code"
-        type="button"
-        :aria-pressed="selectedCurrency === group.code"
-        @click="selectedCurrency = group.code"
-      >{{ group.label }} <span>{{ group.items.length }}</span></button>
-    </div>
-
-    <p v-if="selectedCurrency === 'all' && unassigned.length" class="bonus-payments__note">
-      {{ unassigned.length }} {{ unassigned.length === 1 ? 'bonus is' : 'bonuses are' }} unassigned to a payment currency.
-    </p>
-    <p v-if="visibleCount === 0" class="bonus-payments__empty" role="status">
-      No bonuses assigned to {{ selectedCurrencyLabel }} yet.
-    </p>
-
-  </section>
 </template>
 
 <style scoped>

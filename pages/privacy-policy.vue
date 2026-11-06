@@ -2,8 +2,8 @@
 import LegalPageShell from '~/components/legal/LegalPageShell.vue'
 
 useAppSeo({
-  title: 'Privacy Policy & Data Protection (RA 10173) | ByBet',
-  description: 'ByBet official privacy policy. Learn how player personal data, payment information, and betting logs are safeguarded in compliance with RA 10173.',
+  title: 'Privacy Policy & Data Protection (RA 10173) | 2Bet',
+  description: '2Bet official privacy policy. Learn how player personal data, payment information, and betting logs are safeguarded in compliance with RA 10173.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Privacy Policy', path: '/privacy-policy' },
@@ -14,7 +14,7 @@ useAppSeo({
 <template>
   <LegalPageShell title="Privacy Policy">
     <p>
-      ByBet, operated by Global Play Hub Innovations Corp., acts as the Personal Information Controller (PIC) responsible for the collection and processing of your personal data under the Philippine Data Privacy Act of 2012 (Republic Act No. 10173) and National Privacy Commission (NPC) regulations. We are committed to safeguarding player confidentiality with enterprise-grade standards.
+      2Bet, operated by Global Play Hub Innovations Corp., acts as the Personal Information Controller (PIC) responsible for the collection and processing of your personal data under the Philippine Data Privacy Act of 2012 (Republic Act No. 10173) and National Privacy Commission (NPC) regulations. We are committed to safeguarding player confidentiality with enterprise-grade standards.
     </p>
 
     <h3 class="text-white font-bold text-sm sm:text-[15px] pt-3 mb-1.5">
@@ -62,7 +62,7 @@ useAppSeo({
       5.0 Cookies &amp; Tracking Technologies
     </h3>
     <p>
-      ByBet utilizes session cookies and essential local storage tokens to preserve your active login session, language preferences, and odds display format. Analytics cookies are aggregated and anonymized to optimize page loading speeds and interface usability.
+      2Bet utilizes session cookies and essential local storage tokens to preserve your active login session, language preferences, and odds display format. Analytics cookies are aggregated and anonymized to optimize page loading speeds and interface usability.
     </p>
 
     <h3 class="text-white font-bold text-sm sm:text-[15px] pt-3 mb-1.5">
@@ -86,7 +86,7 @@ useAppSeo({
       For inquiries regarding this Privacy Policy or to exercise your data subject rights, please reach out to our dedicated Data Protection Officer:
     </p>
     <div class="pt-1 space-y-1 text-[#959799]">
-      <p><span class="text-white/80">Email:</span> dpo@bybet.com / privacy@bybet.ph</p>
+      <p><span class="text-white/80">Email:</span> dpo@2bet.com / privacy@2bet.ph</p>
       <p><span class="text-white/80">Attention:</span> Data Protection Compliance Office</p>
       <p><span class="text-white/80">Address:</span> Bonifacio Global City, Taguig, Metro Manila, Philippines</p>
     </div>

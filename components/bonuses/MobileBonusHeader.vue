@@ -8,16 +8,17 @@ withDefaults(defineProps<{ backTo?: string; currencySelector?: boolean }>(), {
 })
 
 const { selectedCurrency } = useBonusPayments()
+const { translate } = useSiteLocale()
 </script>
 
 <template>
   <header class="mobile-bonus-header">
-    <NuxtLink :to="backTo" class="mobile-bonus-header__back" aria-label="Go back">
+    <NuxtLink :to="backTo" class="mobile-bonus-header__back" :aria-label="translate('Go back')">
       <ChevronLeft :size="20" aria-hidden="true" />
     </NuxtLink>
-    <h1>Bonuses</h1>
+    <h1>{{ translate('Bonuses') }}</h1>
     <BonusCurrencySelector v-if="currencySelector" v-model="selectedCurrency" />
-    <NuxtLink v-else to="/explore/account/language" class="mobile-bonus-header__flag" aria-label="Language: Philippines">
+    <NuxtLink v-else to="/explore/account/language" class="mobile-bonus-header__flag" :aria-label="translate('Select language')">
       <img src="/icons/PHP.webp" alt="Philippines" width="24" height="24">
     </NuxtLink>
   </header>

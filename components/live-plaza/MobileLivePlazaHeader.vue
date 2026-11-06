@@ -2,6 +2,7 @@
 import { ChevronLeft } from 'lucide-vue-next'
 
 const route = useRoute()
+const { translate } = useSiteLocale()
 const path = computed(() => route.path.replace(/\/$/, ''))
 const title = computed(() => {
   if (path.value.endsWith('/streamer/all')) return 'All Streamers'
@@ -17,10 +18,10 @@ const backTo = computed(() => path.value.endsWith('/streamer/all')
 
 <template>
   <header class="mobile-live-plaza-header">
-    <NuxtLink :to="backTo" class="mobile-live-plaza-header__back" aria-label="Go back">
+    <NuxtLink :to="backTo" class="mobile-live-plaza-header__back" :aria-label="translate('Go back')">
       <ChevronLeft :size="20" aria-hidden="true" />
     </NuxtLink>
-    <h1>{{ title }}</h1>
+    <h1>{{ translate(title) }}</h1>
     <span aria-hidden="true" />
   </header>
 </template>

@@ -52,20 +52,20 @@ const isSvgString = (icon?: string): boolean => {
   return Boolean(icon && typeof icon === 'string' && icon.trim().startsWith('<svg'))
 }
 
-const seoTitle = computed(() => bonus.value.seoTitle || `${bonus.value.title} — ByBet Bonus & Promotions`)
+const seoTitle = computed(() => bonus.value.seoTitle || `${bonus.value.title} — 2Bet Bonus & Promotions`)
 
 const seoDescription = computed(() => {
   if (bonus.value.seoDesc) return bonus.value.seoDesc
   if (bonus.value.seoDescription) return bonus.value.seoDescription
-  const desc = bonus.value.subtitle || bonus.value.eventContent?.description || `Participate in ${bonus.value.title} on ByBet.`
-  return `${desc} Join ByBet Philippines for exclusive casino promotions, free spins, deposit bonuses, and daily rebates.`
+  const desc = bonus.value.subtitle || bonus.value.eventContent?.description || `Participate in ${bonus.value.title} on 2Bet.`
+  return `${desc} Join 2Bet Philippines for exclusive casino promotions, free spins, deposit bonuses, and daily rebates.`
 })
 
 const seoKeywords = computed(() => {
   return [
     bonus.value.title,
-    'ByBet bonus',
-    'ByBet promotion',
+    '2Bet bonus',
+    '2Bet promotion',
     bonus.value.slug,
     'Philippines online casino',
     'free spins',
@@ -77,10 +77,10 @@ const seoKeywords = computed(() => {
 
 const seoImage = computed(() => {
   const raw = bonusHeaderImageSrc.value || (typeof bonus.value.bannerImage === 'string' ? bonus.value.bannerImage : bonus.value.bannerImage?.banner) || bonus.value.thumbnailImage || '/brand/2bet-logo.webp'
-  return raw.startsWith('http') ? raw : `https://bybet.com${raw}`
+  return raw.startsWith('http') ? raw : `https://2bet.com${raw}`
 })
 
-const canonicalUrl = computed(() => `https://bybet.com/explore/bonus/${bonus.value.slug}`)
+const canonicalUrl = computed(() => `https://2bet.com/explore/bonus/${bonus.value.slug}`)
 
 useAppSeo({
   title: seoTitle,
@@ -102,9 +102,9 @@ useAppSeo({
     },
     'organizer': {
       '@type': 'Organization',
-      'name': 'ByBet Philippines',
-      'url': 'https://bybet.com',
-      'logo': 'https://bybet.com/brand/2bet-logo.webp',
+      'name': '2Bet Philippines',
+      'url': 'https://2bet.com',
+      'logo': 'https://2bet.com/brand/2bet-logo.webp',
     },
   })),
 })

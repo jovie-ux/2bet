@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Popular Sports Betting — Top Match Odds & Events | ByBet',
-  description: 'Bet on the most popular sporting events worldwide at ByBet. Competitive odds, live lines, and deep markets for NBA, UEFA Champions League, and PBA.',
+  title: 'Popular Sports Betting — Top Match Odds & Events | 2Bet',
+  description: 'Bet on the most popular sporting events worldwide at 2Bet. Competitive odds, live lines, and deep markets for NBA, UEFA Champions League, and PBA.',
   breadcrumbs: [
     { name: 'Home', path: '/' },
     { name: 'Sports', path: '/explore/sports/popular' },
@@ -10,8 +10,8 @@ useAppSeo({
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Popular Sports Betting - ByBet',
-    url: 'https://bybet.com/explore/sports/popular',
+    name: 'Popular Sports Betting - 2Bet',
+    url: 'https://2bet.com/explore/sports/popular',
   },
 })
 
