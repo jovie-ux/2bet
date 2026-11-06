@@ -10,6 +10,7 @@ import { POKER_CATEGORIES, POKER_PROVIDERS, getPokerGames, getPokerProvidersByCa
 import { getProviderLogoForTheme } from '~/utils/providerLogo'
 
 const props = withDefaults(defineProps<{ category?: string }>(), { category: 'popular' })
+const isPopular = computed(() => props.category === 'popular')
 const basePath = '/explore/entertainment/poker'
 const { translate } = useSiteLocale()
 const { effectiveTheme } = useSiteTheme()
@@ -67,7 +68,7 @@ const games = computed(() => {
 })
 
 const sections = computed(() => {
-  if (props.category === 'popular' || props.category === 'all') {
+  if (isPopular.value) {
     return POKER_CATEGORIES.map(category => ({
       key: category.key,
       label: translate(category.label),
@@ -115,7 +116,7 @@ watch(() => props.category, () => {
 </script>
 
 <template>
-  <div class="poker-page">
+  <div class="poker-page" :class="{ 'poker-page--popular': isPopular }">
     <div class="poker-sticky-header sticky-header-seal">
       <nav class="poker-category-nav" aria-label="Poker game categories">
         <NuxtLink
@@ -174,16 +175,31 @@ watch(() => props.category, () => {
     <h1 class="sr-only">{{ categoryLabel }}</h1>
 
     <template v-if="games.length">
-      <section v-for="section in sections" :key="section.key" class="poker-section" :aria-labelledby="`poker-heading-${section.key}`">
-        <header class="poker-section-header">
+      <section
+        v-for="section in sections"
+        :key="section.key"
+        class="poker-section"
+        :aria-labelledby="isPopular ? `poker-heading-${section.key}` : undefined"
+        :aria-label="isPopular ? undefined : section.label"
+      >
+        <header v-if="isPopular" class="poker-section-header">
           <h2 :id="`poker-heading-${section.key}`">{{ section.label }}</h2>
-          <NuxtLink v-if="category === 'popular' || category === 'all'" :to="`${basePath}/${section.key}`" class="poker-section-count" :aria-label="`View all ${section.games.length} ${section.label} games`">
+          <NuxtLink :to="`${basePath}/${section.key}`" class="poker-section-count" :aria-label="`View all ${section.games.length} ${section.label} games`">
             <span>{{ section.games.length }}</span><ChevronRight :size="14" aria-hidden="true" />
           </NuxtLink>
-          <span v-else class="poker-section-count" aria-live="polite">{{ section.games.length }}</span>
         </header>
 
-        <div class="poker-games-grid">
+        <div
+          class="poker-games"
+          :class="{
+            'poker-games-row': isPopular && section.key !== 'other',
+            'poker-games-grid': !isPopular || section.key === 'other',
+            'poker-games-grid--other': isPopular && section.key === 'other',
+          }"
+          :role="isPopular && section.key !== 'other' ? 'region' : undefined"
+          :aria-label="isPopular && section.key !== 'other' ? section.label : undefined"
+          :tabindex="isPopular && section.key !== 'other' ? 0 : undefined"
+        >
           <PokerGameCard v-for="game in section.games" :key="game.id" :game="game" @select="selectGame" />
         </div>
       </section>
@@ -209,6 +225,7 @@ watch(() => props.category, () => {
   z-index: 30;
   top: var(--content-sticky-top);
   padding-bottom: 6px;
+  background: var(--page);
 }
 
 .poker-category-nav {
@@ -317,27 +334,48 @@ watch(() => props.category, () => {
 
 .poker-search input { min-width: 0; width: 100%; height: 40px; border: 0; outline: none; color: var(--text); background: transparent; font-size: 13px; }
 .poker-search:focus-within { border-color: var(--main-color); }
-.poker-section { min-width: 0; margin: 0 0 18px; }
+.poker-section { min-width: 0; margin: 0; }
+.poker-page--popular .poker-section { margin-bottom: 11px; }
 .poker-section-header { display: flex; min-height: 31px; align-items: center; justify-content: space-between; gap: 10px; padding-bottom: 7px; }
 .poker-section-header h2 { margin: 0; color: var(--heading); font-size: 14px; font-weight: 700; line-height: 20px; }
 .poker-section-count { display: inline-flex; min-height: 25px; align-items: center; gap: 3px; padding: 1px 8px; border: 1px solid var(--border); border-radius: 999px; color: var(--secondary); background: var(--surface); font-size: 12px; line-height: 20px; }
 a.poker-section-count:hover { color: var(--text); }
 
-.poker-games-grid { display: grid; min-width: 0; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.poker-games { display: grid; min-width: 0; gap: 8px; }
+.poker-games-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.poker-games-row {
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 16px) / 3.15);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+}
+.poker-games-row:focus-visible { outline: 2px solid var(--main-color); outline-offset: 2px; border-radius: 16px; }
+.poker-games-row,
 .poker-category-nav,
 .poker-providers { scrollbar-width: none; }
+.poker-games-row::-webkit-scrollbar,
 .poker-category-nav::-webkit-scrollbar,
 .poker-providers::-webkit-scrollbar { display: none; }
 
 @media (min-width: 640px) {
   .poker-games-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .poker-games-row { grid-auto-columns: calc((100% - 24px) / 4.3); }
 }
 
 @media (min-width: 1024px) {
   .poker-games-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .poker-games-row { grid-auto-columns: calc((100% - 48px) / 7); }
 }
 
 @media (min-width: 1280px) {
-  .poker-games-grid { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+  .poker-games-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .poker-games-row { grid-auto-columns: calc((100% - 56px) / 8); }
+}
+
+@media (min-width: 1800px) {
+  .poker-games-grid { grid-template-columns: repeat(11, minmax(0, 1fr)); }
+  .poker-games-grid--other { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+  .poker-games-row { grid-auto-columns: calc((100% - 80px) / 11); }
 }
 </style>

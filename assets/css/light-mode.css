@@ -1001,7 +1001,7 @@ html[data-theme='light']:not(#_) .game-mode-tab--active:hover,
 html[data-theme='light']:not(#_) .transaction-tab--active,
 html[data-theme='light']:not(#_) .transaction-tab--active:hover {
   color: #ffffff;
-  background: #007653;
+  background: var(--main-color);
 }
 
 html[data-theme='light']:not(#_) .market-tab {
@@ -1016,7 +1016,7 @@ html[data-theme='light']:not(#_) .market-tab:hover {
 html[data-theme='light']:not(#_) .market-tab--active,
 html[data-theme='light']:not(#_) .market-tab--active:hover {
   color: #ffffff;
-  background: #007653;
+  background: var(--main-color);
 }
 
 html[data-theme='light']:not(#_) .market-panel,

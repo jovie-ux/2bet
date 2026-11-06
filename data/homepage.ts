@@ -272,7 +272,7 @@ export const createRailItems = (bybetRedirectUrl: string): RailItem[] => [
     defaultExpanded: true,
     children: [
       { label: 'Slots', iconImage: '/icons/egames/slots.webp', to: '/explore/egames/slots', accentColor: '#f1b33c' },
-      { label: 'Bingo', iconImage: '/icons/egames/bingo.webp', to: '/explore/egames/bingo', accentColor: '#4d9cff' },
+      // { label: 'Bingo', iconImage: '/icons/egames/bingo.webp', to: '/explore/egames/bingo', accentColor: '#4d9cff' },
       { label: 'Jackpot', iconImage: '/icons/egames/jackpot.webp', to: '/explore/egames/jackpot', accentColor: '#f4bd3e' },
       { label: 'History', iconImage: '/icons/egames/history.webp', to: bybetRedirectUrl, accentColor: '#45cdb0' },
       { label: 'Customer Service', iconImage: '/icons/egames/customer-service.webp', to: '/explore/egames/customer-service', accentColor: '#8bd537' },

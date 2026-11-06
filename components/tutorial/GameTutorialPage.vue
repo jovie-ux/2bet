@@ -979,7 +979,7 @@ const selectChoice = (id: string): void => {
   .tutorial-pill--active,
   .tutorial-pill--active:hover {
     color: #ffffff;
-    background: #007653;
+    background: var(--main-color);
   }
 }
 
@@ -1060,7 +1060,7 @@ const selectChoice = (id: string): void => {
 .market-tab--active:hover {
   color: white;
   font-weight: 700;
-  background: #007653;
+  background: var(--main-color);
 }
 
 .mock-betting-content {

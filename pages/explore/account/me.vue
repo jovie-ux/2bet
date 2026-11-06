@@ -358,7 +358,7 @@ onBeforeUnmount(() => {
               <button
                 type="button"
                 class="rounded-full px-3 py-1 text-[12px] font-medium transition-all cursor-pointer"
-                :class="selectedTheme === 'International' ? 'bg-[#015A3C] text-white font-semibold shadow' : 'text-white/70 hover:text-white'"
+                :class="selectedTheme === 'International' ? 'bg-[var(--main-color)] text-white font-semibold shadow' : 'text-white/70 hover:text-white'"
                 @click="selectedTheme = 'International'"
               >
                 {{ translate('International') }}
@@ -366,7 +366,7 @@ onBeforeUnmount(() => {
               <button
                 type="button"
                 class="rounded-full px-3 py-1 text-[12px] font-medium transition-all cursor-pointer"
-                :class="selectedTheme === 'Asia' ? 'bg-[#015A3C] text-white font-semibold shadow' : 'text-white/70 hover:text-white'"
+                :class="selectedTheme === 'Asia' ? 'bg-[var(--main-color)] text-white font-semibold shadow' : 'text-white/70 hover:text-white'"
                 @click="selectedTheme = 'Asia'"
               >
                 {{ translate('Asia') }}
@@ -431,7 +431,7 @@ onBeforeUnmount(() => {
               <button
                 type="button"
                 class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold transition-all cursor-pointer"
-                :class="themePreference === 'light' ? 'bg-[#015A3C] text-white font-bold shadow' : 'text-white/70 hover:text-white'"
+                :class="themePreference === 'light' ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'text-white/70 hover:text-white'"
                 :aria-pressed="themePreference === 'light'"
                 @click="setThemePreference('light')"
               >
@@ -440,7 +440,7 @@ onBeforeUnmount(() => {
               <button
                 type="button"
                 class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold transition-all cursor-pointer"
-                :class="themePreference === 'dark' ? 'bg-[#015A3C] text-white font-bold shadow' : 'text-white/70 hover:text-white'"
+                :class="themePreference === 'dark' ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'text-white/70 hover:text-white'"
                 :aria-pressed="themePreference === 'dark'"
                 @click="setThemePreference('dark')"
               >
@@ -449,7 +449,7 @@ onBeforeUnmount(() => {
               <button
                 type="button"
                 class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold transition-all cursor-pointer"
-                :class="themePreference === 'auto' ? 'bg-[#015A3C] text-white font-bold shadow' : 'text-white/70 hover:text-white'"
+                :class="themePreference === 'auto' ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'text-white/70 hover:text-white'"
                 :aria-pressed="themePreference === 'auto'"
                 @click="setThemePreference('auto')"
               >
@@ -802,7 +802,7 @@ onBeforeUnmount(() => {
             <button
               type="button"
               class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold transition-all cursor-pointer"
-              :class="selectedTheme === 'International' ? 'bg-[#015A3C] text-white font-bold shadow' : 'text-white '"
+              :class="selectedTheme === 'International' ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'text-white '"
               @click="selectedTheme = 'International'"
             >
               {{ translate('International') }}
@@ -810,7 +810,7 @@ onBeforeUnmount(() => {
             <button
               type="button"
               class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold transition-all cursor-pointer"
-              :class="selectedTheme === 'Asia' ? 'bg-[#015A3C] text-white font-bold shadow' : 'text-white '"
+              :class="selectedTheme === 'Asia' ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'text-white '"
               @click="selectedTheme = 'Asia'"
             >
               {{ translate('Asia') }}
@@ -889,7 +889,7 @@ onBeforeUnmount(() => {
             <button
               type="button"
               class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold transition-all cursor-pointer"
-              :class="themePreference === 'light' ? 'bg-[#015A3C] text-white font-bold shadow' : 'text-white '"
+              :class="themePreference === 'light' ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'text-white '"
               :aria-pressed="themePreference === 'light'"
               @click="setThemePreference('light')"
             >
@@ -898,7 +898,7 @@ onBeforeUnmount(() => {
             <button
               type="button"
               class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold transition-all cursor-pointer"
-              :class="themePreference === 'dark' ? 'bg-[#015A3C] text-white font-bold shadow' : 'text-white '"
+              :class="themePreference === 'dark' ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'text-white '"
               :aria-pressed="themePreference === 'dark'"
               @click="setThemePreference('dark')"
             >
@@ -907,7 +907,7 @@ onBeforeUnmount(() => {
             <button
               type="button"
               class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold transition-all cursor-pointer"
-              :class="themePreference === 'auto' ? 'bg-[#015A3C] text-white font-bold shadow' : 'text-white '"
+              :class="themePreference === 'auto' ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'text-white '"
               :aria-pressed="themePreference === 'auto'"
               @click="setThemePreference('auto')"
             >

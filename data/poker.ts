@@ -448,6 +448,13 @@ export const POKER_GAMES: PokerGame[] = [
     category: "baccarat",
   },
   {
+    id: "baccarat-forest-party",
+    title: "Forest Party",
+    image: "/images/poker/baccarat-forest-party.webp",
+    provider: "KY",
+    category: "baccarat",
+  },
+  {
     id: "baccarat-macau-baccarat-lucky-six",
     title: "Macau Baccarat Lucky Six",
     image: "/images/poker/baccarat-macau-baccarat-lucky-six.webp",
@@ -514,7 +521,7 @@ export const POKER_GAMES: PokerGame[] = [
     id: "baccarat",
     title: "Baccarat",
     image: "/images/poker/baccarat.webp",
-    provider: "V8",
+    provider: "KY",
     category: ["baccarat"],
   },
   {

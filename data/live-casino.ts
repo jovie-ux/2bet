@@ -5343,7 +5343,7 @@ export const ROULETTE: LiveCasinoTable[] = [
 export const SICBO: LiveCasinoTable[] = [
   {
     "id": "emperor-sic-bo-a",
-    "title": "Emperor Sic Bo A",
+    "title": "Sic Bo C1",
     "image": "/images/casino/sicbo/sicboca2_dice_med_M.webp",
     "players": 37,
     "category": "sicbo",
@@ -5361,7 +5361,7 @@ export const SICBO: LiveCasinoTable[] = [
   },
   {
     "id": "lotus-sic-bo",
-    "title": "Lotus Sic Bo",
+    "title": "SicBo R01",
     "image": "/images/casino/sicbo/sicboca3_dice_med_M.webp",
     "players": 23,
     "category": "sicbo",
@@ -5379,7 +5379,7 @@ export const SICBO: LiveCasinoTable[] = [
   },
   {
     "id": "lightning-sic-bo",
-    "title": "Lightning Sic Bo",
+    "title": "SicBo R02",
     "image": "/images/casino/sicbo/lsicbor1_dice_med_M.webp",
     "players": 231,
     "category": "sicbo",
@@ -5397,7 +5397,7 @@ export const SICBO: LiveCasinoTable[] = [
   },
   {
     "id": "super-sic-bo",
-    "title": "Super Sic Bo",
+    "title": "SicBo R01",
     "image": "/images/casino/sicbo/sicbo_dice_med_M.webp",
     "players": 688,
     "category": "sicbo",
@@ -5413,42 +5413,6 @@ export const SICBO: LiveCasinoTable[] = [
       [[2, 4, 6], 12, ["R", "S"], ["B", "E"]]
     ]
   },
-  {
-    "id": "speed-super-sic-bo",
-    "title": "Speed Super Sic Bo",
-    "image": "/images/casino/sicbo/isicbor1_dice_med_M.webp",
-    "players": 160,
-    "category": "sicbo",
-    "wins": [
-      [[4, 5, 2], 11, ["R", "S"], ["B", "O"]],
-      [[2, 4, 3], 9, ["G", "T"], ["S", "O"]],
-      [[2, 3, 2], 7, ["R", "S"], ["S", "O"]],
-      [[2, 4, 6], 12, ["R", "S"], ["B", "E"]],
-      [[3, 3, 3], 9, ["R", "S"], ["S", "O"]],
-      [[3, 6, 5], 14, ["R", "S"], ["B", "E"]],
-      [[2, 3, 1], 6, ["G", "T"], ["S", "E"]],
-      [[6, 5, 3], 14, ["G", "T"], ["B", "E"]],
-      [[2, 5, 6], 13, ["G", "T"], ["B", "O"]]
-    ]
-  },
-  {
-    "id": "emperor-sic-bo",
-    "title": "Emperor Sic Bo",
-    "image": "/images/casino/sicbo/sicboca1_dice_med_M.webp",
-    "players": 49,
-    "category": "sicbo",
-    "wins": [
-      [[1, 2, 5], 8, ["R", "S"], ["S", "E"]],
-      [[6, 2, 3], 11, ["R", "S"], ["B", "O"]],
-      [[3, 2, 2], 7, ["R", "S"], ["S", "O"]],
-      [[5, 6, 5], 16, ["G", "T"], ["B", "E"]],
-      [[4, 3, 1], 8, ["G", "T"], ["S", "E"]],
-      [[6, 3, 5], 14, ["G", "T"], ["B", "E"]],
-      [[4, 3, 3], 10, ["G", "T"], ["S", "E"]],
-      [[3, 2, 6], 11, ["G", "T"], ["B", "O"]],
-      [[5, 6, 5], 16, ["R", "S"], ["B", "E"]]
-    ]
-  }
 ]
 
 export const FANTAN: LiveCasinoTable[] = [

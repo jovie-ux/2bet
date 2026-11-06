@@ -80,7 +80,7 @@ const BREADCRUMB_SEGMENT_LABELS_PT: Record<string, string> = {
   baccarat: 'Bacará',
   other: 'Outros',
   slots: 'Slots',
-  bingo: 'Bingo',
+  // bingo: 'Bingo',
   jackpot: 'Jackpot',
   sports: 'Esportes',
   popular: 'Popular',

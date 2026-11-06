@@ -260,6 +260,8 @@ useAppSeo({
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   padding: 0 0.62rem;
   border-radius: 999px;
   color: #f1f1f1;

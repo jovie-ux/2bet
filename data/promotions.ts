@@ -185,6 +185,34 @@ export const PROMOTION_PLACEHOLDER_IMAGES = {
   thumbnail: '/images/promotions/promotion-placeholder-thumbnail.svg',
 } as const
 
+export const PROMO_IMAGE_MAP: Record<string, PromoImages> = {
+  'share-and-earn': {
+    header: '/images/promotions/share_and_earn_header.png',
+    banner: '/images/promotions/share_and_earn.png',
+    thumbnail: '/images/promotions/share_and_earn_thumb.png',
+  },
+  'vip-privileges': {
+    header: '/images/promotions/usdt_vip_header.png',
+    banner: '/images/promotions/usdt_vip.webp',
+    thumbnail: '/images/promotions/usdt_vip_thumb.png',
+  },
+  'programa_vip': {
+    header: '/images/promotions/programa_vip_header.png',
+    banner: '/images/promotions/programa_vip.webp',
+    thumbnail: '/images/promotions/programa_vip_thumb.png',
+  },
+  'bonus_diario_de_recuperacao': {
+    header: '/images/promotions/bonus_diario_de_recuperacao_header.png',
+    banner: '/images/promotions/bonus_diario_de_recuperacao.webp',
+    thumbnail: '/images/promotions/bonus_diario_de_recuperacao_thumb.png',
+  },
+  'seu_primeiro_deposito': {
+    header: '/images/promotions/seu_primeiro_deposito_header.png',
+    banner: '/images/promotions/seu_primeiro_deposito.webp',
+    thumbnail: '/images/promotions/seu_primeiro_deposito_thumb.png',
+  },
+}
+
 import bonusDetailDatabase from './bonus-details.json'
 
 const SHARE_AND_EARN_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" viewBox="0 0 24 24" fill="none" stroke="#019440" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 14-5v14L3 14z" fill="#019440"/><path d="m7 15 2 6H6l-2-7M20 8l2-1M20 16l2 1M21 12h2"/></svg>'
@@ -222,11 +250,6 @@ export const getPromoHeaderUrl = (img?: PromoImages | string, slug?: string): st
   return PROMOTION_PLACEHOLDER_IMAGES.header
 }
 
-/** Replace each promotion's three paths when its final artwork is supplied. */
-export const PROMO_IMAGE_MAP: Record<string, PromoImages> = {
-  'share-and-earn': { ...PROMOTION_PLACEHOLDER_IMAGES },
-  'vip-privileges': { ...PROMOTION_PLACEHOLDER_IMAGES },
-}
 
 export const PROMO_CATEGORIES: PromoCategory[] = [
   { key: 'all', label: 'All' },
@@ -285,7 +308,7 @@ export const FEATURED_PROMOTIONS: FeaturedPromo[] = [
     rate: '1.5%',
     badgeText: 'VIP SPORTS REBATE 1.5%',
     category: 'SPORTS',
-    bannerImage: '/hero/promotions.webp',
+    bannerImage: '/images/promotions/homepage-v2/sports.webp',
     endDate: '',
     countdownText: '2 Month 10 Day',
     paymentMethods: ['maya', 'gcash'],
@@ -297,7 +320,7 @@ export const FEATURED_PROMOTIONS: FeaturedPromo[] = [
     rate: '1.0%',
     badgeText: 'VIP LIVE CASINO REBATE 1.0%',
     category: 'LIVE CASINO',
-    bannerImage: '/reference/promotion-cashback.webp',
+    bannerImage: '/images/promotions/homepage-v2/live-casino.webp',
     endDate: '',
     countdownText: '2 Month 10 Day',
     paymentMethods: ['maya', 'gcash'],
@@ -309,7 +332,7 @@ export const FEATURED_PROMOTIONS: FeaturedPromo[] = [
     rate: '₱60,000',
     badgeText: 'SLOT LOSS REBATE ₱60,000',
     category: 'SLOTS',
-    bannerImage: '/reference/promotion-tournament.webp',
+    bannerImage: '/images/promotions/homepage-v2/slots.webp',
     endDate: '',
     countdownText: '2 Month 10 Day',
     paymentMethods: ['maya', 'gcash'],
@@ -321,7 +344,7 @@ export const FEATURED_PROMOTIONS: FeaturedPromo[] = [
     rate: 'Rankings',
     badgeText: 'LUCKY RANKINGS',
     category: 'SLOTS',
-    bannerImage: '/reference/promotion-gift.webp',
+    bannerImage: '/images/promotions/homepage-v2/rankings.webp',
     endDate: '',
     countdownText: '2 Month 10 Day',
     paymentMethods: ['maya', 'gcash'],

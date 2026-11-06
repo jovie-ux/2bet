@@ -269,6 +269,9 @@ useAppSeo({
 }
 
 .category-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 1.45rem;
   flex: 0 0 auto;
   padding: 0 0.62rem;
@@ -277,6 +280,7 @@ useAppSeo({
   color: #c3c5c4;
   font-size: 0.58rem;
   font-weight: 700;
+  text-align: center;
   background: transparent;
   cursor: pointer;
   text-decoration: none;
@@ -290,7 +294,7 @@ useAppSeo({
 
 .category-nav a.category-nav__button--active {
   color: #ffffff;
-  background: #07835c;
+  background: var(--main-color);
 }
 
 .featured-promotions {
@@ -361,7 +365,7 @@ useAppSeo({
   flex-direction: column;
   justify-content: center;
   padding: 0.26rem 0.42rem 0.32rem;
-  background: linear-gradient(180deg, #07543e, #064433);
+  background: #015D25;
 }
 
 .featured-card__copy strong,
