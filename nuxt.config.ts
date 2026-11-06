@@ -39,6 +39,18 @@ export default defineNuxtConfig({
     kadarioSite: 'YBa-BnymZ6iN8pkfAUFTWIKn',
   },
   modules: ['@nuxtjs/tailwindcss'],
+  nitro: {
+    hooks: {
+      compiled: async (nitro) => {
+        try {
+          const { generateSitemapFile } = await import('./scripts/generate-sitemap.mjs')
+          await generateSitemapFile(nitro.options.runtimeConfig?.public?.siteUrl)
+        } catch (e) {
+          console.warn('[sitemap] Build hook warning:', e)
+        }
+      },
+    },
+  },
   css: ['~/assets/css/main.css', '~/assets/css/light-mode.css'],
   app: {
     head: {
