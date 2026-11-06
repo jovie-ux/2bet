@@ -1,8 +1,9 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
-const environment = (
+const processGlobal = (
   globalThis as typeof globalThis & {
     process?: {
+      argv?: string[]
       env?: {
         NODE_ENV?: string
         SPORTS_API?: string
@@ -16,13 +17,16 @@ const environment = (
       }
     }
   }
-).process?.env
+).process
+
+const environment = processGlobal?.env
+const isPrepare = Boolean(processGlobal?.argv?.some(arg => arg.includes('prepare')))
 
 const isIndexFollow = environment?.INDEX_FOLLOW === 'true'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  buildDir: environment?.NODE_ENV === 'production' ? 'node_modules/.cache/2bet-nuxt-build' : '.nuxt',
+  buildDir: environment?.NODE_ENV === 'production' && !isPrepare ? 'node_modules/.cache/2bet-nuxt-build' : '.nuxt',
   devtools: { enabled: false },
   runtimeConfig: {
     oddsApi: environment?.SPORTS_API || 'https://api.the-odds-api.com/v4',

@@ -198,17 +198,17 @@ export const PROMO_IMAGE_MAP: Record<string, PromoImages> = {
   },
   'programa_vip': {
     header: '/images/promotions/programa_vip_header.png',
-    banner: '/images/promotions/programa_vip.webp',
+    banner: '/images/promotions/programa_vip.png',
     thumbnail: '/images/promotions/programa_vip_thumb.png',
   },
   'bonus_diario_de_recuperacao': {
     header: '/images/promotions/bonus_diario_de_recuperacao_header.png',
-    banner: '/images/promotions/bonus_diario_de_recuperacao.webp',
+    banner: '/images/promotions/bonus_diario_de_recuperacao.png',
     thumbnail: '/images/promotions/bonus_diario_de_recuperacao_thumb.png',
   },
   'seu_primeiro_deposito': {
     header: '/images/promotions/seu_primeiro_deposito_header.png',
-    banner: '/images/promotions/seu_primeiro_deposito.webp',
+    banner: '/images/promotions/seu_primeiro_deposito.png',
     thumbnail: '/images/promotions/seu_primeiro_deposito_thumb.png',
   },
 }

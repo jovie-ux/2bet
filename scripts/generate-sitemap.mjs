@@ -10,7 +10,12 @@ export async function generateSitemapFile(customSiteUrl) {
   const siteUrl = (customSiteUrl || process.env.SITE_URL || 'https://bybet.com').replace(/\/+$/, '')
   const today = new Date().toISOString().split('T')[0]
 
-  const jiti = createJiti(import.meta.url)
+  const jiti = createJiti(import.meta.url, {
+    alias: {
+      '~': rootDir,
+      '@': rootDir,
+    },
+  })
 
   let promotions = []
   try {
@@ -237,8 +242,10 @@ ${xmlEntries}
 }
 
 // Run directly if invoked from CLI
-generateSitemapFile().catch((err) => {
-  console.error('[sitemap] Generation error:', err)
-  process.exit(1)
-})
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  generateSitemapFile().catch((err) => {
+    console.error('[sitemap] Generation error:', err)
+    process.exit(1)
+  })
+}
 
