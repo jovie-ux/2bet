@@ -9,14 +9,18 @@ import {
 } from 'lucide-vue-next'
 
 const { showDemoMessage } = useDemoInteraction()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const loginUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const registerUrl = `${bybetBaseUrl}/register?p=${bybetRedirectCode}`
 const { selectedLanguageLabel, translate, locale } = useSiteLocale()
 const { selectedTimeZone } = useTimeZonePreference()
 const { setThemePreference, themePreference } = useSiteTheme()
 
 useAppSeo({
-  title: computed(() => locale.value === 'pt' ? 'Minha Conta e Visão Geral VIP | 2Bet' : 'My Account Profile & VIP Overview | 2Bet Philippines'),
-  description: computed(() => locale.value === 'pt' ? 'Gerencie o perfil da sua conta na 2Bet, configurações de segurança, status VIP e histórico de transações.' : 'Manage your 2Bet account profile, security settings, VIP tier status, and transaction history. Fast, secure account management on 2Bet Philippines.'),
+  title: computed(() => locale.value === 'pt' ? 'Minha Conta — Perfil do Jogador e Nível do Clube VIP | 2bet' : 'My Account Profile & VIP Overview | 2Bet Brasil'),
+  description: computed(() => locale.value === 'pt' ? 'Acesse sua conta na 2bet Brasil para gerenciar saldo em BRL, conferir seu nível no Clube VIP e acompanhar transações com total segurança.' : 'Manage your 2Bet account profile, security settings, VIP tier status, and transaction history. Fast, secure account management on 2Bet Brasil.'),
+  keywords: '2bet login, minha conta 2bet, clube vip 2bet, perfil 2bet',
   breadcrumbs: computed(() => [
     { name: translate('Home'), path: '/' },
     { name: translate('My Account'), path: '/explore/account/me' },
@@ -114,7 +118,7 @@ onBeforeUnmount(() => {
           <!-- Login & Sign Up Pill Buttons -->
           <div class="grid grid-cols-2 gap-3 mb-3">
             <a
-              :href="bybetRedirectUrl"
+              :href="loginUrl"
               target="_blank"
               rel="noopener noreferrer"
               class="h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/20 text-white font-medium text-[14px] flex items-center justify-center transition-all shadow-sm"
@@ -122,7 +126,7 @@ onBeforeUnmount(() => {
               {{ translate('Login') }}
             </a>
             <a
-              :href="bybetRedirectUrl"
+              :href="registerUrl"
               target="_blank"
               rel="noopener noreferrer"
               class="h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/20 text-white font-medium text-[14px] flex items-center justify-center transition-all shadow-sm"
@@ -552,7 +556,7 @@ onBeforeUnmount(() => {
       <div class="px-2">
         <div class="flex items-center gap-1">
           <a
-            :href="bybetRedirectUrl"
+            :href="loginUrl"
             target="_blank"
             rel="noopener noreferrer"
             class="bg-[#2b2b2b] rounded-lg border border-[#1fa779] px-4 py-1 text-[12px] font-semibold text-[#1fa779] hover:bg-[#252525] transition-colors"
@@ -560,7 +564,7 @@ onBeforeUnmount(() => {
             {{ translate('Login') }}
           </a>
           <a
-            :href="bybetRedirectUrl"
+            :href="registerUrl"
             target="_blank"
             rel="noopener noreferrer"
             class="rounded-lg bg-[var(--main-color)] px-4 py-1 text-[12px] font-bold text-white hover:bg-[#122F25] transition-colors"

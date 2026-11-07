@@ -8,16 +8,17 @@ import SlotFilterModal from '~/components/slots/SlotFilterModal.vue'
 import { getStandaloneJackpotGames, normalizeSlotProvider, type SlotGame } from '~/data/slots'
 
 useAppSeo({
-  title: 'Standalone Jackpot Games — Betsoft Slots | 2Bet',
-  description: 'Explore standalone Betsoft jackpot games on 2Bet Philippines, with RTP details and jackpot prize pools.',
+  title: 'Jackpots Exclusivos Betsoft com Prêmios em Dinheiro | 2bet',
+  description: 'Aproveite jackpots acumulados da Betsoft na 2bet Brasil. Caça-níqueis temáticos em 3D, multiplicadores altos e rodadas bônus emocionantes.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
+    { name: 'Início', path: '/' },
     { name: 'Jackpots', path: '/explore/egames/jackpot/all' },
-    { name: 'Standalone Jackpot Games', path: '/explore/egames/jackpot/standalone' },
+    { name: 'Jogos de Jackpot Standalone', path: '/explore/egames/jackpot/standalone' },
   ],
 })
 
 const router = useRouter()
+const { translate } = useSitePreferences()
 const activeProvider = ref<'all' | 'bs'>('all')
 const activeGameId = ref<string | null>(null)
 const searchQuery = ref('')
@@ -33,7 +34,8 @@ const filterState = ref({
 const currentWinners = useJackpotWinners()
 const { showDemoMessage } = useDemoInteraction()
 const { addRecentGame } = useRecentGames()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 const matchesWinningLine = (game: SlotGame): boolean => {
   const selection = filterState.value.winningLine
@@ -119,7 +121,7 @@ onBeforeUnmount(() => {
         >
           <ChevronLeft class="h-4 w-4" />
         </button>
-        <h1 class="truncate text-[15px] font-semibold text-white">Standalone Jackpot Game</h1>
+        <h1 class="truncate text-[15px] font-semibold text-white">{{ translate('Standalone Jackpot Game') }}</h1>
       </header>
 
       <div class="flex items-center justify-between gap-2 bg-black py-2">
@@ -130,7 +132,7 @@ onBeforeUnmount(() => {
             :class="activeProvider === 'all' ? 'bg-[var(--main-color)] text-white shadow' : 'bg-[#242625] text-[#8e9491]'"
             @click="activeProvider = 'all'"
           >
-            All
+            {{ translate('All') }}
           </button>
           <button
             type="button"
@@ -146,7 +148,7 @@ onBeforeUnmount(() => {
           <button
             type="button"
             class="flex h-9 w-9 items-center justify-center rounded-full bg-[#242625] text-[#8e9491] transition-colors hover:text-white"
-            aria-label="Search standalone jackpot games"
+            :aria-label="translate('Search standalone jackpot games')"
             @click="openSearch"
           >
             <Search class="h-4 w-4" />
@@ -154,7 +156,7 @@ onBeforeUnmount(() => {
           <button
             type="button"
             class="flex h-9 w-9 items-center justify-center rounded-full bg-[#242625] text-[#8e9491] transition-colors hover:text-white"
-            aria-label="Filter standalone jackpot games"
+            :aria-label="translate('Filter standalone jackpot games')"
             @click="isFilterOpen = true"
           >
             <SlidersHorizontal class="h-4 w-4" />
@@ -168,27 +170,27 @@ onBeforeUnmount(() => {
             ref="searchInputRef"
             v-model="searchQuery"
             type="search"
-            placeholder="Search jackpot games"
+            :placeholder="translate('Search jackpot games')"
             class="h-10 w-full rounded-full border border-[#2b2d2b] bg-[#171817] px-4 pr-10 text-sm text-white placeholder-[#7a807d] outline-none transition-colors focus:border-[var(--main-color)]"
           />
           <button
             v-if="searchQuery"
             type="button"
             class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#7a807d] hover:text-white"
-            aria-label="Clear search"
+            :aria-label="translate('Clear search')"
             @click="searchQuery = ''"
           >
             <X class="h-4 w-4" />
           </button>
         </div>
-        <button type="button" class="px-2 text-sm font-medium text-white" @click="closeSearch">Cancel</button>
+        <button type="button" class="px-2 text-sm font-medium text-white" @click="closeSearch">{{ translate('Cancel') }}</button>
       </div>
     </div>
 
     <div
       v-if="filteredGames.length"
       class="mb-36 grid grid-cols-3 gap-2.5 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-11"
-      aria-label="Standalone jackpot games"
+      :aria-label="translate('Standalone jackpot games')"
     >
       <GameCard
         v-for="game in filteredGames"

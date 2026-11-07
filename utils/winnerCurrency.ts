@@ -13,7 +13,7 @@ export const USD_EXCHANGE_RATES: Readonly<Record<string, number>> = {
   TRX: 6.25, // 1 USD ≈ 6.25 TRX
 }
 
-export const WINNER_CURRENCY_CODES = ['USD', 'USDT', 'BRL', 'PHP', 'INR'] as const
+export const WINNER_CURRENCY_CODES = ['BRL'] as const
 export type WinnerCurrencyCode = (typeof WINNER_CURRENCY_CODES)[number]
 
 export interface ConvertedWinning {
@@ -28,13 +28,14 @@ export interface ConvertedWinning {
  */
 export function convertUsdToCurrency(
   usdAmount: number,
-  currencyCode = 'USD',
+  currencyCode = 'BRL',
 ): ConvertedWinning {
-  const normalizedCode = (currencyCode || 'USD').toUpperCase()
+  const normalizedCode = (currencyCode || 'BRL').toUpperCase()
   const rate = USD_EXCHANGE_RATES[normalizedCode] ?? 1.0
   const converted = Math.round(usdAmount * rate * 100) / 100
 
-  const formatted = `${normalizedCode} ${converted.toLocaleString('en-US', {
+  const symbol = normalizedCode === 'BRL' ? 'R$' : normalizedCode
+  const formatted = `${symbol} ${converted.toLocaleString('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })}`
@@ -48,18 +49,17 @@ export function convertUsdToCurrency(
 }
 
 /**
- * Generates a realistic winning amount focused strictly between 100 USD and 1,000 USD.
- * If targetCurrency is omitted, picks from the supported currencies (USD, USDT, BRL, PHP, INR)
- * and converts the USD amount to the selected currency.
+ * Generates a realistic winning amount focused strictly between 100 USD and 1,000 USD,
+ * converted to Brazilian Real (BRL).
  */
 export function generateWinnerWinning(
   minUsd = 100,
   maxUsd = 1000,
-  targetCurrency?: string,
+  targetCurrency = 'BRL',
 ): string {
   // Focus winning from 100 USD to 1,000 USD
   const baseUsd = Math.round((Math.random() * (maxUsd - minUsd) + minUsd) * 100) / 100
-  const currency = targetCurrency || WINNER_CURRENCY_CODES[Math.floor(Math.random() * WINNER_CURRENCY_CODES.length)] || 'USD'
+  const currency = targetCurrency || 'BRL'
 
   return convertUsdToCurrency(baseUsd, currency).formatted
 }

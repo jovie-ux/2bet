@@ -3,12 +3,12 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { basketballRulesHtml } from '~/data/basketball-rules'
 
 useAppSeo({
-  title: 'Basketball Betting Rules (NBA, PBA & FIBA) | 2Bet',
-  description: 'Official basketball rules: Overtime inclusion, regulation times (43m NBA, 35m FIBA & PBA), quarter settlements, and player prop conditions on 2Bet.',
+  title: 'Regras de Apostas em Basquete (NBA, NBB e FIBA) | 2bet',
+  description: 'Regulamento oficial de basquete na 2bet Brasil: inclusão de prorrogações, tempo regulamentar, apostas por quarto e desempenho de atletas.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Game Rules', path: '/game-rules' },
-    { name: 'Basketball Rules', path: '/game-rules/basketball' },
+    { name: 'Início', path: '/' },
+    { name: 'Regras de Jogo', path: '/game-rules' },
+    { name: 'Regras de Basquete', path: '/game-rules/basketball' },
   ],
 })
 </script>

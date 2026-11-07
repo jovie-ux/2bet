@@ -11,6 +11,7 @@ const props = defineProps<{
 }>()
 
 const search = ref('')
+const { translate } = useSiteLocale()
 const sportsRouteBase = useSportsRouteBase()
 
 const searchedSports = computed(() => {
@@ -55,8 +56,8 @@ const tournamentPath = (key: string): string => {
         <input
           v-model="search"
           type="search"
-          placeholder="Search league"
-          aria-label="Search league"
+          :placeholder="translate('Search league')"
+          :aria-label="translate('Search league')"
         >
       </label>
     </div>
@@ -90,11 +91,11 @@ const tournamentPath = (key: string): string => {
     <div v-if="!loading && !searchedSports.length" class="empty">
       <img
         src="/images/empty/no-events.webp"
-        alt="No tournaments found"
+        :alt="translate('No tournaments found')"
         class="h-auto w-full max-w-[200px] object-contain"
       />
-      <h2>No tournaments found</h2>
-      <p>No available tournaments match your tournament list and search.</p>
+      <h2>{{ translate('No tournaments found') }}</h2>
+      <p>{{ translate('No available tournaments match your tournament list and search.') }}</p>
     </div>
   </div>
 </template>

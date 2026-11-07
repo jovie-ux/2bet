@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Betting History & Transaction Records | 2Bet Platform',
-  description: 'Review your sports wagers, casino game sessions, deposit logs, and withdrawal status. Complete transparent transaction history on 2Bet Philippines.',
+  title: 'Histórico de Transações, Apostas e Giros Recentes | 2bet',
+  description: 'Consulte seu histórico de apostas, giros em caça-níqueis e movimentações financeiras na 2bet Brasil com relatórios detalhados em tempo real.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Account', path: '/explore/account/me' },
-    { name: 'History', path: '/explore/account/history' },
+    { name: 'Início', path: '/' },
+    { name: 'Minha Conta', path: '/explore/account/me' },
+    { name: 'Histórico', path: '/explore/account/history' },
   ],
 })
 </script>

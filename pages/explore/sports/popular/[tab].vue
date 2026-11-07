@@ -14,43 +14,43 @@ interface TabMeta {
 
 const tabMetaMap: Record<string, TabMeta> = {
   league: {
-    label: 'Leagues',
-    title: 'Popular Sports Leagues — Live Odds & Matches | 2Bet',
-    description: 'Bet on premier sports leagues worldwide at 2Bet Philippines. Real-time handicap lines, moneyline odds, and parlays across world-class tournaments.',
+    label: 'Ligas',
+    title: 'Ligas Esportivas Populares — Odds e Jogos ao Vivo | 2bet',
+    description: 'Aposte nas principais ligas esportivas do mundo na 2bet Brasil. Cotações em tempo real, handicaps e mercados variados de apostas.',
   },
   inplay: {
-    label: 'In-Play Live',
-    title: 'Popular In-Play Live Betting — Real-Time Odds | 2Bet',
-    description: 'Place live in-play sports bets on top matches at 2Bet Philippines. Instant real-time odds updates, dynamic game stats, and fast bet cash-out 24/7.',
+    label: 'Ao Vivo',
+    title: 'Apostas Esportivas ao Vivo — Cotações em Tempo Real | 2bet',
+    description: 'Aposte ao vivo nas principais partidas na 2bet Brasil. Atualização instantânea de cotações, estatísticas e opção de cash out 24/7.',
   },
   upcoming: {
-    label: 'Upcoming',
-    title: 'Popular Upcoming Sports Matches & Betting Odds | 2Bet',
-    description: 'Check upcoming sports fixtures and early match schedules on 2Bet Philippines. Compare betting lines and point spreads for football, basketball, and more.',
+    label: 'Em Breve',
+    title: 'Próximas Partidas Esportivas — Agenda e Cotações | 2bet',
+    description: 'Confira a agenda de próximos eventos esportivos na 2bet Brasil. Compare cotações antecipadas em futebol, basquete, tênis e mais.',
   },
   'pre-match': {
-    label: 'Pre-Match',
-    title: 'Popular Pre-Match Sports Odds & Match Previews | 2Bet',
-    description: 'Browse pre-match betting odds and match stats for major sports leagues on 2Bet Philippines. Lock in competitive lines before tipoff or kickoff.',
+    label: 'Pré-Jogo',
+    title: 'Odds Pré-Jogo Populares e Estatísticas de Partidas | 2bet',
+    description: 'Navegue pelas cotações pré-jogo mais procuradas na 2bet Brasil. Estatísticas detalhadas das maiores ligas esportivas mundiais.',
   },
   'smart-pick': {
     label: 'Smart Pick',
-    title: 'Popular Smart Pick Sports AI Betting Insights | 2Bet',
-    description: 'Explore AI-driven Smart Pick sports predictions and algorithmic tips at 2Bet Philippines. Boost your betting strategy with verified data insights.',
+    title: 'Smart Pick com IA — Análises e Dicas de Apostas | 2bet',
+    description: 'Acesse análises esportivas inteligentes com Smart Pick na 2bet Brasil. Previsões com IA para orientar suas decisões com dados reais.',
   },
   outright: {
-    label: 'Outrights',
-    title: 'Popular Championship Outrights & Futures Odds | 2Bet',
-    description: 'Bet on championship outrights and tournament futures at 2Bet Philippines. Long-term betting odds for NBA champions, Premier League winners, and more.',
+    label: 'Apostas Futuras',
+    title: 'Apostas Futuras — Cotações para Campeão de Torneios | 2bet',
+    description: 'Aposte nos vencedores de campeonatos na 2bet Brasil. Cotações futuras de longo prazo para Champions League, Brasileirão e NBA.',
   },
 }
 
 const currentTab = computed(() => {
   const t = String(route.params.tab || 'league')
   return tabMetaMap[t] || {
-    label: 'Matches',
-    title: 'Popular Sports Betting Odds & Live Matches | 2Bet',
-    description: 'Explore popular sports betting matches with competitive odds, live spreads, and moneyline wagers on the official 2Bet Philippines platform.',
+    label: 'Partidas',
+    title: 'Apostas Esportivas Populares — Cotações e Partidas | 2bet',
+    description: 'Explore eventos esportivos populares na 2bet Brasil. Cotações vantajosas, mercados variados, cobertura ao vivo e saques ágeis via PIX.',
   }
 })
 
@@ -58,14 +58,14 @@ useAppSeo({
   title: computed(() => currentTab.value.title),
   description: computed(() => currentTab.value.description),
   breadcrumbs: computed(() => [
-    { name: 'Home', path: '/' },
-    { name: 'Sports', path: '/explore/sports/popular' },
+    { name: 'Início', path: '/' },
+    { name: 'Esportes', path: '/explore/sports/popular' },
     { name: currentTab.value.label, path: `/explore/sports/popular/${route.params.tab}` },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: currentTab.value.title.replace(' | 2Bet', ''),
+    name: currentTab.value.title.replace(' | 2bet', ''),
     url: `https://2bet.com/explore/sports/popular/${route.params.tab}`,
     description: currentTab.value.description,
   })),

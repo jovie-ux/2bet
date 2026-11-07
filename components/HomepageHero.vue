@@ -13,6 +13,7 @@ const slides = [
     action: 'Explore sports',
     to: '/explore/sports/popular/league',
     image: '/hero/editorial/sports.webp',
+    thumbnail: '/hero/thumbnails/sports.webp',
   },
   {
     category: 'Slots',
@@ -23,6 +24,7 @@ const slides = [
     action: 'Explore slots',
     to: '/explore/egames/slots',
     image: '/hero/editorial/slots.webp',
+    thumbnail: '/hero/thumbnails/slots.webp',
   },
   {
     category: 'Live Casino',
@@ -33,6 +35,7 @@ const slides = [
     action: 'Explore live casino',
     to: '/explore/entertainment/live-casino/baccarat',
     image: '/hero/editorial/live-casino.webp',
+    thumbnail: '/hero/thumbnails/live-casino.webp',
   },
   {
     category: 'Promotions',
@@ -43,6 +46,7 @@ const slides = [
     action: 'Discover promotions',
     to: '/explore/bonuses',
     image: '/hero/editorial/promotions.webp',
+    thumbnail: '/hero/thumbnails/bingo.webp',
   },
 ]
 
@@ -180,18 +184,28 @@ onBeforeUnmount(() => {
       name="hero-photo"
       type="transition"
     >
-      <img
+      <picture
         v-show="activeIndex === index"
         class="homepage-hero__photo"
         :class="{ 'is-active': activeIndex === index }"
         :data-category="item.id"
-        :src="item.image"
-        alt=""
-        width="1672"
-        height="941"
-        :fetchpriority="index === 0 ? 'high' : 'low'"
-        decoding="async"
       >
+        <source
+          media="(max-width: 700px)"
+          :srcset="item.thumbnail || item.image"
+          type="image/webp"
+          width="1003"
+          height="1568"
+        >
+        <img
+          :src="item.image"
+          :alt="translate(item.headline) || translate(item.category)"
+          width="1672"
+          height="941"
+          :fetchpriority="index === 0 ? 'high' : 'low'"
+          decoding="async"
+        >
+      </picture>
     </Transition>
     <div class="homepage-hero__shade" aria-hidden="true" />
 
@@ -223,7 +237,7 @@ onBeforeUnmount(() => {
       <p class="homepage-hero__counter" aria-hidden="true">{{ slideNumber }} <span>/ {{ String(slides.length).padStart(2, '0') }}</span></p>
       <div class="homepage-hero__preview-row flex">
         <button type="button" class="homepage-hero__thumbnail overflow-hidden" :aria-label="translate(nextSlide.category)" aria-controls="homepage-hero-content" @click="changeSlide(1)">
-          <img :src="nextSlide.image" alt="" width="1672" height="941" decoding="async">
+          <img :src="nextSlide.thumbnail || nextSlide.image" :alt="translate(nextSlide.category)" width="1003" height="1568" loading="lazy" decoding="async">
           <span>{{ translate(nextSlide.category) }}</span>
         </button>
         <div class="homepage-hero__arrows flex flex-col">
@@ -251,9 +265,8 @@ onBeforeUnmount(() => {
   --hero-accent: var(--brand);
   width: calc(100% - 2 * var(--allgames-content-padding));
   min-width: 0;
-  min-height: 540px;
   max-height: 750px;
-  aspect-ratio: 1701 / 925;
+  aspect-ratio: 1672 / 941;
   margin-inline: var(--allgames-content-padding);
   border: 1px solid #ffffff12;
   border-radius: 10px;
@@ -264,7 +277,8 @@ onBeforeUnmount(() => {
   touch-action: pan-y pinch-zoom;
 }
 .homepage-hero__photo,.homepage-hero__shade { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.homepage-hero__photo { z-index: -2; object-fit: cover; transform-origin: 70% center; animation: hero-photo-zoom-out var(--hero-slide-duration) linear both; transition: opacity 550ms ease; }
+.homepage-hero__photo { z-index: -2; transform-origin: 70% center; animation: hero-photo-zoom-out var(--hero-slide-duration) linear both; transition: opacity 550ms ease; }
+.homepage-hero__photo img { width: 100%; height: 100%; object-fit: cover; }
 .hero-photo-enter-from,.hero-photo-leave-to { opacity: 0; }
 .homepage-hero--paused .homepage-hero__photo { animation-play-state: paused; }
 .homepage-hero__shade { z-index: -1; background: linear-gradient(90deg,#020c0a38,transparent 75%),linear-gradient(0deg,#020c0a66,transparent 25%); }
@@ -300,7 +314,7 @@ onBeforeUnmount(() => {
 .homepage-hero .homepage-hero__counter { margin-bottom: 7px; font-size: clamp(14px,1.5cqw,23px); line-height: 1.2; font-variant-numeric: tabular-nums; text-shadow: 0 1px 8px #0009; }
 .homepage-hero__counter span { color: #e9ece9; }
 .homepage-hero__preview-row { height: clamp(88px,8.1cqw,130px); }
-.homepage-hero__thumbnail { position: relative; flex: 1; min-width: 0; border: 1px solid #ffffff38; background: #091610; text-align: left; }
+.homepage-hero__thumbnail { position: relative; height: 100%; aspect-ratio: 1003 / 1568; flex-shrink: 0; border: 1px solid #ffffff38; background: #091610; text-align: left; }
 .homepage-hero__thumbnail img { width: 100%; height: 100%; object-fit: cover; object-position: 75% center; transition: transform 250ms; }
 .homepage-hero__thumbnail:hover img { transform: scale(1.04); }
 .homepage-hero__thumbnail span { position: absolute; inset: auto 0 0; padding: 16px 10px 7px; background: linear-gradient(transparent,#000b); color: #fff; font-size: 10px; font-weight: 700; }
@@ -325,14 +339,13 @@ onBeforeUnmount(() => {
 @keyframes hero-scroll-nudge { 0%,60%,100% { transform: translateY(0); } 75% { transform: translateY(4px); } 88% { transform: translateY(0); } }
 @keyframes hero-button-splash { 0% { opacity: 0; transform: translateX(0) skewX(-24deg); } 15%,75% { opacity: 1; } 100% { opacity: 0; transform: translateX(420%) skewX(-24deg); } }
 @media (max-width: 1199px) and (min-width: 701px) {
-  .homepage-hero { min-height: 500px; }
-  .homepage-hero__copy { top: 17%; left: 12%; }
-  .homepage-hero h1 { font-size: 7.5cqw; }
-  .homepage-hero .homepage-hero__description { max-width: 48cqw; font-size: 14px; }
-  .homepage-hero .homepage-hero__action { margin-top: 24px; }
-  .homepage-hero__markers { left: 4%; }
-  .homepage-hero__preview { width: 19%; top: 40%; }
-  .homepage-hero__footer { bottom: 5%; }
+  .homepage-hero__copy { top: 14%; left: 10%; }
+  .homepage-hero h1 { font-size: 7cqw; }
+  .homepage-hero .homepage-hero__description { max-width: 48cqw; font-size: 13px; }
+  .homepage-hero .homepage-hero__action { margin-top: 18px; }
+  .homepage-hero__markers { left: 3%; }
+  .homepage-hero__preview { width: auto; right: 2%; top: 38%; }
+  .homepage-hero__footer { bottom: 4%; }
 }
 @media (max-width: 700px) {
   .homepage-hero { min-height: 560px; aspect-ratio: auto; border-radius: 8px; }

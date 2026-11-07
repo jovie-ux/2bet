@@ -94,7 +94,7 @@ const sportName = computed(() => translate(({ basketball: 'Basketball', soccer: 
   >
     <div class="sports-match-heading flex items-center justify-between">
       <span class="sports-league flex items-center min-w-0">
-        <img :src="getTournamentLogo(fixture.sport_key)" :class="{ 'sports-league-logo--nba': fixture.sport_key.includes('_nba') }" alt="" width="18" height="26" loading="lazy">
+        <img :src="getTournamentLogo(fixture.sport_key)" :class="{ 'sports-league-logo--nba': fixture.sport_key.includes('_nba') }" :alt="fixture.sport_title || sportName" width="18" height="26" loading="lazy" decoding="async">
         <span class="sports-league-copy flex items-center min-w-0"><strong :title="fixture.sport_title">{{ fixture.sport_title }}</strong><span aria-hidden="true">&middot;</span><span class="sports-league-sport">{{ sportName }}</span></span>
       </span>
       <span class="sports-match-status inline-flex items-center"><span aria-hidden="true" />{{ translate('Upcoming') }}</span>
@@ -108,7 +108,7 @@ const sportName = computed(() => translate(({ basketball: 'Basketball', soccer: 
       <div class="sports-match-teams grid">
         <div class="sports-team flex flex-col items-center" :style="{ '--team-ink': teams[0]!.ink }">
           <span class="sports-team-badge">
-            <img v-if="teams[0]!.image" :src="teams[0]!.image" alt="" width="64" height="64" loading="lazy">
+            <img v-if="teams[0]!.image" :src="teams[0]!.image" :alt="teams[0]!.name" width="64" height="64" loading="lazy" decoding="async">
             <span v-else class="sports-team-initials" aria-hidden="true">{{ teams[0]!.initials }}</span>
           </span>
           <strong>{{ teams[0]!.name }}</strong>
@@ -124,7 +124,7 @@ const sportName = computed(() => translate(({ basketball: 'Basketball', soccer: 
 
         <div class="sports-team flex flex-col items-center" :style="{ '--team-ink': teams[1]!.ink }">
           <span class="sports-team-badge">
-            <img v-if="teams[1]!.image" :src="teams[1]!.image" alt="" width="64" height="64" loading="lazy">
+            <img v-if="teams[1]!.image" :src="teams[1]!.image" :alt="teams[1]!.name" width="64" height="64" loading="lazy" decoding="async">
             <span v-else class="sports-team-initials" aria-hidden="true">{{ teams[1]!.initials }}</span>
           </span>
           <strong>{{ teams[1]!.name }}</strong>

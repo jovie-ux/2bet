@@ -21,6 +21,7 @@ const emit = defineEmits<{
 }>()
 
 const route = useRoute()
+const { translate } = useSitePreferences()
 const oddsCols = computed<2 | 3>(() => route.params.sport === 'soccer' ? 3 : 2)
 
 const search = ref('')
@@ -77,8 +78,8 @@ const filteredEvents = computed(() => {
         <input
           v-model="search"
           type="search"
-          placeholder="Search league or team"
-          aria-label="Search league or team"
+          :placeholder="translate('Search league or team')"
+          :aria-label="translate('Search league or team')"
         >
       </label>
 
@@ -89,7 +90,7 @@ const filteredEvents = computed(() => {
       <Collapse
         :model-value="matchList?.allCollapsed ?? false"
         @toggle="matchList?.toggleAll()"
-        title="Collapse all matches"
+        :title="translate('Collapse all matches')"
       />
     </div>
 
@@ -104,11 +105,11 @@ const filteredEvents = computed(() => {
     <div v-else class="empty">
       <img
         src="/images/empty/no-events.webp"
-        alt="No inplay events"
+        :alt="translate('No inplay events')"
         class="h-auto w-full max-w-[200px] object-contain"
       />
-      <h2>No inplay events</h2>
-      <p>Try another league or check back later.</p>
+      <h2>{{ translate('No inplay events') }}</h2>
+      <p>{{ translate('Try another league or check back later.') }}</p>
     </div>
   </div>
 </template>

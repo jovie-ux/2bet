@@ -2,12 +2,12 @@
 import LiveView from '~/components/sports/LiveView.vue'
 
 useAppSeo({
-  title: 'Live Sports Betting Hub — In-Play Match Odds | 2Bet',
-  description: 'Access 2Bet live in-play sports betting hub. Real-time scores, momentum trackers, dynamic handicap odds, and instant bet settlement 24/7.',
+  title: 'Central de Apostas ao Vivo — Placares e Cotações | 2bet',
+  description: 'Acesse a central de apostas ao vivo da 2bet Brasil. Placares em tempo real, estatísticas atualizadas e liquidação rápida de bilhetes.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Sports', path: '/explore/sports/popular' },
-    { name: 'Live Hub', path: '/explore/sports/live' },
+    { name: 'Início', path: '/' },
+    { name: 'Esportes', path: '/explore/sports/popular' },
+    { name: 'Central ao Vivo', path: '/explore/sports/live' },
   ],
   schema: {
     '@context': 'https://schema.org',

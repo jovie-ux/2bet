@@ -16,7 +16,9 @@ import {
 } from '~/data/promotions'
 
 const route = useRoute()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { translate } = useSiteLocale()
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 const { markAsViewed } = useViewedPromotions()
 const { selectedCurrency } = useBonusPayments()
 
@@ -25,12 +27,13 @@ const bonusId = computed(() => {
   return Array.isArray(id) ? id[0] : (id as string) || 'share-and-earn'
 })
 
+if (!PROMOTIONS.some(item => item.slug === bonusId.value || item.id === bonusId.value)) {
+  await navigateTo('/', { redirectCode: 302, replace: true })
+}
+
 const bonus = computed<BonusDetail>(() => {
   const promotion = PROMOTIONS.find(item => item.slug === bonusId.value || item.id === bonusId.value)
-  if (!promotion) {
-    throw createError({ statusCode: 404, statusMessage: 'Promotion not found' })
-  }
-  return getBonusDetail(promotion.slug)
+  return getBonusDetail(promotion?.slug || 'share-and-earn')
 })
 const promotionTermsPath = computed(() => ({
   path: '/explore/bonuses/terms-and-condition',
@@ -38,7 +41,7 @@ const promotionTermsPath = computed(() => ({
 }))
 const bannerImageError = ref(false)
 const isReminderOpen = ref(false)
-const reminderMessage = ref('Please login first to join this promotion.')
+const reminderMessage = ref(translate('Please login first to participate in this promotion.'))
 
 const bonusHeaderImageSrc = computed(() => {
   return getPromoHeaderUrl(bonus.value.headerImage || bonus.value.bannerImage, bonus.value.slug)
@@ -52,26 +55,23 @@ const isSvgString = (icon?: string): boolean => {
   return Boolean(icon && typeof icon === 'string' && icon.trim().startsWith('<svg'))
 }
 
-const seoTitle = computed(() => bonus.value.seoTitle || `${bonus.value.title} — 2Bet Bonus & Promotions`)
+const seoTitle = computed(() => formatSeoTitle(bonus.value.seoTitle || `${bonus.value.title} — Bônus e Promoções Exclusivas | 2bet`))
 
 const seoDescription = computed(() => {
-  if (bonus.value.seoDesc) return bonus.value.seoDesc
-  if (bonus.value.seoDescription) return bonus.value.seoDescription
-  const desc = bonus.value.subtitle || bonus.value.eventContent?.description || `Participate in ${bonus.value.title} on 2Bet.`
-  return `${desc} Join 2Bet Philippines for exclusive casino promotions, free spins, deposit bonuses, and daily rebates.`
+  if (bonus.value.seoDesc) return formatSeoDescription(bonus.value.seoDesc)
+  if (bonus.value.seoDescription) return formatSeoDescription(bonus.value.seoDescription)
+  const desc = bonus.value.subtitle || bonus.value.eventContent?.description || `Participe da promoção ${bonus.value.title} na 2bet Brasil.`
+  return formatSeoDescription(`${desc} Aproveite bônus exclusivos, giros grátis e cashback diário no cassino online da 2bet Brasil.`)
 })
 
 const seoKeywords = computed(() => {
   return [
-    bonus.value.title,
-    '2Bet bonus',
-    '2Bet promotion',
+    '2bet',
+    'promoções 2bet',
+    'bônus de cassino',
     bonus.value.slug,
-    'Philippines online casino',
-    'free spins',
-    'daily rebate',
-    'casino bonus 2026',
-    'sports betting promotion',
+    'giros grátis',
+    '2bet brasil',
   ].join(', ')
 })
 
@@ -102,7 +102,7 @@ useAppSeo({
     },
     'organizer': {
       '@type': 'Organization',
-      'name': '2Bet Philippines',
+      'name': '2bet Brasil',
       'url': 'https://2bet.com',
       'logo': 'https://2bet.com/brand/2bet-logo.webp',
     },
@@ -126,12 +126,12 @@ watch(() => bonus.value?.slug, (slug) => {
 })
 
 const handleJoinNow = (): void => {
-  reminderMessage.value = 'Please login first to participate in this promotion.'
+  reminderMessage.value = translate('Please login first to participate in this promotion.')
   isReminderOpen.value = true
 }
 
 const handleProgressClick = (): void => {
-  reminderMessage.value = 'Please login first to view your mission progress.'
+  reminderMessage.value = translate('Please login first to view your mission progress.')
   isReminderOpen.value = true
 }
 
@@ -151,7 +151,7 @@ const handleContentClick = (event: MouseEvent): void => {
 </script>
 
 <template>
-  <div class="bonus-detail-page" :class="{ 'bonus-detail-page--with-action': bonus.hasJoinButton }">
+  <div class="bonus-detail-page" :class="{ 'bonus-detail-page--with-action': bonus.hasJoinButton }" :style="{ '--bonus-accent': bonus.accentColor || '#087653' }">
     <MobileBonusHeader back-to="/explore/bonuses" currency-selector />
     <SeoHeader
       class="bonus-detail-desktop-header"
@@ -187,7 +187,7 @@ const handleContentClick = (event: MouseEvent): void => {
         </div>
       </section>
 
-      <article class="promotion-sheet" lang="zh-Hant">
+      <article class="promotion-sheet" :lang="bonus.language || 'zh-Hant'">
         <div
           v-if="bonus.contentHtml"
           class="promotion-custom-content"
@@ -197,32 +197,29 @@ const handleContentClick = (event: MouseEvent): void => {
 
         <template v-else>
           <header class="promotion-title">
-            <div
-              v-if="bonus.innerIcon || bonus.innerPageIcon"
-              class="promotion-title__icon"
-            >
+            <div class="promotion-title__icon">
               <div
                 v-if="isSvgString(bonus.innerIcon || bonus.innerPageIcon)"
                 class="promotion-title__svg"
                 v-html="bonus.innerIcon || bonus.innerPageIcon"
               />
               <img
-                v-else
+                v-else-if="bonus.innerIcon || bonus.innerPageIcon"
                 :src="(bonus.innerIcon || bonus.innerPageIcon)!"
                 :alt="bonus.title"
                 width="40"
                 height="41"
                 decoding="async"
               >
+              <img
+                v-else
+                :src="bonus.thumbnailImage || (typeof bonus.bannerImage === 'object' && bonus.bannerImage.thumbnail) || PROMOTION_PLACEHOLDER_IMAGES.thumbnail"
+                :alt="bonus.title"
+                width="40"
+                height="41"
+                decoding="async"
+              >
             </div>
-            <img
-              v-else
-              :src="bonus.thumbnailImage || (typeof bonus.bannerImage === 'object' && bonus.bannerImage.thumbnail) || PROMOTION_PLACEHOLDER_IMAGES.thumbnail"
-              :alt="bonus.title"
-              width="64"
-              height="64"
-              decoding="async"
-            >
             <div>
               <h1>{{ bonus.title }}</h1>
               <p>{{ bonus.subtitle }}</p>
@@ -235,9 +232,9 @@ const handleContentClick = (event: MouseEvent): void => {
             aria-labelledby="requirements-title"
           >
             <div class="requirements-panel__heading">
-              <h2 id="requirements-title">Requirements:</h2>
+              <h2 id="requirements-title">{{ translate('Requirements') }}:</h2>
               <button type="button" @click="handleProgressClick">
-                View Progress
+                {{ translate('View Progress') }}
                 <ChevronRight :size="13" />
               </button>
             </div>
@@ -247,13 +244,13 @@ const handleContentClick = (event: MouseEvent): void => {
                 <span class="requirement-check" :class="{ 'requirement-check--complete': requirement.completed }">
                   {{ requirement.completed ? '✓' : '' }}
                 </span>
-                {{ requirement.text }}
+                {{ translate(requirement.text) }}
               </li>
             </ul>
           </section>
 
           <section class="period-section" aria-labelledby="period-title">
-            <h2 id="period-title">Period:</h2>
+            <h2 id="period-title">{{ translate('Period') }}:</h2>
             <p>{{ bonus.period }}</p>
           </section>
 
@@ -262,19 +259,19 @@ const handleContentClick = (event: MouseEvent): void => {
             class="qualifications-section"
             aria-labelledby="qualifications-title"
           >
-            <h2 id="qualifications-title">Qualifications:</h2>
+            <h2 id="qualifications-title">{{ translate('Qualifications') }}:</h2>
             <dl class="qualification-table">
               <div v-for="qualification in bonus.qualifications" :key="qualification.label">
-                <dt>{{ qualification.label }}</dt>
-                <dd>{{ qualification.value }}</dd>
+                <dt>{{ translate(qualification.label) }}</dt>
+                <dd>{{ translate(qualification.value) }}</dd>
               </div>
             </dl>
           </section>
 
           <section class="reward-section" aria-labelledby="reward-content-title">
             <div class="reward-section__heading">
-              <h2 id="reward-content-title">Event Content:</h2>
-              <span v-if="bonus.eventContent.badge">{{ bonus.eventContent.badge }}</span>
+              <h2 id="reward-content-title">{{ translate('Event Content') }}:</h2>
+              <span v-if="bonus.eventContent.badge">{{ translate(bonus.eventContent.badge) }}</span>
             </div>
 
             <p
@@ -300,6 +297,8 @@ const handleContentClick = (event: MouseEvent): void => {
               v-if="bonus.eventContent.vipRebates?.length && bonus.eventContent.vipBenefits?.length"
               :rebates="bonus.eventContent.vipRebates"
               :benefits="bonus.eventContent.vipBenefits"
+              :labels="bonus.eventContent.vipTableLabels"
+              :program="bonus.eventContent.vipTableVariant === 'program'"
             />
 
             <div v-if="bonus.eventContent.linkedParagraphs?.length" class="reward-linked-paragraphs">
@@ -331,10 +330,10 @@ const handleContentClick = (event: MouseEvent): void => {
               <article v-for="tier in bonus.eventContent.tierCards" :key="tier.level" class="vip-tier-card">
                 <strong class="vip-tier-card__level">👑 {{ tier.level }}</strong>
                 <div class="vip-tier-card__benefits">
-                  <div><span>🎯<br>Turnover Requirement</span><strong>{{ tier.turnover }}</strong></div>
-                  <div><span>💎<br>Upgrade Bonus</span><strong>{{ tier.upgradeBonus }}</strong></div>
-                  <div><span>🧧<br>Monthly Red Packet</span><strong>{{ tier.monthlyRedPacket }}</strong></div>
-                  <div><span>🎂<br>Birthday Bonus</span><strong>{{ tier.birthdayBonus }}</strong></div>
+                  <div><span>🎯<br>{{ translate('Turnover Requirement') }}</span><strong>{{ tier.turnover }}</strong></div>
+                  <div><span>💎<br>{{ translate('Upgrade Bonus') }}</span><strong>{{ tier.upgradeBonus }}</strong></div>
+                  <div><span>🧧<br>{{ translate('Monthly Red Packet') }}</span><strong>{{ tier.monthlyRedPacket }}</strong></div>
+                  <div><span>🎂<br>{{ translate('Birthday Bonus') }}</span><strong>{{ tier.birthdayBonus }}</strong></div>
                 </div>
               </article>
             </div>
@@ -344,7 +343,7 @@ const handleContentClick = (event: MouseEvent): void => {
                 v-for="(table, tableIndex) in bonus.eventContent.tables"
                 :key="`${table.headerTitle || 'reward'}-${tableIndex}`"
                 class="reward-table"
-                :class="{ 'reward-table--outline': table.variant === 'outline' }"
+                :class="{ 'reward-table--outline': table.variant === 'outline', 'reward-table--filled': table.variant === 'filled', 'reward-table--compact': table.compact }"
                 :style="{ '--reward-table-accent': table.accentColor || '#429bdb' }"
               >
                 <div v-if="table.headerTitle" class="reward-table__title">
@@ -403,7 +402,7 @@ const handleContentClick = (event: MouseEvent): void => {
           </section>
 
           <section v-if="bonus.promotionTerms" class="text-section">
-            <h2>Promotion T&amp;C:</h2>
+            <h2>{{ translate('Promotion T&C') }}:</h2>
             <div v-if="Array.isArray(bonus.promotionTerms)" class="text-section__stack">
               <p v-for="term in bonus.promotionTerms" :key="term">{{ term }}</p>
             </div>
@@ -411,19 +410,19 @@ const handleContentClick = (event: MouseEvent): void => {
           </section>
 
           <section class="text-section">
-            <h2>Rules:</h2>
+            <h2>{{ translate('Rules') }}:</h2>
             <ul class="promotion-list" :class="{ 'promotion-list--plain': bonus.rulesStyle === 'plain' }">
               <li v-for="(rule, index) in bonus.rules" :key="rule">{{ bonus.rulesStyle === 'plain' ? `${index + 1}.${rule}` : rule }}</li>
             </ul>
           </section>
 
           <section v-if="bonus.withdrawalTerms" class="text-section">
-            <h2>Withdrawal Terms:</h2>
+            <h2>{{ translate('Withdrawal Terms') }}:</h2>
             <p>{{ bonus.withdrawalTerms }}</p>
           </section>
 
           <NuxtLink :to="promotionTermsPath" class="promotion-terms-link">
-            Terms and Conditions for Promotion
+            {{ translate('Terms and Conditions for Promotion') }}
           </NuxtLink>
         </template>
       </article>
@@ -431,12 +430,12 @@ const handleContentClick = (event: MouseEvent): void => {
 
 
     <div v-if="bonus.hasJoinButton" class="join-bar">
-      <button type="button" @click="handleJoinNow">Join Now</button>
+      <button type="button" @click="handleJoinNow">{{ translate('Join Now') }}</button>
     </div>
 
     <ReminderModal
       v-if="isReminderOpen"
-      title="Notice"
+      :title="translate('Notice')"
       :message="reminderMessage"
       @close="isReminderOpen = false"
       @ok="handleModalOk"
@@ -858,33 +857,38 @@ const handleContentClick = (event: MouseEvent): void => {
 
 .promotion-title img {
   display: block;
-  width: 2.35rem;
-  height: 2.35rem;
-  flex: 0 0 2.35rem;
-  border-radius: 0.43rem;
-  object-fit: cover;
+  width: 40px;
+  height: 41px;
+  object-fit: contain;
 }
 
 .promotion-title__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2.5rem;
-  border-radius: 0.43rem;
+  width: 40px;
+  height: 41px;
+  flex: 0 0 40px;
 }
 
 .promotion-title__svg {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .promotion-title__svg :deep(svg) {
   display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
 }
 
 :deep(.fill-tab-bar-big-button) {
-  fill: var(--dark, var(--main-color));
+  fill: var(--bonus-accent, var(--main-color));
 }
 
 .promotion-title h1 {
@@ -1056,7 +1060,7 @@ const handleContentClick = (event: MouseEvent): void => {
   border-radius: 0.18rem;
   color: #d4f6e8;
   font-size: 0.46rem;
-  background: #087653;
+  background: var(--bonus-accent, #087653);
 }
 
 .reward-section__description,
@@ -1228,7 +1232,7 @@ const handleContentClick = (event: MouseEvent): void => {
   font-size: 0.54rem;
   font-weight: 800;
   text-align: center;
-  background: #087653;
+  background: var(--bonus-accent, #087653);
 }
 
 .method-card span,
@@ -1269,6 +1273,10 @@ const handleContentClick = (event: MouseEvent): void => {
   color: #ffffff;
   font-weight: 800;
   background: #087653;
+}
+
+.reward-table--filled th {
+  background: var(--reward-table-accent, #087653);
 }
 
 .reward-table tbody tr + tr,
@@ -1329,6 +1337,18 @@ const handleContentClick = (event: MouseEvent): void => {
 
 .reward-table--outline td:not(:first-child) {
   color: #d7d8d7;
+}
+
+.reward-table--compact .reward-table__subtitle {
+  padding-top: 0;
+  padding-bottom: 0.5rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.reward-table--compact td {
+  padding-top: 0.18rem;
+  padding-bottom: 0.18rem;
 }
 
 .reward-table .reward-table__cell--highlight {
@@ -1444,7 +1464,7 @@ const handleContentClick = (event: MouseEvent): void => {
   color: #ffffff;
   font-size: 0.64rem;
   font-weight: 800;
-  background: #087653;
+  background: var(--bonus-accent, #087653);
   cursor: pointer;
 }
 

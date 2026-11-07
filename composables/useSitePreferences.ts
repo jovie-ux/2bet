@@ -93,11 +93,28 @@ const translations: Partial<Record<LocaleCode, Record<string, string>>> = {
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, 2Bet is your home for bigger wins.': '在同一平台尽享激动人心的奖池、创新玩法和丰厚奖励。无论您是休闲玩家还是高额玩家，2Bet 都是您赢取更多大奖的理想选择。',
     'Frequently Asked Questions': '常见问题',
     'What is 2Bet Slot?': '什么是 2Bet Slot？',
+    'What is 2Bet Casino?': '什么是 2Bet Casino？',
     '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
       '2Bet Slot 是一个高端在线游戏平台，提供海量优质电子老虎机。我们致力于打造安全的游戏环境，涵盖从古代文明到未来冒险等多元主题。我们的平台将 2Bet 老虎机游戏库与先进技术深度融合，无论您是通过电脑浏览器还是便捷的 2Bet 移动 App，都能畅享流畅丝滑的游戏体验。',
+    '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      '2Bet Casino 是一个高端在线游戏平台，提供海量优质电子老虎机。我们致力于打造安全的游戏环境，涵盖从古代文明到未来冒险等多元主题。我们的平台将 2Bet 老虎机游戏库与先进技术深度融合，无论您是通过电脑浏览器还是便捷的 2Bet 移动 App，都能畅享流畅丝滑的游戏体验。',
+    'How does the 2Bet online casino work?': '2Bet 在线娱乐城是如何运作的？',
+    'The 2Bet online casino allows users to explore the games currently available on the platform. To participate, users need to create an account, check the access requirements, and follow the rules of each game. Results depend on the rules and mechanics of each game, and winnings are never guaranteed.':
+      '2Bet 在线娱乐城允许用户畅玩平台上目前提供的所有游戏。参与游戏前，用户需要注册账号、了解访问准入要求并遵守每款游戏的规则。游戏结果取决于各自的规则与机制，平台不保证任何盈利。',
+    'Can I place sports bets on 2Bet using my mobile phone?': '我可以使用手机在 2Bet 上进行体育投注吗？',
+    'The 2Bet mobile experience allows users to access features made available for smartphones. To place sports bets on 2Bet, users can browse available events and betting markets, review the rules, and confirm their selections before placing a bet. Feature availability may vary depending on the device and platform version.':
+      '2Bet 移动端支持用户随时使用专为智能手机优化的各项功能。在 2Bet 进行体育投注时，用户可以浏览精彩赛事与投注盘口，查看规则并在下注前确认所选项目。具体功能可用性可能因设备型号和平台版本而异。',
+    'How do I create an account on 2Bet Brazil?': '如何在 2Bet 巴西注册账号？',
+    'To create an account on 2Bet Brazil, click Register button. Enter the required information and complete any applicable identity verification steps. Before making deposits or placing bets, review the terms and conditions and the legal eligibility requirements.':
+      '在 2Bet 巴西创建账号，只需点击“注册”按钮，填写所需信息并完成适用的身份验证步骤。在充值或下注前，请仔细阅读条款与条件以及法定合规资格要求。',
+    'Is 2Bet safe and trustworthy in Brazil?': '2Bet 在巴西是否安全可靠？',
+    "To determine whether 2Bet is trustworthy in Brazil, it is essential to verify whether the operator holds valid authorization from the Secretariat of Prizes and Betting under Brazil's Ministry of Finance. Users should also review the privacy policy, customer support options, and deposit and withdrawal rules. Betting is intended exclusively for adults aged 18 and older and should always be approached responsibly.":
+      '要确认 2Bet 在巴西是否值得信赖，核实运营商是否拥有巴西财政部奖品与博彩秘书处的合法授权至关重要。用户还应查阅隐私政策、客户支持渠道以及充值和提现规则。博彩仅限 18 周岁及以上成年人参与，且应始终保持理性博彩。',
     'Is 2Bet legit or a scam?': '2Bet 是正规合法的还是骗局？',
     'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
       '我们郑重承诺，2Bet 是一家完全合规且合法的在线娱乐平台。为确保最高标准的安全与公平，我们持有菲律宾博彩监管机构 PAGCOR（Philippine Amusement and Gaming Corporation）颁发的正规执照。这一认证标志着我们在严格监管下运营，确保所有业务透明公开，包括含有 2Bet 分散符号（Scatter）在内的所有游戏均做到公平公正。您的账户安全是我们的首要任务，我们采用业界领先的加密技术全面保护您在网站上的每一次互动。',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      '我们郑重承诺，2Bet 是一家完全合规且合法的在线娱乐平台。为确保最高标准的安全与公平，我们持有正规执照及多项权威认证。这意味着我们在严格监管下运营，确保所有业务透明公开，包括含有 2Bet 分散符号（Scatter）在内的所有游戏均做到公平公正。您的账户安全是我们的首要任务，我们采用业界领先的加密技术全面保护您在网站上的每一次互动。',
     'Is the 2Bet app slot compatible with both Android and iOS?': '2Bet 移动端 App 是否兼容 Android 和 iOS 系统？',
     'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
       '是的，我们的应用程序专为两大主流移动操作系统精心设计并完美兼容。您可以直接从我们的官方网站下载 App，以确保获取最新、最安全的官方版本。',
@@ -107,6 +124,9 @@ const translations: Partial<Record<LocaleCode, Record<string, string>>> = {
     'What makes the 2Bet slots symbol special?': '2Bet 分散符号（Scatter Symbol）有什么特别之处？',
     'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
       '在我们的大多数游戏中，分散符号（Scatter）是一项强力触发机制，无论其出现在转轴的哪个位置，都能激活特殊奖励。这通常会触发免费旋转或特色小游戏，为您的游戏过程增添更多惊喜与刺激。',
+    'What makes the 2Bet app special?': '2Bet App 有什么特别之处？',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      '2Bet 应用程序专为巴西用户量身打造，提供便捷实用的体育博彩与在线娱乐体验。平台以移动端体验为核心，将丰富多元的精彩游戏与实用功能完美融于一体。',
     'Contact Us': '联系我们', FAQ: '常见问题', 'Responsible Gaming': '负责任博彩',
     'Terms of Service': '服务条款', 'Privacy Policy': '隐私政策', 'General Terms': '通用条款',
     'Bonus Terms': '优惠条款', 'Betting Rules': '投注规则', 'Cookie Policy': 'Cookie 政策',
@@ -196,11 +216,28 @@ const translations: Partial<Record<LocaleCode, Record<string, string>>> = {
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, 2Bet is your home for bigger wins.': '在同一平台盡享刺激獎池、創新玩法和豐厚獎勵。無論您是休閒玩家還是高額玩家，2Bet 都是您贏取更多大獎的理想選擇。',
     'Frequently Asked Questions': '常見問題',
     'What is 2Bet Slot?': '什麼是 2Bet Slot？',
+    'What is 2Bet Casino?': '什麼是 2Bet Casino？',
     '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
       '2Bet Slot 是一個高端線上遊戲平台，提供海量優質電子老虎機。我們致力於打造安全可靠的遊戲環境，涵蓋從古代文明到未來冒險等多元主題。我們的平台將 2Bet 老虎機遊戲庫與先進技術深度結合，無論您是透過電腦瀏覽器還是便捷的 2Bet 行動 App，都能暢享流暢無阻的遊戲體驗。',
+    '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      '2Bet Casino 是一個高端線上遊戲平台，提供海量優質電子老虎機。我們致力於打造安全可靠的遊戲環境，涵蓋從古代文明到未來冒險等多元主題。我們的平台將 2Bet 老虎機遊戲庫與先進技術深度結合，無論您是透過電腦瀏覽器還是便捷的 2Bet 行動 App，都能暢享流暢無阻的遊戲體驗。',
+    'How does the 2Bet online casino work?': '2Bet 線上娛樂城是如何運作的？',
+    'The 2Bet online casino allows users to explore the games currently available on the platform. To participate, users need to create an account, check the access requirements, and follow the rules of each game. Results depend on the rules and mechanics of each game, and winnings are never guaranteed.':
+      '2Bet 線上娛樂城允許用戶暢玩平台上目前提供的所有遊戲。參與遊戲前，用戶需要註冊帳號、了解訪問准入要求並遵守每款遊戲的規則。遊戲結果取決於各自的規則與機制，平台不保證任何盈利。',
+    'Can I place sports bets on 2Bet using my mobile phone?': '我可以使用手機在 2Bet 上進行體育投注嗎？',
+    'The 2Bet mobile experience allows users to access features made available for smartphones. To place sports bets on 2Bet, users can browse available events and betting markets, review the rules, and confirm their selections before placing a bet. Feature availability may vary depending on the device and platform version.':
+      '2Bet 行動端支援用戶隨時使用專為智慧型手機優化的各項功能。在 2Bet 進行體育投注時，用戶可以瀏覽精彩賽事與投注盤口，查看規則並在下注前確認所選項目。具體功能可用性可能因設備型號和平台版本而異。',
+    'How do I create an account on 2Bet Brazil?': '如何在 2Bet 巴西註冊帳號？',
+    'To create an account on 2Bet Brazil, click Register button. Enter the required information and complete any applicable identity verification steps. Before making deposits or placing bets, review the terms and conditions and the legal eligibility requirements.':
+      '在 2Bet 巴西建立帳號，只需點擊「註冊」按鈕，填寫所需資訊並完成適用的身分驗證步驟。在充值或下注前，請仔細閱讀條款與條件以及法定合規資格要求。',
+    'Is 2Bet safe and trustworthy in Brazil?': '2Bet 在巴西是否安全可靠？',
+    "To determine whether 2Bet is trustworthy in Brazil, it is essential to verify whether the operator holds valid authorization from the Secretariat of Prizes and Betting under Brazil's Ministry of Finance. Users should also review the privacy policy, customer support options, and deposit and withdrawal rules. Betting is intended exclusively for adults aged 18 and older and should always be approached responsibly.":
+      '要確認 2Bet 在巴西是否值得信賴，核實營運商是否擁有巴西財政部獎品與博彩秘書處的合法授權至關重要。用戶還應查閱隱私權政策、客戶支援管道以及充值和提款規則。博彩僅限 18 歲及以上成年人參與，且應始終保持理性博彩。',
     'Is 2Bet legit or a scam?': '2Bet 是正宗合法平台還是詐騙？',
     'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
       '我們自信地聲明，2Bet 是一家完全合法且正規的遊戲娛樂平台。為落實最高規格的安全與公平標準，我們持有菲律賓博彩監管機構 PAGCOR（Philippine Amusement and Gaming Corporation）頒發的正式執照。這項認證代表我們在嚴格監管下營運，確保所有業務運作公開透明，包括含有 2Bet 分散符號（Scatter）在內的所有遊戲均真實公平、無偏頗。您的安全是我們的重中之重，我們採用業界領先的加密技術守護您在網站上的每一次互動。',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      '我們自信地聲明，2Bet 是一家完全合法且正規的遊戲娛樂平台。為落實最高規格的安全與公平標準，我們持有正式執照與多項專業認證。這代表我們在嚴格監管下營運，確保所有業務運作公開透明，包括含有 2Bet 分散符號（Scatter）在內的所有遊戲均真實公平、無偏頗。您的安全是我們的重中之重，我們採用業界領先的加密技術守護您在網站上的每一次互動。',
     'Is the 2Bet app slot compatible with both Android and iOS?': '2Bet 行動端 App 是否支援 Android 與 iOS 系統？',
     'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
       '是的，我們的應用程式專為兩大主流行動作業系統精心打造並全面相容。您可以直接由我們的官方網站下載 App，確保獲取最新、最安全的官方版本。',
@@ -210,6 +247,9 @@ const translations: Partial<Record<LocaleCode, Record<string, string>>> = {
     'What makes the 2Bet slots symbol special?': '2Bet 分散符號（Scatter Symbol）有何特別之處？',
     'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
       '在我們的大多數遊戲中，分散符號（Scatter）是強大的特色機制，無論落在轉軸上的任何位置皆可觸發專屬獎勵功能。這通常會啟動免費旋轉或精采的小遊戲，為您的遊玩體驗增添無限驚喜與樂趣。',
+    'What makes the 2Bet app special?': '2Bet App 有何特別之處？',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      '2Bet 應用程式專為巴西使用者量身打造，提供便捷實用的體育投注與線上娛樂體驗。平台以行動端體驗為核心，將豐富多元的精彩遊戲與實用功能完美融於一體。',
     'Contact Us': '聯絡我們', FAQ: '常見問題', 'Responsible Gaming': '負責任博彩',
     'Terms of Service': '服務條款', 'Privacy Policy': '隱私權政策', 'General Terms': '一般條款',
     'Bonus Terms': '優惠條款', 'Betting Rules': '投注規則', 'Cookie Policy': 'Cookie 政策',
@@ -340,6 +380,14 @@ const translations: Partial<Record<LocaleCode, Record<string, string>>> = {
     Theme: 'Tema', International: 'Internacional', Asia: 'Ásia',
     'System Settings': 'Configurações do sistema', Language: 'Idioma', 'Time Zone': 'Fuso horário',
     Help: 'Ajuda', 'About Us': 'Sobre nós', Rules: 'Regras', Tutorial: 'Tutoriais',
+    Requirements: 'Requisitos', 'View Progress': 'Ver progresso', Period: 'Período', Qualifications: 'Qualificações',
+    'Event Content': 'Conteúdo do evento', 'Promotion T&C': 'Termos e Condições', 'Withdrawal Terms': 'Termos de saque',
+    'Terms and Conditions for Promotion': 'Termos e Condições da Promoção', 'Join Now': 'Participar agora', Notice: 'Aviso',
+    'Back to promotion': 'Voltar para a promoção',
+    'Please login first to participate in this promotion.': 'Faça login primeiro para participar desta promoção.',
+    'Please login first to view your mission progress.': 'Faça login primeiro para ver o progresso da sua missão.',
+    'Turnover Requirement': 'Requisito de turnover', 'Upgrade Bonus': 'Bônus de upgrade', 'Monthly Red Packet': 'Bônus mensal',
+    'Birthday Bonus': 'Bônus de aniversário', 'First Deposit': 'Primeiro depósito',
     'Game Rules': 'Regras do jogo', Affiliate: 'Afiliados',
     Bonus: 'Bônus', Profile: 'Perfil', Security: 'Segurança', Notifications: 'Notificações',
     'No new notifications': 'Nenhuma notificação nova',
@@ -361,6 +409,188 @@ const translations: Partial<Record<LocaleCode, Record<string, string>>> = {
     Plaza: 'Praça', Predict: 'Previsões', 'All Streamers': 'Todos os streamers',
     'In-Play': 'Ao vivo', Upcoming: 'Próximos', 'Pre-Match': 'Pré-jogo', 'Smart Pick': 'Escolha inteligente',
     Outrights: 'Longo prazo', Highlights: 'Destaques',
+    // Empty States, Modals, Filters, Sports, Live Plaza & Additional UI
+    'Win Jackpot in 2Bet': 'Ganhe o Jackpot na 2Bet',
+    'Everyone dreams of that one massive hit, and we provide the perfect stage for those dreams to unfold. We host a wide array of jackpot titles that range from fixed amounts to progressive totals that grow with every single spin across our network. We want our users to feel the rush of adrenaline that comes with chasing a life-changing total.': 'Todo mundo sonha com aquele grande prêmio, e nós oferecemos o palco perfeito para que esses sonhos se tornem realidade. Contamos com uma ampla variedade de jogos de jackpot, desde valores fixos até acumulados progressivos que crescem a cada giro em nossa rede. Queremos que nossos usuários sintam a adrenalina de buscar um prêmio capaz de mudar de vida.',
+    'Sign in to track your wins': 'Faça login para acompanhar seus ganhos',
+    'Log in or create an account to save spins, claim prizes, and view your win history.': 'Faça login ou crie uma conta para salvar giros, resgatar prêmios e ver seu histórico de vitórias.',
+    'Player Winners': 'Jogadores vencedores',
+    'Resume player winners': 'Retomar lista de vencedores',
+    'Pause player winners': 'Pausar lista de vencedores',
+    'Winners List': 'Lista de vencedores',
+    'Unable to load sports': 'Não foi possível carregar os esportes',
+    'Sports data is temporarily unavailable. Please try again.': 'Os dados esportivos estão temporariamente indisponíveis. Tente novamente.',
+    'Try again': 'Tentar novamente',
+    'Promotion categories': 'Categorias de promoções',
+    'No matching bonuses for': 'Nenhum bônus correspondente para',
+    Save: 'Salvar',
+    'You have seen the promotion below': 'Você já visualizou as promoções abaixo',
+    Currency: 'Moeda',
+    'Close currency selector': 'Fechar seletor de moeda',
+    'Bonus currencies': 'Moedas de bônus',
+    'Previous promotions': 'Promoções anteriores',
+    'Next promotions': 'Próximas promoções',
+    Details: 'Detalhes',
+    'Bonus categories': 'Categorias de bônus',
+    'Featured bonuses': 'Bônus em destaque',
+    'Next featured bonus': 'Próximo bônus em destaque',
+    'Featured bonus slides': 'Slides de bônus em destaque',
+    'Most Popular': 'Mais populares',
+    Others: 'Outros',
+    'Winning Line': 'Linhas de pagamento',
+    'Start Now': 'Jogar agora',
+    Hot: 'Em alta',
+    New: 'Novo',
+    'Empty state': 'Estado vazio',
+    'This is no game currently.': 'Não há jogos disponíveis no momento.',
+    'No Results': 'Sem resultados',
+    'Reset Search': 'Limpar busca',
+    'Reset Filters': 'Limpar filtros',
+    'No standalone jackpot games found.': 'Nenhum jogo de jackpot exclusivo encontrado.',
+    'Deposit is coming soon': 'Depósito disponível em breve',
+    'Stay tuned!': 'Fique ligado!',
+    'Under maintenance': 'Em manutenção',
+    'This game is undergoing maintenance, sorry for the inconvenience caused.': 'Este jogo está em manutenção no momento. Pedimos desculpas pelo transtorno.',
+    'Filter table roadmaps': 'Filtrar mapas de tendências das mesas',
+    'All Roads': 'Todos os mapas',
+    'Long Banker': 'Sequência da Banca',
+    'Long Player': 'Sequência do Jogador',
+    Alternating: 'Alternado',
+    'Good Road': 'Boa tendência',
+    Classic: 'Clássico',
+    Fast: 'Rápido',
+    'Bac Bo': 'Bac Bo',
+    'Hit Rate': 'Taxa de acerto',
+    Unlocked: 'Desbloqueado',
+    Unlock: 'Desbloquear',
+    'Filter predictions by sport': 'Filtrar previsões por esporte',
+    OK: 'OK',
+    Cancel: 'Cancelar',
+    Features: 'Recursos',
+    Irish: 'Irlandês',
+    'God of Wealth': 'Deus da Riqueza',
+    Egyptian: 'Egípcio',
+    Mythology: 'Mitologia',
+    ' Joker': 'Coringa',
+    Joker: 'Coringa',
+    Gems: 'Joias',
+    fruits: 'Frutas',
+    Fruits: 'Frutas',
+    Hold: 'Hold & Win',
+    Wild: 'Wild',
+    Purchase: 'Compra de bônus',
+    Multiplier: 'Multiplicador',
+    'Free Spins': 'Giros grátis',
+    Respin: 'Respin',
+    '5-20 Lines': '5-20 linhas',
+    '25-50 Lines': '25-50 linhas',
+    '>50 Lines': '>50 linhas',
+    'Multi-Line': 'Multilinhas',
+    'Link/Way': 'Formas de ganhar',
+    'Cluster Pays': 'Pagamentos em grupo',
+    'Top Pick': 'Mais escolhidos',
+    'Hot games': 'Jogos em alta',
+    'Hot Games': 'Jogos em alta',
+    'Cold Games': 'Jogos frios',
+    'Max RTP': 'RTP máximo',
+    'Hot...': 'Em alta...',
+    'Cold...': 'Frios...',
+    'Max...': 'RTP máx...',
+    Carnaval: 'Carnaval',
+    Adventure: 'Aventura',
+    'Multi-Card': 'Multicartelas',
+    'Bonus Ball': 'Bola bônus',
+    'Extra Ball': 'Bola extra',
+    'League not available.': 'Liga indisponível.',
+    'Return to all leagues': 'Voltar para todas as ligas',
+    'Search league sample': 'Buscar exemplo de liga',
+    'Search league': 'Buscar liga',
+    'Popular Leagues': 'Ligas populares',
+    'No leagues found.': 'Nenhuma liga encontrada.',
+    'Unable to load match odds.': 'Não foi possível carregar as odds da partida.',
+    'No matches available right now.': 'Nenhuma partida disponível no momento.',
+    'Search league or team': 'Buscar liga ou time',
+    'Collapse all matches': 'Recolher todas as partidas',
+    'Unable to load inplay matches': 'Não foi possível carregar as partidas ao vivo',
+    'Live sports data is temporarily unavailable. Please try again.': 'Os dados de esportes ao vivo estão temporariamente indisponíveis. Tente novamente.',
+    'No Live Streaming': 'Sem transmissão ao vivo',
+    'No live streaming matches available right now. Check back later.': 'Nenhuma partida com transmissão ao vivo disponível no momento. Volte mais tarde.',
+    'Search sports': 'Buscar esportes',
+    'No inplay events': 'Nenhum evento ao vivo',
+    'Try another league or check back later.': 'Tente outra liga ou volte mais tarde.',
+    'Search tournaments': 'Buscar torneios',
+    'No leagues found': 'Nenhuma liga encontrada',
+    'Try searching for a different tournament or league.': 'Tente buscar um torneio ou liga diferente.',
+    'No tournaments found': 'Nenhum torneio encontrado',
+    'No available tournaments match your tournament list and search.': 'Nenhum torneio disponível corresponde à sua lista e busca.',
+    'End Time': 'Horário de término',
+    'Loading outright odds': 'Carregando odds de longo prazo',
+    Winner: 'Vencedor',
+    More: 'Mais',
+    'Odds are currently unavailable.': 'As odds estão indisponíveis no momento.',
+    'No outright odds are available for this tournament right now.': 'Nenhuma odd de longo prazo está disponível para este torneio no momento.',
+    'No outright markets available': 'Nenhum mercado de longo prazo disponível',
+    'No outright markets are currently available for this tournament. Check back later.': 'Nenhum mercado de longo prazo está disponível para este torneio no momento. Volte mais tarde.',
+    'Filter upcoming matches by date': 'Filtrar próximas partidas por data',
+    'No pre-match events': 'Nenhum evento pré-jogo',
+    'Try another date or check back later.': 'Tente outra data ou volte mais tarde.',
+    'No replays available': 'Nenhum replay disponível',
+    'Soccer match replays will appear here when they become available.': 'Os replays das partidas de futebol aparecerão aqui quando estiverem disponíveis.',
+    'Smart Pick is coming soon': 'Escolha Inteligente em breve',
+    'Match insights and selections aren’t available yet. Explore the leagues and upcoming matches.': 'Análises e seleções de partidas ainda não estão disponíveis. Explore as ligas e os próximos jogos.',
+    'Explore leagues': 'Explorar ligas',
+    'Filter upcoming matches by start time': 'Filtrar próximas partidas por horário de início',
+    events: 'eventos',
+    'No upcoming events': 'Nenhum próximo evento',
+    'Search country or city': 'Buscar país ou cidade',
+    'No time zones found.': 'Nenhum fuso horário encontrado.',
+    'Selected time zone:': 'Fuso horário selecionado:',
+    'Search games': 'Buscar jogos',
+    'Search by game or provider...': 'Buscar por jogo ou provedor...',
+    'Recent Searches': 'Buscas recentes',
+    Clear: 'Limpar',
+    'Frequently Searched': 'Buscados com frequência',
+    Found: 'Encontrado(s)',
+    'result(s) for': 'resultado(s) para',
+    'Enter game name': 'Digite o nome do jogo',
+    'Clear input': 'Limpar campo',
+    'Clear history': 'Limpar histórico',
+    'Frequently searched': 'Buscados com frequência',
+    'Recent Games': 'Jogos recentes',
+    'Games you recently played or explored': 'Jogos que você jogou ou explorou recentemente',
+    'Clear History': 'Limpar histórico',
+    'No game history yet': 'Nenhum histórico de jogos ainda',
+    "Games you play or explore will be saved in your browser's history so you can easily return to them anytime.": 'Os jogos que você jogar ou explorar serão salvos no histórico do seu navegador para que possa voltar a eles facilmente a qualquer momento.',
+    'Explore Slots': 'Explorar Slots',
+    'No jackpot games are available for this provider.': 'Nenhum jogo de jackpot está disponível para este provedor.',
+    'Standalone Jackpot Game': 'Jogo de Jackpot Exclusivo',
+    'Search standalone jackpot games': 'Buscar jogos de jackpot exclusivo',
+    'Filter standalone jackpot games': 'Filtrar jogos de jackpot exclusivo',
+    'Search jackpot games': 'Buscar jogos de jackpot',
+    'Clear search': 'Limpar busca',
+    'Standalone jackpot games': 'Jogos de jackpot exclusivo',
+    'Prediction experts': 'Especialistas em previsões',
+    'View all experts': 'Ver todos os especialistas',
+    'Sort predictions': 'Ordenar previsões',
+    Sort: 'Ordenar',
+    'Loading expert predictions…': 'Carregando previsões de especialistas…',
+    'Expert predictions are temporarily unavailable.': 'As previsões de especialistas estão temporariamente indisponíveis.',
+    'No predictions are available for this expert yet.': 'Ainda não há previsões disponíveis para este especialista.',
+    'Sort experts': 'Ordenar especialistas',
+    'Filter experts': 'Filtrar especialistas',
+    'All prediction experts': 'Todos os especialistas em previsões',
+    Current: 'Atuais',
+    predictions: 'previsões',
+    'No experts are available for this sport.': 'Nenhum especialista está disponível para este esporte.',
+    'Popular Games': 'Jogos populares',
+    'Sort popular games': 'Ordenar jogos populares',
+    'Show more popular games': 'Mostrar mais jogos populares',
+    'Win Streak': 'Sequência de vitórias',
+    'No predictions are available right now.': 'Nenhuma previsão está disponível no momento.',
+    'Search: Streamer, League, Team, Event...': 'Buscar: Streamer, Liga, Time, Evento...',
+    'No related streamer': 'Nenhum streamer relacionado encontrado',
+    'You may be interested': 'Você também pode se interessar',
+    Streaming: 'Transmitindo ao vivo',
   },
 }
 
@@ -769,11 +999,28 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, 2Bet is your home for bigger wins.': 'Masiyahan sa kapana-panabik na jackpot, makabagong gameplay, at masaganang gantimpala sa iisang lugar. Casual player ka man o high roller, tahanan mo ang 2Bet para sa mas malalaking panalo.',
     'Frequently Asked Questions': 'Mga Madalas Itanong',
     'What is 2Bet Slot?': 'Ano ang 2Bet Slot?',
+    'What is 2Bet Casino?': 'Ano ang 2Bet Casino?',
     '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
       'Ang 2Bet Slot ay isang de-kalidad na online gaming destination na nag-aalok ng komprehensibong koleksyon ng mga high-quality digital slot machine. Nagbibigay kami ng ligtas na kapaligiran kung saan maaaring tuklasin ng mga manlalaro ang iba\'t ibang tema, mula sa mga sinaunang sibilisasyon hanggang sa mga futuristic na pakikipagsapalaran. Pinagsasama ng aming platform ang 2Bet slots casino library at advanced technology, na nagbibigay-daan sa maayos na gameplay gamit man ang desktop browser o ang 2Bet app slot para sa mobile.',
+    '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      'Ang 2Bet Casino ay isang de-kalidad na online gaming destination na nag-aalok ng komprehensibong koleksyon ng mga high-quality digital slot machine. Nagbibigay kami ng ligtas na kapaligiran kung saan maaaring tuklasin ng mga manlalaro ang iba\'t ibang tema, mula sa mga sinaunang sibilisasyon hanggang sa mga futuristic na pakikipagsapalaran. Pinagsasama ng aming platform ang 2Bet slots casino library at advanced technology, na nagbibigay-daan sa maayos na gameplay gamit man ang desktop browser o ang 2Bet app slot para sa mobile.',
+    'How does the 2Bet online casino work?': 'Paano gumagana ang 2Bet online casino?',
+    'The 2Bet online casino allows users to explore the games currently available on the platform. To participate, users need to create an account, check the access requirements, and follow the rules of each game. Results depend on the rules and mechanics of each game, and winnings are never guaranteed.':
+      'Pinapayagan ng 2Bet online casino ang mga user na subukan ang mga larong kasalukuyang available sa platform. Upang lumahok, kailangan ng mga user na gumawa ng account, suriin ang mga kinakailangan sa pag-access, at sundin ang mga alituntunin ng bawat laro. Ang mga resulta ay nakadepende sa mga patakaran at mekaniks ng bawat laro, at ang mga panalo ay hindi kailanman garantisado.',
+    'Can I place sports bets on 2Bet using my mobile phone?': 'Maaari ba akong maglagay ng sports bet sa 2Bet gamit ang aking mobile phone?',
+    'The 2Bet mobile experience allows users to access features made available for smartphones. To place sports bets on 2Bet, users can browse available events and betting markets, review the rules, and confirm their selections before placing a bet. Feature availability may vary depending on the device and platform version.':
+      'Ang mobile experience ng 2Bet ay nagbibigay-daan sa mga user na ma-access ang mga feature na ginawa para sa mga smartphone. Upang maglagay ng sports bet sa 2Bet, maaaring mag-browse ang mga user ng mga available na event at betting market, suriin ang mga alituntunin, at kumpirmahin ang kanilang mga pinili bago tumaya. Maaaring mag-iba ang availability ng feature depende sa device at bersyon ng platform.',
+    'How do I create an account on 2Bet Brazil?': 'Paano ako gagawa ng account sa 2Bet Brazil?',
+    'To create an account on 2Bet Brazil, click Register button. Enter the required information and complete any applicable identity verification steps. Before making deposits or placing bets, review the terms and conditions and the legal eligibility requirements.':
+      'Upang gumawa ng account sa 2Bet Brazil, i-click ang button na Magrehistro. Ilagay ang kinakailangang impormasyon at kumpletuhin ang anumang naaangkop na hakbang sa pag-verify ng pagkakakilanlan. Bago magdeposito o tumaya, suriin ang mga tuntunin at kundisyon at ang mga legal na kinakailangan sa pagiging karapat-dapat.',
+    'Is 2Bet safe and trustworthy in Brazil?': 'Ligtas at mapagkakatiwalaan ba ang 2Bet sa Brazil?',
+    "To determine whether 2Bet is trustworthy in Brazil, it is essential to verify whether the operator holds valid authorization from the Secretariat of Prizes and Betting under Brazil's Ministry of Finance. Users should also review the privacy policy, customer support options, and deposit and withdrawal rules. Betting is intended exclusively for adults aged 18 and older and should always be approached responsibly.":
+      'Upang malaman kung mapagkakatiwalaan ang 2Bet sa Brazil, mahalagang i-verify kung ang operator ay may valid na awtorisasyon mula sa Secretariat of Prizes and Betting sa ilalim ng Ministry of Finance ng Brazil. Dapat ding suriin ng mga user ang privacy policy, mga opsyon sa customer support, at mga patakaran sa pagdeposito at pag-withdraw. Ang pagtaya ay eksklusibo lamang para sa mga nasa hustong gulang na 18 taong gulang pataas at dapat palaging gawin nang responsable.',
     'Is 2Bet legit or a scam?': 'Legit ba o scam ang 2Bet?',
     'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
       'Buong tiwala naming masasabi na kami ay isang ganap na lehitimo at legal na gaming platform. Upang matiyak ang pinakamataas na pamantayan ng kaligtasan at patas na paglalaro, mayroon kaming pormal na lisensya mula sa PAGCOR (Philippine Amusement and Gaming Corporation). Ang sertipikasyong ito ay nangangahulugang nagpapatakbo kami sa ilalim ng mahigpit na regulasyon, tinitiyak na ang lahat ng aming operasyon ay transparent at ang aming mga laro, kabilang ang may 2Bet slots symbols, ay patas at walang kinikilingan. Ang iyong seguridad ang aming pangunahing priyoridad, at gumagamit kami ng industry-leading encryption upang protektahan ang bawat transaksyon sa aming site.',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'Buong tiwala naming masasabi na kami ay isang ganap na lehitimo at legal na gaming platform. Upang matiyak ang pinakamataas na pamantayan ng kaligtasan at patas na paglalaro, mayroon kaming pormal na lisensya at mga sertipikasyon. Ang ibig sabihin nito ay nagpapatakbo kami sa ilalim ng mahigpit na regulasyon, tinitiyak na ang lahat ng aming operasyon ay transparent at ang aming mga laro, kabilang ang may 2Bet slots symbols, ay patas at walang kinikilingan. Ang iyong seguridad ang aming pangunahing priyoridad, at gumagamit kami ng industry-leading encryption upang protektahan ang bawat transaksyon sa aming site.',
     'Is the 2Bet app slot compatible with both Android and iOS?': 'Tugma ba ang 2Bet app slot sa Android at iOS?',
     'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
       'Oo, idinisenyo namin ang aming application upang maging ganap na tugma sa parehong pangunahing mobile operating system. Maaari mong i-download ang app nang direkta mula sa aming opisyal na site upang matiyak na nakukuha mo ang pinakaligtas at pinakabagong bersyon.',
@@ -783,6 +1030,9 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'What makes the 2Bet slots symbol special?': 'Ano ang nagpapaganda sa 2Bet slots symbol?',
     'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
       'Sa karamihan ng aming mga laro, ang scatter symbol ay isang makapangyarihang tampok na maaaring mag-trigger ng mga espesyal na bonus saanman ito lumapag sa reels. Kadalasan itong nagbibigay ng free spins o mga espesyal na mini-game na nagdaragdag ng pananabik sa iyong paglalaro.',
+    'What makes the 2Bet app special?': 'Ano ang espesyal sa 2Bet app?',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      'Ang 2Bet app ay binuo upang magbigay ng maginhawa at madaling ma-access na karanasan sa pagtaya sa sports at online entertainment para sa mga gumagamit sa Brazil. Nakatuon sa mobile navigation, pinagsasama ng platform ang iba\'t ibang mga laro at tampok sa iisang lugar.',
     'Contact Us': 'Makipag-ugnayan', FAQ: 'Mga Tanong', 'Responsible Gaming': 'Responsableng Paglalaro',
     'Terms of Service': 'Mga Tuntunin ng Serbisyo', 'Privacy Policy': 'Patakaran sa Privacy',
     'General Terms': 'Pangkalahatang Tuntunin', 'Bonus Terms': 'Mga Tuntunin ng Bonus',
@@ -808,11 +1058,16 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, 2Bet is your home for bigger wins.': 'Tận hưởng jackpot hấp dẫn, lối chơi sáng tạo và phần thưởng hào phóng tại một nơi. Dù chơi giải trí hay cược lớn, 2Bet là điểm đến cho những chiến thắng lớn hơn.',
     'Frequently Asked Questions': 'Câu hỏi thường gặp',
     'What is 2Bet Slot?': '2Bet Slot là gì?',
+    'What is 2Bet Casino?': '2Bet Casino là gì?',
     '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
       '2Bet Slot là điểm đến chơi game trực tuyến cao cấp, cung cấp bộ sưu tập máy đánh bạc kỹ thuật số chất lượng cao đa dạng. Chúng tôi mang đến môi trường an toàn, nơi người chơi có thể khám phá nhiều chủ đề từ nền văn minh cổ đại đến những cuộc phiêu lưu tương lai. Nền tảng của chúng tôi tích hợp kho trò chơi slot 2Bet với công nghệ hiện đại, giúp bạn tận hưởng trải nghiệm mượt mà dù chơi trên trình duyệt máy tính hay ứng dụng 2Bet di động tiện lợi.',
+    '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      '2Bet Casino là điểm đến chơi game trực tuyến cao cấp, cung cấp bộ sưu tập máy đánh bạc kỹ thuật số chất lượng cao đa dạng. Chúng tôi mang đến môi trường an toàn, nơi người chơi có thể khám phá nhiều chủ đề từ nền văn minh cổ đại đến những cuộc phiêu lưu tương lai. Nền tảng của chúng tôi tích hợp kho trò chơi slot 2Bet với công nghệ hiện đại, giúp bạn tận hưởng trải nghiệm mượt mà dù chơi trên trình duyệt máy tính hay ứng dụng 2Bet di động tiện lợi.',
     'Is 2Bet legit or a scam?': '2Bet có uy tín hợp pháp không hay là lừa đảo?',
     'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
-      'Chúng tôi tự tin khẳng định 2Bet là một nền tảng chơi game hoàn toàn hợp pháp và uy tín. Để đảm bảo tiêu chuẩn an toàn và công bằng cao nhất, chúng tôi sở hữu giấy phép chính thức từ PAGCOR (Tập đoàn Giải trí và Trò chơi Philippines). Chứng nhận này đảm bảo mọi hoạt động đều được giám sát nghiêm ngặt, minh bạch và tất cả trò chơi, bao gồm các biểu tượng Scatter của 2Bet, đều công bằng tuyệt đối. An toàn của bạn là ưu tiên hàng đầu, và chúng tôi áp dụng công nghệ mã hóa hàng đầu ngành để bảo vệ mọi tương tác trên trang web.',
+      'Chúng tôi tự tin khẳng định 2Bet là một nền tảng chơi game hoàn toàn hợp pháp và uy tín. Để đảm bảo tiêu chuẩn an toàn và công bằng cao nhất, chúng tôi sở hữu giấy phép chính thức từ PAGCOR (Tập đoàn Giải trí và Trò chơi Brasil). Chứng nhận này đảm bảo mọi hoạt động đều được giám sát nghiêm ngặt, minh bạch và tất cả trò chơi, bao gồm các biểu tượng Scatter của 2Bet, đều công bằng tuyệt đối. An toàn của bạn là ưu tiên hàng đầu, và chúng tôi áp dụng công nghệ mã hóa hàng đầu ngành để bảo vệ mọi tương tác trên trang web.',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'Chúng tôi tự tin khẳng định 2Bet là một nền tảng chơi game hoàn toàn hợp pháp và uy tín. Để đảm bảo tiêu chuẩn an toàn và công bằng cao nhất, chúng tôi sở hữu giấy phép chính thức và các chứng nhận hợp quy. Điều này đồng nghĩa với việc chúng tôi hoạt động dưới sự giám sát nghiêm ngặt, minh bạch và tất cả trò chơi, bao gồm các biểu tượng Scatter của 2Bet, đều công bằng tuyệt đối. An toàn của bạn là ưu tiên hàng đầu, và chúng tôi áp dụng công nghệ mã hóa hàng đầu ngành để bảo vệ mọi tương tác trên trang web.',
     'Is the 2Bet app slot compatible with both Android and iOS?': 'Ứng dụng 2Bet slot có tương thích với cả Android và iOS không?',
     'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
       'Có, ứng dụng của chúng tôi được thiết kế để tương thích hoàn hảo với cả hai hệ điều hành di động phổ biến nhất. Bạn có thể tải ứng dụng trực tiếp từ trang web chính thức của chúng tôi để đảm bảo nhận được phiên bản an toàn và mới nhất.',
@@ -822,6 +1077,9 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'What makes the 2Bet slots symbol special?': 'Biểu tượng Scatter của 2Bet có gì đặc biệt?',
     'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
       'Trong hầu hết các trò chơi của chúng tôi, biểu tượng Scatter là một công cụ mạnh mẽ có thể kích hoạt các tính năng đặc biệt bất kể vị trí xuất hiện trên guồng quay. Biểu tượng này thường mang lại vòng quay miễn phí hoặc các trò chơi nhỏ đặc biệt, tăng thêm phần kịch tính cho mỗi lượt chơi của bạn.',
+    'What makes the 2Bet app special?': 'Ứng dụng 2Bet có gì đặc biệt?',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      'Ứng dụng 2Bet được phát triển nhằm mang đến trải nghiệm cá cược thể thao và giải trí trực tuyến tiện lợi, dễ tiếp cận cho người dùng tại Brazil. Với trọng tâm tối ưu cho di động, nền tảng quy tụ đa dạng các trò chơi và tính năng chỉ trong một nơi duy nhất.',
     'Contact Us': 'Liên hệ', FAQ: 'Câu hỏi thường gặp', 'Responsible Gaming': 'Chơi có trách nhiệm',
     'Terms of Service': 'Điều khoản dịch vụ', 'Privacy Policy': 'Chính sách bảo mật',
     'General Terms': 'Điều khoản chung', 'Bonus Terms': 'Điều khoản tiền thưởng',
@@ -847,11 +1105,16 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, 2Bet is your home for bigger wins.': 'Nikmati jackpot menarik, permainan inovatif dan ganjaran lumayan di satu tempat. Sama ada pemain santai atau taruhan tinggi, 2Bet ialah destinasi anda untuk kemenangan lebih besar.',
     'Frequently Asked Questions': 'Soalan Lazim',
     'What is 2Bet Slot?': 'Apakah itu 2Bet Slot?',
+    'What is 2Bet Casino?': 'Apakah itu 2Bet Casino?',
     '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
       '2Bet Slot ialah destinasi permainan dalam talian premium yang menawarkan koleksi mesin slot digital berkualiti tinggi yang lengkap. Kami menyediakan persekitaran yang selamat di mana pengguna boleh meneroka pelbagai tema, daripada tamadun purba hingga pengembaraan futuristik. Platform kami menggabungkan perpustakaan kasino slot 2Bet dengan teknologi canggih, membolehkan anda menikmati permainan yang lancar sama ada menggunakan pelayar desktop atau aplikasi slot 2Bet untuk kemudahan mudah alih.',
+    '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      '2Bet Casino ialah destinasi permainan dalam talian premium yang menawarkan koleksi mesin slot digital berkualiti tinggi yang lengkap. Kami menyediakan persekitaran yang selamat di mana pengguna boleh meneroka pelbagai tema, daripada tamadun purba hingga pengembaraan futuristik. Platform kami menggabungkan perpustakaan kasino slot 2Bet dengan teknologi canggih, membolehkan anda menikmati permainan yang lancar sama ada menggunakan pelayar desktop atau aplikasi slot 2Bet untuk kemudahan mudah alih.',
     'Is 2Bet legit or a scam?': 'Adakah 2Bet sah atau satu penipuan?',
     'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
       'Kami boleh menyatakan dengan yakin bahawa kami adalah platform permainan yang sah dan sah sepenuhnya. Untuk memastikan piawaian keselamatan dan keadilan tertinggi, kami memegang lesen rasmi daripada PAGCOR (Perbadanan Hiburan dan Permainan Filipina). Pensijilan ini bermakna kami beroperasi di bawah pengawasan kawal selia yang ketat, memastikan semua operasi kami telus dan permainan kami, termasuk yang menampilkan simbol scatter 2Bet, adalah adil dan saksama. Keselamatan anda adalah keutamaan kami, dan kami menggunakan penyulitan terkemuka industri untuk melindungi setiap interaksi di laman web kami.',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'Kami boleh menyatakan dengan yakin bahawa kami adalah platform permainan yang sah dan sah sepenuhnya. Untuk memastikan piawaian keselamatan dan keadilan tertinggi, kami memegang lesen rasmi dan pensijilan. Ini bermakna kami beroperasi di bawah pengawasan kawal selia yang ketat, memastikan semua operasi kami telus dan permainan kami, termasuk yang menampilkan simbol scatter 2Bet, adalah adil dan saksama. Keselamatan anda adalah keutamaan kami, dan kami menggunakan penyulitan terkemuka industri untuk melindungi setiap interaksi di laman web kami.',
     'Is the 2Bet app slot compatible with both Android and iOS?': 'Adakah aplikasi slot 2Bet serasi dengan kedua-dua Android dan iOS?',
     'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
       'Ya, kami telah mereka bentuk aplikasi kami agar serasi sepenuhnya dengan kedua-dua sistem pengendalian mudah alih utama. Anda boleh memuat turun aplikasi secara terus daripada laman rasmi kami untuk memastikan anda mendapat versi yang paling selamat dan terkini.',
@@ -861,6 +1124,9 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'What makes the 2Bet slots symbol special?': 'Apakah yang membuatkan simbol scatter 2Bet begitu istimewa?',
     'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
       'Dalam kebanyakan permainan kami, simbol scatter ialah ciri hebat yang boleh mencetuskan ciri khas tidak kira di mana ia mendarat pada gelendong. Ini sering membawa kepada putaran percuma atau permainan mini khas yang menambah keterujaan pada sesi permainan anda.',
+    'What makes the 2Bet app special?': 'Apakah keistimewaan aplikasi 2Bet?',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      'Aplikasi 2Bet dibangunkan untuk menawarkan pengalaman pertaruhan sukan dan hiburan dalam talian yang mudah dan lancar untuk pengguna di Brazil. Berfokuskan kemudahan mudah alih, platform ini menghimpunkan pelbagai pilihan permainan dan ciri di satu tempat.',
     'Contact Us': 'Hubungi Kami', FAQ: 'Soalan Lazim', 'Responsible Gaming': 'Permainan Bertanggungjawab',
     'Terms of Service': 'Syarat Perkhidmatan', 'Privacy Policy': 'Dasar Privasi',
     'General Terms': 'Syarat Umum', 'Bonus Terms': 'Syarat Bonus',
@@ -886,11 +1152,16 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, 2Bet is your home for bigger wins.': 'Nikmati jackpot menarik, gameplay inovatif, dan hadiah melimpah di satu tempat. Baik pemain santai maupun taruhan tinggi, 2Bet adalah tempat untuk kemenangan lebih besar.',
     'Frequently Asked Questions': 'Pertanyaan Umum',
     'What is 2Bet Slot?': 'Apa itu 2Bet Slot?',
+    'What is 2Bet Casino?': 'Apa itu 2Bet Casino?',
     '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
       '2Bet Slot adalah destinasi permainan online premium yang menawarkan koleksi lengkap mesin slot digital berkualitas tinggi. Kami menyediakan lingkungan yang aman di mana pemain dapat menjelajahi berbagai tema, mulai dari peradaban kuno hingga petualangan futuristik. Platform kami mengintegrasikan koleksi kasino slot 2Bet dengan teknologi canggih, memungkinkan Anda menikmati gameplay yang mulus baik melalui browser desktop maupun aplikasi slot 2Bet di ponsel.',
+    '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      '2Bet Casino adalah destinasi permainan online premium yang menawarkan koleksi lengkap mesin slot digital berkualitas tinggi. Kami menyediakan lingkungan yang aman di mana pemain dapat menjelajahi berbagai tema, mulai dari peradaban kuno hingga petualangan futuristik. Platform kami mengintegrasikan koleksi kasino slot 2Bet dengan teknologi canggih, memungkinkan Anda menikmati gameplay yang mulus baik melalui browser desktop maupun aplikasi slot 2Bet di ponsel.',
     'Is 2Bet legit or a scam?': 'Apakah 2Bet resmi atau penipuan?',
     'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
       'Kami dapat menyatakan dengan yakin bahwa kami adalah platform permainan yang sepenuhnya sah dan resmi. Untuk memastikan standar keselamatan dan keadilan tertinggi, kami memegang lisensi resmi dari PAGCOR (Philippine Amusement and Gaming Corporation). Sertifikasi ini berarti kami beroperasi di bawah pengawasan regulasi yang ketat, memastikan semua operasi transparan dan permainan kami, termasuk yang menampilkan simbol scatter 2Bet, adil tanpa rekayasa. Keamanan Anda adalah prioritas utama kami, dan kami menerapkan enkripsi terdepan untuk melindungi setiap interaksi di situs kami.',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'Kami dapat menyatakan dengan yakin bahwa kami adalah platform permainan yang sepenuhnya sah dan resmi. Untuk memastikan standar keselamatan dan keadilan tertinggi, kami memegang lisensi resmi dan sertifikasi. Ini berarti kami beroperasi di bawah pengawasan regulasi yang ketat, memastikan semua operasi transparan dan permainan kami, termasuk yang menampilkan simbol scatter 2Bet, adil tanpa rekayasa. Keamanan Anda adalah prioritas utama kami, dan kami menerapkan enkripsi terdepan untuk melindungi setiap interaksi di situs kami.',
     'Is the 2Bet app slot compatible with both Android and iOS?': 'Apakah aplikasi slot 2Bet kompatibel dengan Android dan iOS?',
     'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
       'Ya, kami merancang aplikasi kami agar kompatibel sepenuhnya dengan kedua sistem operasi seluler utama. Anda dapat mengunduh aplikasi langsung dari situs resmi kami untuk memastikan Anda memperoleh versi yang paling aman dan mutakhir.',
@@ -900,6 +1171,9 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'What makes the 2Bet slots symbol special?': 'Apa yang membuat simbol scatter 2Bet istimewa?',
     'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
       'Di sebagian besar permainan kami, simbol scatter adalah fitur istimewa yang dapat memicu putaran bonus terlepas dari posisinya di gulungan. Simbol ini sering kali menghasilkan putaran gratis atau mini-game khusus yang membuat sesi bermain Anda semakin seru.',
+    'What makes the 2Bet app special?': 'Apa yang membuat aplikasi 2Bet istimewa?',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      'Aplikasi 2Bet dikembangkan untuk menawarkan pengalaman taruhan olahraga dan hiburan online yang praktis dan mudah diakses bagi pengguna di Brasil. Dengan fokus pada navigasi seluler, platform ini menyatukan berbagai pilihan permainan dan fitur dalam satu tempat.',
     'Contact Us': 'Hubungi Kami', FAQ: 'Pertanyaan Umum', 'Responsible Gaming': 'Bermain Bertanggung Jawab',
     'Terms of Service': 'Ketentuan Layanan', 'Privacy Policy': 'Kebijakan Privasi',
     'General Terms': 'Ketentuan Umum', 'Bonus Terms': 'Ketentuan Bonus',
@@ -925,11 +1199,16 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, 2Bet is your home for bigger wins.': 'रोमांचक जैकपॉट, नया गेमप्ले और शानदार पुरस्कार एक ही जगह पाएँ। चाहे आप सामान्य खिलाड़ी हों या हाई रोलर, बड़ी जीत के लिए 2Bet आपका घर है।',
     'Frequently Asked Questions': 'अक्सर पूछे जाने वाले प्रश्न',
     'What is 2Bet Slot?': '2Bet Slot क्या है?',
+    'What is 2Bet Casino?': '2Bet Casino क्या है?',
     '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
       '2Bet Slot एक प्रीमियम ऑनलाइन गेमिंग डेस्टिनेशन है जो उच्च गुणवत्ता वाले डिजिटल स्लॉट मशीनों का व्यापक संग्रह प्रदान करता है। हम एक सुरक्षित वातावरण प्रदान करते हैं जहाँ खिलाड़ी प्राचीन सभ्यताओं से लेकर भविष्य के रोमांच तक विभिन्न थीम का अन्वेषण कर सकते हैं। हमारा प्लेटफ़ॉर्म उन्नत तकनीक के साथ 2Bet स्लॉट कैसीनो लाइब्रेरी को एकीकृत करता है, जिससे आप डेस्कटॉप ब्राउज़र या मोबाइल सुविधा के लिए 2Bet ऐप स्लॉट पर सहज गेमप्ले का आनंद ले सकते हैं।',
+    '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      '2Bet Casino एक प्रीमियम ऑनलाइन गेमिंग डेस्टिनेशन है जो उच्च गुणवत्ता वाले डिजिटल स्लॉट मशीनों का व्यापक संग्रह प्रदान करता है। हम एक सुरक्षित वातावरण प्रदान करते हैं जहाँ खिलाड़ी प्राचीन सभ्यताओं से लेकर भविष्य के रोमांच तक विभिन्न थीम का अन्वेषण कर सकते हैं। हमारा प्लेटफ़ॉर्म उन्नत तकनीक के साथ 2Bet स्लॉट कैसीनो लाइब्रेरी को एकीकृत करता है, जिससे आप डेस्कटॉप ब्राउज़र या मोबाइल सुविधा के लिए 2Bet ऐप स्लॉट पर सहज गेमप्ले का आनंद ले सकते हैं।',
     'Is 2Bet legit or a scam?': 'क्या 2Bet वैध है या कोई धोखाधड़ी (स्कैम)?',
     'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
       'हम विश्वास के साथ कह सकते हैं कि हम पूरी तरह से एक वैध और कानूनी गेमिंग प्लेटफ़ॉर्म हैं। सुरक्षा और निष्पक्षता के उच्चतम मानकों को सुनिश्चित करने के लिए, हमारे पास PAGCOR (फिलीपीन एम्यूजमेंट एंड गेमिंग कॉर्पोरेशन) से औपचारिक लाइसेंस है। इस प्रमाणीकरण का अर्थ है कि हम सख्त नियामक निगरानी में काम करते हैं, यह सुनिश्चित करते हुए कि हमारे सभी संचालन पारदर्शी हैं और हमारे खेल, जिनमें 2Bet स्कैटर सिंबल शामिल हैं, निष्पक्ष और निष्पक्ष हैं। आपकी सुरक्षा हमारी सर्वोच्च प्राथमिकता है, और हम आपकी हर बातचीत की सुरक्षा के लिए उद्योग-अग्रणी एन्क्रिप्शन का उपयोग करते हैं।',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'हम विश्वास के साथ कह सकते हैं कि हम पूरी तरह से एक वैध और कानूनी गेमिंग प्लेटफ़ॉर्म हैं। सुरक्षा और निष्पक्षता के उच्चतम मानकों को सुनिश्चित करने के लिए, हमारे पास औपचारिक लाइसेंस और प्रमाणन हैं। इसका अर्थ है कि हम सख्त नियामक निगरानी में काम करते हैं, यह सुनिश्चित करते हुए कि हमारे सभी संचालन पारदर्शी हैं और हमारे खेल, जिनमें 2Bet स्कैटर सिंबल शामिल हैं, निष्पक्ष और निष्पक्ष हैं। आपकी सुरक्षा हमारी सर्वोच्च प्राथमिकता है, और हम आपकी हर बातचीत की सुरक्षा के लिए उद्योग-अग्रणी एन्क्रिप्शन का उपयोग करते हैं।',
     'Is the 2Bet app slot compatible with both Android and iOS?': 'क्या 2Bet ऐप स्लॉट Android और iOS दोनों के साथ संगत है?',
     'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
       'हाँ, हमने अपने एप्लिकेशन को दोनों प्रमुख मोबाइल ऑपरेटिंग सिस्टम के साथ पूरी तरह से संगत बनाया है। यह सुनिश्चित करने के लिए कि आपको सबसे सुरक्षित और अद्यतित संस्करण मिल रहा है, आप ऐप को सीधे हमारी आधिकारिक वेबसाइट से डाउनलोड कर सकते हैं।',
@@ -939,6 +1218,9 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'What makes the 2Bet slots symbol special?': '2Bet स्कैटर सिंबल को क्या खास बनाता है?',
     'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
       'हमारे अधिकांश खेलों में, स्कैटर सिंबल एक शक्तिशाली विशेषता है जो रीलों पर कहीं भी आने पर विशेष बोनस सुविधाओं को ट्रिगर कर सकता है। यह अक्सर मुफ़्त स्पिन या विशेष मिनी-गेम की ओर ले जाता है जो आपके सत्र में उत्साह जोड़ता है।',
+    'What makes the 2Bet app special?': '2Bet ऐप को क्या खास बनाता है?',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      '2Bet ऐप को ब्राज़ील के उपयोगकर्ताओं के लिए खेल सट्टेबाजी और ऑनलाइन मनोरंजन का एक सुविधाजनक और सुलभ अनुभव प्रदान करने के लिए विकसित किया गया है। मोबाइल नेविगेशन पर केंद्रित यह प्लेटफ़ॉर्म विभिन्न गेमिंग विकल्पों और सुविधाओं को एक ही स्थान पर एकत्रित करता है।',
     'Contact Us': 'संपर्क करें', FAQ: 'सामान्य प्रश्न', 'Responsible Gaming': 'ज़िम्मेदार गेमिंग',
     'Terms of Service': 'सेवा की शर्तें', 'Privacy Policy': 'गोपनीयता नीति',
     'General Terms': 'सामान्य शर्तें', 'Bonus Terms': 'बोनस की शर्तें',
@@ -964,11 +1246,16 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, 2Bet is your home for bigger wins.': '魅力的なジャックポット、革新的なゲームプレイ、豪華な報酬を一か所で。カジュアルプレイヤーにもハイローラーにも、2Betは大きな勝利のための場所です。',
     'Frequently Asked Questions': 'よくある質問',
     'What is 2Bet Slot?': '2Bet Slotとは何ですか？',
+    'What is 2Bet Casino?': '2Bet Casinoとは何ですか？',
     '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
       '2Bet Slotは、高品質なデジタルスロットゲームの豊富なコレクションを提供するプレミアムオンラインゲーミングプラットフォームです。古代文明から未来の冒険まで、多彩なテーマを安心して探索できる安全な環境を提供しています。2Betスロットカジノライブラリと最先端テクノロジーの融合により、デスクトップブラウザでも手軽な2Betアプリスロットでも、快適でシームレスなゲームプレイをお楽しみいただけます。',
+    '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      '2Bet Casinoは、高品質なデジタルスロットゲームの豊富なコレクションを提供するプレミアムオンラインゲーミングプラットフォームです。古代文明から未来の冒険まで、多彩なテーマを安心して探索できる安全な環境を提供しています。2Betスロットカジノライブラリと最先端テクノロジーの融合により、デスクトップブラウザでも手軽な2Betアプリスロットでも、快適でシームレスなゲームプレイをお楽しみいただけます。',
     'Is 2Bet legit or a scam?': '2Betは合法ですか？それとも詐欺ですか？',
     'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
       '2Betは完全に合法的かつ正当なゲーミングプラットフォームです。最高水準の安全性と公平性を確保するため、フィリピンの公的規制機関PAGCOR（Philippine Amusement and Gaming Corporation）から正式なライセンスを取得して運営されています。この認証は厳格な監督のもとで運営されていることを意味し、2Betスキャッターシンボルを含むすべてのゲームが公平かつ透明であることが保証されています。お客様のセキュリティを最優先とし、業界屈指の暗号化技術ですべての通信を保護しています。',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      '2Betは完全に合法的かつ正当なゲーミングプラットフォームです。最高水準の安全性と公平性を確保するため、正式なライセンスと各種認証を取得して運営されています。これは厳格な監督のもとで運営されていることを意味し、2Betスキャッターシンボルを含むすべてのゲームが公平かつ透明であることが保証されています。お客様のセキュリティを最優先とし、業界屈指の暗号化技術ですべての通信を保護しています。',
     'Is the 2Bet app slot compatible with both Android and iOS?': '2BetアプリスロットはAndroidとiOSの両方に対応していますか？',
     'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
       'はい、両方の主要なモバイルOSに完全対応するように設計されています。最新かつ最も安全なバージョンをご利用いただくため、公式ウェブサイトから直接アプリをダウンロードしていただけます。',
@@ -978,6 +1265,9 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'What makes the 2Bet slots symbol special?': '2Betのスキャッターシンボルにはどのような特徴がありますか？',
     'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
       'ほとんどのゲームにおいて、スキャッターシンボルはリール上のどの位置に停止しても特別なボーナス機能を誘発する強力なトリガーです。フリースピンや特別ミニゲームへ突入することが多く、プレイ体験をさらにエキサイティングに盛り上げます。',
+    'What makes the 2Bet app special?': '2Betアプリの特徴は何ですか？',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      '2Betアプリは、ブラジルのユーザーに向けて快適で利便性の高いスポーツベッティングとオンラインエンターテインメントを提供するために開発されました。モバイルでの操作性を重視し、多彩なゲームや充実した機能をひとつに集約しています。',
     'Contact Us': 'お問い合わせ', FAQ: 'よくある質問', 'Responsible Gaming': '責任あるゲーミング',
     'Terms of Service': '利用規約', 'Privacy Policy': 'プライバシーポリシー',
     'General Terms': '一般規約', 'Bonus Terms': 'ボーナス規約',
@@ -1003,11 +1293,16 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, 2Bet is your home for bigger wins.': '흥미진진한 잭팟, 혁신적인 게임플레이, 풍성한 보상을 한곳에서 즐기세요. 캐주얼 플레이어든 하이 롤러든 2Bet에서 더 큰 승리를 만나보세요.',
     'Frequently Asked Questions': '자주 묻는 질문',
     'What is 2Bet Slot?': '2Bet Slot이란 무엇인가요?',
+    'What is 2Bet Casino?': '2Bet Casino란 무엇인가요?',
     '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
       '2Bet Slot은 최고 품질의 디지털 슬롯머신 컬렉션을 제공하는 프리미엄 온라인 게이밍 플랫폼입니다. 고대 문명부터 미래지향적 모험까지 다양한 테마를 안전한 환경에서 즐기실 수 있습니다. 2Bet 슬롯 카지노 라이브러리와 최첨단 기술을 결합하여 PC 브라우저는 물론 2Bet 모바일 앱 슬롯에서도 끊김 없는 매끄러운 플레이를 지원합니다.',
+    '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      '2Bet Casino는 최고 품질의 디지털 슬롯머신 컬렉션을 제공하는 프리미엄 온라인 게이밍 플랫폼입니다. 고대 문명부터 미래지향적 모험까지 다양한 테마를 안전한 환경에서 즐기실 수 있습니다. 2Bet 슬롯 카지노 라이브러리와 최첨단 기술을 결합하여 PC 브라우저는 물론 2Bet 모바일 앱 슬롯에서도 끊김 없는 매끄러운 플레이를 지원합니다.',
     'Is 2Bet legit or a scam?': '2Bet은 합법인가요, 아니면 사기인가요?',
     'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
       '2Bet은 완벽하게 합법적이고 신뢰할 수 있는 게이밍 플랫폼입니다. 최상의 안전성과 공정성 기준을 보장하기 위해 필리핀 정부 공인 기관인 PAGCOR(Philippine Amusement and Gaming Corporation)의 정식 라이선스를 보유하고 있습니다. 이는 엄격한 규제 감독 하에 운영됨을 의미하며, 2Bet 스캐터 심볼을 포함한 모든 게임이 공정하고 투명함을 입증합니다. 사용자의 보안을 최우선으로 생각하여 업계 최고의 암호화 기술로 모든 접속을 안전하게 보호합니다.',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      '2Bet은 완벽하게 합법적이고 신뢰할 수 있는 게이밍 플랫폼입니다. 최상의 안전성과 공정성 기준을 보장하기 위해 정식 라이선스와 인증을 보유하고 있습니다. 이는 엄격한 규제 감독 하에 운영됨을 의미하며, 2Bet 스캐터 심볼을 포함한 모든 게임이 공정하고 투명함을 입증합니다. 사용자의 보안을 최우선으로 생각하여 업계 최고의 암호화 기술로 모든 접속을 안전하게 보호합니다.',
     'Is the 2Bet app slot compatible with both Android and iOS?': '2Bet 앱 슬롯은 Android와 iOS 모두 지원하나요?',
     'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
       '네, 두 가지 주요 모바일 운영체제 모두와 완벽하게 호환되도록 설계되었습니다. 가장 안전하고 최신 버전을 이용하시려면 공식 웹사이트에서 직접 앱을 다운로드하실 수 있습니다.',
@@ -1017,6 +1312,9 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'What makes the 2Bet slots symbol special?': '2Bet 스캐터 심볼의 특별한 점은 무엇인가요?',
     'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
       '대부분의 게임에서 스캐터 심볼은 릴의 어느 위치에 나타나더라도 특별한 보너스 기능을 발동시키는 강력한 심볼입니다. 주로 무료 스핀이나 스페셜 미니 게임으로 이어져 게임의 짜릿한 재미를 더해줍니다.',
+    'What makes the 2Bet app special?': '2Bet 앱의 특별한 점은 무엇인가요?',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      '2Bet 앱은 브라질 사용자를 위해 편리하고 접근성 높은 스포츠 베팅 및 온라인 엔터테인먼트 경험을 제공하도록 개발되었습니다. 모바일 중심의 편리한 인터페이스를 통해 다양한 게임 옵션과 기능을 한곳에서 편리하게 이용하실 수 있습니다.',
     'Contact Us': '문의하기', FAQ: '자주 묻는 질문', 'Responsible Gaming': '책임감 있는 게임',
     'Terms of Service': '서비스 이용약관', 'Privacy Policy': '개인정보 처리방침',
     'General Terms': '일반 약관', 'Bonus Terms': '보너스 약관',
@@ -1042,11 +1340,16 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, 2Bet is your home for bigger wins.': 'เพลิดเพลินกับแจ็กพอตสุดตื่นเต้น รูปแบบการเล่นใหม่ และรางวัลมากมายในที่เดียว ไม่ว่าคุณจะเล่นทั่วไปหรือเดิมพันสูง 2Bet คือบ้านแห่งชัยชนะที่ยิ่งใหญ่กว่า',
     'Frequently Asked Questions': 'คำถามที่พบบ่อย',
     'What is 2Bet Slot?': '2Bet Slot คืออะไร?',
+    'What is 2Bet Casino?': '2Bet Casino คืออะไร?',
     '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
       '2Bet Slot คือศูนย์รวมเกมออนไลน์ระดับพรีเมียมที่นำเสนอคอลเลกชันสล็อตแมชชีนดิจิทัลคุณภาพสูงอย่างครบวงจร เรามอบสภาพแวดล้อมที่ปลอดภัย ให้ผู้เล่นได้สำรวจธีมที่หลากหลายตั้งแต่อารยธรรมโบราณไปจนถึงการผจญภัยแห่งอนาคต แพลตฟอร์มของเรารวมคลังเกมสล็อต 2Bet เข้ากับเทคโนโลยีขั้นสูง เพื่อให้คุณเพลิดเพลินกับการเล่นที่ลื่นไหลไม่ว่าจะเล่นผ่านเบราว์เซอร์เดสก์ท็อปหรือแอป 2Bet บนมือถือ',
+    '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      '2Bet Casino คือศูนย์รวมเกมออนไลน์ระดับพรีเมียมที่นำเสนอคอลเลกชันสล็อตแมชชีนดิจิทัลคุณภาพสูงอย่างครบวงจร เรามอบสภาพแวดล้อมที่ปลอดภัย ให้ผู้เล่นได้สำรวจธีมที่หลากหลายตั้งแต่อารยธรรมโบราณไปจนถึงการผจญภัยแห่งอนาคต แพลตฟอร์มของเรารวมคลังเกมสล็อต 2Bet เข้ากับเทคโนโลยีขั้นสูง เพื่อให้คุณเพลิดเพลินกับการเล่นที่ลื่นไหลไม่ว่าจะเล่นผ่านเบราว์เซอร์เดสก์ท็อปหรือแอป 2Bet บนมือถือ',
     'Is 2Bet legit or a scam?': '2Bet ถูกกฎหมายหรือเป็นการหลอกลวง?',
     'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
       'เราสามารถยืนยันได้อย่างมั่นใจว่าเราเป็นแพลตฟอร์มเกมที่ถูกกฎหมายและได้รับอนุญาตอย่างเป็นทางการ เพื่อรักษามาตรฐานความปลอดภัยและความยุติธรรมสูงสุด เราถือใบอนุญาตอย่างเป็นทางการจาก PAGCOR (Philippine Amusement and Gaming Corporation) การรับรองนี้หมายความว่าเราดำเนินงานภายใต้การกำกับดูแลอย่างเข้มงวด มั่นใจได้ว่าการดำเนินงานทั้งหมดโปร่งใส และเกมทั้งหมดรวมถึงสัญลักษณ์สแคทเตอร์ของ 2Bet มีความยุติธรรมและไม่มีอคติ ความปลอดภัยของคุณคือสิ่งสำคัญสูงสุด เราใช้การเข้ารหัสชั้นนำของอุตสาหกรรมเพื่อปกป้องทุกการใช้งาน',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'เราสามารถยืนยันได้อย่างมั่นใจว่าเราเป็นแพลตฟอร์มเกมที่ถูกกฎหมายและได้รับอนุญาตอย่างเป็นทางการ เพื่อรักษามาตรฐานความปลอดภัยและความยุติธรรมสูงสุด เราถือใบอนุญาตอย่างเป็นทางการและการรับรองมาตรฐาน ซึ่งหมายความว่าเราดำเนินงานภายใต้การกำกับดูแลอย่างเข้มงวด มั่นใจได้ว่าการดำเนินงานทั้งหมดโปร่งใส และเกมทั้งหมดรวมถึงสัญลักษณ์สแคทเตอร์ของ 2Bet มีความยุติธรรมและไม่มีอคติ ความปลอดภัยของคุณคือสิ่งสำคัญสูงสุด เราใช้การเข้ารหัสชั้นนำของอุตสาหกรรมเพื่อปกป้องทุกการใช้งาน',
     'Is the 2Bet app slot compatible with both Android and iOS?': 'แอปสล็อต 2Bet รองรับทั้ง Android และ iOS หรือไม่?',
     'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
       'ใช่ แอปพลิเคชันของเราได้รับการออกแบบมาให้เข้ากันได้อย่างสมบูรณ์กับทั้งสองระบบปฏิบัติการมือถือหลัก คุณสามารถดาวน์โหลดแอปได้โดยตรงจากเว็บไซต์ทางการของเราเพื่อรับเวอร์ชันที่ปลอดภัยและทันสมัยที่สุด',
@@ -1056,6 +1359,9 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'What makes the 2Bet slots symbol special?': 'สัญลักษณ์สแคทเตอร์ (Scatter) ของ 2Bet มีความพิเศษอย่างไร?',
     'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
       'ในเกมส่วนใหญ่ของเรา สัญลักษณ์สแคทเตอร์เป็นฟีเจอร์อันทรงพลังที่สามารถปลดล็อกโบนัสพิเศษได้ไม่ว่าจะปรากฏที่ตำแหน่งใดบนวงล้อ ซึ่งมักจะนำไปสู่การหมุนฟรี (Free Spins) หรือมินิเกมพิเศษที่เพิ่มความตื่นเต้นให้กับการเล่นของคุณ',
+    'What makes the 2Bet app special?': 'แอป 2Bet มีความพิเศษอย่างไร?',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      'แอป 2Bet ได้รับการพัฒนาขึ้นเพื่อมอบประสบการณ์การเดิมพันกีฬาและความบันเทิงออนไลน์ที่สะดวกสบายและเข้าถึงง่ายสำหรับผู้ใช้ในบราซิล ด้วยการออกแบบที่เน้นการใช้งานบนมือถือ แพลตฟอร์มนี้จึงรวบรวมตัวเลือกเกมและฟีเจอร์ต่างๆ ไว้ในที่เดียว',
     'Contact Us': 'ติดต่อเรา', FAQ: 'คำถามที่พบบ่อย', 'Responsible Gaming': 'การเล่นอย่างรับผิดชอบ',
     'Terms of Service': 'ข้อกำหนดการให้บริการ', 'Privacy Policy': 'นโยบายความเป็นส่วนตัว',
     'General Terms': 'ข้อกำหนดทั่วไป', 'Bonus Terms': 'ข้อกำหนดโบนัส',
@@ -1081,11 +1387,28 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'Enjoy exciting jackpots, innovative gameplay and generous rewards — all in one place. Whether you’re a casual player or a high roller, 2Bet is your home for bigger wins.': 'Aproveite jackpots emocionantes, jogabilidade inovadora e recompensas generosas em um só lugar. Seja um jogador casual ou de apostas altas, a 2Bet é o seu lugar para vitórias maiores.',
     'Frequently Asked Questions': 'Perguntas frequentes',
     'What is 2Bet Slot?': 'O que é o 2Bet Slot?',
+    'What is 2Bet Casino?': 'O que é o 2Bet Casino?',
     '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
       'O 2Bet Slot é um destino de jogos online premium que oferece uma coleção abrangente de caça-níqueis digitais de alta qualidade. Oferecemos um ambiente seguro onde os jogadores podem explorar diversos temas, desde civilizações antigas até aventuras futuristas. Nossa plataforma combina o catálogo de slots de cassino da 2Bet com tecnologia de ponta, permitindo que você desfrute de uma jogabilidade fluida tanto no navegador do computador quanto no app 2Bet para dispositivos móveis.',
+    '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      'O 2Bet Casino é um destino de jogos online premium que oferece uma coleção abrangente de caça-níqueis digitais de alta qualidade. Oferecemos um ambiente seguro onde os jogadores podem explorar diversos temas, desde civilizações antigas até aventuras futuristas. Nossa plataforma combina o catálogo de slots de cassino da 2Bet com tecnologia de ponta, permitindo que você desfrute de uma jogabilidade fluida tanto no navegador do computador quanto no app 2Bet para dispositivos móveis.',
+    'How does the 2Bet online casino work?': 'Como funciona o cassino online 2Bet?',
+    'The 2Bet online casino allows users to explore the games currently available on the platform. To participate, users need to create an account, check the access requirements, and follow the rules of each game. Results depend on the rules and mechanics of each game, and winnings are never guaranteed.':
+      'O cassino online 2Bet permite aos usuários explorar os jogos disponíveis na plataforma. Para participar, é necessário criar uma conta, verificar os requisitos de acesso e seguir as regras de cada jogo. Os resultados dependem das regras e da mecânica de cada jogo, e os ganhos nunca são garantidos.',
+    'Can I place sports bets on 2Bet using my mobile phone?': 'Posso fazer apostas esportivas na 2Bet pelo celular?',
+    'The 2Bet mobile experience allows users to access features made available for smartphones. To place sports bets on 2Bet, users can browse available events and betting markets, review the rules, and confirm their selections before placing a bet. Feature availability may vary depending on the device and platform version.':
+      'A experiência móvel da 2Bet permite aos usuários acessar os recursos disponibilizados para smartphones. Para fazer apostas esportivas na 2Bet, os usuários podem navegar pelos eventos e mercados de apostas disponíveis, conferir as regras e confirmar suas seleções antes de realizar uma aposta. A disponibilidade de recursos pode variar de acordo com o dispositivo e a versão da plataforma.',
+    'How do I create an account on 2Bet Brazil?': 'Como criar uma conta na 2Bet Brasil?',
+    'To create an account on 2Bet Brazil, click Register button. Enter the required information and complete any applicable identity verification steps. Before making deposits or placing bets, review the terms and conditions and the legal eligibility requirements.':
+      'Para criar uma conta na 2Bet Brasil, clique no botão Cadastro. Preencha as informações solicitadas e conclua as etapas aplicáveis de verificação de identidade. Antes de realizar depósitos ou apostas, revise os termos e condições e os requisitos legais de elegibilidade.',
+    'Is 2Bet safe and trustworthy in Brazil?': 'A 2Bet é confiável e segura no Brasil?',
+    "To determine whether 2Bet is trustworthy in Brazil, it is essential to verify whether the operator holds valid authorization from the Secretariat of Prizes and Betting under Brazil's Ministry of Finance. Users should also review the privacy policy, customer support options, and deposit and withdrawal rules. Betting is intended exclusively for adults aged 18 and older and should always be approached responsibly.":
+      'Para verificar se a 2Bet é confiável no Brasil, é fundamental verificar se a operadora possui autorização válida da Secretaria de Prêmios e Apostas do Ministério da Fazenda do Brasil. Os usuários também devem consultar a política de privacidade, as opções de suporte ao cliente e as regras de depósito e saque. As apostas são destinadas exclusivamente a maiores de 18 anos e devem sempre ser realizadas com responsabilidade.',
     'Is 2Bet legit or a scam?': 'A 2Bet é confiável ou é um golpe?',
     'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
       'Podemos afirmar com total confiança que somos uma plataforma de jogos totalmente legítima e legal. Para garantir os mais altos padrões de segurança e justiça, possuímos uma licença formal da PAGCOR (Philippine Amusement and Gaming Corporation). Essa certificação significa que operamos sob rigorosa supervisão regulatória, garantindo que todas as nossas operações sejam transparentes e que nossos jogos, incluindo aqueles com os símbolos scatter da 2Bet, sejam justos e imparciais. Sua segurança é nossa prioridade máxima, e utilizamos criptografia líder do setor para proteger todas as interações no site.',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'Podemos afirmar com total confiança que somos uma plataforma de jogos totalmente legítima e legal. Para garantir os mais altos padrões de segurança e justiça, possuímos uma licença formal e certificações. Isso significa que operamos sob rigorosa supervisão regulatória, garantindo que todas as nossas operações sejam transparentes e que nossos jogos, incluindo aqueles com os símbolos da 2Bet, sejam justos e imparciais. Sua segurança é nossa prioridade máxima, e utilizamos criptografia líder do setor para proteger todas as interações no site.',
     'Is the 2Bet app slot compatible with both Android and iOS?': 'O aplicativo de slots 2Bet é compatível com Android e iOS?',
     'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
       'Sim, desenvolvemos nosso aplicativo para ser totalmente compatível com os dois principais sistemas operacionais móveis. Você pode baixar o aplicativo diretamente do nosso site oficial para garantir a versão mais segura e atualizada.',
@@ -1095,6 +1418,9 @@ const contentTranslations: Partial<Record<LocaleCode, Record<string, string>>> =
     'What makes the 2Bet slots symbol special?': 'O que torna o símbolo scatter da 2Bet tão especial?',
     'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
       'Na maioria dos nossos jogos, o símbolo scatter é um recurso poderoso capaz de ativar recursos especiais, independentemente de onde ele caia nos cilindros. Isso frequentemente leva a rodadas grátis ou minijogos especiais que trazem ainda mais emoção à sua sessão.',
+    'What makes the 2Bet app special?': 'O que torna o aplicativo 2Bet especial?',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.',
     'Contact Us': 'Fale conosco', FAQ: 'Perguntas frequentes', 'Responsible Gaming': 'Jogo responsável',
     'Terms of Service': 'Termos de serviço', 'Privacy Policy': 'Política de privacidade',
     'General Terms': 'Termos gerais', 'Bonus Terms': 'Termos de bônus',
@@ -1118,12 +1444,18 @@ const isThemePreference = (value: string | null | undefined): value is ThemePref
 const homepageFooterTranslations: Partial<Record<LocaleCode, Record<string, string>>> = {
   en: {
     '分享賺錢計劃': 'Share & Earn Program',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      'The 2Bet app was developed to offer a convenient and accessible sports betting and online entertainment experience for users in Brazil. With a strong mobile focus, the platform brings together a wide range of games and features all in one place.',
   },
   'en-PH': {
     '分享賺錢計劃': 'Share & Earn Program',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      'The 2Bet app was developed to offer a convenient and accessible sports betting and online entertainment experience for users in Brazil. With a strong mobile focus, the platform brings together a wide range of games and features all in one place.',
   },
   'en-IN': {
     '分享賺錢計劃': 'Share & Earn Program',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      'The 2Bet app was developed to offer a convenient and accessible sports betting and online entertainment experience for users in Brazil. With a strong mobile focus, the platform brings together a wide range of games and features all in one place.',
   },
   pt: {
     // Welcome & General
@@ -1149,6 +1481,7 @@ const homepageFooterTranslations: Partial<Record<LocaleCode, Record<string, stri
     'LIVE CASINO REWARDS': 'RECOMPENSAS DE CASSINO AO VIVO',
     'LIVE-CASINO REWARDS': 'RECOMPENSAS DE CASSINO AO VIVO',
     'RANKINGS REWARDS': 'RECOMPENSAS DE RANKING',
+    'DEPOSIT REWARDS': 'RECOMPENSAS DE DEPÓSITO',
     'OTHERS REWARDS': 'OUTRAS RECOMPENSAS',
     'REWARDS': 'RECOMPENSAS',
     'VIP Sports Rebate': 'Rebate Esportivo VIP',
@@ -1285,6 +1618,41 @@ const homepageFooterTranslations: Partial<Record<LocaleCode, Record<string, stri
     'HERE TO HELP': 'AQUI PARA AJUDAR',
     'A little help, before you play.': 'Uma ajudinha antes de você jogar.',
     'View all FAQs': 'Ver todas as perguntas',
+    'What is 2Bet Casino?': 'O que é o 2Bet Casino?',
+    'What is 2Bet Slot?': 'O que é o 2Bet Slot?',
+    '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      'O 2Bet Casino é um destino de jogos online premium que oferece uma coleção abrangente de caça-níqueis digitais de alta qualidade. Oferecemos um ambiente seguro onde os jogadores podem explorar diversos temas, desde civilizações antigas até aventuras futuristas. Nossa plataforma combina o catálogo de slots de cassino da 2Bet com tecnologia de ponta, permitindo que você desfrute de uma jogabilidade fluida tanto no navegador do computador quanto no app 2Bet para dispositivos móveis.',
+    'How does the 2Bet online casino work?': 'Como funciona o cassino online 2Bet?',
+    'The 2Bet online casino allows users to explore the games currently available on the platform. To participate, users need to create an account, check the access requirements, and follow the rules of each game. Results depend on the rules and mechanics of each game, and winnings are never guaranteed.':
+      'O cassino online 2Bet permite aos usuários explorar os jogos disponíveis na plataforma. Para participar, é necessário criar uma conta, verificar os requisitos de acesso e seguir as regras de cada jogo. Os resultados dependem das regras e da mecânica de cada jogo, e os ganhos nunca são garantidos.',
+    'Can I place sports bets on 2Bet using my mobile phone?': 'Posso fazer apostas esportivas na 2Bet pelo celular?',
+    'The 2Bet mobile experience allows users to access features made available for smartphones. To place sports bets on 2Bet, users can browse available events and betting markets, review the rules, and confirm their selections before placing a bet. Feature availability may vary depending on the device and platform version.':
+      'A experiência móvel da 2Bet permite aos usuários acessar os recursos disponibilizados para smartphones. Para fazer apostas esportivas na 2Bet, os usuários podem navegar pelos eventos e mercados de apostas disponíveis, conferir as regras e confirmar suas seleções antes de realizar uma aposta. A disponibilidade de recursos pode variar de acordo com o dispositivo e a versão da plataforma.',
+    'How do I create an account on 2Bet Brazil?': 'Como criar uma conta na 2Bet Brasil?',
+    'To create an account on 2Bet Brazil, click Register button. Enter the required information and complete any applicable identity verification steps. Before making deposits or placing bets, review the terms and conditions and the legal eligibility requirements.':
+      'Para criar uma conta na 2Bet Brasil, clique no botão Cadastro. Preencha as informações solicitadas e conclua as etapas aplicáveis de verificação de identidade. Antes de realizar depósitos ou apostas, revise os termos e condições e os requisitos legais de elegibilidade.',
+    'Is 2Bet safe and trustworthy in Brazil?': 'A 2Bet é confiável e segura no Brasil?',
+    "To determine whether 2Bet is trustworthy in Brazil, it is essential to verify whether the operator holds valid authorization from the Secretariat of Prizes and Betting under Brazil's Ministry of Finance. Users should also review the privacy policy, customer support options, and deposit and withdrawal rules. Betting is intended exclusively for adults aged 18 and older and should always be approached responsibly.":
+      'Para verificar se a 2Bet é confiável no Brasil, é essencial conferir se a operadora possui autorização válida da Secretaria de Prêmios e Apostas do Ministério da Fazenda do Brasil. Os usuários também devem consultar a política de privacidade, as opções de suporte ao cliente e as regras de depósito e saque. As apostas são destinadas exclusivamente a maiores de 18 anos e devem sempre ser realizadas com responsabilidade.',
+    '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.':
+      'O 2Bet Slot é um destino de jogos online premium que oferece uma coleção abrangente de caça-níqueis digitais de alta qualidade. Oferecemos um ambiente seguro onde os jogadores podem explorar diversos temas, desde civilizações antigas até aventuras futuristas. Nossa plataforma combina o catálogo de slots de cassino da 2Bet com tecnologia de ponta, permitindo que você desfrute de uma jogabilidade fluida tanto no navegador do computador quanto no app 2Bet para dispositivos móveis.',
+    'Is 2Bet legit or a scam?': 'A 2Bet é confiável ou é um golpe?',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'Podemos afirmar com total confiança que somos uma plataforma de jogos totalmente legítima e legal. Para garantir os mais altos padrões de segurança e justiça, possuímos uma licença formal e certificações. Isso significa que operamos sob rigorosa supervisão regulatória, garantindo que todas as nossas operações sejam transparentes e que nossos jogos, incluindo aqueles com os símbolos da 2Bet, sejam justos e imparciais. Sua segurança é nossa prioridade máxima, e utilizamos criptografia líder do setor para proteger todas as interações no site.',
+    'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license from PAGCOR (Philippine Amusement and Gaming Corporation). This certification means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.':
+      'Podemos afirmar com total confiança que somos uma plataforma de jogos totalmente legítima e legal. Para garantir os mais altos padrões de segurança e justiça, possuímos uma licença formal da PAGCOR (Philippine Amusement and Gaming Corporation). Essa certificação significa que operamos sob rigorosa supervisão regulatória, garantindo que todas as nossas operações sejam transparentes e que nossos jogos, incluindo aqueles com os símbolos scatter da 2Bet, sejam justos e imparciais. Sua segurança é nossa prioridade máxima, e utilizamos criptografia líder do setor para proteger todas as interações no site.',
+    'Is the 2Bet app slot compatible with both Android and iOS?': 'O aplicativo de slots 2Bet é compatível com Android e iOS?',
+    'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.':
+      'Sim, desenvolvemos nosso aplicativo para ser totalmente compatível com os dois principais sistemas operacionais móveis. Você pode baixar o aplicativo diretamente do nosso site oficial para garantir a versão mais segura e atualizada.',
+    'How does the 2Bet slots casino ensure fairness?': 'Como o cassino de slots 2Bet garante a imparcialidade?',
+    'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.':
+      'Utilizamos Geradores de Números Aleatórios (RNG) certificados para assegurar que cada resultado seja verdadeiramente aleatório e imparcial. Passamos por auditorias periódicas de organizações terceirizadas para confirmar que nossos jogos funcionam de acordo com os padrões internacionais de integridade.',
+    'What makes the 2Bet app special?': 'O que torna o aplicativo 2Bet especial?',
+    'What makes the 2Bet slots symbol special?': 'O que torna o símbolo scatter da 2Bet tão especial?',
+    'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.':
+      'Na maioria dos nossos jogos, o símbolo scatter é um recurso poderoso capaz de ativar recursos especiais, independentemente de onde ele caia nos cilindros. Isso frequentemente leva a rodadas grátis ou minijogos especiais que trazem ainda mais emoção à sua sessão.',
+    'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.':
+      'O aplicativo 2Bet foi desenvolvido para oferecer uma experiência prática e acessível de apostas esportivas e entretenimento online para usuários no Brasil. Com foco na navegação pelo celular, a plataforma busca reunir diferentes opções de jogos e funcionalidades em um só lugar.',
     // Slider
     'THE SPIN COLLECTION': 'A COLEÇÃO DE GIROS',
     'A SEAT AT THE TABLE': 'UM LUGAR NA MESA',
@@ -2104,6 +2472,8 @@ export const useSiteLocale = () => {
     translate,
   }
 }
+
+export const useSitePreferences = useSiteLocale
 
 export const useSiteTheme = () => {
   const themeCookie = useCookie<ThemePreference>('2bet-theme', {

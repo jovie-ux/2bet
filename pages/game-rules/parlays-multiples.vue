@@ -3,12 +3,12 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { parlaysRulesHtml } from '~/data/parlays-rules'
 
 useAppSeo({
-  title: 'Parlay & Multiples Combo Bet Settlement Rules | 2Bet',
-  description: 'Official 2Bet rules for Parlays and Multiples: Trixie, Yankee, Super Yankee, Heinz, Goliath, system block permutations, and pushed leg settlement terms.',
+  title: 'Apostas Múltiplas e Combinadas — Regras de Cálculo | 2bet',
+  description: 'Aprenda o funcionamento das apostas múltiplas e combinadas na 2bet Brasil. Regras de cálculo, combinações de sistema e cotações totais.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Game Rules', path: '/game-rules' },
-    { name: 'Parlays & Multiples Rules', path: '/game-rules/parlays-multiples' },
+    { name: 'Início', path: '/' },
+    { name: 'Regras de Jogo', path: '/game-rules' },
+    { name: 'Regras de Apostas Múltiplas', path: '/game-rules/parlays-multiples' },
   ],
 })
 

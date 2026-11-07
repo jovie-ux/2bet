@@ -62,11 +62,11 @@ const handleImgError = (event: Event): void => {
 
           <div class="teams-section">
             <div class="team-row">
-              <img v-if="match.home_team" :src="`/images/teams/${match.home_team.toLowerCase().replace(/ /g, '-')}.webp`" class="team-logo" alt="" @error="handleImgError" />
+              <img v-if="match.home_team" :src="`/images/teams/${match.home_team.toLowerCase().replace(/ /g, '-')}.webp`" class="team-logo" :alt="match.home_team" @error="handleImgError" />
               <span class="team-name">{{ match.home_team }}</span>
             </div>
             <div class="team-row">
-              <img v-if="match.away_team" :src="`/images/teams/${match.away_team.toLowerCase().replace(/ /g, '-')}.webp`" class="team-logo" alt="" @error="handleImgError" />
+              <img v-if="match.away_team" :src="`/images/teams/${match.away_team.toLowerCase().replace(/ /g, '-')}.webp`" class="team-logo" :alt="match.away_team" @error="handleImgError" />
               <span class="team-name">{{ match.away_team }}</span>
             </div>
           </div>

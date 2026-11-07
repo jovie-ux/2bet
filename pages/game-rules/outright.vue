@@ -3,12 +3,12 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { outrightRulesHtml } from '~/data/outright-rules'
 
 useAppSeo({
-  title: 'Outright Betting Rules & Tournament Futures | 2Bet',
-  description: 'Official 2Bet Outright and Futures rules: All-In Ante-Post terms, Dead Heat tie reductions, regular season finishing positions, and monthly cutoff terms.',
+  title: 'Apostas Futuras — Mercados de Campeão e Prazos | 2bet',
+  description: 'Regras de apostas de longo prazo na 2bet Brasil: mercados Ante-Post, desempate técnico e liquidação oficial de campeões de ligas.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Game Rules', path: '/game-rules' },
-    { name: 'Outright Rules', path: '/game-rules/outright' },
+    { name: 'Início', path: '/' },
+    { name: 'Regras de Jogo', path: '/game-rules' },
+    { name: 'Regras de Apostas Futuras', path: '/game-rules/outright' },
   ],
 })
 </script>

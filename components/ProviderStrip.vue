@@ -6,7 +6,8 @@ defineProps<{
   providers: string[]
 }>()
 
-const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const externalSiteUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 const { effectiveTheme } = useSiteTheme()
 
 const providerLogo = (provider: string): string => {

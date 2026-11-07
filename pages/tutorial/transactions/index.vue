@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Deposit & Withdrawal Transaction Guides | 2Bet Help',
-  description: 'Step-by-step guides for deposits and withdrawals on 2Bet. Learn how to cash in and cash out using GCash, Maya, and online bank transfer seamlessly.',
+  title: 'Guia de Depósito e Saque — Transações Passo a Passo | 2bet',
+  description: 'Tutoriais completos sobre depósitos e saques na 2bet Brasil. Aprenda a adicionar e resgatar saldo com facilidade, agilidade e segurança.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Tutorials', path: '/tutorial' },
-    { name: 'Transactions', path: '/tutorial/transactions/deposit' },
+    { name: 'Início', path: '/' },
+    { name: 'Tutoriais', path: '/tutorial' },
+    { name: 'Transações', path: '/tutorial/transactions/deposit' },
   ],
 })
 

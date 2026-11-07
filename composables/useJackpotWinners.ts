@@ -22,8 +22,8 @@ const formatDateTime = (date = new Date()): string => {
 }
 
 const generateRandomAmount = (): string => {
-  // Focus winning from 100 USD to 1,000 USD, converting to target currency
-  return generateWinnerWinning(100, 1000)
+  // Focus winning from 100 USD to 1,000 USD, converting to Brazilian Real (R$)
+  return generateWinnerWinning(100, 1000, 'BRL')
 }
 
 export const useJackpotWinners = () => {

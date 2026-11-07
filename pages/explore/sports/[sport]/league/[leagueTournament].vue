@@ -5,10 +5,11 @@ defineProps<{
 }>()
 
 const route = useRoute()
+const { translate } = useSiteLocale()
 
 const sportName = computed(() => {
   const s = String(route.params.sport || 'sports')
-  return s.charAt(0).toUpperCase() + s.slice(1)
+  return translate(s.charAt(0).toUpperCase() + s.slice(1))
 })
 
 const leagueName = computed(() => {
@@ -17,20 +18,20 @@ const leagueName = computed(() => {
 })
 
 useAppSeo({
-  title: computed(() => `${leagueName.value} Betting Odds & Live Match Lines | 2Bet`),
-  description: computed(() => `Bet on ${leagueName.value} ${sportName.value} at 2Bet Philippines. Competitive odds, Asian handicaps, moneylines, over/under totals, and tournament futures.`),
+  title: computed(() => formatSeoTitle(`Odds em ${leagueName.value} — Linhas de Apostas | 2bet`)),
+  description: computed(() => formatSeoDescription(`Aposte em partidas da ${leagueName.value} (${sportName.value}) na 2bet Brasil. Cotações competitivas, mercados ao vivo e saques rápidos.`)),
   breadcrumbs: computed(() => [
-    { name: 'Home', path: '/' },
-    { name: 'Sports', path: '/explore/sports/popular' },
+    { name: 'Início', path: '/' },
+    { name: 'Esportes', path: '/explore/sports/popular' },
     { name: sportName.value, path: `/explore/sports/${route.params.sport}` },
     { name: leagueName.value, path: route.path },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${leagueName.value} ${sportName.value} Betting - 2Bet`,
+    name: `${leagueName.value} ${sportName.value} - 2bet`,
     url: `https://2bet.com${route.path}`,
-    description: `Bet on ${leagueName.value} ${sportName.value} at 2Bet Philippines with top odds and live markets.`,
+    description: formatSeoDescription(`Aposte na ${leagueName.value} (${sportName.value}) na 2bet Brasil com cotações dinâmicas e mercados ao vivo.`),
   })),
 })
 

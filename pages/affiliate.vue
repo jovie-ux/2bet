@@ -29,7 +29,8 @@ interface QuestionCategory {
 
 const router = useRouter()
 const runtimeConfig = useRuntimeConfig()
-const bybetRedirectUrl = runtimeConfig.public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = runtimeConfig.public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 const affiliateSystemUrl = 'https://partnerships.2bet.com/'
 
 const activeTab = ref<AffiliateTabId>('cooperation')
@@ -45,11 +46,11 @@ const copiedContact = ref<'phone' | 'email' | null>(null)
 let copyResetTimer: ReturnType<typeof setTimeout> | null = null
 
 useAppSeo({
-  title: 'Affiliate Partnership Program — Earn Up to 50% | 2Bet',
-  description: 'Join the official 2Bet Affiliate Program. Earn up to 50% revenue commission, access dedicated marketing support, and enjoy reliable weekly payouts.',
+  title: 'Programa de Afiliados Oficial e Comissões Exclusivas | 2bet',
+  description: 'Torne-se parceiro da 2bet Brasil e receba até 50% de comissões contínuas. Acompanhe relatórios em tempo real e receba pagamentos pontuais.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Affiliate Program', path: '/affiliate' },
+    { name: 'Início', path: '/' },
+    { name: 'Programa de Afiliados', path: '/affiliate' },
   ],
 })
 
@@ -340,7 +341,7 @@ onBeforeUnmount(() => {
 
       <section v-else-if="activeTab === 'commission'" class="affiliate-panel">
         <div class="affiliate-surface commission-panel">
-          <span class="commission-flag" aria-label="Philippines"><img
+          <span class="commission-flag" aria-label="Brasil"><img
                 src="/icons/PHP.webp"
                 alt="2Bet"
                 class="h-7 sm:h-5 w-auto object-contain"

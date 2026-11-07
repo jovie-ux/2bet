@@ -4,7 +4,7 @@ import { User, X } from 'lucide-vue-next'
 import ReminderModal from '~/components/modals/ReminderModal.vue'
 import { getProviderLogoForTheme } from '~/utils/providerLogo'
 import { JACKPOT_SECTIONS } from '~/data/jackpot'
-import { normalizeSlotProvider } from '~/data/slots'
+import { normalizeSlotProvider } from '~/utils/slotProvider'
 
 interface Game {
   id: string
@@ -42,6 +42,7 @@ interface Props {
 const props = defineProps<Props>()
 const route = useRoute()
 const { effectiveTheme } = useSiteTheme()
+const { translate } = useSiteLocale()
 const emit = defineEmits<{
   (e: 'select', game: Game): void
   (e: 'info', game: Game): void
@@ -319,20 +320,23 @@ const showJackpotPool = computed(() => {
 })
 
 const displayJackpotPool = computed(() => {
-  if (props.game.jackpotPool) return props.game.jackpotPool.replace(/^₱/, '$')
+  if (props.game.jackpotPool) {
+    const cleanedPool = props.game.jackpotPool.trim().replace(/^(?:₱|\$|PHP\s*|USD\s*)/i, 'R$')
+    return cleanedPool.startsWith('R$') ? cleanedPool : `R$${cleanedPool}`
+  }
   const price = props.game.JackpotPrice ?? props.game.jackpotPrice
   if (typeof price === 'number' && price > 0) {
-    return `$${price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    return `R$${price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
   }
   if (typeof price === 'string' && price.trim()) {
-    const cleaned = price.trim().replace(/^₱/, '$')
-    return cleaned.startsWith('$') ? cleaned : `$${cleaned}`
+    const cleaned = price.trim().replace(/^(?:₱|\$|PHP\s*|USD\s*)/i, 'R$')
+    return cleaned.startsWith('R$') ? cleaned : `R$${cleaned}`
   }
   if (isJackpotGame.value) {
     const prov = normalizeSlotProvider(props.game.provider)
     const sec = JACKPOT_SECTIONS.find(s => normalizeSlotProvider(s.id) === prov || normalizeSlotProvider(s.provider) === prov)
     if (sec && sec.showCounter && sec.jackpotAmount > 0) {
-      return `$${sec.jackpotAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+      return `R$${sec.jackpotAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
     }
   }
   return ''
@@ -441,7 +445,7 @@ onUnmounted(() => {
           <!-- Top Row: Winning Line & RTP -->
           <div class="flex items-start justify-between mb-1">
             <div class="flex flex-col">
-              <span class="text-[10px] sm:text-[10px] font-normal text-white leading-tight">Winning Line</span>
+              <span class="text-[10px] sm:text-[10px] font-normal text-white leading-tight">{{ translate('Winning Line') }}</span>
               <span class="text-[12px] sm:text-[12px] font-bold text-white leading-tight mt-1">{{ displayWinningLine }}</span>
             </div>
             <div class="flex flex-col">
@@ -457,7 +461,7 @@ onUnmounted(() => {
               :key="tag"
               class="inline-flex items-center px-1 py-1  rounded-full border border-white/30 text-[10px] sm:text-[10px] font-normal text-white bg-transparent leading-normal tracking-wide"
             >
-              {{ tag }}
+              {{ translate(tag) }}
             </span>
           </div>
         </div>
@@ -477,7 +481,7 @@ onUnmounted(() => {
           class="w-full max-w-[85px] py-1.5 px-0.5 rounded-full bg-[var(--main-color)] hover:bg-[#0e896033] text-white font-extrabold text-[12px] leading-tight text-center transition-all shadow-md active:scale-95 cursor-pointer"
           @click.stop="handleStartNowClick"
         >
-          Start Now
+          {{ translate('Start Now') }}
         </button>
 
         <!-- Demo Button -->
@@ -487,7 +491,7 @@ onUnmounted(() => {
           class="w-full max-w-[85px] py-1.5 px-0.5 rounded-full bg-[#242624]/90  text-white font-bold text-[11px] leading-tight text-center transition-all active:scale-95 cursor-pointer"
           @click.stop="emit('demo', game)"
         >
-          Demo
+          {{ translate('Demo') }}
         </button>
       </div>
     </Transition>

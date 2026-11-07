@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'General Terms & Conditions of Service | 2Bet Platform',
-  description: 'Review the official General Terms & Conditions for 2Bet Philippines. Detailed information on user rights, service rules, payments, and compliance.',
+  title: 'Termos Gerais e Condições de Serviço da Plataforma | 2bet',
+  description: 'Consulte as condições gerais de uso da 2bet Brasil. Diretrizes claras e transparentes para apostas, jogos de cassino e proteção ao usuário.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
+    { name: 'Início', path: '/' },
     { name: 'Legal', path: '/explore/legal/general-terms' },
-    { name: 'General Terms', path: '/explore/legal/general-terms' },
+    { name: 'Termos Gerais', path: '/explore/legal/general-terms' },
   ],
 })
 </script>

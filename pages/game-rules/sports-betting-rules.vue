@@ -3,12 +3,12 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { sportsBettingRulesHtml } from '~/data/sports-betting-rules'
 
 useAppSeo({
-  title: 'General Sports Betting Rules & Settlement Standards | 2Bet',
-  description: 'Official 2Bet sportsbook rules. Acceptance of bets, dead heat calculations, in-play procedures, maximum payouts, and postponement policies.',
+  title: 'Regras Gerais de Apostas e Mercados Esportivos Online | 2bet',
+  description: 'Consulte as regras gerais de apostas esportivas na 2bet Brasil. Critérios de aceitação de palpites, limites e liquidação de eventos.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Game Rules', path: '/game-rules' },
-    { name: 'Sports Betting Rules', path: '/game-rules/sports-betting-rules' },
+    { name: 'Início', path: '/' },
+    { name: 'Regras de Jogo', path: '/game-rules' },
+    { name: 'Regras de Apostas Esportivas', path: '/game-rules/sports-betting-rules' },
   ],
 })
 </script>

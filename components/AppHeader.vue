@@ -10,7 +10,10 @@ const emit = defineEmits<{
 }>()
 
 const { translate } = useSiteLocale()
-const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const externalSiteUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const loginUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
 </script>
 
 <template>
@@ -58,7 +61,7 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
       </NuxtLink>
       <a
         class="header-glass-button header-glass-button--login"
-        :href="externalSiteUrl"
+        :href="loginUrl"
         target="_blank"
         rel="nofollow noopener noreferrer"
       >
@@ -66,7 +69,7 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
       </a>
       <a
         class="header-glass-button header-glass-button--signup"
-        :href="externalSiteUrl"
+        :href="registerUrl"
         target="_blank"
         rel="nofollow noopener noreferrer"
       >

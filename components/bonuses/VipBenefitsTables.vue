@@ -1,18 +1,22 @@
 <script setup lang="ts">
-import type { VipBenefitTier, VipRebateTier } from '~/data/promotions'
+import type { VipBenefitTier, VipRebateTier, VipTableLabels } from '~/data/promotions'
 
-defineProps<{
+withDefaults(defineProps<{
   rebates: VipRebateTier[]
   benefits: VipBenefitTier[]
-}>()
+  labels?: VipTableLabels
+  program?: boolean
+}>(), { program: false })
+
+const { translate } = useSiteLocale()
 </script>
 
 <template>
-  <div class="vip-benefits" lang="zh-Hant">
-    <div class="vip-benefits__scroller" tabindex="0" role="region" aria-label="VIP返水比例表，可橫向捲動">
+  <div class="vip-benefits" :class="{ 'vip-benefits--program': program }" lang="pt-BR">
+    <div class="vip-benefits__scroller" tabindex="0" role="region" :aria-label="translate('Tabela de cashback VIP, rolável horizontalmente')">
       <div class="vip-benefits__rebates">
         <table v-for="tier in rebates" :key="tier.level" class="vip-rebate-table">
-          <caption class="vip-benefits__caption">{{ tier.level }} 返水比例與每日返水上限</caption>
+          <caption class="vip-benefits__caption">{{ tier.level }} — {{ translate('Porcentagem de cashback e limite diário') }}</caption>
           <colgroup>
             <col class="vip-rebate-table__level-column">
             <col class="vip-rebate-table__label-column">
@@ -23,37 +27,37 @@ defineProps<{
           </colgroup>
           <tbody>
             <tr>
-              <th rowspan="2" scope="rowgroup">{{ tier.level }}</th>
-              <td rowspan="2">返水<br>比例</td>
-              <td>體育<br>{{ tier.sports }}</td>
-              <td colspan="2">真人<br>{{ tier.liveCasino }}</td>
-              <td aria-label="體育及真人每日返水上限：無上限">無上限</td>
+              <th rowspan="2" scope="rowgroup"><span v-if="program" aria-hidden="true">👑 </span>{{ tier.level }}</th>
+              <td rowspan="2"><template v-if="labels?.rate">{{ labels.rate }}</template><template v-else>{{ translate('Taxa de') }}<br>{{ translate('Cashback') }}</template></td>
+              <td>{{ translate('Esportes') }}<br>{{ tier.sports }}</td>
+              <td colspan="2">{{ labels?.liveCasino || translate('Ao Vivo') }}<br>{{ tier.liveCasino }}</td>
+              <td :aria-label="`${translate('Esportes e Cassino Ao Vivo limite diário')}: ${labels?.unlimited || translate('Sem Limite')}`">{{ labels?.unlimited || translate('Sem Limite') }}</td>
             </tr>
             <tr>
-              <td>電子<br>{{ tier.slots }}</td>
-              <td>電競{{ tier.esports }}</td>
-              <td>棋牌{{ tier.tableGames }}</td>
-              <td :aria-label="`電子、電競及棋牌每日返水上限：${tier.dailyCap}`">{{ tier.dailyCap }}</td>
+              <td>{{ translate('Slots') }}<br>{{ tier.slots }}</td>
+              <td>{{ translate('eSports') }}<br>{{ tier.esports }}</td>
+              <td>{{ translate('Mesa') }}<br>{{ tier.tableGames }}</td>
+              <td :aria-label="`${translate('Slots, eSports e Jogos de Mesa limite diário')}: ${tier.dailyCap}`">{{ tier.dailyCap }}</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <p class="vip-benefits__note">注：體育及真人返水不設上限；電子、電競及棋牌返水每日上限依以上 VIP 返水表為準。</p>
+    <p class="vip-benefits__note">{{ labels?.note || translate('Nota: O cashback de Esportes e Cassino Ao Vivo não possui limite; o limite diário de cashback para Slots, eSports e Jogos de Mesa segue a tabela VIP acima.') }}</p>
 
-    <h3 class="vip-benefits__title">VIP升級福利一覽</h3>
-    <div class="vip-benefits__scroller" tabindex="0" role="region" aria-label="VIP升級福利一覽，可橫向捲動">
+    <h3 class="vip-benefits__title"><span v-if="program" aria-hidden="true">👑 </span>{{ labels?.benefitsTitle || translate('Benefícios de Evolução VIP') }}</h3>
+    <div class="vip-benefits__scroller" tabindex="0" role="region" :aria-label="translate('Benefícios de Evolução VIP, rolável horizontalmente')">
       <div class="vip-benefits__upgrade-table-frame">
         <table class="vip-upgrade-table">
-          <caption class="vip-benefits__caption">VIP升級流水、晉級禮金、每月紅包及生日禮金</caption>
+          <caption class="vip-benefits__caption">{{ translate('Evolução VIP: Rollover, Bônus de Nível, Mensal e Aniversário') }}</caption>
           <thead>
             <tr>
-              <th scope="col">等級</th>
-              <th scope="col">升級<br>流水</th>
-              <th scope="col">晉級<br>禮金</th>
-              <th scope="col">每月<br>紅包</th>
-              <th scope="col">生日<br>禮金</th>
+              <th scope="col"><span v-if="program" class="vip-benefits__header-icon" aria-hidden="true">🏆</span>{{ translate('Nível') }}</th>
+              <th scope="col"><span v-if="program" class="vip-benefits__header-icon" aria-hidden="true">🎯</span><template v-if="labels?.turnover">{{ labels.turnover }}</template><template v-else>{{ translate('Turnover') }}<br>{{ translate('Upgrade') }}</template></th>
+              <th scope="col"><span v-if="program" class="vip-benefits__header-icon" aria-hidden="true">🎁</span><template v-if="labels?.upgradeBonus">{{ labels.upgradeBonus }}</template><template v-else>{{ translate('Bônus') }}<br>{{ translate('Nível') }}</template></th>
+              <th scope="col"><span v-if="program" class="vip-benefits__header-icon" aria-hidden="true">🧧</span><template v-if="labels?.monthlyBonus">{{ labels.monthlyBonus }}</template><template v-else>{{ translate('Bônus') }}<br>{{ translate('Mensal') }}</template></th>
+              <th scope="col"><span v-if="program" class="vip-benefits__header-icon" aria-hidden="true">🎂</span><template v-if="labels?.birthdayBonus">{{ labels.birthdayBonus }}</template><template v-else>{{ translate('Bônus') }}<br>{{ translate('Aniversário') }}</template></th>
             </tr>
           </thead>
           <tbody>
@@ -202,6 +206,14 @@ defineProps<{
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+.vip-benefits--program .vip-rebate-table__level-column,
+.vip-benefits--program .vip-rebate-table__label-column,
+.vip-benefits--program .vip-rebate-table__esports-column,
+.vip-benefits--program .vip-rebate-table__games-column { width: 12.5%; }
+.vip-benefits--program .vip-rebate-table__slots-column,
+.vip-benefits--program .vip-rebate-table__cap-column { width: 25%; }
+.vip-benefits__header-icon { display: block; margin-bottom: 2px; line-height: 1; }
 
 :global(html[data-theme='light']) .vip-benefits {
   color: #14251d;

@@ -3,8 +3,10 @@ import { ShoppingBag, GraduationCap, ChartPie, Video, PanelsTopLeft } from 'luci
 
 import type { LiveStreamCatalog } from '~/types/livestream'
 import StreamPlayer from './StreamPlayer.vue'
+import ByBetSpinner from '~/components/ByBetSpinner.vue'
 
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 const { data: catalog, status, refresh } = useFetch<LiveStreamCatalog>('/api/livestream', { server: false })
 const selectedStreamId = ref('')
@@ -29,6 +31,11 @@ const iframeSrc = computed(() => {
   const stream = selectedStream.value
   if (!stream) return ''
   return stream.iframe?.src || `https://live88.eu.cc/embed/live/${encodeURIComponent(stream.id)}?site=YBa-BnymZ6iN8pkfAUFTWIKn`
+})
+
+const isIframeLoading = ref(true)
+watch([iframeSrc, () => selectedStream.value?.id], () => {
+  isIframeLoading.value = true
 })
 
 const streamTitle = computed(() => {
@@ -80,7 +87,18 @@ const tabs = [
       <template v-else>Sports TV</template>
     </div>
     <div class="relative aspect-[16/9] overflow-hidden rounded-xl bg-[#14261d]">
-      <template v-if="selectedStream">
+      <!-- 1) When fetching streams: show circular loader with brand logo -->
+      <div
+        v-if="status === 'pending'"
+        class="flex h-full w-full items-center justify-center bg-[#14261d]"
+        role="status"
+        aria-label="Loading live streams…"
+      >
+        <ByBetSpinner size="md" theme="dark" />
+      </div>
+
+      <!-- 2) When selectedStream is available -->
+      <template v-else-if="selectedStream">
         <StreamPlayer
           v-if="selectedStream.sources?.length"
           :key="selectedStream.id"
@@ -88,23 +106,40 @@ const tabs = [
           @ended="switchEndedStream(selectedStream.id)"
           @unavailable="switchEndedStream(selectedStream.id)"
         />
-        <iframe
-          v-else-if="iframeSrc"
-          :key="selectedStream.id + previewMode"
-          :src="iframeSrc"
-          :title="streamTitle"
-          class="absolute inset-0 h-full w-full border-0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen
-        />
+        <div v-else-if="iframeSrc" class="relative h-full w-full">
+          <div
+            v-if="isIframeLoading"
+            class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-[#14261d]"
+            role="status"
+            aria-label="Loading live stream…"
+          >
+            <ByBetSpinner size="md" theme="dark" />
+          </div>
+          <iframe
+            :key="selectedStream.id + previewMode"
+            :src="iframeSrc"
+            :title="streamTitle"
+            class="absolute inset-0 h-full w-full border-0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            @load="isIframeLoading = false"
+          />
+        </div>
+        <div v-else class="flex h-full flex-col items-center justify-center px-5 text-center" role="status">
+          <Video :size="26" class="mb-2 text-white/60" aria-hidden="true" />
+          <p class="text-[14px] font-semibold text-white">Stream unavailable</p>
+          <button type="button" class="mt-2 text-[12px] text-[#48daa6]" @click="refresh()">Try again</button>
+        </div>
       </template>
+
+      <!-- 3) When catalog finished loading but no streams are available -->
       <div v-else class="flex h-full flex-col items-center justify-center px-5 text-center" role="status">
         <Video :size="26" class="mb-2 text-white/60" aria-hidden="true" />
         <p class="text-[14px] font-semibold text-white">
-          {{ previewMode === 'court' ? 'Match radar unavailable' : status === 'pending' ? 'Loading live streams…' : 'Stream unavailable' }}
+          {{ previewMode === 'court' ? 'Match radar unavailable' : 'Stream unavailable' }}
         </p>
         <button v-if="previewMode === 'court'" type="button" class="mt-2 text-[12px] text-[#48daa6]" @click="previewMode = 'video'">Watch live video</button>
-        <button v-else-if="status !== 'pending'" type="button" class="mt-2 text-[12px] text-[#48daa6]" @click="refresh()">Try again</button>
+        <button v-else type="button" class="mt-2 text-[12px] text-[#48daa6]" @click="refresh()">Try again</button>
       </div>
     </div>
     <div class="flex items-center justify-between gap-2 px-2 py-1">

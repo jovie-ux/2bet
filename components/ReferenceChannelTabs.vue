@@ -25,7 +25,7 @@ const isChannelActive = (channelTo: string, channelLabel: string): boolean => {
       <span class="channel-tab-icon-wrap">
         <img
           :src="channel.iconImage"
-          alt=""
+          :alt="channel.label"
           width="28"
           height="28"
           loading="lazy"

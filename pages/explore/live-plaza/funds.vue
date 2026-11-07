@@ -2,12 +2,12 @@
 import DepositReminderModal from '~/components/modals/DepositReminderModal.vue'
 
 useAppSeo({
-  title: 'Live Plaza Funds & Reward Management | 2Bet Platform',
-  description: 'Manage your Live Plaza streamer tips, gift balances, and reward distributions on 2Bet. Secure wallet operations for community streaming interactions.',
+  title: 'Gestão de Saldo e Recompensas na Praça ao Vivo | 2bet',
+  description: 'Gerencie seu saldo e resgate recompensas promocionais na 2bet Brasil. Acompanhe movimentações financeiras com segurança e rapidez.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Live Plaza', path: '/explore/live-plaza/home' },
-    { name: 'Funds', path: '/explore/live-plaza/funds' },
+    { name: 'Início', path: '/' },
+    { name: 'Praça ao Vivo', path: '/explore/live-plaza/home' },
+    { name: 'Fundos', path: '/explore/live-plaza/funds' },
   ],
 })
 

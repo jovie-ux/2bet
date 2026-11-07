@@ -48,7 +48,7 @@ watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
     <template #header="{ firstVisible, atStart, atEnd, move }">
       <header class="sports-header flex items-center justify-between">
         <div class="sports-heading flex items-center min-w-0">
-          <h2 id="sports-title" class="flex items-center"><img src="/icons/sports/popular.webp" class="allgames-heading-symbol allgames-heading-image" alt="" width="28" height="28">{{ translate('Sports') }}</h2>
+          <h2 id="sports-title" class="flex items-center"><img src="/icons/sports/popular.webp" class="allgames-heading-symbol allgames-heading-image" :alt="translate('Sports')" width="28" height="28">{{ translate('Sports') }}</h2>
           <p>{{ translate('Big games. Your front-row seat.') }}</p>
         </div>
         <NuxtLink to="/explore/sports/popular/league" class="sports-explore inline-flex items-center">{{ translate('Explore sports') }} <ArrowUpRight :size="18" aria-hidden="true" /></NuxtLink>
@@ -58,12 +58,12 @@ watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
         <span class="sports-browse-label" id="sports-browse-label">{{ translate('BROWSE SPORTS') }}</span>
         <div class="sports-filters grid" role="group" aria-labelledby="sports-browse-label">
           <button v-for="filter in filters" :key="filter.key" type="button" class="flex items-center" :data-sport="filter.key" :aria-pressed="activeSport === filter.key" aria-controls="sports-track" @click="activeSport = filter.key">
-            <img :src="`/images/sports/sidebar/${filter.key}.webp`" class="sports-filter-icon" alt="" width="24" height="24">
+            <img :src="`/images/sports/sidebar/${filter.key}.webp`" class="sports-filter-icon" :alt="translate(filter.label)" width="24" height="24">
             <span>{{ translate(filter.label) }}</span><span class="sports-filter-count" aria-hidden="true">{{ fixtureCount(filter.key) }}</span>
           </button>
         </div>
         <div v-if="currentFixture(firstVisible)" class="sports-browse-league flex items-center" :class="{ 'sports-browse-league--nba': currentFixture(firstVisible)!.sport_key.includes('_nba') }">
-          <img :src="getTournamentLogo(currentFixture(firstVisible)!.sport_key)" alt="" width="30" height="42" loading="lazy">
+          <img :src="getTournamentLogo(currentFixture(firstVisible)!.sport_key)" :alt="currentFixture(firstVisible)!.sport_title" width="30" height="42" loading="lazy">
           <div class="min-w-0"><strong>{{ currentFixture(firstVisible)!.sport_title }}</strong><span>{{ translate(currentSport(firstVisible)) }}</span></div>
         </div>
       </aside>
@@ -103,13 +103,14 @@ watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
 .sports-explore svg { color: #F9C600; }
 .sports-explore:hover { border-color: #ffffff30; background: #0c2a1d; }
 .sports-browse { grid-column: 1; grid-row: 2 / 4; min-width: 0; padding: 14px 7px; border: 1px solid #ffffff0e; border-radius: 7px; background: radial-gradient(ellipse at 12% 65%, #4fbd8b15, transparent 65%), linear-gradient(115deg, #162b20, #102119); }
-.sports-browse-label { display: block; margin: 0 7px 8px; color: #91aaa0; font-size: 10px; font-weight: 600; }
-.sports-filters { gap: 4px; }
-.sports-filters button { gap: 12px; width: 100%; min-height: 38px; padding: 7px 9px; border: 1px solid transparent; border-radius: 6px; color: #e1e9e4; background: transparent; font-size: 14px; font-weight: 700; text-align: left; white-space: nowrap; }
+.sports-browse-label { display: block; margin: 0 7px 8px; color: #91aaa0; font-size: 10px; font-weight: 600; line-height: 1.3; white-space: normal; overflow-wrap: break-word; }
+.sports-filters { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.sports-filters button { gap: 10px; width: 100%; min-width: 0; min-height: 38px; padding: 7px 9px; border: 1px solid transparent; border-radius: 6px; color: #e1e9e4; background: transparent; font-size: 14px; font-weight: 700; line-height: 1.25; text-align: left; white-space: normal; }
+.sports-filters button > span:not(.sports-filter-count) { flex: 1 1 0%; min-width: 0; overflow-wrap: break-word; word-break: break-word; }
 .sports-filter-icon { flex-shrink: 0; width: 24px; height: 24px; object-fit: contain; }
 .sports-filters button[aria-pressed='true'] { border-color: #009440; color: #009440; background: #063523; }
 .sports-filters button:hover:where([aria-pressed='false']) { border-color: var(--sports-edge); background: #112a20; }
-.sports-filter-count { min-width: 26px; margin-left: auto; padding: 2px 5px; border-radius: 5px; color: #dae8e0; background: #182f27; font-size: 14px; font-weight: 800; line-height: 17px; text-align: center; font-variant-numeric: tabular-nums; }
+.sports-filter-count { flex-shrink: 0; min-width: 26px; margin-left: auto; padding: 2px 5px; border-radius: 5px; color: #dae8e0; background: #182f27; font-size: 14px; font-weight: 800; line-height: 17px; text-align: center; font-variant-numeric: tabular-nums; }
 .sports-filters button[aria-pressed='true'] .sports-filter-count { color: #009440; background: #073e2c; }
 .sports-browse-league { gap: 12px; margin: 16px 7px 0; padding-top: 22px; border-top: 1px solid #ffffff10; }
 .sports-browse-league img { width: 26px; height: 40px; flex-shrink: 0; object-fit: contain; }
@@ -149,7 +150,8 @@ watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
   .sports-browse { grid-column: 1; grid-row: 2; padding: 0 0 4px; border: 0; border-radius: 0; background: transparent; }
   .sports-browse-label,.sports-browse-league { display: none; }
   .sports-filters { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
-  .sports-filters button { justify-content: center; flex: 1 0 auto; width: auto; gap: 7px; padding-inline: 9px; }
+  .sports-filters button { justify-content: center; flex: 1 0 auto; width: auto; gap: 7px; padding-inline: 9px; white-space: nowrap; }
+  .sports-filters button > span:not(.sports-filter-count) { flex: 0 0 auto; }
   .sports-filter-count { min-width: 19px; margin-left: 0; padding-inline: 4px; font-size: 10px; }
   .sports-toolbar { grid-column: 1; grid-row: 3; }
   .homepage-sports-section :deep(.allgames-game-track) { grid-column: 1; grid-row: 4; }

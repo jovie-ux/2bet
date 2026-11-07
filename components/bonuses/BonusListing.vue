@@ -4,6 +4,7 @@ import SeoHeader from '~/components/SeoHeader.vue'
 import MobileBonusListing from '~/components/bonuses/MobileBonusListing.vue'
 import BonusCurrencySelector from '~/components/bonuses/BonusCurrencySelector.vue'
 import BonusPaymentGroups from '~/components/bonuses/BonusPaymentGroups.vue'
+import BonusEmptyState from '~/components/bonuses/BonusEmptyState.vue'
 import PromotionComplianceFooter from '~/components/PromotionComplianceFooter.vue'
 import {
   PROMOTIONS,
@@ -16,9 +17,13 @@ import {
 } from '~/data/promotions'
 
 const props = withDefaults(defineProps<{ category?: string }>(), { category: 'all' })
+const { translate } = useSitePreferences()
 const { markAsViewed } = useViewedPromotions()
 const { selectedCurrency, filterPromotions } = useBonusPayments()
 const featuredPromotions = computed(() => filterPromotions(PROMOTIONS))
+const visibleCategories = computed(() => featuredPromotions.value.length
+  ? PROMO_CATEGORIES
+  : PROMO_CATEGORIES.filter(category => category.key === 'all'))
 const selectedCategory = ref(props.category)
 watch(() => props.category, category => { selectedCategory.value = category })
 const categoryPath = (key: string): string => key === 'all'
@@ -66,18 +71,18 @@ const getFeaturedMeta = (promotion: PromotionItem): string => {
   return getPromotionCountdownText(promotion, nowMs.value)
 }
 useAppSeo({
-  title: 'Bonuses & USDT Promotions | 2bet',
-  description: 'Explore 2bet USDT promotions, including 分享賺錢計劃 and VIP特權體系, with event details and rules.',
+  title: 'Bônus de Boas-Vindas e Promoções no Cassino Online | 2bet',
+  description: 'Aproveite as ofertas de bônus na 2bet Brasil. Bônus de primeiro depósito, programa de convites e recompensas exclusivas do Clube VIP.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Promotions', path: '/explore/bonuses' },
+    { name: 'Início', path: '/' },
+    { name: 'Promoções', path: '/explore/bonuses' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: '2bet Promotions & Bonuses',
+    name: '2bet Promoções e Bônus',
     url: 'https://2bet.com/explore/bonuses',
-    description: 'Explore 2bet USDT promotions, including 分享賺錢計劃 and VIP特權體系, with event details and rules.',
+    description: 'Explore as promoções e bônus exclusivos da 2bet Brasil, incluindo o Programa Compartilhe e Ganhe e Privilégios VIP com regras claras.',
   },
 })
 </script>
@@ -89,9 +94,9 @@ useAppSeo({
     <div class="bonuses-sticky sticky-header-seal">
       <SeoHeader
         title="Bonuses"
-        meta-title="Bonuses & USDT Promotions | 2bet"
-        description="Explore 2bet USDT promotions, including 分享賺錢計劃 and VIP特權體系, with event details and rules."
-        keywords="2bet bonuses, USDT, 分享賺錢計劃, VIP特權體系, promotions"
+        meta-title="2bet Bônus de Cassino e Promoções Exclusivas"
+        description="Explore as promoções e bônus exclusivos da 2bet Brasil, incluindo o Programa Compartilhe e Ganhe e Privilégios VIP com regras claras."
+        keywords="2bet bônus, USDT, Compartilhe e Ganhe, Clube VIP, promoções"
         custom-class="bonus-page-header"
       >
         <template #actions>
@@ -99,25 +104,27 @@ useAppSeo({
         </template>
       </SeoHeader>
 
-      <nav class="category-nav" aria-label="Promotion categories">
+      <nav class="category-nav" :aria-label="translate('Promotion categories')">
         <NuxtLink
-          v-for="category in PROMO_CATEGORIES"
+          v-for="category in visibleCategories"
           :key="category.key"
           :to="categoryPath(category.key)"
-          :class="{ 'category-nav__button--active': selectedCategory === category.key }"
-          :aria-current="selectedCategory === category.key ? 'page' : undefined"
+          :class="{ 'category-nav__button--active': (featuredPromotions.length ? selectedCategory : 'all') === category.key }"
+          :aria-current="(featuredPromotions.length ? selectedCategory : 'all') === category.key ? 'page' : undefined"
         >
-          {{ category.label }}
+          {{ translate(category.label) }}
         </NuxtLink>
       </nav>
     </div>
 
-    <section v-if="featuredPromotions.length" class="featured-promotions" aria-label="Featured promotions">
+    <BonusEmptyState v-if="!featuredPromotions.length" />
+
+    <section v-if="featuredPromotions.length" class="featured-promotions" :aria-label="translate('Featured promotions')">
       <button
         v-if="featuredPromotions.length > 1"
         type="button"
         class="featured-promotions__arrow featured-promotions__arrow--left"
-        aria-label="Previous promotions"
+        :aria-label="translate('Previous promotions')"
         @click="scrollFeatured(-1)"
       >
         <ChevronLeft :size="15" />
@@ -134,17 +141,17 @@ useAppSeo({
           <div class="featured-card__media">
             <img
               :src="getPromoBannerUrl(promotion.bannerImage)"
-              :alt="promotion.title"
+              :alt="translate(promotion.title)"
               :style="{ objectPosition: promotion.imagePosition || 'center' }"
               loading="eager"
               decoding="async"
             >
-            <span v-if="promotion.showSaveBadge" class="featured-card__save">◎ Save</span>
+            <span v-if="promotion.showSaveBadge" class="featured-card__save">◎ {{ translate('Save') }}</span>
           </div>
 
           <div class="featured-card__copy">
-            <strong>{{ promotion.title }}</strong>
-            <span>{{ getFeaturedMeta(promotion) }}</span>
+            <strong>{{ translate(promotion.title) }}</strong>
+            <span>{{ translate(getFeaturedMeta(promotion)) }}</span>
           </div>
         </NuxtLink>
       </div>
@@ -153,14 +160,14 @@ useAppSeo({
         v-if="featuredPromotions.length > 1"
         type="button"
         class="featured-promotions__arrow featured-promotions__arrow--right"
-        aria-label="Next promotions"
+        :aria-label="translate('Next promotions')"
         @click="scrollFeatured(1)"
       >
         <ChevronRight :size="15" />
       </button>
     </section>
 
-    <div class="promotion-groups">
+    <div v-if="featuredPromotions.length" class="promotion-groups">
       <section
         v-for="section in visibleSections"
         :key="section.id"
@@ -170,7 +177,7 @@ useAppSeo({
           :to="categoryPath(section.category)"
           class="promotion-group__heading"
         >
-          <span>{{ section.title }}</span>
+          <span>{{ translate(section.title) }}</span>
           <ChevronRight :size="16" aria-hidden="true" />
         </NuxtLink>
 
@@ -185,23 +192,23 @@ useAppSeo({
             <img
               class="promotion-row__thumbnail"
               :src="promotion.thumbnailImage || PROMOTION_PLACEHOLDER_IMAGES.thumbnail"
-              :alt="promotion.title"
+              :alt="translate(promotion.title)"
               loading="lazy"
               decoding="async"
             >
 
             <span class="promotion-row__copy">
-              <strong>{{ promotion.title }}</strong>
-              <small>{{ promotion.description }}</small>
+              <strong>{{ translate(promotion.title) }}</strong>
+              <small>{{ translate(promotion.description) }}</small>
             </span>
 
-            <span class="promotion-row__details">Details</span>
+            <span class="promotion-row__details">{{ translate('Details') }}</span>
           </NuxtLink>
         </div>
       </section>
     </div>
 
-    <BonusPaymentGroups />
+    <BonusPaymentGroups v-if="featuredPromotions.length" />
     </div>
   </div>
 </template>

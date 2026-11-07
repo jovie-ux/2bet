@@ -12,22 +12,23 @@ const popularLeagues: Record<string, string[]> = {
 }
 const selectedPopularLeagues = computed(() => popularLeagues[String(route.params.sport)] ?? [])
 const selectedSports = computed(() => [sportNames[String(route.params.sport)] ?? ''])
-const sportDisplayName = computed(() => sportNames[String(route.params.sport)] ?? 'Sports')
+const { translate } = useSiteLocale()
+const sportDisplayName = computed(() => translate(sportNames[String(route.params.sport)] ?? 'Esportes'))
 
 useAppSeo({
-  title: computed(() => `${sportDisplayName.value} Betting Odds, Lines & Live Matches | 2Bet`),
-  description: computed(() => `Bet on ${sportDisplayName.value} at 2Bet Philippines. Competitive point spreads, moneylines, over/under totals, and futures across premier global leagues.`),
+  title: computed(() => formatSeoTitle(`Apostas em ${sportDisplayName.value} — Cotações e Jogos ao Vivo | 2bet`)),
+  description: computed(() => formatSeoDescription(`Aposte em partidas de ${sportDisplayName.value.toLowerCase()} na 2bet Brasil. Cotações competitivas, mercados ao vivo, estatísticas e saques rápidos via PIX.`)),
   breadcrumbs: computed(() => [
-    { name: 'Home', path: '/' },
-    { name: 'Sports', path: '/explore/sports/popular' },
+    { name: 'Início', path: '/' },
+    { name: 'Esportes', path: '/explore/sports/popular' },
     { name: sportDisplayName.value, path: `/explore/sports/${route.params.sport}` },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${sportDisplayName.value} Sports Betting - 2Bet`,
+    name: `Apostas em ${sportDisplayName.value} - 2bet`,
     url: `https://2bet.com/explore/sports/${route.params.sport}`,
-    description: `Bet on ${sportDisplayName.value} at 2Bet Philippines with competitive point spreads, moneylines, over/under totals, and futures.`,
+    description: `Aposte em ${sportDisplayName.value} na 2bet Brasil com spreads competitivos, vencedor, totais e apostas futuras.`,
   })),
 })
 

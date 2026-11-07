@@ -1,6 +1,6 @@
 export type BonusCurrencyCode =
   | 'all' | 'USD' | 'BRL' | 'INR' | 'USDT' | 'BTC' | 'ETH' | 'TRX'
-  | 'DOGE' | 'BCH' | 'ETC' | 'AAVE' | 'DASH' | 'DAI' | 'UNI' | 'WBTC'
+  | 'DOGE' | 'BCH' | 'ETC' | 'AAVE' | 'DASH' | 'DAI' | 'UNI' | 'WBTC' | 'LTC' | 'USDC'
 
 export interface BonusCurrency {
   code: BonusCurrencyCode
@@ -21,7 +21,6 @@ export const BONUS_CURRENCIES: BonusCurrency[] = [
     code: 'all', label: 'All',
     icon: svgIcon('<circle cx="12" cy="12" r="12" fill="#00a94f"/><g fill="white"><rect x="5" y="5" width="6" height="6" rx="2.5"/><rect x="13" y="5" width="6" height="6" rx="2.5"/><rect x="5" y="13" width="6" height="6" rx="2.5"/><rect x="13" y="13" width="6" height="6" rx="2.5"/></g>'),
   },
-  { code: 'USD', label: 'USD', icon: symbolIcon('#2c9b6d', '$') },
   {
     code: 'BRL', label: 'BRL',
     icon: svgIcon('<circle cx="12" cy="12" r="12" fill="#00a651"/><path d="M12 3 23 12 12 21 1 12Z" fill="#ffdf00"/><circle cx="12" cy="12" r="5.7" fill="#0047ab"/><path d="M6.7 10.6q6.1-.7 10.5 4" fill="none" stroke="white" stroke-width="1.2"/>'),
@@ -34,7 +33,6 @@ export const BONUS_CURRENCIES: BonusCurrency[] = [
     code: 'USDT', label: 'USDT',
     icon: svgIcon('<circle cx="12" cy="12" r="12" fill="#60b7a0"/><path d="M5 5h14v3h-5.5v11h-3V8H5Z" fill="white"/><ellipse cx="12" cy="10.5" rx="8" ry="2" fill="none" stroke="white" stroke-width="1.2"/>'),
   },
-  { code: 'BTC', label: 'BTC (Bitcoin)', icon: symbolIcon('#f7931a', '₿') },
   {
     code: 'ETH', label: 'ETH (ERC20)',
     icon: svgIcon('<circle cx="12" cy="12" r="12" fill="#e5e5e5"/><path d="m12 2 6 10-6 3-6-3Z" fill="#373b3b"/><path d="M12 2v13l6-3Z" fill="#767b7b"/><path d="m6 13 6 9 6-9-6 4Z" fill="#454949"/>'),
@@ -45,6 +43,8 @@ export const BONUS_CURRENCIES: BonusCurrency[] = [
   },
   { code: 'DOGE', label: 'DOGE', icon: symbolIcon('#c5a829', 'Ð') },
   { code: 'BCH', label: 'BCH', icon: symbolIcon('#0dcb7b', '₿') },
+  
+  
   {
     code: 'ETC', label: 'ETC',
     icon: svgIcon('<circle cx="12" cy="12" r="12" fill="#d8f1cd"/><path d="m12 2 7 10-7 4-7-4Zm-7 12 7 8 7-8-7 4Z" fill="#00a856"/><path d="m5 12 7-3 7 3" fill="none" stroke="#d8f1cd" stroke-width="1"/>'),
@@ -54,6 +54,9 @@ export const BONUS_CURRENCIES: BonusCurrency[] = [
   { code: 'DAI', label: 'DAI (ERC20)', icon: symbolIcon('#f8ad00', '◈') },
   { code: 'UNI', label: 'UNI (ERC20)', icon: symbolIcon('#ff007a', 'U') },
   { code: 'WBTC', label: 'WBTC (ERC20)', icon: symbolIcon('#767c8a', '₿') },
+  { code: 'LTC', label: 'LTC', icon: symbolIcon('#345D9D', '₿') },
+  { code: 'BTC', label: 'BTC', icon: symbolIcon('#f7931a', '₿') },
+  { code: 'USDC', label: 'USDC (ERC20)', icon: symbolIcon('#1275D1', '₿') },
 ]
 
 export const getBonusCurrency = (code: string): BonusCurrency =>

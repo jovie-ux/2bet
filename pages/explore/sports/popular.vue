@@ -1,10 +1,10 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Popular Sports Betting — Top Match Odds & Events | 2Bet',
-  description: 'Bet on the most popular sporting events worldwide at 2Bet. Competitive odds, live lines, and deep markets for NBA, UEFA Champions League, and PBA.',
+  title: 'Apostas Esportivas Populares — Melhores Jogos e Odds | 2bet',
+  description: 'Aposte nos eventos mais concorridos do momento na 2bet Brasil. Principais ligas de futebol, basquete e tênis com cotações vantajosas.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Sports', path: '/explore/sports/popular' },
+    { name: 'Início', path: '/' },
+    { name: 'Esportes', path: '/explore/sports/popular' },
     { name: 'Popular', path: '/explore/sports/popular' },
   ],
   schema: {

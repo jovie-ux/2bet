@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Casino Game Guides & How to Play Tutorials | 2Bet',
-  description: 'Master online slots, live casino tables, and crash games with 2Bet official game tutorials. Learn paylines, RTP strategies, and winning features.',
+  title: 'Guias de Jogos de Cassino e Tutoriais Interativos | 2bet',
+  description: 'Aprenda as regras de caça-níqueis, crash games e mesas no cassino 2bet. Guias claros para entender pagamentos, RTP e rodadas bônus.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Tutorials', path: '/tutorial' },
-    { name: 'Game Guides', path: '/tutorial/game' },
+    { name: 'Início', path: '/' },
+    { name: 'Tutoriais', path: '/tutorial' },
+    { name: 'Guias de Jogos', path: '/tutorial/game' },
   ],
 })
 

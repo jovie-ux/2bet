@@ -23,8 +23,8 @@ const tabs = computed(() => [
 const categoryLabel = computed(() => tabs.value.find(tab => tab.key === props.category)?.label || translate('Poker'))
 
 useAppSeo({
-  title: computed(() => `${categoryLabel.value} | Pôquer e Jogos de Cartas | 2Bet`),
-  description: computed(() => `Explore jogos de ${props.category === 'popular' || props.category === 'all' ? 'pesca, mahjong, pôquer, Bull Bull, bacará e muito mais' : categoryLabel.value} na 2Bet. Navegue por categoria e provedor.`),
+  title: computed(() => formatSeoTitle(`${categoryLabel.value} Online — Jogos de Cartas e Mesa | 2bet`)),
+  description: computed(() => formatSeoDescription(`Divirta-se com jogos de ${categoryLabel.value.toLowerCase()} na 2bet Brasil. Mesas dinâmicas, disputas emocionantes e regras transparentes de cartas.`)),
   breadcrumbs: computed(() => [
     { name: translate('Home'), path: '/' },
     { name: translate('Poker'), path: basePath },
@@ -39,7 +39,8 @@ const searchInput = ref<HTMLInputElement | null>(null)
 const filterOpen = ref(false)
 const selectedGame = ref<PokerGame | null>(null)
 const { addRecentGame } = useRecentGames()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 const availableProviders = computed(() => getPokerProvidersByCategory(props.category))
 

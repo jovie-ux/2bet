@@ -5,30 +5,31 @@ defineProps<{
 }>()
 
 const route = useRoute()
+const { translate } = useSiteLocale()
 
 const sportName = computed(() => {
   const s = String(route.params.sport || 'sports')
-  return s.charAt(0).toUpperCase() + s.slice(1)
+  return translate(s.charAt(0).toUpperCase() + s.slice(1))
 })
 
-const hoursLabel = computed(() => String(route.params.hours).replace('hours', ' Hours'))
+const hoursLabel = computed(() => String(route.params.hours).replace('hours', ' Horas'))
 
 useAppSeo({
-  title: computed(() => `Upcoming ${sportName.value} Matches (Next ${hoursLabel.value}) Odds | 2Bet`),
-  description: computed(() => `Find upcoming ${sportName.value} fixtures starting within the next ${hoursLabel.value} on 2Bet Philippines. Compare competitive match spreads, totals, and lines.`),
+  title: computed(() => formatSeoTitle(`Próximos Jogos de ${sportName.value} (${hoursLabel.value}) | 2bet`)),
+  description: computed(() => formatSeoDescription(`Confira as partidas de ${sportName.value} que começam nas próximas ${hoursLabel.value} na 2bet Brasil. Garanta cotações antecipadas.`)),
   breadcrumbs: computed(() => [
-    { name: 'Home', path: '/' },
-    { name: 'Sports', path: '/explore/sports/popular' },
+    { name: 'Início', path: '/' },
+    { name: 'Esportes', path: '/explore/sports/popular' },
     { name: sportName.value, path: `/explore/sports/${route.params.sport}` },
-    { name: 'Upcoming', path: `/explore/sports/${route.params.sport}/upcoming` },
+    { name: 'Em Breve', path: `/explore/sports/${route.params.sport}/upcoming` },
     { name: hoursLabel.value, path: route.path },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `Upcoming ${sportName.value} Matches (${hoursLabel.value}) - 2Bet`,
+    name: `Próximas Partidas de ${sportName.value} (${hoursLabel.value}) - 2bet`,
     url: `https://2bet.com${route.path}`,
-    description: `Upcoming ${sportName.value} matches scheduled within the next ${hoursLabel.value} on 2Bet Philippines.`,
+    description: formatSeoDescription(`Próximas partidas de ${sportName.value} agendadas nas próximas ${hoursLabel.value} na 2bet Brasil.`),
   })),
 })
 

@@ -17,6 +17,8 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: SlotFilterState): void
 }>()
 
+const { translate } = useSiteLocale()
+
 const themes = [
   'All',
   'Myth & History',
@@ -124,15 +126,15 @@ onBeforeUnmount(unlockPage)
               class="slot-filter-cancel"
               @click="close"
             >
-              Cancel
+              {{ translate('Cancel') }}
             </button>
-            <h2 id="slot-filter-title">Filter</h2>
+            <h2 id="slot-filter-title">{{ translate('Filter') }}</h2>
             <span class="slot-filter-header-spacer" aria-hidden="true" />
           </header>
 
           <div class="slot-filter-content no-scrollbar">
             <fieldset class="slot-filter-group">
-              <legend>Theme</legend>
+              <legend>{{ translate('Theme') }}</legend>
               <div class="slot-filter-grid">
                 <button
                   v-for="theme in themes"
@@ -143,13 +145,13 @@ onBeforeUnmount(unlockPage)
                   :aria-pressed="draft.theme === theme"
                   @click="draft.theme = theme"
                 >
-                  {{ theme }}
+                  {{ translate(theme) }}
                 </button>
               </div>
             </fieldset>
 
             <fieldset class="slot-filter-group">
-              <legend>Features</legend>
+              <legend>{{ translate('Features') }}</legend>
               <div class="slot-filter-grid">
                 <button
                   v-for="feature in features"
@@ -160,13 +162,13 @@ onBeforeUnmount(unlockPage)
                   :aria-pressed="draft.feature === feature"
                   @click="draft.feature = feature"
                 >
-                  {{ feature }}
+                  {{ translate(feature) }}
                 </button>
               </div>
             </fieldset>
 
             <fieldset class="slot-filter-group">
-              <legend>Winning Line</legend>
+              <legend>{{ translate('Winning Line') }}</legend>
               <div class="slot-filter-grid">
                 <button
                   v-for="line in winningLines"
@@ -177,7 +179,7 @@ onBeforeUnmount(unlockPage)
                   :aria-pressed="draft.winningLine === line"
                   @click="draft.winningLine = line"
                 >
-                  {{ line }}
+                  {{ translate(line) }}
                 </button>
               </div>
             </fieldset>
@@ -185,10 +187,10 @@ onBeforeUnmount(unlockPage)
 
           <footer class="slot-filter-actions">
             <button type="button" class="slot-filter-action slot-filter-reset" @click="reset">
-              Reset
+              {{ translate('Reset') }}
             </button>
             <button type="button" class="slot-filter-action slot-filter-ok" @click="apply">
-              OK
+              {{ translate('OK') }}
             </button>
           </footer>
         </section>

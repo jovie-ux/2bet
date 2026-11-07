@@ -3,7 +3,8 @@ import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 
 const { translate } = useSiteLocale()
 const nuxtLinkComponent = resolveComponent('NuxtLink')
-const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const externalSiteUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 interface HeroSlide {
   eyebrow: string

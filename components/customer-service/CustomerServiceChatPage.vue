@@ -9,8 +9,8 @@ const langParam = computed(() => (locale.value === 'pt' ? 'pt' : (locale.value |
 const chatUrl = computed(() => `https://cs11.levxfemf.app/#/index?source=2bet&needNav=1&lang=${langParam.value}&vipType=0&isPC=1&darkMode=1&deviceCode=4ff68888-f34d-49fb-ab39-e0ff581e41b8&deviceId=4ff68888-f34d-49fb-ab39-e0ff581e41b8`)
 
 useAppSeo({
-  title: computed(() => locale.value === 'pt' ? `Atendimento 24/7 - Canal ${props.serviceNumber} | 2Bet` : `24/7 Services ${props.serviceNumber} | 2Bet Philippines`),
-  description: computed(() => locale.value === 'pt' ? `Converse com o suporte 24/7 da 2Bet (Canal ${props.serviceNumber}) para assistência com conta, depósitos, saques e promoções.` : `Chat with 2Bet 24/7 Customer Service ${props.serviceNumber} for account, deposit, withdrawal, promotion, and verification assistance.`),
+  title: computed(() => locale.value === 'pt' ? formatSeoTitle(`Atendimento 24/7 — Suporte Oficial Canal ${props.serviceNumber} | 2bet`) : `24/7 Services ${props.serviceNumber} | 2Bet Brasil`),
+  description: computed(() => locale.value === 'pt' ? formatSeoDescription(`Converse com nossa equipe no chat ao vivo da 2bet Brasil (Canal ${props.serviceNumber}). Suporte 24 horas para dúvidas sobre saldo e bônus.`) : `Chat with 2Bet 24/7 Customer Service ${props.serviceNumber} for account, deposit, withdrawal, promotion, and verification assistance.`),
   breadcrumbs: computed(() => [
     { name: translate('Home'), path: '/' },
     { name: translate('Customer Service'), path: '/explore/egames/customer-service' },
@@ -19,7 +19,7 @@ useAppSeo({
   schema: {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    name: `2Bet 24/7 Customer Service ${props.serviceNumber}`,
+    name: `2bet Atendimento 24/7 Canal ${props.serviceNumber}`,
     url: `https://2bet.com/explore/egames/customer-service/${props.serviceNumber}`,
   },
 })
@@ -34,8 +34,8 @@ onMounted(() => {
     <SeoHeader
       sticky
       title="24/7 Services"
-      :meta-title="`24/7 Services ${serviceNumber} | 2Bet Philippines`"
-      :description="`Chat with 2Bet 24/7 Customer Service ${serviceNumber} for fast assistance.`"
+      :meta-title="`Atendimento 24/7 — Canal ${serviceNumber} de Suporte Online | 2bet`"
+      :description="`Converse ao vivo com o suporte 24/7 da 2bet Brasil (Canal ${serviceNumber}) para ajuda rápida com conta, depósitos, saques e bônus.`"
       back-to="/explore/egames/customer-service"
     />
 

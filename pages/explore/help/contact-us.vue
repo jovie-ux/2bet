@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Contact Us — 24/7 Live Chat & Email Support | 2Bet',
-  description: 'Need help? Contact 2Bet Philippines via 24/7 live chat, official Telegram, or support email. Our professional customer care team is always here for you.',
+  title: 'Fale Conosco — Atendimento ao Cliente e Chat ao Vivo | 2bet',
+  description: 'Entre em contato com a equipe de suporte da 2bet Brasil. Canais de atendimento disponíveis 24 horas para garantir assistência ágil e segura.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Help', path: '/explore/help/contact-us' },
-    { name: 'Contact Us', path: '/explore/help/contact-us' },
+    { name: 'Início', path: '/' },
+    { name: 'Ajuda', path: '/explore/help/contact-us' },
+    { name: 'Fale Conosco', path: '/explore/help/contact-us' },
   ],
   schema: {
     '@context': 'https://schema.org',

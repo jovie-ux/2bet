@@ -55,6 +55,7 @@ const categoryIcons: Record<string, Component> = {
 
 const route = useRoute()
 const router = useRouter()
+const { translate } = useSiteLocale()
 
 const normalizeCategory = (param: string): string => {
   const p = (param || '').toLowerCase()
@@ -71,17 +72,17 @@ const categoryLabel = computed(() => {
 })
 
 useAppSeo({
-  title: computed(() => `${categoryLabel.value} Online Slots — Real Money Games | 2Bet`),
-  description: computed(() => `Explore ${categoryLabel.value} online slots at 2Bet Philippines. Spin certified high RTP slot machines, free spins, and jackpot games with instant payouts.`),
+  title: computed(() => formatSeoTitle(`${translate(categoryLabel.value)} — Slots e Caça-Níqueis Online | 2bet`)),
+  description: computed(() => formatSeoDescription(`Jogue caça-níqueis de ${translate(categoryLabel.value).toLowerCase()} na 2bet Brasil. Slots com alto RTP, jackpots progressivos e rodadas bônus exclusivas.`)),
   breadcrumbs: computed(() => [
-    { name: 'Home', path: '/' },
+    { name: 'Início', path: '/' },
     { name: 'Slots', path: '/explore/egames/slots' },
-    { name: categoryLabel.value, path: `/explore/egames/slots/${activeCategory.value}` },
+    { name: translate(categoryLabel.value), path: `/explore/egames/slots/${activeCategory.value}` },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${categoryLabel.value} Slots - 2Bet`,
+    name: `${translate(categoryLabel.value)} Slots - 2bet`,
     url: `https://2bet.com/explore/egames/slots/${activeCategory.value}`,
   })),
 })
@@ -108,7 +109,8 @@ const filterState = ref({
 
 const { showDemoMessage } = useDemoInteraction()
 const { addRecentGame } = useRecentGames()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 const selectCategory = (key: string): void => {
   if (isSearchOpen.value || isSearchSubmitted.value) {
@@ -458,7 +460,7 @@ watch([loadMoreTrigger, hasMoreGames], () => {
               v-else-if="cat.iconName && categoryIcons[cat.iconName]"
               class="h-2 w-2 mb-0.5 shrink-0"
             />
-            <span class="text-[12px] sm:text-[10px] leading-tight whitespace-nowrap">{{ cat.shortLabel }}</span>
+            <span class="text-[12px] sm:text-[10px] leading-tight whitespace-nowrap">{{ translate(cat.shortLabel) }}</span>
           </button>
         </div>
       </header>
@@ -472,10 +474,10 @@ watch([loadMoreTrigger, hasMoreGames], () => {
             type="button"
             class="provider-pill px-3.5 py-1 rounded-full text-[12px] whitespace-nowrap transition-all cursor-pointer select-none border border-white/5 shrink-0 flex items-center justify-center min-h-[30px]"
             :class="activeProviders.includes(prov.key) ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'bg-[#242625] text-[#8e9491] '"
-            :aria-label="prov.label"
+            :aria-label="translate(prov.label)"
             @click="toggleProvider(prov.key)"
           >
-            <span >{{ prov.label }}</span>
+            <span >{{ translate(prov.label) }}</span>
           </button>
         </div>
 
@@ -483,7 +485,7 @@ watch([loadMoreTrigger, hasMoreGames], () => {
           <button
             type="button"
             class="h-8 w-8 rounded-full bg-[#242625] text-[#8e9491] hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-            aria-label="Search games"
+            :aria-label="translate('Search games')"
             @click="openSearch"
           >
             <Search class="h-4 w-4" />
@@ -491,7 +493,7 @@ watch([loadMoreTrigger, hasMoreGames], () => {
           <button
             type="button"
             class="h-8 w-8 rounded-full bg-[#242625] text-[#8e9491] hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-            aria-label="Filter games"
+            :aria-label="translate('Filter games')"
             @click="isFilterOpen = true"
           >
             <SlidersHorizontal class="h-4 w-4" />
@@ -512,7 +514,7 @@ watch([loadMoreTrigger, hasMoreGames], () => {
             ref="searchInputRef"
             v-model="searchQuery"
             type="text"
-            placeholder="Enter game name"
+            :placeholder="translate('Enter game name')"
             class="w-full h-11 rounded-full bg-[#171817] border border-[#2b2d2b] px-5 text-sm text-white placeholder-[#7a807d] focus:outline-none focus:border-[var(--main-color)] transition-colors"
             @input="handleInput"
             @keyup.enter="handleSearchSubmit"
@@ -521,7 +523,7 @@ watch([loadMoreTrigger, hasMoreGames], () => {
             v-if="searchQuery"
             type="button"
             class="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#7a807d] hover:text-white p-1"
-            aria-label="Clear input"
+            :aria-label="translate('Clear input')"
             @click="clearSearch"
           >
             <X class="h-4 w-4" />
@@ -532,19 +534,19 @@ watch([loadMoreTrigger, hasMoreGames], () => {
           class="text-sm text-white hover:text-white/80 px-2 py-1 select-none cursor-pointer font-medium whitespace-nowrap"
           @click="closeSearch"
         >
-          Cancel
+          {{ translate('Cancel') }}
         </button>
       </div>
 
       <!-- History Section -->
       <div v-if="searchHistory.length > 0" class="history-section mb-6">
         <div class="flex items-center justify-between mb-3">
-          <h3 class="text-sm font-semibold text-white tracking-wide">History</h3>
+          <h3 class="text-sm font-semibold text-white tracking-wide">{{ translate('History') }}</h3>
           <button
             type="button"
             class="text-[#7a807d] hover:text-white p-1 transition-colors cursor-pointer"
-            aria-label="Clear history"
-            title="Clear history"
+            :aria-label="translate('Clear history')"
+            :title="translate('Clear history')"
             @click="clearHistory"
           >
             <Trash2 class="h-4 w-4" />
@@ -566,7 +568,7 @@ watch([loadMoreTrigger, hasMoreGames], () => {
       <!-- Frequently Searched Section -->
       <div class="frequently-searched-section mb-8">
         <div class="text-sm font-semibold text-white tracking-wide mb-3">
-          Frequently searched
+          {{ translate('Frequently searched') }}
         </div>
         <div class="flex flex-wrap gap-2">
           <button

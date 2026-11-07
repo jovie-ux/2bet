@@ -2,11 +2,11 @@
 import LegalPageShell from '~/components/legal/LegalPageShell.vue'
 
 useAppSeo({
-  title: 'Responsible Gaming & Player Protection | 2Bet Philippines',
-  description: '2Bet is committed to safe, responsible entertainment. Learn about PAGCOR self-exclusion, deposit limits, support hotlines, and underage gambling prevention.',
+  title: 'Jogo Responsável — Diretrizes e Proteção ao Jogador | 2bet',
+  description: 'A 2bet apoia o jogo consciente no Brasil. Conheça limites de depósito, pausas temporárias e ferramentas de apoio ao entretenimento seguro.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Responsible Gaming', path: '/responsible-gaming' },
+    { name: 'Início', path: '/' },
+    { name: 'Jogo Responsável', path: '/responsible-gaming' },
   ],
 })
 </script>
@@ -57,7 +57,7 @@ useAppSeo({
       PAGCOR Self-Exclusion Program (NDRP)
     </h3>
     <p>
-      PAGCOR manages the <strong>National Database for Restricted Persons (NDRP)</strong>, allowing individuals to exclude themselves or be excluded by close family members from all licensed online gaming and land-based casinos throughout the Philippines.
+      PAGCOR manages the <strong>National Database for Restricted Persons (NDRP)</strong>, allowing individuals to exclude themselves or be excluded by close family members from all licensed online gaming and land-based casinos throughout the Brasil.
     </p>
     <p>
       Exclusion periods available: 6 Months, 1 Year, or 5 Years (irrevocable during active term). To submit a self-exclusion application, visit PAGCOR’s official portal or contact 2Bet Customer Support to assist with registration.

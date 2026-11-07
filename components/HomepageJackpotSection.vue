@@ -10,6 +10,9 @@ import usernamesList from '~/data/usernames.json'
 import { getProviderLogoForTheme } from '~/utils/providerLogo'
 import { generateWinnerWinning } from '~/utils/winnerCurrency'
 
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+
 const { translate } = useSiteLocale()
 const { effectiveTheme } = useSiteTheme()
 
@@ -58,8 +61,8 @@ const formatWinnerDate = (date = new Date()): string => {
 }
 
 const generateWinnerAmount = (): string => {
-  // Focus winning from 100 USD to 1,000 USD, converting to target currency
-  return generateWinnerWinning(100, 1000)
+  // Focus winning from 100 USD to 1,000 USD, converting to Brazilian Real (R$)
+  return generateWinnerWinning(100, 1000, 'BRL')
 }
 
 const winners = ref<HomepageWinner[]>([...HOMEPAGE_WINNERS.slice(0, 5)])
@@ -109,7 +112,7 @@ onBeforeUnmount(() => {
           <img
             src="/icons/egames/jackpot.webp"
             class="allgames-heading-symbol allgames-heading-image"
-            alt=""
+            :alt="translate('Jackpot')"
             width="28"
             height="28"
           />
@@ -137,8 +140,10 @@ onBeforeUnmount(() => {
               :src="themedLogo('/images/providers/jdb.webp')"
               alt="JDB Gaming"
               class="jdb-provider-logo"
-              width="26"
+              width="16"
               height="16"
+              loading="lazy"
+              decoding="async"
             />
             <span class="jdb-provider-name">JDB Gaming</span>
             <span class="jdb-progressive-tag">{{ translate('Progressive Jackpot') }}</span>
@@ -160,6 +165,8 @@ onBeforeUnmount(() => {
               class="jdb-wordmark-img"
               width="360"
               height="72"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -171,6 +178,8 @@ onBeforeUnmount(() => {
               class="jdb-mascot-img"
               width="240"
               height="180"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -180,10 +189,10 @@ onBeforeUnmount(() => {
           class="jackpot-counter-plate"
           role="status"
           aria-live="polite"
-          :aria-label="`JDB Jackpot: PHP ${formatJackpotAmount(jdbDisplay)}`"
+          :aria-label="`JDB Jackpot: R$ ${formatJackpotAmount(jdbDisplay)}`"
         >
           <div class="jackpot-currency-badge" aria-hidden="true">
-            <span>PHP</span>
+            <span>R$</span>
           </div>
 
           <div class="jackpot-counter-tiles" aria-hidden="true">
@@ -225,7 +234,13 @@ onBeforeUnmount(() => {
             </span>
           </div>
 
-          <NuxtLink to="/explore/egames/jackpot/jdb" class="jdb-cta-btn">
+          <NuxtLink
+            :to="bybetRedirectUrl"
+            external
+            target="_blank"
+            rel="noopener noreferrer"
+            class="jdb-cta-btn"
+          >
             <span>{{ translate('Spin to Win') }}</span>
             <Play :size="15" fill="currentColor" />
           </NuxtLink>
@@ -279,9 +294,8 @@ onBeforeUnmount(() => {
                     :src="themedLogo(winner.providerLogo)"
                     :alt="winner.provider"
                     class="winner-provider-img"
-                    width="36"
-                    height="20"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div class="winner-meta flex flex-col min-w-0">

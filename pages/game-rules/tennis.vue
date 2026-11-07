@@ -3,12 +3,12 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { tennisRulesHtml } from '~/data/tennis-rules'
 
 useAppSeo({
-  title: 'Tennis Betting Rules & Retirement Settlement | 2Bet',
-  description: 'Official tennis betting rules. Player retirements, walkovers, game handicap, set betting, rain interruptions, and super tiebreak conditions on 2Bet.',
+  title: 'Regras de Apostas em Tênis — Critérios de Liquidação | 2bet',
+  description: 'Regras de tênis na 2bet Brasil: desistências, contagem de sets e games, tie-break e critérios de liquidação em grandes torneios.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Game Rules', path: '/game-rules' },
-    { name: 'Tennis Rules', path: '/game-rules/tennis' },
+    { name: 'Início', path: '/' },
+    { name: 'Regras de Jogo', path: '/game-rules' },
+    { name: 'Regras de Tênis', path: '/game-rules/tennis' },
   ],
 })
 </script>

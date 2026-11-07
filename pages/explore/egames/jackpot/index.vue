@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Progressive Jackpots — Big Win Casino Slots | 2Bet',
-  description: 'Chase massive progressive jackpots on 2Bet Philippines. Discover high-payout slot machines and mega jackpot prize pools updated in real time.',
+  title: 'Jackpots Acumulados — Grandes Prêmios em Dinheiro | 2bet',
+  description: 'Dispute prêmios acumulados nos melhores caça-níqueis da 2bet Brasil. Acompanhe contadores em tempo real e concorra a boladas milionárias.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
+    { name: 'Início', path: '/' },
     { name: 'Jackpots', path: '/explore/egames/jackpot/all' },
   ],
 })

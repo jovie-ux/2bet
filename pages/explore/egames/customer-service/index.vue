@@ -5,17 +5,18 @@ const { closeComments } = useCommentPanel()
 const { translate } = useSiteLocale()
 
 useAppSeo({
-  title: '24/7 Customer Support & Help Center | 2Bet Philippines',
-  description: 'Contact 2Bet 24/7 Customer Support for fast assistance with deposits, withdrawals, promotions, and account verification. Chat live with us anytime.',
+  title: 'Central de Ajuda e Suporte ao Cliente 24 Horas | 2bet',
+  description: 'Atendimento rápido 24 horas por dia na 2bet Brasil. Esclareça dúvidas sobre depósitos, saques, bônus e regras de jogos via chat ao vivo.',
+  keywords: 'suporte 2bet, atendimento ao cliente 2bet, ajuda 2bet, chat ao vivo',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Help', path: '/explore/help/contact-us' },
-    { name: 'Customer Service', path: '/explore/egames/customer-service' },
+    { name: 'Início', path: '/' },
+    { name: 'Ajuda', path: '/explore/help/contact-us' },
+    { name: 'Atendimento ao Cliente', path: '/explore/egames/customer-service' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    name: '2Bet Customer Support',
+    name: 'Suporte ao Cliente 2bet',
     url: 'https://2bet.com/explore/egames/customer-service',
   },
 })
@@ -31,8 +32,8 @@ onMounted(() => {
     <SeoHeader
       sticky
       title="24/7 Services"
-      meta-title="24/7 Customer Support & Help Center | 2Bet Philippines"
-      description="Contact 2Bet 24/7 Customer Support for fast assistance with deposits, withdrawals, promotions, and account verification. Chat live with us anytime."
+      meta-title="Suporte ao Cliente 24/7 e Central de Ajuda Online | 2bet"
+      description="Fale com o suporte ao cliente 24/7 da 2bet para ajuda rápida com depósitos, saques, bônus e verificação de conta. Atendimento ao vivo."
       back-to="/explore/account/me"
     />
 

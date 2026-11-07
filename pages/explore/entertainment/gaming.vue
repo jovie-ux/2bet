@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Online Entertainment & Mini Games | 2Bet Philippines',
-  description: 'Discover top electronic gaming entertainment, arcade titles, table games, and casual betting options on 2Bet Philippines with instant play.',
+  title: 'Minijogos Online, Crash Games e Arcade em Alta | 2bet',
+  description: 'Divirta-se com jogos rápidos, crash games e arcade na 2bet Brasil. Rodadas dinâmicas, sorteios frequentes e prêmios imediatos em dinheiro.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Entertainment', path: '/explore/entertainment/live-casino/baccarat' },
-    { name: 'Gaming', path: '/explore/entertainment/gaming' },
+    { name: 'Início', path: '/' },
+    { name: 'Entretenimento', path: '/explore/entertainment/live-casino/baccarat' },
+    { name: 'Jogos', path: '/explore/entertainment/gaming' },
   ],
 })
 </script>

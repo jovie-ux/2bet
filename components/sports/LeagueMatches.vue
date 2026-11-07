@@ -60,6 +60,7 @@ watch(() => data.value?.events, (events) => {
 
 const selectedOutcomes = ref<Record<string, string>>({})
 const sportsRouteBase = useSportsRouteBase()
+const { translate } = useSitePreferences()
 
 const selectOutcome = (eventId: string, market: string, name: string): void => {
   const key = `${eventId}:${market}`
@@ -86,10 +87,10 @@ const selectOutcome = (eventId: string, market: string, name: string): void => {
       </div>
     </div>
     <div v-else-if="error" class="match-message" role="alert">
-      <p>Unable to load match odds.</p>
-      <button type="button" class="retry" @click="refresh()">Try again</button>
+      <p>{{ translate('Unable to load match odds.') }}</p>
+      <button type="button" class="retry" @click="refresh()">{{ translate('Try again') }}</button>
     </div>
-    <p v-else-if="!matches.length" class="match-message">No matches available right now.</p>
+    <p v-else-if="!matches.length" class="match-message">{{ translate('No matches available right now.') }}</p>
 
     <template v-else>
       <WinnerMatch

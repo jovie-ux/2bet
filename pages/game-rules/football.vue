@@ -3,12 +3,12 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { footballRulesHtml } from '~/data/football-rules'
 
 useAppSeo({
-  title: 'Football / Soccer Betting Rules & Settlement | 2Bet',
-  description: 'Official 2Bet football rules: 90-minute regulation time, goalscorer terms, card and corner counting, VAR protocols, and abandoned match settlements.',
+  title: 'Regras de Apostas em Futebol e Linhas de Cotações | 2bet',
+  description: 'Regras oficiais de futebol na 2bet Brasil: tempo regulamentar de 90 minutos, mercados de gols, prorrogação, cartões e protocolos do VAR.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Game Rules', path: '/game-rules' },
-    { name: 'Football Rules', path: '/game-rules/football' },
+    { name: 'Início', path: '/' },
+    { name: 'Regras de Jogo', path: '/game-rules' },
+    { name: 'Regras de Futebol', path: '/game-rules/football' },
   ],
 })
 </script>

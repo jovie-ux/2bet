@@ -22,6 +22,7 @@ const emit = defineEmits<{
 }>()
 
 const search = ref('')
+const { translate } = useSiteLocale()
 const localCollapsed = ref<string[]>([])
 const earliestTimes = ref<Record<string, number>>({})
 const timeFilters = ['1hours', '3hours', '6hours', '12hours', '24hours'] as const
@@ -234,8 +235,8 @@ const toggleCollapseAll = (): void => {
         <input
           v-model="search"
           type="search"
-          placeholder="Search league or team"
-          aria-label="Search league or team"
+          :placeholder="translate('Search league or team')"
+          :aria-label="translate('Search league or team')"
         >
       </label>
       <Sort
@@ -243,12 +244,12 @@ const toggleCollapseAll = (): void => {
       />
       <Collapse
         :model-value="allCollapsed"
-        title="Collapse all matches"
+        :title="translate('Collapse all matches')"
         @toggle="toggleCollapseAll"
       />
     </div>
 
-    <div v-if="displayedTimeFilters.length" class="sports-time-filters flex flex-wrap gap-1" aria-label="Filter upcoming matches by start time">
+    <div v-if="displayedTimeFilters.length" class="sports-time-filters flex flex-wrap gap-1" :aria-label="translate('Filter upcoming matches by start time')">
       <button
         v-for="filter in displayedTimeFilters"
         :key="filter"
@@ -258,13 +259,13 @@ const toggleCollapseAll = (): void => {
         :aria-pressed="selectedTimeFilter === filter"
         @click="selectTimeFilter(filter)"
       >
-        {{ filter.replace('hours', 'hours') }}
+        {{ translate(filter) }}
       </button>
     </div>
 
     <div v-if="!isPopular" class="section-heading">
-      <h2>Upcoming</h2>
-      <span>{{ filteredEvents.length }} events · Philippine time</span>
+      <h2>{{ translate('Upcoming') }}</h2>
+      <span>{{ filteredEvents.length }} {{ translate('events') }}</span>
     </div>
 
     <SportsSkeleton v-if="loading" :cols="oddsCols" />
@@ -315,11 +316,11 @@ const toggleCollapseAll = (): void => {
     <div v-else class="empty">
       <img
         src="/images/empty/no-events.webp"
-        alt="No upcoming events"
+        :alt="translate('No upcoming events')"
         class="h-auto w-full max-w-[200px] object-contain"
       />
-      <h2>No upcoming events</h2>
-      <p>Try another league or check back later.</p>
+      <h2>{{ translate('No upcoming events') }}</h2>
+      <p>{{ translate('Try another league or check back later.') }}</p>
     </div>
   </div>
 </template>

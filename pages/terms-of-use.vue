@@ -2,11 +2,11 @@
 import LegalPageShell from '~/components/legal/LegalPageShell.vue'
 
 useAppSeo({
-  title: 'Terms of Use & Player Service Agreement | 2Bet Platform',
-  description: 'Read the official 2Bet Terms of Use. Review player account rules, wagering standards, verification requirements, and responsible gaming compliance terms.',
+  title: 'Termos de Uso e Regulamento Geral da Plataforma | 2bet',
+  description: 'Leia os Termos de Uso da 2bet Brasil. Regras transparentes sobre cadastro de contas, depósitos, retiradas de saldo e participação em jogos.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Terms of Use', path: '/terms-of-use' },
+    { name: 'Início', path: '/' },
+    { name: 'Termos de Uso', path: '/terms-of-use' },
   ],
 })
 </script>

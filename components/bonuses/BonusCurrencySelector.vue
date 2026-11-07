@@ -4,12 +4,13 @@ import { BONUS_CURRENCIES, getBonusCurrency } from '~/data/bonus-currencies'
 
 const props = withDefaults(defineProps<{ modelValue?: string }>(), { modelValue: 'all' })
 const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
+const { translate } = useSitePreferences()
 
 const isOpen = ref(false)
 const trigger = ref<HTMLButtonElement | null>(null)
 const dialog = ref<HTMLDivElement | null>(null)
 const titleId = useId()
-const triggerCurrency = computed(() => getBonusCurrency(props.modelValue === 'all' ? 'USDT' : props.modelValue))
+const triggerCurrency = computed(() => getBonusCurrency(props.modelValue === 'all' ? 'BRL' : props.modelValue))
 let previousOverflow = ''
 let scrollLocked = false
 
@@ -96,12 +97,12 @@ onBeforeUnmount(() => {
         :aria-labelledby="titleId"
       >
         <div class="bonus-currency-dialog__header">
-          <h2 :id="titleId">Currency</h2>
-          <button class="bonus-currency-dialog__close" type="button" aria-label="Close currency selector" @click="close">
+          <h2 :id="titleId">{{ translate('Currency') }}</h2>
+          <button class="bonus-currency-dialog__close" type="button" :aria-label="translate('Close currency selector')" @click="close">
             <X :size="18" aria-hidden="true" />
           </button>
         </div>
-        <div class="bonus-currency-options" role="group" aria-label="Bonus currencies">
+        <div class="bonus-currency-options" role="group" :aria-label="translate('Bonus currencies')">
           <button
             v-for="currency in BONUS_CURRENCIES"
             :key="currency.code"
@@ -110,8 +111,8 @@ onBeforeUnmount(() => {
             :aria-pressed="modelValue === currency.code"
             @click="selectCurrency(currency.code)"
           >
-            <img :src="currency.icon" alt="" width="24" height="24" aria-hidden="true">
-            <span>{{ currency.label }}</span>
+            <img :src="currency.icon" :alt="translate(currency.label)" width="24" height="24">
+            <span>{{ translate(currency.label) }}</span>
           </button>
         </div>
       </div>

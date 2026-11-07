@@ -14,6 +14,7 @@ const emit = defineEmits<{
   (e: 'ok'): void
 }>()
 
+const { translate } = useSiteLocale()
 const dialog = ref<HTMLDialogElement | null>(null)
 let previousOverflow = ''
 
@@ -52,18 +53,18 @@ onBeforeUnmount(() => {
     >
       <div class="reminder-content">
         <div class="reminder-symbol" aria-hidden="true">!</div>
-        <h2 id="reminder-title">{{ title }}</h2>
+        <h2 id="reminder-title">{{ translate(title) }}</h2>
         <p id="reminder-description">
           <template v-if="message.includes('\n')">
             <span v-for="(line, idx) in message.split('\n')" :key="idx" class="block">
-              {{ line }}
+              {{ translate(line) }}
             </span>
           </template>
           <template v-else>
-            {{ message }}
+            {{ translate(message) }}
           </template>
         </p>
-        <button type="button" autofocus @click="handleOk">OK</button>
+        <button type="button" autofocus @click="handleOk">{{ translate('OK') }}</button>
       </div>
     </dialog>
   </Teleport>

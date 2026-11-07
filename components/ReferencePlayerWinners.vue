@@ -51,8 +51,10 @@ const formatWinnerDate = (date = new Date()): string => {
   return `${day}-${month} ${hours}:${minutes}`
 }
 
+const { translate } = useSiteLocale()
+
 const generateWinnerAmount = (): string => {
-  return generateWinnerWinning(100, 1000)
+  return generateWinnerWinning(100, 1000, 'BRL')
 }
 
 const generateNewWinner = (): HomepageWinner => {
@@ -124,13 +126,13 @@ onBeforeUnmount(() => {
 <template>
   <section class="player-winners" aria-labelledby="player-winners-title">
     <header class="player-winners__header">
-      <h3 id="player-winners-title">Player Winners</h3>
+      <h3 id="player-winners-title">{{ translate('Player Winners') }}</h3>
       <div class="player-winners__actions">
-        <NuxtLink to="/explore/egames/jackpot/all">View All</NuxtLink>
+        <NuxtLink to="/explore/egames/jackpot/all">{{ translate('View All') }}</NuxtLink>
         <button
           type="button"
           class="winner-motion-toggle"
-          :aria-label="isPaused ? 'Resume player winners' : 'Pause player winners'"
+          :aria-label="isPaused ? translate('Resume player winners') : translate('Pause player winners')"
           :aria-pressed="isPaused"
           @click="isPaused = !isPaused"
         >

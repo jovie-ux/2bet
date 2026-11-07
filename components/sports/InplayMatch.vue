@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 import { Share2, Star, Lock } from 'lucide-vue-next'
 import MatchVideoThumbnail from './MatchVideoThumbnail.vue'
 import type { SportsEvent } from '~/types/sports'

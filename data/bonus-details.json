@@ -1,16 +1,18 @@
 {
   "schemaVersion": 1,
   "records": {
-    "share-and-earn": {
-      "id": "share-and-earn",
-      "slug": "share-and-earn",
-      "title": "分享賺錢計劃",
-      "subtitle": "一鍵分享，持續分紅",
-      "seoTitle": "分享賺錢計劃 — USDT 分享獎勵 | 2bet",
-      "seoDesc": "透過2bet專屬邀請連結分享賺錢，下級產生有效流水即可按比例獲得分紅提成。",
-      "period": "2026-04-01 12:00:00 - 2026-12-31 12:00:00 (GMT+08:00)",
+    "programa_vip": {
+      "id": "programa_vip",
+      "slug": "programa_vip",
+      "innerIcon": "/icons/promotions/megaphone.svg",
+      "title": "PROGRAMA VIP",
+      "subtitle": "Cashback exclusivo · Bônus por evolução de nível · Benefícios mensais exclusivos",
+      "language": "pt-BR",
+      "seoTitle": "Programa VIP — Cashback e Benefícios em BRL | 2bet",
+      "seoDesc": "Conheça o Programa VIP em BRL da 2bet: taxas de rebate de VIP0 a VIP10, bônus por evolução de nível, benefícios mensais e bônus de aniversário.",
+      "period": "2026-10-29 12:00:00 - 2027-01-01 11:59:59 (GMT+08:00)",
       "paymentMethods": [
-        "USDT"
+        "BRL"
       ],
       "accentColor": "#019440",
       "showRequirements": false,
@@ -21,15 +23,445 @@
         }
       ],
       "eventContent": {
-        "description": "進入2bet平台，點選「我的」（會員中心）→「分享賺錢」，即可透過專屬邀請連結開啟收益之路；只需您的下級產生有效流水，即可按比例獲得分紅提成。",
+        "description": "Cada aposta válida sua acumula recompensas exclusivas.",
+        "descriptionTone": "white",
+        "vipTableVariant": "program",
+        "vipTableLabels": {
+          "rate": "Rebate %",
+          "liveCasino": "Live",
+          "unlimited": "Ilimitado",
+          "note": "📌 Obs.: O rebate de Esportes e Cassino ao Vivo não tem limite. Os limites diários de rebate para Slots, eSports e Jogos de Mesa seguem a tabela VIP acima.",
+          "benefitsTitle": "Benefícios VIP",
+          "turnover": "Volume de apostas",
+          "upgradeBonus": "Bônus de promoção",
+          "monthlyBonus": "Bônus mensal",
+          "birthdayBonus": "Bônus de aniversário"
+        },
+        "vipRebates": [
+          {
+            "level": "VIP0",
+            "sports": "0,20%",
+            "liveCasino": "0,20%",
+            "slots": "0,45%",
+            "esports": "0,25%",
+            "tableGames": "0,40%",
+            "dailyCap": "R$ 88"
+          },
+          {
+            "level": "VIP1",
+            "sports": "0,25%",
+            "liveCasino": "0,20%",
+            "slots": "0,50%",
+            "esports": "0,30%",
+            "tableGames": "0,45%",
+            "dailyCap": "R$ 188"
+          },
+          {
+            "level": "VIP2",
+            "sports": "0,25%",
+            "liveCasino": "0,25%",
+            "slots": "0,55%",
+            "esports": "0,35%",
+            "tableGames": "0,50%",
+            "dailyCap": "R$ 288"
+          },
+          {
+            "level": "VIP3",
+            "sports": "0,30%",
+            "liveCasino": "0,30%",
+            "slots": "0,60%",
+            "esports": "0,40%",
+            "tableGames": "0,55%",
+            "dailyCap": "R$ 588"
+          },
+          {
+            "level": "VIP4",
+            "sports": "0,35%",
+            "liveCasino": "0,35%",
+            "slots": "0,65%",
+            "esports": "0,45%",
+            "tableGames": "0,60%",
+            "dailyCap": "R$ 888"
+          },
+          {
+            "level": "VIP5",
+            "sports": "0,40%",
+            "liveCasino": "0,40%",
+            "slots": "0,70%",
+            "esports": "0,50%",
+            "tableGames": "0,65%",
+            "dailyCap": "R$ 1.888"
+          },
+          {
+            "level": "VIP6",
+            "sports": "0,45%",
+            "liveCasino": "0,45%",
+            "slots": "0,75%",
+            "esports": "0,55%",
+            "tableGames": "0,70%",
+            "dailyCap": "R$ 3.888"
+          },
+          {
+            "level": "VIP7",
+            "sports": "0,55%",
+            "liveCasino": "0,55%",
+            "slots": "0,80%",
+            "esports": "0,60%",
+            "tableGames": "0,75%",
+            "dailyCap": "R$ 5.888"
+          },
+          {
+            "level": "VIP8",
+            "sports": "0,70%",
+            "liveCasino": "0,70%",
+            "slots": "0,85%",
+            "esports": "0,65%",
+            "tableGames": "0,80%",
+            "dailyCap": "R$ 8.888"
+          },
+          {
+            "level": "VIP9",
+            "sports": "0,85%",
+            "liveCasino": "0,75%",
+            "slots": "0,90%",
+            "esports": "0,70%",
+            "tableGames": "0,90%",
+            "dailyCap": "R$ 18.888"
+          },
+          {
+            "level": "VIP10",
+            "sports": "1,00%",
+            "liveCasino": "0,80%",
+            "slots": "1,00%",
+            "esports": "0,80%",
+            "tableGames": "1,00%",
+            "dailyCap": "R$ 28.888"
+          }
+        ],
+        "vipBenefits": [
+          {
+            "level": "VIP1",
+            "turnover": "1.000",
+            "upgradeBonus": "8",
+            "monthlyRedPacket": "8",
+            "birthdayBonus": "10"
+          },
+          {
+            "level": "VIP2",
+            "turnover": "5.000",
+            "upgradeBonus": "18",
+            "monthlyRedPacket": "18",
+            "birthdayBonus": "20"
+          },
+          {
+            "level": "VIP3",
+            "turnover": "20.000",
+            "upgradeBonus": "28",
+            "monthlyRedPacket": "28",
+            "birthdayBonus": "30"
+          },
+          {
+            "level": "VIP4",
+            "turnover": "80.000",
+            "upgradeBonus": "58",
+            "monthlyRedPacket": "38",
+            "birthdayBonus": "70"
+          },
+          {
+            "level": "VIP5",
+            "turnover": "300.000",
+            "upgradeBonus": "88",
+            "monthlyRedPacket": "58",
+            "birthdayBonus": "100"
+          },
+          {
+            "level": "VIP6",
+            "turnover": "1.000.000",
+            "upgradeBonus": "288",
+            "monthlyRedPacket": "128",
+            "birthdayBonus": "300"
+          },
+          {
+            "level": "VIP7",
+            "turnover": "3.000.000",
+            "upgradeBonus": "588",
+            "monthlyRedPacket": "388",
+            "birthdayBonus": "700"
+          },
+          {
+            "level": "VIP8",
+            "turnover": "10.000.000",
+            "upgradeBonus": "1.888",
+            "monthlyRedPacket": "888",
+            "birthdayBonus": "2.000"
+          },
+          {
+            "level": "VIP9",
+            "turnover": "50.000.000",
+            "upgradeBonus": "6.888",
+            "monthlyRedPacket": "2.888",
+            "birthdayBonus": "7.000"
+          },
+          {
+            "level": "VIP10",
+            "turnover": "200.000.000",
+            "upgradeBonus": "18.888",
+            "monthlyRedPacket": "8.888",
+            "birthdayBonus": "20.000"
+          }
+        ]
+      },
+      "promotionTerms": "1. Same IP is not applicable",
+      "rules": [
+        "O rebate diário é calculado com base no volume de apostas válidas realizado durante o dia e creditado na conta do usuário no dia seguinte.",
+        "Apenas apostas válidas e liquidadas serão consideradas para o cálculo do rebate. Apostas canceladas, inválidas, reembolsadas ou empatadas não serão contabilizadas.",
+        "As taxas de rebate e os pontos de experiência VIP variam de acordo com a categoria do jogo, conforme anunciado na plataforma.",
+        "É proibido realizar apostas de arbitragem, manipular apostas, abusar de promoções ou praticar qualquer atividade irregular. Caso seja identificada alguma irregularidade, a plataforma poderá cancelar o rebate, os benefícios promocionais e a elegibilidade do usuário.",
+        "Cada usuário poderá utilizar apenas uma conta. Contas duplicadas ou relacionadas poderão perder o direito ao rebate e a outros benefícios promocionais.",
+        "A 2bet reserva-se o direito de interpretar, alterar, suspender ou encerrar esta promoção sem aviso prévio."
+      ],
+      "rulesStyle": "plain",
+      "hasJoinButton": false
+    },
+    "seu_primeiro_deposito": {
+      "id": "seu_primeiro_deposito",
+      "slug": "seu_primeiro_deposito",
+      "innerIcon": "/icons/promotions/first-deposit.svg",
+      "title": "Seu Primeiro Depósito Vale Mais!",
+      "subtitle": "Aproveite seu bônus de boas-vindas de até R$ 10 mil na 2bet!",
+      "language": "pt-BR",
+      "seoTitle": "Bônus de Primeiro Depósito de até R$ 10 Mil | 2bet",
+      "seoDesc": "Confira os requisitos do bônus de primeiro depósito em BRL na 2bet: depósitos via Pix, recompensas de até R$ 10 mil e regras da promoção.",
+      "period": "2026-10-30 12:00:00 - 2027-01-01 11:59:59 (GMT+08:00)",
+      "paymentMethods": [
+        "BRL"
+      ],
+      "iconType": "deposit",
+      "accentColor": "#019440",
+      "showRequirements": false,
+      "qualifications": [
+        {
+          "label": "Registration Platform",
+          "value": "PC、Mobile、App Sport"
+        }
+      ],
+      "eventContent": {
+        "badge": "First Deposit",
+        "description": "Members making their first deposit and meeting the promotional requirements will receive special rewards.",
+        "descriptionParts": [
+          {
+            "text": "Members making their first deposit and meeting the promotional requirements",
+            "highlighted": true
+          },
+          {
+            "text": " will receive special rewards."
+          }
+        ],
+        "methodCard": {
+          "title": "Deposit Method for Promotion Participation",
+          "content": "Pix"
+        },
+        "tables": [
+          {
+            "variant": "filled",
+            "accentColor": "#019440",
+            "highlightColumns": [
+              "rewardMethod",
+              "quota"
+            ],
+            "columns": [
+              {
+                "key": "depositThreshold",
+                "label": "Deposit Threshold"
+              },
+              {
+                "key": "rewardMethod",
+                "label": "Reward Method"
+              },
+              {
+                "key": "quota",
+                "label": "Quota"
+              }
+            ],
+            "rows": [
+              { "depositThreshold": "20 ~ 99", "rewardMethod": "Bonus", "quota": 5 },
+              { "depositThreshold": "100 ~ 499", "rewardMethod": "Bonus", "quota": 10 },
+              { "depositThreshold": "500 ~ 999", "rewardMethod": "Bonus", "quota": 30 },
+              { "depositThreshold": "1000 ~ 4999", "rewardMethod": "Bonus", "quota": 50 },
+              { "depositThreshold": "5000 ~ 9999", "rewardMethod": "Bonus", "quota": 300 },
+              { "depositThreshold": "10000 ~ 49999", "rewardMethod": "Bonus", "quota": 600 },
+              { "depositThreshold": "50000 ~ 99999", "rewardMethod": "Bonus", "quota": 1200 },
+              { "depositThreshold": "100000 ~ 499999", "rewardMethod": "Bonus", "quota": 2000 },
+              { "depositThreshold": "Above 500000", "rewardMethod": "Bonus", "quota": 10000 }
+            ]
+          }
+        ]
+      },
+      "promotionTerms": "1. Não aplicável para contas com o mesmo endereço IP",
+      "rules": [
+        "Promoção válida apenas para o primeiro depósito do membro.",
+        "O bônus será creditado automaticamente após a confirmação do depósito.",
+        "O valor do depósito deve atingir o mínimo exigido para cada faixa de bônus.",
+        "Cada membro poderá participar desta promoção apenas uma vez.",
+        "A plataforma reserva-se o direito de cancelar bônus em caso de fraude, abuso ou violação das regras da promoção."
+      ],
+      "rulesStyle": "plain",
+      "withdrawalTerms": "The winnings obtained through this event must be 5 times the bonus denomination before withdrawal can be made.",
+      "hasJoinButton": true
+    },
+    "share-and-earn": {
+      "id": "share-and-earn",
+      "slug": "share-and-earn",
+      "innerIcon": "/icons/promotions/megaphone.svg",
+      "title": "Programa Compartilhe e Ganhe",
+      "subtitle": "Compartilhe com um clique, receba comissões contínuas",
+      "language": "pt-BR",
+      "seoTitle": "Programa Compartilhe e Ganhe — Comissões de Convite | 2bet",
+      "seoDesc": "Compartilhe seu link exclusivo de convite na 2bet Brasil e receba comissões contínuas sobre o volume de apostas válidas dos indicados.",
+      "period": "2026-04-01 12:00:00 - 2026-12-31 12:00:00 (GMT-03:00)",
+      "paymentMethods": [
+        "BRL",
+        "USDT"
+      ],
+      "accentColor": "#019440",
+      "showRequirements": false,
+      "qualifications": [
+        {
+          "label": "Plataforma de Registro",
+          "value": "PC, Mobile, App Esportes"
+        }
+      ],
+      "eventContent": {
+        "badge": "Compartilhe e Ganhe",
+        "description": "Acesse a plataforma 2bet, clique em 'Meu' (Central do Usuário) → 'Compartilhe e Ganhe' para iniciar sua jornada de lucros através do seu link exclusivo de convite. Basta que seus indicados gerem apostas válidas para você receber comissões proporcionais continuamente.",
+        "descriptionParts": [
+          {
+            "text": "Acesse a plataforma 2bet, clique em 'Meu' (Central do Usuário) → 'Compartilhe e Ganhe'",
+            "highlighted": true
+          },
+          {
+            "text": " para iniciar sua jornada de lucros através do seu link exclusivo de convite. Basta que seus indicados gerem apostas válidas para você receber comissões proporcionais continuamente."
+          }
+        ],
         "descriptionTone": "white"
       },
       "rules": [
-        "本活動僅限於2bet註冊會員參與。",
-        "各項活動之領取時間請依對應活動規則為準，逾期視為自動放棄，恕不補發。",
-        "如發現任何用戶或團體以不正當方式獲取利益，本平台有權在不另行通知的情況下，凍結或關閉相關帳戶，並不予退還任何款項。",
-        "每位玩家、同一IP位址、同一電子郵件地址，或共用設備／網路環境（如網吧或其他公共電腦），僅限享有一次優惠資格。",
-        "凡參與2bet任何優惠活動，即視為已同意並接受本平台所有活動規則與條款；本平台保留活動最終解釋權，並有權隨時調整、修改或終止本活動。"
+        "Esta promoção é válida exclusivamente para membros cadastrados na plataforma 2bet.",
+        "Os prazos para resgate de cada promoção seguem as regras específicas do evento; após o vencimento, o benefício será cancelado automaticamente sem compensação.",
+        "Caso seja identificado qualquer usuário ou grupo obtendo vantagens por meios fraudulentos ou irregulares, a 2bet reserva-se o direito de congelar ou encerrar as contas vinculadas e reter quaisquer saldos sem aviso prévio.",
+        "Cada jogador, endereço IP, e-mail, dispositivo ou ambiente de rede compartilhada (como lan houses ou computadores públicos) tem direito a participar apenas uma vez.",
+        "A participação em qualquer promoção da 2bet implica na aceitação integral de todos os termos e condições. A 2bet reserva-se o direito de alterar, suspender ou encerrar este evento a qualquer momento."
+      ],
+      "rulesStyle": "plain",
+      "hasJoinButton": false
+    },
+    "bonus_diario_de_recuperacao": {
+      "id": "bonus_diario_de_recuperacao",
+      "slug": "bonus_diario_de_recuperacao",
+      "innerIcon": "/icons/promotions/megaphone.svg",
+      "title": "BÔNUS DIÁRIO DE RECUPERAÇÃO",
+      "subtitle": "Receba bônus todos os dias e aproveite até R$ 18.888!",
+      "language": "pt-BR",
+      "seoTitle": "Bônus Diário de Recuperação de até R$ 18.888 | 2bet",
+      "seoDesc": "Aproveite o Bônus Diário de Recuperação na 2bet Brasil: receba até R$ 18.888 de cashback sobre suas perdas líquidas diárias no cassino.",
+      "period": "2026-10-31 12:00:00 - 2027-01-01 11:59:59 (GMT+08:00)",
+      "paymentMethods": [
+        "BRL"
+      ],
+      "iconType": "loss",
+      "accentColor": "#019440",
+      "showRequirements": false,
+      "qualifications": [
+        {
+          "label": "Registration Platform",
+          "value": "PC、Mobile、App Sport"
+        }
+      ],
+      "eventContent": {
+        "description": "🍀 Not your lucky day today? Don't worry! Join our Daily Recovery Bonus promotion and receive up to R$ 18,888 to boost your chances in your next round of betting!",
+        "tables": [
+          {
+            "subHeaderTitle": "Recovery Bonus Tiers",
+            "variant": "outline",
+            "accentColor": "#429bdb",
+            "compact": true,
+            "columns": [
+              {
+                "key": "lossAmount",
+                "label": "Loss Amount (R$)",
+                "width": "50%"
+              },
+              {
+                "key": "recoveryBonus",
+                "label": "Recovery Bonus (R$)",
+                "width": "50%"
+              }
+            ],
+            "rows": [
+              {
+                "lossAmount": "100",
+                "recoveryBonus": "2"
+              },
+              {
+                "lossAmount": "300",
+                "recoveryBonus": "8"
+              },
+              {
+                "lossAmount": "500",
+                "recoveryBonus": "18"
+              },
+              {
+                "lossAmount": "1.000",
+                "recoveryBonus": "38"
+              },
+              {
+                "lossAmount": "3.000",
+                "recoveryBonus": "58"
+              },
+              {
+                "lossAmount": "5.000",
+                "recoveryBonus": "88"
+              },
+              {
+                "lossAmount": "10.000",
+                "recoveryBonus": "188"
+              },
+              {
+                "lossAmount": "30.000",
+                "recoveryBonus": "388"
+              },
+              {
+                "lossAmount": "50.000",
+                "recoveryBonus": "888"
+              },
+              {
+                "lossAmount": "100.000",
+                "recoveryBonus": "1.888"
+              },
+              {
+                "lossAmount": "300.000",
+                "recoveryBonus": "3.888"
+              },
+              {
+                "lossAmount": "500.000",
+                "recoveryBonus": "5.888"
+              },
+              {
+                "lossAmount": "1.000.000",
+                "recoveryBonus": "18.888"
+              }
+            ],
+            "footnote": "📌 Loss amounts are calculated by tier according to the criteria specified in the table"
+          }
+        ]
+      },
+      "promotionTerms": "1. Same IP is not applicable",
+      "rules": [
+        "Apenas apostas válidas serão consideradas. Apostas canceladas, inválidas ou reembolsadas não serão contabilizadas como perdas.",
+        "Membros com perdas acumuladas superiores a R$ 100 no dia terão direito ao bônus de recuperação.",
+        "O bônus será calculado com base no valor total das perdas diárias e na respectiva faixa de bônus.",
+        "Cada conta poderá receber o bônus apenas uma vez por dia. Após atender aos requisitos, entre em contato com o atendimento ao cliente para solicitar o bônus.",
+        "O bônus de recuperação exige rollover de 8x antes que o saque possa ser realizado."
       ],
       "rulesStyle": "plain",
       "hasJoinButton": false
@@ -37,11 +469,13 @@
     "vip-privileges": {
       "id": "vip-privileges",
       "slug": "vip-privileges",
-      "title": "VIP特權體系",
-      "subtitle": "穩定回報・持續升級・專屬禮遇",
-      "seoTitle": "VIP特權體系 — USDT 返水與升級福利 | 2bet",
-      "seoDesc": "查看2bet USDT VIP特權體系的VIP0至VIP10返水比例、每日上限、升級福利及活動規則。",
-      "period": "2026-03-01 12:00:00 - 2026-12-31 12:00:00 (GMT+08:00)",
+      "innerIcon": "/icons/promotions/megaphone.svg",
+      "title": "Sistema de Privilégios VIP",
+      "subtitle": "Recompensas Estáveis · Evolução Contínua · Benefícios Exclusivos",
+      "language": "pt-BR",
+      "seoTitle": "Privilégios do Clube VIP — Cashback e Benefícios Exclusivos | 2bet",
+      "seoDesc": "Confira o sistema de benefícios do Clube VIP na 2bet Brasil: cashback diário de VIP0 a VIP10, limites de saque e suporte exclusivo.",
+      "period": "2026-03-01 12:00:00 - 2026-12-31 12:00:00 (GMT-03:00)",
       "paymentMethods": [
         "USDT"
       ],
@@ -49,12 +483,17 @@
       "showRequirements": false,
       "qualifications": [
         {
-          "label": "Registration Platform",
-          "value": "PC、Mobile、App Sport"
+          "label": "Plataforma de Registro",
+          "value": "PC, Mobile, App Esportes"
         }
       ],
       "eventContent": {
-        "description": "你的每一筆有效投注，都在累積專屬回報。",
+        "description": "Cada aposta válida realizada na 2bet acumula recompensas exclusivas e acelera sua evolução no Clube VIP.",
+        "descriptionParts": [
+          {
+            "text": "Cada aposta válida que você faz acumula recompensas exclusivas."
+          }
+        ],
         "descriptionTone": "white",
         "vipRebates": [
           {
@@ -230,14 +669,14 @@
           }
         ]
       },
-      "promotionTerms": "1. Same IP is not applicable",
+      "promotionTerms": "1. Não aplicável para contas com o mesmo endereço IP",
       "rules": [
-        "每日返水將依會員當日有效投注額計算，並於次日自動派發至會員帳戶。",
-        "僅已結算之有效投注納入返水計算，取消、無效、退款及和局投注不計入。",
-        "不同遊戲類別適用不同返水比例及 VIP 成長值，以平台公告為準。",
-        "平台嚴禁任何對沖、套利、濫用優惠或其他異常投注行為。一經查實，平台有權取消返水、優惠及相關資格。",
-        "每位會員僅限持有一個帳號參與活動，重複或關聯帳號將被取消活動資格。",
-        "2bet 保留本活動之最終解釋權，並有權隨時修改、暫停或終止本活動，恕不另行通知。"
+        "O cashback diário é calculado com base no volume total de apostas válidas do membro no dia e creditado automaticamente na conta no dia seguinte.",
+        "Apenas apostas válidas e liquidadas entram no cálculo do cashback. Apostas canceladas, anuladas, reembolsadas ou com resultado de empate não são contabilizadas.",
+        "Diferentes categorias de jogos possuem diferentes porcentagens de cashback e pontuação VIP, conforme as tabelas oficiais da plataforma.",
+        "É terminantemente proibida qualquer prática de hedging (apostas opostas), arbitragem, conluio ou abuso de bônus. Em caso de irregularidade, a plataforma revogará o cashback e os privilégios associados.",
+        "Cada membro pode manter apenas uma conta ativa. Contas duplicadas ou vinculadas serão desqualificadas imediatamente da promoção.",
+        "A 2bet reserva-se o direito de interpretação final sobre este evento, podendo ajustar, suspender ou encerrar a promoção a qualquer momento sem aviso prévio."
       ],
       "rulesStyle": "plain",
       "hasJoinButton": false

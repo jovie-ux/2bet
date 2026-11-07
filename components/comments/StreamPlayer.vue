@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { LiveStream } from '~/types/livestream'
+import ByBetSpinner from '~/components/ByBetSpinner.vue'
 
 const props = defineProps<{ sources: NonNullable<LiveStream['sources']>; preview?: boolean; compact?: boolean }>()
 const emit = defineEmits<{ ended: []; unavailable: [] }>()
@@ -18,6 +19,9 @@ watch([video, () => JSON.stringify(props.sources)], async ([element], _, onClean
     element.onended = null
     element.onerror = null
     element.onloadeddata = null
+    element.onwaiting = null
+    element.onplaying = null
+    element.oncanplay = null
     disposePlayer()
     disposePlayer = () => {}
     element.removeAttribute('src')
@@ -73,6 +77,18 @@ watch([video, () => JSON.stringify(props.sources)], async ([element], _, onClean
         if (props.preview) element!.pause()
         state.value = 'ready'
       }
+      element!.onwaiting = () => {
+        if (cancelled || currentAttempt !== attempt) return
+        state.value = 'loading'
+      }
+      element!.onplaying = () => {
+        if (cancelled || currentAttempt !== attempt) return
+        state.value = 'ready'
+      }
+      element!.oncanplay = () => {
+        if (cancelled || currentAttempt !== attempt) return
+        state.value = 'ready'
+      }
       timer = setTimeout(fail, 15000)
       try {
         if (source.type === 'flv') {
@@ -106,7 +122,7 @@ watch([video, () => JSON.stringify(props.sources)], async ([element], _, onClean
   <div class="relative h-full w-full bg-black">
     <video ref="video" :controls="!preview" :autoplay="!preview" muted playsinline preload="auto" class="h-full w-full object-contain" aria-label="Live sports stream" />
     <div v-if="state !== 'ready' && !compact" class="pointer-events-none absolute inset-0 flex items-center justify-center bg-[#14261d] px-5 text-center text-sm text-white/70" role="status">
-      <ByBetSpinner v-if="state === 'loading'" size="sm" label="Loading live stream…" theme="dark" />
+      <ByBetSpinner v-if="state === 'loading'" size="md" theme="dark" />
       <span v-else>Stream unavailable</span>
     </div>
   </div>

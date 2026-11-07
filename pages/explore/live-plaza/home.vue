@@ -19,11 +19,11 @@ const popularGameSortOptions: Array<{ value: PopularGameSort; label: string }> =
 ]
 
 useAppSeo({
-  title: 'Live Plaza — Popular Games & Expert Predictions | 2Bet',
-  description: 'Explore 2Bet Live Plaza for trending sports broadcasts, expert game predictions, verified hit rates, and real-time community betting discussions.',
+  title: 'Praça ao Vivo — Dicas de Apostas e Transmissões | 2bet',
+  description: 'Acompanhe palpites esportivos e assista a transmissões na Praça ao Vivo da 2bet Brasil. Dicas de tipsters qualificados e muita emoção.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Live Plaza', path: '/explore/live-plaza/home' },
+    { name: 'Início', path: '/' },
+    { name: 'Praça ao Vivo', path: '/explore/live-plaza/home' },
   ],
   schema: {
     '@context': 'https://schema.org',
@@ -34,7 +34,9 @@ useAppSeo({
 })
 
 const { showDemoMessage } = useDemoInteraction()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { translate } = useSitePreferences()
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 const redirectTo2Bet = (): void => {
   void navigateTo(bybetRedirectUrl, { external: true })
@@ -149,14 +151,13 @@ onBeforeUnmount(() => {
     <SeoHeader
       sticky
       title="Live Plaza"
-      description="Live Plaza on 2Bet Philippines. Real-time game streaming, popular matches, and expert sports predictions."
       :show-back="false"
       :show-flag="false"
     />
 
     <section class="popular-panel" aria-labelledby="popular-games-title">
       <div class="panel-heading">
-        <h2 id="popular-games-title">Popular Games</h2>
+        <h2 id="popular-games-title">{{ translate('Popular Games') }}</h2>
         <div ref="popularSortControl" class="popular-sort-control">
           <button
             ref="popularSortButton"
@@ -168,7 +169,7 @@ onBeforeUnmount(() => {
             aria-controls="popular-game-sort-menu"
             @click.stop="togglePopularSortMenu"
           >
-            <span>{{ selectedPopularSortLabel }}</span>
+            <span>{{ translate(selectedPopularSortLabel) }}</span>
             <MoreHorizontal :size="15" aria-hidden="true" />
           </button>
 
@@ -178,9 +179,9 @@ onBeforeUnmount(() => {
               id="popular-game-sort-menu"
               class="popular-sort-menu"
               role="menu"
-              aria-label="Sort popular games"
+              :aria-label="translate('Sort popular games')"
             >
-              <span class="popular-sort-menu__label">Sort</span>
+              <span class="popular-sort-menu__label">{{ translate('Sort') }}</span>
               <div class="popular-sort-menu__options">
                 <button
                   v-for="option in popularGameSortOptions"
@@ -192,7 +193,7 @@ onBeforeUnmount(() => {
                   :aria-checked="popularGameSort === option.value"
                   @click="selectPopularGameSort(option.value)"
                 >
-                  {{ option.label }}
+                  {{ translate(option.label) }}
                 </button>
               </div>
             </div>
@@ -215,7 +216,7 @@ onBeforeUnmount(() => {
           >
             <span class="popular-game__topline">
               <span class="popular-game__meta">{{ game.date }} {{ game.time }}&nbsp; {{ game.league }}</span>
-              <span class="popular-game__predict">Predict {{ game.predictCount }}</span>
+              <span class="popular-game__predict">{{ translate('Predict') }} {{ game.predictCount }}</span>
             </span>
 
             <span class="popular-game__teams">
@@ -234,7 +235,7 @@ onBeforeUnmount(() => {
         <button
           type="button"
           class="popular-games-next"
-          aria-label="Show more popular games"
+          :aria-label="translate('Show more popular games')"
           @click="scrollCarousel"
         >
           <ChevronRight :size="16" :stroke-width="2.5" />
@@ -245,9 +246,9 @@ onBeforeUnmount(() => {
     <section class="predictions-block" aria-labelledby="expert-predictions-title">
       <div class="predictions-toolbar">
         <div class="panel-heading">
-          <h2 id="expert-predictions-title">Expert Predictions</h2>
+          <h2 id="expert-predictions-title">{{ translate('Expert Predictions') }}</h2>
           <button type="button" class="panel-action" @click="togglePredictionSort">
-            <span>Win Streak</span>
+            <span>{{ translate('Win Streak') }}</span>
             <MoreHorizontal :size="15" aria-hidden="true" />
           </button>
         </div>
@@ -258,12 +259,12 @@ onBeforeUnmount(() => {
       </div>
 
       <div v-if="predictionStatus === 'pending'" class="predictions-empty">
-        Loading expert predictions…
+        {{ translate('Loading expert predictions…') }}
       </div>
 
       <div v-else-if="predictionError" class="predictions-empty predictions-empty--error">
-        <span>Expert predictions are temporarily unavailable.</span>
-        <button type="button" @click="refreshPredictions()">Try again</button>
+        <span>{{ translate('Expert predictions are temporarily unavailable.') }}</span>
+        <button type="button" @click="refreshPredictions()">{{ translate('Try again') }}</button>
       </div>
 
       <div v-else-if="filteredPredictions.length" class="predictions-grid">
@@ -278,7 +279,7 @@ onBeforeUnmount(() => {
       </div>
 
       <div v-else class="predictions-empty">
-        No predictions are available right now.
+        {{ translate('No predictions are available right now.') }}
       </div>
     </section>
   </div>

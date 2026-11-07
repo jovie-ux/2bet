@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Cookie Policy — Web Tracking & Privacy Standards | 2Bet',
-  description: 'Read how 2Bet uses cookies and similar technologies to enhance browsing speed, secure user sessions, and deliver a personalized gaming experience.',
+  title: 'Política de Cookies e Diretrizes de Navegação Segura | 2bet',
+  description: 'Entenda como os cookies são utilizados na 2bet Brasil para otimizar sua experiência de navegação, segurança de login e personalização.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
+    { name: 'Início', path: '/' },
     { name: 'Legal', path: '/explore/legal/general-terms' },
-    { name: 'Cookie Policy', path: '/explore/legal/cookie-policy' },
+    { name: 'Política de Cookies', path: '/explore/legal/cookie-policy' },
   ],
 })
 </script>

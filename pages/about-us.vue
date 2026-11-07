@@ -2,18 +2,18 @@
 import LegalPageShell from '~/components/legal/LegalPageShell.vue'
 
 useAppSeo({
-  title: 'About Us — Online Sports & Casino Gaming | 2Bet',
-  description: 'Learn about 2Bet Philippines: our commitment to fair gaming, player protection, 24/7 customer support, and premier online sports and casino betting.',
+  title: 'Sobre a Plataforma Oficial de Apostas e Cassino | 2bet',
+  description: 'Conheça a história da 2bet no Brasil. Operação segura, tecnologia avançada, jogos certificados e compromisso com o entretenimento digital.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about-us' },
+    { name: 'Início', path: '/' },
+    { name: 'Sobre Nós', path: '/about-us' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
-    name: 'About 2Bet',
+    name: 'Sobre a 2bet',
     url: 'https://2bet.com/about-us',
-    description: 'Learn about 2Bet Philippines, player protection, and our premier online sports and casino gaming platform.',
+    description: 'Conheça a 2bet Brasil: nosso compromisso com o jogo justo, proteção ao jogador, suporte 24/7 e a melhor plataforma de cassino e apostas.',
   },
 })
 </script>

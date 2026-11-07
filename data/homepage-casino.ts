@@ -22,11 +22,9 @@ export const HOMEPAGE_CASINO_CATEGORIES: HomepageCasinoCategory[] = [
   // Keep the supplied portrait artwork in this homepage carousel.
   category('baccarat', 'Speed Baccarat', 'Fast-paced baccarat with real dealers.', 'baccarat'),
   category('roulette', 'Immersive Roulette', 'A cinematic roulette experience.', 'roullete'),
-  category('blackjack', 'Classic Blackjack', 'Timeless blackjack, live and real.', 'blackjack'),
-  category('game-show', 'Game Shows', 'Big moments. Live entertainment.', 'game-show'),
+  category('game-show', 'Live Shows', 'Big moments. Live entertainment.', 'game-show'),
   category('dragon-tiger', 'Dragon Tiger', 'Two cards. One thrilling reveal.', 'dragon-tiger'),
   category('sicbo', 'Sic Bo', 'Three dice. All the excitement.', 'sic-bo'),
-  category('fan-tan', 'Fan Tan', 'A classic with a little anticipation.', 'fantan'),
   category('poker', 'Poker', 'Find your hand. Make your move.', 'poker'),
 ]
 

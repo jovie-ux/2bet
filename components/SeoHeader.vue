@@ -42,7 +42,7 @@ const config = useRuntimeConfig()
 const { locale, translate } = useSiteLocale()
 
 const siteName = computed(() =>
-  String(config.public.siteName || '2Bet Slots')
+  String(config.public.siteName || '2bet')
     .trim()
     .replace(/^['"]+|['"]+$/g, ''),
 )
@@ -61,54 +61,56 @@ const shouldIncludeCheckMore = computed(() => {
   if (typeof props.includeCheckMore === 'boolean') {
     return props.includeCheckMore
   }
-  return !isHomepage.value
+  return false
 })
 
 const displayTitle = computed(() => translate(props.title))
 
-const fullTitle = computed(() => {
-  return formatSeoTitle(props.metaTitle || props.title, siteName.value, shouldIncludeSiteName.value, locale.value)
-})
+// Only override page-level useAppSeo metadata when explicit metaTitle or description props are passed
+if (props.metaTitle || props.description) {
+  const fullTitle = computed(() => {
+    return formatSeoTitle(props.metaTitle || props.title, siteName.value, shouldIncludeSiteName.value, locale.value)
+  })
 
-const fullDescription = computed(() => {
-  return formatSeoDescription(
-    props.description,
-    siteName.value,
-    isHomepage.value,
-    shouldIncludeCheckMore.value,
-    locale.value,
-  )
-})
+  const fullDescription = computed(() => {
+    return formatSeoDescription(
+      props.description,
+      siteName.value,
+      isHomepage.value,
+      shouldIncludeCheckMore.value,
+      locale.value,
+    )
+  })
 
-const keywords = computed(() => {
-  if (props.keywords) return props.keywords
-  if (locale.value === 'pt') {
-    return `${siteName.value}, apostas esportivas, cassino online, slots, cassino ao vivo, jogos online`
-  }
-  return `${siteName.value}, sports betting, online casino, slots, live casino, Philippines gaming`
-})
+  const keywords = computed(() => {
+    if (props.keywords) return props.keywords
+    if (locale.value === 'pt') {
+      return `${siteName.value}, apostas esportivas, cassino online, slots, cassino ao vivo, jogos online`
+    }
+    return `${siteName.value}, sports betting, online casino, slots, live casino, Brasil gaming`
+  })
 
-const robots = computed(() => {
-  if (props.robots) return props.robots
-  return config.public.indexFollow ? 'index, follow' : 'noindex, nofollow'
-})
+  const robots = computed(() => {
+    if (props.robots) return props.robots
+    return config.public.indexFollow ? 'index, follow' : 'noindex, nofollow'
+  })
 
-// Set reactive SEO metadata
-useSeoMeta({
-  title: fullTitle,
-  ogTitle: fullTitle,
-  ogSiteName: siteName,
-  description: fullDescription,
-  ogDescription: fullDescription,
-  keywords,
-  ogImage: () => props.ogImage,
-  ogType: () => props.ogType || 'website',
-  twitterTitle: fullTitle,
-  twitterDescription: fullDescription,
-  twitterImage: () => props.ogImage,
-  twitterCard: 'summary_large_image',
-  robots,
-})
+  useSeoMeta({
+    title: fullTitle,
+    ogTitle: fullTitle,
+    ogSiteName: siteName,
+    description: fullDescription,
+    ogDescription: fullDescription,
+    keywords,
+    ogImage: () => props.ogImage,
+    ogType: () => props.ogType || 'website',
+    twitterTitle: fullTitle,
+    twitterDescription: fullDescription,
+    twitterImage: () => props.ogImage,
+    twitterCard: 'summary_large_image',
+    robots,
+  })
+}
 
 useHead(() => ({
   link: [

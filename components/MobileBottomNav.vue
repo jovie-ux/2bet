@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import UnderMaintenance from '~/components/modals/UnderMaintenance.vue'
 import MobileBottomNavIcon from '~/components/MobileBottomNavIcon.vue'
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 type NavMode = 'primary' | 'casino' | 'egames' | 'live-plaza'
 
@@ -11,7 +12,7 @@ const isMaintenanceOpen = ref(false)
 
 const casinoItems = [
   { label: 'Live Casino', icon: '/icons/entertainment/live-casino.webp', to: '/explore/entertainment/live-casino/baccarat' },
-  { label: 'Gaming', icon: '/icons/entertainment/gaming.webp', to: bybetRedirectUrl },
+  { label: 'Gaming', icon: '/icons/entertainment/gaming.webp', to: `${bybetBaseUrl}/sportEvents/eSport?p=${bybetRedirectCode}` },
   { label: 'Poker', icon: '/icons/entertainment/poker.webp', to: '/explore/entertainment/poker' },
   { label: 'Lottery', icon: '/icons/entertainment/lottery.webp', to: '/explore/entertainment/lottery' },
 ]

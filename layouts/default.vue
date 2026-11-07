@@ -57,6 +57,7 @@ const usesDesktopContentReferenceShell = computed(() => {
 const isSportsPage = computed(() => route.path.startsWith('/explore/sports/'))
 const isEgamesPage = computed(() => route.path.startsWith('/explore/egames/') && !isCustomerServicePage.value)
 const isLiveCasinoPage = computed(() => route.path.startsWith('/explore/entertainment/live-casino'))
+const isLiveCasinoFeaturedPage = computed(() => normalizedPath.value === '/explore/entertainment/live-casino/featured')
 const isPokerPage = computed(() => /^\/explore\/entertainment\/poker(?:\/|$)/.test(route.path))
 const isAffiliatePage = computed(() => route.path === '/affiliate')
 const isBonusesPage = computed(() => /^\/explore\/bonuses?(?:\/|$)/.test(route.path))
@@ -104,7 +105,7 @@ const shouldExpandRailByDefault = (): boolean => {
     || isLivePlazaPage.value
     || isJackpotPage.value
     || isPokerPage.value
-    || isLiveCasinoPage.value
+    || (isLiveCasinoPage.value && !isLiveCasinoFeaturedPage.value)
     || usesDesktopReferenceShell.value
     || usesDesktopContentReferenceShell.value
 }
@@ -114,9 +115,7 @@ const railCollapsed = ref(!shouldExpandRailByDefault())
 watch(() => route.path, () => {
   railCollapsed.value = !shouldExpandRailByDefault()
 
-  if (isMobileDevice()) {
-    closeComments()
-  } else if (desktopShellKind.value === 'sports') {
+  if (desktopShellKind.value === 'sports') {
     openSportsComments()
   } else {
     closeComments()
@@ -201,10 +200,6 @@ onMounted(() => {
   window.addEventListener('keydown', handleEscape)
   window.addEventListener('resize', handleResize, { passive: true })
 
-  if (window.innerWidth < 1024) {
-    closeComments()
-  }
-
   initializeSectionMotion()
 })
 
@@ -257,11 +252,14 @@ onBeforeUnmount(() => {
         <AppFooter v-if="!isCustomerServiceChatPage" />
       </div>
 
-      <CommentPanel
-        v-if="commentContext && !mobileViewport && isSportsPage"
-        key="sports-sidebar"
-        :docked="isDockedChatPage"
-      />
+      <ClientOnly>
+        <CommentPanel
+          v-if="commentContext && isSportsPage"
+          key="sports-sidebar"
+          class="hidden lg:flex"
+          :docked="isDockedChatPage"
+        />
+      </ClientOnly>
     </div>
 
     <MobileBottomNav />
@@ -304,6 +302,7 @@ onBeforeUnmount(() => {
 
 @media (min-width: 1024px) {
   .site-shell--live-casino:not(.site-shell--rail-collapsed) { --sidebar-width: 180px; }
+  .site-shell--live-casino.site-shell--rail-collapsed { --sidebar-width: 68px; }
   .site-shell--live-casino { --content-gutter: 8px; }
   .site-shell--live-casino .page-content { padding-right: 12px; }
 }

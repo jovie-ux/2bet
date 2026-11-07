@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Privacy Policy & Personal Data Protection | 2Bet Ph',
-  description: 'Learn how 2Bet collects, protects, and handles personal data in strict compliance with Philippine Data Privacy Act standards and regulations.',
+  title: 'Proteção de Dados e Termos de Privacidade Digital | 2bet',
+  description: 'Saiba como a 2bet Brasil coleta e trata seus dados pessoais, assegurando total sigilo, conformidade com a LGPD e privacidade digital.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
+    { name: 'Início', path: '/' },
     { name: 'Legal', path: '/explore/legal/general-terms' },
-    { name: 'Privacy Policy', path: '/privacy-policy' },
+    { name: 'Política de Privacidade', path: '/privacy-policy' },
   ],
 })
 

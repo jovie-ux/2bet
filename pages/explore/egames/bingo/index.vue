@@ -33,11 +33,11 @@ import GameEmptyState from '~/components/game-cards/GameEmptyState.vue'
 import { sortRailGames } from '~/utils/gameSort'
 
 useAppSeo({
-  title: 'Online Bingo Games — Fast Paced Fun & Wins | 2Bet',
-  description: 'Play online bingo games at 2Bet Philippines. Experience fast-paced ball draws, multi-card action, mega multipliers, and instant cash prizes 24/7.',
+  title: 'Bingo Online — Cartelas Premiadas e Sorteios ao Vivo | 2bet',
+  description: 'Jogue bingo online na 2bet Brasil. Escolha suas cartelas favoritas, aproveite bolas extras com bônus e dispute prêmios em dinheiro real.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'E-Games', path: '/explore/egames/slots' },
+    { name: 'Início', path: '/' },
+    { name: 'eGames', path: '/explore/egames/slots' },
     { name: 'Bingo', path: '/explore/egames/bingo' },
   ],
   schema: {
@@ -45,7 +45,7 @@ useAppSeo({
     '@type': 'CollectionPage',
     name: '2Bet Online Bingo',
     url: 'https://2bet.com/explore/egames/bingo',
-    description: 'Play online bingo games at 2Bet Philippines. Experience fast-paced ball draws, multi-card action, and instant cash prizes.',
+    description: 'Play online bingo games at 2Bet Brasil. Experience fast-paced ball draws, multi-card action, and instant cash prizes.',
   },
 })
 
@@ -58,6 +58,7 @@ const categoryIcons: Record<string, Component> = {
 }
 
 const router = useRouter()
+const { translate } = useSitePreferences()
 const activeCategory = ref('home')
 const activeProvider = ref('all')
 const searchQuery = ref('')
@@ -74,7 +75,8 @@ const filterState = ref({
 
 const { showDemoMessage } = useDemoInteraction()
 const { addRecentGame } = useRecentGames()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 const selectCategory = (key: string): void => {
   if (isSearchOpen.value || isSearchSubmitted.value) {
@@ -337,7 +339,7 @@ const resetFilters = (): void => {
               v-else-if="cat.iconName && categoryIcons[cat.iconName]"
               class="h-10 w-10 sm:h-4 sm:w-4 mb-0.5 shrink-0"
             />
-            <span class="text-[12px] sm:text-[10px] leading-tight whitespace-nowrap">{{ cat.shortLabel }}</span>
+            <span class="text-[12px] sm:text-[10px] leading-tight whitespace-nowrap">{{ translate(cat.shortLabel) }}</span>
           </button>
         </div>
       </header>
@@ -353,7 +355,7 @@ const resetFilters = (): void => {
             :class="activeProvider === prov.key ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'bg-[#242625] text-[#8e9491] '"
             @click="selectProvider(prov.key)"
           >
-            {{ prov.label }}
+            {{ translate(prov.label) }}
           </button>
         </div>
 
@@ -361,7 +363,7 @@ const resetFilters = (): void => {
           <button
             type="button"
             class="h-8 w-8 rounded-full bg-[#242625] text-[#8e9491] hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-            aria-label="Search games"
+            :aria-label="translate('Search games')"
             @click="openSearch"
           >
             <Search class="h-4 w-4" />
@@ -369,7 +371,7 @@ const resetFilters = (): void => {
           <button
             type="button"
             class="h-8 w-8 rounded-full bg-[#242625] text-[#8e9491] hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-            aria-label="Filter games"
+            :aria-label="translate('Filter games')"
             @click="isFilterOpen = true"
           >
             <SlidersHorizontal class="h-4 w-4" />
@@ -390,7 +392,7 @@ const resetFilters = (): void => {
             ref="searchInputRef"
             v-model="searchQuery"
             type="text"
-            placeholder="Enter game name"
+            :placeholder="translate('Enter game name')"
             class="w-full h-11 rounded-full bg-[#171817] border border-[#2b2d2b] px-5 text-sm text-white placeholder-[#7a807d] focus:outline-none focus:border-[var(--main-color)] transition-colors"
             @input="handleInput"
             @keyup.enter="handleSearchSubmit"
@@ -399,7 +401,7 @@ const resetFilters = (): void => {
             v-if="searchQuery"
             type="button"
             class="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#7a807d] hover:text-white p-1"
-            aria-label="Clear input"
+            :aria-label="translate('Clear input')"
             @click="clearSearch"
           >
             <X class="h-4 w-4" />
@@ -410,19 +412,19 @@ const resetFilters = (): void => {
           class="text-sm text-white hover:text-white/80 px-2 py-1 select-none cursor-pointer font-medium whitespace-nowrap"
           @click="closeSearch"
         >
-          Cancel
+          {{ translate('Cancel') }}
         </button>
       </div>
 
       <!-- History Section -->
       <div v-if="searchHistory.length > 0" class="history-section mb-6">
         <div class="flex items-center justify-between mb-3">
-          <h3 class="text-sm font-semibold text-white tracking-wide">History</h3>
+          <h3 class="text-sm font-semibold text-white tracking-wide">{{ translate('History') }}</h3>
           <button
             type="button"
             class="text-[#7a807d] hover:text-white p-1 transition-colors cursor-pointer"
-            aria-label="Clear history"
-            title="Clear history"
+            :aria-label="translate('Clear history')"
+            :title="translate('Clear history')"
             @click="clearHistory"
           >
             <Trash2 class="h-4 w-4" />
@@ -444,7 +446,7 @@ const resetFilters = (): void => {
       <!-- Frequently Searched Section -->
       <div class="frequently-searched-section mb-8">
         <div class="text-sm font-semibold text-white tracking-wide mb-3">
-          Frequently searched
+          {{ translate('Frequently searched') }}
         </div>
         <div class="flex flex-wrap gap-2">
           <button
@@ -512,11 +514,11 @@ const resetFilters = (): void => {
           <img
             v-if="section.iconImage"
             :src="section.iconImage"
-            :alt="section.title"
+            :alt="translate(section.title)"
             class="h-[18px] w-[18px] object-contain shrink-0"
           />
           <span v-else class="text-base leading-none select-none">{{ section.emoji }}</span>
-          <h2 class="text-[15px] font-bold text-white tracking-tight">{{ section.title }}</h2>
+          <h2 class="text-[15px] font-bold text-white tracking-tight">{{ translate(section.title) }}</h2>
           <button
             v-if="section.hasHelp"
             type="button"
@@ -578,15 +580,15 @@ const resetFilters = (): void => {
             class="justify-self-start text-sm font-medium text-[#c5cac7] hover:text-white py-1"
             @click="isFilterOpen = false"
           >
-            Cancel
+            {{ translate('Cancel') }}
           </button>
-          <h2 class="text-base font-bold text-white text-center">Filter</h2>
+          <h2 class="text-base font-bold text-white text-center">{{ translate('Filter') }}</h2>
           <span class="w-[52px]" aria-hidden="true" />
         </header>
 
         <div class="flex-1 overflow-y-auto no-scrollbar px-4 py-2 space-y-5">
           <div>
-            <h3 class="text-[15px] font-bold text-white mb-2.5">Theme</h3>
+            <h3 class="text-[15px] font-bold text-white mb-2.5">{{ translate('Theme') }}</h3>
             <div class="grid grid-cols-3 gap-2.5">
               <button
                 v-for="th in ['All', 'Classic', 'Jackpot', 'Carnaval', 'Adventure']"
@@ -596,13 +598,13 @@ const resetFilters = (): void => {
                 :class="filterState.theme === th ? 'bg-[#161817] border border-[#008d62] text-white font-medium' : 'bg-[#1e201f] text-[#e2e8e5] border border-transparent hover:bg-[#252726] hover:text-white'"
                 @click="filterState.theme = th"
               >
-                {{ th }}
+                {{ translate(th) }}
               </button>
             </div>
           </div>
 
           <div>
-            <h3 class="text-[15px] font-bold text-white mb-2.5">Features</h3>
+            <h3 class="text-[15px] font-bold text-white mb-2.5">{{ translate('Features') }}</h3>
             <div class="grid grid-cols-3 gap-2.5">
               <button
                 v-for="ft in ['All', 'Multi-Card', 'Bonus Ball', 'Extra Ball', 'Jackpot']"
@@ -612,7 +614,7 @@ const resetFilters = (): void => {
                 :class="filterState.feature === ft ? 'bg-[#161817] border border-[#008d62] text-white font-medium' : 'bg-[#1e201f] text-[#e2e8e5] border border-transparent hover:bg-[#252726] hover:text-white'"
                 @click="filterState.feature = ft"
               >
-                {{ ft }}
+                {{ translate(ft) }}
               </button>
             </div>
           </div>
@@ -624,14 +626,14 @@ const resetFilters = (): void => {
             class="h-[46px] rounded-xl text-[15px] font-semibold text-white bg-[#2a2c2b] hover:bg-[#343735] transition-colors"
             @click="filterState = { theme: 'All', feature: 'All', winningLine: 'All' }"
           >
-            Reset
+            {{ translate('Reset') }}
           </button>
           <button
             type="button"
             class="h-[46px] rounded-xl text-[15px] font-bold text-white bg-[var(--main-color)] hover:bg-[#047a52] transition-colors"
             @click="isFilterOpen = false"
           >
-            OK
+            {{ translate('OK') }}
           </button>
         </footer>
       </div>

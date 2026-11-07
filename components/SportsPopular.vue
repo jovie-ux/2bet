@@ -2,7 +2,8 @@
 import type { SportsEvent } from '~/types/sports'
 import { sportsTimeRange } from '~/utils/sportsTimeRange'
 import { matchesSportsSelection } from '~/utils/sportsSelection'
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 import {
   Trophy,
   Radio,
@@ -36,6 +37,7 @@ const props = withDefaults(defineProps<{
 })
 
 const route = useRoute()
+const { translate } = useSitePreferences()
 const sportsRouteBase = useSportsRouteBase()
 const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular')
 
@@ -302,7 +304,7 @@ onBeforeUnmount(() => {
           :class="{ selected: activeTab === tab.key }"
           :aria-current="activeTab === tab.key ? 'page' : undefined"
         >
-          {{ tabLabel(tab) }}
+          {{ translate(tabLabel(tab)) }}
         </NuxtLink>
       </nav>
     </div>
@@ -321,13 +323,13 @@ onBeforeUnmount(() => {
         class="empty"
         role="alert"
       >
-        <h2>Unable to load sports</h2>
-        <p>Sports data is temporarily unavailable. Please try again.</p>
+        <h2>{{ translate('Unable to load sports') }}</h2>
+        <p>{{ translate('Sports data is temporarily unavailable. Please try again.') }}</p>
         <button
           type="button"
           @click="refresh"
         >
-          Try again
+          {{ translate('Try again') }}
         </button>
       </div>
       <LeagueDirectory

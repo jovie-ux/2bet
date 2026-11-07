@@ -28,7 +28,9 @@ const selectedSports = computed(() => {
   return ['Basketball', 'Soccer', 'Tennis', 'Baseball']
 })
 
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const { translate } = useSitePreferences()
 
 const search = ref('')
 const sortBy = ref<'league' | 'time'>('time')
@@ -79,8 +81,8 @@ const filteredEvents = computed(() => {
           <input
             v-model="search"
             type="search"
-            placeholder="Search league or team"
-            aria-label="Search league or team"
+            :placeholder="translate('Search league or team')"
+            :aria-label="translate('Search league or team')"
           >
         </label>
 
@@ -90,7 +92,7 @@ const filteredEvents = computed(() => {
 
         <Collapse
           :model-value="matchList?.allCollapsed ?? false"
-          title="Collapse all matches"
+          :title="translate('Collapse all matches')"
           @toggle="matchList?.toggleAll()"
         />
       </div>
@@ -100,10 +102,10 @@ const filteredEvents = computed(() => {
 
       <!-- Error State -->
       <div v-else-if="error" class="empty" role="alert">
-        <h2>Unable to load inplay matches</h2>
-        <p>Live sports data is temporarily unavailable. Please try again.</p>
+        <h2>{{ translate('Unable to load inplay matches') }}</h2>
+        <p>{{ translate('Live sports data is temporarily unavailable. Please try again.') }}</p>
         <button type="button" @click="refresh()">
-          Try again
+          {{ translate('Try again') }}
         </button>
       </div>
 
@@ -119,11 +121,11 @@ const filteredEvents = computed(() => {
       <div v-else class="empty" role="status">
         <img
           src="/images/empty/no-events.webp"
-          alt="No Live Streaming"
+          :alt="translate('No Live Streaming')"
           class="h-auto w-full max-w-[200px] object-contain"
         />
-        <h2>No Live Streaming</h2>
-        <p>No live streaming matches available right now. Check back later.</p>
+        <h2>{{ translate('No Live Streaming') }}</h2>
+        <p>{{ translate('No live streaming matches available right now. Check back later.') }}</p>
       </div>
     </div>
   </div>

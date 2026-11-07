@@ -27,38 +27,55 @@ const atStart = ref(true)
 const atEnd = ref(false)
 const firstVisible = ref(1)
 let resizeObserver: ResizeObserver | undefined
+let cachedStep = 0
+let cachedGap = 0
+let scrollRafId: number | null = null
+
+function updateMetrics() {
+  const element = track.value
+  if (!element) return
+  const card = element.firstElementChild as HTMLElement | null
+  cachedGap = parseFloat(getComputedStyle(element).columnGap || '0')
+  cachedStep = (card?.offsetWidth || 0) + cachedGap
+  updatePosition()
+}
 
 function updatePosition() {
   const element = track.value
   if (!element) return
   atStart.value = element.scrollLeft <= 2
   atEnd.value = element.scrollWidth - element.clientWidth - element.scrollLeft <= 2
-  const card = element.firstElementChild as HTMLElement | null
-  const step = (card?.getBoundingClientRect().width || 0) + parseFloat(getComputedStyle(element).columnGap || '0')
+  const step = cachedStep || ((element.firstElementChild as HTMLElement | null)?.offsetWidth || 0)
   if (props.featuredFirst) {
-    const left = element.getBoundingClientRect().left
-    const distances = Array.from(element.children, child => Math.abs(child.getBoundingClientRect().left - left))
-    firstVisible.value = distances.indexOf(Math.min(...distances)) + 1
+    const left = element.scrollLeft
+    const cardWidth = step || 1
+    firstVisible.value = Math.min(props.itemCount, Math.max(1, Math.round(left / cardWidth) + 1))
     return
   }
   firstVisible.value = step ? Math.min(props.itemCount, Math.round(element.scrollLeft / step) + 1) : 1
 }
 
+function onScroll() {
+  if (scrollRafId !== null) return
+  scrollRafId = requestAnimationFrame(() => {
+    scrollRafId = null
+    updatePosition()
+  })
+}
+
 function move(direction: number) {
   const element = track.value
   if (!element) return
+  const card = element.firstElementChild as HTMLElement | null
+  const gap = cachedGap || parseFloat(getComputedStyle(element).columnGap || '0')
+  const step = cachedStep || ((card?.offsetWidth || 0) + gap)
   if (props.featuredFirst) {
-    const left = element.getBoundingClientRect().left
-    const positions = Array.from(element.children, child => child.getBoundingClientRect().left - left + element.scrollLeft)
     const destination = direction > 0
-      ? positions.find(position => position > element.scrollLeft + 2) ?? element.scrollWidth
-      : positions.filter(position => position < element.scrollLeft - 2).pop() ?? 0
+      ? element.scrollLeft + step
+      : Math.max(0, element.scrollLeft - step)
     element.scrollTo({ left: destination, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
     return
   }
-  const card = element.firstElementChild as HTMLElement | null
-  const gap = parseFloat(getComputedStyle(element).columnGap || '0')
-  const step = (card?.getBoundingClientRect().width || 0) + gap
   const visible = step ? Math.max(1, Math.floor((element.clientWidth + gap + 1) / step)) : 1
   element.scrollBy({
     left: direction * step * (props.itemsPerSlide ?? visible),
@@ -71,7 +88,7 @@ function goTo(index: number) {
   const card = element?.children[index] as HTMLElement | undefined
   if (!element || !card) return
   element.scrollTo({
-    left: card.getBoundingClientRect().left - element.getBoundingClientRect().left + element.scrollLeft,
+    left: (card as HTMLElement).offsetLeft,
     behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
   })
 }
@@ -87,14 +104,20 @@ function handleKey(event: KeyboardEvent) {
 watch([() => props.itemCount, () => props.resetKey], async () => {
   await nextTick()
   track.value?.scrollTo({ left: 0, behavior: 'instant' })
-  updatePosition()
+  updateMetrics()
 })
 onMounted(() => {
-  updatePosition()
-  resizeObserver = new ResizeObserver(updatePosition)
+  updateMetrics()
+  resizeObserver = new ResizeObserver(updateMetrics)
   if (track.value) resizeObserver.observe(track.value)
 })
-onBeforeUnmount(() => resizeObserver?.disconnect())
+onBeforeUnmount(() => {
+  resizeObserver?.disconnect()
+  if (scrollRafId !== null) {
+    cancelAnimationFrame(scrollRafId)
+    scrollRafId = null
+  }
+})
 </script>
 
 <template>
@@ -122,7 +145,7 @@ onBeforeUnmount(() => resizeObserver?.disconnect())
       role="group"
       :aria-label="`${title}: swipe or use the arrow keys to browse all ${itemCount} items`"
       tabindex="0"
-      @scroll.passive="updatePosition"
+      @scroll.passive="onScroll"
       @keydown="handleKey"
     ><slot :first-visible="firstVisible" /></div>
     <slot name="footer" :first-visible="firstVisible" :at-start="atStart" :at-end="atEnd" :move="move">

@@ -32,6 +32,7 @@ const emit = defineEmits<{
 }>()
 
 const search = ref('')
+const { translate } = useSiteLocale()
 const sportsRouteBase = useSportsRouteBase()
 const localSortBy = ref<'league' | 'time'>(props.sortBy)
 const localCollapsed = ref<string[]>([])
@@ -181,8 +182,8 @@ const sortedGroups = computed(() => {
         <input
           v-model="search"
           type="search"
-          placeholder="Search tournaments"
-          aria-label="Search tournaments"
+          :placeholder="translate('Search tournaments')"
+          :aria-label="translate('Search tournaments')"
         >
       </label>
       <!-- Collapse all / Expand all button -->
@@ -248,11 +249,11 @@ const sortedGroups = computed(() => {
     >
       <img
         src="/images/empty/no-events.webp"
-        alt="No leagues found"
+        :alt="translate('No leagues found')"
         class="h-auto w-full max-w-[200px] object-contain"
       />
-      <h2>No leagues found</h2>
-      <p>Try searching for a different tournament or league.</p>
+      <h2>{{ translate('No leagues found') }}</h2>
+      <p>{{ translate('Try searching for a different tournament or league.') }}</p>
     </div>
   </div>
 </template>

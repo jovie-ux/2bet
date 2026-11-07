@@ -9,7 +9,8 @@ defineProps<{
 
 const { translate } = useSiteLocale()
 const { effectiveTheme } = useSiteTheme()
-const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const externalSiteUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 const providerLogo = (provider: string): string => {
   return getProviderLogoForTheme(providerLogoByName[provider], effectiveTheme.value)
@@ -34,7 +35,7 @@ const providerLogo = (provider: string): string => {
         <img
           v-if="providerLogo(provider)"
           :src="providerLogo(provider)"
-          alt=""
+          :alt="`${provider} logo`"
           width="120"
           height="44"
           loading="lazy"

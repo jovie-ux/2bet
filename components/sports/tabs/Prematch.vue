@@ -23,6 +23,7 @@ const emit = defineEmits<{
 
 const search = ref('')
 const route = useRoute()
+const { translate } = useSiteLocale()
 const sportsRouteBase = useSportsRouteBase()
 const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular')
 const oddsCols = computed<2 | 3>(() => route.params.sport === 'soccer' ? 3 : 2)
@@ -200,8 +201,8 @@ const toggleCollapseAll = (): void => {
         <input
           v-model="search"
           type="search"
-          placeholder="Search league or team"
-          aria-label="Search league or team"
+          :placeholder="translate('Search league or team')"
+          :aria-label="translate('Search league or team')"
         >
       </label>
       <Sort
@@ -209,19 +210,19 @@ const toggleCollapseAll = (): void => {
       />
       <Collapse
         :model-value="allCollapsed"
-        title="Collapse all matches"
+        :title="translate('Collapse all matches')"
         @toggle="toggleCollapseAll"
       />
       
     </div>
-    <div class="sports-date-filters flex flex-wrap gap-1" :class="{ 'mb-4': !isPopular }" role="group" aria-label="Filter upcoming matches by date, Philippine time">
+    <div class="sports-date-filters flex flex-wrap gap-1" :class="{ 'mb-4': !isPopular }" role="group" :aria-label="translate('Filter upcoming matches by date')">
       <button
         type="button"
         class="time-filter min-h-[44px] min-w-[64px] rounded-md px-3 py-1 text-[12px] font-medium text-white"
         :class="selectedDate === 'all' ? 'bg-[var(--main-highlight)]' : 'bg-[#1a1a1a]'"
         :aria-pressed="selectedDate === 'all'"
         @click="selectDate('all')"
-      >All</button>
+      >{{ translate('All') }}</button>
       <button
         v-for="filter in dateFilters"
         :key="filter.key"
@@ -229,11 +230,11 @@ const toggleCollapseAll = (): void => {
         class="time-filter flex min-h-[44px] min-w-[64px] flex-col items-center justify-center rounded-md px-3 py-1 text-[12px] font-medium text-white"
         :class="selectedDate === filter.key ? 'bg-[var(--main-highlight)]' : 'bg-[#1a1a1a]'"
         :aria-pressed="selectedDate === filter.key"
-        :aria-label="`${filter.date}, ${filter.label}`"
+        :aria-label="`${filter.date}, ${translate(filter.label)}`"
         @click="selectDate(filter.key)"
       >
         <span>{{ filter.date }}</span>
-        <span>{{ filter.label }}</span>
+        <span>{{ translate(filter.label) }}</span>
       </button>
     </div>
 
@@ -285,11 +286,11 @@ const toggleCollapseAll = (): void => {
     <div v-else class="empty" role="status">
       <img
         src="/images/empty/no-events.webp"
-        alt="No pre-match events"
+        :alt="translate('No pre-match events')"
         class="h-auto w-full max-w-[200px] object-contain"
       />
-      <h2>No pre-match events</h2>
-      <p>Try another date or check back later.</p>
+      <h2>{{ translate('No pre-match events') }}</h2>
+      <p>{{ translate('Try another date or check back later.') }}</p>
     </div>
   </div>
 </template>

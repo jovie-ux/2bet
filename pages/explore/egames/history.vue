@@ -3,18 +3,20 @@ import { History, Trash2, Gamepad2, ArrowRight } from 'lucide-vue-next'
 import GameCard from '~/components/game-cards/GameCard.vue'
 
 useAppSeo({
-  title: 'E-Games History — Slots & Casino Session Logs | 2Bet',
-  description: 'View your past slot rounds, bingo games, wager amounts, and win records on 2Bet. Complete transparency for all electronic gaming sessions.',
+  title: 'Histórico de Jogos Recentes e Caça-Níqueis Favoritos | 2bet',
+  description: 'Veja seus giros recentes e títulos favoritados na 2bet Brasil. Acesse sua conta para retomar rapidamente seus caça-níqueis preferidos.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'E-Games', path: '/explore/egames/slots' },
-    { name: 'Game History', path: '/explore/egames/history' },
+    { name: 'Início', path: '/' },
+    { name: 'eGames', path: '/explore/egames/slots' },
+    { name: 'Histórico de Jogos', path: '/explore/egames/history' },
   ],
 })
 
 const { recentGames, clearRecentGames } = useRecentGames()
+const { translate } = useSitePreferences()
 const { showDemoMessage } = useDemoInteraction()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 const activeGameId = ref<string | null>(null)
 
@@ -76,8 +78,8 @@ onBeforeUnmount(() => {
           <History class="h-5 w-5" />
         </div>
         <div>
-          <h1 class="text-lg font-bold text-white tracking-tight">Recent Games</h1>
-          <p class="text-xs text-[#8e9491]">Games you recently played or explored</p>
+          <h1 class="text-lg font-bold text-white tracking-tight">{{ translate('Recent Games') }}</h1>
+          <p class="text-xs text-[#8e9491]">{{ translate('Games you recently played or explored') }}</p>
         </div>
       </div>
 
@@ -88,7 +90,7 @@ onBeforeUnmount(() => {
         @click="clearRecentGames"
       >
         <Trash2 class="h-3.5 w-3.5" />
-        <span>Clear History</span>
+        <span>{{ translate('Clear History') }}</span>
       </button>
     </div>
 
@@ -117,15 +119,15 @@ onBeforeUnmount(() => {
       <div class="h-14 w-14 rounded-2xl bg-[#202220] flex items-center justify-center text-[#7a807d]">
         <Gamepad2 class="h-7 w-7" />
       </div>
-      <h3 class="text-base font-semibold text-white">No game history yet</h3>
+      <h3 class="text-base font-semibold text-white">{{ translate('No game history yet') }}</h3>
       <p class="text-xs text-[#8e9491] max-w-sm">
-        Games you play or explore will be saved in your browser's history so you can easily return to them anytime.
+        {{ translate("Games you play or explore will be saved in your browser's history so you can easily return to them anytime.") }}
       </p>
       <NuxtLink
         to="/explore/egames/slots"
         class="mt-3 inline-flex items-center gap-2 rounded-full bg-[var(--main-color)] px-5 py-2 text-xs font-bold text-white hover:bg-[#047b53] transition-colors"
       >
-        <span>Explore Slots</span>
+        <span>{{ translate('Explore Slots') }}</span>
         <ArrowRight class="h-3.5 w-3.5" />
       </NuxtLink>
     </div>

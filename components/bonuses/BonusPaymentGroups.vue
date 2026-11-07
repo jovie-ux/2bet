@@ -14,6 +14,7 @@ const visibleCount = computed(() => filterPromotions(PROMOTIONS).length)
 </script>
 
 <template>
+  <div class="bonus-payment-groups" />
 </template>
 
 <style scoped>

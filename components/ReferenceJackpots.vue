@@ -58,7 +58,10 @@ const jackpotDisplays: Record<JackpotKey, Ref<number>> = {
   jdb: jdbDisplay,
 }
 
-const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const externalSiteUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const loginUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const registerUrl = `${bybetBaseUrl}/register?p=${bybetRedirectCode}`
 const { translate } = useSiteLocale()
 </script>
 
@@ -84,7 +87,7 @@ const { translate } = useSiteLocale()
       >
         <span class="jackpot-text">
           <small>{{ translate(jackpot.label) }}</small>
-          <strong>${{ formatJackpotAmount(jackpotDisplays[jackpot.key].value) }}</strong>
+          <strong>R${{ formatJackpotAmount(jackpotDisplays[jackpot.key].value) }}</strong>
         </span>
       </NuxtLink>
     </div>
@@ -96,10 +99,10 @@ const { translate } = useSiteLocale()
         <h3 id="recent-spin-title">{{ translate('Sign in to track your wins') }}</h3>
         <p>{{ translate('Log in or create an account to save spins, claim prizes, and view your win history.') }}</p>
         <div class="auth-actions">
-          <a :href="externalSiteUrl" target="_blank" rel="nofollow noopener noreferrer" class="auth-primary">
+          <a :href="loginUrl" target="_blank" rel="nofollow noopener noreferrer" class="auth-primary">
             <LogIn :size="14" /> {{ translate('Login') }}
           </a>
-          <a :href="externalSiteUrl" target="_blank" rel="nofollow noopener noreferrer" class="auth-secondary">
+          <a :href="registerUrl" target="_blank" rel="nofollow noopener noreferrer" class="auth-secondary">
             <UserPlus :size="14" /> {{ translate('Sign Up') }}
           </a>
         </div>

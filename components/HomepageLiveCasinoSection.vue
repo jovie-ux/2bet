@@ -10,14 +10,14 @@ const titleIcon = '/icons/entertainment/live-casino.webp'
 const categoryIcons: Record<string, string> = {
   baccarat: '/icons/casino-play/baccarat.webp',
   roulette: '/icons/casino-play/roulette.webp',
-  blackjack: '/icons/casino-play/blackjack.webp',
+  poker: '/icons/casino-play/blackjack.webp',
   'game-show': '/icons/casino-play/game-shows.webp',
   'dragon-tiger': '/icons/casino-play/dragon-tiger-v2.webp',
   sicbo: '/icons/casino-play/sic-bo-v2.webp',
 }
 const descriptions: Record<string, string> = {
   roulette: 'A classic experience, live and exclusive.',
-  blackjack: 'Timeless blackjack, live at 2Bet.',
+  poker: 'Timeless poker, live at 2Bet.',
 }
 function categoryIcon(key: string) {
   return categoryIcons[key] || categoryIcons.baccarat
@@ -38,7 +38,7 @@ function categoryIcon(key: string) {
   >
     <template #header="{ atStart, atEnd, move }">
       <header class="live-section-header flex items-center justify-between">
-        <div class="live-heading flex items-center min-w-0"><h2 id="live-casino-title"><img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" alt="" width="28" height="28">{{ translate('Live Casino') }}</h2><p>{{ translate('Real dealers. Real games. Real excitement.') }}</p></div>
+        <div class="live-heading flex items-center min-w-0"><h2 id="live-casino-title"><img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" :alt="translate('Live Casino')" width="28" height="28" loading="lazy" decoding="async">{{ translate('Live Casino') }}</h2><p>{{ translate('Real dealers. Real games. Real excitement.') }}</p></div>
         <div class="live-header-actions flex items-center">
           <NuxtLink to="/explore/entertainment/live-casino" class="live-view-all">{{ translate('View all live casino') }} <ArrowRight :size="16" aria-hidden="true" /></NuxtLink>
           <div class="live-carousel-controls flex items-center" :aria-label="translate('Live Casino slider controls')">
@@ -51,7 +51,7 @@ function categoryIcon(key: string) {
         <h3 id="live-table-directory-title">{{ translate('Find your table') }}</h3>
         <div class="live-table-links">
           <NuxtLink v-for="game in quickCategories" :key="game.key" :to="`/explore/entertainment/live-casino/${game.category}`">
-            <img :src="categoryIcon(game.key)" class="live-sidebar-icon" alt="" width="28" height="28" decoding="async">
+            <img :src="categoryIcon(game.key)" class="live-sidebar-icon" :alt="translate(game.key === 'sicbo' ? 'Sic Bo' : game.title)" width="28" height="28" decoding="async">
             <span>{{ translate(game.key === 'sicbo' ? 'Sic Bo' : game.title) }}</span>
           </NuxtLink>
         </div>

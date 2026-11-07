@@ -5,12 +5,12 @@ import { Check } from 'lucide-vue-next'
 const { locale, setLocale } = useSiteLocale()
 
 useAppSeo({
-  title: 'Language Settings — Choose Your Preferred Locale | 2Bet',
-  description: 'Customize your language and regional display preferences on 2Bet. Select English, Filipino, or regional settings for a tailored gaming experience.',
+  title: 'Preferências de Idioma e Configurações Regionais | 2bet',
+  description: 'Personalize o idioma de navegação na plataforma 2bet. Escolha as configurações ideais para sua experiência em jogos e apostas online.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Account', path: '/explore/account/me' },
-    { name: 'Language', path: '/explore/account/language' },
+    { name: 'Início', path: '/' },
+    { name: 'Minha Conta', path: '/explore/account/me' },
+    { name: 'Idioma', path: '/explore/account/language' },
   ],
 })
 </script>

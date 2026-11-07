@@ -6,20 +6,21 @@ defineProps<{
 }>()
 
 const route = useRoute()
+const { translate } = useSiteLocale()
 
 const sportName = computed(() => {
   const s = String(route.params.sport || 'sports')
-  return s.charAt(0).toUpperCase() + s.slice(1)
+  return translate(s.charAt(0).toUpperCase() + s.slice(1))
 })
 
 const tabLabels: Record<string, string> = {
-  league: 'Leagues',
-  inplay: 'In-Play Live',
-  upcoming: 'Upcoming Matches',
-  'pre-match': 'Pre-Match Odds',
-  'smart-pick': 'Smart Picks',
-  outright: 'Outrights & Futures',
-  replay: 'Match Replays',
+  league: 'Ligas',
+  inplay: 'Ao Vivo',
+  upcoming: 'Em Breve',
+  'pre-match': 'Pré-Jogo',
+  'smart-pick': 'Smart Pick',
+  outright: 'Apostas Futuras',
+  replay: 'Replays',
 }
 
 const tabDisplayName = computed(() => {
@@ -33,50 +34,50 @@ const activeTabInfo = computed(() => {
 
   if (t === 'league') {
     return {
-      title: `${s} Leagues & Tournaments Betting Odds | 2Bet`,
-      description: `Bet on top ${s} leagues and tournaments at 2Bet Philippines. Real-time point spreads, moneylines, match previews, and competitive odds.`,
+      title: formatSeoTitle(`Ligas e Torneios de ${s} — Linhas de Apostas | 2bet`),
+      description: formatSeoDescription(`Aposte nas principais ligas e torneios de ${s.toLowerCase()} na 2bet Brasil. Cotações competitivas, prévias e cobertura completa.`),
     }
   }
   if (t === 'inplay') {
     return {
-      title: `Live In-Play ${s} Betting & Match Odds | 2Bet`,
-      description: `Bet live in-play on ongoing ${s} games at 2Bet Philippines. Instant dynamic odds, live scoring updates, and quick cash-out options.`,
+      title: formatSeoTitle(`Apostas ao Vivo em ${s} — Cotações em Tempo Real | 2bet`),
+      description: formatSeoDescription(`Acompanhe partidas de ${s.toLowerCase()} ao vivo na 2bet Brasil. Linhas dinâmicas em tempo real, placar atualizado e cash out rápido.`),
     }
   }
   if (t === 'upcoming') {
     return {
-      title: `Upcoming ${s} Matches & Betting Lines | 2Bet`,
-      description: `View upcoming ${s} match schedules and early betting lines at 2Bet Philippines. Lock in competitive point spreads and totals early.`,
+      title: formatSeoTitle(`Próximas Partidas de ${s} e Agenda de Jogos | 2bet`),
+      description: formatSeoDescription(`Confira a programação das próximas partidas de ${s.toLowerCase()} na 2bet Brasil. Compare linhas antecipadas e garanta as melhores odds.`),
     }
   }
   if (t === 'pre-match' || t === 'prematch') {
     return {
-      title: `Pre-Match ${s} Odds & Game Predictions | 2Bet`,
-      description: `Analyze pre-match ${s} betting odds, team form, and game stats on 2Bet Philippines. Place informed wagers with premier market depth.`,
+      title: formatSeoTitle(`Odds Pré-Jogo de ${s} e Análises de Partidas | 2bet`),
+      description: formatSeoDescription(`Analise as cotações pré-jogo de ${s.toLowerCase()} na 2bet Brasil. Estatísticas de equipes, retrospecto recente e mercados variados.`),
     }
   }
   if (t === 'smart-pick') {
     return {
-      title: `Smart Pick ${s} AI Betting Tips & Picks | 2Bet`,
-      description: `Get data-driven Smart Pick betting insights and AI predictions for ${s} on 2Bet Philippines. Optimize your wagering strategies today.`,
+      title: formatSeoTitle(`Smart Pick ${s} — Dicas e Previsões com IA | 2bet`),
+      description: formatSeoDescription(`Receba análises inteligentes com IA para partidas de ${s.toLowerCase()} na 2bet Brasil. Informações baseadas em dados para suas decisões.`),
     }
   }
   if (t === 'outright') {
     return {
-      title: `${s} Championship Outrights & Futures Odds | 2Bet`,
-      description: `Wager on ${s} championship outrights and league winners at 2Bet Philippines. High-value future odds for top global tournaments.`,
+      title: formatSeoTitle(`Apostas Futuras em ${s} e Mercados de Campeão | 2bet`),
+      description: formatSeoDescription(`Aposte nos campeões e vencedores de torneios de ${s.toLowerCase()} na 2bet Brasil. Cotações de longo prazo para os maiores campeonatos.`),
     }
   }
   if (t === 'replay') {
     return {
-      title: `${s} Match Highlights & Video Replays | 2Bet`,
-      description: `Watch key ${s} match highlights and full game video replays on 2Bet Philippines. Catch up on the biggest plays and historic moments.`,
+      title: formatSeoTitle(`Melhores Momentos e Vídeos de Jogos de ${s} | 2bet`),
+      description: formatSeoDescription(`Assista aos melhores momentos e lances de ${s.toLowerCase()} na 2bet Brasil. Reveja jogadas marcantes antes de fazer suas apostas.`),
     }
   }
 
   return {
-    title: `${tabDisplayName.value} ${s} Betting Odds & Lines | 2Bet`,
-    description: `Bet on ${tabDisplayName.value} ${s} fixtures with top market odds on 2Bet Philippines. Point spreads, moneylines, totals, and prop bets.`,
+    title: formatSeoTitle(`${tabDisplayName.value} de ${s} — Linhas de Apostas | 2bet`),
+    description: formatSeoDescription(`Aposte em partidas de ${s.toLowerCase()} (${tabDisplayName.value}) na 2bet Brasil com as melhores cotações e cobertura ao vivo.`),
   }
 })
 
@@ -84,15 +85,15 @@ useAppSeo({
   title: computed(() => activeTabInfo.value.title),
   description: computed(() => activeTabInfo.value.description),
   breadcrumbs: computed(() => [
-    { name: 'Home', path: '/' },
-    { name: 'Sports', path: '/explore/sports/popular' },
+    { name: 'Início', path: '/' },
+    { name: 'Esportes', path: '/explore/sports/popular' },
     { name: sportName.value, path: `/explore/sports/${route.params.sport}` },
     { name: tabDisplayName.value, path: route.path },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: activeTabInfo.value.title.replace(' | 2Bet', ''),
+    name: activeTabInfo.value.title.replace(' | 2bet', ''),
     url: `https://2bet.com${route.path}`,
     description: activeTabInfo.value.description,
   })),

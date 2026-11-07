@@ -2,23 +2,23 @@
 import TransactionTutorialPage from '~/components/tutorial/TransactionTutorialPage.vue'
 
 useAppSeo({
-  title: 'How to Withdraw Winnings Step-by-Step Guide by 2Bet Casino',
-  description: 'Step-by-step withdrawal tutorial for 2Bet Philippines. Learn how to request fast payouts directly to your GCash or bank account with ease.',
+  title: 'Como Sacar Ganhos na Conta — Guia de Saque Rápido | 2bet',
+  description: 'Aprenda a retirar seus lucros na 2bet Brasil passo a passo. Solicite retiradas com agilidade via PIX diretamente para sua conta bancária.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Tutorials', path: '/tutorial' },
-    { name: 'Withdrawal Tutorial', path: '/tutorial/transactions/withdraw' },
+    { name: 'Início', path: '/' },
+    { name: 'Tutoriais', path: '/tutorial' },
+    { name: 'Tutorial de Saque', path: '/tutorial/transactions/withdraw' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
-    name: 'How to Withdraw Winnings from 2Bet',
-    description: 'Learn how to withdraw winnings from your 2Bet account quickly and safely.',
+    name: 'Como Sacar Ganhos na Plataforma 2bet',
+    description: 'Aprenda a retirar seus lucros na 2bet Brasil passo a passo. Solicite retiradas com agilidade via PIX diretamente para sua conta bancária.',
   },
 })
 </script>
 
 <template>
-  <h1 class="hidden">How to Withdraw in 2Bet </h1>
+  <h1 class="hidden">Como Sacar na Plataforma 2bet — Guia de Saque Rápido</h1>
   <TransactionTutorialPage mode="withdraw" />
 </template>

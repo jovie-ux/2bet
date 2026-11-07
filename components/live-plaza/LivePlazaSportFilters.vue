@@ -11,6 +11,8 @@ const emit = defineEmits<{
   'update:modelValue': [value: LivePlazaSportFilter]
 }>()
 
+const { translate } = useSitePreferences()
+
 const filters: Array<{
   id: LivePlazaSportFilter
   label: string
@@ -23,7 +25,7 @@ const filters: Array<{
 </script>
 
 <template>
-  <div class="sport-filters" role="group" aria-label="Filter predictions by sport">
+  <div class="sport-filters" role="group" :aria-label="translate('Filter predictions by sport')">
     <button
       v-for="filter in filters"
       :key="filter.id"
@@ -39,7 +41,7 @@ const filters: Array<{
       <img
         v-else
         :src="filter.icon"
-        alt=""
+        :alt="translate(filter.label)"
         class="sport-filter__icon"
         width="17"
         height="17"
@@ -47,7 +49,7 @@ const filters: Array<{
         decoding="async"
         aria-hidden="true"
       >
-      <span>{{ filter.label }}</span>
+      <span>{{ translate(filter.label) }}</span>
     </button>
   </div>
 </template>

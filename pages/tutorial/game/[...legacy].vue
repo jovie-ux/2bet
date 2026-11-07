@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Interactive Casino Game Guides & Rules | 2Bet Help',
-  description: 'Read comprehensive game guides and gameplay walkthroughs for 2Bet slots and table games. Understand payout mechanics, bonus rounds, and odds.',
+  title: 'Guias e Regras de Jogos de Cassino para Iniciantes | 2bet',
+  description: 'Consulte tutoriais detalhados de jogos de cassino na 2bet Brasil. Descubra como funcionam caça-níqueis, multiplicadores e giros grátis.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Tutorials', path: '/tutorial' },
-    { name: 'Game Guides', path: '/tutorial/game' },
+    { name: 'Início', path: '/' },
+    { name: 'Tutoriais', path: '/tutorial' },
+    { name: 'Guias de Jogos', path: '/tutorial/game' },
   ],
 })
 

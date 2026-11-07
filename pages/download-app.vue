@@ -2,25 +2,27 @@
 import SubpageHeader from '~/components/SubpageHeader.vue'
 
 const { showDemoMessage } = useDemoInteraction()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 useAppSeo({
-  title: 'Download 2Bet App — Android APK & iOS | Official Mobile',
-  description: 'Download the official 2Bet mobile app for Android and iOS devices. Enjoy real-time sports odds, seamless live casino streams, and lightning-fast deposits.',
+  title: 'Baixar Aplicativo Oficial — Download APK no Celular | 2bet',
+  description: 'Baixe o aplicativo 2bet oficial para celular Android e iOS. Tenha acesso rápido a apostas esportivas, jogos de cassino e suporte 24 horas.',
+  keywords: '2bet app, baixar 2bet, 2bet apk, app de apostas, cassino mobile',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Download App', path: '/download-app' },
+    { name: 'Início', path: '/' },
+    { name: 'Baixar Aplicativo', path: '/download-app' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: '2Bet Mobile App',
+    name: '2bet Mobile App',
     operatingSystem: 'Android, iOS',
     applicationCategory: 'GameApplication',
     offers: {
       '@type': 'Offer',
       price: '0',
-      priceCurrency: 'PHP',
+      priceCurrency: 'BRL',
     },
   },
 })

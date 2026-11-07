@@ -4,6 +4,7 @@ import { Sparkles } from 'lucide-vue-next'
 const emit = defineEmits<{
   explore: []
 }>()
+const { translate } = useSiteLocale()
 </script>
 
 <template>
@@ -12,13 +13,13 @@ const emit = defineEmits<{
       :size="32"
       aria-hidden="true"
     />
-    <h2>Smart Pick is coming soon</h2>
-    <p>Match insights and selections aren’t available yet. Explore the leagues and upcoming matches.</p>
+    <h2>{{ translate('Smart Pick is coming soon') }}</h2>
+    <p>{{ translate('Match insights and selections aren’t available yet. Explore the leagues and upcoming matches.') }}</p>
     <button
       type="button"
       @click="emit('explore')"
     >
-      Explore leagues
+      {{ translate('Explore leagues') }}
     </button>
   </div>
 </template>

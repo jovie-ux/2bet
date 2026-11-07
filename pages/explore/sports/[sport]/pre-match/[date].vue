@@ -5,28 +5,29 @@ defineProps<{
 }>()
 
 const route = useRoute()
+const { translate } = useSiteLocale()
 
 const sportName = computed(() => {
   const s = String(route.params.sport || 'sports')
-  return s.charAt(0).toUpperCase() + s.slice(1)
+  return translate(s.charAt(0).toUpperCase() + s.slice(1))
 })
 
 useAppSeo({
-  title: computed(() => `${sportName.value} Pre-Match Betting Odds for ${route.params.date} | 2Bet`),
-  description: computed(() => `Browse pre-match ${sportName.value} betting odds for fixtures scheduled on ${route.params.date} at 2Bet Philippines. Analyze matchup stats and lock in lines early.`),
+  title: computed(() => formatSeoTitle(`Odds Pré-Jogo de ${sportName.value} (${route.params.date}) | 2bet`)),
+  description: computed(() => formatSeoDescription(`Confira as cotações pré-jogo de ${sportName.value} para ${route.params.date} na 2bet Brasil. Analise estatísticas e aposte com segurança.`)),
   breadcrumbs: computed(() => [
-    { name: 'Home', path: '/' },
-    { name: 'Sports', path: '/explore/sports/popular' },
+    { name: 'Início', path: '/' },
+    { name: 'Esportes', path: '/explore/sports/popular' },
     { name: sportName.value, path: `/explore/sports/${route.params.sport}` },
-    { name: 'Pre-Match', path: `/explore/sports/${route.params.sport}/pre-match` },
+    { name: 'Pré-Jogo', path: `/explore/sports/${route.params.sport}/pre-match` },
     { name: String(route.params.date), path: route.path },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${sportName.value} Pre-Match Odds for ${route.params.date} - 2Bet`,
+    name: `Odds Pré-Jogo de ${sportName.value} em ${route.params.date} - 2bet`,
     url: `https://2bet.com${route.path}`,
-    description: `Pre-match ${sportName.value} odds and betting lines for fixtures on ${route.params.date} at 2Bet.`,
+    description: formatSeoDescription(`Cotações pré-jogo de ${sportName.value} e mercados esportivos para partidas em ${route.params.date} na 2bet Brasil.`),
   })),
 })
 

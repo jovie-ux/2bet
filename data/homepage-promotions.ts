@@ -9,14 +9,46 @@ const presentation: Array<{
   slug: string
   accentColor: string
 }> = [
-  { id: 'vip-sports-rebate', tone: 'sports', bannerImage: '/images/promotions/homepage-v2/sports.webp', title: 'VIP Sports Rebate', description: 'Your Reward to End the Day', slug: 'vip-sports-rebate', accentColor: '#10b981' },
-  { id: 'slot-loss-rebate', tone: 'slots', bannerImage: '/images/promotions/homepage-v2/slots.webp', title: 'Slot Loss Rebate', description: 'Turn Spins into Wins', slug: 'slot-loss-rebate', accentColor: '#f59e0b' },
-  { id: 'vip-live-casino-rebate', tone: 'live-casino', bannerImage: '/images/promotions/homepage-v2/live-casino.webp', title: 'VIP Live Casino Rebate', description: 'Live Dealer Protection', slug: 'vip-live-casino-rebate', accentColor: '#ec4899' },
-  { id: 'lucky-rankings', tone: 'rankings', bannerImage: '/images/promotions/homepage-v2/rankings.webp', title: 'Lucky Rankings', description: 'Climb the Ranks & Win', slug: 'lucky-rankings', accentColor: '#8b5cf6' },
+  {
+    id: 'seu_primeiro_deposito',
+    tone: 'slots',
+    bannerImage: '/images/promotions/seu_primeiro_deposito.png',
+    title: 'Seu Primeiro Depósito Vale Mais!',
+    description: 'Até R$ 10.000 em Bônus de Boas-Vindas',
+    slug: 'seu_primeiro_deposito',
+    accentColor: '#019440',
+  },
+  {
+    id: 'bonus_diario_de_recuperacao',
+    tone: 'sports',
+    bannerImage: '/images/promotions/bonus_diario_de_recuperacao.png',
+    title: 'Bônus Diário de Recuperação',
+    description: 'Até R$ 18.888 de Volta em Perdas',
+    slug: 'bonus_diario_de_recuperacao',
+    accentColor: '#10b981',
+  },
+  {
+    id: 'vip-privileges',
+    tone: 'live-casino',
+    bannerImage: '/images/promotions/programa_vip.png',
+    title: 'Sistema de Privilégios VIP',
+    description: 'Cashback e Benefícios Exclusivos',
+    slug: 'vip-privileges',
+    accentColor: '#8b5cf6',
+  },
+  {
+    id: 'share-and-earn',
+    tone: 'rankings',
+    bannerImage: '/images/promotions/share_and_earn.png',
+    title: 'Programa Compartilhe e Ganhe',
+    description: 'Comissões Contínuas por Convite',
+    slug: 'share-and-earn',
+    accentColor: '#019440',
+  },
 ]
 
 export const HOMEPAGE_PROMOTIONS = presentation.map(visual => {
-  const match = FEATURED_PROMOTIONS.find(promotion => promotion.id === visual.id)
+  const match = FEATURED_PROMOTIONS.find(promotion => promotion.id === visual.id || promotion.slug === visual.slug)
   return {
     ...visual,
     ...(match || {}),

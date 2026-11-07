@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const railItems = createRailItems(useRuntimeConfig().public.bybetRedirectUrl)
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const railItems = createRailItems(`${bybetBaseUrl}/login?p=${bybetRedirectCode}`)
 import { Check, ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import UnderMaintenance from '~/components/modals/UnderMaintenance.vue'
 import DepositReminderModal from '~/components/modals/DepositReminderModal.vue'
@@ -221,7 +222,7 @@ onBeforeUnmount(() => {
                 v-if="childItem.iconImage"
                 class="rail-submenu-icon-image"
                 :src="childItem.iconImage"
-                alt=""
+                :alt="translate(childItem.label)"
                 width="24"
                 height="24"
                 loading="lazy"

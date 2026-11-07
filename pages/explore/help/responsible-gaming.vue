@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Responsible Gaming & Player Assistance | 2Bet Philippines',
-  description: '2Bet is dedicated to safe and responsible gaming. Learn about player protection tools, deposit limits, and support hotlines in the Philippines.',
+  title: 'Guia de Jogo Responsável e Ferramentas de Proteção | 2bet',
+  description: 'Confira diretrizes e ferramentas de apoio para um jogo consciente na 2bet Brasil. Estabeleça limites de saldo e aposte com segurança total.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Help', path: '/explore/help/contact-us' },
-    { name: 'Responsible Gaming', path: '/responsible-gaming' },
+    { name: 'Início', path: '/' },
+    { name: 'Ajuda', path: '/explore/help/contact-us' },
+    { name: 'Jogo Responsável', path: '/responsible-gaming' },
   ],
 })
 

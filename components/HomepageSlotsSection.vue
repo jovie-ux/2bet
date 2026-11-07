@@ -59,7 +59,7 @@ function toggleFavorite(title: string) {
     <template #header="{ atStart, atEnd, move }">
       <header class="slots-header flex items-center justify-between">
         <div class="slots-heading flex items-center min-w-0">
-          <h2 id="slots-title" class="flex items-center"><img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" alt="" width="28" height="28">{{ translate('Top Slots') }}</h2>
+          <h2 id="slots-title" class="flex items-center"><img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" :alt="translate('Top Slots')" width="28" height="28">{{ translate('Top Slots') }}</h2>
           <p>{{ translate('Handpicked games from leading providers') }}</p>
         </div>
         <div class="slots-actions flex items-center">

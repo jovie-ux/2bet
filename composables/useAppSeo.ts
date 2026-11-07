@@ -114,105 +114,195 @@ const BREADCRUMB_SEGMENT_LABELS_PT: Record<string, string> = {
 }
 
 const SEO_TITLES_PT: Record<string, string> = {
-  '2Bet Casino Slots – More Spins, Big Wins': '2Bet Cassino Slots – Mais Giros, Grandes Vitórias',
-  'Download 2Bet App — Android APK & iOS | Official Mobile': 'Baixar Aplicativo 2Bet — Android APK e iOS | Mobile Oficial',
-  'Sports Betting Tutorial — Step-by-Step Guide | 2Bet': 'Tutorial de Apostas Esportivas — Guia Passo a Passo | 2Bet',
-  'Casino Game Guides & How to Play Tutorials | 2Bet': 'Guias de Jogos de Cassino e Tutoriais de Como Jogar | 2Bet',
-  'Interactive Casino Game Guides & Rules | 2Bet Help': 'Guias Interativos de Jogos de Cassino e Regras | Ajuda 2Bet',
-  'Deposit & Withdrawal Transaction Guides | 2Bet Help': 'Guias de Transações de Depósito e Saque | Ajuda 2Bet',
-  'How to Deposit Funds via GCash and Maya Guide in 2Bet Casino': 'Como Depositar Fundos no Cassino 2Bet | Guia Passo a Passo',
-  'How to Withdraw Winnings Step-by-Step Guide by 2Bet Casino': 'Como Sacar Ganhos no Cassino 2Bet | Guia Passo a Passo',
-  'Mock Betting Simulator & Practice Tutorial | 2Bet': 'Simulador de Apostas e Tutorial Prático | 2Bet',
-  'Terms of Use & Player Service Agreement | 2Bet Platform': 'Termos de Uso e Contrato de Serviço do Jogador | Plataforma 2Bet',
-  'Online Lottery & Numbers Games | 2Bet Philippines': 'Loteria Online e Jogos de Números | 2Bet',
-  'Online Entertainment & Mini Games | 2Bet Philippines': 'Entretenimento Online e Minijogos | 2Bet',
-  'Live Casino — Live Baccarat, Roulette & Blackjack | 2Bet': 'Cassino ao Vivo — Bacará, Roleta e Blackjack ao Vivo | 2Bet',
-  'Live Plaza Funds & Reward Management | 2Bet Platform': 'Fundos da Praça ao Vivo e Gestão de Recompensas | Plataforma 2Bet',
-  'Top Sports Betting Experts & Tipsters | 2Bet Plaza': 'Melhores Especialistas em Apostas Esportivas | Praça 2Bet',
-  'Live Plaza — Popular Games & Expert Predictions | 2Bet': 'Praça ao Vivo — Jogos Populares e Previsões de Especialistas | 2Bet',
-  'All Sports & Casino Streamers — Live Plaza | 2Bet': 'Todos os Streamers de Esportes e Cassino — Praça ao Vivo | 2Bet',
-  'Live Streamers & Match Broadcasts | 2Bet Live Plaza': 'Streamers ao Vivo e Transmissões de Partidas | Praça ao Vivo 2Bet',
-  'Browse All Live Plaza Streamers & Channels | 2Bet': 'Explorar Todos os Streamers e Canais da Praça ao Vivo | 2Bet',
-  'Expert Predictions & High Hit Rate Tips | 2Bet Plaza': 'Previsões de Especialistas e Dicas de Alta Precisão | Praça 2Bet',
-  'Sports Betting Odds, Lines & Live Scores | 2Bet': 'Odds de Apostas Esportivas, Linhas e Placar ao Vivo | 2Bet',
-  'Popular Sports Leagues — Live Odds & Matches | 2Bet': 'Ligas Esportivas Populares — Odds ao Vivo e Partidas | 2Bet',
-  'Popular In-Play Live Betting — Real-Time Odds | 2Bet': 'Apostas ao Vivo Populares — Odds em Tempo Real | 2Bet',
-  'Popular Upcoming Sports Matches & Betting Odds | 2Bet': 'Próximas Partidas Populares e Odds de Apostas | 2Bet',
-  'Popular Pre-Match Sports Odds & Match Previews | 2Bet': 'Odds Pré-Jogo Populares e Prévias de Partidas | 2Bet',
-  'Popular Smart Pick Sports AI Betting Insights | 2Bet': 'Smart Pick Popular — Análises com Inteligência Artificial | 2Bet',
-  'Popular Championship Outrights & Futures Odds | 2Bet': 'Apostas Futuras e Vencedor do Campeonato | 2Bet',
-  'Popular Sports Betting Odds & Live Matches | 2Bet': 'Odds de Apostas Esportivas Populares e Partidas ao Vivo | 2Bet',
-  '24/7 Customer Support & Help Center | 2Bet Philippines': 'Suporte ao Cliente 24/7 e Central de Ajuda | 2Bet',
-  '24/7 Customer Support & Help Center': 'Suporte ao Cliente 24/7 e Central de Ajuda',
-  '24/7 Services': 'Atendimento 24/7',
-  'Betting History & Transaction Records | 2Bet Platform': 'Histórico de Apostas e Registro de Transações | Plataforma 2Bet',
-  'Jackpot Games — Progressive & Daily Drops | 2Bet': 'Jogos de Jackpot — Acumulados e Prêmios Diários | 2Bet',
-  'Standalone Jackpot Games & High Multipliers | 2Bet': 'Jogos de Jackpot Standalone e Grandes Multiplicadores | 2Bet',
-  'Bingo Games — Color Game, Lottery & Fast Keno | 2Bet': 'Jogos de Bingo — Color Game, Loteria e Keno Rápido | 2Bet',
-  'Online Slots — Jackpots, Megaways & Classic Slots | 2Bet': 'Slots Online — Jackpots, Megaways e Caça-Níqueis Clássicos | 2Bet',
-  'Terms and Conditions for Promotion | 2bet': 'Termos e Condições da Promoção | 2Bet',
-  'Time Zone Settings — Match Schedule Preference | 2Bet': 'Fuso Horário — Preferência de Horário de Partidas | 2Bet',
-  'Deposit Funds — GCash, Maya, Bank Transfer | 2Bet': 'Depositar Fundos — Métodos de Pagamento Seguros | 2Bet',
-  'My Account Profile & VIP Overview | 2Bet Philippines': 'Perfil da Minha Conta e Visão Geral VIP | 2Bet',
-  'Fast Withdrawals — Instant Payouts via GCash | 2Bet': 'Saques Rápidos — Pagamentos Instantâneos | 2Bet',
-  'Language Settings — Choose Your Preferred Locale | 2Bet': 'Configurações de Idioma — Escolha seu Idioma | 2Bet',
-  'VIP Club & Loyalty Rewards Program | 2Bet Philippines': 'Clube VIP e Programa de Recompensas de Fidelidade | 2Bet',
-  'Explore Games, Sports & Casino Entertainment | 2Bet': 'Explore Jogos, Esportes e Entretenimento de Cassino | 2Bet',
-  'Cookie Policy — Web Tracking & Privacy Standards | 2Bet': 'Política de Cookies — Rastreamento e Padrões de Privacidade | 2Bet',
-  'General Terms & Conditions of Service | 2Bet Platform': 'Termos Gerais e Condições de Serviço | Plataforma 2Bet',
-  'Privacy Policy & Personal Data Protection | 2Bet Ph': 'Política de Privacidade e Proteção de Dados | 2Bet',
-  'Privacy Policy & Personal Data Protection': 'Política de Privacidade e Proteção de Dados',
-  'Official Sports Betting Rules & Guidelines | 2Bet': 'Regras Oficiais de Apostas Esportivas e Diretrizes | 2Bet',
-  'Terms of Service & User Agreement | 2Bet Philippines': 'Termos de Serviço e Contrato do Usuário | 2Bet',
-  'Contact Us — 24/7 Live Chat & Email Support | 2Bet': 'Fale Conosco — Chat ao Vivo 24/7 e Suporte | 2Bet',
-  'Responsible Gaming & Player Assistance | 2Bet Philippines': 'Jogo Responsável e Assistência ao Jogador | 2Bet',
-  'About Us — Online Sports & Casino Gaming | 2Bet': 'Sobre Nós — Apostas Esportivas e Cassino Online | 2Bet',
-  'Affiliate Partnership Program — Earn Up to 50% | 2Bet': 'Programa de Parceria de Afiliados — Ganhe até 50% | 2Bet',
-  'Privacy Policy & Data Protection (RA 10173) | 2Bet': 'Política de Privacidade e Proteção de Dados | 2Bet',
-  'Sports Betting Rules & Settlement Directory | 2Bet': 'Regras de Apostas Esportivas e Diretório de Liquidação | 2Bet',
-  'Parlay & Multiples Combo Bet Settlement Rules | 2Bet': 'Regras de Liquidação de Apostas Múltiplas e Combinadas | 2Bet',
-  'Cash Out Rules, Terms & Settlement Standards | 2Bet': 'Regras de Encerrar Aposta (Cash Out) e Termos | 2Bet',
-  'Tennis Betting Rules & Retirement Settlement | 2Bet': 'Regras de Apostas em Tênis e Liquidação de Abandono | 2Bet',
-  'Outright Betting Rules & Tournament Futures | 2Bet': 'Regras de Apostas de Longo Prazo e Vencedor Final | 2Bet',
-  'Badminton Betting Rules & Settlement Standards | 2Bet': 'Regras de Apostas em Badminton e Padrões de Liquidação | 2Bet',
-  'General Sports Betting Rules & Settlement Standards | 2Bet': 'Regras Gerais de Apostas Esportivas e Liquidação | 2Bet',
-  'Football / Soccer Betting Rules & Settlement | 2Bet': 'Regras de Apostas em Futebol e Liquidação | 2Bet',
-  'Basketball Betting Rules (NBA, PBA & FIBA) | 2Bet': 'Regras de Apostas em Basquete (NBA, NBB e FIBA) | 2Bet',
-  'Table Tennis Betting Rules & Match Settlement | 2Bet': 'Regras de Apostas em Tênis de Mesa e Liquidação | 2Bet',
-  'Baseball Betting Rules (MLB, NPB & KBO) | 2Bet Sports': 'Regras de Apostas em Beisebol (MLB, NPB e KBO) | 2Bet',
-  'Responsible Gaming & Player Protection | 2Bet Philippines': 'Jogo Responsável e Proteção ao Jogador | 2Bet',
-  Deposit: 'Depositar',
-  Withdraw: 'Sacar',
-  VIP: 'VIP',
-  Me: 'Minha Conta',
-  Sports: 'Esportes',
-  Slots: 'Slots',
-  Jackpot: 'Jackpot',
-  Bingo: 'Bingo',
-  Poker: 'Pôquer',
-  Bonuses: 'Bônus',
-  'Live Casino': 'Cassino ao Vivo',
+  '2Bet Casino Slots – More Spins, Big Wins': '2bet Cassino Online e Slots – Mais Giros e Grandes Prêmios',
+  'Download 2Bet App — Android APK & iOS | Official Mobile': 'Baixar Aplicativo 2bet — Android APK e iOS Mobile | 2bet',
+  'Sports Betting Tutorial — Step-by-Step Guide | 2Bet': 'Tutorial de 2bet Apostas — Guia Passo a Passo | 2bet',
+  'Casino Game Guides & How to Play Tutorials | 2Bet': 'Guias de 2bet Game e Jogos de Cassino Online | 2bet',
+  'Interactive Casino Game Guides & Rules | 2Bet Help': 'Guias de Jogos e Regras do 2bet Casino Online | 2bet',
+  'Deposit & Withdrawal Transaction Guides | 2Bet Help': 'Guia de Depósito e Saque na Plataforma 2bet | 2bet',
+  'How to Deposit Funds via GCash and Maya Guide in 2Bet Casino': 'Como Fazer Depósito Rápido na Plataforma 2bet | 2bet',
+  'How to Withdraw Winnings Step-by-Step Guide by 2Bet Casino': 'Como Sacar Ganhos de Apostas na Plataforma 2bet | 2bet',
+  'Mock Betting Simulator & Practice Tutorial | 2Bet': 'Simulador de Apostas Esportivas em 2bet Bet | 2bet',
+  'Terms of Use & Player Service Agreement | 2Bet Platform': 'Termos de Uso e Contrato de Serviço do Jogador | 2bet',
+  'Online Lottery & Numbers Games | 2Bet Brasil': 'Loteria Online e Jogos de Números com Sorteios | 2bet',
+  'Online Entertainment & Mini Games | 2Bet Brasil': 'Entretenimento Online, Arcade e Minijogos de Cassino | 2bet',
+  'Live Casino — Live Baccarat, Roulette & Blackjack | 2Bet': 'Cassino ao Vivo — Bacará, Roleta e Blackjack HD | 2bet',
+  'Live Plaza Funds & Reward Management | 2Bet Platform': 'Fundos da Praça ao Vivo e Gestão de Recompensas | 2bet',
+  'Top Sports Betting Experts & Tipsters | 2Bet Plaza': 'Melhores Especialistas em Apostas Esportivas | 2bet',
+  'Live Plaza — Popular Games & Expert Predictions | 2Bet': 'Praça ao Vivo — Jogos Populares e Dicas de Apostas | 2bet',
+  'All Sports & Casino Streamers — Live Plaza | 2Bet': 'Todos os Streamers de Esportes e Cassino ao Vivo | 2bet',
+  'Live Streamers & Match Broadcasts | 2Bet Live Plaza': 'Streamers ao Vivo e Transmissões de Partidas | 2bet',
+  'Browse All Live Plaza Streamers & Channels | 2Bet': 'Explorar Todos os Streamers e Canais da Praça | 2bet',
+  'Expert Predictions & High Hit Rate Tips | 2Bet Plaza': 'Previsões de Especialistas e Dicas de Alta Precisão | 2bet',
+  'Sports Betting Odds, Lines & Live Scores | 2Bet': 'Odds de Apostas Esportivas, Linhas e Placar ao Vivo | 2bet',
+  'Popular Sports Leagues — Live Odds & Matches | 2Bet': 'Ligas Esportivas Populares — Odds ao Vivo e Jogos | 2bet',
+  'Popular In-Play Live Betting — Real-Time Odds | 2Bet': 'Apostas Esportivas ao Vivo — Odds em Tempo Real | 2bet',
+  'Popular Upcoming Sports Matches & Betting Odds | 2Bet': 'Próximas Partidas Esportivas e Odds de Apostas | 2bet',
+  'Popular Pre-Match Sports Odds & Match Previews | 2Bet': 'Odds Pré-Jogo Populares e Prévias de Partidas | 2bet',
+  'Popular Smart Pick Sports AI Betting Insights | 2Bet': 'Smart Pick Esportivo — Dicas de Apostas com IA | 2bet',
+  'Popular Championship Outrights & Futures Odds | 2Bet': 'Apostas Futuras e Vencedores de Campeonatos | 2bet',
+  'Popular Sports Betting Odds & Live Matches | 2Bet': 'Odds de Apostas Esportivas Populares e Ao Vivo | 2bet',
+  'Popular Sports Betting — Top Match Odds & Events | 2Bet': 'Apostas Esportivas Populares — Melhores Odds e Jogos | 2bet',
+  'Live Sports Betting Hub — In-Play Match Odds | 2Bet': 'Central de Apostas Esportivas ao Vivo — Odds Reais | 2bet',
+  'Live In-Play Sports Betting — Real-Time Odds | 2Bet': 'Apostas Esportivas ao Vivo em Jogo — Odds Reais | 2bet',
+  '24/7 Customer Support & Help Center | 2Bet Brasil': 'Suporte ao Cliente 24/7 e Central de Ajuda Online | 2bet',
+  '24/7 Customer Support & Help Center': 'Suporte ao Cliente 24/7 e Central de Ajuda Online | 2bet',
+  '24/7 Services': 'Atendimento ao Cliente 24/7 e Suporte Online no Brasil | 2bet',
+  'Betting History & Transaction Records | 2Bet Platform': 'Histórico de Apostas e Registro de Transações | 2bet',
+  'E-Games History — Slots & Casino Session Logs | 2Bet': 'Histórico de Jogos — Registro de Sessões de Slots | 2bet',
+  'Jackpot Games — Progressive & Daily Drops | 2Bet': 'Jogos de Jackpot — Acumulados e Prêmios Diários | 2bet',
+  'Progressive Jackpots — Big Win Casino Slots | 2Bet': 'Jackpots Progressivos — Slots com Grandes Prêmios | 2bet',
+  'Standalone Jackpot Games & High Multipliers | 2Bet': 'Jogos de Jackpot Standalone e Multiplicadores | 2bet',
+  'Standalone Jackpot Games — Betsoft Slots | 2Bet': 'Jogos de Jackpot Standalone — Slots Betsoft Online | 2bet',
+  'Bingo Games — Color Game, Lottery & Fast Keno | 2Bet': 'Jogos de Bingo Online — Loteria e Keno Rápido | 2bet',
+  'Online Bingo Games — Fast Paced Fun & Wins | 2Bet': 'Jogos de Bingo Online — Sorteios Rápidos e Prêmios | 2bet',
+  'Online Slots — Jackpots, Megaways & Classic Slots | 2Bet': 'Slots Online — Jackpots, Megaways e Caça-Níqueis | 2bet',
+  'Online Slots — Real Money Slots & Jackpots | 2Bet': 'Slots Online — Caça-Níqueis e Jackpots em R$ | 2bet',
+  'Terms and Conditions for Promotion | 2bet': 'Termos e Condições Oficiais das Promoções e Bônus | 2bet',
+  'Time Zone Settings — Match Schedule Preference | 2Bet': 'Configurações de Fuso Horário — Agenda de Jogos | 2bet',
+  'Deposit Funds — GCash, Maya, Bank Transfer | 2Bet': 'Depositar Fundos — Pagamentos Rápidos e Seguros | 2bet',
+  'My Account Profile & VIP Overview | 2Bet Brasil': 'Perfil da Minha Conta e Visão Geral do Clube VIP | 2bet',
+  'Minha Conta e Visão Geral VIP | 2Bet': 'Perfil da Minha Conta e Visão Geral do Clube VIP | 2bet',
+  'Fast Withdrawals — Instant Payouts via GCash | 2Bet': 'Saques Rápidos — Pagamentos Instantâneos na Conta | 2bet',
+  'Language Settings — Choose Your Preferred Locale | 2Bet': 'Configurações de Idioma — Escolha a Sua Região | 2bet',
+  'VIP Club & Loyalty Rewards Program | 2Bet Brasil': 'Clube VIP e Programa de Recompensas e Fidelidade | 2bet',
+  'Explore Games, Sports & Casino Entertainment | 2Bet': 'Explore Jogos, Apostas Esportivas e Cassino Online | 2bet',
+  'Cookie Policy — Web Tracking & Privacy Standards | 2Bet': 'Política de Cookies — Padrões de Privacidade Web | 2bet',
+  'General Terms & Conditions of Service | 2Bet Platform': 'Termos Gerais e Condições de Serviço da Plataforma | 2bet',
+  'Privacy Policy & Personal Data Protection | 2Bet Brasil': 'Política de Privacidade e Proteção de Dados Pessoais | 2bet',
+  'Privacy Policy & Personal Data Protection': 'Política de Privacidade e Proteção de Dados Pessoais | 2bet',
+  'Official Sports Betting Rules & Guidelines | 2Bet': 'Regras Oficiais de Apostas Esportivas e Diretrizes | 2bet',
+  'Terms of Service & User Agreement | 2Bet Brasil': 'Termos de Serviço e Contrato Oficial do Usuário | 2bet',
+  'Contact Us — 24/7 Live Chat & Email Support | 2Bet': 'Fale Conosco — Chat ao Vivo 24/7 e Suporte Online | 2bet',
+  'Responsible Gaming & Player Assistance | 2Bet Brasil': 'Jogo Responsável e Assistência Segura ao Jogador | 2bet',
+  'About Us — Online Sports & Casino Gaming | 2Bet': 'Sobre Nós — Apostas Esportivas e Cassino Online | 2bet',
+  'Affiliate Partnership Program — Earn Up to 50% | 2Bet': 'Programa de Parceria de Afiliados — Ganhe até 50% | 2bet',
+  'Privacy Policy & Data Protection (RA 10173) | 2Bet': 'Política de Privacidade e Proteção de Dados LGPD | 2bet',
+  'Sports Betting Rules & Settlement Directory | 2Bet': 'Regras Oficiais de 2bet Apostas e Liquidação | 2bet',
+  'Parlay & Multiples Combo Bet Settlement Rules | 2Bet': 'Apostas Múltiplas e Combinadas em 2bet Bet Online | 2bet',
+  'Cash Out Rules, Terms & Settlement Standards | 2Bet': 'Regras de Cash Out na Plataforma 2bet Apostas | 2bet',
+  'Tennis Betting Rules & Retirement Settlement | 2Bet': 'Regras de Tênis para 2bet Apostas e Torneios | 2bet',
+  'Outright Betting Rules & Tournament Futures | 2Bet': 'Apostas Futuras de Campeão em 2bet Bet Online | 2bet',
+  'Badminton Betting Rules & Settlement Standards | 2Bet': 'Regras de Badminton em 2bet Apostas Esportivas | 2bet',
+  'General Sports Betting Rules & Settlement Standards | 2Bet': 'Regras Gerais para 2bet Apostas e Mercados Online | 2bet',
+  'Football / Soccer Betting Rules & Settlement | 2Bet': 'Regras de Futebol para 2bet Apostas e Linhas | 2bet',
+  'Basketball Betting Rules (NBA, PBA & FIBA) | 2Bet': 'Regras de Basquete para 2bet Apostas e Odds | 2bet',
+  'Table Tennis Betting Rules & Match Settlement | 2Bet': 'Regras de Tênis de Mesa ITTF em 2bet Apostas | 2bet',
+  'Baseball Betting Rules (MLB, NPB & KBO) | 2Bet Sports': 'Regras de Beisebol MLB e NPB em 2bet Apostas | 2bet',
+  'Responsible Gaming & Player Protection | 2Bet Brasil': 'Jogo Responsável e Proteção Segura ao Jogador | 2bet',
+  'Bonuses & USDT Promotions | 2bet': 'Bônus de Cassino e Promoções Exclusivas em USDT | 2bet',
 }
 
 const SEO_DESCRIPTIONS_PT: Record<string, string> = {
   'Experience top-tier gaming on 2Bet Casino. We provide competitive odds and a vast selection of digital casino titles for every visitor.':
-    'Experimente jogos de alto nível no Cassino 2Bet. Oferecemos odds competitivas e uma vasta seleção de títulos de cassino digital para todos os jogadores.',
+    'Aproveite os melhores jogos no Cassino 2bet Brasil. Oferecemos odds competitivas, slots com jackpot em R$ e cassino ao vivo para você.',
   'Download the official 2Bet mobile app for Android and iOS devices. Enjoy real-time sports odds, seamless live casino streams, and lightning-fast deposits.':
-    'Baixe o aplicativo oficial da 2Bet para Android e iOS. Aproveite odds esportivas em tempo real, transmissões de cassino ao vivo e depósitos rápidos.',
+    'Baixe o aplicativo oficial da 2bet para Android e iOS. Aproveite odds esportivas ao vivo, cassino em HD e pagamentos rápidos no celular.',
   'Contact 2Bet 24/7 Customer Support for fast assistance with deposits, withdrawals, promotions, and account verification. Chat live with us anytime.':
-    'Entre em contato com o suporte ao cliente 24/7 da 2Bet para assistência rápida com depósitos, saques, promoções e verificação de conta. Converse ao vivo conosco a qualquer momento.',
-  'Manage your 2Bet account profile, security settings, VIP tier status, and transaction history. Fast, secure account management on 2Bet Philippines.':
-    'Gerencie o perfil da sua conta na 2Bet, configurações de segurança, status VIP e histórico de transações. Gerenciamento de conta rápido e seguro na 2Bet.',
+    'Fale com o suporte ao cliente 24/7 da 2bet para ajuda rápida com depósitos, saques, bônus e verificação de conta. Atendimento ao vivo.',
+  'Manage your 2Bet account profile, security settings, VIP tier status, and transaction history. Fast, secure account management on 2Bet Brasil.':
+    'Gerencie o perfil da sua conta na 2bet Brasil, configurações de segurança, nível VIP e histórico de transações com proteção e rapidez.',
   'Deposit funds securely to your 2Bet wallet using GCash, Maya, ShopeePay, or online banking. Instant processing and zero transaction fees 24/7.':
-    'Deposite fundos com segurança na sua carteira 2Bet com métodos rápidos e seguros. Processamento instantâneo e zero taxas 24 horas por dia.',
+    'Deposite fundos com segurança na sua carteira 2bet usando métodos de pagamento rápidos. Processamento imediato e zero taxas 24 horas.',
   'Withdraw your winnings quickly and securely from 2Bet via GCash, Maya, or direct bank transfer. High limits, zero fees, and 24/7 processing.':
-    'Retire seus ganhos com rapidez e segurança na 2Bet. Limites altos, zero taxas e processamento 24 horas por dia.',
+    'Saque seus ganhos com rapidez e segurança na 2bet Brasil. Aproveite limites altos, zero tarifas extras e processamento rápido 24 horas.',
   'Explore top-tier online slots at 2Bet. Play progressive jackpots, Megaways, and classic fruit games from world-class gaming providers.':
-    'Explore os melhores slots online na 2Bet. Jogue jackpots progressivos, Megaways e clássicos caça-níqueis dos maiores provedores do mundo.',
+    'Explore os melhores slots online na 2bet Brasil. Jogue jackpots progressivos em R$, Megaways e caça-níqueis dos maiores provedores.',
   'Play live dealer baccarat, blackjack, roulette, and gameshows in HD. Experience authentic casino action with real-time streaming on 2Bet.':
-    'Jogue bacará, blackjack, roleta e game shows com crupiês reais em HD. Viva a autêntica emoção de cassino com transmissões em tempo real na 2Bet.',
+    'Jogue bacará, blackjack, roleta e game shows com crupiês ao vivo em HD. Viva a emoção autêntica do cassino em tempo real na 2bet Brasil.',
   'Bet on live in-play and pre-match sports at 2Bet. Competitive odds, real-time match tracking, and comprehensive betting markets.':
-    'Aposte em esportes ao vivo e pré-jogo na 2Bet. Odds competitivas, acompanhamento de partidas em tempo real e mercados completos de apostas.',
+    'Aposte em esportes ao vivo e pré-jogo na 2bet Brasil. Odds competitivas, estatísticas em tempo real e mercados completos de apostas.',
+}
+
+const PT_TITLE_EXTENSIONS = [
+  ' — Cassino e Apostas Online no Brasil',
+  ' — Apostas e Cassino Online no Brasil',
+  ' — Apostas e Jogos Online no Brasil',
+  ' — Cassino Online e Apostas Brasil',
+  ' — Plataforma Oficial no Brasil',
+  ' — Cassino e Apostas no Brasil',
+  ' — Jogos e Apostas no Brasil',
+  ' — Cassino Online no Brasil',
+  ' — Apostas Online no Brasil',
+  ' no Cassino Online Brasil',
+  ' na Plataforma Oficial',
+  ' — Cassino no Brasil',
+  ' no Cassino Online',
+  ' — Brasil Oficial',
+  ' Online no Brasil',
+  ' — Jogos Online',
+  ' no Cassino',
+  ' no Brasil',
+  ' Online',
+  ' Brasil',
+]
+
+const trimTextWithinRange = (text: string, minLen: number, maxLen: number): string => {
+  const s = text.trim()
+  if (s.length <= maxLen) return s
+  const slice = s.slice(0, maxLen + 1)
+  const lastSpace = slice.lastIndexOf(' ')
+  if (lastSpace >= minLen) {
+    const candidate = slice.slice(0, lastSpace).replace(/[\s—\-–,:;|•]+$/, '').trim()
+    if (candidate.length >= minLen && candidate.length <= maxLen) {
+      return candidate
+    }
+  }
+  return s.slice(0, maxLen).replace(/[\s—\-–,:;|•]+$/, '').trim()
+}
+
+const enforcePtBaseTitleLength = (baseTitle: string, minLen: number, maxLen: number): string => {
+  let clean = baseTitle.replace(/\s{2,}/g, ' ').replace(/[\s—\-–,:;|•]+$/, '').trim()
+  if (clean.length >= minLen && clean.length <= maxLen) {
+    return clean
+  }
+  if (clean.length > maxLen) {
+    clean = trimTextWithinRange(clean, minLen, maxLen)
+    if (clean.length >= minLen && clean.length <= maxLen) {
+      return clean
+    }
+  }
+  for (const ext of PT_TITLE_EXTENSIONS) {
+    const candidate = `${clean}${ext}`
+    if (candidate.length >= minLen && candidate.length <= maxLen) {
+      return candidate
+    }
+  }
+  const extended = `${clean} — Cassino Online e Apostas Esportivas no Brasil Oficial`
+  let result = trimTextWithinRange(extended, minLen, maxLen)
+  while (result.length < minLen) {
+    result = `${result} Brasil`.slice(0, maxLen).trim()
+  }
+  return result
+}
+
+const enforcePtDescriptionLength = (rawDesc: string, minLen: number = 125, maxLen: number = 140): string => {
+  let desc = rawDesc.replace(/\s{2,}/g, ' ').trim()
+  if (!/[.!?]$/.test(desc)) {
+    desc = `${desc}.`
+  }
+  if (desc.length >= minLen && desc.length <= maxLen) {
+    return desc
+  }
+  if (desc.length < minLen) {
+    desc = `${desc} Aproveite odds competitivas, bônus exclusivos, suporte 24/7 e pagamentos rápidos em BRL na plataforma oficial da 2bet Brasil.`
+      .replace(/\s{2,}/g, ' ')
+      .trim()
+  }
+  if (desc.length > maxLen) {
+    const limit = maxLen - 1
+    const slice = desc.slice(0, limit + 1)
+    const lastSpace = slice.lastIndexOf(' ')
+    if (lastSpace >= minLen - 1) {
+      const candidate = slice.slice(0, lastSpace).replace(/[\s.,;:\-—–|•]+$/, '').trim()
+      if (candidate.length + 1 >= minLen && candidate.length + 1 <= maxLen) {
+        return `${candidate}.`
+      }
+    }
+    const hard = desc.slice(0, limit).replace(/[\s.,;:\-—–|•]+$/, '').trim()
+    return `${hard}.`
+  }
+  return desc
 }
 
 const translateTitleToPt = (raw: string): string => {
@@ -223,7 +313,6 @@ const translateTitleToPt = (raw: string): string => {
   if (SEO_TITLES_PT[withoutBrand]) return SEO_TITLES_PT[withoutBrand]
 
   return trimmed
-    .replace(/\bPhilippines\b/gi, '')
     .replace(/\bLeagues & Tournaments Betting Odds\b/gi, 'Odds de Apostas em Ligas e Torneios')
     .replace(/\bLive In-Play\b/gi, 'Ao Vivo em Jogo')
     .replace(/\bBetting & Match Odds\b/gi, 'Apostas e Odds de Partidas')
@@ -298,14 +387,16 @@ const escapeRegExp = (str: string): string => str.replace(/[.*+?^${}()|[\]\\]/g,
 
 export const formatSeoTitle = (
   rawTitle: string | undefined,
-  siteName: string,
+  siteName: string = '2bet',
   includeSiteName: boolean = true,
   locale: string = 'pt',
 ): string => {
-  const cleanSiteName = (siteName || '2Bet').trim().replace(/^['"]+|['"]+$/g, '')
+  const cleanSiteName = (siteName || '2bet').trim().replace(/^['"]+|['"]+$/g, '')
   let raw = (rawTitle || '').trim()
   if (!raw) {
-    return cleanSiteName
+    raw = locale === 'pt'
+      ? 'Apostas Esportivas, Cassino ao Vivo e Slots Online'
+      : `${cleanSiteName} — Online Casino, Slots & Sports Betting`
   }
 
   if (locale === 'pt') {
@@ -313,6 +404,9 @@ export const formatSeoTitle = (
   }
 
   if (!includeSiteName) {
+    if (locale === 'pt') {
+      return enforcePtBaseTitleLength(raw, 50, 60)
+    }
     return raw
   }
 
@@ -321,13 +415,22 @@ export const formatSeoTitle = (
     `\\s*\\|\\s*(?:${escapedSite}(?:\\s+[^|]*)?|ByBet(?:\\s+[^|]*)?|2Bet(?:\\s+[^|]*)?)\\s*$`,
     'i',
   )
-  const baseTitle = raw.replace(trailingBrandRegex, '').trim()
+  let baseTitle = raw.replace(trailingBrandRegex, '').trim()
 
   if (!baseTitle || baseTitle.toLowerCase() === cleanSiteName.toLowerCase()) {
-    return cleanSiteName
+    baseTitle = locale === 'pt'
+      ? 'Apostas Esportivas, Cassino ao Vivo e Slots Online'
+      : 'Online Casino, Live Dealer Tables & Sports Betting'
   }
 
-  return `${baseTitle} | ${cleanSiteName}`
+  const suffix = ` | ${cleanSiteName}`
+  if (locale === 'pt') {
+    const minBase = Math.max(10, 50 - suffix.length)
+    const maxBase = Math.max(minBase, 60 - suffix.length)
+    baseTitle = enforcePtBaseTitleLength(baseTitle, minBase, maxBase)
+  }
+
+  return `${baseTitle}${suffix}`
 }
 
 export const isHomepageRoute = (routePath?: string): boolean => {
@@ -337,15 +440,15 @@ export const isHomepageRoute = (routePath?: string): boolean => {
 
 export const formatSeoDescription = (
   rawDescription: string | undefined,
-  siteName: string,
+  siteName: string = '2bet',
   isHomepage: boolean = false,
-  includeCheckMore: boolean = !isHomepage,
+  includeCheckMore: boolean = false,
   locale: string = 'pt',
 ): string => {
-  const cleanSiteName = (siteName || '2Bet').trim().replace(/^['"]+|['"]+$/g, '')
+  const cleanSiteName = (siteName || '2bet').trim().replace(/^['"]+|['"]+$/g, '')
   let raw = (rawDescription || '').trim()
   const fallback = locale === 'pt'
-    ? `${cleanSiteName} — Os Melhores Jogos Online, Cassino Ao Vivo, Apostas Esportivas e Slots.`
+    ? `Jogue no cassino online ${cleanSiteName} Brasil com slots de alto RTP, jackpots em R$, cassino ao vivo em HD e apostas esportivas com saques rápidos.`
     : `${cleanSiteName} — Premier Online Gaming, Live Casino, Sports Betting, and Slots.`
 
   if (locale === 'pt' && raw) {
@@ -353,30 +456,33 @@ export const formatSeoDescription = (
       raw = SEO_DESCRIPTIONS_PT[raw]
     } else {
       raw = raw
-        .replace(/in the Philippines\.?/gi, '.')
-        .replace(/Explore fishing, mahjong, poker, Bull Bull, baccarat and more games on 2Bet\. Browse games by category and provider\./gi, 'Explore jogos de pesca, mahjong, pôquer, Bull Bull, bacará e muito mais na 2Bet. Navegue por categoria e provedor.')
-        .replace(/Explore (.*?) games on 2Bet\. Browse games by category and provider\./gi, 'Explore jogos de $1 na 2Bet. Navegue por categoria e provedor.')
-        .replace(/Bet on (.*?) on 2Bet\. High odds, live coverage and fast payouts\./gi, 'Aposte em $1 na 2Bet. Odds altas, cobertura ao vivo e pagamentos rápidos.')
-        .replace(/Check back soon for something new\./gi, 'Volte em breve para novidades.')
+        .replace(/in the Philippines\.?/gi, 'no Brasil.')
+        .replace(/2Bet Philippines/gi, '2bet Brasil')
+        .replace(/Explore fishing, mahjong, poker, Bull Bull, baccarat and more games on 2Bet\. Browse games by category and provider\./gi, 'Explore jogos de pesca, mahjong, pôquer, Bull Bull, bacará e muito mais na 2bet Brasil. Navegue por categoria e provedor oficial.')
+        .replace(/Explore (.*?) games on 2Bet\. Browse games by category and provider\./gi, 'Explore jogos de $1 na 2bet Brasil. Navegue por categoria e provedor com mesas dinâmicas, bônus exclusivos e pagamentos rápidos.')
+        .replace(/Bet on (.*?) on 2Bet\. High odds, live coverage and fast payouts\./gi, 'Aposte em $1 na 2bet Brasil. Aproveite odds competitivas, cobertura ao vivo em tempo real e pagamentos rápidos 24 horas por dia.')
+        .replace(/Check back soon for something new\./gi, 'Volte em breve para conferir novidades e lançamentos exclusivos na 2bet Brasil.')
         .replace(/\s{2,}/g, ' ')
         .trim()
     }
   }
 
-  const base = raw || fallback
+  let base = raw || fallback
 
-  if (!includeCheckMore || isHomepage) {
-    return base
+  if (includeCheckMore && !isHomepage) {
+    const suffix = locale === 'pt' ? `confira mais em ${cleanSiteName}` : `check more at ${cleanSiteName}`
+    const escapedSuffix = escapeRegExp(suffix)
+    if (!new RegExp(escapedSuffix, 'i').test(base)) {
+      const separator = /[.!?]$/.test(base) ? ' ' : '. '
+      base = `${base}${separator}${suffix}`
+    }
   }
 
-  const suffix = locale === 'pt' ? `confira mais em ${cleanSiteName}` : `check more at ${cleanSiteName}`
-  const escapedSuffix = escapeRegExp(suffix)
-  if (new RegExp(escapedSuffix, 'i').test(base)) {
-    return base
+  if (locale === 'pt') {
+    return enforcePtDescriptionLength(base, 125, 140)
   }
 
-  const separator = /[.!?]$/.test(base) ? ' ' : '. '
-  return `${base}${separator}${suffix}`
+  return base
 }
 
 export const useAppSeo = (options: AppSeoOptions) => {
@@ -390,7 +496,7 @@ export const useAppSeo = (options: AppSeoOptions) => {
     if (typeof custom === 'string' && custom.trim()) {
       return custom.trim().replace(/^['"]+|['"]+$/g, '')
     }
-    return String(config.public.siteName || '2Bet Slots')
+    return String(config.public.siteName || '2bet')
       .trim()
       .replace(/^['"]+|['"]+$/g, '')
   })
@@ -410,7 +516,7 @@ export const useAppSeo = (options: AppSeoOptions) => {
   const shouldIncludeCheckMore = computed(() => {
     const custom = resolveVal(options.includeCheckMore)
     if (typeof custom === 'boolean') return custom
-    return !isHomepage.value
+    return false
   })
 
   const title = computed(() => {
@@ -435,7 +541,7 @@ export const useAppSeo = (options: AppSeoOptions) => {
     if (locale.value === 'pt') {
       return `${siteName.value}, apostas esportivas, cassino online, slots, cassino ao vivo, jogos online`
     }
-    return `${siteName.value}, sports betting, online casino, slots, live casino, Philippines gaming`
+    return `${siteName.value}, sports betting, online casino, slots, live casino, Brasil gaming`
   })
 
   const image = computed(() => {

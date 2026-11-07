@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ArrowLeft, Clock3, Home, Sparkles } from 'lucide-vue-next'
-import { formatSeoDescription, isHomepageRoute } from '~/composables/useAppSeo'
+import { formatSeoTitle, formatSeoDescription, isHomepageRoute } from '~/composables/useAppSeo'
 
 const route = useRoute()
 const router = useRouter()
@@ -47,20 +47,26 @@ const props = withDefaults(
 
 if (!props.disableSeo) {
   const config = useRuntimeConfig()
-  const siteName = String(config.public.siteName || '2bet Slots')
+  const siteName = String(config.public.siteName || '2bet')
     .trim()
     .replace(/^['"]+|['"]+$/g, '')
+  const seoTitle = computed(() => {
+    const raw = locale.value === 'pt'
+      ? `${translate(pageTitle.value)} — Em Breve no Cassino e Apostas Online | 2bet`
+      : `${pageTitle.value} — Coming Soon to Online Casino & Sports | 2bet`
+    return formatSeoTitle(raw, siteName, !isHomepageRoute(route.path), locale.value)
+  })
   const description = computed(() => {
     const raw = locale.value === 'pt'
-      ? `${translate(pageTitle.value)} em ${translate(sectionTitle.value)} estará disponível em breve na 2Bet.`
-      : `${pageTitle.value} in ${sectionTitle.value} is coming soon to 2Bet.`
+      ? `A seção ${translate(pageTitle.value)} em ${translate(sectionTitle.value)} estará disponível em breve na 2bet Brasil com jogos, apostas e bônus exclusivos.`
+      : `${pageTitle.value} in ${sectionTitle.value} is coming soon to 2bet with exclusive games, sports betting markets, and player rewards.`
     return formatSeoDescription(raw, siteName, isHomepageRoute(route.path), false, locale.value)
   })
 
   useSeoMeta({
-    title: () => locale.value === 'pt'
-      ? `${translate(pageTitle.value)} — Em breve | 2Bet`
-      : `${pageTitle.value} — Coming Soon | 2Bet`,
+    title: seoTitle,
+    ogTitle: seoTitle,
+    twitterTitle: seoTitle,
     description,
     ogDescription: description,
     twitterDescription: description,

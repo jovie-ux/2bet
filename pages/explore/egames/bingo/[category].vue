@@ -41,6 +41,7 @@ const categoryIcons: Record<string, Component> = {
 
 const route = useRoute()
 const router = useRouter()
+const { translate } = useSiteLocale()
 
 const normalizeCategory = (param: string): string => {
   const p = (param || '').toLowerCase()
@@ -56,17 +57,17 @@ const categoryLabel = computed(() => {
 })
 
 useAppSeo({
-  title: computed(() => `${categoryLabel.value} Bingo Games — Play Online | 2Bet`),
-  description: computed(() => `Enjoy ${categoryLabel.value} bingo games on 2Bet Philippines. Exciting patterns, automatic daubing, high RTP payouts, and rewarding community rounds.`),
+  title: computed(() => formatSeoTitle(`${translate(categoryLabel.value)} — Bingo Online e Sorteios ao Vivo | 2bet`)),
+  description: computed(() => formatSeoDescription(`Jogue ${translate(categoryLabel.value).toLowerCase()} no bingo online da 2bet Brasil. Cartelas dinâmicas, bolas bônus e prêmios em dinheiro real 24 horas.`)),
   breadcrumbs: computed(() => [
-    { name: 'Home', path: '/' },
+    { name: 'Início', path: '/' },
     { name: 'Bingo', path: '/explore/egames/bingo' },
-    { name: categoryLabel.value, path: `/explore/egames/bingo/${activeCategory.value}` },
+    { name: translate(categoryLabel.value), path: `/explore/egames/bingo/${activeCategory.value}` },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${categoryLabel.value} Bingo - 2Bet`,
+    name: `${translate(categoryLabel.value)} Bingo - 2bet`,
     url: `https://2bet.com/explore/egames/bingo/${activeCategory.value}`,
   })),
 })
@@ -91,7 +92,8 @@ const filterState = ref({
 })
 
 const { showDemoMessage } = useDemoInteraction()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 const selectCategory = (key: string): void => {
   if (isSearchOpen.value) {
@@ -292,7 +294,7 @@ const displayedGames = computed<BingoGame[]>(() => {
               v-else-if="cat.iconName && categoryIcons[cat.iconName]"
               class="h-10 w-10 sm:h-4 sm:w-4 mb-0.5 shrink-0"
             />
-            <span class="text-[12px] sm:text-[10px] leading-tight whitespace-nowrap">{{ cat.shortLabel }}</span>
+            <span class="text-[12px] sm:text-[10px] leading-tight whitespace-nowrap">{{ translate(cat.shortLabel) }}</span>
           </button>
         </div>
       </header>
@@ -308,7 +310,7 @@ const displayedGames = computed<BingoGame[]>(() => {
             :class="activeProvider === prov.key ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'bg-[#242625] text-[#8e9491] '"
             @click="selectProvider(prov.key)"
           >
-            {{ prov.label }}
+            {{ translate(prov.label) }}
           </button>
         </div>
 
@@ -316,7 +318,7 @@ const displayedGames = computed<BingoGame[]>(() => {
           <button
             type="button"
             class="h-8 w-8 rounded-full bg-[#242625] text-[#8e9491] hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-            aria-label="Search games"
+            :aria-label="translate('Search games')"
             @click="openSearch"
           >
             <Search class="h-4 w-4" />
@@ -324,7 +326,7 @@ const displayedGames = computed<BingoGame[]>(() => {
           <button
             type="button"
             class="h-8 w-8 rounded-full bg-[#242625] text-[#8e9491] hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-            aria-label="Filter games"
+            :aria-label="translate('Filter games')"
             @click="isFilterOpen = true"
           >
             <SlidersHorizontal class="h-4 w-4" />
@@ -344,7 +346,7 @@ const displayedGames = computed<BingoGame[]>(() => {
           ref="searchInputRef"
           v-model="searchQuery"
           type="text"
-          placeholder="Search by game or provider..."
+          :placeholder="translate('Search by game or provider...')"
           class="w-full rounded-xl bg-[#202220] border border-white/10 pl-10 pr-20 py-2.5 text-sm text-white placeholder-[#8e9491] focus:outline-none focus:border-[var(--main-color)] transition-colors"
           @input="handleInput"
           @keyup.enter="handleSearchSubmit"
@@ -363,7 +365,7 @@ const displayedGames = computed<BingoGame[]>(() => {
             class="p-1 text-[#8e9491] hover:text-white rounded-md"
             @click="closeSearch"
           >
-            <span class="text-xs">Cancel</span>
+            <span class="text-xs">{{ translate('Cancel') }}</span>
           </button>
         </div>
       </div>
@@ -372,14 +374,14 @@ const displayedGames = computed<BingoGame[]>(() => {
       <div v-if="!isShowingResults" class="space-y-4">
         <div v-if="searchHistory.length > 0" class="history-block">
           <div class="flex items-center justify-between text-xs text-[#8e9491] mb-2">
-            <span>Recent Searches</span>
+            <span>{{ translate('Recent Searches') }}</span>
             <button
               type="button"
               class="hover:text-white flex items-center gap-1"
               @click="clearHistory"
             >
               <Trash2 class="h-3 w-3" />
-              <span>Clear</span>
+              <span>{{ translate('Clear') }}</span>
             </button>
           </div>
           <div class="flex flex-wrap gap-2">
@@ -402,7 +404,7 @@ const displayedGames = computed<BingoGame[]>(() => {
         </div>
 
         <div class="suggestions-block">
-          <div class="text-xs text-[#8e9491] mb-2">Frequently Searched</div>
+          <div class="text-xs text-[#8e9491] mb-2">{{ translate('Frequently Searched') }}</div>
           <div class="flex flex-wrap gap-2">
             <button
               v-for="term in FREQUENTLY_SEARCHED_BINGO"
@@ -420,7 +422,7 @@ const displayedGames = computed<BingoGame[]>(() => {
       <!-- Search Results -->
       <div v-if="isShowingResults" class="results-block">
         <div class="text-xs text-[#8e9491] mb-3">
-          Found {{ searchResults.length }} result(s) for "{{ searchQuery }}"
+          {{ translate('Found') }} {{ searchResults.length }} {{ translate('result(s) for') }} "{{ searchQuery }}"
         </div>
         <div
           v-if="searchResults.length > 0"
@@ -486,15 +488,15 @@ const displayedGames = computed<BingoGame[]>(() => {
             class="justify-self-start text-sm font-medium text-[#c5cac7] hover:text-white py-1"
             @click="isFilterOpen = false"
           >
-            Cancel
+            {{ translate('Cancel') }}
           </button>
-          <h2 class="text-base font-bold text-white text-center">Filter</h2>
+          <h2 class="text-base font-bold text-white text-center">{{ translate('Filter') }}</h2>
           <span class="w-[52px]" aria-hidden="true" />
         </header>
 
         <div class="flex-1 overflow-y-auto no-scrollbar px-4 py-2 space-y-5">
           <div>
-            <h3 class="text-[15px] font-bold text-white mb-2.5">Theme</h3>
+            <h3 class="text-[15px] font-bold text-white mb-2.5">{{ translate('Theme') }}</h3>
             <div class="grid grid-cols-3 gap-2.5">
               <button
                 v-for="th in ['All', 'Classic', 'Jackpot', 'Carnaval', 'Adventure']"
@@ -504,13 +506,13 @@ const displayedGames = computed<BingoGame[]>(() => {
                 :class="filterState.theme === th ? 'bg-[#161817] border border-[#008d62] text-white font-medium' : 'bg-[#1e201f] text-[#e2e8e5] border border-transparent hover:bg-[#252726] hover:text-white'"
                 @click="filterState.theme = th"
               >
-                {{ th }}
+                {{ translate(th) }}
               </button>
             </div>
           </div>
 
           <div>
-            <h3 class="text-[15px] font-bold text-white mb-2.5">Features</h3>
+            <h3 class="text-[15px] font-bold text-white mb-2.5">{{ translate('Features') }}</h3>
             <div class="grid grid-cols-3 gap-2.5">
               <button
                 v-for="ft in ['All', 'Multi-Card', 'Bonus Ball', 'Extra Ball', 'Jackpot']"
@@ -520,7 +522,7 @@ const displayedGames = computed<BingoGame[]>(() => {
                 :class="filterState.feature === ft ? 'bg-[#161817] border border-[#008d62] text-white font-medium' : 'bg-[#1e201f] text-[#e2e8e5] border border-transparent hover:bg-[#252726] hover:text-white'"
                 @click="filterState.feature = ft"
               >
-                {{ ft }}
+                {{ translate(ft) }}
               </button>
             </div>
           </div>
@@ -532,14 +534,14 @@ const displayedGames = computed<BingoGame[]>(() => {
             class="h-[46px] rounded-xl text-[15px] font-semibold text-white bg-[#2a2c2b] hover:bg-[#343735] transition-colors"
             @click="filterState = { theme: 'All', feature: 'All', winningLine: 'All' }"
           >
-            Reset
+            {{ translate('Reset') }}
           </button>
           <button
             type="button"
             class="h-[46px] rounded-xl text-[15px] font-bold text-white bg-[var(--main-color)] hover:bg-[#047a52] transition-colors"
             @click="isFilterOpen = false"
           >
-            OK
+            {{ translate('OK') }}
           </button>
         </footer>
       </div>

@@ -32,7 +32,7 @@ function showAllFaqs() {
       <ol class="getting-started-steps grid" :aria-label="translate('Get started in three steps')">
         <li v-for="(step, index) in steps" :key="step.title" class="min-w-0">
           <NuxtLink :to="step.to" class="getting-started-card">
-            <span class="getting-started-icon" aria-hidden="true"><img :src="step.image" alt="" width="128" height="128" loading="lazy" decoding="async"></span>
+            <span class="getting-started-icon"><img :src="step.image" :alt="translate(step.title)" width="128" height="128" loading="lazy" decoding="async"></span>
             <div class="getting-started-card-copy">
               <span class="getting-started-number">{{ translate('STEP') }} 0{{ index + 1 }}</span>
               <strong>{{ translate(step.title) }}</strong>
@@ -56,7 +56,12 @@ function showAllFaqs() {
         <button type="button" class="getting-started-all-faqs" aria-controls="homepage-faq-list" @click="showAllFaqs">{{ translate('View all FAQs') }} <ArrowUpRight :size="16" aria-hidden="true" /></button>
       </div>
       <div id="homepage-faq-list" class="getting-started-faq-list grid">
-        <details v-for="(faq, index) in (props.faqs || faqItems)" :key="faq.question" ref="faqDetails" :open="index === 0">
+        <details
+          v-for="(faq, index) in (props.faqs || faqItems)"
+          :key="faq.question"
+          :ref="(el) => { if (el) faqDetails[index] = el as HTMLDetailsElement }"
+          :open="index === 0"
+        >
           <summary>
             {{ translate(faq.question) }}
             <span class="getting-started-faq-toggle" aria-hidden="true"><Plus class="faq-plus" :size="22" /><Minus class="faq-minus" :size="22" /></span>

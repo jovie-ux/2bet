@@ -9,7 +9,6 @@ import HomepageProvidersSection from '~/components/HomepageProvidersSection.vue'
 import HomepageLiveCasinoSection from '~/components/HomepageLiveCasinoSection.vue'
 import HomepageGettingStarted from '~/components/HomepageGettingStarted.vue'
 import { popularGames, recommendedGames, faqItems, type FaqItem } from '~/data/homepage'
-import { SLOT_SECTIONS, SLOTS, type SlotSection } from '~/data/slots'
 import { LIVE_CASINO_CATEGORIES } from '~/data/live-casino'
 import { HOMEPAGE_CASINO_CATEGORIES } from '~/data/homepage-casino'
 import { TOP_BINGO_GAMES } from '~/data/top-bingo-games'
@@ -54,28 +53,12 @@ function uniqueBy<T>(items: T[], key: (item: T) => string): T[] {
     return true
   })
 }
-const findSlotGame = (titleOrId: string) => {
-  const query = titleOrId.toLowerCase()
-  return (
-    popularGames.find(game => game.id === titleOrId || game.title.toLowerCase() === query) ||
-    recommendedGames.find(game => game.id === titleOrId || game.title.toLowerCase() === query) ||
-    SLOTS.find(game => game.id === titleOrId || game.title.toLowerCase() === query)
-  )
-}
-
-const sweetBonanza = findSlotGame('Sweet Bonanza 1000')
-const superAce = findSlotGame('Super Ace')
-const fortuneGems2 = findSlotGame('Fortune Gems 2')
-const wildBandito = findSlotGame('Wild Bandito')
-const goldenEmpire = findSlotGame('Golden Empire')
+const sweetBonanza = { id: 'sweet-bonanza-1000', title: 'Sweet Bonanza 1000', provider: 'PP', image: '/images/slots/sweet-bonanza-1000.webp' }
+const wildBandito = { id: 'wild-bandito', title: 'Wild Bandito', provider: '2bet', image: '/images/slots/wild-bandito.webp' }
 
 const slotGames = uniqueBy([
-  ...(sweetBonanza ? [{ ...sweetBonanza, image: '/images/games/featured/sweet-bonanza-1000.webp' }] : []),
-  ...(superAce ? [superAce] : []),
-  ...(fortuneGems2 ? [fortuneGems2] : []),
-  ...(wildBandito ? [wildBandito] : []),
-  ...(goldenEmpire ? [goldenEmpire] : []),
-  ...(SLOT_SECTIONS.find(section => section.id === 'top')?.games || []),
+  sweetBonanza,
+  wildBandito,
   ...popularGames,
   ...recommendedGames,
 ].filter((game): game is NonNullable<typeof game> => Boolean(game && game.title)), game => game.title.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()).slice(0, 15)
@@ -159,8 +142,8 @@ onBeforeUnmount(() => {
             <NuxtLink to="/explore/bonuses" class="allgames-view-all">{{ translate('View all promotions') }} <ArrowRight :size="17" aria-hidden="true" /></NuxtLink>
           </header>
           </template>
-            <NuxtLink v-for="promotion in promotions" :key="promotion.id" :to="`/explore/bonuses/${promotion.slug}`" class="allgames-promo relative overflow-hidden" :data-tone="promotion.tone">
-              <img :src="promotion.bannerImage" alt="" width="2172" height="724" loading="lazy"><div class="relative"><p class="allgames-eyebrow">{{ translate(`${(promotion.category || '').toUpperCase()} REWARDS`.trim()) }}</p><h3>{{ translate(promotion.title) }}</h3><p>{{ translate(promotion.rate || '') }} <span>{{ translate('rewards to explore.') }}</span></p><span class="allgames-text-link">{{ translate('View promotion') }} <ArrowRight :size="16" /></span></div>
+            <NuxtLink v-for="promotion in promotions" :key="promotion.id" :to="`/explore/bonus/${promotion.slug}`" class="allgames-promo relative overflow-hidden" :data-tone="promotion.tone">
+              <img :src="promotion.bannerImage" :alt="translate(promotion.title)" width="410" height="205" loading="lazy" decoding="async"><div class="relative"><p class="allgames-eyebrow">{{ translate(`${(promotion.category || '').toUpperCase()} REWARDS`.trim()) }}</p><h3>{{ translate(promotion.title) }}</h3><p>{{ translate(promotion.rate || '') }} <span>{{ translate('rewards to explore.') }}</span></p><span class="allgames-text-link">{{ translate('View promotion') }} <ArrowRight :size="16" /></span></div>
             </NuxtLink>
         </HomepageContentSlider>
 

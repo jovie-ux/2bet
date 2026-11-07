@@ -29,7 +29,7 @@ watch(() => props.game.image, () => { failedImage.value = false })
     @click="emit('select', game)"
   >
     <span class="poker-game-artwork">
-      <img :src="image" alt="" loading="lazy" decoding="async" @error="failedImage = true" />
+      <img :src="image" :alt="game.title" loading="lazy" decoding="async" @error="failedImage = true" />
     </span>
     <span class="poker-game-title" :title="game.title">{{ game.title }}</span>
     <img v-if="providerLogo" :src="providerLogo" :alt="provider?.label || game.provider" class="poker-game-provider-logo" />

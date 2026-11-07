@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Terms of Service & User Agreement | 2Bet Philippines',
-  description: 'Read the 2Bet Terms of Service governing platform usage, account security, payment transactions, and regulatory compliance standards.',
+  title: 'Termos de Serviço e Condições de Uso da Plataforma | 2bet',
+  description: 'Conheça os termos de serviço da 2bet Brasil. Informações essenciais sobre segurança da conta, transações financeiras e regras de conduta.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
+    { name: 'Início', path: '/' },
     { name: 'Legal', path: '/explore/legal/general-terms' },
-    { name: 'Terms of Service', path: '/terms-of-use' },
+    { name: 'Termos de Serviço', path: '/terms-of-use' },
   ],
 })
 

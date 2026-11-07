@@ -11,7 +11,9 @@ const props = defineProps<{
   refreshVersion: number
 }>()
 
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const { translate } = useSitePreferences()
 const route = useRoute()
 const search = ref('')
 
@@ -143,15 +145,15 @@ const toggleCollapseAll = (): void => {
         <input
           v-model="search"
           type="search"
-          placeholder="Search league or team"
-          aria-label="Search league or team"
+          :placeholder="translate('Search league or team')"
+          :aria-label="translate('Search league or team')"
         >
       </label>
 
 
       <Collapse
         :model-value="allCollapsed"
-        title="Collapse all matches"
+        :title="translate('Collapse all matches')"
         @toggle="toggleCollapseAll"
       />
     </div>
@@ -160,7 +162,7 @@ const toggleCollapseAll = (): void => {
       v-for="group in searchedGroups"
       :key="group"
       :sport="group"
-      :label="group"
+      :label="translate(group)"
       class="league-group"
     >
       <div class="outright-list">
@@ -207,7 +209,7 @@ const toggleCollapseAll = (): void => {
                 v-if="commencementDates[sport.key]"
                 :datetime="commencementDates[sport.key]?.value"
                 class="mt-1 block text-[12px] font-normal text-[#999]"
-              >End Time : {{ commencementDates[sport.key]?.label }}</time>
+              >{{ translate('End Time') }} : {{ commencementDates[sport.key]?.label }}</time>
             </span>
             <ChevronUp
               :size="16"
@@ -225,13 +227,13 @@ const toggleCollapseAll = (): void => {
             :aria-labelledby="`outright-trigger-${sport.key}`"
             :aria-busy="outrightLoading[sport.key] || false"
           >
-            <div v-if="outrightLoading[sport.key]" class="grid grid-cols-2 gap-2 p-2 sm:grid-cols-4" role="status" aria-label="Loading outright odds">
+            <div v-if="outrightLoading[sport.key]" class="grid grid-cols-2 gap-2 p-2 sm:grid-cols-4" role="status" :aria-label="translate('Loading outright odds')">
               <div v-for="i in 4" :key="i" class="h-10 rounded-md bg-[##141414] animate-pulse" />
             </div>
             <div v-else-if="outrightErrors[sport.key]" role="alert">
-              <p class="note">{{ outrightErrors[sport.key] }}</p>
+              <p class="note">{{ translate(outrightErrors[sport.key]) }}</p>
               <button type="button" class="outright-retry" @click="loadOutright(sport.key)">
-                Try again
+                {{ translate('Try again') }}
               </button>
             </div>
             <template v-else>
@@ -240,7 +242,7 @@ const toggleCollapseAll = (): void => {
                 :key="event.id"
                 class="outright-market"
               >
-                <h4 class="pb-1.5">Winner</h4>
+                <h4 class="pb-1.5">{{ translate('Winner') }}</h4>
                 <div
                   v-for="bookmaker in (event.bookmakers ?? []).slice(0, 1)"
                   :key="bookmaker.key"
@@ -269,7 +271,7 @@ const toggleCollapseAll = (): void => {
                     @click="expandedCandidates[sport.key] = true"
                   >
                     <span class="text-[12px] font-normal text-[#707070]">
-                      More
+                      {{ translate('More') }}
                     </span>
                     <ChevronDown
                       :size="24"
@@ -278,11 +280,11 @@ const toggleCollapseAll = (): void => {
                     />
                 </button>
                 <p v-if="!event.bookmakers?.length" class="note">
-                  Odds are currently unavailable.
+                  {{ translate('Odds are currently unavailable.') }}
                 </p>
               </article>
               <p v-if="!outrightEvents[sport.key]?.length" class="note">
-                No outright odds are available for this tournament right now.
+                {{ translate('No outright odds are available for this tournament right now.') }}
               </p>
             </template>
           </div>
@@ -292,11 +294,11 @@ const toggleCollapseAll = (): void => {
     <div v-if="!searchedSports.length" class="empty">
       <img
         src="/images/empty/no-events.webp"
-        alt="No outright markets available"
+        :alt="translate('No outright markets available')"
         class="h-auto w-full max-w-[200px] object-contain"
       />
-      <h2>No outright markets available</h2>
-      <p>No outright markets are currently available for this tournament. Check back later.</p>
+      <h2>{{ translate('No outright markets available') }}</h2>
+      <p>{{ translate('No outright markets are currently available for this tournament. Check back later.') }}</p>
     </div>
   </div>
 </template>

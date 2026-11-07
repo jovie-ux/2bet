@@ -3,12 +3,12 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { tableTennisRulesHtml } from '~/data/table-tennis-rules'
 
 useAppSeo({
-  title: 'Table Tennis Betting Rules & Match Settlement | 2Bet',
-  description: 'Official 2Bet table tennis rules: ITTF scoring standards, retirement settlement rules, set and point handicaps, Over/Under lines, and in-play markets.',
+  title: 'Regras de Apostas em Tênis de Mesa — Padrões ITTF | 2bet',
+  description: 'Regras oficiais de tênis de mesa na 2bet Brasil: pontuação ITTF, desqualificações, handicaps e liquidação transparente de apostas.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Game Rules', path: '/game-rules' },
-    { name: 'Table Tennis Rules', path: '/game-rules/table-tennis' },
+    { name: 'Início', path: '/' },
+    { name: 'Regras de Jogo', path: '/game-rules' },
+    { name: 'Regras de Tênis de Mesa', path: '/game-rules/table-tennis' },
   ],
 })
 </script>

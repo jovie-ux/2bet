@@ -44,12 +44,24 @@ export interface VipBenefitTier {
   birthdayBonus: string
 }
 
+export interface VipTableLabels {
+  rate?: string
+  liveCasino?: string
+  unlimited?: string
+  note?: string
+  benefitsTitle?: string
+  turnover?: string
+  upgradeBonus?: string
+  monthlyBonus?: string
+  birthdayBonus?: string
+}
+
 export interface PromotionItem {
   id: string
   slug: string
   title: string
   description: string
-  category: string
+  category: string | string[]
   categories?: string[]
   'most-popular'?: boolean
   mostPopular?: boolean
@@ -102,6 +114,7 @@ export interface BonusTable {
   subHeaderTitle?: string
   introText?: string
   variant?: 'filled' | 'outline'
+  compact?: boolean
   accentColor?: string
   highlightColumns?: string[]
   rowSpans?: Record<string, number>
@@ -115,11 +128,13 @@ export interface BonusDetail {
   slug: string
   title: string
   subtitle: string
+  language?: string
   period: string
   paymentMethods?: string[]
   bannerImage: PromoImages | string
   headerImage?: PromoImages | string
   thumbnailImage?: string
+  /** Heading icon: an image path/URL or inline SVG markup, independent of currency. */
   innerIcon?: string
   innerPageIcon?: string
   seoTitle?: string
@@ -139,6 +154,8 @@ export interface BonusDetail {
     descriptionTone?: 'default' | 'white'
     vipRebates?: VipRebateTier[]
     vipBenefits?: VipBenefitTier[]
+    vipTableVariant?: 'program'
+    vipTableLabels?: VipTableLabels
     tableHeading?: string
     descriptionParts?: Array<{
       text: string
@@ -193,7 +210,7 @@ export const PROMO_IMAGE_MAP: Record<string, PromoImages> = {
   },
   'vip-privileges': {
     header: '/images/promotions/usdt_vip_header.png',
-    banner: '/images/promotions/usdt_vip.webp',
+    banner: '/images/promotions/usdt_vip.png',
     thumbnail: '/images/promotions/usdt_vip_thumb.png',
   },
   'programa_vip': {
@@ -215,7 +232,12 @@ export const PROMO_IMAGE_MAP: Record<string, PromoImages> = {
 
 import bonusDetailDatabase from './bonus-details.json'
 
-const SHARE_AND_EARN_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" viewBox="0 0 24 24" fill="none" stroke="#019440" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 14-5v14L3 14z" fill="#019440"/><path d="m7 15 2 6H6l-2-7M20 8l2-1M20 16l2 1M21 12h2"/></svg>'
+const DEFAULT_BONUS_ICON = '/icons/promotions/megaphone.svg'
+const DEPOSIT_BONUS_ICON = '/icons/promotions/first-deposit.svg'
+
+export const getBonusIcon = (record: Pick<BonusDetail, 'innerIcon' | 'innerPageIcon' | 'iconType'>): string =>
+  record.innerIcon?.trim() || record.innerPageIcon?.trim()
+  || (record.iconType === 'deposit' ? DEPOSIT_BONUS_ICON : DEFAULT_BONUS_ICON)
 
 export const getPromoBannerUrl = (img?: PromoImages | string, slug?: string): string => {
   if (img) {
@@ -254,13 +276,89 @@ export const getPromoHeaderUrl = (img?: PromoImages | string, slug?: string): st
 export const PROMO_CATEGORIES: PromoCategory[] = [
   { key: 'all', label: 'All' },
   { key: 'most-popular', label: 'Most Popular' },
+  { key: 'slots', label: 'Slots' },
+  { key: 'live-casino', label: 'Live Casino' },
+  { key: 'sports', label: 'Sports' },
   { key: 'others', label: 'Others' },
 ]
 
+export const promotionHasCategory = (item: PromotionItem, categoryKey: string): boolean => {
+  if (categoryKey === 'all') return true
+  if (categoryKey === 'most-popular') {
+    return Boolean(item['most-popular'] || item.mostPopular)
+      || (Array.isArray(item.category) && item.category.includes('most-popular'))
+      || Boolean(item.categories?.includes('most-popular'))
+  }
+  if (Array.isArray(item.category) && item.category.includes(categoryKey)) {
+    return true
+  }
+  return item.category === categoryKey || Boolean(item.categories?.includes(categoryKey))
+}
+
 const shareAndEarn = bonusDetailDatabase.records['share-and-earn']
 const vipPrivileges = bonusDetailDatabase.records['vip-privileges']
+const vipProgram = bonusDetailDatabase.records['programa_vip']
+const firstDeposit = bonusDetailDatabase.records['seu_primeiro_deposito']
+const dailyRecovery = bonusDetailDatabase.records['bonus_diario_de_recuperacao']
 
 export const PROMOTIONS: PromotionItem[] = [
+  {
+    id: vipProgram.id,
+    slug: vipProgram.slug,
+    title: vipProgram.title,
+    description: vipProgram.subtitle,
+    seoTitle: vipProgram.seoTitle,
+    seoDesc: vipProgram.seoDesc,
+    category: 'live-casino',
+    categories: ['live-casino', 'most-popular'],
+    mostPopular: true,
+    paymentMethods: [...vipProgram.paymentMethods],
+    thumbnailType: 'vip',
+    accentColor: '#019440',
+    bannerImage: PROMO_IMAGE_MAP['programa_vip'],
+    headerImage: PROMO_IMAGE_MAP['programa_vip']!.header,
+    thumbnailImage: PROMO_IMAGE_MAP['programa_vip']!.thumbnail,
+    innerIcon: getBonusIcon(vipProgram),
+    showSaveBadge: false,
+  },
+  {
+    id: firstDeposit.id,
+    slug: firstDeposit.slug,
+    title: firstDeposit.title,
+    description: firstDeposit.subtitle,
+    seoTitle: firstDeposit.seoTitle,
+    seoDesc: firstDeposit.seoDesc,
+    category: 'slots',
+    categories: ['slots', 'most-popular'],
+    mostPopular: true,
+    paymentMethods: [...firstDeposit.paymentMethods],
+    thumbnailType: 'deposit',
+    accentColor: '#019440',
+    bannerImage: PROMO_IMAGE_MAP['seu_primeiro_deposito'],
+    headerImage: PROMO_IMAGE_MAP['seu_primeiro_deposito']!.header,
+    thumbnailImage: PROMO_IMAGE_MAP['seu_primeiro_deposito']!.thumbnail,
+    innerIcon: getBonusIcon(firstDeposit),
+    showSaveBadge: true,
+  },
+  {
+    id: dailyRecovery.id,
+    slug: dailyRecovery.slug,
+    title: dailyRecovery.title,
+    description: dailyRecovery.subtitle,
+    seoTitle: dailyRecovery.seoTitle,
+    seoDesc: dailyRecovery.seoDesc,
+    category: ['slots', 'live-casino', 'sports', 'most-popular'],
+    categories: ['slots', 'live-casino', 'sports', 'most-popular'],
+    mostPopular: true,
+    paymentMethods: [...dailyRecovery.paymentMethods],
+    thumbnailType: 'rebate',
+    accentColor: '#019440',
+    bannerImage: PROMO_IMAGE_MAP['bonus_diario_de_recuperacao'],
+    headerImage: PROMO_IMAGE_MAP['bonus_diario_de_recuperacao']!.header,
+    thumbnailImage: PROMO_IMAGE_MAP['bonus_diario_de_recuperacao']!.thumbnail,
+    innerIcon: getBonusIcon(dailyRecovery),
+    showSaveBadge: true,
+  },
   {
     id: shareAndEarn.id,
     slug: shareAndEarn.slug,
@@ -269,6 +367,7 @@ export const PROMOTIONS: PromotionItem[] = [
     seoTitle: shareAndEarn.seoTitle,
     seoDesc: shareAndEarn.seoDesc,
     category: 'others',
+    categories: ['others', 'most-popular'],
     mostPopular: true,
     paymentMethods: [...shareAndEarn.paymentMethods],
     thumbnailType: 'referral',
@@ -276,7 +375,7 @@ export const PROMOTIONS: PromotionItem[] = [
     bannerImage: PROMO_IMAGE_MAP['share-and-earn'],
     headerImage: PROMO_IMAGE_MAP['share-and-earn']!.header,
     thumbnailImage: PROMO_IMAGE_MAP['share-and-earn']!.thumbnail,
-    innerIcon: SHARE_AND_EARN_ICON,
+    innerIcon: getBonusIcon(shareAndEarn),
     showSaveBadge: true,
   },
   {
@@ -286,7 +385,8 @@ export const PROMOTIONS: PromotionItem[] = [
     description: vipPrivileges.subtitle,
     seoTitle: vipPrivileges.seoTitle,
     seoDesc: vipPrivileges.seoDesc,
-    category: 'others',
+    category: 'live-casino',
+    categories: ['live-casino', 'most-popular'],
     mostPopular: true,
     paymentMethods: [...vipPrivileges.paymentMethods],
     thumbnailType: 'vip',
@@ -294,7 +394,7 @@ export const PROMOTIONS: PromotionItem[] = [
     bannerImage: PROMO_IMAGE_MAP['vip-privileges'],
     headerImage: PROMO_IMAGE_MAP['vip-privileges']!.header,
     thumbnailImage: PROMO_IMAGE_MAP['vip-privileges']!.thumbnail,
-    innerIcon: SHARE_AND_EARN_ICON,
+    innerIcon: getBonusIcon(vipPrivileges),
     showSaveBadge: false,
   },
 ]
@@ -302,59 +402,58 @@ export const PROMOTIONS: PromotionItem[] = [
 export const PROMOTION_ITEMS = PROMOTIONS
 export const FEATURED_PROMOTIONS: FeaturedPromo[] = [
   {
-    id: 'vip-sports-rebate',
-    slug: 'vip-sports-rebate',
-    title: 'VIP Sports Rebate',
-    rate: '1.5%',
-    badgeText: 'VIP SPORTS REBATE 1.5%',
-    category: 'SPORTS',
-    bannerImage: '/images/promotions/homepage-v2/sports.webp',
+    id: 'seu_primeiro_deposito',
+    slug: 'seu_primeiro_deposito',
+    title: 'Seu Primeiro Depósito Vale Mais!',
+    rate: 'Até R$ 10.000',
+    badgeText: 'BÔNUS DE BOAS-VINDAS ATÉ R$ 10.000',
+    category: 'DEPOSIT',
+    bannerImage: '/images/promotions/seu_primeiro_deposito.png',
     endDate: '',
-    countdownText: '2 Month 10 Day',
-    paymentMethods: ['maya', 'gcash'],
+    countdownText: 'Permanent',
+    paymentMethods: ['BRL'],
   },
   {
-    id: 'vip-live-casino-rebate',
-    slug: 'vip-live-casino-rebate',
-    title: 'VIP Live Casino Rebate',
-    rate: '1.0%',
-    badgeText: 'VIP LIVE CASINO REBATE 1.0%',
+    id: 'bonus_diario_de_recuperacao',
+    slug: 'bonus_diario_de_recuperacao',
+    title: dailyRecovery.title,
+    rate: 'Até R$ 18.888',
+    badgeText: 'RECUPERAÇÃO DIÁRIA ATÉ R$ 18.888',
+    category: 'SLOTS',
+    bannerImage: '/images/promotions/bonus_diario_de_recuperacao.png',
+    endDate: '2027-01-01T11:59:59+08:00',
+    paymentMethods: [...dailyRecovery.paymentMethods],
+  },
+  {
+    id: 'vip-privileges',
+    slug: 'vip-privileges',
+    title: 'Sistema de Privilégios VIP',
+    rate: 'VIP0 ~ VIP10',
+    badgeText: 'CASHBACK E BENEFÍCIOS EXCLUSIVOS',
     category: 'LIVE CASINO',
-    bannerImage: '/images/promotions/homepage-v2/live-casino.webp',
+    bannerImage: '/images/promotions/programa_vip.png',
     endDate: '',
-    countdownText: '2 Month 10 Day',
-    paymentMethods: ['maya', 'gcash'],
+    countdownText: 'Permanent',
+    paymentMethods: ['USDT'],
   },
   {
-    id: 'slot-loss-rebate',
-    slug: 'slot-loss-rebate',
-    title: 'Slot Loss Rebate',
-    rate: '₱60,000',
-    badgeText: 'SLOT LOSS REBATE ₱60,000',
-    category: 'SLOTS',
-    bannerImage: '/images/promotions/homepage-v2/slots.webp',
+    id: 'share-and-earn',
+    slug: 'share-and-earn',
+    title: 'Programa Compartilhe e Ganhe',
+    rate: 'Comissões USDT',
+    badgeText: 'COMPARTILHE E GANHE',
+    category: 'RANKINGS',
+    bannerImage: '/images/promotions/share_and_earn.png',
     endDate: '',
-    countdownText: '2 Month 10 Day',
-    paymentMethods: ['maya', 'gcash'],
-  },
-  {
-    id: 'lucky-rankings',
-    slug: 'lucky-rankings',
-    title: 'Lucky Rankings – Let\'s Meet on Payday!',
-    rate: 'Rankings',
-    badgeText: 'LUCKY RANKINGS',
-    category: 'SLOTS',
-    bannerImage: '/images/promotions/homepage-v2/rankings.webp',
-    endDate: '',
-    countdownText: '2 Month 10 Day',
-    paymentMethods: ['maya', 'gcash'],
+    countdownText: 'Permanent',
+    paymentMethods: ['USDT'],
   },
   ...PROMOTIONS.map(p => ({
     id: p.id,
     title: p.title,
     description: p.description,
     slug: p.slug,
-    category: p.category,
+    category: Array.isArray(p.category) ? String(p.category[0] || 'SLOTS').toUpperCase() : String(p.category).toUpperCase(),
     paymentMethods: p.paymentMethods,
     thumbnailType: p.thumbnailType,
     accentColor: p.accentColor,
@@ -372,19 +471,37 @@ export const PROMOTION_SECTIONS: PromoSection[] = [
     id: 'most-popular',
     title: 'Most Popular',
     category: 'most-popular',
-    items: PROMOTIONS.filter(item => Boolean(item['most-popular'] || item.mostPopular)),
+    items: PROMOTIONS.filter(item => promotionHasCategory(item, 'most-popular')),
+  },
+  {
+    id: 'slots',
+    title: 'Slots',
+    category: 'slots',
+    items: PROMOTIONS.filter(item => promotionHasCategory(item, 'slots')),
+  },
+  {
+    id: 'live-casino',
+    title: 'Live Casino',
+    category: 'live-casino',
+    items: PROMOTIONS.filter(item => promotionHasCategory(item, 'live-casino')),
+  },
+  {
+    id: 'sports',
+    title: 'Sports',
+    category: 'sports',
+    items: PROMOTIONS.filter(item => promotionHasCategory(item, 'sports')),
   },
   {
     id: 'others',
     title: 'Others',
     category: 'others',
-    items: PROMOTIONS.filter(item => item.category === 'others'),
+    items: PROMOTIONS.filter(item => promotionHasCategory(item, 'others')),
   },
 ]
 
 type BonusDatabaseRecord = Omit<
   BonusDetail,
-  'bannerImage' | 'headerImage' | 'thumbnailImage' | 'innerIcon' | 'innerPageIcon'
+  'bannerImage' | 'headerImage' | 'thumbnailImage'
 >
 
 const hydrateBonusDetail = (record: BonusDatabaseRecord): BonusDetail => {
@@ -394,7 +511,7 @@ const hydrateBonusDetail = (record: BonusDatabaseRecord): BonusDetail => {
     bannerImage: images,
     headerImage: images.header,
     thumbnailImage: images.thumbnail,
-    innerIcon: SHARE_AND_EARN_ICON,
+    innerIcon: getBonusIcon(record),
   }
 }
 

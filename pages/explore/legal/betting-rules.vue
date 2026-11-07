@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Official Sports Betting Rules & Guidelines | 2Bet',
-  description: 'Read comprehensive sports betting rules and settlement standards on 2Bet. Learn about market types, void bet policies, and settlement criteria.',
+  title: 'Regras Gerais de Apostas Esportivas e Mercados | 2bet',
+  description: 'Regulamento oficial de apostas esportivas na 2bet Brasil. Regras para futebol, basquete, tênis, mercados ao vivo e prazos de liquidação.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
+    { name: 'Início', path: '/' },
     { name: 'Legal', path: '/explore/legal/general-terms' },
-    { name: 'Betting Rules', path: '/game-rules/sports-betting-rules' },
+    { name: 'Regras de Apostas', path: '/game-rules/sports-betting-rules' },
   ],
 })
 

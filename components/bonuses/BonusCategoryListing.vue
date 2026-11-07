@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SeoHeader from '~/components/SeoHeader.vue'
 import BonusCurrencySelector from '~/components/bonuses/BonusCurrencySelector.vue'
+import BonusEmptyState from '~/components/bonuses/BonusEmptyState.vue'
 import {
   PROMOTIONS,
   PROMO_CATEGORIES,
@@ -11,7 +12,12 @@ import {
 } from '~/data/promotions'
 
 const props = defineProps<{ category: string }>()
-const { selectedCurrency, selectedCurrencyLabel, filterPromotions } = useBonusPayments()
+const { translate } = useSiteLocale()
+const { selectedCurrency, filterPromotions } = useBonusPayments()
+const currencyPromotions = computed(() => filterPromotions(PROMOTIONS))
+const visibleCategories = computed(() => currencyPromotions.value.length
+  ? PROMO_CATEGORIES
+  : PROMO_CATEGORIES.filter(category => category.key === 'all'))
 const nowMs = ref(Date.now())
 let countdownTimer: ReturnType<typeof setInterval> | null = null
 
@@ -27,7 +33,7 @@ const { isViewed, markAsViewed, loadViewedPromotions } = useViewedPromotions()
 
 const allCategoryPromotions = computed(() => {
   if (props.category === 'all') {
-    return filterPromotions(PROMOTIONS)
+    return currencyPromotions.value
   }
   return filterPromotions(PROMOTION_SECTIONS.find(section => section.category === props.category)?.items || [])
 })
@@ -89,12 +95,12 @@ onBeforeUnmount(() => {
 })
 
 useAppSeo({
-  title: () => `${categoryLabel.value} Bonuses & Promotions | 2Bet`,
-  description: () => `Explore ${categoryLabel.value.toLowerCase()} bonuses and promotions available at 2Bet Philippines.`,
+  title: () => formatSeoTitle(`${translate(categoryLabel.value)} — Bônus e Promoções Especiais | 2bet`),
+  description: () => formatSeoDescription(`Confira ofertas de ${translate(categoryLabel.value).toLowerCase()} na 2bet Brasil. Bônus de recarga, giros grátis e vantagens exclusivas no cassino.`),
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Bonuses', path: '/explore/bonuses' },
-    { name: categoryLabel.value, path: categoryPath(props.category) },
+    { name: 'Início', path: '/' },
+    { name: 'Bônus', path: '/explore/bonuses' },
+    { name: translate(categoryLabel.value), path: categoryPath(props.category) },
   ],
 })
 </script>
@@ -104,9 +110,9 @@ useAppSeo({
     <div class="bonus-category-sticky sticky-header-seal">
       <SeoHeader
         title="Bonuses"
-        :meta-title="`${categoryLabel} Bonuses & Promotions | 2Bet`"
-        :description="`Explore ${categoryLabel.toLowerCase()} bonuses and promotions available at 2Bet Philippines.`"
-        keywords="2Bet bonuses, promotions, deposit rewards, rebates"
+        :meta-title="`${translate(categoryLabel)} — Bônus e Promoções de Cassino Online | 2bet`"
+        :description="`Explore bônus e promoções de ${translate(categoryLabel).toLowerCase()} disponíveis na 2bet Brasil. Aproveite recompensas, rebates e ofertas exclusivas.`"
+        keywords="2bet bônus, promoções, recompensas de depósito, rebates"
         back-to="/explore/bonuses"
         custom-class="bonus-category-header"
       >
@@ -115,23 +121,21 @@ useAppSeo({
         </template>
       </SeoHeader>
 
-      <nav class="category-nav" aria-label="Promotion categories">
+      <nav class="category-nav" :aria-label="translate('Promotion categories')">
         <NuxtLink
-          v-for="item in PROMO_CATEGORIES"
+          v-for="item in visibleCategories"
           :key="item.key"
           :to="categoryPath(item.key)"
-          :aria-current="item.key === category ? 'page' : undefined"
+          :aria-current="item.key === (currencyPromotions.length ? category : 'all') ? 'page' : undefined"
         >
-          {{ item.label }}
+          {{ translate(item.label) }}
         </NuxtLink>
       </nav>
     </div>
 
-    <p v-if="!allCategoryPromotions.length" class="bonus-currency-empty" role="status">
-      No {{ categoryLabel.toLowerCase() }} bonuses assigned to {{ selectedCurrencyLabel }} yet.
-    </p>
+    <BonusEmptyState v-if="!allCategoryPromotions.length" />
 
-    <section v-if="featuredPromotions.length" class="featured-grid" aria-label="Featured promotions">
+    <section v-if="featuredPromotions.length" class="featured-grid" :aria-label="translate('Featured promotions')">
       <NuxtLink
         v-for="promotion in featuredPromotions"
         :key="promotion.id"
@@ -142,25 +146,25 @@ useAppSeo({
         <div class="category-card__media">
           <img
             :src="getPromoBannerUrl(promotion.bannerImage, promotion.slug)"
-            :alt="promotion.title"
+            :alt="translate(promotion.title)"
             :style="{ objectPosition: promotion.imagePosition || 'center' }"
             loading="eager"
             decoding="async"
           >
-          <span v-if="promotion.showSaveBadge" class="category-card__save">◎ Save</span>
+          <span v-if="promotion.showSaveBadge" class="category-card__save">◎ {{ translate('Save') }}</span>
         </div>
         <div class="category-card__copy">
-          <strong>{{ promotion.title }}</strong>
-          <span>{{ countdown(promotion) }}</span>
+          <strong>{{ translate(promotion.title) }}</strong>
+          <span>{{ translate(countdown(promotion)) }}</span>
         </div>
       </NuxtLink>
     </section>
 
     <div v-if="showSeenDivider" class="seen-divider" role="separator">
-      <span>You have seen the promotion below</span>
+      <span>{{ translate('You have seen the promotion below') }}</span>
     </div>
 
-    <section v-if="categoryPromotions.length" class="category-grid" :aria-label="`${categoryLabel} promotions`">
+    <section v-if="categoryPromotions.length" class="category-grid" :aria-label="`${translate(categoryLabel)} promotions`">
       <NuxtLink
         v-for="promotion in categoryPromotions"
         :key="promotion.id"
@@ -171,16 +175,16 @@ useAppSeo({
         <div class="category-card__media">
           <img
             :src="getPromoBannerUrl(promotion.bannerImage, promotion.slug)"
-            :alt="promotion.title"
+            :alt="translate(promotion.title)"
             :style="{ objectPosition: promotion.imagePosition || 'center' }"
             loading="lazy"
             decoding="async"
           >
-          <span v-if="promotion.showSaveBadge" class="category-card__save">◎ Save</span>
+          <span v-if="promotion.showSaveBadge" class="category-card__save">◎ {{ translate('Save') }}</span>
         </div>
         <div class="category-card__copy">
-          <strong>{{ promotion.title }}</strong>
-          <span>{{ countdown(promotion) }}</span>
+          <strong>{{ translate(promotion.title) }}</strong>
+          <span>{{ translate(countdown(promotion)) }}</span>
         </div>
       </NuxtLink>
     </section>
@@ -188,13 +192,6 @@ useAppSeo({
 </template>
 
 <style scoped>
-.bonus-currency-empty {
-  padding: 32px 16px;
-  color: #a9aeaa;
-  font-size: 14px;
-  text-align: center;
-}
-
 .bonus-category-page {
   width: 100%;
   min-width: 0;

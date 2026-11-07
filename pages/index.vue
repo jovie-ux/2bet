@@ -9,16 +9,28 @@ const siteName = computed(() => String(config.public.siteName || '2Bet').trim())
 const siteUrl = computed(() => String(config.public.siteUrl || 'https://2bet.com').replace(/\/+$/, ''))
 const { translate } = useSiteLocale()
 
+useHead({
+  link: [
+    {
+      rel: 'preload',
+      as: 'image',
+      href: '/hero/editorial/sports.webp',
+      fetchpriority: 'high',
+    },
+  ],
+})
+
 useAppSeo({
-  title: '2Bet Casino Slots – More Spins, Big Wins',
-  description: 'Experience top-tier gaming on 2Bet Casino. We provide competitive odds and a vast selection of digital casino titles for every visitor.',
+  title: '2Bet Cassino Online | Apostas Esportivas no Brasil',
+  description: 'Aposte em esportes e jogue no cassino online da 2bet Brasil. Milhares de slots, mesas ao vivo com crupiê real e saques rápidos via PIX.',
+  keywords: '2bet, cassino online, slots, apostas esportivas, cassino ao vivo, 2bet brasil',
   image: '/brand/2bet-logo.webp',
   includeSiteName: false,
   schema: computed(() => [
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: `${siteName.value} Philippines`,
+      name: `${siteName.value} Brasil`,
       url: `${siteUrl.value}/`,
       potentialAction: {
         '@type': 'SearchAction',
@@ -35,7 +47,7 @@ useAppSeo({
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer service',
-        availableLanguage: ['English', 'Filipino'],
+        availableLanguage: ['Portuguese', 'English'],
       },
     },
     {

@@ -2,11 +2,11 @@
 import LegalPageShell from '~/components/legal/LegalPageShell.vue'
 
 useAppSeo({
-  title: 'Privacy Policy & Data Protection (RA 10173) | 2Bet',
-  description: '2Bet official privacy policy. Learn how player personal data, payment information, and betting logs are safeguarded in compliance with RA 10173.',
+  title: 'Política de Privacidade e Proteção de Dados Pessoais | 2bet',
+  description: 'Saiba como a 2bet Brasil protege suas informações pessoais e bancárias, garantindo conformidade com a LGPD e rigorosos padrões de segurança.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Privacy Policy', path: '/privacy-policy' },
+    { name: 'Início', path: '/' },
+    { name: 'Política de Privacidade', path: '/privacy-policy' },
   ],
 })
 </script>
@@ -88,7 +88,6 @@ useAppSeo({
     <div class="pt-1 space-y-1 text-[#959799]">
       <p><span class="text-white/80">Email:</span> dpo@2bet.com / privacy@2bet.ph</p>
       <p><span class="text-white/80">Attention:</span> Data Protection Compliance Office</p>
-      <p><span class="text-white/80">Address:</span> Bonifacio Global City, Taguig, Metro Manila, Philippines</p>
     </div>
   </LegalPageShell>
 </template>

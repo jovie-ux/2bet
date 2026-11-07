@@ -6,12 +6,12 @@ import MobileSportsNav from '~/components/sports/MobileSportsNav.vue'
 const route = useRoute()
 
 useAppSeo({
-  title: 'Live In-Play Sports Betting — Real-Time Odds | 2Bet',
-  description: 'Bet live in-play on ongoing football, basketball, tennis, and esports matches at 2Bet Philippines. Instant odds updates, live scores, and fast cash out.',
+  title: 'Apostas ao Vivo — Cotações em Tempo Real e Jogos | 2bet',
+  description: 'Acompanhe partidas esportivas em tempo real com a 2bet Brasil. Mercados dinâmicos, atualização instantânea de odds e cash out rápido.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Sports', path: '/explore/sports/popular' },
-    { name: 'Live In-Play', path: '/explore/sports/live' },
+    { name: 'Início', path: '/' },
+    { name: 'Esportes', path: '/explore/sports/popular' },
+    { name: 'Ao Vivo', path: '/explore/sports/live' },
   ],
   schema: {
     '@context': 'https://schema.org',
@@ -45,7 +45,8 @@ const mobileModeTabs = [
   { key: 'smart-pick', label: 'Parlay' },
   { key: 'outright', label: 'Outright' },
 ]
-const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const externalSiteUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 const mobileModePath = (key: string): string => {
   if (key === 'inplay') return route.path
   if (key === 'smart-pick' || key === 'outright') return externalSiteUrl

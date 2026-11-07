@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.resolve(__dirname, '..')
 
 export async function generateSitemapFile(customSiteUrl) {
-  const siteUrl = (customSiteUrl || process.env.SITE_URL || 'https://bybet.com').replace(/\/+$/, '')
+  const siteUrl = (customSiteUrl || process.env.SITE_URL || 'https://2bet.com').replace(/\/+$/, '')
   const today = new Date().toISOString().split('T')[0]
 
   const jiti = createJiti(import.meta.url, {
@@ -211,20 +211,24 @@ ${xmlEntries}
 </urlset>
 `
 
-  // 1. Write to public/sitemap.xml
+  // 1. Write to public/sitemap.xml atomically to prevent partial reads
   const publicDir = path.join(rootDir, 'public')
   if (!fs.existsSync(publicDir)) {
     fs.mkdirSync(publicDir, { recursive: true })
   }
   const publicPath = path.join(publicDir, 'sitemap.xml')
-  fs.writeFileSync(publicPath, xml, 'utf8')
+  const tempPublicPath = path.join(publicDir, `sitemap.${Date.now()}.${Math.random().toString(36).slice(2, 8)}.tmp`)
+  fs.writeFileSync(tempPublicPath, xml, 'utf8')
+  fs.renameSync(tempPublicPath, publicPath)
 
-  // 2. Write to .output/public/sitemap.xml if build output exists
+  // 2. Write to .output/public/sitemap.xml atomically if build output exists
   const outputPublicDir = path.join(rootDir, '.output', 'public')
   let writtenToOutput = false
   if (fs.existsSync(outputPublicDir)) {
     const outputPath = path.join(outputPublicDir, 'sitemap.xml')
-    fs.writeFileSync(outputPath, xml, 'utf8')
+    const tempOutputPath = path.join(outputPublicDir, `sitemap.${Date.now()}.${Math.random().toString(36).slice(2, 8)}.tmp`)
+    fs.writeFileSync(tempOutputPath, xml, 'utf8')
+    fs.renameSync(tempOutputPath, outputPath)
     writtenToOutput = true
   }
 

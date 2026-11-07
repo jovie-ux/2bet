@@ -12,7 +12,9 @@ const emit = defineEmits<{
   selectOdd: [prediction: Prediction, option: PredictionOption]
 }>()
 
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const { translate } = useSitePreferences()
 
 const formattedHitRate = computed(() => {
   return Number.isInteger(props.prediction.hitRate)
@@ -93,7 +95,7 @@ const handleCardKeydown = (event: KeyboardEvent): void => {
       </div>
 
       <div class="prediction-card__hit-rate">
-        <span>Hit Rate</span>
+        <span>{{ translate('Hit Rate') }}</span>
         <strong>{{ formattedHitRate }}<small>%</small></strong>
       </div>
     </div>
@@ -108,17 +110,17 @@ const handleCardKeydown = (event: KeyboardEvent): void => {
       >
         <Unlock v-if="unlocked" :size="13" :stroke-width="2.5" aria-hidden="true" />
         <Lock v-else :size="13" :stroke-width="2.5" aria-hidden="true" />
-        <span>{{ unlocked ? 'Unlocked' : 'Unlock' }}</span>
+        <span>{{ unlocked ? translate('Unlocked') : translate('Unlock') }}</span>
       </button>
     </div>
 
     <div class="match-box">
       <div class="match-box__meta-row">
         <div class="match-box__meta">
-          <span class="match-box__market">{{ prediction.marketType }}</span>
+          <span class="match-box__market">{{ translate(prediction.marketType) }}</span>
           <img
             :src="sportIcon"
-            alt=""
+            :alt="prediction.sport || 'Sport'"
             class="match-box__sport"
             width="16"
             height="16"

@@ -10,6 +10,7 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{ close: [] }>()
+const { translate } = useSiteLocale()
 const dialog = ref<HTMLDialogElement | null>(null)
 let previousOverflow = ''
 
@@ -43,11 +44,11 @@ onBeforeUnmount(() => {
     >
       <div class="maintenance-content">
         <div class="maintenance-symbol" aria-hidden="true">!</div>
-        <h2 id="maintenance-title">{{ title }}</h2>
+        <h2 id="maintenance-title">{{ translate(title) }}</h2>
         <p id="maintenance-description">
-          {{ message }}
+          {{ translate(message) }}
         </p>
-        <button type="button" autofocus @click="emit('close')">OK</button>
+        <button type="button" autofocus @click="emit('close')">{{ translate('OK') }}</button>
       </div>
     </dialog>
   </Teleport>

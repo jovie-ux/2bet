@@ -2,23 +2,23 @@
 import GameTutorialPage from '~/components/tutorial/GameTutorialPage.vue'
 
 useAppSeo({
-  title: 'Mock Betting Simulator & Practice Tutorial | 2Bet',
-  description: 'Practice sports wagering with 2Bet interactive mock betting simulator. Test handicap, over/under, and 1X2 bet types with zero financial risk.',
+  title: 'Simulador de Apostas Esportivas e Prática sem Risco | 2bet',
+  description: 'Pratique sem risco no simulador interativo de apostas da 2bet Brasil. Teste palpites, explore mercados e aprimore sua experiência online.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Tutorials', path: '/tutorial' },
-    { name: 'Mock Betting', path: '/tutorial/mock-betting' },
+    { name: 'Início', path: '/' },
+    { name: 'Tutoriais', path: '/tutorial' },
+    { name: 'Simulador de Apostas', path: '/tutorial/mock-betting' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
-    name: 'How to Practice Sports Betting on 2Bet',
-    description: 'Learn and practice sports betting risk-free using the 2Bet interactive mock betting simulator.',
+    name: 'Como Praticar Apostas Esportivas na 2bet',
+    description: 'Pratique sem risco no simulador interativo de apostas da 2bet Brasil. Teste palpites, explore mercados e aprimore sua experiência online.',
   },
 })
 </script>
 
 <template>
-  <h1 class="hidden">Mock Betting Page - Practice Sports Betting in 2Bet </h1>
+  <h1 class="hidden">Simulador de Apostas — Pratique na 2bet sem Risco</h1>
   <GameTutorialPage mode="mock-betting" />
 </template>

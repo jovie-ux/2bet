@@ -1,10 +1,10 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Explore Games, Sports & Casino Entertainment | 2Bet',
-  description: 'Explore premier sports betting, live dealer casino tables, slots, and exclusive player bonuses on the official 2Bet Philippines gaming platform.',
+  title: 'Explorar Cassino, Apostas e Entretenimento Online | 2bet',
+  description: 'Conheça todas as opções de entretenimento na 2bet Brasil: apostas esportivas ao vivo, mesas de cassino em HD, slots e promoções exclusivas.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Explore', path: '/explore' },
+    { name: 'Início', path: '/' },
+    { name: 'Explorar', path: '/explore' },
   ],
 })
 </script>

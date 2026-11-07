@@ -169,15 +169,21 @@
 .homepage-promotions-section .allgames-heading-copy p { margin-top: 5px; margin-left: 44px; font-size: 14px; }
 .homepage-promotions-section .allgames-game-track { grid-template-columns: repeat(2,minmax(0,1fr)); grid-auto-flow: row; grid-auto-columns: auto; gap: 16px; padding: 0; overflow: visible; }
 .homepage-promotions-section .allgames-promo { display: block; width: 100%; min-height: 0; height: clamp(250px,17cqw,280px); }
+.homepage-promotions-section .allgames-promo > div { max-width: 58%; }
+.homepage-promotions-section .allgames-promo > img { object-position: right center; }
 .homepage-slider-dots { display: none; }
 @media (max-width: 700px) {
   .homepage-promotions-section > header > .allgames-view-all { max-width: 145px; font-size: 14px; text-align: right; }
   .homepage-promotions-section .allgames-game-track { --allgames-row-gap: 12px; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc((100% - .15 * var(--allgames-row-gap)) / 1.15); gap: var(--allgames-row-gap); overflow-x: auto; overflow-y: hidden; }
   .homepage-promotions-section .allgames-promo { height: 290px; }
-  .homepage-promotions-section .allgames-promo > div { padding: 22px 20px; }
-  .homepage-promotions-section .allgames-promo h3 { max-width: 95%; font-size: 26px; }
-  .homepage-promotions-section .allgames-promo::before { background: linear-gradient(90deg,#000c,#0008 65%,#0002); }
-  .homepage-promotions-section .allgames-promo > img { object-position: 65% center; }
+  .homepage-promotions-section .allgames-promo > div { max-width: 78%; padding: 22px 20px; }
+  .homepage-promotions-section .allgames-promo h3 { max-width: 100%; font-size: 22px; }
+  .homepage-promotions-section .allgames-promo::before {
+    background:
+      linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0.95) 45%, rgba(0, 0, 0, 0.82) 65%, rgba(0, 0, 0, 0.35) 85%, transparent 100%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, transparent 35%, rgba(0, 0, 0, 0.55) 100%);
+  }
+  .homepage-promotions-section .allgames-promo > img { object-position: right center; }
   .homepage-slider-dots { display: flex; align-items: center; justify-content: center; margin-top: 4px; }
   .homepage-slider-dots button { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 6px; }
   .homepage-slider-dots button > span { width: 6px; height: 6px; border-radius: 999px; background: #bcebd85c; transition: width .2s,background .2s; }
@@ -188,14 +194,23 @@
 .allgames-promo[data-tone='live-casino'] { --promo-edge: #9c72c9; --promo-highlight: #eddaff; --promo-secondary: #5b3e8c; --promo-phase: -5s; background: #160a25; }
 .allgames-promo[data-tone='rankings'] { --promo-edge: #39ad83; --promo-highlight: #e6ce8a; --promo-secondary: #215b46; --promo-phase: -2s; background: #041b13; }
 .allgames-promo>img { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform .6s; }
-.allgames-promo::before { content: ''; position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg,#0005 0%,#0002 48%,transparent 75%); pointer-events: none; }
+.allgames-promo::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0.98) 28%, rgba(0, 0, 0, 0.90) 44%, rgba(0, 0, 0, 0.65) 60%, rgba(0, 0, 0, 0.20) 78%, transparent 95%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, transparent 35%, rgba(0, 0, 0, 0.45) 100%);
+  pointer-events: none;
+}
 .allgames-promo::after { content: ''; position: absolute; z-index: 3; inset: 0; padding: 1.5px; border-radius: inherit; background: conic-gradient(from var(--promo-border-angle),transparent 15%,var(--promo-edge) 34%,var(--promo-highlight) 48%,var(--promo-secondary) 60%,transparent 80%); -webkit-mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); mask-composite: exclude; pointer-events: none; animation: promo-border-turn 7s linear infinite; animation-delay: var(--promo-phase); }
 .allgames-promo>div { display: flex; flex-direction: column; z-index: 2; width: 100%; height: 100%; padding: 24px 28px; }
 .allgames-promo .allgames-eyebrow { color: #cbd4d1; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
-.allgames-promo h3 { max-width: 76%; margin-top: 12px; font-size: clamp(25px,2.45cqw,24px); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; text-wrap: balance; }
-.allgames-promo h3+p { margin-top: 12px; font-size: clamp(18px,1.7cqw,24px); font-weight: 700; line-height: 1.35; }
-.allgames-promo h3+p>span { display: block; margin-top: 2px; color: #ffffff; font-size: clamp(14px,1.4cqw,16px); font-weight: 400; }
-.allgames-promo .allgames-text-link { gap: 16px; margin-top: auto; padding-top: 14px; color: #FECA00ff; font-size: 14px; }
+.allgames-promo h3 { max-width: 100%; margin-top: 10px; color: #ffffff; font-size: clamp(20px,1.8cqw,24px); font-weight: 800; line-height: 1.18; letter-spacing: -.02em; text-wrap: balance; text-shadow: 0 2px 6px rgba(0,0,0,0.7); }
+.allgames-promo h3+p { margin-top: 10px; color: #ffffff; font-size: clamp(16px,1.5cqw,20px); font-weight: 700; line-height: 1.3; text-shadow: 0 1px 4px rgba(0,0,0,0.7); }
+.allgames-promo h3+p>span { display: block; margin-top: 2px; color: #cad8d0; font-size: clamp(13px,1.2cqw,15px); font-weight: 400; text-shadow: 0 1px 3px rgba(0,0,0,0.7); }
+.allgames-promo .allgames-text-link { gap: 16px; margin-top: auto; padding-top: 14px; color: #FECA00ff; font-size: 14px; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
 .allgames-promo:is(:hover,:focus-visible)>img { transform: scale(1.02); }
 .allgames-reveal { transition: opacity .6s ease,transform .6s cubic-bezier(.22,.7,.25,1); }
 .allgames-reveal-pending { opacity: 0; transform: translate3d(0,18px,0); }

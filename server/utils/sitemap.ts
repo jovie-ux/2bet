@@ -149,7 +149,7 @@ export function getSitemapEntries(): SitemapEntry[] {
 }
 
 export function generateSitemapXml(siteUrl: string, currentDate?: string): string {
-  const normalizedSiteUrl = siteUrl.replace(/\/+$/, '')
+  const normalizedSiteUrl = (siteUrl || 'https://2bet.com').replace(/\/+$/, '')
   const today = currentDate || new Date().toISOString().split('T')[0]
   const entries = getSitemapEntries()
 

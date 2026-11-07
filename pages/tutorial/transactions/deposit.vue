@@ -2,23 +2,23 @@
 import TransactionTutorialPage from '~/components/tutorial/TransactionTutorialPage.vue'
 
 useAppSeo({
-  title: 'How to Deposit Funds via GCash and Maya Guide in 2Bet Casino',
-  description: 'Step-by-step deposit guide for 2Bet Philippines. Follow 5 easy steps to fund your account securely using GCash, Maya, ShopeePay, or bank transfer.',
+  title: 'Como Fazer Depósito na Conta — Passo a Passo Simples | 2bet',
+  description: 'Guia prático de depósito na 2bet Brasil. Siga etapas simples para adicionar saldo instantaneamente via PIX com total segurança digital.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Tutorials', path: '/tutorial' },
-    { name: 'Deposit Tutorial', path: '/tutorial/transactions/deposit' },
+    { name: 'Início', path: '/' },
+    { name: 'Tutoriais', path: '/tutorial' },
+    { name: 'Tutorial de Depósito', path: '/tutorial/transactions/deposit' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
-    name: 'How to Deposit on 2Bet',
-    description: 'Learn how to deposit funds into your 2Bet wallet in 5 simple steps.',
+    name: 'Como Fazer Depósito na Plataforma 2bet',
+    description: 'Guia prático de depósito na 2bet Brasil. Siga etapas simples para adicionar saldo instantaneamente via PIX com total segurança digital.',
   },
 })
 </script>
 
 <template>
-  <h1 class="hidden">How to Deposit in 2Bet </h1>
+  <h1 class="hidden">Como Depositar na Plataforma 2bet — Passo a Passo</h1>
   <TransactionTutorialPage mode="deposit" />
 </template>

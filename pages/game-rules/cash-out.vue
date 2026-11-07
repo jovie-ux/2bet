@@ -3,12 +3,12 @@ import GameRulesNav from '~/components/game-rules/GameRulesNav.vue'
 import { cashOutRulesHtml } from '~/data/cash-out-rules'
 
 useAppSeo({
-  title: 'Cash Out Rules, Terms & Settlement Standards | 2Bet',
-  description: 'Official 2Bet Cash Out rules: full and partial cash out unit stake rules, settlement for interrupted events, reversal protocols, and accumulator terms.',
+  title: 'Regras de Cash Out — Encerramento Total e Parcial | 2bet',
+  description: 'Saiba como utilizar o Cash Out total ou parcial na 2bet Brasil. Garanta lucros antecipados ou reduza perdas com total autonomia.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Game Rules', path: '/game-rules' },
-    { name: 'Cash Out Rules', path: '/game-rules/cash-out' },
+    { name: 'Início', path: '/' },
+    { name: 'Regras de Jogo', path: '/game-rules' },
+    { name: 'Regras de Cash Out', path: '/game-rules/cash-out' },
   ],
 })
 </script>

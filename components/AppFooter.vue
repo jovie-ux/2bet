@@ -82,8 +82,6 @@ const updateServerTime = (): void => {
   serverTime.value = `${hours}:${minutes}:${seconds}`
 }
 
-updateServerTime()
-
 onMounted(() => {
   updateServerTime()
   clockTimer = setInterval(updateServerTime, 1000)
@@ -254,7 +252,12 @@ onBeforeUnmount(() => {
 
       <!-- Server Time & Copyright -->
       <div class="text-[11px] sm:text-[12px] mt-5 text-[#717673] space-y-1 mb-8">
-        <p>{{ translate('Server Time') }}: {{ serverTime }} (GMT+08:00)</p>
+        <ClientOnly>
+          <p>{{ translate('Server Time') }}: {{ serverTime }} (GMT+08:00)</p>
+          <template #fallback>
+            <p>{{ translate('Server Time') }}: --:--:-- (GMT+08:00)</p>
+          </template>
+        </ClientOnly>
         <p>Copyright © {{ new Date().getFullYear() }} 2bet Group. {{ translate('All Rights Reserved.') }}</p>
       </div>
 

@@ -5,7 +5,8 @@ import { faqItems } from '~/data/homepage'
 const { translate } = useSiteLocale()
 
 const openFaqIndex = ref<number | null>(null)
-const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const externalSiteUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 const toggleFaq = (index: number): void => {
   openFaqIndex.value = openFaqIndex.value === index ? null : index
@@ -19,7 +20,7 @@ const toggleFaq = (index: number): void => {
         <img
           class="app-promotion-art"
           src="/reference/app-download.webp"
-          alt=""
+          :alt="translate('Download 2Bet App')"
           width="1640"
           height="395"
           loading="lazy"
@@ -68,7 +69,7 @@ const toggleFaq = (index: number): void => {
       <img
         class="about-panel-art"
         src="/reference/about-slots.webp"
-        alt=""
+        :alt="translate('About 2Bet Slots')"
         width="1024"
         height="345"
         loading="lazy"

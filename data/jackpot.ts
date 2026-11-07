@@ -167,7 +167,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         image: '/images/games/popular/super-ace.webp',
         rtpPercent: '96.5%',
         buyBonus: true,
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'dragon-soar',
@@ -177,7 +177,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         image: '/images/games/new-releases/wild-hop-and-drop.webp',
         rtpPercent: '96.9%',
         buyBonus: true,
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'billionaire',
@@ -186,7 +186,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/new-releases/open-sesame.webp',
         rtpPercent: '96.5%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'dragon',
@@ -195,7 +195,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/new-releases/fortune-rabbit-xtreme.webp',
         rtpPercent: '96.2%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'kingsman',
@@ -205,7 +205,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         image: '/images/games/new-releases/super-wildrix.webp',
         rtpPercent: '96.2%',
         promo: true,
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'orient-animals',
@@ -214,7 +214,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/popular/fortune-gems-2.webp',
         rtpPercent: '95.9%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'dragons-world',
@@ -223,7 +223,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/popular/golden-empire.webp',
         rtpPercent: '95.9%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'fortune-treasure',
@@ -232,7 +232,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/new-releases/7-wheel-money.webp',
         rtpPercent: '95.9%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'mjolnir',
@@ -242,7 +242,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         image: '/images/games/new-releases/spin-and-score-megaways.webp',
         rtpPercent: '96.5%',
         buyBonus: true,
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'spindrift-2',
@@ -251,7 +251,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/popular/sugar-rush-dice.webp',
         rtpPercent: '97.0%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'kong',
@@ -260,7 +260,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/popular/mega-ace.webp',
         rtpPercent: '95.8%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'wonder-elephant',
@@ -269,7 +269,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/popular/sweet-bonanza-1000.webp',
         rtpPercent: '95.9%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'lantern-wealth',
@@ -278,7 +278,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/new-releases/chinese-new-year-deluxe.webp',
         rtpPercent: '95.9%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'blossom-of-wealth',
@@ -288,7 +288,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         image: '/images/games/new-releases/lucky-neko.webp',
         rtpPercent: '96.0%',
         buyBonus: true,
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'glamorous-girl',
@@ -297,7 +297,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/popular/super-ace-2.webp',
         rtpPercent: '95.8%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'prosperity-tiger',
@@ -306,7 +306,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/new-releases/golden-empire.webp',
         rtpPercent: '96.0%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'elemental-link-fire',
@@ -315,7 +315,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/new-releases/bigger-bass-blizzard.webp',
         rtpPercent: '96.0%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'rooster-in-love',
@@ -324,7 +324,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/new-releases/wild-bandito.webp',
         rtpPercent: '96.7%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'lucky-dragons',
@@ -333,7 +333,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/new-releases/john-hunter-book-of-tut-respin.webp',
         rtpPercent: '96.1%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'flirting-scholar-tang',
@@ -342,7 +342,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/popular/gates-of-olympus.webp',
         rtpPercent: '96.4%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'winning-mask',
@@ -351,7 +351,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/new-releases/777-strike.webp',
         rtpPercent: '96.0%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'the-llama-adventure',
@@ -360,7 +360,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/new-releases/snakes-and-ladders-snake-eyes.webp',
         rtpPercent: '96.2%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'formosa-bear',
@@ -369,7 +369,7 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/popular/super-ace.webp',
         rtpPercent: '96.3%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
       {
         id: 'new-year',
@@ -378,17 +378,17 @@ export const JACKPOT_SECTIONS: JackpotSection[] = [
         providerLogo: '/images/providers/jdb.webp',
         image: '/images/games/popular/golden-empire.webp',
         rtpPercent: '96.3%',
-        jackpotPool: '$3,012.91',
+        jackpotPool: 'R$3,012.91',
       },
     ],
   },
 ]
 
 export const JACKPOT_WINNERS: JackpotWinner[] = [
-  { id: '1', providerLogo: '/images/providers/jdb.webp', username: 'm******a', amount: 'USD 640.83', date: '16-10 22:39' },
-  { id: '2', providerLogo: '/images/providers/jdb.webp', username: 'G******a', amount: 'BRL 4,026.09', date: '14-10 19:26' },
-  { id: '3', providerLogo: '/images/providers/jdb.webp', username: 'p******1', amount: 'USDT 538.85', date: '13-10 13:36' },
-  { id: '4', providerLogo: '/images/providers/jdb.webp', username: 's******e', amount: 'INR 56,719.78', date: '11-10 19:18' },
-  { id: '5', providerLogo: '/images/providers/jdb.webp', username: 'k*****n', amount: 'USD 720.88', date: '08-10 13:32' },
+  { id: '1', providerLogo: '/images/providers/jdb.webp', username: 'm******a', amount: 'R$ 3,684.77', date: '16-10 22:39' },
+  { id: '2', providerLogo: '/images/providers/jdb.webp', username: 'G******a', amount: 'R$ 4,026.09', date: '14-10 19:26' },
+  { id: '3', providerLogo: '/images/providers/jdb.webp', username: 'p******1', amount: 'R$ 3,098.39', date: '13-10 13:36' },
+  { id: '4', providerLogo: '/images/providers/jdb.webp', username: 's******e', amount: 'R$ 3,859.65', date: '11-10 19:18' },
+  { id: '5', providerLogo: '/images/providers/jdb.webp', username: 'k*****n', amount: 'R$ 4,145.06', date: '08-10 13:32' },
 ]
 

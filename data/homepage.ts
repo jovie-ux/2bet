@@ -1,5 +1,4 @@
 import { h, type Component } from 'vue'
-import { SLOTS, type SlotGame } from './slots'
 import {
   BadgeDollarSign,
   BadgeCent,
@@ -310,68 +309,53 @@ const createGames = (
   image: gamePlaceholderImage,
 }))
 
-const resolveSlotImage = (game: SlotGame): string => {
-  if (game.image && game.image.startsWith('/images/slots/')) {
-    return game.image
-  }
-  const baseId = game.id.replace(/-hot$|-popular$|-top$/, '')
-  if (baseId === 'chinese-new-year') {
-    return '/images/slots/chinese-new-year-deluxe.webp'
-  }
-  return `/images/slots/${baseId}.webp`
-}
+// Popular Slots: top played
+export const popularGames: ReferenceGame[] = [
+  { id: 'super-ace', title: 'Super Ace', provider: '2bet', image: '/images/slots/super-ace.webp' },
+  { id: 'super-ace-deluxe', title: 'Super Ace Deluxe', provider: 'JILI', image: '/images/slots/super-ace-deluxe.webp' },
+  { id: 'pinata-wins', title: 'Pinata Wins', provider: '2bet', image: '/images/slots/pinata-wins.webp' },
+  { id: 'wild-bounty-showdown', title: 'Wild Bounty ShowDown', provider: '2bet', image: '/images/slots/wild-bounty-showdown.webp' },
+  { id: 'wild-ace', title: 'Wild Ace', provider: 'JILI', image: '/images/slots/wild-ace.webp' },
+  { id: 'wild-bronco', title: 'Wild Bronco', provider: 'JDB', image: '/images/slots/wild-bronco.webp' },
+  { id: 'fortune-gems', title: 'Fortune Gems', provider: '2bet', image: '/images/slots/fortune-gems.webp' },
+  { id: 'party-ape', title: 'Party Ape', provider: 'JILI', image: '/images/slots/party-ape.webp' },
+  { id: 'golden-empire', title: 'Golden Empire', provider: 'JILI', image: '/images/slots/golden-empire.webp' },
+  { id: 'fortune-garuda-500', title: 'Fortune Garuda 500', provider: 'JILI', image: '/images/slots/fortune-garuda-500.webp' },
+  { id: 'fortune-gems-2', title: 'Fortune Gems 2', provider: 'JILI', image: '/images/slots/fortune-gems-2.webp' },
+  { id: 'super-ace-2', title: 'Super Ace 2', provider: 'JILI', image: '/images/slots/super-ace-2.webp' },
+]
 
-const parseHotPercent = (val: unknown): number => {
-  if (typeof val === 'number') return val
-  if (typeof val === 'string') return parseFloat(val.replace('%', '').trim()) || 0
-  return 0
-}
+// New Releases
+export const newGames: ReferenceGame[] = [
+  { id: 'wild-bronco', title: 'Wild Bronco', provider: 'JDB', image: '/images/slots/wild-bronco.webp' },
+  { id: 'jade-legends', title: 'Jade Legends', provider: 'PP', image: '/images/slots/jade-legends.webp' },
+  { id: 'super-serge', title: 'Super Serge', provider: 'PP', image: '/images/slots/super-serge.webp' },
+  { id: 'teeed-up', title: 'TEEED UP!', provider: 'JDB', image: '/images/slots/teeed-up.webp' },
+  { id: '3-lightning-blitz', title: '3 Lightning Blitz', provider: 'JILI', image: '/images/slots/3-lightning-blitz.webp' },
+  { id: 'golden-retriever', title: 'Golden Retriever', provider: 'PP', image: '/images/slots/golden-retriever.webp' },
+  { id: 'harvest-moon-grave-profits', title: 'Harvest Moon – Grave Profits', provider: 'PP', image: '/images/slots/harvest-moon-grave-profits.webp' },
+  { id: 'joker-s-revenge', title: 'Joker’s Revenge', provider: 'PP', image: '/images/slots/joker-s-revenge.webp' },
+  { id: '777-wheel-blitz', title: '777 Wheel Blitz', provider: 'PP', image: '/images/slots/777-wheel-blitz.webp' },
+  { id: 'mahjong-wins-triple-pot', title: 'Mahjong Wins Triple Pot', provider: 'PP', image: '/images/slots/mahjong-wins-triple-pot.webp' },
+  { id: '3-pots-of-wishestm', title: '3 Pots of Wishes™', provider: 'BS', image: '/images/slots/3-pots-of-wishestm.webp' },
+  { id: 'the-oil-baronstm', title: 'THE Oil Barons™', provider: 'BS', image: '/images/slots/the-oil-baronstm.webp' },
+]
 
-const buildUniqueSlotGames = (
-  slots: SlotGame[],
-  limit?: number,
-): ReferenceGame[] => {
-  const seenTitles = new Set<string>()
-  const result: ReferenceGame[] = []
-
-  for (const game of slots) {
-    const normTitle = game.title.toLowerCase().trim()
-    if (seenTitles.has(normTitle)) continue
-    seenTitles.add(normTitle)
-    result.push({
-      id: game.id,
-      title: game.title,
-      provider: game.provider,
-      image: resolveSlotImage(game),
-    })
-    if (limit && result.length >= limit) break
-  }
-
-  return result
-}
-
-// Popular Slots: highest livePlayers
-export const popularGames: ReferenceGame[] = buildUniqueSlotGames(
-  [...SLOTS]
-    .filter(g => typeof g.livePlayers === 'number' && g.livePlayers > 0)
-    .sort((a, b) => (b.livePlayers ?? 0) - (a.livePlayers ?? 0)),
-  12,
-)
-
-// New Releases: new: true
-export const newGames: ReferenceGame[] = buildUniqueSlotGames(
-  [...SLOTS]
-    .filter(g => g.new === true)
-    .sort((a, b) => (b.livePlayers ?? 0) - (a.livePlayers ?? 0)),
-)
-
-// Recommended For You: highest hotPercent
-export const recommendedGames: ReferenceGame[] = buildUniqueSlotGames(
-  [...SLOTS]
-    .filter(g => Boolean(g.hotPercent))
-    .sort((a, b) => parseHotPercent(b.hotPercent) - parseHotPercent(a.hotPercent)),
-  12,
-)
+// Recommended For You: high RTP and popularity
+export const recommendedGames: ReferenceGame[] = [
+  { id: 'heist-stakes', title: 'Heist Stakes', provider: 'PG', image: '/images/slots/heist-stakes.webp' },
+  { id: 'return-of-the-dead-hot', title: 'Return of the Dead', provider: 'PP', image: '/images/slots/return-of-the-dead.webp' },
+  { id: 'phoenix-forge', title: 'Phoenix Forge', provider: 'PP', image: '/images/slots/phoenix-forge.webp' },
+  { id: 'chinese-new-year-hot', title: 'CHINESE NEW YEAR', provider: 'CQ9', image: '/images/slots/chinese-new-year-deluxe.webp' },
+  { id: 'pharaoh-treasure', title: 'Pharaoh Treasure', provider: 'JILI', image: '/images/slots/pharaoh-treasure.webp' },
+  { id: 'strawberry-cocktail', title: 'Strawberry Cocktail', provider: 'PP', image: '/images/slots/strawberry-cocktail.webp' },
+  { id: 'good-fortune-m-hot', title: 'Good Fortune M', provider: 'CQ9', image: '/images/slots/good-fortune-m.webp' },
+  { id: 'gates-of-olympus-hot', title: 'Gates of Olympus', provider: 'PP', image: '/images/slots/gates-of-olympus.webp' },
+  { id: 'diner-frenzy-spins', title: 'Diner Frenzy Spins', provider: 'PG', image: '/images/slots/diner-frenzy-spins.webp' },
+  { id: 'cash-volt-hot', title: 'Cash Volt', provider: 'Red Tiger', image: '/images/slots/cash-volt.webp' },
+  { id: 'reel-royale-showdown', title: 'Reel Royale Showdown', provider: 'PG', image: '/images/slots/reel-royale-showdown.webp' },
+  { id: 'shaolin-soccer', title: 'Shaolin Soccer', provider: 'PG', image: '/images/slots/shaolin-soccer.webp' },
+]
 
 export const mobileQuickCategories: GameCategory[] = [
   { label: 'Hot Slots', icon: Flame, accentColor: '#ffb02e', to: '/explore/egames/slots' },
@@ -433,28 +417,28 @@ export const providerLogoByName: Record<string, string> = {
 
 export const faqItems: FaqItem[] = [
   {
-    question: 'What is 2Bet Slot?',
+    question: 'What is 2Bet Casino?',
     answer:
-      '2Bet Slot is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.',
+      '2Bet Casino is a premium online gaming destination that offers a comprehensive collection of high-quality digital slot machines. We provide a secure environment where users can explore various themes, from ancient civilizations to futuristic adventures. Our platform integrates the 2Bet slots casino library with advanced technology, allowing you to enjoy seamless gameplay whether you are using a desktop browser or the 2Bet app slot for mobile convenience.',
   },
   {
-    question: 'Is 2Bet legit or a scam?',
+    question: 'How does the 2Bet online casino work?',
     answer:
-      'We can confidently state that we are a fully legitimate and legal gaming platform. To ensure the highest standards of safety and fairness, we hold a formal license and certifications. This means we operate under strict regulatory oversight, ensuring that all our operations are transparent and that our games, including those featuring the 2Bet slots symbols, are fair and unbiased. Your security is our top priority, and we employ industry-leading encryption to protect every interaction on our site.',
+      'The 2Bet online casino allows users to explore the games currently available on the platform. To participate, users need to create an account, check the access requirements, and follow the rules of each game. Results depend on the rules and mechanics of each game, and winnings are never guaranteed.',
   },
   {
-    question: 'Is the 2Bet app slot compatible with both Android and iOS?',
+    question: 'Can I place sports bets on 2Bet using my mobile phone?',
     answer:
-      'Yes, we have designed our application to be fully compatible with both major mobile operating systems. You can download the app directly from our official site to ensure you are getting the most secure and updated version.',
+      'The 2Bet mobile experience allows users to access features made available for smartphones. To place sports bets on 2Bet, users can browse available events and betting markets, review the rules, and confirm their selections before placing a bet. Feature availability may vary depending on the device and platform version.',
   },
   {
-    question: 'How does the 2Bet slots casino ensure fairness?',
+    question: 'How do I create an account on 2Bet Brazil?',
     answer:
-      'We use certified Random Number Generators (RNG) to ensure that every outcome is random and unbiased. We undergo regular audits by third-party organizations to verify that our games operate according to international fairness standards.',
+      "To create an account on 2Bet Brazil, click Register button. Enter the required information and complete any applicable identity verification steps. Before making deposits or placing bets, review the terms and conditions and the legal eligibility requirements.",
   },
   {
-    question: 'What makes the 2Bet slots symbol special?',
+    question: 'Is 2Bet safe and trustworthy in Brazil?',
     answer:
-      'In most of our games, the scatter symbol is a powerful tool that can trigger special features regardless of where it lands on the reels. This often leads to free spins or special mini-games that add excitement to your session.',
+      "To determine whether 2Bet is trustworthy in Brazil, it is essential to verify whether the operator holds valid authorization from the Secretariat of Prizes and Betting under Brazil's Ministry of Finance. Users should also review the privacy policy, customer support options, and deposit and withdrawal rules. Betting is intended exclusively for adults aged 18 and older and should always be approached responsibly.",
   },
 ]

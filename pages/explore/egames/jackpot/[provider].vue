@@ -54,6 +54,7 @@ const jackpotNumberFormatter = new Intl.NumberFormat('en-US', {
 const route = useRoute()
 const router = useRouter()
 const { effectiveTheme } = useSiteTheme()
+const { translate } = useSiteLocale()
 
 const themedProviderLogo = (providerLogo: string): string => {
   return getProviderLogoForTheme(providerLogo, effectiveTheme.value)
@@ -66,22 +67,34 @@ const activeProvider = computed(() => {
 
 const providerName = computed(() => {
   const p = activeProvider.value
-  if (p === 'all') return 'All Providers'
+  if (p === 'all') return 'Todos os Provedores'
   return p.toUpperCase()
 })
 
 useAppSeo({
-  title: computed(() => `${providerName.value} Progressive Jackpots — Casino Slots | 2Bet`),
-  description: computed(() => `Spin high-paying progressive jackpot slots from ${providerName.value} on 2Bet Philippines. Live prize counters, daily winners, and mega jackpot payouts.`),
+  title: computed(() =>
+    formatSeoTitle(
+      activeProvider.value === 'all'
+        ? 'Jackpots Acumulados e Melhores Provedores | 2bet'
+        : `Jackpots ${providerName.value} com Prêmios Acumulados | 2bet`,
+    ),
+  ),
+  description: computed(() =>
+    formatSeoDescription(
+      activeProvider.value === 'all'
+        ? 'Dispute jackpots acumulados nos caça-níqueis da 2bet Brasil. Acompanhe contadores em R$ em tempo real e concorra a prêmios milionários.'
+        : `Jogue caça-níqueis com jackpot da ${providerName.value} na 2bet Brasil. Prêmios acumulados em R$ em tempo real e grandes chances de vitória.`,
+    ),
+  ),
   breadcrumbs: computed(() => [
-    { name: 'Home', path: '/' },
+    { name: 'Início', path: '/' },
     { name: 'Jackpots', path: '/explore/egames/jackpot/all' },
     { name: providerName.value, path: `/explore/egames/jackpot/${activeProvider.value}` },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${providerName.value} Progressive Jackpots - 2Bet`,
+    name: `${providerName.value} Jackpots Progressivos - 2bet`,
     url: `https://2bet.com/explore/egames/jackpot/${activeProvider.value}`,
   })),
 })
@@ -129,7 +142,7 @@ const getJackpotSeparatorImage = (character: string): string | undefined => {
 }
 
 const getJackpotLabel = (section: JackpotSection): string => {
-  return `${section.provider} live jackpot: $${jackpotNumberFormatter.format(getJackpotAmount(section))}`
+  return `${section.provider} live jackpot: R$${jackpotNumberFormatter.format(getJackpotAmount(section))}`
 }
 
 const refreshJackpotAmounts = (): void => {
@@ -170,7 +183,8 @@ onBeforeUnmount(() => {
 })
 
 const { showDemoMessage } = useDemoInteraction()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 const selectTab = (key: string): void => {
   router.push(`/explore/egames/jackpot/${key.toLowerCase()}`)
@@ -211,7 +225,7 @@ const filteredSections = computed<JackpotSection[]>(() => {
   return sections.map((section) => {
     const seenIds = new Set<string>()
     const amount = section.showCounter ? getJackpotAmount(section) : 0
-    const poolText = amount > 0 ? `$${jackpotNumberFormatter.format(amount)}` : undefined
+    const poolText = amount > 0 ? `R$${jackpotNumberFormatter.format(amount)}` : undefined
 
     const jackpotGames = SLOTS.filter((game) => {
       if (game.jackpot !== true && game.Jackpot !== true) return false
@@ -307,12 +321,12 @@ watch(
         <div class="jackpot-brand-stage" aria-hidden="true">
           <img
             src="/images/jackpot/jackpot.webp"
-            alt=""
+            alt="Jackpot"
             class="jackpot-wordmark"
           />
           <img
             :src="JACKPOT_CHARACTER_IMAGES[section.jackpotCharacter]"
-            alt=""
+            :alt="`${section.provider} character`"
             class="jackpot-character"
             :class="`jackpot-character--${section.jackpotCharacter}`"
           />
@@ -334,7 +348,7 @@ watch(
                 <img
                   v-if="getJackpotDigitImage(character)"
                   :src="getJackpotDigitImage(character)"
-                  alt=""
+                  :alt="character"
                   class="jackpot-digit-image"
                 />
                 <span v-else class="jackpot-digit-fallback">{{ character }}</span>
@@ -343,7 +357,7 @@ watch(
                 <img
                   v-if="getJackpotSeparatorImage(character)"
                   :src="getJackpotSeparatorImage(character)"
-                  alt=""
+                  :alt="character"
                   class="jackpot-separator-image"
                 />
               </span>
@@ -382,7 +396,7 @@ watch(
         />
       </GameRail>
       <p v-if="section.games.length === 0" class="py-8 text-center text-sm text-[#8e9491]">
-        No jackpot games are available for this provider.
+        {{ translate('No jackpot games are available for this provider.') }}
       </p>
     </section>
 
@@ -398,7 +412,7 @@ watch(
           class="flex min-w-0 items-center gap-1.5 text-[15px] font-bold text-white transition-colors hover:text-[var(--main-color)]"
         >
           <span aria-hidden="true">🎰</span>
-          <span class="truncate">Standalone Jackpot Game</span>
+          <span class="truncate">{{ translate('Standalone Jackpot Game') }}</span>
         </NuxtLink>
         <NuxtLink
           to="/explore/egames/jackpot/standalone"

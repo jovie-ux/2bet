@@ -16,15 +16,17 @@ const sortOptions: Array<{ value: ExpertSort; label: string }> = [
   { value: 'win-streak', label: 'Win Streak' },
 ]
 
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const { translate } = useSitePreferences()
 
 useAppSeo({
-  title: 'Top Sports Betting Experts & Tipsters | 2Bet Plaza',
-  description: 'Discover verified sports betting experts on 2Bet Live Plaza. Compare accuracy hit rates, win streaks, and recent forecasts for NBA, football, and more.',
+  title: 'Top Tipsters e Especialistas em Apostas Esportivas | 2bet',
+  description: 'Conheça os tipsters com maior taxa de acertos na 2bet Brasil. Siga análises esportivas especializadas e aprimore suas estratégias diárias.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Live Plaza', path: '/explore/live-plaza/home' },
-    { name: 'Experts', path: '/explore/live-plaza/experts' },
+    { name: 'Início', path: '/' },
+    { name: 'Praça ao Vivo', path: '/explore/live-plaza/home' },
+    { name: 'Especialistas', path: '/explore/live-plaza/experts' },
   ],
   schema: {
     '@context': 'https://schema.org',
@@ -168,7 +170,7 @@ onBeforeUnmount(() => {
             aria-controls="expert-sort-menu"
             @click.stop="toggleSortMenu"
           >
-            <span>{{ selectedSortLabel }}</span>
+            <span>{{ translate(selectedSortLabel) }}</span>
             <MoreHorizontal :size="15" aria-hidden="true" />
           </button>
 
@@ -178,9 +180,9 @@ onBeforeUnmount(() => {
               id="expert-sort-menu"
               class="experts-sort__menu"
               role="menu"
-              aria-label="Sort experts"
+              :aria-label="translate('Sort experts')"
             >
-              <span class="experts-sort__label">Sort</span>
+              <span class="experts-sort__label">{{ translate('Sort') }}</span>
               <button
                 v-for="option in sortOptions"
                 :key="option.value"
@@ -191,7 +193,7 @@ onBeforeUnmount(() => {
                 :aria-checked="expertSort === option.value"
                 @click="selectSort(option.value)"
               >
-                {{ option.label }}
+                {{ translate(option.label) }}
               </button>
             </div>
           </Transition>
@@ -200,11 +202,11 @@ onBeforeUnmount(() => {
     </SubpageHeader>
 
     <div class="experts-content-container px-2.5 sm:px-0">
-      <section class="experts-filter-bar" aria-label="Filter experts">
+      <section class="experts-filter-bar" :aria-label="translate('Filter experts')">
         <LivePlazaSportFilters v-model="selectedSport" />
       </section>
 
-      <section v-if="displayedExperts.length" class="experts-grid" aria-label="All prediction experts">
+      <section v-if="displayedExperts.length" class="experts-grid" :aria-label="translate('All prediction experts')">
       <NuxtLink
         v-for="expert in displayedExperts"
         :key="expert.id"
@@ -236,10 +238,10 @@ onBeforeUnmount(() => {
             v-if="expert.currentPredictions"
             class="expert-card__current-predictions"
           >
-            Current {{ expert.currentPredictions }} predictions
+            {{ translate('Current') }} {{ expert.currentPredictions }} {{ translate('predictions') }}
           </span>
           <span class="expert-card__hit-rate">
-            <span>Hit Rate</span>
+            <span>{{ translate('Hit Rate') }}</span>
             <strong>{{ formatHitRate(expert.hitRate) }}<small>%</small></strong>
           </span>
         </span>
@@ -254,7 +256,7 @@ onBeforeUnmount(() => {
     />
 
     <div v-if="!visibleExperts.length" class="experts-empty">
-      No experts are available for this sport.
+      {{ translate('No experts are available for this sport.') }}
     </div>
     </div>
   </div>

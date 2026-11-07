@@ -2,11 +2,11 @@
 import { ChevronRight } from 'lucide-vue-next'
 
 useAppSeo({
-  title: 'Live Streamers & Match Broadcasts | 2Bet Live Plaza',
-  description: 'Watch live sports broadcasts and interactive game streams on 2Bet Live Plaza. Follow your favorite streamers and view real-time match betting tips.',
+  title: 'Transmissões ao Vivo de Partidas e Mesas de Jogos | 2bet',
+  description: 'Assista a partidas e jogos em tempo real com streamers oficiais na 2bet Brasil. Interaja com a comunidade e confira dicas exclusivas.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Live Plaza', path: '/explore/live-plaza/home' },
+    { name: 'Início', path: '/' },
+    { name: 'Praça ao Vivo', path: '/explore/live-plaza/home' },
     { name: 'Streamers', path: '/explore/live-plaza/streamer' },
   ],
   schema: {
@@ -31,7 +31,6 @@ const handleAllStreamersClick = (): void => {
     <SeoHeader
       sticky
       :title="translate('Streamer')"
-      description="Live streaming channels, interactive hosts, and gaming influencers on 2Bet Philippines."
       :show-back="false"
     />
 

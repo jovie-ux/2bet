@@ -22,7 +22,9 @@ const props = withDefaults(defineProps<{
 })
 
 const route = useRoute()
-const bybetRedirectUrl = props.aiTo ?? useRuntimeConfig().public.bybetRedirectUrl
+const { translate } = useSitePreferences()
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = props.aiTo ?? `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 const base = useSportsRouteBase()
 const search = ref('')
 
@@ -278,8 +280,8 @@ const COUNTRY_FLAGS: Record<string, string> = {
         hide-sport-title
       />
       <div v-else class="py-12 text-center text-neutral-400">
-        <p>League not available.</p>
-        <NuxtLink :to="`${base}/league`" class="mt-3 inline-block text-sm text-[#48daa6]">Return to all leagues</NuxtLink>
+        <p>{{ translate('League not available.') }}</p>
+        <NuxtLink :to="`${base}/league`" class="mt-3 inline-block text-sm text-[#48daa6]">{{ translate('Return to all leagues') }}</NuxtLink>
       </div>
     </template>
 
@@ -300,8 +302,8 @@ const COUNTRY_FLAGS: Record<string, string> = {
           <input
             v-model="search"
             type="search"
-            placeholder="Search league sample"
-            aria-label="Search league"
+            :placeholder="translate('Search league sample')"
+            :aria-label="translate('Search league')"
           >
         </label>
 
@@ -333,7 +335,7 @@ const COUNTRY_FLAGS: Record<string, string> = {
             :aria-expanded="isGroupExpanded('__popular__')"
             @click="toggleGroup('__popular__')"
           >
-            <span class="text-[15px] font-semibold text-white">Popular Leagues</span>
+            <span class="text-[15px] font-semibold text-white">{{ translate('Popular Leagues') }}</span>
             <ChevronDown
               :size="18"
               class="text-neutral-400 transition-transform duration-200"
@@ -364,7 +366,7 @@ const COUNTRY_FLAGS: Record<string, string> = {
                   <img
                     v-if="getSportBall(league, route.params.sport as string)"
                     :src="getSportBall(league, route.params.sport as string)"
-                    alt=""
+                    :alt="league.title"
                     class="absolute -bottom-1 -right-1 w-[12px] h-[12px] rounded-full  bg-[#181a19] shadow-sm object-contain pointer-events-none"
                   />
                 </div>
@@ -409,7 +411,7 @@ const COUNTRY_FLAGS: Record<string, string> = {
                   aria-hidden="true"
                 />
 
-                <span class="text-[15px] font-semibold text-white">{{ section.title }}</span>
+                <span class="text-[15px] font-semibold text-white">{{ translate(section.title) }}</span>
               </div>
 
               <ChevronDown
@@ -455,7 +457,7 @@ const COUNTRY_FLAGS: Record<string, string> = {
                     v-if="league.inplay"
                     class="bg-[#093E2C] text-white text-[12px] px-2 py-0.5 rounded-md whitespace-nowrap"
                   >
-                    In-Play
+                    {{ translate('In-Play') }}
                   </span>
                   <span class="text-[13px] text-[#888] min-w-[14px] text-right font-normal">
                     {{ league.count ?? 1 }}
@@ -468,7 +470,7 @@ const COUNTRY_FLAGS: Record<string, string> = {
 
         <!-- No Leagues Found -->
         <div v-else class="py-12 text-center text-neutral-400">
-          <p>No leagues found.</p>
+          <p>{{ translate('No leagues found.') }}</p>
         </div>
       </div>
     </template>

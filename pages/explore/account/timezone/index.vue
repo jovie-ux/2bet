@@ -3,6 +3,7 @@ import SubpageHeader from '~/components/SubpageHeader.vue'
 import { Search } from 'lucide-vue-next'
 
 const searchQuery = ref('')
+const { translate } = useSitePreferences()
 const currentDate = new Date()
 const {
   selectedTimeZone,
@@ -11,12 +12,12 @@ const {
 } = useTimeZonePreference()
 
 useAppSeo({
-  title: 'Time Zone Settings — Match Schedule Preference | 2Bet',
-  description: 'Adjust your display time zone on 2Bet to ensure sports match schedules, live in-play start times, and event countdowns match your local clock.',
+  title: 'Configuração de Fuso Horário e Agenda de Partidas | 2bet',
+  description: 'Ajuste o fuso horário na 2bet Brasil para acompanhar partidas esportivas ao vivo e programações de torneios com horários locais precisos.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Account', path: '/explore/account/me' },
-    { name: 'Time Zone', path: '/explore/account/timezone' },
+    { name: 'Início', path: '/' },
+    { name: 'Minha Conta', path: '/explore/account/me' },
+    { name: 'Fuso Horário', path: '/explore/account/timezone' },
   ],
 })
 
@@ -45,12 +46,12 @@ const filteredTimeZones = computed(() => {
     <div class="px-2.5 sm:px-0">
       <label class="search-box mb-2 flex min-h-[40px] items-center gap-2 rounded-xl px-3">
         <Search class="h-[18px] w-[18px] shrink-0 text-[#919694]" aria-hidden="true" />
-        <span class="sr-only">Search country or city</span>
+        <span class="sr-only">{{ translate('Search country or city') }}</span>
         <input
           v-model="searchQuery"
           type="search"
           class="w-full bg-transparent text-[14px] text-white outline-none placeholder:text-[#919694]"
-          placeholder="Search country or city"
+          :placeholder="translate('Search country or city')"
           autocomplete="off"
         >
       </label>
@@ -73,7 +74,7 @@ const filteredTimeZones = computed(() => {
               {{ option.city }}
             </span>
             <span class="block truncate text-[12px] leading-[16px] text-[#8c918f]">
-              {{ option.country }}
+              {{ translate(option.country) }}
             </span>
           </span>
           <span class="shrink-0 text-right">
@@ -90,13 +91,13 @@ const filteredTimeZones = computed(() => {
         </button>
 
         <p v-if="filteredTimeZones.length === 0" class="px-4 py-8 text-center text-[14px] text-[#8c918f]">
-          No time zones found.
+          {{ translate('No time zones found.') }}
         </p>
       </div>
     </div>
 
     <p class="sr-only" aria-live="polite">
-      Selected time zone: {{ selectedTimeZone.city }}, {{ selectedTimeZone.offset }}
+      {{ translate('Selected time zone:') }} {{ selectedTimeZone.city }}, {{ selectedTimeZone.offset }}
     </p>
   </section>
 </template>

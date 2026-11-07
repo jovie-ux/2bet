@@ -4,12 +4,12 @@ import UnderMaintenance from '~/components/modals/UnderMaintenance.vue'
 const isMaintenanceOpen = ref(true)
 
 useAppSeo({
-  title: 'Online Lottery & Numbers Games | 2Bet Philippines',
-  description: 'Play online lottery, draw games, and instant win ticket draws on 2Bet Philippines with top prize payouts.',
+  title: 'Loterias Online e Jogos Numéricos com Sorteios | 2bet',
+  description: 'Participe de loterias online e jogos de números na 2bet Brasil. Resultados em tempo real, sorteios frequentes e diversão garantida todo dia.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Entertainment', path: '/explore/entertainment/live-casino/baccarat' },
-    { name: 'Lottery', path: '/explore/entertainment/lottery' },
+    { name: 'Início', path: '/' },
+    { name: 'Entretenimento', path: '/explore/entertainment/live-casino/baccarat' },
+    { name: 'Loteria', path: '/explore/entertainment/lottery' },
   ],
 })
 </script>

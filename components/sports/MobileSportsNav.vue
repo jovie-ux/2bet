@@ -2,7 +2,8 @@
 import { Search } from 'lucide-vue-next'
 
 const route = useRoute()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 const { translate } = useSiteLocale()
 
 interface MobileSportNavItem {
@@ -62,7 +63,14 @@ const destination = (sport: typeof sports[number]): string => {
       :aria-current="selectedSport === sport.key ? 'page' : undefined"
       :title="translate(sport.label)"
     >
-      <img v-if="sport.image" :src="sport.image" alt="" width="30" height="30" aria-hidden="true">
+      <img
+        v-if="sport.image"
+        :src="sport.image"
+        :alt="translate(sport.label)"
+        class="mobile-sports-nav__img"
+        loading="lazy"
+        decoding="async"
+      >
       <span v-else-if="sport.emoji" class="mobile-sports-nav__emoji" aria-hidden="true">{{ sport.emoji }}</span>
       <svg v-else-if="sport.key === 'bonuses'" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
         <path d="M3 12L15 6L27 12V24L15 30L3 24V12Z" fill="#78AFF2" />
@@ -117,7 +125,14 @@ const destination = (sport: typeof sports[number]): string => {
 
   .mobile-sports-nav__item--active { background: #087c59; }
   .mobile-sports-nav__search { border: 0; color: #fff; background: transparent; }
-  .mobile-sports-nav__item img { width: 30px; height: 30px; object-fit: contain; }
+  .mobile-sports-nav__item img,
+  .mobile-sports-nav__img {
+    max-width: 30px;
+    max-height: 30px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
   .mobile-sports-nav__emoji { font-size: 28px; line-height: 1; }
   .mobile-sports-nav__all { display: grid; grid-template-columns: repeat(2, 13px); font-size: 12px; line-height: 14px; }
 }

@@ -33,15 +33,16 @@ const visiblePredictors = computed(() => {
     })
     .slice(0, 10)
 })
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 
 useAppSeo({
-  title: 'Expert Predictions & High Hit Rate Tips | 2Bet Plaza',
-  description: 'Get daily expert predictions and verified betting tips on 2Bet Live Plaza. Boost your wagering strategy with data-driven insights and match previews.',
+  title: 'Previsões de Apostas Esportivas com Alta Precisão | 2bet',
+  description: 'Acesse análises e previsões esportivas fundamentadas na 2bet Brasil. Estatísticas de partidas de futebol para orientar suas decisões.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Live Plaza', path: '/explore/live-plaza/home' },
-    { name: 'Expert Predictions', path: '/explore/live-plaza/expert-predictions' },
+    { name: 'Início', path: '/' },
+    { name: 'Praça ao Vivo', path: '/explore/live-plaza/home' },
+    { name: 'Previsões de Especialistas', path: '/explore/live-plaza/expert-predictions' },
   ],
   schema: {
     '@context': 'https://schema.org',
@@ -52,6 +53,7 @@ useAppSeo({
 })
 
 const { showDemoMessage } = useDemoInteraction()
+const { translate } = useSitePreferences()
 const route = useRoute()
 const {
   data: predictionData,
@@ -169,23 +171,22 @@ const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): v
     <SeoHeader
       sticky
       title="Predict"
-      description="Follow expert sports predictions, winning streaks, and real-time forecasts on 2Bet."
       :show-back="false"
       :show-flag="false"
     />
 
-    <section class="predictor-panel" aria-label="Prediction experts">
+    <section class="predictor-panel" :aria-label="translate('Prediction experts')">
       <div class="predictor-rail">
         <NuxtLink
           to="/explore/live-plaza/experts"
           class="predictor-item predictor-item--all"
           :class="{ 'predictor-item--active': selectedPredictorId === null }"
-          aria-label="View all experts"
+          :aria-label="translate('View all experts')"
         >
           <span class="predictor-item__all-icon">
             <LayoutGrid :size="25" :stroke-width="0" fill="currentColor" aria-hidden="true" />
           </span>
-          <span class="predictor-item__name">All</span>
+          <span class="predictor-item__name">{{ translate('All') }}</span>
         </NuxtLink>
 
         <button
@@ -220,7 +221,7 @@ const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): v
     <section class="predictions-block" aria-labelledby="expert-predictions-title">
       <div class="predictions-toolbar">
         <div class="panel-heading">
-          <h2 id="expert-predictions-title">Expert Predictions</h2>
+          <h2 id="expert-predictions-title">{{ translate('Expert Predictions') }}</h2>
           <div ref="sortControl" class="sort-control">
             <button
               ref="sortButton"
@@ -232,7 +233,7 @@ const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): v
               aria-controls="prediction-sort-menu"
               @click.stop="toggleSortMenu"
             >
-              <span>{{ selectedSortLabel }}</span>
+              <span>{{ translate(selectedSortLabel) }}</span>
               <MoreHorizontal :size="15" aria-hidden="true" />
             </button>
 
@@ -242,9 +243,9 @@ const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): v
                 id="prediction-sort-menu"
                 class="sort-menu"
                 role="menu"
-                aria-label="Sort predictions"
+                :aria-label="translate('Sort predictions')"
               >
-                <span class="sort-menu__label">Sort</span>
+                <span class="sort-menu__label">{{ translate('Sort') }}</span>
                 <div class="sort-menu__options">
                   <button
                     v-for="option in predictionSortOptions"
@@ -256,7 +257,7 @@ const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): v
                     :aria-checked="predictionSort === option.value"
                     @click="selectPredictionSort(option.value)"
                   >
-                    {{ option.label }}
+                    {{ translate(option.label) }}
                   </button>
                 </div>
               </div>
@@ -270,12 +271,12 @@ const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): v
       </div>
 
       <div v-if="predictionStatus === 'pending'" class="predictions-empty">
-        Loading expert predictions…
+        {{ translate('Loading expert predictions…') }}
       </div>
 
       <div v-else-if="predictionError" class="predictions-empty predictions-empty--error">
-        <span>Expert predictions are temporarily unavailable.</span>
-        <button type="button" @click="refreshPredictions()">Try again</button>
+        <span>{{ translate('Expert predictions are temporarily unavailable.') }}</span>
+        <button type="button" @click="refreshPredictions()">{{ translate('Try again') }}</button>
       </div>
 
       <div v-else-if="visiblePredictions.length" class="predictions-grid">
@@ -290,7 +291,7 @@ const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): v
       </div>
 
       <div v-else class="predictions-empty">
-        No predictions are available for this expert yet.
+        {{ translate('No predictions are available for this expert yet.') }}
       </div>
     </section>
   </div>

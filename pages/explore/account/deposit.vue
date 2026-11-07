@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'Deposit Funds — GCash, Maya, Bank Transfer | 2Bet',
-  description: 'Deposit funds securely to your 2Bet wallet using GCash, Maya, ShopeePay, or online banking. Instant processing and zero transaction fees 24/7.',
+  title: 'Depósito Rápido de Saldo via PIX com Segurança Total | 2bet',
+  description: 'Deposite com facilidade na 2bet Brasil via PIX e outros métodos rápidos. Crédito imediato em conta e sem tarifas para você jogar online.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Account', path: '/explore/account/me' },
-    { name: 'Deposit', path: '/explore/account/deposit' },
+    { name: 'Início', path: '/' },
+    { name: 'Minha Conta', path: '/explore/account/me' },
+    { name: 'Depósito', path: '/explore/account/deposit' },
   ],
 })
 </script>

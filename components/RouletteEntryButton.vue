@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
-const redirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const redirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 const { isLoading } = useByBetLoader()
 </script>
 
@@ -22,7 +23,7 @@ const { isLoading } = useByBetLoader()
       <img
         class="roulette-entry__wheel"
         src="/images/roulette-entry/roulette-wheel.png"
-        alt=""
+        alt="Roulette wheel"
         width="288"
         height="288"
         decoding="async"
@@ -32,7 +33,7 @@ const { isLoading } = useByBetLoader()
         <img
           class="roulette-entry__ball"
           src="/images/roulette-entry/roulette-ball.png"
-          alt=""
+          alt="Roulette ball"
           width="96"
           height="96"
           decoding="async"
@@ -44,7 +45,7 @@ const { isLoading } = useByBetLoader()
       <img
         class="roulette-entry__logo"
         src="/images/roulette-entry/2bet-logo.png"
-        alt=""
+        alt="2Bet"
         width="148"
         height="54"
         decoding="async"

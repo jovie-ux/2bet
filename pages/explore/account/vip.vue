@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useAppSeo({
-  title: 'VIP Club & Loyalty Rewards Program | 2Bet Philippines',
-  description: 'Join the exclusive 2Bet VIP Club. Unlock weekly cashbacks, high-roller bonuses, priority withdrawals, and personalized account management benefits.',
+  title: 'Clube VIP — Níveis de Fidelidade e Vantagens | 2bet',
+  description: 'Conquiste privilégios exclusivos no Clube VIP da 2bet Brasil. Aproveite cashback diário, promoções de recarga e suporte prioritário 24h.',
   breadcrumbs: [
-    { name: 'Home', path: '/' },
-    { name: 'Account', path: '/explore/account/me' },
-    { name: 'VIP Club', path: '/explore/account/vip' },
+    { name: 'Início', path: '/' },
+    { name: 'Minha Conta', path: '/explore/account/me' },
+    { name: 'Clube VIP', path: '/explore/account/vip' },
   ],
 })
 </script>

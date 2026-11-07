@@ -7,6 +7,7 @@ defineProps<{
 }>()
 
 const { effectiveTheme } = useSiteTheme()
+const { translate } = useSiteLocale()
 
 const themedProviderLogo = (providerLogo: string): string => {
   return getProviderLogoForTheme(providerLogo, effectiveTheme.value)
@@ -16,7 +17,7 @@ const themedProviderLogo = (providerLogo: string): string => {
 <template>
   <section class="winners-card mb-8 rounded-md bg-[#171817] shadow-sm">
     <div class="flex items-center justify-between px-4 pt-2">
-      <h3 class="text-[16px] font-bold text-white">Winners List</h3>
+      <h3 class="text-[16px] font-bold text-white">{{ translate('Winners List') }}</h3>
     </div>
 
     <TransitionGroup name="winner-fade" tag="div" class="divide-y divide-white/5">
@@ -28,7 +29,7 @@ const themedProviderLogo = (providerLogo: string): string => {
         <div class="flex items-center gap-3">
           <img
             :src="themedProviderLogo(winner.providerLogo)"
-            alt=""
+            :alt="`${winner.username} provider`"
             class="h-4 max-w-[36px] object-contain opacity-80"
             :class="{ 'brightness-125': effectiveTheme === 'dark' }"
           />

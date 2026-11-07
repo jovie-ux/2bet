@@ -4,7 +4,8 @@ import type { LiveStream } from '~/types/livestream'
 import StreamPlayer from '../comments/StreamPlayer.vue'
 
 defineProps<{ sources?: LiveStream['sources']; label: string }>()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 const thumbnail = ref<HTMLElement | null>(null)
 const visible = ref(false)
 let observer: IntersectionObserver | undefined

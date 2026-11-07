@@ -189,35 +189,59 @@ const themedLogo = (logo: string): string => {
 const trackRef = ref<HTMLElement | null>(null)
 const isPaused = ref(false)
 const isHovered = ref(false)
+const isVisible = ref(false)
 let animationFrameId: number | null = null
+let cachedSingleSetWidth = 0
+let observer: IntersectionObserver | null = null
 const SCROLL_SPEED = 0.85 // pixels per animation frame (~50px/sec)
 
+const updateSingleSetWidth = (): void => {
+  if (trackRef.value) {
+    cachedSingleSetWidth = trackRef.value.scrollWidth / 3
+  }
+}
+
+const startAnimation = (): void => {
+  if (animationFrameId === null && isVisible.value && !isPaused.value && !isHovered.value && typeof document !== 'undefined' && !document.hidden) {
+    animationFrameId = requestAnimationFrame(updateCarouselLoop)
+  }
+}
+
+const stopAnimation = (): void => {
+  if (animationFrameId !== null) {
+    cancelAnimationFrame(animationFrameId)
+    animationFrameId = null
+  }
+}
+
 const updateCarouselLoop = (): void => {
-  if (trackRef.value && !isPaused.value && !isHovered.value) {
+  if (trackRef.value && !isPaused.value && !isHovered.value && isVisible.value && !document.hidden) {
     trackRef.value.scrollLeft += SCROLL_SPEED
-    const singleSetWidth = trackRef.value.scrollWidth / 3
+    const singleSet = cachedSingleSetWidth || (trackRef.value.scrollWidth / 3)
 
     // Seamless loop: when passing set 2, reset by 1 set without visual jump
-    if (trackRef.value.scrollLeft >= singleSetWidth * 2) {
-      trackRef.value.scrollLeft -= singleSetWidth
+    if (trackRef.value.scrollLeft >= singleSet * 2) {
+      trackRef.value.scrollLeft -= singleSet
     }
+    animationFrameId = requestAnimationFrame(updateCarouselLoop)
+  } else {
+    animationFrameId = null
   }
-  animationFrameId = requestAnimationFrame(updateCarouselLoop)
 }
 
 const scrollManual = (direction: 'left' | 'right'): void => {
   if (!trackRef.value) return
   const cardStep = 240
-  const singleSetWidth = trackRef.value.scrollWidth / 3
+  const singleSet = cachedSingleSetWidth || (trackRef.value.scrollWidth / 3)
 
   if (direction === 'left') {
-    if (trackRef.value.scrollLeft <= singleSetWidth * 0.2) {
-      trackRef.value.scrollLeft += singleSetWidth
+    if (trackRef.value.scrollLeft <= singleSet * 0.2) {
+      trackRef.value.scrollLeft += singleSet
     }
     trackRef.value.scrollBy({ left: -cardStep, behavior: 'smooth' })
   } else {
-    if (trackRef.value.scrollLeft >= singleSetWidth * 2.2) {
-      trackRef.value.scrollLeft -= singleSetWidth
+    if (trackRef.value.scrollLeft >= singleSet * 2.2) {
+      trackRef.value.scrollLeft -= singleSet
     }
     trackRef.value.scrollBy({ left: cardStep, behavior: 'smooth' })
   }
@@ -225,33 +249,78 @@ const scrollManual = (direction: 'left' | 'right'): void => {
 
 const togglePause = (): void => {
   isPaused.value = !isPaused.value
+  if (isPaused.value) {
+    stopAnimation()
+  } else {
+    startAnimation()
+  }
+}
+
+const handleMouseEnter = (): void => {
+  isHovered.value = true
+  stopAnimation()
+}
+
+const handleMouseLeave = (): void => {
+  isHovered.value = false
+  startAnimation()
 }
 
 const handleTouchEnd = (): void => {
   setTimeout(() => {
     isHovered.value = false
+    startAnimation()
   }, 1200)
+}
+
+const handleVisibilityChange = (): void => {
+  if (typeof document !== 'undefined' && document.hidden) {
+    stopAnimation()
+  } else {
+    startAnimation()
+  }
 }
 
 onMounted(() => {
   if (import.meta.client && trackRef.value) {
-    // Start scrolled into set 2 for seamless bidirectional movement
-    const singleSetWidth = trackRef.value.scrollWidth / 3
-    trackRef.value.scrollLeft = singleSetWidth
+    updateSingleSetWidth()
+    trackRef.value.scrollLeft = cachedSingleSetWidth
 
     // Check motion preference
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       isPaused.value = true
     }
 
-    animationFrameId = requestAnimationFrame(updateCarouselLoop)
+    window.addEventListener('resize', updateSingleSetWidth, { passive: true })
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(([entry]) => {
+        isVisible.value = Boolean(entry?.isIntersecting)
+        if (isVisible.value) {
+          updateSingleSetWidth()
+          startAnimation()
+        } else {
+          stopAnimation()
+        }
+      }, { rootMargin: '100px' })
+      observer.observe(trackRef.value)
+    } else {
+      isVisible.value = true
+      startAnimation()
+    }
   }
 })
 
 onBeforeUnmount(() => {
-  if (animationFrameId !== null) {
-    cancelAnimationFrame(animationFrameId)
-    animationFrameId = null
+  stopAnimation()
+  if (observer) {
+    observer.disconnect()
+    observer = null
+  }
+  if (import.meta.client) {
+    window.removeEventListener('resize', updateSingleSetWidth)
+    document.removeEventListener('visibilitychange', handleVisibilityChange)
   }
 })
 </script>
@@ -261,9 +330,9 @@ onBeforeUnmount(() => {
     id="game-providers"
     class="providers-glass-section"
     aria-labelledby="providers-section-title"
-    @mouseenter="isHovered = true"
-    @mouseleave="isHovered = false"
-    @touchstart.passive="isHovered = true"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+    @touchstart.passive="handleMouseEnter"
     @touchend.passive="handleTouchEnd"
   >
     <!-- Glassmorphic Section Header -->
@@ -352,9 +421,8 @@ onBeforeUnmount(() => {
               :src="themedLogo(provider.logo)"
               :alt="provider.name"
               class="provider-logo-img"
-              width="130"
-              height="44"
               loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -581,8 +649,10 @@ onBeforeUnmount(() => {
 }
 
 .provider-logo-img {
-  max-width: 125px;
-  height: 38px;
+  width: auto;
+  height: auto;
+  max-width: 100px;
+  max-height: 38px;
   object-fit: contain;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
   transition: transform 260ms ease, filter 260ms ease;
