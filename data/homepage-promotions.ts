@@ -10,21 +10,21 @@ const presentation: Array<{
   accentColor: string
 }> = [
   {
-    id: 'seu_primeiro_deposito',
+    id: 'seu-primeiro-deposito',
     tone: 'slots',
     bannerImage: '/images/promotions/seu_primeiro_deposito.png',
     title: 'Seu Primeiro Depósito Vale Mais!',
     description: 'Até R$ 10.000 em Bônus de Boas-Vindas',
-    slug: 'seu_primeiro_deposito',
+    slug: 'seu-primeiro-deposito',
     accentColor: '#019440',
   },
   {
-    id: 'bonus_diario_de_recuperacao',
+    id: 'bonus-diario-de-recuperacao',
     tone: 'sports',
     bannerImage: '/images/promotions/bonus_diario_de_recuperacao.png',
     title: 'Bônus Diário de Recuperação',
     description: 'Até R$ 18.888 de Volta em Perdas',
-    slug: 'bonus_diario_de_recuperacao',
+    slug: 'bonus-diario-de-recuperacao',
     accentColor: '#10b981',
   },
   {

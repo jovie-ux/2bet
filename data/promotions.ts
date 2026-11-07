@@ -213,17 +213,17 @@ export const PROMO_IMAGE_MAP: Record<string, PromoImages> = {
     banner: '/images/promotions/usdt_vip.png',
     thumbnail: '/images/promotions/usdt_vip_thumb.png',
   },
-  'programa_vip': {
+  'programa-vip': {
     header: '/images/promotions/programa_vip_header.png',
     banner: '/images/promotions/programa_vip.png',
     thumbnail: '/images/promotions/programa_vip_thumb.png',
   },
-  'bonus_diario_de_recuperacao': {
+  'bonus-diario-de-recuperacao': {
     header: '/images/promotions/bonus_diario_de_recuperacao_header.png',
     banner: '/images/promotions/bonus_diario_de_recuperacao.png',
     thumbnail: '/images/promotions/bonus_diario_de_recuperacao_thumb.png',
   },
-  'seu_primeiro_deposito': {
+  'seu-primeiro-deposito': {
     header: '/images/promotions/seu_primeiro_deposito_header.png',
     banner: '/images/promotions/seu_primeiro_deposito.png',
     thumbnail: '/images/promotions/seu_primeiro_deposito_thumb.png',
@@ -297,9 +297,9 @@ export const promotionHasCategory = (item: PromotionItem, categoryKey: string): 
 
 const shareAndEarn = bonusDetailDatabase.records['share-and-earn']
 const vipPrivileges = bonusDetailDatabase.records['vip-privileges']
-const vipProgram = bonusDetailDatabase.records['programa_vip']
-const firstDeposit = bonusDetailDatabase.records['seu_primeiro_deposito']
-const dailyRecovery = bonusDetailDatabase.records['bonus_diario_de_recuperacao']
+const vipProgram = bonusDetailDatabase.records['programa-vip']
+const firstDeposit = bonusDetailDatabase.records['seu-primeiro-deposito']
+const dailyRecovery = bonusDetailDatabase.records['bonus-diario-de-recuperacao']
 
 export const PROMOTIONS: PromotionItem[] = [
   {
@@ -315,9 +315,9 @@ export const PROMOTIONS: PromotionItem[] = [
     paymentMethods: [...vipProgram.paymentMethods],
     thumbnailType: 'vip',
     accentColor: '#019440',
-    bannerImage: PROMO_IMAGE_MAP['programa_vip'],
-    headerImage: PROMO_IMAGE_MAP['programa_vip']!.header,
-    thumbnailImage: PROMO_IMAGE_MAP['programa_vip']!.thumbnail,
+    bannerImage: PROMO_IMAGE_MAP['programa-vip'],
+    headerImage: PROMO_IMAGE_MAP['programa-vip']!.header,
+    thumbnailImage: PROMO_IMAGE_MAP['programa-vip']!.thumbnail,
     innerIcon: getBonusIcon(vipProgram),
     showSaveBadge: false,
   },
@@ -334,9 +334,9 @@ export const PROMOTIONS: PromotionItem[] = [
     paymentMethods: [...firstDeposit.paymentMethods],
     thumbnailType: 'deposit',
     accentColor: '#019440',
-    bannerImage: PROMO_IMAGE_MAP['seu_primeiro_deposito'],
-    headerImage: PROMO_IMAGE_MAP['seu_primeiro_deposito']!.header,
-    thumbnailImage: PROMO_IMAGE_MAP['seu_primeiro_deposito']!.thumbnail,
+    bannerImage: PROMO_IMAGE_MAP['seu-primeiro-deposito'],
+    headerImage: PROMO_IMAGE_MAP['seu-primeiro-deposito']!.header,
+    thumbnailImage: PROMO_IMAGE_MAP['seu-primeiro-deposito']!.thumbnail,
     innerIcon: getBonusIcon(firstDeposit),
     showSaveBadge: true,
   },
@@ -353,9 +353,9 @@ export const PROMOTIONS: PromotionItem[] = [
     paymentMethods: [...dailyRecovery.paymentMethods],
     thumbnailType: 'rebate',
     accentColor: '#019440',
-    bannerImage: PROMO_IMAGE_MAP['bonus_diario_de_recuperacao'],
-    headerImage: PROMO_IMAGE_MAP['bonus_diario_de_recuperacao']!.header,
-    thumbnailImage: PROMO_IMAGE_MAP['bonus_diario_de_recuperacao']!.thumbnail,
+    bannerImage: PROMO_IMAGE_MAP['bonus-diario-de-recuperacao'],
+    headerImage: PROMO_IMAGE_MAP['bonus-diario-de-recuperacao']!.header,
+    thumbnailImage: PROMO_IMAGE_MAP['bonus-diario-de-recuperacao']!.thumbnail,
     innerIcon: getBonusIcon(dailyRecovery),
     showSaveBadge: true,
   },
@@ -402,8 +402,8 @@ export const PROMOTIONS: PromotionItem[] = [
 export const PROMOTION_ITEMS = PROMOTIONS
 export const FEATURED_PROMOTIONS: FeaturedPromo[] = [
   {
-    id: 'seu_primeiro_deposito',
-    slug: 'seu_primeiro_deposito',
+    id: 'seu-primeiro-deposito',
+    slug: 'seu-primeiro-deposito',
     title: 'Seu Primeiro Depósito Vale Mais!',
     rate: 'Até R$ 10.000',
     badgeText: 'BÔNUS DE BOAS-VINDAS ATÉ R$ 10.000',
@@ -414,8 +414,8 @@ export const FEATURED_PROMOTIONS: FeaturedPromo[] = [
     paymentMethods: ['BRL'],
   },
   {
-    id: 'bonus_diario_de_recuperacao',
-    slug: 'bonus_diario_de_recuperacao',
+    id: 'bonus-diario-de-recuperacao',
+    slug: 'bonus-diario-de-recuperacao',
     title: dailyRecovery.title,
     rate: 'Até R$ 18.888',
     badgeText: 'RECUPERAÇÃO DIÁRIA ATÉ R$ 18.888',

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SportsPreview from './SportsPreview.vue'
+import SportsChat from './SportsChat.vue'
 
 defineProps<{ docked?: boolean; embedded?: boolean }>()
 
@@ -17,8 +18,9 @@ const { context } = useCommentPanel()
     }"
     aria-label="Sports TV"
   >
-    <div class="flex h-full min-h-0 flex-col gap-2 p-0 sm:pb-2 sm:pr-2 text-white">
-      <SportsPreview class="shrink-0" />
+    <div class="flex h-full w-full min-h-0 min-w-0 flex-1 flex-col gap-[8px] p-0 sm:pb-2 sm:pr-2 text-white">
+      <SportsPreview class="w-full min-w-0 shrink-0" />
+      <SportsChat />
     </div>
   </aside>
 </template>
@@ -26,6 +28,7 @@ const { context } = useCommentPanel()
 <style scoped>
 .comment-panel {
   width: var(--comment-width, min(375px, 23.4375rem));
+  min-width: 0;
   height: 100dvh;
   max-width: 100vw;
   max-height: 100dvh;

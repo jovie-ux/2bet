@@ -8,6 +8,7 @@ const { context: commentContext, openSportsComments, closeComments } = useCommen
 const route = useRoute()
 const mobileViewport = ref(false)
 const normalizedPath = computed(() => route.path.replace(/\/+$/, '') || '/')
+const isSportsPage = computed(() => /^\/explore\/sports(?:\/|$)/.test(normalizedPath.value))
 const isCustomerServicePage = computed(() => (
   normalizedPath.value === '/explore/egames/customer-service'
   || normalizedPath.value.startsWith('/explore/egames/customer-service/')
@@ -15,18 +16,7 @@ const isCustomerServicePage = computed(() => (
 const isCustomerServiceChatPage = computed(() => (
   /^\/explore\/egames\/customer-service\/[12]$/.test(normalizedPath.value)
 ))
-const desktopShellKind = computed<'sports' | null>(() => {
-  const path = normalizedPath.value
-
-  if (
-    path === '/explore/sports/live'
-    || /^\/explore\/sports\/[^/]+\/[^/]+(?:\/.*)?$/.test(path)
-  ) {
-    return 'sports'
-  }
-
-  return null
-})
+const desktopShellKind = computed<'sports' | null>(() => isSportsPage.value ? 'sports' : null)
 const usesDesktopReferenceShell = computed(() => desktopShellKind.value !== null)
 const usesDesktopContentReferenceShell = computed(() => {
   const path = normalizedPath.value
@@ -54,7 +44,6 @@ const usesDesktopContentReferenceShell = computed(() => {
       '/terms-of-use',
     ].includes(path)
 })
-const isSportsPage = computed(() => route.path.startsWith('/explore/sports/'))
 const isEgamesPage = computed(() => route.path.startsWith('/explore/egames/') && !isCustomerServicePage.value)
 const isLiveCasinoPage = computed(() => route.path.startsWith('/explore/entertainment/live-casino'))
 const isLiveCasinoFeaturedPage = computed(() => normalizedPath.value === '/explore/entertainment/live-casino/featured')
@@ -71,6 +60,7 @@ const isAccountSettingsPage = computed(() => [
   '/affiliate',
 ].some(path => route.path.startsWith(path)))
 const isDockedChatPage = computed(() => usesDesktopReferenceShell.value)
+const showSportsSidebar = computed(() => isSportsPage.value && commentContext.value?.kind === 'sports')
 const isTutorialPage = computed(() => route.path === '/tutorial' || route.path.startsWith('/tutorial/'))
 const isDedicatedMobileHeaderPage = computed(() => {
   const path = route.path.replace(/\/$/, '')
@@ -217,7 +207,7 @@ onBeforeUnmount(() => {
     class="site-shell"
     :class="{
       'site-shell--rail-collapsed': railCollapsed,
-      'site-shell--sports-chat': isDockedChatPage && Boolean(commentContext),
+      'site-shell--sports-chat': showSportsSidebar,
       'site-shell--desktop-reference': usesDesktopReferenceShell,
       'site-shell--desktop-content-reference': usesDesktopContentReferenceShell,
       'site-shell--bonuses': isBonusesPage,
@@ -254,7 +244,7 @@ onBeforeUnmount(() => {
 
       <ClientOnly>
         <CommentPanel
-          v-if="commentContext && isSportsPage"
+          v-if="showSportsSidebar"
           key="sports-sidebar"
           class="hidden lg:flex"
           :docked="isDockedChatPage"

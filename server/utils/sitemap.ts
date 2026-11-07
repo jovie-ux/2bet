@@ -3,6 +3,9 @@ import { SLOT_CATEGORIES } from '~/data/slots'
 import { LIVE_CASINO_CATEGORIES } from '~/data/live-casino'
 import { BINGO_CATEGORIES } from '~/data/bingo'
 import { JACKPOT_SECTIONS } from '~/data/jackpot'
+import sitemapDatesJson from '~/data/sitemap-dates.json'
+
+const sitemapDates = sitemapDatesJson as Record<string, { lastmod?: string; hash?: string }>
 
 export interface SitemapEntry {
   path: string
@@ -19,13 +22,9 @@ export function getSitemapEntries(): SitemapEntry[] {
     // Primary E-Games & Casino Lobbies
     { path: '/explore/egames/slots', changefreq: 'daily', priority: 0.9 },
     { path: '/explore/egames/jackpot/all', changefreq: 'daily', priority: 0.9 },
-    { path: '/explore/egames/bingo', changefreq: 'daily', priority: 0.8 },
     { path: '/explore/entertainment/live-casino/baccarat', changefreq: 'daily', priority: 0.9 },
-    { path: '/explore/entertainment/gaming', changefreq: 'weekly', priority: 0.7 },
-    { path: '/explore/entertainment/lottery', changefreq: 'weekly', priority: 0.7 },
 
     // Sports Betting
-    { path: '/explore/sports/popular', changefreq: 'hourly', priority: 0.9 },
     { path: '/explore/sports/popular/inplay', changefreq: 'hourly', priority: 0.8 },
     { path: '/explore/sports/popular/league', changefreq: 'hourly', priority: 0.8 },
     { path: '/explore/sports/popular/upcoming', changefreq: 'hourly', priority: 0.8 },
@@ -141,11 +140,16 @@ export function getSitemapEntries(): SitemapEntry[] {
 
   // Deduplicate entries by path
   const seen = new Set<string>()
-  return entries.filter((entry) => {
-    if (seen.has(entry.path)) return false
-    seen.add(entry.path)
-    return true
-  })
+  return entries
+    .filter((entry) => {
+      if (seen.has(entry.path)) return false
+      seen.add(entry.path)
+      return true
+    })
+    .map((entry) => ({
+      ...entry,
+      lastmod: entry.lastmod || sitemapDates[entry.path]?.lastmod,
+    }))
 }
 
 export function generateSitemapXml(siteUrl: string, currentDate?: string): string {

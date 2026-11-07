@@ -237,7 +237,7 @@ onBeforeUnmount(() => {
       <p class="homepage-hero__counter" aria-hidden="true">{{ slideNumber }} <span>/ {{ String(slides.length).padStart(2, '0') }}</span></p>
       <div class="homepage-hero__preview-row flex">
         <button type="button" class="homepage-hero__thumbnail overflow-hidden" :aria-label="translate(nextSlide.category)" aria-controls="homepage-hero-content" @click="changeSlide(1)">
-          <img :src="nextSlide.thumbnail || nextSlide.image" :alt="translate(nextSlide.category)" width="1003" height="1568" loading="lazy" decoding="async">
+          <img :src="nextSlide.image" :alt="translate(nextSlide.category)" width="1672" height="941" loading="lazy" decoding="async">
           <span>{{ translate(nextSlide.category) }}</span>
         </button>
         <div class="homepage-hero__arrows flex flex-col">

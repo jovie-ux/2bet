@@ -1,10 +1,88 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import crypto from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import { createJiti } from 'jiti'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.resolve(__dirname, '..')
+
+function getSourceFilesForPath(baseDir, urlPath) {
+  const resolve = (...p) => path.join(baseDir, ...p)
+  if (urlPath === '/') return [resolve('pages/index.vue'), resolve('data/homepage.ts')]
+  if (urlPath.startsWith('/explore/sports')) {
+    return [resolve('data/sports.ts'), resolve('pages/explore/sports')]
+  }
+  if (urlPath.startsWith('/explore/bonus/')) {
+    return [resolve('data/promotions.ts'), resolve('data/bonus-details.json'), resolve('pages/explore/bonus/[id].vue')]
+  }
+  if (urlPath.startsWith('/explore/bonuses')) {
+    return [resolve('data/promotions.ts'), resolve('pages/explore/bonuses')]
+  }
+  if (urlPath.startsWith('/explore/egames/slots')) {
+    return [resolve('data/slots.ts'), resolve('pages/explore/egames/slots')]
+  }
+  if (urlPath.startsWith('/explore/egames/jackpot')) {
+    return [resolve('data/jackpot.ts'), resolve('pages/explore/egames/jackpot')]
+  }
+  if (urlPath.startsWith('/explore/egames/bingo')) {
+    return [resolve('data/bingo.ts'), resolve('pages/explore/egames/bingo')]
+  }
+  if (urlPath.startsWith('/explore/entertainment/live-casino')) {
+    return [resolve('data/live-casino.ts'), resolve('pages/explore/entertainment/live-casino')]
+  }
+  if (urlPath.startsWith('/game-rules/')) {
+    const slug = urlPath.replace('/game-rules/', '')
+    return [
+      resolve(`data/${slug}.ts`),
+      resolve(`data/${slug.replace('-rules', '')}-rules.ts`),
+      resolve(`pages/game-rules/${slug}.vue`),
+    ]
+  }
+  if (urlPath.startsWith('/tutorial')) {
+    return [resolve('pages/tutorial.vue'), resolve('components/tutorial')]
+  }
+  if (urlPath === '/about-us') return [resolve('pages/about-us.vue')]
+  if (urlPath === '/responsible-gaming') return [resolve('pages/responsible-gaming.vue'), resolve('pages/explore/help/responsible-gaming.vue')]
+  if (urlPath === '/privacy-policy') return [resolve('pages/privacy-policy.vue'), resolve('pages/explore/legal/privacy-policy.vue')]
+  if (urlPath === '/terms-of-use') return [resolve('pages/terms-of-use.vue'), resolve('pages/explore/legal/terms-of-service.vue')]
+  if (urlPath === '/download-app') return [resolve('pages/download-app.vue')]
+  if (urlPath === '/affiliate') return [resolve('pages/affiliate.vue')]
+  if (urlPath.startsWith('/explore/help/')) return [resolve(`pages${urlPath}.vue`)]
+  if (urlPath.startsWith('/explore/legal/')) return [resolve(`pages${urlPath}.vue`)]
+  if (urlPath.startsWith('/explore/egames/customer-service')) return [resolve('pages/explore/egames/customer-service')]
+  if (urlPath.startsWith('/explore/live-plaza')) return [resolve('pages/explore/live-plaza'), resolve('data/predictions.ts')]
+  return [resolve(`pages${urlPath}.vue`)]
+}
+
+function computePathHash(baseDir, urlPath) {
+  const files = getSourceFilesForPath(baseDir, urlPath)
+  const hash = crypto.createHash('sha1')
+  let foundAny = false
+
+  for (const filePath of files) {
+    if (!fs.existsSync(filePath)) continue
+    const stat = fs.statSync(filePath)
+    if (stat.isDirectory()) {
+      const dirFiles = fs.readdirSync(filePath).sort()
+      for (const f of dirFiles) {
+        const sub = path.join(filePath, f)
+        if (fs.existsSync(sub) && fs.statSync(sub).isFile()) {
+          hash.update(f + ':' + fs.readFileSync(sub))
+          foundAny = true
+        }
+      }
+    } else if (stat.isFile()) {
+      hash.update(path.basename(filePath) + ':' + fs.readFileSync(filePath))
+      foundAny = true
+    }
+  }
+
+  if (!foundAny) {
+    hash.update(urlPath)
+  }
+  return hash.digest('hex')
+}
 
 export async function generateSitemapFile(customSiteUrl) {
   const siteUrl = (customSiteUrl || process.env.SITE_URL || 'https://2bet.com').replace(/\/+$/, '')
@@ -64,23 +142,34 @@ export async function generateSitemapFile(customSiteUrl) {
     // Primary E-Games & Casino Lobbies
     { path: '/explore/egames/slots', changefreq: 'daily', priority: 0.9 },
     { path: '/explore/egames/jackpot/all', changefreq: 'daily', priority: 0.9 },
-    { path: '/explore/egames/bingo', changefreq: 'daily', priority: 0.8 },
     { path: '/explore/entertainment/live-casino/baccarat', changefreq: 'daily', priority: 0.9 },
-    { path: '/explore/entertainment/gaming', changefreq: 'weekly', priority: 0.7 },
-    { path: '/explore/entertainment/lottery', changefreq: 'weekly', priority: 0.7 },
 
     // Sports Betting
-    { path: '/explore/sports/popular', changefreq: 'hourly', priority: 0.9 },
     { path: '/explore/sports/popular/inplay', changefreq: 'hourly', priority: 0.8 },
     { path: '/explore/sports/popular/league', changefreq: 'hourly', priority: 0.8 },
     { path: '/explore/sports/popular/upcoming', changefreq: 'hourly', priority: 0.8 },
     { path: '/explore/sports/popular/pre-match', changefreq: 'hourly', priority: 0.8 },
     { path: '/explore/sports/popular/outright', changefreq: 'hourly', priority: 0.8 },
     { path: '/explore/sports/live', changefreq: 'hourly', priority: 0.9 },
-    { path: '/explore/sports/basketball', changefreq: 'hourly', priority: 0.8 },
-    { path: '/explore/sports/soccer', changefreq: 'hourly', priority: 0.8 },
-    { path: '/explore/sports/baseball', changefreq: 'hourly', priority: 0.8 },
-    { path: '/explore/sports/tennis', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/live/basketball', changefreq: 'hourly', priority: 0.9 },
+    { path: '/explore/sports/live/soccer', changefreq: 'hourly', priority: 0.9 },
+    { path: '/explore/sports/live/tennis', changefreq: 'hourly', priority: 0.9 },
+    { path: '/explore/sports/live/baseball', changefreq: 'hourly', priority: 0.9 },
+    { path: '/explore/sports/basketball/league', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/basketball/upcoming', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/basketball/inplay', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/basketball/pre-match', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/soccer/league', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/soccer/upcoming', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/soccer/pre-match', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/baseball/league', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/baseball/upcoming', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/baseball/inplay', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/tennis/league', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/tennis/upcoming', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/tennis/inplay', changefreq: 'hourly', priority: 0.8 },
+    { path: '/explore/sports/tennis/pre-match', changefreq: 'hourly', priority: 0.8 },
+
 
     // Promotions & Bonuses
     { path: '/explore/bonuses', changefreq: 'daily', priority: 0.8 },
@@ -111,22 +200,16 @@ export async function generateSitemapFile(customSiteUrl) {
     { path: '/tutorial/transactions/withdraw', changefreq: 'monthly', priority: 0.7 },
 
     // Trust, Compliance & Legal
-    { path: '/about-us', changefreq: 'monthly', priority: 0.7 },
-    { path: '/responsible-gaming', changefreq: 'monthly', priority: 0.7 },
-    { path: '/privacy-policy', changefreq: 'monthly', priority: 0.6 },
-    { path: '/terms-of-use', changefreq: 'monthly', priority: 0.6 },
     { path: '/download-app', changefreq: 'weekly', priority: 0.8 },
     { path: '/affiliate', changefreq: 'monthly', priority: 0.7 },
-    { path: '/explore/help/contact-us', changefreq: 'monthly', priority: 0.6 },
-    { path: '/explore/legal/general-terms', changefreq: 'monthly', priority: 0.6 },
-    { path: '/explore/legal/cookie-policy', changefreq: 'monthly', priority: 0.6 },
     { path: '/explore/egames/customer-service', changefreq: 'monthly', priority: 0.6 },
 
     // Live Plaza
     { path: '/explore/live-plaza/home', changefreq: 'daily', priority: 0.7 },
-    { path: '/explore/live-plaza/streamer/all', changefreq: 'daily', priority: 0.7 },
+    { path: '/explore/live-plaza/streamer', changefreq: 'daily', priority: 0.7 },
     { path: '/explore/live-plaza/expert-predictions', changefreq: 'daily', priority: 0.7 },
     { path: '/explore/live-plaza/experts', changefreq: 'daily', priority: 0.7 },
+    { path: '/explore/account/me', changefreq: 'yearly', priority: 0.1 },
   ]
 
   // Dynamic Slot Categories
@@ -152,15 +235,15 @@ export async function generateSitemapFile(customSiteUrl) {
   }
 
   // Dynamic Bingo Categories
-  for (const cat of bingoCategories) {
-    if (cat.key && cat.key !== 'home') {
-      entries.push({
-        path: `/explore/egames/bingo/${cat.key}`,
-        changefreq: 'daily',
-        priority: 0.8,
-      })
-    }
-  }
+  // for (const cat of bingoCategories) {
+  //   if (cat.key && cat.key !== 'home') {
+  //     entries.push({
+  //       path: `/explore/egames/bingo/${cat.key}`,
+  //       changefreq: 'daily',
+  //       priority: 0.8,
+  //     })
+  //   }
+  // }
 
   // Dynamic Live Casino Categories
   for (const cat of liveCasinoCategories) {
@@ -191,6 +274,39 @@ export async function generateSitemapFile(customSiteUrl) {
     seen.add(entry.path)
     return true
   })
+
+  // Load existing sitemap dates and content hashes
+  const datesFilePath = path.join(rootDir, 'data/sitemap-dates.json')
+  let datesMap = {}
+  try {
+    if (fs.existsSync(datesFilePath)) {
+      datesMap = JSON.parse(fs.readFileSync(datesFilePath, 'utf8'))
+    }
+  } catch (err) {
+    console.warn('[sitemap] Failed to load data/sitemap-dates.json, re-initializing', err.message)
+    datesMap = {}
+  }
+
+  let datesChanged = false
+  for (const entry of uniqueEntries) {
+    const currentHash = computePathHash(rootDir, entry.path)
+    const existing = datesMap[entry.path]
+    if (existing && existing.hash === currentHash && existing.lastmod) {
+      entry.lastmod = existing.lastmod
+    } else {
+      entry.lastmod = today
+      datesMap[entry.path] = {
+        lastmod: today,
+        hash: currentHash,
+      }
+      datesChanged = true
+    }
+  }
+
+  if (datesChanged) {
+    fs.writeFileSync(datesFilePath, JSON.stringify(datesMap, null, 2) + '\n', 'utf8')
+    console.log('[sitemap] Updated data/sitemap-dates.json with latest modified dates')
+  }
 
   const xmlEntries = uniqueEntries
     .map((entry) => {

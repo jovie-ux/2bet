@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ShoppingBag, GraduationCap, ChartPie, Video, PanelsTopLeft } from 'lucide-vue-next'
+import { MessageCircle, ShoppingBag, GraduationCap, ChartPie, Video, PanelsTopLeft } from 'lucide-vue-next'
 
 import type { LiveStreamCatalog } from '~/types/livestream'
 import StreamPlayer from './StreamPlayer.vue'
@@ -45,6 +45,9 @@ const streamTitle = computed(() => {
 })
 
 const previewMode = ref('video')
+const focusChat = (): void => {
+  document.getElementById('sports-chat-login')?.focus()
+}
 let refreshTimer: ReturnType<typeof setInterval> | undefined
 let pendingRefresh: Promise<void> | undefined
 let disposed = false
@@ -75,7 +78,7 @@ const tabs = [
 </script>
 
 <template>
-  <section class="overflow-hidden rounded-2xl bg-[#1f1f1f] opacity-90 ">
+  <section class="w-full min-w-0 max-w-full overflow-hidden rounded-2xl bg-[#1f1f1f] opacity-90">
     <div id="tv-title" class="flex min-w-0 items-center justify-center gap-2 px-4 py-2 text-center text-[14px] font-semibold text-white">
       <template v-if="selectedStream">
         <span class="min-w-0 truncate text-right" :title="selectedStream.home?.name">{{ selectedStream.home?.name }}</span>
@@ -86,64 +89,69 @@ const tabs = [
       </template>
       <template v-else>Sports TV</template>
     </div>
-    <div class="relative aspect-[16/9] overflow-hidden rounded-xl bg-[#14261d]">
-      <!-- 1) When fetching streams: show circular loader with brand logo -->
-      <div
-        v-if="status === 'pending'"
-        class="flex h-full w-full items-center justify-center bg-[#14261d]"
-        role="status"
-        aria-label="Loading live streams…"
-      >
-        <ByBetSpinner size="md" theme="dark" />
-      </div>
-
-      <!-- 2) When selectedStream is available -->
-      <template v-else-if="selectedStream">
-        <StreamPlayer
-          v-if="selectedStream.sources?.length"
-          :key="selectedStream.id"
-          :sources="selectedStream.sources"
-          @ended="switchEndedStream(selectedStream.id)"
-          @unavailable="switchEndedStream(selectedStream.id)"
-        />
-        <div v-else-if="iframeSrc" class="relative h-full w-full">
-          <div
-            v-if="isIframeLoading"
-            class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-[#14261d]"
-            role="status"
-            aria-label="Loading live stream…"
-          >
-            <ByBetSpinner size="md" theme="dark" />
-          </div>
-          <iframe
-            :key="selectedStream.id + previewMode"
-            :src="iframeSrc"
-            :title="streamTitle"
-            class="absolute inset-0 h-full w-full border-0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowfullscreen
-            @load="isIframeLoading = false"
-          />
+    <div class="relative aspect-[16/9] w-full min-w-0 overflow-hidden rounded-xl bg-[#14261d]">
+      <div class="absolute inset-0 min-w-0 overflow-hidden">
+        <!-- 1) When fetching streams: show circular loader with brand logo -->
+        <div
+          v-if="status === 'pending'"
+          class="flex h-full w-full items-center justify-center bg-[#14261d]"
+          role="status"
+          aria-label="Loading live streams…"
+        >
+          <ByBetSpinner size="md" theme="dark" />
         </div>
+
+        <!-- 2) When selectedStream is available -->
+        <template v-else-if="selectedStream">
+          <StreamPlayer
+            v-if="selectedStream.sources?.length"
+            :key="selectedStream.id"
+            :sources="selectedStream.sources"
+            @ended="switchEndedStream(selectedStream.id)"
+            @unavailable="switchEndedStream(selectedStream.id)"
+          />
+          <div v-else-if="iframeSrc" class="relative h-full w-full">
+            <div
+              v-if="isIframeLoading"
+              class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-[#14261d]"
+              role="status"
+              aria-label="Loading live stream…"
+            >
+              <ByBetSpinner size="md" theme="dark" />
+            </div>
+            <iframe
+              :key="selectedStream.id + previewMode"
+              :src="iframeSrc"
+              :title="streamTitle"
+              class="absolute inset-0 h-full w-full border-0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+              @load="isIframeLoading = false"
+            />
+          </div>
+          <div v-else class="flex h-full flex-col items-center justify-center px-5 text-center" role="status">
+            <Video :size="26" class="mb-2 text-white/60" aria-hidden="true" />
+            <p class="text-[14px] font-semibold text-white">Stream unavailable</p>
+            <button type="button" class="mt-2 text-[12px] text-[#48daa6]" @click="refresh()">Try again</button>
+          </div>
+        </template>
+
+        <!-- 3) When catalog finished loading but no streams are available -->
         <div v-else class="flex h-full flex-col items-center justify-center px-5 text-center" role="status">
           <Video :size="26" class="mb-2 text-white/60" aria-hidden="true" />
-          <p class="text-[14px] font-semibold text-white">Stream unavailable</p>
-          <button type="button" class="mt-2 text-[12px] text-[#48daa6]" @click="refresh()">Try again</button>
+          <p class="text-[14px] font-semibold text-white">
+            {{ previewMode === 'court' ? 'Match radar unavailable' : 'Stream unavailable' }}
+          </p>
+          <button v-if="previewMode === 'court'" type="button" class="mt-2 text-[12px] text-[#48daa6]" @click="previewMode = 'video'">Watch live video</button>
+          <button v-else type="button" class="mt-2 text-[12px] text-[#48daa6]" @click="refresh()">Try again</button>
         </div>
-      </template>
-
-      <!-- 3) When catalog finished loading but no streams are available -->
-      <div v-else class="flex h-full flex-col items-center justify-center px-5 text-center" role="status">
-        <Video :size="26" class="mb-2 text-white/60" aria-hidden="true" />
-        <p class="text-[14px] font-semibold text-white">
-          {{ previewMode === 'court' ? 'Match radar unavailable' : 'Stream unavailable' }}
-        </p>
-        <button v-if="previewMode === 'court'" type="button" class="mt-2 text-[12px] text-[#48daa6]" @click="previewMode = 'video'">Watch live video</button>
-        <button v-else type="button" class="mt-2 text-[12px] text-[#48daa6]" @click="refresh()">Try again</button>
       </div>
     </div>
     <div class="flex items-center justify-between gap-2 px-2 py-1">
       <div class="flex gap-1">
+        <button type="button" class="grid h-5 w-5 place-items-center rounded-full bg-[var(--main-color)] text-white" aria-label="Comments" aria-controls="sports-chat" aria-pressed="true" title="Comments" @click="focusChat">
+          <MessageCircle :size="18" aria-hidden="true" />
+        </button>
         <a
           v-for="tab in tabs"
           :key="tab.key"

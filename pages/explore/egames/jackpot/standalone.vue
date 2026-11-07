@@ -111,11 +111,11 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="standalone-jackpot-page w-full min-w-0 pb-16">
-    <div class="sticky-header sticky-header-seal sticky top-[var(--content-sticky-top)] z-40 -mx-1 bg-black px-1 pb-2">
+    <div class="sticky-header sticky-header-seal sticky top-[var(--content-sticky-top)] z-40 -mx-1  px-1 pb-2">
       <header class="flex min-h-[52px] items-center gap-3 rounded-xl bg-[#171817] px-3 shadow-sm">
         <button
           type="button"
-          class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#242625] text-[#a2a6a4] transition-colors hover:text-white"
+          class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#242625] text-[#a2a6a4] transition-colors hover:text-white"
           aria-label="Back to jackpots"
           @click="router.push('/explore/egames/jackpot/all')"
         >

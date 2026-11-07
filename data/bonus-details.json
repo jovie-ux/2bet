@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "records": {
-    "programa_vip": {
-      "id": "programa_vip",
-      "slug": "programa_vip",
+    "programa-vip": {
+      "id": "programa-vip",
+      "slug": "programa-vip",
       "innerIcon": "/icons/promotions/megaphone.svg",
       "title": "PROGRAMA VIP",
       "subtitle": "Cashback exclusivo · Bônus por evolução de nível · Benefícios mensais exclusivos",
@@ -223,9 +223,9 @@
       "rulesStyle": "plain",
       "hasJoinButton": false
     },
-    "seu_primeiro_deposito": {
-      "id": "seu_primeiro_deposito",
-      "slug": "seu_primeiro_deposito",
+    "seu-primeiro-deposito": {
+      "id": "seu-primeiro-deposito",
+      "slug": "seu-primeiro-deposito",
       "innerIcon": "/icons/promotions/first-deposit.svg",
       "title": "Seu Primeiro Depósito Vale Mais!",
       "subtitle": "Aproveite seu bônus de boas-vindas de até R$ 10 mil na 2bet!",
@@ -355,9 +355,9 @@
       "rulesStyle": "plain",
       "hasJoinButton": false
     },
-    "bonus_diario_de_recuperacao": {
-      "id": "bonus_diario_de_recuperacao",
-      "slug": "bonus_diario_de_recuperacao",
+    "bonus-diario-de-recuperacao": {
+      "id": "bonus-diario-de-recuperacao",
+      "slug": "bonus-diario-de-recuperacao",
       "innerIcon": "/icons/promotions/megaphone.svg",
       "title": "BÔNUS DIÁRIO DE RECUPERAÇÃO",
       "subtitle": "Receba bônus todos os dias e aproveite até R$ 18.888!",

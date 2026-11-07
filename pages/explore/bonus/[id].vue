@@ -22,14 +22,19 @@ const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
 const { markAsViewed } = useViewedPromotions()
 const { selectedCurrency } = useBonusPayments()
 
+definePageMeta({
+  middleware: (to) => {
+    const rawId = Array.isArray(to.params.id) ? to.params.id[0] : (to.params.id as string)
+    if (!PROMOTIONS.some(item => item.slug === rawId || item.id === rawId)) {
+      return navigateTo('/', { redirectCode: 302, replace: true })
+    }
+  },
+})
+
 const bonusId = computed(() => {
   const id = route.params.id
   return Array.isArray(id) ? id[0] : (id as string) || 'share-and-earn'
 })
-
-if (!PROMOTIONS.some(item => item.slug === bonusId.value || item.id === bonusId.value)) {
-  await navigateTo('/', { redirectCode: 302, replace: true })
-}
 
 const bonus = computed<BonusDetail>(() => {
   const promotion = PROMOTIONS.find(item => item.slug === bonusId.value || item.id === bonusId.value)
