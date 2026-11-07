@@ -5,3 +5,4 @@ node_modules
 .env
 graphify-out
 .DS_Store
+data/jackpots.json
