@@ -456,7 +456,7 @@ const displayedGames = computed<BingoGame[]>(() => {
         </div>
         <div
           v-if="searchResults.length > 0"
-          class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2.5"
+          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-[repeat(auto-fill,minmax(150px,165px))] gap-2.5 justify-start"
         >
           <GameCard
             v-for="game in searchResults"
@@ -480,7 +480,7 @@ const displayedGames = computed<BingoGame[]>(() => {
     <div v-if="!isSearchOpen" class="bingo-games-container">
       <div
         v-if="displayedGames.length > 0"
-        class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-2.5"
+        class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-[repeat(auto-fill,minmax(150px,165px))] gap-2.5 justify-start"
       >
         <GameCard
           v-for="game in displayedGames"

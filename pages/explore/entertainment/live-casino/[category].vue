@@ -228,16 +228,16 @@ const getSicBoRounds = (wins?: any[]): SicBoRound[] => {
     </div>
 
     <!-- Live Casino Tables Grid -->
-    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-7 gap-2.5">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-[repeat(auto-fill,minmax(150px,165px))] gap-2.5 justify-start">
       
       <!-- Table Cards -->
       <div 
         v-for="table in filteredTables" 
         :key="table.id" 
-        class="relative group cursor-pointer" 
+        class="table-card relative group cursor-pointer w-full min-w-0" 
         @click="handleTableClick"
       >
-        <div class="overflow-hidden rounded-md bg-[#141414] shadow-md ">
+        <div class="overflow-hidden rounded-md bg-[#141414] shadow-md w-full">
           
           <!-- Top Part: Image -->
           <div class="relative w-full aspect-[4/3] overflow-hidden">
@@ -418,6 +418,20 @@ const getSicBoRounds = (wins?: any[]): SicBoRound[] => {
 </template>
 
 <style scoped>
+.table-card {
+  width: 100%;
+  max-width: 165px;
+  min-width: 0;
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .table-card {
+    width: 100%;
+    max-width: 165px;
+  }
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

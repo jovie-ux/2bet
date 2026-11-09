@@ -32,7 +32,15 @@ export interface Prediction {
   matchTime: string
   homeTeam: string
   awayTeam: string
-  options: [PredictionOption, PredictionOption]
+  options: PredictionOption[]
+  matchId?: string
+  competitionLogo?: string
+  homeTeamLogo?: string
+  awayTeamLogo?: string
+  matchTimeUtc?: string
+  selection?: string
+  line?: string | null
+  currentOdds?: number
   winStreak?: string
   unlocked?: boolean
 }
