@@ -7,7 +7,8 @@ const props = defineProps<{
   sources?: LiveStream['sources']
   label: string
 }>()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 
 function cloudflareThumbnail(source?: string): string | undefined {
   const match = source?.match(/(https:\/\/[^/]+\.cloudflarestream\.com\/[a-zA-Z0-9]+)/)

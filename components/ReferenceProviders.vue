@@ -9,7 +9,8 @@ defineProps<{
 
 const { translate } = useSiteLocale()
 const { effectiveTheme } = useSiteTheme()
-const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const externalSiteUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 
 const providerLogo = (provider: string): string => {
   return getProviderLogoForTheme(providerLogoByName[provider], effectiveTheme.value)

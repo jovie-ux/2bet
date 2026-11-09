@@ -1,7 +1,9 @@
 import type {
   DailyPredictionRecord,
   PredictionRefreshRun,
+  RawKadarioToolItem,
   SportType,
+  ValidMarketGroup,
 } from '~/server/types/dailyPredictions'
 import {
   createSeededRandom,
@@ -38,9 +40,12 @@ function seededShuffle<T>(array: T[], seedStr: string): T[] {
   const rng = createSeededRandom(hashString(seedStr))
   for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1))
-    const temp = result[i]
-    result[i] = result[j]
-    result[j] = temp
+    const current = result[i]
+    const target = result[j]
+    if (current !== undefined && target !== undefined) {
+      result[i] = target
+      result[j] = current
+    }
   }
   return result
 }
@@ -84,17 +89,26 @@ export async function runDailyPredictionRefresh(options?: {
   await recordRefreshRun(runRecord)
 
   try {
-    const config = useRuntimeConfig()
-    const apiBase = options?.apiBase || String(config.kadarioApi || 'https://live88.eu.cc/')
-    const siteCode = options?.siteCode || String(config.kadarioSite || 'YBa-BnymZ6iN8pkfAUFTWIKn')
+    let apiBase = options?.apiBase
+    let siteCode = options?.siteCode
+
+    if (!apiBase || !siteCode) {
+      try {
+        const config = typeof useRuntimeConfig === 'function' ? (useRuntimeConfig() as any) : null
+        if (config) {
+          apiBase = apiBase || String(config.kadarioApi || 'https://live88.eu.cc/')
+          siteCode = siteCode || String(config.kadarioSite || 'YBa-BnymZ6iN8pkfAUFTWIKn')
+        }
+      } catch {
+        // Fallback when executed outside Nuxt context
+      }
+    }
+
+    apiBase = apiBase || 'https://live88.eu.cc/'
+    siteCode = siteCode || 'YBa-BnymZ6iN8pkfAUFTWIKn'
 
     // 1. Check existing stored predictions for today
     const existing = await getPredictionsByDate(dateStr)
-    const existingMap = new Map<string, DailyPredictionRecord>()
-    for (const p of existing) {
-      existingMap.set(p.match_id, p)
-    }
-
     const existingFootball = existing.filter(p => p.sport === 'football')
     const existingBasketball = existing.filter(p => p.sport === 'basketball')
 
@@ -105,7 +119,6 @@ export async function runDailyPredictionRefresh(options?: {
       runRecord.football_count = existingFootball.length
       runRecord.basketball_count = existingBasketball.length
       await recordRefreshRun(runRecord)
-      isRefreshInProgress = false
       return {
         success: true,
         date: dateStr,
@@ -146,7 +159,7 @@ export async function runDailyPredictionRefresh(options?: {
         if (selectedMatches.length >= TARGET_PER_SPORT) break
 
         try {
-          let rawItems: any[] = []
+          let rawItems: RawKadarioToolItem[] = []
           try {
             rawItems = await fetchKadarioPredictionsForMatch(apiBase, candidate.numericId)
           } catch {
@@ -155,7 +168,7 @@ export async function runDailyPredictionRefresh(options?: {
 
           // Seed random market choice per match
           const matchRng = createSeededRandom(hashString(`${dateStr}-${candidate.matchId}`))
-          let bestGroup = null
+          let bestGroup: ValidMarketGroup | null = null
 
           if (rawItems && rawItems.length > 0) {
             bestGroup = selectBestMarketForMatch(rawItems, matchRng)
@@ -177,7 +190,7 @@ export async function runDailyPredictionRefresh(options?: {
           const awayLogo = bestGroup.selectedItem.away_team?.logo || candidate.awayTeam.logo || ''
 
           const optionsList = (bestGroup.items || []).map(it => {
-            let label = it.selection
+            let label = it.selection || ''
             if (bestGroup.market === '1x2') {
               if (it.selection.toLowerCase() === 'home') label = 'H'
               else if (it.selection.toLowerCase() === 'draw') label = 'D'
@@ -187,9 +200,10 @@ export async function runDailyPredictionRefresh(options?: {
             } else if (bestGroup.market === 'ah') {
               label = `${it.selection} ${it.line || ''}`.trim()
             }
+            const oddNum = typeof it.current_odds === 'number' ? it.current_odds : parseFloat(String(it.current_odds || '1.85'))
             return {
               label,
-              odd: parseFloat(String(it.current_odds || '1.85')).toFixed(2),
+              odd: (Number.isFinite(oddNum) ? oddNum : 1.85).toFixed(2),
             }
           })
 
@@ -247,7 +261,6 @@ export async function runDailyPredictionRefresh(options?: {
       : null
 
     await recordRefreshRun(runRecord)
-    isRefreshInProgress = false
 
     return {
       success: true,
@@ -257,13 +270,13 @@ export async function runDailyPredictionRefresh(options?: {
       total: finalFootballCount + finalBasketballCount,
       error: runRecord.error_summary || undefined,
     }
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const errorMsg = err instanceof Error ? err.message : String(err)
     console.error('[refreshService] Refresh job failed:', err)
     runRecord.finished_at = new Date().toISOString()
     runRecord.status = 'failed'
-    runRecord.error_summary = err?.message || String(err)
+    runRecord.error_summary = errorMsg
     await recordRefreshRun(runRecord)
-    isRefreshInProgress = false
 
     return {
       success: false,
@@ -271,7 +284,9 @@ export async function runDailyPredictionRefresh(options?: {
       footballCount: 0,
       basketballCount: 0,
       total: 0,
-      error: err?.message || String(err),
+      error: errorMsg,
     }
+  } finally {
+    isRefreshInProgress = false
   }
 }

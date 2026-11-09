@@ -1,18 +1,28 @@
 <script setup lang="ts">
 const route = useRoute()
 const sportNames: Record<string, string> = {
-  basketball: 'Basketball', baseball: 'Baseball', soccer: 'Soccer', tennis: 'Tennis',
+  basketball: 'Basketball', baseball: 'Baseball', soccer: 'Soccer', football: 'Soccer', tennis: 'Tennis',
 }
 // Edit these API tournament keys to choose the Popular Leagues for each sport.
 const popularLeagues: Record<string, string[]> = {
   basketball: ['basketball_nba', 'basketball_preseason', 'basketball_euroleague'],
   baseball: ['baseball_mlb'],
   soccer: ['soccer_epl', 'soccer_uefa_champs_league', 'soccer_uefa_champions_league'],
+  football: ['soccer_epl', 'soccer_uefa_champs_league', 'soccer_uefa_champions_league'],
   tennis: ['tennis_wta_125_spain', 'tennis_atp_*', 'tennis_wta_*'],
 }
 const selectedPopularLeagues = computed(() => popularLeagues[String(route.params.sport)] ?? [])
 const selectedSports = computed(() => [sportNames[String(route.params.sport)] ?? ''])
-const sportDisplayName = computed(() => sportNames[String(route.params.sport)] ?? 'Sports')
+const sportDisplayName = computed(() => {
+  const param = String(route.params.sport || '').toLowerCase()
+  if (param === 'football') return 'Football'
+  return sportNames[param] ?? 'Sports'
+})
+const selectedTournaments = computed(() => {
+  const sport = sportNames[String(route.params.sport)]
+  const leagues = selectedPopularLeagues.value
+  return sport && leagues.length ? { [sport]: leagues } : {}
+})
 
 useAppSeo({
   title: computed(() => `${sportDisplayName.value} Betting Odds, Lines & Live Matches | ByBet`),
@@ -32,13 +42,13 @@ useAppSeo({
 })
 
 definePageMeta({
-  validate: route => ['basketball', 'baseball', 'soccer', 'tennis'].includes(String(route.params.sport)),
+  validate: route => ['basketball', 'baseball', 'soccer', 'football', 'tennis'].includes(String(route.params.sport)),
   middleware: to => {
     const base = `/explore/sports/${to.params.sport}`
     if (to.path.replace(/\/$/, '') !== base) return
     const requestedTab = to.query.tab === 'prematch' ? 'pre-match' : String(to.query.tab ?? 'inplay')
     const availableTabs = ['league', 'inplay', 'upcoming', 'pre-match', 'smart-pick', 'outright']
-    if (String(to.params.sport).toLowerCase() === 'soccer') availableTabs.push('replay')
+    if (['soccer', 'football'].includes(String(to.params.sport).toLowerCase())) availableTabs.push('replay')
     const tab = availableTabs.includes(requestedTab) ? requestedTab : 'inplay'
     const { tab: legacyTab, ...query } = to.query
     return navigateTo({ path: `${base}/${tab}`, query }, { replace: true })
@@ -47,5 +57,9 @@ definePageMeta({
 </script>
 
 <template>
-  <NuxtPage :selected-sports="selectedSports" :popular-leagues="selectedPopularLeagues" />
+  <NuxtPage
+    :selected-sports="selectedSports"
+    :popular-leagues="selectedPopularLeagues"
+    :selected-tournaments="selectedTournaments"
+  />
 </template>

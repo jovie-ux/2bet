@@ -4,7 +4,8 @@ import { MessageCircle, ShoppingBag, GraduationCap, ChartPie, Video, PanelsTopLe
 import type { LiveStreamCatalog } from '~/types/livestream'
 import StreamPlayer from './StreamPlayer.vue'
 
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 
 const { data: catalog, status, refresh } = useFetch<LiveStreamCatalog>('/api/livestream', { server: false })
 const selectedStreamId = ref('')

@@ -30,14 +30,8 @@ const sportsRouteBase = useSportsRouteBase()
 const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular')
 const oddsCols = computed<2 | 3>(() => route.params.sport === 'soccer' ? 3 : 2)
 const selectedTimeFilter = ref<(typeof timeFilters)[number] | null>(null)
-watch(() => route.params.hours, value => {
-  selectedTimeFilter.value = timeFilters.find(filter => filter === value) ?? (isPopular.value ? '3hours' : null)
-}, { immediate: true })
-function selectTimeFilter(value: (typeof timeFilters)[number], replace = false) {
-  selectedTimeFilter.value = value
-  if (!sportsRouteBase.value) return
-  void navigateTo({ path: `${sportsRouteBase.value}/upcoming/${value}`, query: route.query }, { replace })
-}
+const sortBy = ref<'league' | 'time'>('time')
+
 const now = useState('upcoming-filter-now', () => Date.now())
 let timeFilterTimer: ReturnType<typeof setInterval> | undefined
 onMounted(() => {
@@ -45,33 +39,6 @@ onMounted(() => {
   timeFilterTimer = setInterval(() => { now.value = Date.now() }, 60000)
 })
 onBeforeUnmount(() => clearInterval(timeFilterTimer))
-const sortBy = ref<'league' | 'time'>('time')
-
-const CollapseIcon = defineComponent({
-  props: {
-    expanded: Boolean,
-  },
-  setup(iconProps) {
-    return () => h(ChevronDown, {
-      size: 16,
-      class: ['league-chevron', { 'league-chevron--expanded': iconProps.expanded }],
-      'aria-hidden': 'true',
-    })
-  },
-})
-
-const isExpanded = (key: string): boolean => {
-  return !localCollapsed.value.includes(key)
-}
-
-const toggleTournament = (key: string): void => {
-  if (localCollapsed.value.includes(key)) {
-    localCollapsed.value = localCollapsed.value.filter(item => item !== key)
-    return
-  }
-
-  localCollapsed.value = [...localCollapsed.value, key]
-}
 
 const getEventStartTimestamp = (event: SportsEvent): number | null => {
   const raw = (
@@ -113,6 +80,106 @@ const isWithinTimeFilter = (event: SportsEvent, filter: (typeof timeFilters)[num
   return startTimestamp > lowerBound && startTimestamp <= upperBound
 }
 
+const matchingEvents = computed(() => {
+  const q = search.value.toLowerCase().trim()
+  return props.events.filter((event: SportsEvent) => {
+    if (event.completed) return false
+    const details = `${event.home_team ?? ''} ${event.away_team ?? ''} ${event.sport_title ?? ''}`.toLowerCase()
+    return !q || details.includes(q)
+  })
+})
+
+const availableTimeFilters = computed(() => timeFilters.filter(filter =>
+  matchingEvents.value.some((event: SportsEvent) => isWithinTimeFilter(event, filter)),
+))
+const displayedTimeFilters = computed(() => {
+  const currentHour = typeof route.params.hours === 'string' && timeFilters.includes(route.params.hours as any)
+    ? (route.params.hours as (typeof timeFilters)[number])
+    : null
+
+  let filters = isPopular.value
+    ? availableTimeFilters.value.filter(filter => filter !== '1hours')
+    : availableTimeFilters.value
+
+  // When visiting a specific /upcoming/:hours subroute, always show the route's hour pill
+  if (currentHour && !filters.includes(currentHour)) {
+    filters = [...filters, currentHour].sort((a, b) => Number.parseInt(a, 10) - Number.parseInt(b, 10))
+  }
+
+  // If no filters have events within the time window, but we have upcoming events, show available time filters
+  if (!filters.length && matchingEvents.value.length > 0) {
+    filters = isPopular.value ? ['3hours', '6hours', '12hours', '24hours'] : ['1hours', '3hours', '6hours', '12hours', '24hours']
+  }
+
+  return filters
+})
+
+const syncSelectedFilter = (preferred?: (typeof timeFilters)[number] | null) => {
+  const filters = displayedTimeFilters.value
+  if (!filters.length) {
+    selectedTimeFilter.value = null
+    return
+  }
+
+  if (preferred && filters.includes(preferred)) {
+    selectedTimeFilter.value = preferred
+    return
+  }
+
+  if (selectedTimeFilter.value && filters.includes(selectedTimeFilter.value)) {
+    return
+  }
+
+  if (isPopular.value && !route.params.hours && filters.includes('3hours')) {
+    selectedTimeFilter.value = '3hours'
+    return
+  }
+
+  selectedTimeFilter.value = filters[0] ?? null
+}
+
+watch(() => route.params.hours, value => {
+  const match = timeFilters.find(filter => filter === value)
+  syncSelectedFilter(match)
+}, { immediate: true })
+
+watch(displayedTimeFilters, () => {
+  const routeMatch = timeFilters.find(filter => filter === route.params.hours)
+  syncSelectedFilter(routeMatch)
+})
+
+function selectTimeFilter(value: (typeof timeFilters)[number], replace = false) {
+  selectedTimeFilter.value = value
+  if (!sportsRouteBase.value) return
+  void navigateTo({ path: `${sportsRouteBase.value}/upcoming/${value}`, query: route.query }, { replace })
+}
+
+const CollapseIcon = defineComponent({
+  props: {
+    expanded: Boolean,
+  },
+  setup(iconProps) {
+    return () => h(ChevronDown, {
+      size: 16,
+      class: ['league-chevron', { 'league-chevron--expanded': iconProps.expanded }],
+      'aria-hidden': 'true',
+    })
+  },
+})
+
+const isExpanded = (key: string): boolean => {
+  return !localCollapsed.value.includes(key)
+}
+
+const toggleTournament = (key: string): void => {
+  if (localCollapsed.value.includes(key)) {
+    localCollapsed.value = localCollapsed.value.filter(item => item !== key)
+    return
+  }
+
+  localCollapsed.value = [...localCollapsed.value, key]
+}
+
 const handleMatchLoaded = (payload: { sportKey: string; earliestTime: number | null }): void => {
   if (payload.earliestTime != null) {
     earliestTimes.value[payload.sportKey] = payload.earliestTime
@@ -126,37 +193,25 @@ const handleSportChange = (event: Event): void => {
   }
 }
 
-const matchingEvents = computed(() => {
-  const q = search.value.toLowerCase().trim()
-  return props.events.filter((event: SportsEvent) => {
-    if (event.completed) return false
-    const details = `${event.home_team ?? ''} ${event.away_team ?? ''} ${event.sport_title ?? ''}`.toLowerCase()
-    return !q || details.includes(q)
-  })
-})
-
-const availableTimeFilters = computed(() => timeFilters.filter(filter =>
-  matchingEvents.value.some((event: SportsEvent) => isWithinTimeFilter(event, filter)),
-))
-const displayedTimeFilters = computed(() => isPopular.value
-  ? timeFilters.filter(filter => filter !== '1hours')
-  : availableTimeFilters.value)
-
-watch(availableTimeFilters, filters => {
-  if (isPopular.value) return
-  if (route.params.hours) return
-  if (!selectedTimeFilter.value || !filters.includes(selectedTimeFilter.value)) {
-    selectedTimeFilter.value = filters[0] ?? null
-    if (import.meta.client && filters[0]) selectTimeFilter(filters[0], true)
-  }
-}, { immediate: true })
-
 const filteredEvents = computed(() => {
-  if (!selectedTimeFilter.value) return []
-  return matchingEvents.value.filter((event: SportsEvent) => isWithinTimeFilter(event, selectedTimeFilter.value))
-    .sort((a, b) => sortBy.value === 'league'
-      ? a.sport_title.localeCompare(b.sport_title) || Date.parse(a.commence_time) - Date.parse(b.commence_time)
-      : Date.parse(a.commence_time) - Date.parse(b.commence_time))
+  const currentHour = typeof route.params.hours === 'string' && timeFilters.includes(route.params.hours as any)
+    ? (route.params.hours as (typeof timeFilters)[number])
+    : null
+  const targetFilter = selectedTimeFilter.value || currentHour
+
+  const withinFilter = targetFilter
+    ? matchingEvents.value.filter((event: SportsEvent) => isWithinTimeFilter(event, targetFilter))
+    : []
+
+  // If the target filter has matches, display them.
+  // If the target filter has no matches within that specific hour window,
+  // but there ARE upcoming matches scheduled for this page/sport:
+  // Fall back to showing all matching upcoming events so the page is never blank!
+  const list = withinFilter.length > 0 ? withinFilter : matchingEvents.value
+
+  return list.sort((a, b) => sortBy.value === 'league'
+    ? a.sport_title.localeCompare(b.sport_title) || Date.parse(a.commence_time) - Date.parse(b.commence_time)
+    : Date.parse(a.commence_time) - Date.parse(b.commence_time))
 })
 
 const groupedSports = computed(() => {

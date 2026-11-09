@@ -2,7 +2,8 @@
 import SubpageHeader from '~/components/SubpageHeader.vue'
 
 const { showDemoMessage } = useDemoInteraction()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 
 useAppSeo({
   title: 'Download ByBet App — Android APK & iOS | Official Mobile',

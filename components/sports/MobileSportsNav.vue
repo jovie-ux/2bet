@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { Search } from 'lucide-vue-next'
+import { buildBybetRedirectUrl } from '~/utils/sportsRedirect'
 
 const route = useRoute()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
+const bybetRedirectSearch = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/sportEvents/search?p=${bybetRedirectCode || 'xjSD'}`
 const { translate } = useSiteLocale()
 
 interface MobileSportNavItem {
@@ -12,18 +15,27 @@ interface MobileSportNavItem {
   emoji?: string
   external?: boolean
   to?: string
+  url?: string
+}
+
+const resolveExternalSportUrl = (target?: string): string => {
+  if (!target) {
+    return buildBybetRedirectUrl('login', rawRedirectUrl, bybetRedirectCode)
+  }
+  if (target.startsWith('http://') || target.startsWith('https://')) {
+    return target
+  }
+  return buildBybetRedirectUrl(target, rawRedirectUrl, bybetRedirectCode)
 }
 
 const sports: MobileSportNavItem[] = [
   { key: 'popular', label: 'Popular', image: '/icons/sports/popular.webp' },
   { key: 'basketball', label: 'Basketball', image: '/icons/sports/basketball.webp' },
   { key: 'soccer', label: 'Soccer', image: '/icons/sports/soccer.webp' },
-  { key: 'tennis', label: 'Tennis', image: '/icons/sports/tennis.webp' },
-  { key: 'table-tennis', label: 'Table Tennis', image: '/icons/sports/table-tennis.webp', external: true },
-  { key: 'esports', label: 'eSports', image: '/icons/sports/egame.webp', external: true },
-  { key: 'all', label: 'All Sports', image: '/icons/sports/esports.webp' },
-  { key: 'badminton', label: 'Badminton', image: '/icons/sports/badminton.webp', external: true },
-  { key: 'baseball', label: 'Baseball', image: '/icons/sports/baseball.webp' },
+  { key: 'tennis', label: 'Tennis', image: '/icons/sports/tennis.webp', external: true, url: 'sportEvents/inplay/tennis' },
+  { key: 'table-tennis', label: 'Table Tennis', image: '/icons/sports/table-tennis.webp', external: true, url: 'sportEvents/incoming/tableTennis' },
+  { key: 'esports', label: 'eSports', image: '/icons/sports/egame.webp', external: true, url: 'sportEvents/eSportGame' },
+  { key: 'all', label: 'All Sports', image: '/icons/sports/esports.webp', external: true, url: 'sportEvents/eSportBall' },
   { key: 'live', label: 'Live', image: '/icons/sports/live.webp', to: '/explore/sports/live' },
   { key: 'live-plaza', label: 'Live Plaza', image: '/icons/sports/live-plaza.webp', to: '/explore/live-plaza/home' },
   { key: 'bonuses', label: 'Bonuses', image: '/icons/sports/bonus.webp', to: '/explore/bonuses' },
@@ -32,12 +44,26 @@ const sports: MobileSportNavItem[] = [
 const isLive = computed(() => route.path.startsWith('/explore/sports/live'))
 const selectedSport = computed(() => {
   if (route.path.startsWith('/explore/sports/popular')) return 'popular'
-  return String(route.params.sport || 'popular')
+  const sportParam = String(route.params.sport || 'popular')
+  return sportParam === 'football' ? 'soccer' : sportParam
 })
 
 const destination = (sport: typeof sports[number]): string => {
-  if (sport.to) return sport.to
-  if (sport.external) return bybetRedirectUrl
+  if (isLive.value && (sport.key === 'esports' || sport.key === 'all-esports')) {
+    return resolveExternalSportUrl('sportEvents/liveGame/eSportBallGroup')
+  }
+  if (sport.url) {
+    return resolveExternalSportUrl(sport.url)
+  }
+  if (sport.to) {
+    if (sport.external || sport.to.startsWith('sportEvents/') || sport.to.startsWith('http')) {
+      return resolveExternalSportUrl(sport.to)
+    }
+    return sport.to
+  }
+  if (sport.external) {
+    return resolveExternalSportUrl()
+  }
   const key = sport.key === 'all' ? 'popular' : sport.key
   if (isLive.value) return key === 'popular' ? '/explore/sports/live' : `/explore/sports/live/${key}`
 
@@ -55,7 +81,7 @@ const destination = (sport: typeof sports[number]): string => {
       v-for="sport in sports"
       :key="sport.key"
       :to="destination(sport)"
-      :external="sport.external"
+      :external="sport.external || Boolean(destination(sport).startsWith('http'))"
       class="mobile-sports-nav__item"
       :class="{ 'mobile-sports-nav__item--active': selectedSport === sport.key }"
       :aria-label="translate(sport.label)"
@@ -76,7 +102,7 @@ const destination = (sport: typeof sports[number]): string => {
       <span v-else class="mobile-sports-nav__all" aria-hidden="true"><span>⚽</span><span>🎾</span><span>🏀</span><span>🏐</span></span>
     </NuxtLink>
     <NuxtLink
-      :to="bybetRedirectUrl"
+      :to="bybetRedirectSearch"
       external
       class="mobile-sports-nav__item mobile-sports-nav__search"
       :aria-label="translate('Search sports')"

@@ -92,7 +92,8 @@ const filterState = ref({
 
 const { context: commentContext, openGameComments, closeComments } = useCommentPanel()
 const { showDemoMessage } = useDemoInteraction()
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 
 const toggleChat = (): void => {
   if (commentContext.value) {
