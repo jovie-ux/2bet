@@ -357,7 +357,7 @@ onBeforeUnmount(unlockPage)
 
 .slot-filter-option--active {
   background: #161817;
-  border-color: #008d62;
+  border-color: var(--main-color);
   color: #ffffff;
   font-weight: 500;
 }

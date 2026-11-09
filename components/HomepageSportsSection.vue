@@ -9,8 +9,8 @@ const props = defineProps<{ fixtures: SportsEvent[] }>()
 const { translate } = useSiteLocale()
 const filters = [
   { key: 'all', label: 'All Sports' },
-  { key: 'basketball', label: 'Basketball' },
   { key: 'soccer', label: 'Football' },
+  { key: 'basketball', label: 'Basketball' },
   { key: 'tennis', label: 'Tennis' },
 ] as const
 const activeSport = ref<(typeof filters)[number]['key']>('basketball')
@@ -161,12 +161,12 @@ watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
   .sports-header { align-items: flex-start; gap: 10px; padding-bottom: 14px; }
   .sports-heading { align-items: flex-start; flex-direction: column; gap: 6px; }
   .sports-heading h2 { gap: 8px; }
-  .sports-heading p { padding: 0; border: 0; font-size: 9px; line-height: 1.4; }
-  .sports-explore { gap: 7px; min-height: 32px; padding-inline: 9px; font-size: 9px; }
-  .sports-filters button { min-height: 40px; padding-inline: 9px; font-size: 10px; }
+  .sports-heading p { padding: 0; border: 0; font-size: 13px; line-height: 1.4; }
+  .sports-explore { gap: 7px; min-height: 32px; padding-inline: 9px; font-size: 12px; }
+  .sports-filters button { min-height: 40px; padding-inline: 9px; font-size: 12px; }
   .sports-filter-icon { width: 21px; height: 21px; }
   .sports-fixtures-title { gap: 6px; font-size: 14px; }
-  .sports-fixtures-title strong { max-width: 115px; font-size: 13px; }
+  .sports-fixtures-title strong { max-width: 115px; font-size: 15px; }
   .sports-fixtures-title > span { display: none; }
   .sports-date-filter select { width: 90px; padding-left: 9px; }
   .sports-tools { gap: 7px; }

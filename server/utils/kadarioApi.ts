@@ -16,7 +16,150 @@ interface GamesCatalog {
   categories: { subcategories: { live?: GamePreview[]; schedule?: GamePreview[] }[] }[]
 }
 
-export async function getKadarioCatalog(api: string, site: string, previews = false): Promise<LiveStreamCatalog> {
+interface HoopsLiveStream {
+  streamName?: string
+  appName?: string
+  streamType?: number
+  quality?: string
+  language?: string
+  pushing?: boolean
+  playbackUrl?: string
+  previewUrl?: string
+}
+
+interface HoopsLiveGame {
+  matchId?: string
+  streamId?: string
+  sport?: string
+  phase?: string
+  leagueId?: string
+  leagueName?: string
+  leagueNames?: { zh?: string; zhHant?: string; en?: string }
+  thirdId?: string
+  home?: {
+    id?: string
+    name?: string
+    names?: { zh?: string; zhHant?: string; en?: string }
+    logo?: string
+    score?: number
+  }
+  away?: {
+    id?: string
+    name?: string
+    names?: { zh?: string; zhHant?: string; en?: string }
+    logo?: string
+    score?: number
+  }
+  homeName?: string
+  awayName?: string
+  homeScore?: number
+  awayScore?: number
+  status?: string
+  statusId?: number
+  matchTime?: number
+  startsAt?: string
+  hasLive?: boolean
+  streams?: HoopsLiveStream[]
+}
+
+function parseLocalizedName(names?: { zh?: string; zhHant?: string; en?: string }, rawName?: string): string {
+  if (names?.en?.trim()) return names.en.trim()
+  if (rawName) {
+    const parts = rawName.split('|').map(s => s.trim()).filter(Boolean)
+    if (parts.length > 0) return parts[parts.length - 1]
+  }
+  return rawName || ''
+}
+
+function formatGameClock(status?: string): string {
+  if (!status) return ''
+  return status
+    .replace('第一节', 'Q1')
+    .replace('第二节', 'Q2')
+    .replace('第三节', 'Q3')
+    .replace('第四节', 'Q4')
+    .replace('加时', 'OT')
+    .replace(/中场|半场/, 'Half Time')
+    .replace(/完赛|结束/, 'FT')
+    .replace('未开赛', 'Upcoming')
+    .trim()
+}
+
+export async function getKadarioCatalog(api: string, site: string, previews = false, livestreamUrl?: string): Promise<LiveStreamCatalog> {
+  const targetUrl = livestreamUrl || 'https://live88.eu.cc/api/v1/hoopslive/basketball/games/live?site=YBa-BnymZ6iN8pkfAUFTWIKn'
+
+  try {
+    const response = await $fetch<{ code: number; data?: { games?: HoopsLiveGame[] } }>(targetUrl, {
+      timeout: 15000,
+      retry: 1,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'application/json',
+      },
+    })
+
+    if (response && response.code === 0 && Array.isArray(response.data?.games)) {
+      const results: LiveStream[] = response.data.games.map(game => {
+        const homeName = parseLocalizedName(game.home?.names, game.home?.name || game.homeName) || 'Home'
+        const awayName = parseLocalizedName(game.away?.names, game.away?.name || game.awayName) || 'Away'
+        const competition = parseLocalizedName(game.leagueNames, game.leagueName) || 'Basketball'
+        const isLocal = (url?: string) => !url || url.includes('127.0.0.1') || url.includes('localhost')
+        const sources: { type: string; url: string; fallbackUrl?: string }[] = []
+        for (const s of game.streams ?? []) {
+          const primary = !isLocal(s.playbackUrl) ? s.playbackUrl : (!isLocal(s.previewUrl) ? s.previewUrl : undefined)
+          if (primary) {
+            const fallback = !isLocal(s.previewUrl) && s.previewUrl !== primary ? s.previewUrl : undefined
+            sources.push({
+              type: 'hls',
+              url: primary,
+              ...(fallback ? { fallbackUrl: fallback } : {}),
+            })
+          }
+        }
+
+        const streamId = game.matchId || game.streamId || String(game.thirdId || Math.random())
+        const embedUrl = `https://live88.eu.cc/embed/live/${encodeURIComponent(streamId)}?site=${encodeURIComponent(site)}`
+
+        return {
+          id: game.matchId || streamId,
+          leagueId: game.leagueId,
+          home: {
+            id: game.home?.id,
+            name: homeName,
+            logo: game.home?.logo,
+          },
+          away: {
+            id: game.away?.id,
+            name: awayName,
+            logo: game.away?.logo,
+          },
+          status: game.phase === 'live' || game.hasLive ? 'live' : 'upcoming',
+          clock: formatGameClock(game.status),
+          homeScore: game.homeScore ?? game.home?.score,
+          awayScore: game.awayScore ?? game.away?.score,
+          scoreAvailable: typeof (game.homeScore ?? game.home?.score) === 'number',
+          startTime: game.startsAt || (game.matchTime ? new Date(game.matchTime * 1000).toISOString() : undefined),
+          sources,
+          hasStream: Boolean(sources.length > 0),
+          iframe: {
+            src: embedUrl,
+            title: `${homeName} vs ${awayName}`,
+          },
+          thumbnail: game.home?.logo || game.away?.logo,
+          competition,
+          sport: game.sport || 'basketball',
+        }
+      })
+
+      return {
+        enabled: true,
+        results,
+      }
+    }
+  } catch (err) {
+    console.warn('[livestream] Error fetching from hoopslive endpoint, falling back to legacy kadario catalog:', err)
+  }
+
   const baseURL = `${api.replace(/\/+$/, '').replace(/\/api\/v1$/, '')}/api/v1`
 
   async function request<T>(path: string, query?: Record<string, string>): Promise<T> {
@@ -93,11 +236,13 @@ function kadarioTournamentKey(match: LiveMatch) {
   }
   if (aliases[name]) return aliases[name]
   if (/^(atp|wta)\b/.test(name)) return `tennis_${name.replace(/[^a-z0-9]+/g, '_')}`
-  return match.leagueId || match.sport || 'live'
+  const sportPrefix = (match.sport || 'basketball').toLowerCase().replace(/[^a-z0-9]/g, '')
+  const leagueSuffix = (match.leagueId || name || 'live').toLowerCase().replace(/[^a-z0-9]+/g, '_')
+  return `${sportPrefix}_${leagueSuffix}`
 }
 
-export async function getLiveInplayEvents(api: string, site: string): Promise<SportsEvent[]> {
-  const catalog = await getKadarioCatalog(api, site)
+export async function getLiveInplayEvents(api: string, site: string, livestreamUrl?: string): Promise<SportsEvent[]> {
+  const catalog = await getKadarioCatalog(api, site, false, livestreamUrl)
   const matches = catalog.results as LiveMatch[]
   return matches
     .filter(match => match.status === 'live' && match.home?.name && match.away?.name && Number.isFinite(Date.parse(match.startTime ?? '')))

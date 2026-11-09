@@ -187,6 +187,15 @@ const sportName = computed(() => translate(({ basketball: 'Basketball', soccer: 
   .sports-preview { gap: 5px; font-size: 10px; }
   .sports-match-category { font-size: 9px; }
 }
+@media (max-width: 600px) {
+  .sports-league-copy { font-size: 12px; }
+  .sports-match-status { font-size: 11px; }
+  .sports-team strong { font-size: 13px; }
+  .sports-versus { font-size: 12px; }
+  .sports-kickoff > span { font-size: 11px; }
+  .sports-match-category { font-size: 12px; }
+  .sports-preview { font-size: 14px; }
+}
 @media (pointer: coarse) { .sports-preview { min-height: 40px; } }
 .sports-match-card:focus-visible { --sports-hover-opacity: 1; --sports-hover-logo-scale: 1.03; }
 @media (hover: hover) and (pointer: fine) {

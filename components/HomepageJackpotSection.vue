@@ -885,7 +885,7 @@ onBeforeUnmount(() => {
   .jackpot-heading > p {
     padding: 0;
     border: none;
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .jdb-stage {
@@ -917,7 +917,7 @@ onBeforeUnmount(() => {
   .jackpot-currency-badge {
     height: 38px;
     padding: 0 8px;
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .jdb-cta-btn {

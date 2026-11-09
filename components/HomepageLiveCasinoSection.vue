@@ -133,13 +133,13 @@ function categoryIcon(key: string) {
   .homepage-live-casino-section :deep(.allgames-game-track) { --allgames-row-gap: 12px; grid-auto-columns: calc((100% - .15 * var(--allgames-row-gap)) / 1.15); }
   .live-section-header { align-items: flex-start; gap: 10px; }
   .live-heading { align-items: flex-start; flex-direction: column; gap: 6px; }
-  .live-heading > p { max-width: 175px; padding: 0; border: 0; font-size: 10px; line-height: 1.4; }
+  .live-heading > p { max-width: 210px; padding: 0; border: 0; font-size: 13px; line-height: 1.4; }
   .live-header-actions { align-items: flex-end; flex-direction: column; gap: 5px; }
-  .live-section-header .live-view-all { min-height: 24px; font-size: 10px; }
+  .live-section-header .live-view-all { min-height: 24px; font-size: 12px; }
   .live-carousel-controls { gap: 6px; }
   .live-dealer-caption { min-height: 58px; padding: 9px 10px; }
   .live-dealer-caption h3 { font-size: 16px; }
-  .live-dealer-caption p { font-size: 10px; }
+  .live-dealer-caption p { font-size: 12px; }
 }
 @media (pointer:coarse) { .live-carousel-controls button { min-width: 44px; min-height: 44px; } }
 @media (prefers-reduced-motion:reduce) { .live-dealer-card,.live-dealer-art>img,.live-dealer-arrow,.live-table-links>a { transition: none; } }

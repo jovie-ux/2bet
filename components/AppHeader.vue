@@ -42,9 +42,9 @@ const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
     </NuxtLink>
 
     <div class="header-actions">
-      <RouletteEntryButton />
+      <RouletteEntryButton class="header-action--desktop" />
       <a
-        class="header-glass-icon header-glass-icon--utility"
+        class="header-glass-icon header-glass-icon--utility header-action--desktop"
         :href="externalSiteUrl"
         target="_blank"
         rel="nofollow noopener noreferrer"
@@ -54,7 +54,7 @@ const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
       </a>
       <NuxtLink
         to="/explore/egames/customer-service"
-        class="header-glass-icon header-glass-icon--utility"
+        class="header-glass-icon header-glass-icon--utility header-action--desktop"
         aria-label="Customer service"
       >
         <Headphones :size="20" :stroke-width="2" />
@@ -77,7 +77,7 @@ const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
       </a>
       <NuxtLink
         to="/explore/account/me"
-        class="header-glass-icon header-glass-icon--profile"
+        class="header-glass-icon header-glass-icon--profile header-action--desktop"
         aria-label="Open profile"
       >
         <svg id="_圖層_1" data-name="圖層_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 56 56" class="h-full w-full" fill="currentColor"><path d="M28,0C12.54,0,0,12.54,0,28s12.54,28,28,28,28-12.54,28-28S43.46,0,28,0ZM28,12.26c3.53,0,6.41,2.86,6.41,6.41s-2.86,6.41-6.41,6.41-6.41-2.86-6.41-6.41,2.86-6.41,6.41-6.41ZM28,49.5c-9.97,0-18.03-5.07-18.03-11.28s8.06-11.28,18.03-11.28,18.03,5.07,18.03,11.28-8.06,11.28-18.03,11.28Z" class="fill-theme-header-text"></path><path d="M28,25.09c3.56,0,6.41-2.88,6.41-6.41s-2.88-6.41-6.41-6.41-6.41,2.86-6.41,6.41,2.88,6.41,6.41,6.41Z" class="fill-transparent"></path><path d="M28,26.94c-9.97,0-18.03,5.07-18.03,11.28s8.06,11.28,18.03,11.28,18.03-5.07,18.03-11.28-8.06-11.28-18.03-11.28Z" class="fill-transparent"></path></svg>
@@ -122,7 +122,7 @@ const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
 
 .brand img {
   display: block;
-  width: 3.35rem;
+  width: 6.35rem;
   height: auto;
 }
 
@@ -262,7 +262,7 @@ const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
     --header-action-gap: 10px;
   }
 
-  .brand {
+  .header-action--desktop {
     display: none;
   }
 

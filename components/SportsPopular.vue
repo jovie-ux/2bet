@@ -52,7 +52,7 @@ const tabs = [
 ] as const
 
 const visibleTabs = computed(() => tabs.filter(tab => {
-  if (isPopular.value) return !['inplay', 'replay'].includes(tab.key)
+  if (isPopular.value) return tab.key !== 'replay'
   return sportsRouteBase.value === '/explore/sports/soccer' || tab.key !== 'replay'
 }))
 

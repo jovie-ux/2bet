@@ -796,5 +796,10 @@ html[data-theme='light']:not(#_) .provider-logo-img {
     max-width: 108px;
     height: 32px;
   }
+
+  .section-subtitle { font-size: 14px; }
+  .provider-title { font-size: 14px; }
+  .games-count-pill { font-size: 12px; }
+  .provider-rank { font-size: 12px; }
 }
 </style>

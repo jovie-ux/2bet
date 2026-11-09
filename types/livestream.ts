@@ -4,8 +4,8 @@ export interface LiveStream {
   probability?: { home?: number | null; draw?: number | null; away?: number | null }
   startTime?: string
   status?: string
-  home: { name: string }
-  away: { name: string }
+  home: { name: string; id?: string; logo?: string }
+  away: { name: string; id?: string; logo?: string }
   homeScore?: number
   awayScore?: number
   scoreAvailable?: boolean
@@ -13,6 +13,9 @@ export interface LiveStream {
   iframe?: { src: string; title: string }
   sources?: { type?: string; url?: string; fallbackUrl?: string }[]
   hasStream?: boolean
+  leagueId?: string
+  competition?: string
+  sport?: string
 }
 
 export interface LiveStreamCatalog {

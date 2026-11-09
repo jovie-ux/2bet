@@ -3,5 +3,6 @@ import { getKadarioCatalog } from '~/server/utils/kadarioApi'
 
 export default defineEventHandler(async (event: H3Event) => {
   const config = useRuntimeConfig(event)
-  return getKadarioCatalog(config.kadarioApi, config.kadarioSite, true)
+  const livestreamUrl = (config.livestreamApi as string) || 'https://live88.eu.cc/api/v1/hoopslive/basketball/games/live?site=YBa-BnymZ6iN8pkfAUFTWIKn'
+  return getKadarioCatalog(config.kadarioApi, config.kadarioSite, true, livestreamUrl)
 })

@@ -125,6 +125,10 @@ function showAllFaqs() {
   .getting-started-card { min-height: 136px; gap: 20px; padding: 18px 28px 18px 12px; }
   .getting-started-icon { flex-basis: 86px; width: 86px; height: 94px; }
   .getting-started-card-copy>strong { font-size: 22px; }
+  .help-eyebrow,.getting-started-number { font-size: 12px; }
+  .homepage-start-panel .getting-started-intro,.getting-started-card-copy>p,.getting-started-actions>p { font-size: 15px; }
+  .getting-started-all-faqs { font-size: 14px; }
+  .getting-started-faq-list summary,.getting-started-faq-list details>p { font-size: 15px; }
   .getting-started-actions { align-items: flex-start; flex-direction: column; gap: 12px; margin-top: 20px; padding-top: 20px; }
   .getting-started-faq-heading { align-items: flex-start; flex-wrap: wrap; gap: 4px 16px; }
   .getting-started-faq-heading h2 { flex: 1 1 260px; }

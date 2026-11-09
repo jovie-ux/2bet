@@ -15,7 +15,7 @@
   .allgames-main .homepage-primary-action { min-height: 48px; padding: 14px 20px; }
 }
 @media (max-width: 700px) {
-  .allgames-main .homepage-primary-action { min-height: 48px; padding: 14px 18px; gap: 16px; font-size: 14px; }
+  .allgames-main .homepage-primary-action { min-height: 48px; padding: 14px 18px; gap: 16px; font-size: 15px; }
 }
 .allgames-welcome { min-height: 48px; padding: 10px var(--allgames-content-padding); gap: 16px; }
 .allgames-welcome>p { color: #2b8a51; font-size: 14px; font-weight: 800; letter-spacing: 1.8px; }
@@ -173,6 +173,7 @@
 .homepage-promotions-section .allgames-promo > img { object-position: right center; }
 .homepage-slider-dots { display: none; }
 @media (max-width: 700px) {
+  .allgames-main { font-size: 16px; }
   .homepage-promotions-section > header > .allgames-view-all { max-width: 145px; font-size: 14px; text-align: right; }
   .homepage-promotions-section .allgames-game-track { --allgames-row-gap: 12px; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc((100% - .15 * var(--allgames-row-gap)) / 1.15); gap: var(--allgames-row-gap); overflow-x: auto; overflow-y: hidden; }
   .homepage-promotions-section .allgames-promo { height: 290px; }
@@ -291,41 +292,41 @@
   .allgames-game-track { grid-auto-columns: calc((100% - 1.25 * var(--allgames-row-gap)) / 2.25); }
   .allgames-game-track--wide { grid-auto-columns: calc((100% - .15 * var(--allgames-row-gap)) / 1.15); }
   .allgames-game-caption { min-height: 62px; padding: 22px 8px 9px; }
-  .allgames-game-caption h3 { font-size: 14px; }
+  .allgames-game-caption h3 { font-size: 15px; }
   .allgames-footer { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px 12px; }
   .allgames-footer-brand { grid-column: 1/-1; }
   .allgames-responsible { grid-column: 1/-1; }
   .allgames-footer p,.allgames-footer nav>a { font-size: 14px; }
   .allgames-welcome { min-height: 44px; }
-  .allgames-welcome>p { font-size: 8px; letter-spacing: 1.4px; }
+  .allgames-welcome>p { font-size: 11px; letter-spacing: 1.2px; }
   .allgames-welcome>p>span { display: none; }
-  .allgames-welcome>a { font-size: 9px; gap: 5px; }
+  .allgames-welcome>a { font-size: 11px; gap: 5px; }
   .allgames-welcome>a svg { width: 12px; }
   .allgames-hero { border-radius: 12px; }
   .allgames-hero-copy { padding: 27px 20px 15px; }
   .allgames-hero h1 { font-size: clamp(28px,7.8cqw,46px); letter-spacing: -1.2px; }
-  .allgames-hero-description { padding-top: 13px; font-size: 12px; }
-  .allgames-main .allgames-button { margin-top: 18px; min-height: 44px; font-size: 12px; }
+  .allgames-hero-description { padding-top: 13px; font-size: 14px; }
+  .allgames-main .allgames-button { margin-top: 18px; min-height: 44px; font-size: 14px; }
   .allgames-carousel-controls { gap: 6px; margin-top: 18px; }
   .allgames-hero-cards { --allgames-hero-gap: 10px; height: clamp(250px,68cqw,330px); padding: 0 20px 43px; }
   .allgames-hero-index { right: 20px; bottom: 13px; }
-  .allgames-hero-index-label { font-size: 9px; }
+  .allgames-hero-index-label { font-size: 11px; }
   .allgames-category-nav { grid-auto-columns: min(82%,290px); gap: 12px; margin-top: 12px; padding-block: 10px; }
   .allgames-category-link { border-radius: 13px; }
   .allgames-category-copy strong { font-size: 15px; }
-  .allgames-category-copy small { font-size: 10px; }
+  .allgames-category-copy small { font-size: 12px; }
   .allgames-category-arrow { top: 16px; right: 15px; }
-  .allgames-main { --allgames-heading-size: 24px; }
+  .allgames-main { --allgames-heading-size: 28px; }
   .allgames-heading-symbol { width: 20px; height: 20px; }
   .allgames-heading-symbol.allgames-heading-image { width: 24px; height: 24px; }
-  .allgames-section-eyebrow { font-size: 7px; letter-spacing: 1.1px; }
-  .allgames-section-heading p { font-size: 10px; }
-  .allgames-section-actions .allgames-view-all { border: 0; padding: 0; min-height: 28px; font-size: 10px; }
+  .allgames-section-eyebrow { font-size: 10px; letter-spacing: 1.1px; }
+  .allgames-section-heading p { font-size: 13px; }
+  .allgames-section-actions .allgames-view-all { border: 0; padding: 0; min-height: 28px; font-size: 12px; }
   .allgames-section-actions { gap: 2px; }
   .allgames-row-controls { gap: 5px; }
   .allgames-row-controls button { width: 36px; height: 36px; }
   .allgames-service-strip { align-items: flex-start; flex-direction: column; padding: 18px; gap: 16px; }
-  .allgames-service-strip small { font-size: 10px; }
+  .allgames-service-strip small { font-size: 12px; }
   .allgames-service-strip>a { padding-left: 36px; min-height: 28px; }
 }
 .allgames-slots-section,.allgames-bingo-section { container-type: inline-size; }
@@ -373,9 +374,9 @@
 @media (max-width: 700px) {
   .bingo-header { align-items: flex-start; gap: 10px; }
   .bingo-heading { align-items: flex-start; flex-direction: column; gap: 6px; }
-  .bingo-heading > p { max-width: 175px; padding: 0; border: 0; font-size: 10px; line-height: 1.4; }
+  .bingo-heading > p { max-width: 210px; padding: 0; border: 0; font-size: 13px; line-height: 1.4; }
   .bingo-actions { align-items: flex-end; flex-direction: column; gap: 5px; }
-  .bingo-header .bingo-view-all { min-height: 24px; font-size: 10px; }
+  .bingo-header .bingo-view-all { min-height: 24px; font-size: 12px; }
   .bingo-controls { gap: 6px; }
   .homepage-bingo-section .allgames-game-track { --allgames-row-gap: 12px; grid-auto-columns: calc((100% - var(--allgames-row-gap)) / 2); }
   .bingo-game-caption h3 { font-size: 14px; }
@@ -410,21 +411,21 @@
 @media (max-width: 700px) {
   .featured-section-heading { align-items: flex-start; gap: 10px; min-height: 62px; }
   .featured-heading-copy { flex-direction: column; align-items: flex-start; gap: 5px; }
-  .featured-heading-copy p { max-width: 180px; font-size: 10px; }
+  .featured-heading-copy p { max-width: 210px; font-size: 13px; }
   .featured-section-actions { align-items: flex-end; flex-direction: column; gap: 3px; }
-  .featured-section-actions>a { min-height: 24px; font-size: 10px; }
+  .featured-section-actions>a { min-height: 24px; font-size: 12px; }
   .featured-row-controls { gap: 6px; }
   .featured-row-controls button { width: 36px; height: 36px; }
   .allgames-slots-section .allgames-game-track,.allgames-bingo-section .allgames-game-track { --featured-card-width: 34%; grid-template-columns: 68%; }
   .allgames-slots-section .slots-featured-card .allgames-card-art { aspect-ratio: 3 / 2; }
   .allgames-slots-section .allgames-game-arrow { width: 20px; height: 20px; }
-  .allgames-slots-section .allgames-game-caption h3 { font-size: 10px; }
-  .allgames-slots-section .allgames-game-caption p { font-size: 8px; }
-  .slots-hot-badge { top: 8px; left: 8px; padding: 3px 6px; font-size: 8px; }
+  .allgames-slots-section .allgames-game-caption h3 { font-size: 13px; }
+  .allgames-slots-section .allgames-game-caption p { font-size: 11px; }
+  .slots-hot-badge { top: 8px; left: 8px; padding: 3px 6px; font-size: 10px; }
   .allgames-bingo-section .bingo-featured-card .allgames-card-art { aspect-ratio: 3 / 2; }
   .allgames-bingo-section .bingo-featured-card .allgames-game-caption { min-height: 50px; padding-top: 12px; }
   .allgames-bingo-section .allgames-game-caption h3 { font-size: 14px; }
-  .allgames-bingo-section .allgames-game-caption p { font-size: 9px; }
+  .allgames-bingo-section .allgames-game-caption p { font-size: 11px; }
   .allgames-bingo-section .allgames-game-arrow { width: 20px; height: 20px; }
 }
 @media (pointer: coarse) {

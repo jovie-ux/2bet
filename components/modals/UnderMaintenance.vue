@@ -89,7 +89,7 @@ onBeforeUnmount(() => {
   margin: 0 auto 12px;
   place-items: center;
   border-radius: 50%;
-  background: #00875e;
+  background: var(--main-color);
   color: #fff;
   font-size: 30px;
   font-weight: 800;
@@ -119,7 +119,7 @@ button {
   border: 0;
   border-radius: 12px;
   color: #fff;
-  background: #00875e;
+  background: var(--main-color);
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;

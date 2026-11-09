@@ -190,13 +190,6 @@ onBeforeUnmount(() => {
         :class="{ 'is-active': activeIndex === index }"
         :data-category="item.id"
       >
-        <source
-          media="(max-width: 700px)"
-          :srcset="item.thumbnail || item.image"
-          type="image/webp"
-          width="1003"
-          height="1568"
-        >
         <img
           :src="item.image"
           :alt="translate(item.headline) || translate(item.category)"
@@ -352,17 +345,17 @@ onBeforeUnmount(() => {
   .homepage-hero__photo { object-position: 88% top; transform-origin: 88% 20%; }
   .homepage-hero__shade { background: linear-gradient(0deg,#03110ff5 5%,#03110fe8 25%,#03110fbb 52%,#03110f08 90%); }
   .homepage-hero__copy { top: auto; right: 22px; bottom: 154px; left: 22px; width: auto; }
-  .homepage-hero .homepage-hero__eyebrow { margin-bottom: 14px; font-size: 14px; letter-spacing: .24em; }
-  .homepage-hero h1 { font-size: clamp(32px,10.5cqw,65px); line-height: 1.08; }
-  .homepage-hero .homepage-hero__description { max-width: 365px; margin-top: 20px; font-size: 14px; }
+  .homepage-hero .homepage-hero__eyebrow { margin-bottom: 14px; font-size: 15px; letter-spacing: .24em; }
+  .homepage-hero h1 { font-size: clamp(36px,11.5cqw,68px); line-height: 1.08; }
+  .homepage-hero .homepage-hero__description { max-width: 365px; margin-top: 20px; font-size: 16px; line-height: 1.55; }
   .homepage-hero .homepage-hero__action { margin-top: 24px; }
   .homepage-hero__markers { top: auto; bottom: 36px; left: 12px; flex-direction: row; gap: 0; }
   .homepage-hero__markers button { height: 44px; width: 28px; }
   .homepage-hero__preview { top: auto; right: 22px; bottom: 24px; width: 132px; }
-  .homepage-hero .homepage-hero__counter { margin-bottom: 6px; font-size: 12px; }
+  .homepage-hero .homepage-hero__counter { margin-bottom: 6px; font-size: 14px; }
   .homepage-hero__preview-row { height: 88px; }
   .homepage-hero__arrows { width: 40px; }
-  .homepage-hero__thumbnail span { padding: 12px 6px 5px; font-size: 8px; }
+  .homepage-hero__thumbnail span { padding: 12px 6px 5px; font-size: 10px; }
   .homepage-hero__footer { top: 15px; right: 15px; bottom: auto; left: auto; }
   .homepage-hero__scroll { display: none; }
   .homepage-hero__playback { justify-content: center; width: 40px; border: 1px solid #ffffff50; border-radius: 50%; background: #04100b99; }

@@ -150,14 +150,15 @@ function toggleFavorite(title: string) {
 @media (max-width: 700px) {
   .slots-header { align-items: flex-start; gap: 10px; }
   .slots-heading { align-items: flex-start; flex-direction: column; gap: 6px; }
-  .slots-heading > p { max-width: 175px; padding: 0; border: 0; font-size: 10px; line-height: 1.4; }
+  .slots-heading > p { max-width: 210px; padding: 0; border: 0; font-size: 13px; line-height: 1.4; }
   .slots-actions { flex-direction: column; align-items: flex-end; gap: 5px; }
-  .slots-view-all { min-height: 24px; font-size: 10px; }
+  .slots-view-all { min-height: 24px; font-size: 12px; }
   .slots-controls { gap: 6px; }
   .slots-tabs { gap: 20px; }
-  .slots-tabs button { font-size: 10px; }
+  .slots-tabs button,.slots-provider-pills a { font-size: 12px; }
   .homepage-slots-section :deep(.allgames-game-track) { --allgames-row-gap: 12px; grid-auto-columns: calc((100% - var(--allgames-row-gap)) / 2); }
-  .slots-game-caption h3 { font-size: 14px; }
+  .slots-game-caption h3 { font-size: 15px; }
+  .slots-game-caption p { font-size: 12px; }
 }
 @media (max-width: 360px) {
   .slots-toolbar { gap: 6px; }

@@ -15,6 +15,7 @@ const processGlobal = (
         SITE_NAME?: string
         SITE_URL?: string
         INDEX_FOLLOW?: string
+        LIVESTREAM_API?: string
       }
     }
   }
@@ -43,6 +44,7 @@ export default defineNuxtConfig({
     },
     kadarioApi: environment?.KADARIO_API || 'https://live88.eu.cc/',
     kadarioSite: 'YBa-BnymZ6iN8pkfAUFTWIKn',
+    livestreamApi: environment?.LIVESTREAM_API || 'https://live88.eu.cc/api/v1/hoopslive/basketball/games/live?site=YBa-BnymZ6iN8pkfAUFTWIKn',
   },
   modules: ['@nuxtjs/tailwindcss'],
   nitro: {
