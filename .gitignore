@@ -4,7 +4,21 @@ node_modules
 .output
 .env
 graphify-out
-.DS_Store
 data/jackpots.json
 .htaccess
 yarn.lock
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.apdisk
+
+# macOS archive folders
+__MACOSX/

@@ -87,7 +87,7 @@ onMounted(syncImageState)
 <template>
   <button type="button" class="casino-table-card" :class="{ 'casino-table-card--compact': compact, 'casino-table-card--roadmap': hasRoadmap, 'casino-table-card--horizontal': layout === 'horizontal' && hasRoadmap }" :aria-label="`Open ${table.title}`" @click="emit('select', table)">
     <span class="casino-table-picture" :aria-busy="Boolean(imageSource) && !imageLoaded && !imageFailed">
-      <img class="casino-table-placeholder" src="/images/live-casino/dealer-loading.svg" alt="Loading dealer" aria-hidden="true" />
+      <img class="casino-table-placeholder" src="/images/live-casino/dealer-loading.webp" alt="Loading dealer" aria-hidden="true" />
       <img v-if="imageSource" ref="tableImage" :key="imageSource" class="casino-table-image" :class="{ 'casino-table-image--loaded': imageLoaded && !imageFailed }" :src="imageSource" :alt="table.title" loading="lazy" decoding="async" @load="imageLoaded = true" @error="imageFailed = true" />
       <span class="casino-picture-shade" aria-hidden="true" />
       <span class="casino-table-caption">
