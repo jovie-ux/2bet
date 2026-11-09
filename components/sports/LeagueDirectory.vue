@@ -22,6 +22,7 @@ const props = withDefaults(defineProps<{
 })
 
 const route = useRoute()
+const { translate } = useSiteLocale()
 const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
 const defaultRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 const bybetRedirectUrl = props.aiTo ?? defaultRedirectUrl
@@ -295,6 +296,7 @@ const COUNTRY_FLAGS: Record<string, string> = {
           title="Smart Pick AI"
         />
 
+        <SportsMobileSportsRoulette />
         <label class="search">
           <span class="search-icons">
             <Search :size="16" aria-hidden="true" />

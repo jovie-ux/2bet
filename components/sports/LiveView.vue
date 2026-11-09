@@ -30,6 +30,7 @@ const selectedSports = computed(() => {
 
 const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
 const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
+const { translate } = useSiteLocale()
 
 const search = ref('')
 const sortBy = ref<'league' | 'time'>('time')
@@ -73,6 +74,10 @@ const filteredEvents = computed(() => {
     <div class="inplay-tab">
       <!-- Toolbar identical to Inplay tab -->
       <div class="toolbar">
+        <span class="sports-mobile-only">
+          <Ai :to="bybetRedirectUrl" title="Smart Pick AI" />
+        </span>
+        <SportsMobileSportsRoulette />
         <label class="search">
           <span class="search-icons">
             <Search :size="16" aria-hidden="true" />

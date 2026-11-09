@@ -111,6 +111,7 @@ const { showDemoMessage } = useDemoInteraction()
 const { addRecentGame } = useRecentGames()
 const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
 const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
+const { context: commentContext, openGameComments, closeComments } = useCommentPanel()
 
 const toggleChat = (): void => {
   if (commentContext.value) {
@@ -476,11 +477,12 @@ watch([loadMoreTrigger, hasMoreGames], () => {
       <!-- Provider Filter Bar & Search / Filter Icons -->
       <div v-if="!isSearchOpen" class="provider-filter-bar flex items-center justify-between gap-2 py-1.5 mb-1 shadow-sm bg-black">
         <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 min-w-0 flex-1">
+          <RouletteEntryButton style="--roulette-entry-size: 38px; border: 0" />
           <button
             v-for="prov in SLOT_PROVIDERS"
             :key="prov.key"
             type="button"
-            class="provider-pill px-3.5 py-1 rounded-full text-[12px] whitespace-nowrap transition-all cursor-pointer select-none border border-white/5 shrink-0 flex items-center justify-center min-h-[30px]"
+            class="provider-pill px-5 py-2.5 rounded-full text-[12px] whitespace-nowrap transition-all cursor-pointer select-none border border-white/5 shrink-0 flex items-center justify-center min-h-[30px]"
             :class="activeProviders.includes(prov.key) ? 'bg-[var(--main-color)] text-white font-bold shadow' : 'bg-[#242625] text-[#8e9491] '"
             :aria-label="translate(prov.label)"
             @click="toggleProvider(prov.key)"

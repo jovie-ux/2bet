@@ -147,13 +147,13 @@ watch(() => props.category, () => {
             :title="provider.key === 'all' ? translate('All') : provider.label"
             @click="selectProvider(provider.key)"
           >
-            <img
+            <!-- <img
               v-if="provider.logo"
               :src="getProviderLogoForTheme(provider.logo, effectiveTheme)"
               :alt="provider.label"
               class="poker-provider-pill-logo"
-            />
-            <span v-else>{{ provider.key === 'all' ? translate('All') : provider.label }}</span>
+            /> -->
+            <span >{{ provider.key === 'all' ? translate('All') : provider.label }}</span>
           </button>
         </div>
         <div class="poker-toolbar-actions">

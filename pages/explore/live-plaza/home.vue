@@ -50,6 +50,10 @@ const {
 const popularSport = ref<LivePlazaSportFilter>('all')
 const predictionsSport = ref<LivePlazaSportFilter>('all')
 const popularGameSort = ref<PopularGameSort>('predict')
+const predictionSort = ref<'win-streak' | 'hit'>('win-streak')
+const togglePredictionSort = (): void => {
+  predictionSort.value = predictionSort.value === 'win-streak' ? 'hit' : 'win-streak'
+}
 const popularSortMenuOpen = ref(false)
 const popularSortControl = ref<HTMLElement | null>(null)
 const popularSortButton = ref<HTMLButtonElement | null>(null)
@@ -324,7 +328,7 @@ onBeforeUnmount(() => {
         <div class="panel-heading">
           <h2 id="expert-predictions-title">{{ translate('Expert Predictions') }}</h2>
           <button type="button" class="panel-action" @click="togglePredictionSort">
-            <span>{{ translate('Win Streak') }}</span>
+            <span>{{ translate(predictionSort === 'win-streak' ? 'Win Streak' : 'Hit Rate') }}</span>
             <MoreHorizontal :size="15" aria-hidden="true" />
           </button>
         </div>
@@ -684,7 +688,7 @@ onBeforeUnmount(() => {
 @media (max-width: 47.99rem) {
   .live-plaza-page {
     padding-top: 0;
-    padding-bottom: 5rem;
+    padding-bottom: 0.1rem;
   }
 
   .panel-heading {

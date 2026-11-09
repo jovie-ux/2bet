@@ -185,6 +185,7 @@ onBeforeUnmount(() => {
 const { showDemoMessage } = useDemoInteraction()
 const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
 const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
+const { context: commentContext, openGameComments, closeComments } = useCommentPanel()
 
 const toggleChat = (): void => {
   if (commentContext.value) {
@@ -276,13 +277,14 @@ watch(
     <!-- Sticky Header (Top Nav Tabs Bar) -->
     <div class="sticky-header sticky-header-seal sticky top-[var(--content-sticky-top)] z-50 -mx-1 px-0 sm:px-1 pb-2">
       <!-- Top Nav Tabs Bar (777, JILI, JDB, CQ9 + Chat) -->
-      <header class="top-nav-bar flex items-center justify-between gap-2 overflow-hidden rounded-lg bg-[#202020] py-1 shadow-sm">
-        <div class="provider-nav-track no-scrollbar flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto bg-[#141414] px-1 py-1.5 shadow-sm">
+      <header class="top-nav-bar flex items-center justify-between gap-2 overflow-hidden rounded-lg bg-[#202020] py-0 sm:py-1 shadow-sm">
+        <div class="provider-nav-track no-scrollbar flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto bg-[#141414] px-2.5 sm:px-1 py-4 sm:py-1.5 shadow-sm">
+          <RouletteEntryButton style="--roulette-entry-size: 33px; border: 0" />
           <button
             v-for="tab in JACKPOT_NAV_TABS"
             :key="tab.key"
             type="button"
-            class="nav-tab flex h-6 min-w-[48px] shrink-0 cursor-pointer select-none items-center justify-center rounded-md px-2 transition-all py-2"
+            class="nav-tab flex h-7 sm:h-6 min-w-[48px] shrink-0 cursor-pointer select-none items-center justify-center rounded-md px-2 transition-all py-5 sm:py-2"
             :class="activeProvider === tab.key.toLowerCase() ? 'bg-[var(--main-color)] shadow-md' : 'hover:bg-white/5'"
             :aria-label="tab.label"
             :aria-current="activeProvider === tab.key.toLowerCase() ? 'page' : undefined"
@@ -293,7 +295,7 @@ watch(
               :alt="tab.label"
               class="object-contain transition-opacity"
               :class="[
-                tab.isAll ? 'h-9 sm:h-5 w-6 sm:w-5' : 'h-9 sm:h-4 max-w-[50px] sm:max-w-[42px]',
+                tab.isAll ? 'h-10 sm:h-5 w-7 sm:w-5' : 'h-9 sm:h-4 max-w-[50px] sm:max-w-[42px]',
                 activeProvider === tab.key.toLowerCase() ? '' : 'opacity-80',
                 effectiveTheme === 'dark'
                   ? activeProvider === tab.key.toLowerCase() ? 'brightness-150 contrast-150' : 'brightness-125'

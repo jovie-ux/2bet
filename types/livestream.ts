@@ -16,9 +16,6 @@ export interface LiveStream {
   iframe?: { src: string; title: string }
   sources?: { type?: string; url?: string; fallbackUrl?: string }[]
   hasStream?: boolean
-  leagueId?: string
-  competition?: string
-  sport?: string
 }
 
 export interface LiveStreamCatalog {

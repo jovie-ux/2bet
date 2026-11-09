@@ -14,7 +14,7 @@ const casinoItems = [
   { label: 'Live Casino', icon: '/icons/entertainment/live-casino.webp', to: '/explore/entertainment/live-casino/good-road' },
   { label: 'Gaming', icon: '/icons/entertainment/gaming.webp', to: `${bybetBaseUrl}/sportEvents/eSport?p=${bybetRedirectCode}` },
   { label: 'Poker', icon: '/icons/entertainment/poker.webp', to: '/explore/entertainment/poker' },
-  { label: 'RACE', icon: '/icons/entertainment/lottery.webp', to: '/explore/entertainment/lottery' },
+  { label: 'RACE', icon: '/icons/entertainment/lottery.webp', to: undefined },
 ]
 
 const eGamesItems = [
@@ -113,7 +113,7 @@ const isPathActive = (destination: string): boolean => {
   return route.path === destination || route.path.startsWith(`${destination}/`)
 }
 
-const isCasinoItemActive = (item: { label: string; to: string }): boolean => {
+const isCasinoItemActive = (item: { label: string; to?: string }): boolean => {
   if (item.label === 'Poker') {
     return isPathActive('/explore/entertainment/poker')
   }
@@ -123,7 +123,7 @@ const isCasinoItemActive = (item: { label: string; to: string }): boolean => {
       || route.path === '/explore/entertainment'
     )
   }
-  return isPathActive(item.to)
+  return Boolean(item.to && isPathActive(item.to))
 }
 
 const isEGamesItemActive = (item: { label: string; to: string }): boolean => {
@@ -175,8 +175,8 @@ const regularCells = computed<NavCell[]>(() => [
   ...casinoItems.map(item => ({
     key: 'casino-' + item.label, group: 'casino' as NavMode,
     label: item.label, icon: item.label,
-    to: item.label === 'Lottery' ? undefined : item.to,
-    maintenance: item.label === 'Lottery',
+    to: item.to,
+    maintenance: item.label === 'Lottery' || item.label === 'RACE',
     active: isCasinoItemActive(item),
   })),
   ...eGamesItems.map(item => ({
@@ -193,7 +193,7 @@ const allNavCells = computed<NavCell[]>(() => [
     key: 'door',
     label: activeNavMode.value === 'primary' ? 'To casino games' : 'Back to main navigation',
     icon: 'primary-door',
-    to: activeNavMode.value === 'primary' ? '/explore/entertainment/live-casino/baccarat' : '/explore/sports/popular/league',
+    to: activeNavMode.value === 'primary' ? '/explore/entertainment/live-casino/good-road' : '/explore/sports/popular/league',
     mode: activeNavMode.value === 'primary' ? 'casino' : 'primary',
   },
   ...regularCells.value,

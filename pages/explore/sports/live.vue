@@ -39,12 +39,12 @@ const liveTabs = [
   { key: 'baseball', label: '', icon: '/icons/sports/baseball.webp', to: '/explore/sports/live/baseball' },
   {
     key: 'esports',
-    label: 'All eSports',
+    label: '',
     icon: '/icons/sports/egame.webp',
     to: liveEsportsRedirectUrl.value,
     external: true,
   },
-])
+]
 
 const currentSport = computed(() => {
   const sportParam = String(route.params.sport || '').toLowerCase()

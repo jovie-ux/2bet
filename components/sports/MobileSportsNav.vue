@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Search } from 'lucide-vue-next'
+import { useSiteLocale } from '~/composables/useSitePreferences'
 import { buildBybetRedirectUrl } from '~/utils/sportsRedirect'
 
 const route = useRoute()
@@ -36,6 +37,8 @@ const sports: MobileSportNavItem[] = [
   { key: 'table-tennis', label: 'Table Tennis', image: '/icons/sports/table-tennis.webp', external: true, url: 'sportEvents/incoming/tableTennis' },
   { key: 'esports', label: 'eSports', image: '/icons/sports/egame.webp', external: true, url: 'sportEvents/eSportGame' },
   { key: 'all', label: 'All Sports', image: '/icons/sports/esports.webp', external: true, url: 'sportEvents/eSportBall' },
+  { key: 'badminton', label: 'Badminton', image: '/icons/sports/badminton.webp', external: true },
+  { key: 'baseball', label: 'Baseball', image: '/icons/sports/baseball.webp', external: true, url: 'sportEvents/parlay/baseball/interval/inplay' },
   { key: 'live', label: 'Live', image: '/icons/sports/live.webp', to: '/explore/sports/live' },
   { key: 'live-plaza', label: 'Live Plaza', image: '/icons/sports/live-plaza.webp', to: '/explore/live-plaza/home' },
   { key: 'bonuses', label: 'Bonuses', image: '/icons/sports/bonus.webp', to: '/explore/bonuses' },
@@ -44,6 +47,7 @@ const sports: MobileSportNavItem[] = [
 const isLive = computed(() => route.path.startsWith('/explore/sports/live'))
 const selectedSport = computed(() => {
   if (route.path.startsWith('/explore/sports/popular')) return 'popular'
+  if (isLive.value && !route.params.sport) return 'live'
   const sportParam = String(route.params.sport || 'popular')
   return sportParam === 'football' ? 'soccer' : sportParam
 })
@@ -127,12 +131,12 @@ const destination = (sport: typeof sports[number]): string => {
     display: flex;
     min-width: 0;
     align-items: center;
-    gap: 9px;
+    gap: 8px;
     overflow-x: auto;
     margin-bottom: 8px;
-    padding: 9px 8px;
-    border-radius: 14px;
-    background: #202020;
+    padding: 8px;
+    border-radius: 12px;
+    background: #1f1f1f;
     scrollbar-width: none;
     overscroll-behavior-inline: contain;
   }
@@ -141,14 +145,14 @@ const destination = (sport: typeof sports[number]): string => {
 
   .mobile-sports-nav__item {
     display: grid;
-    width: 42px;
-    height: 34px;
-    flex: 0 0 42px;
+    width: 44px;
+    height: 36px;
+    flex: 0 0 44px;
     place-items: center;
-    border-radius: 12px;
+    border-radius: 10px;
   }
 
-  .mobile-sports-nav__item--active { background: #087c59; }
+  .mobile-sports-nav__item--active { background: var(--main-color); }
   .mobile-sports-nav__search { border: 0; color: #fff; background: transparent; }
   .mobile-sports-nav__item img,
   .mobile-sports-nav__img {

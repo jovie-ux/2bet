@@ -4,7 +4,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 import { matchesSportsSelection } from '../utils/sportsSelection.ts'
-import { getSportsTabRedirectPath, resolveSportsTabRedirectUrl } from '../utils/sportsRedirect.ts'
+import { getSportsTabRedirectPath, resolveSportsTabRedirectUrl, getEnvRedirectUrl } from '../utils/sportsRedirect.ts'
 import { useSportsRouteBase } from '../composables/useSportsRouteBase.ts'
 
 describe('Sports In-Play Matching & Football Route Suite', () => {
@@ -123,7 +123,7 @@ describe('Sports In-Play Matching & Football Route Suite', () => {
     )
     assert.equal(
       resolveSportsTabRedirectUrl('football', 'replay'),
-      'https://bybet.com/sportEvents/gameResult/football/regular/today?p=xjSD',
+      `${getEnvRedirectUrl()}/sportEvents/gameResult/football/regular/today?p=xjSD`,
     )
   })
 

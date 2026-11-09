@@ -14,6 +14,7 @@ import { HOMEPAGE_CASINO_CATEGORIES } from '~/data/homepage-casino'
 import { TOP_BINGO_GAMES } from '~/data/top-bingo-games'
 import { SAMPLE_MATCH_EVENTS } from '~/data/sports'
 import { HOMEPAGE_PROMOTIONS } from '~/data/homepage-promotions'
+import type { SportsEvent } from '~/types/sports'
 
 const props = withDefaults(defineProps<{
   faqs?: FaqItem[]
@@ -73,9 +74,22 @@ const bingoGames = uniqueBy([
   TOP_BINGO_GAMES.find(game => game.id === 'calaca-bingo')!,
   ...TOP_BINGO_GAMES,
 ], game => game.id)
-// Share the relative sample kickoff times between server rendering and hydration.
-const fixtures = useState('homepage-match-fixtures', () => uniqueBy(Object.values(SAMPLE_MATCH_EVENTS).flat(), fixture => fixture.id))
+// Fetch live in-play sports fixtures with fallback to sample events.
+const { data: inplayData, refresh: refreshInplay } = useFetch<{ sports: any[]; events: SportsEvent[] }>('/api/sports', {
+  key: 'homepage-inplay-sports',
+  query: { mode: 'inplay' },
+  default: () => ({ sports: [], events: [] }),
+})
+const fallbackFixtures = uniqueBy(Object.values(SAMPLE_MATCH_EVENTS).flat(), fixture => fixture.id)
+const fixtures = computed(() => {
+  const liveEvents = inplayData.value?.events
+  if (Array.isArray(liveEvents) && liveEvents.length > 0) {
+    return liveEvents
+  }
+  return fallbackFixtures
+})
 const promotions = HOMEPAGE_PROMOTIONS
+let inplayInterval: ReturnType<typeof setInterval> | undefined
 
 function initializeSectionEffects() {
   if (motionPreference?.matches || !('IntersectionObserver' in window)) return
@@ -105,8 +119,12 @@ onMounted(() => {
   motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)')
   motionPreference.addEventListener('change', handleMotionPreference)
   initializeSectionEffects()
+  inplayInterval = setInterval(() => {
+    refreshInplay()
+  }, 30000)
 })
 onBeforeUnmount(() => {
+  if (inplayInterval) clearInterval(inplayInterval)
   sectionRevealObserver?.disconnect()
   motionPreference?.removeEventListener('change', handleMotionPreference)
   window.removeEventListener('keydown', handleEscape)

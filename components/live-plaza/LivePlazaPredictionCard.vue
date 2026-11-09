@@ -14,6 +14,7 @@ const emit = defineEmits<{
 
 const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
 const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
+const { translate } = useSiteLocale()
 
 const formattedHitRate = computed(() => {
   return Number.isInteger(props.prediction.hitRate)
@@ -60,7 +61,7 @@ const handleCardKeydown = (event: KeyboardEvent): void => {
   }
 
   event.preventDefault()
-  redirectToByBet()
+  redirectTo2Bet()
 }
 
 const isPredictedOption = (option: PredictionOption): boolean => {
@@ -262,7 +263,7 @@ const isPredictedOption = (option: PredictionOption): boolean => {
 }
 
 .prediction-card__hit-rate strong {
-  color: #13ae7d;
+  color: var(--main-color);
   font-size: 26px;
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -299,7 +300,7 @@ const isPredictedOption = (option: PredictionOption): boolean => {
   align-items: center;
   justify-content: center;
   padding: 0 10px;
-  border: 1px solid #078a63;
+  border: 1px solid var(--main-color);
   border-radius: 8px;
   color: #f5f5f5;
   font-size: 12px;
@@ -310,11 +311,6 @@ const isPredictedOption = (option: PredictionOption): boolean => {
   transition: background-color 150ms ease, color 150ms ease;
 }
 
-.prediction-card__unlock:hover,
-.prediction-card__unlock--active {
-  color: #32d49a;
-  background: rgba(3, 98, 66, 0.2);
-}
 
 .match-box {
   display: flex;
@@ -344,7 +340,7 @@ const isPredictedOption = (option: PredictionOption): boolean => {
   font-size: 9px;
   font-weight: 800;
   line-height: 1.2;
-  background: #07835e;
+  background: var(--main-color);
 }
 
 .match-box__sport {

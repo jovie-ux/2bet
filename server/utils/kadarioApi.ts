@@ -162,6 +162,7 @@ export async function getKadarioCatalog(
   site: string,
   previews = false,
   liveSports: readonly string[] = ['basketball'],
+  livestreamApiUrl?: string,
 ): Promise<LiveStreamCatalog> {
   const baseURL = `${api.replace(/\/+$/, '').replace(/\/api\/v1$/, '')}/api/v1`
 
@@ -265,8 +266,8 @@ function kadarioTournamentKey(match: LiveMatch) {
   return `${sportPrefix}_${leagueSuffix}`
 }
 
-export async function getLiveInplayEvents(api: string, site: string): Promise<SportsEvent[]> {
-  const catalog = await getKadarioCatalog(api, site, false, ['basketball', 'football'])
+export async function getLiveInplayEvents(api: string, site: string, livestreamApiUrl?: string): Promise<SportsEvent[]> {
+  const catalog = await getKadarioCatalog(api, site, false, ['basketball', 'football'], livestreamApiUrl)
   const matches = catalog.results as LiveMatch[]
   return matches
     .filter(match => match.status === 'live' && match.home?.name && match.away?.name && Number.isFinite(Date.parse(match.startTime ?? '')))

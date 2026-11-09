@@ -283,6 +283,7 @@ const toggleCollapseAll = (): void => {
         title="Smart Pick AI"
       />
 
+      <SportsMobileSportsRoulette />
       <label class="search">
         <span class="search-icons">
           <Search :size="16" aria-hidden="true" />

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import LiveCasinoLobby from '~/components/live-casino/LiveCasinoLobby.vue'
-import { LIVE_CASINO_CATEGORIES } from '~/data/live-casino'
+import { LIVE_CASINO_CATEGORIES, LIVE_CASINO_TABLES, type LiveCasinoTable } from '~/data/live-casino'
 
 const route = useRoute()
+const router = useRouter()
 const { translate } = useSiteLocale()
 const activeCategory = computed(() => {
   const category = String(route.params.category || 'featured')

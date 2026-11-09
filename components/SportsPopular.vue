@@ -368,6 +368,7 @@ onBeforeUnmount(() => {
         class="sports-tabs bg-[#1f1f1f]/95"
         aria-label="Sports categories"
       >
+        <SportsMobileSportsRoulette v-if="isPopular" />
         <NuxtLink
           v-for="tab in visibleTabs"
           :key="tab.key"

@@ -16,6 +16,7 @@ import {
 } from '~/data/promotions'
 
 const route = useRoute()
+const { translate } = useSiteLocale()
 const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
 const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 const { markAsViewed } = useViewedPromotions()

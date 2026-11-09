@@ -11,8 +11,9 @@ import {
 const { showDemoMessage } = useDemoInteraction()
 const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
 const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
+const loginUrl = bybetRedirectUrl
 const bybetRedirectRegister = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/registered?p=${bybetRedirectCode || 'xjSD'}`
-const { selectedLanguageLabel } = useSiteLocale()
+const { selectedLanguageLabel, translate, locale } = useSiteLocale()
 const { selectedTimeZone } = useTimeZonePreference()
 const { setThemePreference, themePreference } = useSiteTheme()
 
@@ -71,13 +72,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="me-page w-full min-w-0">
     <!-- Mobile View: Frosted Card & Green Felt Hero (< 1024px) -->
-    <div class="me-mobile-view lg:hidden w-full min-w-0 pb-16 text-white bg-[#0e0f0e]">
-      <div
-        class="me-hero-background"
-        :style="{ '--me-hero-fade': `${48 + headerScrollFade * 24}px` }"
-        aria-hidden="true"
-      />
-
+    <div class="me-mobile-view lg:hidden w-full min-w-0 pb-3 text-white">
       <!-- Mobile Dedicated Header (Hidden on Desktop) -->
       <header
         class="me-mobile-header lg:hidden z-30 flex items-center justify-between px-4 py-3"
@@ -87,19 +82,18 @@ onBeforeUnmount(() => {
         <div class="flex items-center gap-2">
           <NuxtLink
             to="/explore/egames/customer-service"
-            class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/25 backdrop-blur-md flex items-center justify-center text-white transition-all "
+            class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/25 backdrop-blur-md flex items-center justify-center text-[#FEDF00] transition-all "
             :aria-label="translate('Customer Service')"
           >
-            <Headphones class="w-4 h-4 text-white" />
+            <Headphones class="w-5 h-5 text-[#FEDF00]" />
           </NuxtLink>
-          <RouletteEntryButton style="--roulette-entry-size: 36px" />
           <button
             type="button"
-            class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/25 backdrop-blur-md flex items-center justify-center text-white transition-all shadow-sm cursor-pointer"
+            class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/25 backdrop-blur-md flex items-center justify-center text-[#FEDF00] transition-all shadow-sm cursor-pointer"
             :aria-label="translate('Notifications')"
             @click="showDemoMessage(translate('No new notifications'))"
           >
-            <Bell class="w-4 h-4 text-white" />
+            <Bell class="w-5 h-5 text-[#FEDF00]" />
           </button>
         </div>
       </header>
@@ -111,16 +105,16 @@ onBeforeUnmount(() => {
         <div class="me-frosted-card mx-auto max-w-xl rounded-[20px] p-4 lg:p-6 bg-white/[0.14] backdrop-blur-xl border border-white/25 shadow-0 ">
           <!-- User Avatar Silhouette -->
           <div class="w-14 h-14 rounded-full border border-white/30 bg-white/10 flex items-center justify-center mx-auto mb-3 ">
-            <UserRound class="w-7 h-7 text-white/90" :stroke-width="1.8" />
+            <UserRound class="w-7 h-7 text-white/70" :stroke-width="2" />
           </div>
 
           <!-- Login & Sign Up Pill Buttons -->
-          <div class="grid grid-cols-2 gap-3 mb-3">
+          <div class="mx-auto mb-3 grid w-full max-w-[282px] grid-cols-2 gap-3">
             <a
               :href="loginUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/20 text-white font-medium text-[14px] flex items-center justify-center transition-all shadow-sm"
+              class="h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/20 text-white font-medium text-[14px] flex items-center justify-center transition-all shadow-sm max-w-[135px]"
             >
               {{ translate('Login') }}
             </a>
@@ -128,7 +122,7 @@ onBeforeUnmount(() => {
               :href="bybetRedirectRegister"
               target="_blank"
               rel="noopener noreferrer"
-              class="h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/20 text-white font-medium text-[14px] flex items-center justify-center transition-all shadow-sm"
+              class="h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/20 text-white font-medium text-[14px] flex items-center justify-center transition-all shadow-sm  max-w-[135px]"
             >
               {{ translate('Sign Up') }}
             </a>
@@ -1011,23 +1005,6 @@ onBeforeUnmount(() => {
   .me-mobile-view {
     position: relative;
     isolation: isolate;
-  }
-
-  .me-hero-background {
-    position: sticky;
-    top: 0;
-    z-index: -1;
-    height: 0;
-    pointer-events: none;
-  }
-
-  .me-hero-background::before {
-    content: '';
-    position: absolute;
-    inset: 0 0 auto;
-    height: 300px;
-    background: #0d6047 url('/images/me/me-bg.webp') right top / 100% auto no-repeat;
-    border-radius: 0 0 20px 20px;
   }
 
   .me-mobile-header {

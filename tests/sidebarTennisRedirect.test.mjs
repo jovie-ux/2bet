@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
 
-import { resolveTennisRedirectUrl } from '../utils/sportsRedirect.ts'
+import { resolveTennisRedirectUrl, getEnvRedirectUrl } from '../utils/sportsRedirect.ts'
 
 describe('Sidebar Tennis External Redirect Suite', () => {
   test('Case 1: Standard URL correctly resolves to inplay tennis path with p=xjSD parameter', () => {
@@ -24,9 +24,10 @@ describe('Sidebar Tennis External Redirect Suite', () => {
     assert.equal(result, 'https://staging.bybet.com/sportEvents/inplay/tennis?p=xjSD')
   })
 
-  test('Case 4: Empty or undefined bybetRedirectUrl falls back to https://bybet.com/sportEvents/inplay/tennis?p=xjSD', () => {
-    assert.equal(resolveTennisRedirectUrl(''), 'https://bybet.com/sportEvents/inplay/tennis?p=xjSD')
-    assert.equal(resolveTennisRedirectUrl(undefined), 'https://bybet.com/sportEvents/inplay/tennis?p=xjSD')
+  test('Case 4: Empty or undefined bybetRedirectUrl falls back to configured URL with sportEvents/inplay/tennis?p=xjSD', () => {
+    const expected = `${getEnvRedirectUrl()}/sportEvents/inplay/tennis?p=xjSD`
+    assert.equal(resolveTennisRedirectUrl(''), expected)
+    assert.equal(resolveTennisRedirectUrl(undefined), expected)
   })
 
   test('Case 5: data/homepage.ts defines Tennis item using inline inplay tennis URL with external flag', () => {

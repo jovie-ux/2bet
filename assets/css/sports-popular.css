@@ -102,3 +102,24 @@
 .sports-page--popular .sports-navigation {
   padding-bottom: 0;
 }
+
+@media (max-width: 63.99rem) {
+  .sports-page--popular .sports-tabs {
+    height: 36px;
+    min-height: 36px;
+    gap: 8px;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+  .sports-page--popular .sports-tabs > a {
+    height: 36px;
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid #737373;
+    border-radius: 20px;
+    background: #171717;
+  }
+  .sports-page--popular .sports-tabs > a.selected { border-color: #39ae6c; }
+  .sports-page--popular .sports-time-filters { margin-bottom: 0; }
+}

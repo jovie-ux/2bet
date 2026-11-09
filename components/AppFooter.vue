@@ -93,8 +93,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <footer id="support" class="app-footer w-full text-[#8e9491] select-none border-t border-white/[0.04] mt-4 ">
-    <div class="footer-inner max-w-5xl mx-auto px-4 sm:px-6  pb-20 sm:pb-12">
+  <footer id="support" class="app-footer  w-full text-[#8e9491] select-none border-t border-white/[0.04] mt-1 sm:mt-4 px-3 sm:px-0">
+    <div class="footer-inner max-w-5xl mx-auto bg-[#141414] sm:bg-transparent rounded-xl px-4 sm:px-6  pb-20 sm:pb-12">
       <!-- Section 1: Special Promotion -->
       <div class="footer-accordion-item border-b border-white/[0.06] py-3.5">
         <button

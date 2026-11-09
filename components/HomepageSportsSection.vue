@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowUpRight, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import HomepageContentSlider from '~/components/HomepageContentSlider.vue'
 import HomepageSportsCard from '~/components/HomepageSportsCard.vue'
 import { getTournamentLogo } from '~/data/sports'
@@ -11,25 +11,39 @@ const filters = [
   { key: 'all', label: 'All Sports' },
   { key: 'soccer', label: 'Football' },
   { key: 'basketball', label: 'Basketball' },
+  { key: 'baseball', label: 'Baseball' },
   { key: 'tennis', label: 'Tennis' },
 ] as const
-const activeSport = ref<(typeof filters)[number]['key']>('basketball')
-const selectedDate = ref('all')
-const { timeZone } = useTimeZonePreference()
-const availableFixtures = computed(() => props.fixtures.filter(fixture => fixture.home_team && fixture.away_team))
-const fixtureCount = (sport: string) => availableFixtures.value.filter(fixture => sport === 'all' || fixture.sport_key.startsWith(`${sport}_`)).length
-const sportLabel = computed(() => filters.find(filter => filter.key === activeSport.value)!.label)
-const sportMatches = computed(() => availableFixtures.value.filter(fixture => activeSport.value === 'all' || fixture.sport_key.startsWith(`${activeSport.value}_`)))
-const dateKey = (date: string) => new Intl.DateTimeFormat('en-CA', { timeZone: timeZone.value }).format(new Date(date))
-const dateOptions = computed(() => [...new Map(sportMatches.value.map(fixture => [
-  dateKey(fixture.commence_time),
-  new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: timeZone.value }).format(new Date(fixture.commence_time)),
-])).entries()].sort(([a], [b]) => a.localeCompare(b)))
-const matches = computed(() => sportMatches.value.filter(fixture => selectedDate.value === 'all' || dateKey(fixture.commence_time) === selectedDate.value))
-const currentFixture = (position: number) => matches.value[position - 1] || matches.value[0]
-const currentSport = (position: number) => filters.find(filter => filter.key === currentFixture(position)?.sport_key.split('_')[0])?.label || 'Sports'
+const activeSport = ref<(typeof filters)[number]['key']>('all')
 
-watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
+function matchesSportFilter(fixture: SportsEvent, filterKey: string): boolean {
+  if (filterKey === 'all') return true
+  const rawSport = (fixture.sport || fixture.sport_key?.split('_')[0] || '').toLowerCase()
+  if (filterKey === 'soccer') {
+    return rawSport === 'soccer' || rawSport === 'football'
+  }
+  return rawSport === filterKey
+}
+
+const availableFixtures = computed(() => props.fixtures.filter(fixture => fixture.home_team && fixture.away_team))
+const fixtureCount = (sport: string) => availableFixtures.value.filter(fixture => matchesSportFilter(fixture, sport)).length
+const sportLabel = computed(() => filters.find(filter => filter.key === activeSport.value)?.label || 'All Sports')
+const matches = computed(() => availableFixtures.value.filter(fixture => matchesSportFilter(fixture, activeSport.value)))
+const currentFixture = (position: number) => matches.value[position - 1] || matches.value[0]
+const currentSport = (position: number) => {
+  const fixture = currentFixture(position)
+  if (!fixture) return 'Sports'
+  const rawSport = (fixture.sport || fixture.sport_key?.split('_')[0] || '').toLowerCase()
+  if (rawSport === 'soccer' || rawSport === 'football') return 'Football'
+  if (rawSport === 'basketball') return 'Basketball'
+  if (rawSport === 'baseball') return 'Baseball'
+  if (rawSport === 'tennis') return 'Tennis'
+  return 'Sports'
+}
+const viewAllTarget = computed(() => {
+  if (activeSport.value === 'all') return '/explore/sports/live'
+  return `/explore/sports/${activeSport.value}/inplay`
+})
 </script>
 
 <template>
@@ -38,12 +52,12 @@ watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
     class="homepage-sports-section"
     :title="translate('Sports')"
     :description="translate('Big games. Your front-row seat.')"
-    view-all-to="/explore/sports/popular/league"
+    :view-all-to="viewAllTarget"
     :view-all-label="translate('Explore sports')"
     :item-count="matches.length"
     :visible-cards="3"
     :items-per-slide="1"
-    :reset-key="`${activeSport}:${selectedDate}:${timeZone}`"
+    :reset-key="`${activeSport}:${matches.length}`"
   >
     <template #header="{ firstVisible, atStart, atEnd, move }">
       <header class="sports-header flex items-center justify-between">
@@ -51,7 +65,7 @@ watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
           <h2 id="sports-title" class="flex items-center"><img src="/icons/sports/popular.webp" class="allgames-heading-symbol allgames-heading-image" :alt="translate('Sports')" width="28" height="28">{{ translate('Sports') }}</h2>
           <p>{{ translate('Big games. Your front-row seat.') }}</p>
         </div>
-        <NuxtLink to="/explore/sports/popular/league" class="sports-explore inline-flex items-center">{{ translate('Explore sports') }} <ArrowUpRight :size="18" aria-hidden="true" /></NuxtLink>
+        <NuxtLink :to="viewAllTarget" class="sports-explore inline-flex items-center">{{ translate('Explore sports') }} <ArrowUpRight :size="18" aria-hidden="true" /></NuxtLink>
       </header>
 
       <aside class="sports-browse">
@@ -69,7 +83,7 @@ watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
       </aside>
 
       <div class="sports-toolbar flex items-center justify-between">
-        <h3 class="sports-fixtures-title flex items-center"><strong>{{ currentFixture(firstVisible)?.sport_title || translate(sportLabel) }}</strong><span aria-hidden="true">·</span><span>{{ translate('Upcoming fixtures') }}</span></h3>
+        <h3 class="sports-fixtures-title flex items-center"><strong>{{ currentFixture(firstVisible)?.sport_title || translate(sportLabel) }}</strong><span aria-hidden="true">·</span><span>{{ translate('In-Play') }}</span></h3>
         <div class="sports-tools flex items-center">
           <div class="sports-controls flex items-center" :aria-label="translate('Sports slider controls')">
             <button type="button" :disabled="atStart" :aria-label="translate('Previous Sports items')" aria-controls="sports-track" @click="move(-1)"><ChevronLeft :size="17" aria-hidden="true" /></button>
@@ -81,7 +95,7 @@ watch([activeSport, timeZone], () => { selectedDate.value = 'all' })
 
     <template #default="{ firstVisible }">
       <HomepageSportsCard v-for="(fixture, index) in matches" :key="fixture.id" :fixture="fixture" :highlighted="index === firstVisible - 1" />
-      <div v-if="!matches.length" class="sports-empty" role="status">{{ translate('No fixtures are available for this date.') }}</div>
+      <div v-if="!matches.length" class="sports-empty" role="status">{{ translate('No in-play fixtures are available right now.') }}</div>
     </template>
 
     <template #footer="{ firstVisible }">

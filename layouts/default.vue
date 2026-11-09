@@ -234,7 +234,7 @@ onBeforeUnmount(() => {
 
     <div class="content-layout">
       <div class="content-main-area">
-        <main ref="pageContentElement" class="page-content pt-0">
+        <main ref="pageContentElement" class="page-content pt-0 ml-1.5  sm:ml-0">
           <MobileLivePlazaHeader v-if="isLivePlazaPage && normalizedPath !== '/explore/live-plaza/experts'" />
           <slot />
         </main>
@@ -512,6 +512,33 @@ onBeforeUnmount(() => {
   .site-shell--me,
   .site-shell--dedicated-header {
     padding-top: 0 !important;
+  }
+
+  .site-shell--me .content-main-area {
+    position: relative;
+    isolation: isolate;
+    background: #0e0f0e;
+  }
+
+  .site-shell--me .content-main-area::before {
+    content: '';
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 0;
+    height: 300px;
+    border-radius: 0 0 20px 20px;
+    background: #0d6047 url('/images/me/me-bg.webp') right top / 100% auto no-repeat;
+    pointer-events: none;
+  }
+
+  .site-shell--me .page-content {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+  }
+
+  .site-shell--me .content-main-area :deep(.app-footer) {
+    background: transparent !important;
   }
 
   .site-shell--live-plaza :deep(.seo-header-sticky-wrapper) {

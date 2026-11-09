@@ -94,7 +94,7 @@ const filters: Array<{
 .sport-filter--active,
 .sport-filter--active:hover {
   color: #ffffff;
-  background: #047a58;
+  background: var(--main-color);
 }
 
 .sport-filter__all-icon {
