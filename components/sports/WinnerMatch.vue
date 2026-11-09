@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
-const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
-import { Share2, Star, Lock } from 'lucide-vue-next'
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
+import { MessageCircle, Share2, Star } from 'lucide-vue-next'
 import type { SportsEvent } from '~/types/sports'
 import ShareMatchModal from '~/components/modals/ShareMatchModal.vue'
 
@@ -223,7 +223,7 @@ const copyMatchLink = async (): Promise<void> => {
             <strong>{{ market.outcome!.price.toFixed(2) }}</strong>
           </template>
           <span v-else class="flex items-center justify-center w-full h-full py-2">
-            <Lock :size="14" class="text-neutral-400 opacity-70" aria-hidden="true" />
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-neutral-400 opacity-70" aria-hidden="true"><path d="M10.0003 18.3332C13.222 18.3332 15.8337 15.7215 15.8337 12.4998C15.8337 9.27818 13.222 6.6665 10.0003 6.6665C6.77866 6.6665 4.16699 9.27818 4.16699 12.4998C4.16699 15.7215 6.77866 18.3332 10.0003 18.3332Z" stroke="currentColor" stroke-width="1.4" class="stroke-dividers-1"></path><path d="M12.9163 7.49984V4.58317C12.9163 2.97234 11.6105 1.6665 9.99967 1.6665C8.38884 1.6665 7.08301 2.97234 7.08301 4.58317V7.49984" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" class="stroke-dividers-1"></path><path d="M10 10.8335V14.1668" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="stroke-dividers-1"></path></svg>
           </span>
         </button>
       </div>
@@ -252,7 +252,7 @@ const copyMatchLink = async (): Promise<void> => {
           <strong>{{ outcome.price!.toFixed(2) }}</strong>
         </template>
         <span v-else class="flex items-center justify-center w-full h-full py-2">
-          <Lock :size="14" class="text-neutral-400 opacity-70" aria-hidden="true" />
+          <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-neutral-400 opacity-70" aria-hidden="true"><path d="M10.0003 18.3332C13.222 18.3332 15.8337 15.7215 15.8337 12.4998C15.8337 9.27818 13.222 6.6665 10.0003 6.6665C6.77866 6.6665 4.16699 9.27818 4.16699 12.4998C4.16699 15.7215 6.77866 18.3332 10.0003 18.3332Z" stroke="currentColor" stroke-width="1.4" class="stroke-dividers-1"></path><path d="M12.9163 7.49984V4.58317C12.9163 2.97234 11.6105 1.6665 9.99967 1.6665C8.38884 1.6665 7.08301 2.97234 7.08301 4.58317V7.49984" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" class="stroke-dividers-1"></path><path d="M10 10.8335V14.1668" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="stroke-dividers-1"></path></svg>
         </span>
       </button>
     </div>

@@ -33,8 +33,8 @@ const visiblePredictors = computed(() => {
     })
     .slice(0, 10)
 })
-const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
-const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 
 useAppSeo({
   title: 'Previsões de Apostas Esportivas com Alta Precisão | 2bet',
@@ -100,7 +100,7 @@ const filteredPredictions = computed(() => {
   return predictions
 })
 
-const visiblePredictions = computed(() => filteredPredictions.value.slice(0, 10))
+const visiblePredictions = computed(() => filteredPredictions.value)
 
 const redirectTo2Bet = (): void => {
   void navigateTo(bybetRedirectUrl, { external: true })
@@ -125,7 +125,6 @@ const selectPredictionSort = (sort: PredictionSort): void => {
   predictionSort.value = sort
   sortMenuOpen.value = false
   const label = predictionSortOptions.find(option => option.value === sort)?.label ?? 'Featured'
-  showDemoMessage(`Sorted by ${label}`)
 }
 
 const handleDocumentClick = (event: MouseEvent): void => {

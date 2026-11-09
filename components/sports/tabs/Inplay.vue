@@ -22,7 +22,7 @@ const emit = defineEmits<{
 
 const route = useRoute()
 const { translate } = useSitePreferences()
-const oddsCols = computed<2 | 3>(() => route.params.sport === 'soccer' ? 3 : 2)
+const oddsCols = computed<2 | 3>(() => ['soccer', 'football'].includes(String(route.params.sport)) ? 3 : 2)
 
 const search = ref('')
 const sortBy = ref<'league' | 'time'>('time')

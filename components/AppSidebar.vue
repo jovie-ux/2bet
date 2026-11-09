@@ -63,9 +63,13 @@ const getItemLabel = (item: RailItem): string => {
   return translate(item.label)
 }
 
-const getItemAttributes = (item: RailItem): Record<string, string> => {
+const getItemAttributes = (item: RailItem): Record<string, string | boolean> => {
   if (item.to) {
-    return { to: item.to }
+    const isExt = Boolean(item.external || item.to.startsWith('http://') || item.to.startsWith('https://'))
+    return {
+      to: item.to,
+      ...(isExt ? { external: true } : {}),
+    }
   }
 
   if (item.sectionId && !isExpandable(item)) {
@@ -73,6 +77,28 @@ const getItemAttributes = (item: RailItem): Record<string, string> => {
   }
 
   return { type: 'button' }
+}
+
+const getSubmenuItemAttributes = (childItem: RailSubItem): Record<string, string | boolean> => {
+  if (childItem.underMaintenance || childItem.showFundsModal || childItem.label.toLowerCase() === 'funds') {
+    return { type: 'button' }
+  }
+
+  const isExt = Boolean(childItem.external || childItem.to.startsWith('http://') || childItem.to.startsWith('https://'))
+  return {
+    to: childItem.to,
+    ...(isExt ? { external: true } : {}),
+  }
+}
+
+const isSubmenuItemActive = (childItem: RailSubItem): boolean => {
+  if (childItem.underMaintenance || childItem.showFundsModal || childItem.label.toLowerCase() === 'funds') {
+    return false
+  }
+  if (childItem.external || childItem.to.startsWith('http://') || childItem.to.startsWith('https://')) {
+    return false
+  }
+  return route.path === childItem.to || route.path.startsWith(`${childItem.to}/`)
 }
 
 const isItemActive = (item: RailItem): boolean => {
@@ -210,9 +236,12 @@ onBeforeUnmount(() => {
               :is="childItem.underMaintenance || childItem.showFundsModal || childItem.label.toLowerCase() === 'funds' ? 'button' : nuxtLinkComponent"
               v-for="childItem in item.children"
               :key="childItem.to"
-              v-bind="childItem.underMaintenance || childItem.showFundsModal || childItem.label.toLowerCase() === 'funds' ? { type: 'button' } : { to: childItem.to }"
+              v-bind="getSubmenuItemAttributes(childItem)"
               class="rail-submenu-link"
-              :class="{ 'rail-submenu-link--active': !childItem.underMaintenance && !childItem.showFundsModal && childItem.label.toLowerCase() !== 'funds' && (route.path === childItem.to || route.path.startsWith(`${childItem.to}/`)), 'rail-submenu-link--maintenance': childItem.underMaintenance }"
+              :class="{
+                'rail-submenu-link--active': isSubmenuItemActive(childItem),
+                'rail-submenu-link--maintenance': childItem.underMaintenance,
+              }"
               :aria-haspopup="childItem.underMaintenance || childItem.showFundsModal || childItem.label.toLowerCase() === 'funds' ? 'dialog' : undefined"
               :title="translate(childItem.label)"
               :aria-label="translate(childItem.label)"

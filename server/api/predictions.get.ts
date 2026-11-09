@@ -1,182 +1,180 @@
 import type { H3Event } from 'h3'
-import { EXPERT_PREDICTORS } from '~/data/predictions'
-import type {
-  Prediction,
-  PredictionMarketType,
-  PredictionOption,
-  PredictionsResponse,
-  PredictionSport,
-} from '~/data/predictions'
-import { createOddsApi } from '~/server/utils/oddsApi'
-import type { SportsEvent } from '~/types/sports'
+import { EXPERT_PREDICTORS, type Prediction, type PredictionOption, type PredictionsResponse } from '~/data/predictions'
+import { getActiveUpcomingPredictions } from '~/server/utils/dailyPredictions/storage'
+import { runDailyPredictionRefresh } from '~/server/utils/dailyPredictions/refreshService'
+import { hashString } from '~/server/utils/dailyPredictions/marketGrouping'
+import type { DailyPredictionRecord } from '~/server/types/dailyPredictions'
+import {
+  formatManilaTime,
+  formatPublishedDate,
+  getManilaDateStr,
+  toManilaIsoString,
+} from '~/server/utils/dailyPredictions/time'
 
-interface OddsOutcome {
-  name: string
-  price: number
-  point?: number
+function toMarketLabel(market: string): '1X2' | 'Over / Under' | 'Handicap' {
+  const m = market.toLowerCase().trim()
+  if (m === '1x2') return '1X2'
+  if (m === 'ou') return 'Over / Under'
+  return 'Handicap'
 }
 
-interface PredictionCandidate {
-  event: SportsEvent
-  bookmaker: string
-  marketKey: string
-  marketType: PredictionMarketType
-  sport: PredictionSport
-  options: [PredictionOption, PredictionOption]
+function clampHitRate(rate: number): number {
+  if (rate >= 50) {
+    return Math.round((36.0 + (rate % 13.5)) * 10) / 10
+  }
+  return rate
 }
 
-const TWO_DAYS_MS = 2 * 24 * 60 * 60 * 1000
-
-const toApiTimestamp = (date: Date): string => date.toISOString().replace(/\.\d{3}Z$/, 'Z')
-
-const formatOdd = (price: number): string => price.toFixed(2)
-
-const formatPoint = (point: number): string => {
-  const value = Number.isInteger(point) ? point.toFixed(0) : String(point)
-  return point > 0 ? `+${value}` : value
-}
-
-const getPredictionSport = (sportKey: string): PredictionSport | null => {
-  if (sportKey.startsWith('basketball_')) return 'basketball'
-  if (sportKey.startsWith('soccer_')) return 'soccer'
-  return null
-}
-
-const findOutcome = (outcomes: OddsOutcome[], name: string | null): OddsOutcome | undefined => {
-  if (!name) return undefined
-  return outcomes.find(outcome => outcome.name === name)
-}
-
-const buildOptions = (
-  event: SportsEvent,
-  marketKey: string,
-  outcomes: OddsOutcome[],
-): Pick<PredictionCandidate, 'marketType' | 'options'> | null => {
-  if (marketKey === 'h2h') {
-    const home = findOutcome(outcomes, event.home_team)
-    const away = findOutcome(outcomes, event.away_team)
-    if (!home || !away) return null
-
-    return {
-      marketType: '1X2',
-      options: [
-        { label: 'H', odd: formatOdd(home.price) },
-        { label: 'A', odd: formatOdd(away.price) },
-      ],
-    }
+export function buildMarketOptions(record: DailyPredictionRecord): PredictionOption[] {
+  // 1. Try parsing pre-stored options from market_group_ids
+  if (record.market_group_ids) {
+    try {
+      const parsed = JSON.parse(record.market_group_ids)
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        if (typeof parsed[0] === 'object' && parsed[0] !== null && parsed[0].label && parsed[0].odd) {
+          return parsed.map((item: any) => ({
+            label: String(item.label),
+            odd: typeof item.odd === 'number' ? item.odd.toFixed(2) : String(item.odd),
+          }))
+        }
+      }
+    } catch {}
   }
 
-  if (marketKey === 'totals') {
-    const over = outcomes.find(outcome => outcome.name.toLowerCase() === 'over')
-    const under = outcomes.find(outcome => outcome.name.toLowerCase() === 'under')
-    if (!over || !under || over.point == null || under.point == null) return null
+  const mkt = (record.market_type || '').toLowerCase().trim()
+  const sel = (record.selection || '').trim()
+  const baseOdd = record.current_odds || 1.85
+  const line = record.line && record.line !== '-' ? record.line : null
+  const seed = Math.abs(hashString(record.id))
 
-    return {
-      marketType: 'Over / Under',
-      options: [
-        { label: `Over${formatPoint(over.point)}`, odd: formatOdd(over.price) },
-        { label: `Under${formatPoint(under.point)}`, odd: formatOdd(under.price) },
-      ],
-    }
-  }
+  // 2. Handicap (AH): Both Home and Away should have data
+  if (mkt === 'ah') {
+    const rawLine = line ? line.replace('+', '') : '-1.5'
+    const numLine = parseFloat(rawLine) || 1.5
+    const absLine = Math.abs(numLine)
 
-  if (marketKey === 'spreads') {
-    const home = findOutcome(outcomes, event.home_team)
-    const away = findOutcome(outcomes, event.away_team)
-    if (!home || !away || home.point == null || away.point == null) return null
+    let homeLineStr = `-${absLine}`
+    let awayLineStr = `+${absLine}`
 
-    return {
-      marketType: 'Handicap',
-      options: [
-        { label: formatPoint(home.point), odd: formatOdd(home.price) },
-        { label: formatPoint(away.point), odd: formatOdd(away.price) },
-      ],
-    }
-  }
-
-  return null
-}
-
-const getCandidates = (events: SportsEvent[]): PredictionCandidate[] => {
-  const candidates: PredictionCandidate[] = []
-
-  for (const event of events) {
-    const sport = getPredictionSport(event.sport_key)
-    if (!sport || !event.home_team || !event.away_team) continue
-
-    for (const bookmaker of event.bookmakers ?? []) {
-      for (const market of bookmaker.markets ?? []) {
-        const result = buildOptions(event, market.key, market.outcomes)
-        if (!result) continue
-
-        candidates.push({
-          event,
-          bookmaker: bookmaker.key,
-          marketKey: market.key,
-          sport,
-          ...result,
-        })
+    if (line) {
+      if (sel.toLowerCase() === 'home') {
+        homeLineStr = line.startsWith('+') || line.startsWith('-') ? line : (numLine > 0 ? `+${numLine}` : `${numLine}`)
+        awayLineStr = homeLineStr.startsWith('-') ? `+${absLine}` : `-${absLine}`
+      } else {
+        awayLineStr = line.startsWith('+') || line.startsWith('-') ? line : (numLine > 0 ? `+${numLine}` : `${numLine}`)
+        homeLineStr = awayLineStr.startsWith('-') ? `+${absLine}` : `-${absLine}`
       }
     }
+
+    const counterOdd = Math.round((3.80 - baseOdd + ((seed % 15) - 7) / 100) * 100) / 100
+    const safeCounterOdd = Math.max(1.50, Math.min(2.55, counterOdd))
+
+    const isHomePick = sel.toLowerCase() === 'home'
+    const homeOdd = isHomePick ? baseOdd : safeCounterOdd
+    const awayOdd = isHomePick ? safeCounterOdd : baseOdd
+
+    return [
+      { label: `Home ${homeLineStr}`, odd: homeOdd.toFixed(2) },
+      { label: `Away ${awayLineStr}`, odd: awayOdd.toFixed(2) },
+    ]
   }
 
-  return candidates
+  // 3. Over / Under (OU): Both Over and Under should have data
+  if (mkt === 'ou') {
+    const defaultLine = record.sport === 'basketball' ? '194.5' : '2.5'
+    const ouLine = line || defaultLine
+    const counterOdd = Math.round((3.75 - baseOdd + ((seed % 15) - 7) / 100) * 100) / 100
+    const safeCounterOdd = Math.max(1.50, Math.min(2.50, counterOdd))
+
+    const isOverPick = sel.toLowerCase() === 'over'
+    const overOdd = isOverPick ? baseOdd : safeCounterOdd
+    const underOdd = isOverPick ? safeCounterOdd : baseOdd
+
+    return [
+      { label: `Over ${ouLine}`, odd: overOdd.toFixed(2) },
+      { label: `Under ${ouLine}`, odd: underOdd.toFixed(2) },
+    ]
+  }
+
+  // 4. 1X2: Must show H, D, A odds
+  let homeOdd = 1.95
+  let drawOdd = 3.40
+  let awayOdd = 3.80
+  const drawBase = Math.round((3.20 + (seed % 40) / 100) * 100) / 100
+
+  if (sel.toLowerCase() === 'home') {
+    homeOdd = baseOdd
+    drawOdd = drawBase
+    const awayCalculated = Math.round((1 / Math.max(0.05, 1 - (1 / homeOdd) - (1 / drawOdd)) * 0.95) * 100) / 100
+    awayOdd = Math.max(1.80, Math.min(6.50, awayCalculated))
+  } else if (sel.toLowerCase() === 'away') {
+    awayOdd = baseOdd
+    drawOdd = drawBase
+    const homeCalculated = Math.round((1 / Math.max(0.05, 1 - (1 / awayOdd) - (1 / drawOdd)) * 0.95) * 100) / 100
+    homeOdd = Math.max(1.80, Math.min(6.50, homeCalculated))
+  } else {
+    // Draw pick
+    drawOdd = baseOdd
+    homeOdd = Math.round((2.35 + (seed % 30) / 100) * 100) / 100
+    awayOdd = Math.round((2.75 + (seed % 40) / 100) * 100) / 100
+  }
+
+  return [
+    { label: 'H', odd: homeOdd.toFixed(2) },
+    { label: 'D', odd: drawOdd.toFixed(2) },
+    { label: 'A', odd: awayOdd.toFixed(2) },
+  ]
 }
 
-const formatMatchTime = (value: string): string => {
-  const parts = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'Asia/Manila',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  }).formatToParts(new Date(value))
-  const part = (type: Intl.DateTimeFormatPartTypes): string => (
-    parts.find(item => item.type === type)?.value ?? ''
-  )
+export default defineEventHandler(async (event: H3Event): Promise<PredictionsResponse> => {
+  const today = getManilaDateStr()
+  let records = await getActiveUpcomingPredictions(today)
 
-  return `${part('month')}-${part('day')} ${part('hour')}:${part('minute')}`
-}
+  if (records.length === 0) {
+    try {
+      await runDailyPredictionRefresh({ dateStr: today })
+      records = await getActiveUpcomingPredictions(today)
+    } catch (err) {
+      console.warn('[predictions.get] Refresh attempt error:', err)
+    }
+  }
 
-const randomItem = <T>(items: T[]): T => items[Math.floor(Math.random() * items.length)]!
+  const predictions: Prediction[] = records.map((record, index) => {
+    const predictor = EXPERT_PREDICTORS[index % EXPERT_PREDICTORS.length]
 
-export default defineCachedEventHandler(async (event: H3Event): Promise<PredictionsResponse> => {
+    return {
+      id: record.id,
+      matchId: record.match_id,
+      predictorId: predictor.id,
+      predictorName: predictor.predictorName,
+      predictorAvatar: predictor.predictorAvatar,
+      publishedAgo: formatPublishedDate(record.id),
+      hitRate: clampHitRate(record.hit_rate),
+      winStreak: predictor.winStreak || `${Math.max(3, Math.floor(clampHitRate(record.hit_rate) / 12))} Wins`,
+      marketType: toMarketLabel(record.market_type),
+      sport: record.sport === 'football' ? 'soccer' : 'basketball',
+      league: record.competition_name,
+      competitionLogo: record.competition_logo || '',
+      matchTime: formatManilaTime(record.match_time_utc),
+      matchTimeUtc: record.match_time_utc,
+      homeTeam: record.home_team_name,
+      homeTeamLogo: record.home_team_logo || '',
+      awayTeam: record.away_team_name,
+      awayTeamLogo: record.away_team_logo || '',
+      selection: record.selection,
+      line: record.line,
+      currentOdds: record.current_odds,
+      options: buildMarketOptions(record),
+    }
+  })
+
   const now = new Date()
-  const twoDaysFromNow = new Date(now.getTime() + TWO_DAYS_MS)
-  const commenceTimeFrom = toApiTimestamp(now)
-  const commenceTimeTo = toApiTimestamp(twoDaysFromNow)
+  const commenceTimeFrom = toManilaIsoString(now)
+  const commenceTimeTo = toManilaIsoString(new Date(now.getTime() + 24 * 60 * 60 * 1000))
 
-  const config = useRuntimeConfig(event)
-  const odds = createOddsApi(String(config.oddsApi), String(config.oddsApiKey))
-  const events = await odds.upcoming({ commenceTimeFrom, commenceTimeTo })
-  const candidates = getCandidates(events)
-
-  const predictions: Prediction[] = candidates.length === 0
-    ? []
-    : EXPERT_PREDICTORS.map((predictor) => {
-        const candidate = randomItem(candidates)
-        const publishedHours = Math.floor(Math.random() * 23) + 1
-
-        return {
-          id: `${predictor.id}-${candidate.event.id}-${candidate.bookmaker}-${candidate.marketKey}`,
-          predictorId: predictor.id,
-          predictorName: predictor.predictorName,
-          predictorAvatar: predictor.predictorAvatar,
-          publishedAgo: `Published ${publishedHours} hour${publishedHours === 1 ? '' : 's'} ago`,
-          hitRate: predictor.hitRate,
-          winStreak: predictor.winStreak,
-          marketType: candidate.marketType,
-          sport: candidate.sport,
-          league: candidate.event.sport_title,
-          matchTime: formatMatchTime(candidate.event.commence_time),
-          homeTeam: candidate.event.home_team!,
-          awayTeam: candidate.event.away_team!,
-          options: candidate.options,
-        }
-      })
-
-  return { predictions, commenceTimeFrom, commenceTimeTo }
-}, {
-  maxAge: 5 * 60,
+  return {
+    predictions,
+    commenceTimeFrom,
+    commenceTimeTo,
+  }
 })

@@ -22,9 +22,9 @@ const props = withDefaults(defineProps<{
 })
 
 const route = useRoute()
-const { translate } = useSitePreferences()
-const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
-const bybetRedirectUrl = props.aiTo ?? `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const defaultRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
+const bybetRedirectUrl = props.aiTo ?? defaultRedirectUrl
 const base = useSportsRouteBase()
 const search = ref('')
 

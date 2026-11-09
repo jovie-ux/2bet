@@ -2,8 +2,8 @@
 import SubpageHeader from '~/components/SubpageHeader.vue'
 
 const { showDemoMessage } = useDemoInteraction()
-const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
-const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 
 useAppSeo({
   title: 'Baixar Aplicativo Oficial — Download APK no Celular | 2bet',

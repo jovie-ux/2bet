@@ -2,8 +2,12 @@
 import type { SportsEvent } from '~/types/sports'
 import { sportsTimeRange } from '~/utils/sportsTimeRange'
 import { matchesSportsSelection } from '~/utils/sportsSelection'
-const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
-const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+import {
+  getSportsTabRedirectPath,
+  resolveSportsTabRedirectUrl,
+} from '~/utils/sportsRedirect'
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 import {
   Trophy,
   Radio,
@@ -28,11 +32,13 @@ import '~/assets/css/sports.css'
 import '~/assets/css/sports-popular.css'
 
 const props = withDefaults(defineProps<{
-  selectedSports: string[]
+  selectedSports?: string[]
   popularLeagues?: string[]
   selectedTournaments?: Record<string, string[]>
   initialTab?: string
 }>(), {
+  selectedSports: () => ['Basketball', 'Soccer', 'Tennis', 'Baseball'],
+  popularLeagues: () => [],
   selectedTournaments: () => ({}),
 })
 
@@ -52,8 +58,8 @@ const tabs = [
 ] as const
 
 const visibleTabs = computed(() => tabs.filter(tab => {
-  if (isPopular.value) return tab.key !== 'replay'
-  return sportsRouteBase.value === '/explore/sports/soccer' || tab.key !== 'replay'
+  if (isPopular.value) return !['inplay', 'replay'].includes(tab.key)
+  return ['/explore/sports/soccer', '/explore/sports/football'].includes(sportsRouteBase.value) || tab.key !== 'replay'
 }))
 
 const tabLabel = (tab: typeof tabs[number]): string => {
@@ -94,6 +100,15 @@ const activeTab = computed(() => {
   return props.initialTab ?? 'league'
 })
 
+const activeSportKey = computed(() => {
+  if (isPopular.value) return 'popular'
+  const match = sportsRouteBase.value.match(/\/explore\/sports\/([^/]+)/)
+  if (match) return match[1]
+  const param = String(route.params.sport || '')
+  if (param) return param
+  return 'popular'
+})
+
 const tabPath = (key: string): string => {
   const slug = key === 'prematch' ? 'pre-match' : key
   if (sportsRouteBase.value) {
@@ -102,7 +117,38 @@ const tabPath = (key: string): string => {
   return `${route.path}?tab=${slug}`
 }
 
-const redirectsTo2Bet = (key: string): boolean => key === 'smart-pick' || key === 'outright'
+const redirectsToByBet = (key: string): boolean => {
+  if (getSportsTabRedirectPath(activeSportKey.value, key)) {
+    return true
+  }
+  return key === 'smart-pick' || key === 'outright'
+}
+
+const getTabDestination = (key: string): string => {
+  const customRedirect = resolveSportsTabRedirectUrl(
+    activeSportKey.value,
+    key,
+    rawRedirectUrl,
+    bybetRedirectCode,
+  )
+  if (customRedirect) {
+    return customRedirect
+  }
+  if (redirectsToByBet(key)) {
+    return bybetRedirectUrl
+  }
+  return tabPath(key)
+}
+
+const aiRedirectUrl = computed(() => {
+  const smartPickUrl = resolveSportsTabRedirectUrl(
+    activeSportKey.value,
+    'smart-pick',
+    rawRedirectUrl,
+    bybetRedirectCode,
+  )
+  return smartPickUrl || bybetRedirectUrl
+})
 
 const selectedSport = ref('')
 const now = ref(Date.now())
@@ -110,12 +156,24 @@ let timer: ReturnType<typeof setInterval> | undefined
 
 
 
+const routeSportKey = computed(() => {
+  const s = String(route.params.sport || '').toLowerCase()
+  const map: Record<string, string> = { basketball: 'Basketball', soccer: 'Soccer', football: 'Soccer', tennis: 'Tennis', baseball: 'Baseball' }
+  return map[s] ?? ''
+})
+
+const effectiveSelectedSports = computed(() => {
+  if (props.selectedSports && props.selectedSports.length > 0) return props.selectedSports
+  if (routeSportKey.value) return [routeSportKey.value]
+  return ['Basketball', 'Soccer', 'Tennis', 'Baseball']
+})
+
 const {
   data: leagues,
   status: leagueStatus,
   error: leagueError,
   refresh: refreshLeagues,
-} = useFetch('/api/sports', {
+} = await useFetch('/api/sports', {
   query: { mode: 'league' },
 })
 
@@ -128,7 +186,7 @@ const availableSports = computed(() => {
       return false
     }
 
-    if (!props.selectedSports.includes(sport.group)) {
+    if (!effectiveSelectedSports.value.includes(sport.group)) {
       return false
     }
 
@@ -176,7 +234,12 @@ const canLoadFixtures = computed(() => usesLiveCatalog.value || (usesMultipleLea
 const fixtureWindowNow = useState('sports-fixture-window-now', () => Math.floor(Date.now() / 60000) * 60000)
 
 const query = computed(() => ({
-  ...sportsTimeRange(activeTab.value, typeof route.params.date === 'string' ? route.params.date : undefined, typeof route.params.hours === 'string' ? route.params.hours : undefined, fixtureWindowNow.value),
+  ...sportsTimeRange(
+    activeTab.value,
+    typeof route.params.date === 'string' ? route.params.date : undefined,
+    activeTab.value === 'upcoming' ? undefined : (typeof route.params.hours === 'string' ? route.params.hours : undefined),
+    fixtureWindowNow.value,
+  ),
   mode: activeTab.value,
   sport: usesLiveCatalog.value || usesMultipleLeagues.value ? undefined : selectedSport.value,
   sports: usesMultipleLeagues.value ? fixtureSportKeys.value.join(',') : undefined,
@@ -191,15 +254,13 @@ const {
   status: fixtureStatus,
   error: fixtureError,
   execute: loadFixtures,
-} = useFetch('/api/sports', {
+} = await useFetch('/api/sports', {
   query,
   immediate: isFixtureTab.value && canLoadFixtures.value,
   watch: false,
 })
 
-watch(query, () => {
-  fixtures.value = null
-
+watch([query, canLoadFixtures], () => {
   if (isFixtureTab.value && canLoadFixtures.value) {
     void loadFixtures()
   }
@@ -209,7 +270,7 @@ watch(query, () => {
 const filteredSports = availableSports
 
 const groups = computed(() => {
-  return props.selectedSports.filter((group) => {
+  return effectiveSelectedSports.value.filter((group) => {
     return filteredSports.value.some(sport => sport.group === group)
   })
 })
@@ -221,8 +282,8 @@ const inplayEvents = computed(() => {
     .filter((event: SportsEvent) => {
       const start = new Date(event.commence_time).getTime()
       if (event.completed) return false
-      if (!usesLiveCatalog.value) return Boolean(event.scores && start <= now.value)
-      return matchesSportsSelection(event, props.selectedSports, props.selectedTournaments)
+      if (!usesLiveCatalog.value && !(event.scores && start <= now.value)) return false
+      return matchesSportsSelection(event, effectiveSelectedSports.value)
     })
     .sort((a, b) => Date.parse(a.commence_time) - Date.parse(b.commence_time))
 })
@@ -255,6 +316,10 @@ const error = computed(() => {
 })
 
 const selectTab = (key: string): void => {
+  if (redirectsToByBet(key)) {
+    void navigateTo(getTabDestination(key), { external: true })
+    return
+  }
   void navigateTo(tabPath(key))
 }
 
@@ -275,6 +340,13 @@ const refresh = (): void => {
 }
 
 onMounted(() => {
+  if (redirectsToByBet(activeTab.value)) {
+    void navigateTo(getTabDestination(activeTab.value), { external: true })
+    return
+  }
+  if (isFixtureTab.value && canLoadFixtures.value && !fixtures.value) {
+    void loadFixtures()
+  }
   timer = setInterval(() => {
     now.value = Date.now()
     if (usesLiveCatalog.value && fixtureStatus.value !== 'pending') void loadFixtures()
@@ -299,8 +371,8 @@ onBeforeUnmount(() => {
         <NuxtLink
           v-for="tab in visibleTabs"
           :key="tab.key"
-          :to="redirectsTo2Bet(tab.key) ? bybetRedirectUrl : tabPath(tab.key)"
-          :external="redirectsTo2Bet(tab.key)"
+          :to="getTabDestination(tab.key)"
+          :external="redirectsToByBet(tab.key)"
           :class="{ selected: activeTab === tab.key }"
           :aria-current="activeTab === tab.key ? 'page' : undefined"
         >
@@ -336,7 +408,7 @@ onBeforeUnmount(() => {
         v-else-if="activeTab === 'league' && sportsRouteBase !== '/explore/sports/popular'"
         :sports="availableSports"
         :popular-leagues="popularLeagues"
-        :ai-to="bybetRedirectUrl"
+        :ai-to="aiRedirectUrl"
         :loading="loading"
       />
       <League
@@ -345,7 +417,7 @@ onBeforeUnmount(() => {
         :filtered-sports="filteredSports"
         :groups="groups"
         :max-matches-per-group="sportsRouteBase === '/explore/sports/popular' ? 2 : undefined"
-        :ai-to="bybetRedirectUrl"
+        :ai-to="aiRedirectUrl"
         :loading="loading"
       />
       <Inplay
@@ -354,7 +426,7 @@ onBeforeUnmount(() => {
         :available-sports="availableSports"
         :selected-sport="usesLiveCatalog ? undefined : selectedSport"
         @update:selected-sport="selectedSport = $event"
-        :ai-to="bybetRedirectUrl"
+        :ai-to="aiRedirectUrl"
         :loading="loading"
       />
       <Upcoming
@@ -362,7 +434,7 @@ onBeforeUnmount(() => {
         :events="upcomingEvents"
         :available-sports="availableSports"
         v-model:selected-sport="selectedSport"
-        :ai-to="bybetRedirectUrl"
+        :ai-to="aiRedirectUrl"
         :loading="loading"
       />
       <Prematch
@@ -370,7 +442,7 @@ onBeforeUnmount(() => {
         :events="prematchEvents"
         :available-sports="availableSports"
         v-model:selected-sport="selectedSport"
-        :ai-to="bybetRedirectUrl"
+        :ai-to="aiRedirectUrl"
         :loading="loading"
       />
       <OutrightInner
@@ -378,13 +450,13 @@ onBeforeUnmount(() => {
         :filtered-sports="filteredSports"
         :groups="groups"
         :refresh-version="outrightRefreshVersion"
-        :ai-to="bybetRedirectUrl"
+        :ai-to="aiRedirectUrl"
       />
       <Outright
         v-else-if="activeTab === 'outright'"
         :filtered-sports="filteredSports"
         :groups="groups"
-        :ai-to="bybetRedirectUrl"
+        :ai-to="aiRedirectUrl"
         :loading="loading"
       />
     </div>

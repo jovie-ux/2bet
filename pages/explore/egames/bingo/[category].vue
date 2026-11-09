@@ -92,8 +92,16 @@ const filterState = ref({
 })
 
 const { showDemoMessage } = useDemoInteraction()
-const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
-const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
+
+const toggleChat = (): void => {
+  if (commentContext.value) {
+    closeComments()
+  } else {
+    openGameComments()
+  }
+}
 
 const selectCategory = (key: string): void => {
   if (isSearchOpen.value) {
@@ -426,7 +434,7 @@ const displayedGames = computed<BingoGame[]>(() => {
         </div>
         <div
           v-if="searchResults.length > 0"
-          class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2.5"
+          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-[repeat(auto-fill,minmax(150px,165px))] gap-2.5 justify-start"
         >
           <GameCard
             v-for="game in searchResults"
@@ -450,7 +458,7 @@ const displayedGames = computed<BingoGame[]>(() => {
     <div v-if="!isSearchOpen" class="bingo-games-container">
       <div
         v-if="displayedGames.length > 0"
-        class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-2.5"
+        class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-[repeat(auto-fill,minmax(150px,165px))] gap-2.5 justify-start"
       >
         <GameCard
           v-for="game in displayedGames"

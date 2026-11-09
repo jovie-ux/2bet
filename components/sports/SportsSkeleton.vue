@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const route = useRoute()
+const sportsRouteBase = useSportsRouteBase()
+const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular' || route.path.startsWith('/explore/sports/popular'))
+
 withDefaults(defineProps<{
   cards?: number
   matchesPerCard?: number
@@ -17,8 +21,8 @@ withDefaults(defineProps<{
       :key="cardIndex"
       class="overflow-hidden rounded-[10px] bg-[var(--surface,#181c1a)]"
     >
-      <!-- Category banner skeleton: fixed height prevents the results list from jumping. -->
-      <div class="flex min-h-[46px] items-center justify-between bg-[#555] px-4 py-3">
+      <!-- Category banner skeleton: only shown in popular where category banner exists -->
+      <div v-if="isPopular" class="flex min-h-[46px] items-center justify-between bg-[#555] px-4 py-3">
         <div class="h-4 w-32 rounded bg-[#f5f5f5] animate-pulse" />
         <div class="h-7 w-7 rounded-full bg-[#f5f5f5] animate-pulse" />
       </div>

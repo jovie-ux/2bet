@@ -6,7 +6,6 @@ import {
   type PredictionsResponse,
 } from '~/data/predictions'
 import {
-  POPULAR_GAMES,
   type PopularGame,
 } from '~/data/live-plaza'
 import type { LivePlazaSportFilter } from '~/components/live-plaza/LivePlazaSportFilters.vue'
@@ -54,45 +53,103 @@ const popularGameSort = ref<PopularGameSort>('predict')
 const popularSortMenuOpen = ref(false)
 const popularSortControl = ref<HTMLElement | null>(null)
 const popularSortButton = ref<HTMLButtonElement | null>(null)
-const sortByHitRateDesc = ref(false)
 const unlockedIds = ref<Set<string>>(new Set())
 const carouselContainer = ref<HTMLElement | null>(null)
+const nowTimestamp = ref(Date.now())
+let kickoffCheckTimer: ReturnType<typeof setInterval> | null = null
+let pollRefreshTimer: ReturnType<typeof setInterval> | null = null
 
 const selectedPopularSortLabel = computed(() => (
   popularGameSortOptions.find(option => option.value === popularGameSort.value)?.label ?? 'Predict'
 ))
 
-const filteredPopularGames = computed(() => {
-  const games = popularSport.value === 'all'
-    ? [...POPULAR_GAMES]
-    : POPULAR_GAMES.filter(game => game.sport === popularSport.value)
+const upcomingPredictions = computed(() => {
+  const allList = predictionData.value?.predictions ?? []
 
-  if (popularGameSort.value === 'time') {
-    return games.sort((a, b) => `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`))
+  return allList.filter(item => {
+    const rawTime = item.matchTimeUtc || (item as any).match_time
+    if (!rawTime) return true
+
+    const matchTime = new Date(rawTime).getTime()
+    return Number.isNaN(matchTime) || matchTime > nowTimestamp.value
+  })
+})
+
+const generatedPredictCount = (key: string): number => {
+  let hash = 0
+  for (const character of key) {
+    hash = (hash * 31 + character.charCodeAt(0)) >>> 0
+  }
+  return (hash % 10) + 1
+}
+
+const popularGames = computed<PopularGame[]>(() => {
+  const games = new Map<string, PopularGame>()
+
+  for (const prediction of upcomingPredictions.value) {
+    const key = prediction.matchId
+      || `${prediction.sport}:${prediction.league}:${prediction.matchTime}:${prediction.homeTeam}:${prediction.awayTeam}`
+    const existing = games.get(key)
+
+    if (existing) {
+      continue
+    }
+
+    const [date = '', time = ''] = prediction.matchTime.split(/\s+/, 2)
+    const fallbackLogo = prediction.sport === 'basketball'
+      ? '/icons/sports/basketball.webp'
+      : '/icons/sports/soccer.webp'
+
+    games.set(key, {
+      id: key,
+      date,
+      time,
+      league: prediction.league,
+      sport: prediction.sport,
+      predictCount: generatedPredictCount(key),
+      homeTeam: {
+        name: prediction.homeTeam,
+        logo: prediction.homeTeamLogo || fallbackLogo,
+      },
+      awayTeam: {
+        name: prediction.awayTeam,
+        logo: prediction.awayTeamLogo || fallbackLogo,
+      },
+    })
   }
 
-  return games.sort((a, b) => b.predictCount - a.predictCount)
+  return [...games.values()]
+})
+
+const filteredPopularGames = computed(() => {
+  const games = popularSport.value === 'all'
+    ? [...popularGames.value]
+    : popularGames.value.filter(game => game.sport === popularSport.value)
+
+  const sorted = popularGameSort.value === 'time'
+    ? games.sort((a, b) => `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`))
+    : games.sort((a, b) => b.predictCount - a.predictCount)
+
+  return sorted.slice(0, 5)
 })
 
 const filteredPredictions = computed(() => {
-  const predictions = predictionsSport.value === 'all'
-    ? [...(predictionData.value?.predictions ?? [])]
-    : (predictionData.value?.predictions ?? []).filter(item => item.sport === predictionsSport.value)
+  const sportFiltered = upcomingPredictions.value.filter(item => {
+    if (predictionsSport.value === 'all') return true
+    if (predictionsSport.value === 'soccer') {
+      return item.sport === 'soccer' || (item as any).sport === 'football'
+    }
+    if (predictionsSport.value === 'basketball') {
+      return item.sport === 'basketball'
+    }
+    return true
+  })
 
-  if (sortByHitRateDesc.value) {
-    predictions.sort((a, b) => b.hitRate - a.hitRate)
-  }
-
-  return predictions.slice(0, 6)
+  return sportFiltered.slice(0, 6)
 })
 
 const scrollCarousel = (): void => {
   carouselContainer.value?.scrollBy({ left: 275, behavior: 'smooth' })
-}
-
-const togglePredictionSort = (): void => {
-  sortByHitRateDesc.value = !sortByHitRateDesc.value
-  showDemoMessage(sortByHitRateDesc.value ? 'Sorted by highest hit rate' : 'Showing win streak order')
 }
 
 const togglePopularSortMenu = (): void => {
@@ -138,11 +195,30 @@ const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): v
 onMounted(() => {
   document.addEventListener('click', handleDocumentClick)
   document.addEventListener('keydown', handleEscape)
+
+  // Periodically re-evaluate kickoff times (every 15s) so started matches hide immediately
+  kickoffCheckTimer = setInterval(() => {
+    nowTimestamp.value = Date.now()
+  }, 15000)
+
+  // Periodically refresh predictions from backend storage (every 60s)
+  pollRefreshTimer = setInterval(() => {
+    refreshPredictions()
+  }, 60000)
 })
 
 onBeforeUnmount(() => {
   document.removeEventListener('click', handleDocumentClick)
   document.removeEventListener('keydown', handleEscape)
+
+  if (kickoffCheckTimer) {
+    clearInterval(kickoffCheckTimer)
+    kickoffCheckTimer = null
+  }
+  if (pollRefreshTimer) {
+    clearInterval(pollRefreshTimer)
+    pollRefreshTimer = null
+  }
 })
 </script>
 
@@ -243,7 +319,7 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <section class="predictions-block" aria-labelledby="expert-predictions-title">
+    <section class="predictions-block" aria-label="Expert Predictions">
       <div class="predictions-toolbar">
         <div class="panel-heading">
           <h2 id="expert-predictions-title">{{ translate('Expert Predictions') }}</h2>
@@ -554,6 +630,11 @@ onBeforeUnmount(() => {
 
 .predictions-toolbar {
   margin-bottom: 8px;
+}
+
+.predictions-toolbar .panel-filters {
+  min-height: 54px;
+  padding: 0 12px;
 }
 
 .predictions-grid {

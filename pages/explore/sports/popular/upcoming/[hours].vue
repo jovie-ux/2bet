@@ -1,8 +1,16 @@
 <script setup lang="ts">
-defineProps<{
-  selectedSports: string[]
+const props = withDefaults(defineProps<{
+  selectedSports?: string[]
   selectedTournaments?: Record<string, string[]>
-}>()
+}>(), {
+  selectedSports: () => ['Basketball', 'Soccer', 'Tennis', 'Baseball'],
+  selectedTournaments: () => ({
+    Basketball: ['basketball_nba'],
+    Soccer: ['soccer_epl', 'soccer_germany_bundesliga', 'soccer_uefa_*', 'soccer_italy_serie_a'],
+    Tennis: ['tennis_atp_*', 'tennis_wta_*'],
+    Baseball: ['baseball_mlb', 'baseball_mlb_world_series_winner'],
+  }),
+})
 
 const route = useRoute()
 const hoursLabel = computed(() => String(route.params.hours).replace('hours', ' Horas'))

@@ -1,11 +1,14 @@
 export interface LiveStream {
   id: string
+  leagueId?: string
+  competition?: string
+  sport?: string
   clock?: string
   probability?: { home?: number | null; draw?: number | null; away?: number | null }
   startTime?: string
   status?: string
-  home: { name: string; id?: string; logo?: string }
-  away: { name: string; id?: string; logo?: string }
+  home: { name: string; logo?: string; score?: number }
+  away: { name: string; logo?: string; score?: number }
   homeScore?: number
   awayScore?: number
   scoreAvailable?: boolean

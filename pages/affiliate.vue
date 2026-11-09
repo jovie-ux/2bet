@@ -29,9 +29,9 @@ interface QuestionCategory {
 
 const router = useRouter()
 const runtimeConfig = useRuntimeConfig()
-const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = runtimeConfig.public
-const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
-const affiliateSystemUrl = 'https://partnerships.2bet.com/'
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = runtimeConfig.public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
+const affiliateSystemUrl = 'https://partnerships.bybet.com/'
 
 const activeTab = ref<AffiliateTabId>('cooperation')
 const activeQuestionTab = ref<QuestionTabId>('information')

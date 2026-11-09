@@ -9,11 +9,10 @@ import {
 } from 'lucide-vue-next'
 
 const { showDemoMessage } = useDemoInteraction()
-const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
-const bybetRedirectUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
-const loginUrl = `${bybetBaseUrl}/login?p=${bybetRedirectCode}`
-const registerUrl = `${bybetBaseUrl}/register?p=${bybetRedirectCode}`
-const { selectedLanguageLabel, translate, locale } = useSiteLocale()
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
+const bybetRedirectRegister = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/registered?p=${bybetRedirectCode || 'xjSD'}`
+const { selectedLanguageLabel } = useSiteLocale()
 const { selectedTimeZone } = useTimeZonePreference()
 const { setThemePreference, themePreference } = useSiteTheme()
 
@@ -126,7 +125,7 @@ onBeforeUnmount(() => {
               {{ translate('Login') }}
             </a>
             <a
-              :href="registerUrl"
+              :href="bybetRedirectRegister"
               target="_blank"
               rel="noopener noreferrer"
               class="h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/20 text-white font-medium text-[14px] flex items-center justify-center transition-all shadow-sm"
@@ -189,7 +188,7 @@ onBeforeUnmount(() => {
           class="flex w-full items-center justify-between text-left cursor-pointer select-none"
           @click="toggleSection('general')"
         >
-          <span class="text-[15px] font-bold text-white tracking-tight">{{ translate('General') }}</span>
+          <h2 class="text-[15px] font-bold text-white tracking-tight">General</h2>
           <ChevronUp v-if="openSections.general" class="h-4 w-4 text-white/50" />
           <ChevronDown v-else class="h-4 w-4 text-white/50" />
         </button>
@@ -249,7 +248,7 @@ onBeforeUnmount(() => {
           class="flex w-full items-center justify-between text-left cursor-pointer select-none"
           @click="toggleSection('livePlaza')"
         >
-          <span class="text-[15px] font-bold text-white tracking-tight">{{ translate('Live Plaza') }}</span>
+          <h2 class="text-[15px] font-bold text-white tracking-tight">Live Plaza</h2>
           <ChevronUp v-if="openSections.livePlaza" class="h-4 w-4 text-white/50" />
           <ChevronDown v-else class="h-4 w-4 text-white/50" />
         </button>
@@ -297,7 +296,7 @@ onBeforeUnmount(() => {
           class="flex w-full items-center justify-between text-left cursor-pointer select-none"
           @click="toggleSection('gameSettings')"
         >
-          <span class="text-[15px] font-bold text-white tracking-tight">{{ translate('Game Settings') }}</span>
+          <h2 class="text-[15px] font-bold text-white tracking-tight">Game Settings</h2>
           <ChevronUp v-if="openSections.gameSettings" class="h-4 w-4 text-white/50" />
           <ChevronDown v-else class="h-4 w-4 text-white/50" />
         </button>
@@ -388,7 +387,7 @@ onBeforeUnmount(() => {
           class="flex w-full items-center justify-between text-left cursor-pointer select-none"
           @click="toggleSection('systemSettings')"
         >
-          <span class="text-[15px] font-bold text-white tracking-tight">{{ translate('System Settings') }}</span>
+          <h2 class="text-[15px] font-bold text-white tracking-tight">System Settings</h2>
           <ChevronUp v-if="openSections.systemSettings" class="h-4 w-4 text-white/50" />
           <ChevronDown v-else class="h-4 w-4 text-white/50" />
         </button>
@@ -471,7 +470,7 @@ onBeforeUnmount(() => {
           class="flex w-full items-center justify-between text-left cursor-pointer select-none"
           @click="toggleSection('help')"
         >
-          <span class="text-[15px] font-bold text-white tracking-tight">{{ translate('Help') }}</span>
+          <h2 class="text-[15px] font-bold text-white tracking-tight">Help</h2>
           <ChevronUp v-if="openSections.help" class="h-4 w-4 text-white/50" />
           <ChevronDown v-else class="h-4 w-4 text-white/50" />
         </button>
@@ -564,7 +563,7 @@ onBeforeUnmount(() => {
             {{ translate('Login') }}
           </a>
           <a
-            :href="registerUrl"
+            :href="bybetRedirectRegister"
             target="_blank"
             rel="noopener noreferrer"
             class="rounded-lg bg-[var(--main-color)] px-4 py-1 text-[12px] font-bold text-white hover:bg-[#122F25] transition-colors"
