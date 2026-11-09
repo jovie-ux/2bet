@@ -44,7 +44,8 @@ const sports: MobileSportNavItem[] = [
 const isLive = computed(() => route.path.startsWith('/explore/sports/live'))
 const selectedSport = computed(() => {
   if (route.path.startsWith('/explore/sports/popular')) return 'popular'
-  return String(route.params.sport || 'popular')
+  const sportParam = String(route.params.sport || 'popular')
+  return sportParam === 'football' ? 'soccer' : sportParam
 })
 
 const destination = (sport: typeof sports[number]): string => {

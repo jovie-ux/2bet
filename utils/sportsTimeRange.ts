@@ -1,7 +1,7 @@
 export function sportsTimeRange(mode: string, date: string | undefined, hours: string | undefined, now: number) {
   const iso = (value: number) => new Date(value).toISOString().replace(/\.\d{3}Z$/, 'Z')
   if (mode === 'upcoming') {
-    const duration = Number.parseInt(hours ?? '24hours', 10)
+    const duration = hours ? Number.parseInt(hours, 10) : 336
     return { commenceTimeFrom: iso(now), commenceTimeTo: iso(now + duration * 3600000) }
   }
   if (mode === 'prematch') {

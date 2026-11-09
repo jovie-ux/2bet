@@ -123,6 +123,12 @@ export const SPORTS_TAB_REDIRECT_PATHS: Record<string, Record<string, string>> =
     outright: 'sportEvents/outright/football',
     replay: 'sportEvents/gameResult/football/regular/today',
   },
+  football: {
+    'smart-pick': 'sportEvents/parlay/football/interval/parlayPromotion',
+    parlay: 'sportEvents/parlay/football/interval/parlayPromotion',
+    outright: 'sportEvents/outright/football',
+    replay: 'sportEvents/gameResult/football/regular/today',
+  },
   live: {
     'all-esports': 'sportEvents/liveGame/eSportBallGroup',
     esports: 'sportEvents/liveGame/eSportBallGroup',

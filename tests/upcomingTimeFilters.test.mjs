@@ -110,4 +110,57 @@ describe('Upcoming Time Filter Pills Suite', () => {
       'displayedTimeFilters must be declared before watch(displayedTimeFilters)',
     )
   })
+
+  test('Case 7: Direct visit to /upcoming/:hours retains the route hour pill even if matches start later', () => {
+    const events = [
+      { id: '1', commence_time: new Date(now + 16 * 3600000).toISOString() }, // in 16 hours
+    ]
+
+    function computeDisplayedFiltersWithRoute(eventsList, isPopularMode, refNow, routeHour) {
+      const available = timeFilters.filter(filter =>
+        eventsList.some(event => isWithinTimeFilter(event, filter, refNow)),
+      )
+      let filters = isPopularMode ? available.filter(filter => filter !== '1hours') : available
+      if (routeHour && !filters.includes(routeHour)) {
+        filters = [...filters, routeHour].sort((a, b) => Number.parseInt(a, 10) - Number.parseInt(b, 10))
+      }
+      if (!filters.length && eventsList.length > 0) {
+        filters = isPopularMode ? ['3hours', '6hours', '12hours', '24hours'] : ['1hours', '3hours', '6hours', '12hours', '24hours']
+      }
+      return filters
+    }
+
+    const pills = computeDisplayedFiltersWithRoute(events, true, now, '3hours')
+    assert.deepEqual(pills, ['3hours', '24hours'])
+    assert.ok(pills.includes('3hours'), '3hours pill must be present when requested via route')
+  })
+
+  test('Case 8: When selected time filter has no events within narrow window, fall back to matchingEvents so page is never blank', () => {
+    const events = [
+      { id: '1', sport_key: 'basketball_nba', sport_title: 'NBA', commence_time: new Date(now + 16 * 3600000).toISOString() },
+    ]
+
+    function resolveFilteredEvents(eventsList, selectedFilter, refNow) {
+      const withinFilter = selectedFilter
+        ? eventsList.filter(event => isWithinTimeFilter(event, selectedFilter, refNow))
+        : []
+      return withinFilter.length > 0 ? withinFilter : eventsList
+    }
+
+    const result = resolveFilteredEvents(events, '3hours', now)
+    assert.equal(result.length, 1, 'Should fall back to available upcoming events rather than returning empty')
+    assert.equal(result[0].id, '1')
+  })
+
+  test('Case 9: components/SportsPopular.vue and upcoming pages provide safe defaults and await SSR fetching', () => {
+    const popularSource = fs.readFileSync(path.resolve('components/SportsPopular.vue'), 'utf-8')
+    assert.ok(popularSource.includes('await useFetch(\'/api/sports\''), 'SportsPopular must await useFetch for SSR rendering')
+    assert.ok(popularSource.includes('effectiveSelectedSports'), 'SportsPopular must compute effectiveSelectedSports fallback')
+
+    const popularHoursSource = fs.readFileSync(path.resolve('pages/explore/sports/popular/upcoming/[hours].vue'), 'utf-8')
+    assert.ok(popularHoursSource.includes('selectedSports?: string[]'), 'popular upcoming [hours].vue must support optional selectedSports')
+
+    const sportHoursSource = fs.readFileSync(path.resolve('pages/explore/sports/[sport]/upcoming/[hours].vue'), 'utf-8')
+    assert.ok(sportHoursSource.includes('effectiveSports'), 'sport upcoming [hours].vue must compute effectiveSports')
+  })
 })

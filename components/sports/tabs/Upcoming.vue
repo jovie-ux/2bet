@@ -92,9 +92,27 @@ const matchingEvents = computed(() => {
 const availableTimeFilters = computed(() => timeFilters.filter(filter =>
   matchingEvents.value.some((event: SportsEvent) => isWithinTimeFilter(event, filter)),
 ))
-const displayedTimeFilters = computed(() => isPopular.value
-  ? availableTimeFilters.value.filter(filter => filter !== '1hours')
-  : availableTimeFilters.value)
+const displayedTimeFilters = computed(() => {
+  const currentHour = typeof route.params.hours === 'string' && timeFilters.includes(route.params.hours as any)
+    ? (route.params.hours as (typeof timeFilters)[number])
+    : null
+
+  let filters = isPopular.value
+    ? availableTimeFilters.value.filter(filter => filter !== '1hours')
+    : availableTimeFilters.value
+
+  // When visiting a specific /upcoming/:hours subroute, always show the route's hour pill
+  if (currentHour && !filters.includes(currentHour)) {
+    filters = [...filters, currentHour].sort((a, b) => Number.parseInt(a, 10) - Number.parseInt(b, 10))
+  }
+
+  // If no filters have events within the time window, but we have upcoming events, show available time filters
+  if (!filters.length && matchingEvents.value.length > 0) {
+    filters = isPopular.value ? ['3hours', '6hours', '12hours', '24hours'] : ['1hours', '3hours', '6hours', '12hours', '24hours']
+  }
+
+  return filters
+})
 
 const syncSelectedFilter = (preferred?: (typeof timeFilters)[number] | null) => {
   const filters = displayedTimeFilters.value
@@ -176,11 +194,24 @@ const handleSportChange = (event: Event): void => {
 }
 
 const filteredEvents = computed(() => {
-  if (!selectedTimeFilter.value) return []
-  return matchingEvents.value.filter((event: SportsEvent) => isWithinTimeFilter(event, selectedTimeFilter.value))
-    .sort((a, b) => sortBy.value === 'league'
-      ? a.sport_title.localeCompare(b.sport_title) || Date.parse(a.commence_time) - Date.parse(b.commence_time)
-      : Date.parse(a.commence_time) - Date.parse(b.commence_time))
+  const currentHour = typeof route.params.hours === 'string' && timeFilters.includes(route.params.hours as any)
+    ? (route.params.hours as (typeof timeFilters)[number])
+    : null
+  const targetFilter = selectedTimeFilter.value || currentHour
+
+  const withinFilter = targetFilter
+    ? matchingEvents.value.filter((event: SportsEvent) => isWithinTimeFilter(event, targetFilter))
+    : []
+
+  // If the target filter has matches, display them.
+  // If the target filter has no matches within that specific hour window,
+  // but there ARE upcoming matches scheduled for this page/sport:
+  // Fall back to showing all matching upcoming events so the page is never blank!
+  const list = withinFilter.length > 0 ? withinFilter : matchingEvents.value
+
+  return list.sort((a, b) => sortBy.value === 'league'
+    ? a.sport_title.localeCompare(b.sport_title) || Date.parse(a.commence_time) - Date.parse(b.commence_time)
+    : Date.parse(a.commence_time) - Date.parse(b.commence_time))
 })
 
 const groupedSports = computed(() => {
