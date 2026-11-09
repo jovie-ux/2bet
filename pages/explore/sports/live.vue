@@ -2,6 +2,10 @@
 import { computed } from 'vue'
 import '~/assets/css/sports.css'
 import MobileSportsNav from '~/components/sports/MobileSportsNav.vue'
+import {
+  buildBybetRedirectUrl,
+  resolveSportsTabRedirectUrl,
+} from '~/utils/sportsRedirect'
 
 const route = useRoute()
 
@@ -21,13 +25,26 @@ useAppSeo({
   },
 })
 
-const liveTabs = [
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const externalSiteUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
+const liveEsportsRedirectUrl = computed(() =>
+  buildBybetRedirectUrl('sportEvents/liveGame/eSportBallGroup', rawRedirectUrl, bybetRedirectCode)
+)
+
+const liveTabs = computed(() => [
   { key: 'all', label: 'All', icon: '', to: '/explore/sports/live' },
   { key: 'basketball', label: '', icon: '/icons/sports/basketball.webp', to: '/explore/sports/live/basketball' },
   { key: 'soccer', label: '', icon: '/icons/sports/soccer.webp', to: '/explore/sports/live/soccer' },
   { key: 'tennis', label: '', icon: '/icons/sports/tennis.webp', to: '/explore/sports/live/tennis' },
   { key: 'baseball', label: '', icon: '/icons/sports/baseball.webp', to: '/explore/sports/live/baseball' },
-]
+  {
+    key: 'esports',
+    label: 'All eSports',
+    icon: '/icons/sports/egame.webp',
+    to: liveEsportsRedirectUrl.value,
+    external: true,
+  },
+])
 
 const currentSport = computed(() => {
   const sportParam = String(route.params.sport || '').toLowerCase()
@@ -45,10 +62,15 @@ const mobileModeTabs = [
   { key: 'smart-pick', label: 'Parlay' },
   { key: 'outright', label: 'Outright' },
 ]
-const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
+
+const isExternalModeTab = (key: string): boolean => key === 'smart-pick' || key === 'outright'
+
 const mobileModePath = (key: string): string => {
   if (key === 'inplay') return route.path
-  if (key === 'smart-pick' || key === 'outright') return externalSiteUrl
+  if (isExternalModeTab(key)) {
+    const sport = currentSport.value === 'all' ? 'popular' : currentSport.value
+    return resolveSportsTabRedirectUrl(sport, key, rawRedirectUrl, bybetRedirectCode) ?? externalSiteUrl
+  }
   const sport = currentSport.value === 'all' ? 'popular' : currentSport.value
   return `/explore/sports/${sport}/${key}`
 }
@@ -79,16 +101,17 @@ const mobileModePath = (key: string): string => {
           v-for="tab in liveTabs"
           :key="tab.key"
           :to="tab.to"
+          :external="Boolean(tab.external)"
           :class="{ selected: currentSport === tab.key }"
           :aria-current="currentSport === tab.key ? 'page' : undefined"
         >
           <img
             v-if="tab.icon"
             :src="tab.icon"
-            :alt="tab.label"
+            :alt="tab.label || tab.key"
             class="w-[24px] h-[24px] object-contain shrink-0"
           />
-          <span>{{ tab.label }}</span>
+          <span v-if="tab.label">{{ tab.label }}</span>
         </NuxtLink>
       </nav>
     </div>

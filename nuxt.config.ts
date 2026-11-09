@@ -10,6 +10,7 @@ const environment = (
         USE_ODDS_API?: string
         KADARIO_API?: string
         BYBET_REDIRECT_URL?: string
+        BYBET_REDIRECT_CODE?: string
         SITE_NAME?: string
         SITE_URL?: string
         INDEX_FOLLOW?: string
@@ -30,7 +31,8 @@ export default defineNuxtConfig({
     useOddsApi: environment?.USE_ODDS_API === 'true',
     public: {
       useOddsApi: environment?.USE_ODDS_API === 'true',
-      bybetRedirectUrl: environment?.BYBET_REDIRECT_URL || 'https://bybet.com/',
+      bybetRedirectUrl: environment?.BYBET_REDIRECT_URL || 'https://bybet.com',
+      bybetRedirectCode: environment?.BYBET_REDIRECT_CODE || 'xjSD',
       siteName: environment?.SITE_NAME || 'ByBet Slots',
       siteUrl: (environment?.SITE_URL || 'https://bybet.com').replace(/\/+$/, ''),
       indexFollow: isIndexFollow,

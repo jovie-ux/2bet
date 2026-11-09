@@ -28,7 +28,8 @@ const selectedSports = computed(() => {
   return ['Basketball', 'Soccer', 'Tennis', 'Baseball']
 })
 
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 
 const search = ref('')
 const sortBy = ref<'league' | 'time'>('time')

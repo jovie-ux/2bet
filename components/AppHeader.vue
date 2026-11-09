@@ -29,7 +29,8 @@ const openPageComments = (): void => {
 
   openGameComments()
 }
-const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const externalSiteUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 </script>
 
 <template>
@@ -85,7 +86,7 @@ const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
       </a>
       <a
         class="header-glass-button header-glass-button--signup"
-        :href="externalSiteUrl"
+        :href="`${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/registered?p=${bybetRedirectCode || 'xjSD'}`"
         target="_blank"
         rel="nofollow noopener noreferrer"
       >

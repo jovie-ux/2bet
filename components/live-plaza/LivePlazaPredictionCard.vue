@@ -12,7 +12,8 @@ const emit = defineEmits<{
   selectOdd: [prediction: Prediction, option: PredictionOption]
 }>()
 
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 
 const formattedHitRate = computed(() => {
   return Number.isInteger(props.prediction.hitRate)

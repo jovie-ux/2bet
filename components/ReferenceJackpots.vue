@@ -58,7 +58,8 @@ const jackpotDisplays: Record<JackpotKey, Ref<number>> = {
   jdb: jdbDisplay,
 }
 
-const externalSiteUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const externalSiteUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 const { translate } = useSiteLocale()
 </script>
 

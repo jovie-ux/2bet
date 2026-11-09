@@ -2,7 +2,7 @@
 import UnderMaintenance from '~/components/modals/UnderMaintenance.vue'
 import MobileChatSheet from '~/components/comments/MobileChatSheet.vue'
 import MobileBottomNavIcon from '~/components/MobileBottomNavIcon.vue'
-const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
+const { bybetRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
 
 type NavMode = 'primary' | 'casino' | 'egames' | 'live-plaza'
 
@@ -13,7 +13,7 @@ const isMaintenanceOpen = ref(false)
 
 const casinoItems = [
   { label: 'Live Casino', icon: '/icons/entertainment/live-casino.webp', to: '/explore/entertainment/live-casino/baccarat' },
-  { label: 'Gaming', icon: '/icons/entertainment/gaming.webp', to: bybetRedirectUrl },
+  { label: 'Gaming', icon: '/icons/entertainment/gaming.webp', to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/sportEvents/eSport?p=${bybetRedirectCode || 'xjSD'}` },
   { label: 'Poker', icon: '/icons/entertainment/poker.webp', to: '/explore/entertainment/live-casino/poker' },
   { label: 'Lottery', icon: '/icons/entertainment/lottery.webp', to: '/explore/entertainment/lottery' },
 ]
@@ -22,7 +22,7 @@ const eGamesItems = [
   { label: 'Slots', icon: '/icons/egames/slots.webp', to: '/explore/egames/slots' },
   { label: 'Bingo', icon: '/icons/egames/bingo.webp', to: '/explore/egames/bingo' },
   { label: 'Jackpot', icon: '/icons/egames/jackpot.webp', to: '/explore/egames/jackpot' },
-  { label: 'History', icon: '/icons/egames/history.webp', to: bybetRedirectUrl },
+  { label: 'History', icon: '/icons/egames/history.webp', to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}` },
 ]
 
 const getNavModeForPath = (path: string): NavMode => {

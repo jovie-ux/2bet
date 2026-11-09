@@ -315,7 +315,7 @@ export function selectBestMarketForMatch(
 
   // Randomly choose one eligible market type
   const marketTypeIndex = Math.floor(randomFn() * eligibleMarketTypes.length)
-  const chosenMarket = eligibleMarketTypes[marketTypeIndex]
+  const chosenMarket = eligibleMarketTypes[marketTypeIndex] || '1x2'
 
   let candidateGroups: ValidMarketGroup[] = []
   if (chosenMarket === '1x2') candidateGroups = valid1x2
@@ -326,7 +326,7 @@ export function selectBestMarketForMatch(
 
   // Randomly choose one valid group for that market type
   const groupIndex = Math.floor(randomFn() * candidateGroups.length)
-  return candidateGroups[groupIndex]
+  return candidateGroups[groupIndex] || null
 }
 
 /**
@@ -444,10 +444,10 @@ export function generateSyntheticPredictionGroup(
     selection = rng() < 0.52 ? 'Over' : 'Under'
     if (sport === 'basketball') {
       const totals = ['182.5', '186.5', '194.5', '202.5', '210.5']
-      line = totals[Math.floor(rng() * totals.length)]
+      line = totals[Math.floor(rng() * totals.length)] || '194.5'
     } else {
       const totals = ['1.5', '2.5', '3.5']
-      line = rng() < 0.7 ? '2.5' : totals[Math.floor(rng() * totals.length)]
+      line = rng() < 0.7 ? '2.5' : (totals[Math.floor(rng() * totals.length)] || '2.5')
     }
 
     const overOdds = Math.round((1.75 + rng() * 0.35) * 100) / 100
@@ -471,7 +471,7 @@ export function generateSyntheticPredictionGroup(
         market: 'OU',
         selection: 'Over',
         current_odds: String(overOdds),
-        line,
+        line: line || '2.5',
         hit_rate: String(selection === 'Over' ? bestRate : secondRate),
         competition: { name: compName, logo: compLogo },
         home_team: { name: homeName, logo: homeLogo },
@@ -486,7 +486,7 @@ export function generateSyntheticPredictionGroup(
         market: 'OU',
         selection: 'Under',
         current_odds: String(underOdds),
-        line,
+        line: line || '2.5',
         hit_rate: String(selection === 'Under' ? bestRate : secondRate),
         competition: { name: compName, logo: compLogo },
         home_team: { name: homeName, logo: homeLogo },
@@ -499,10 +499,10 @@ export function generateSyntheticPredictionGroup(
     let rawAbsLine = '1.5'
     if (sport === 'basketball') {
       const ahLines = ['4.5', '6.5', '8.5', '10.5']
-      rawAbsLine = ahLines[Math.floor(rng() * ahLines.length)]
+      rawAbsLine = ahLines[Math.floor(rng() * ahLines.length)] || '4.5'
     } else {
       const ahLines = ['0.5', '1.0', '1.5']
-      rawAbsLine = ahLines[Math.floor(rng() * ahLines.length)]
+      rawAbsLine = ahLines[Math.floor(rng() * ahLines.length)] || '1.0'
     }
 
     const homeLine = rng() < 0.5 ? `-${rawAbsLine}` : `+${rawAbsLine}`
@@ -554,7 +554,7 @@ export function generateSyntheticPredictionGroup(
     )
   }
 
-  const selectedItem = items.find(it => it.selection === selection) || items[0]
+  const selectedItem = (items.find(it => it.selection === selection) || items[0])!
 
   return {
     market,

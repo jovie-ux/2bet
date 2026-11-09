@@ -29,7 +29,8 @@ interface QuestionCategory {
 
 const router = useRouter()
 const runtimeConfig = useRuntimeConfig()
-const bybetRedirectUrl = runtimeConfig.public.bybetRedirectUrl
+const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = runtimeConfig.public
+const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 const affiliateSystemUrl = 'https://partnerships.bybet.com/'
 
 const activeTab = ref<AffiliateTabId>('cooperation')

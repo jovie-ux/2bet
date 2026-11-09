@@ -30,14 +30,8 @@ const sportsRouteBase = useSportsRouteBase()
 const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular')
 const oddsCols = computed<2 | 3>(() => route.params.sport === 'soccer' ? 3 : 2)
 const selectedTimeFilter = ref<(typeof timeFilters)[number] | null>(null)
-watch(() => route.params.hours, value => {
-  selectedTimeFilter.value = timeFilters.find(filter => filter === value) ?? (isPopular.value ? '3hours' : null)
-}, { immediate: true })
-function selectTimeFilter(value: (typeof timeFilters)[number], replace = false) {
-  selectedTimeFilter.value = value
-  if (!sportsRouteBase.value) return
-  void navigateTo({ path: `${sportsRouteBase.value}/upcoming/${value}`, query: route.query }, { replace })
-}
+const sortBy = ref<'league' | 'time'>('time')
+
 const now = useState('upcoming-filter-now', () => Date.now())
 let timeFilterTimer: ReturnType<typeof setInterval> | undefined
 onMounted(() => {
@@ -45,33 +39,6 @@ onMounted(() => {
   timeFilterTimer = setInterval(() => { now.value = Date.now() }, 60000)
 })
 onBeforeUnmount(() => clearInterval(timeFilterTimer))
-const sortBy = ref<'league' | 'time'>('time')
-
-const CollapseIcon = defineComponent({
-  props: {
-    expanded: Boolean,
-  },
-  setup(iconProps) {
-    return () => h(ChevronDown, {
-      size: 16,
-      class: ['league-chevron', { 'league-chevron--expanded': iconProps.expanded }],
-      'aria-hidden': 'true',
-    })
-  },
-})
-
-const isExpanded = (key: string): boolean => {
-  return !localCollapsed.value.includes(key)
-}
-
-const toggleTournament = (key: string): void => {
-  if (localCollapsed.value.includes(key)) {
-    localCollapsed.value = localCollapsed.value.filter(item => item !== key)
-    return
-  }
-
-  localCollapsed.value = [...localCollapsed.value, key]
-}
 
 const getEventStartTimestamp = (event: SportsEvent): number | null => {
   const raw = (
@@ -113,19 +80,6 @@ const isWithinTimeFilter = (event: SportsEvent, filter: (typeof timeFilters)[num
   return startTimestamp > lowerBound && startTimestamp <= upperBound
 }
 
-const handleMatchLoaded = (payload: { sportKey: string; earliestTime: number | null }): void => {
-  if (payload.earliestTime != null) {
-    earliestTimes.value[payload.sportKey] = payload.earliestTime
-  }
-}
-
-const handleSportChange = (event: Event): void => {
-  const target = event.target as HTMLSelectElement | null
-  if (target?.value) {
-    emit('update:selectedSport', target.value)
-  }
-}
-
 const matchingEvents = computed(() => {
   const q = search.value.toLowerCase().trim()
   return props.events.filter((event: SportsEvent) => {
@@ -139,17 +93,87 @@ const availableTimeFilters = computed(() => timeFilters.filter(filter =>
   matchingEvents.value.some((event: SportsEvent) => isWithinTimeFilter(event, filter)),
 ))
 const displayedTimeFilters = computed(() => isPopular.value
-  ? timeFilters.filter(filter => filter !== '1hours')
+  ? availableTimeFilters.value.filter(filter => filter !== '1hours')
   : availableTimeFilters.value)
 
-watch(availableTimeFilters, filters => {
-  if (isPopular.value) return
-  if (route.params.hours) return
-  if (!selectedTimeFilter.value || !filters.includes(selectedTimeFilter.value)) {
-    selectedTimeFilter.value = filters[0] ?? null
-    if (import.meta.client && filters[0]) selectTimeFilter(filters[0], true)
+const syncSelectedFilter = (preferred?: (typeof timeFilters)[number] | null) => {
+  const filters = displayedTimeFilters.value
+  if (!filters.length) {
+    selectedTimeFilter.value = null
+    return
   }
+
+  if (preferred && filters.includes(preferred)) {
+    selectedTimeFilter.value = preferred
+    return
+  }
+
+  if (selectedTimeFilter.value && filters.includes(selectedTimeFilter.value)) {
+    return
+  }
+
+  if (isPopular.value && !route.params.hours && filters.includes('3hours')) {
+    selectedTimeFilter.value = '3hours'
+    return
+  }
+
+  selectedTimeFilter.value = filters[0] ?? null
+}
+
+watch(() => route.params.hours, value => {
+  const match = timeFilters.find(filter => filter === value)
+  syncSelectedFilter(match)
 }, { immediate: true })
+
+watch(displayedTimeFilters, () => {
+  const routeMatch = timeFilters.find(filter => filter === route.params.hours)
+  syncSelectedFilter(routeMatch)
+})
+
+function selectTimeFilter(value: (typeof timeFilters)[number], replace = false) {
+  selectedTimeFilter.value = value
+  if (!sportsRouteBase.value) return
+  void navigateTo({ path: `${sportsRouteBase.value}/upcoming/${value}`, query: route.query }, { replace })
+}
+
+const CollapseIcon = defineComponent({
+  props: {
+    expanded: Boolean,
+  },
+  setup(iconProps) {
+    return () => h(ChevronDown, {
+      size: 16,
+      class: ['league-chevron', { 'league-chevron--expanded': iconProps.expanded }],
+      'aria-hidden': 'true',
+    })
+  },
+})
+
+const isExpanded = (key: string): boolean => {
+  return !localCollapsed.value.includes(key)
+}
+
+const toggleTournament = (key: string): void => {
+  if (localCollapsed.value.includes(key)) {
+    localCollapsed.value = localCollapsed.value.filter(item => item !== key)
+    return
+  }
+
+  localCollapsed.value = [...localCollapsed.value, key]
+}
+
+const handleMatchLoaded = (payload: { sportKey: string; earliestTime: number | null }): void => {
+  if (payload.earliestTime != null) {
+    earliestTimes.value[payload.sportKey] = payload.earliestTime
+  }
+}
+
+const handleSportChange = (event: Event): void => {
+  const target = event.target as HTMLSelectElement | null
+  if (target?.value) {
+    emit('update:selectedSport', target.value)
+  }
+}
 
 const filteredEvents = computed(() => {
   if (!selectedTimeFilter.value) return []
