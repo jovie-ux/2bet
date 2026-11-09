@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MessageCircle, ShoppingBag, GraduationCap, ChartPie, Video, PanelsTopLeft } from 'lucide-vue-next'
+import { MessageCircle, ShoppingBag, GraduationCap, ChartPie, Video, PanelsTopLeft, Play, X } from 'lucide-vue-next'
 
 import type { LiveStreamCatalog } from '~/types/livestream'
 import StreamPlayer from './StreamPlayer.vue'
@@ -9,6 +9,9 @@ const bybetRedirectUrl = useRuntimeConfig().public.bybetRedirectUrl
 const { data: catalog, status, refresh } = useFetch<LiveStreamCatalog>('/api/livestream', { server: false })
 const selectedStreamId = ref('')
 const endedStreamIds = ref(new Set<string>())
+const isPlaying = ref(false)
+const thumbnailError = ref(false)
+
 const streams = computed(() => {
   const list = (catalog.value?.results ?? [])
     .filter(stream => !endedStreamIds.value.has(stream.id)
@@ -24,6 +27,20 @@ const selectedStream = computed(() => streams.value.find(stream => stream.id ===
 watch(selectedStream, stream => {
   if (stream?.id) selectedStreamId.value = stream.id
 }, { immediate: true })
+
+watch(selectedStreamId, () => {
+  isPlaying.value = false
+  thumbnailError.value = false
+})
+
+const streamThumbnail = computed(() => {
+  if (thumbnailError.value) return '/images/sports/category-banners/background-basketball.png'
+  return selectedStream.value?.thumbnail || '/images/sports/category-banners/background-basketball.png'
+})
+
+function handleThumbnailError() {
+  thumbnailError.value = true
+}
 
 const iframeSrc = computed(() => {
   const stream = selectedStream.value
@@ -69,34 +86,88 @@ const tabs = [
 
 <template>
   <section class="overflow-hidden rounded-2xl bg-[#1f1f1f] opacity-90 ">
-    <div id="tv-title" class="flex min-w-0 items-center justify-center gap-2 px-4 py-2 text-center text-[14px] font-semibold text-white">
-      <template v-if="selectedStream">
-        <span class="min-w-0 truncate text-right" :title="selectedStream.home?.name">{{ selectedStream.home?.name }}</span>
-        <span class="shrink-0 whitespace-nowrap font-bold">
-          {{ selectedStream.scoreAvailable ? `${selectedStream.homeScore ?? 0} - ${selectedStream.awayScore ?? 0}` : 'vs' }}
-        </span>
-        <span class="min-w-0 truncate text-left" :title="selectedStream.away?.name">{{ selectedStream.away?.name }}</span>
-      </template>
-      <template v-else>Sports TV</template>
+    <div id="tv-title" class="flex min-w-0 items-center justify-between px-3 py-2 text-[13px] font-semibold text-white">
+      <div class="flex min-w-0 flex-1 items-center justify-center gap-2 truncate">
+        <template v-if="selectedStream">
+          <span class="min-w-0 truncate text-right" :title="selectedStream.home?.name">{{ selectedStream.home?.name }}</span>
+          <span class="shrink-0 whitespace-nowrap font-bold">
+            {{ selectedStream.scoreAvailable ? `${selectedStream.homeScore ?? 0} - ${selectedStream.awayScore ?? 0}` : 'vs' }}
+          </span>
+          <span class="min-w-0 truncate text-left" :title="selectedStream.away?.name">{{ selectedStream.away?.name }}</span>
+        </template>
+        <template v-else>Sports TV</template>
+      </div>
+      
     </div>
     <div class="relative aspect-[16/9] overflow-hidden rounded-xl bg-[#14261d]">
       <template v-if="selectedStream">
-        <StreamPlayer
-          v-if="selectedStream.sources?.length"
-          :key="selectedStream.id"
-          :sources="selectedStream.sources"
-          @ended="switchEndedStream(selectedStream.id)"
-          @unavailable="switchEndedStream(selectedStream.id)"
-        />
-        <iframe
-          v-else-if="iframeSrc"
-          :key="selectedStream.id + previewMode"
-          :src="iframeSrc"
-          :title="streamTitle"
-          class="absolute inset-0 h-full w-full border-0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen
-        />
+        <!-- Live Video Player (Playing) -->
+        <div v-if="isPlaying" class="relative h-full w-full">
+          <StreamPlayer
+            v-if="selectedStream.sources?.length"
+            :key="selectedStream.id"
+            :sources="selectedStream.sources"
+            @ended="switchEndedStream(selectedStream.id)"
+            @unavailable="switchEndedStream(selectedStream.id)"
+          />
+          <iframe
+            v-else-if="iframeSrc"
+            :key="selectedStream.id + previewMode"
+            :src="iframeSrc"
+            :title="streamTitle"
+            class="absolute inset-0 h-full w-full border-0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          />
+          <!-- Return to Thumbnail Picture -->
+          <button
+            type="button"
+            class="absolute top-2 right-2 z-20 flex h-2 w-2 items-center justify-center rounded-full bg-black/75 text-white/80 hover:text-white hover:bg-black transition-colors"
+            title="Stop stream & return to preview"
+            aria-label="Return to preview"
+            @click.stop="isPlaying = false"
+          >
+            <X :size="3" />
+          </button>
+        </div>
+
+        <!-- Thumbnail Picture with Play Button in Middle -->
+        <div
+          v-else
+          class="group relative flex h-full w-full cursor-pointer items-center justify-center overflow-hidden bg-gradient-to-br from-[#0b1712] via-[#10241b] to-[#07130e] select-none"
+          role="button"
+          tabindex="0"
+          :aria-label="`Play ${streamTitle}`"
+          @click="isPlaying = true"
+          @keydown.enter.prevent="isPlaying = true"
+          @keydown.space.prevent="isPlaying = true"
+        >
+          <!-- Background Picture / Thumbnail -->
+          <img
+            :src="streamThumbnail"
+            :alt="streamTitle"
+            class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+            @error="handleThumbnailError"
+          />
+
+          <!-- Dark Gradient Overlays for Readability & Cinematic Contrast -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/60 pointer-events-none" />
+
+          <!-- Play Button in the Middle -->
+          <div class="relative z-10 flex flex-col items-center justify-center gap-2">
+            <button
+              type="button"
+              class="relative flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-white text-black shadow-xl shadow-white/40 transition-all duration-300 ease-out group-hover:scale-110 active:scale-95 cursor-pointer"
+              aria-label="Play live stream"
+              tabindex="-1"
+            >
+              <!-- Outer glowing pulse ring -->
+              <span class="absolute inset-0 rounded-full bg-white opacity-30 animate-ping pointer-events-none" />
+              <Play :size="20" class="fill-current text-black translate-x-0.5 transition-transform group-hover:scale-110" />
+            </button>
+          </div>
+
+        </div>
       </template>
       <div v-else class="flex h-full flex-col items-center justify-center px-5 text-center" role="status">
         <Video :size="26" class="mb-2 text-white/60" aria-hidden="true" />

@@ -19,6 +19,7 @@ export interface SportsEvent {
   scoreAvailable?: boolean
   probability?: LiveStream['probability']
   sources?: LiveStream['sources']
+  thumbnail?: string
   sport?: string
   id: string
   sport_key: string

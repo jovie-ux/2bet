@@ -42,12 +42,14 @@ const props = withDefaults(defineProps<{
 
 const railElement = ref<HTMLElement | null>(null)
 const dynamicColumns = ref<number | null>(null)
+const dynamicGap = ref<number | null>(null)
 let resizeObserver: ResizeObserver | null = null
 
 const calculateColumns = (width: number) => {
   if (width <= 0) return
   if (width < 640) {
     dynamicColumns.value = 3
+    dynamicGap.value = 8
     return
   }
   const gap = width >= 1024 ? 12 : 10
@@ -55,6 +57,7 @@ const calculateColumns = (width: number) => {
   // Calculate exact integer number of columns so no card is cut off at the edge
   const cols = Math.max(3, Math.round((width + gap) / (targetWidth + gap)))
   dynamicColumns.value = cols
+  dynamicGap.value = gap
 }
 
 onMounted(() => {
@@ -101,6 +104,9 @@ const railStyles = computed(() => {
   }
   if (props.layout === 'slider' && dynamicColumns.value !== null) {
     styles['--rail-cols'] = dynamicColumns.value
+    if (dynamicGap.value !== null) {
+      styles['--rail-gap'] = `${dynamicGap.value}px`
+    }
   }
   return styles
 })
@@ -122,7 +128,7 @@ const railStyles = computed(() => {
 
 <style scoped>
 .game-rail {
-  --rail-cols: 6;
+  --rail-cols: 3;
   --rail-gap: 8px;
   display: grid;
   grid-auto-flow: column;

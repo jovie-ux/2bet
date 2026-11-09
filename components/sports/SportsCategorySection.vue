@@ -17,8 +17,15 @@ const title = computed(() => props.label || getSportsCategoryLabel(props.sport))
 const banner = computed(() => getSportsCategoryBanner(props.sport))
 const background = computed(() => getSportsCategoryBackground(props.sport))
 const panelId = useId()
+const route = useRoute()
 const sportsRouteBase = useSportsRouteBase()
-const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular')
+const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular' || route.path.startsWith('/explore/sports/popular'))
+
+const shouldShowBanner = computed(() => {
+  if (props.showBanner === false) return false
+  return isPopular.value
+})
+
 const toggleExpanded = (): void => {
   expanded.value = !expanded.value
 }
@@ -27,7 +34,7 @@ const toggleExpanded = (): void => {
 <template>
   <section class="sports-category-section" :class="{ 'sports-category-section--compact': isPopular }">
     <button
-      v-if="showBanner"
+      v-if="shouldShowBanner"
       type="button"
       class="sports-category-banner"
       :style="{ backgroundImage: `url(${banner}), url(${background})` }"
@@ -83,6 +90,15 @@ const toggleExpanded = (): void => {
   content: '';
 }
 
+.sports-category-banner::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.45) 65%, rgba(0, 0, 0, 0.85) 100%);
+  pointer-events: none;
+  content: '';
+}
+
 .sports-category-banner__toggle {
   display: grid;
   width: 30px;
@@ -121,6 +137,10 @@ const toggleExpanded = (): void => {
 
 .sports-category-section--compact .sports-category-banner::before {
   background: linear-gradient(90deg, rgba(142, 153, 149, .66), rgba(51, 66, 62, .4) 24%, transparent 48%);
+}
+
+.sports-category-section--compact .sports-category-banner::after {
+  background: linear-gradient(to bottom, transparent 20%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0.9) 100%);
 }
 
 .sports-category-section--compact .sports-category-banner__toggle {

@@ -248,7 +248,7 @@ const toggleCollapseAll = (): void => {
       />
     </div>
 
-    <div v-if="displayedTimeFilters.length" class="sports-time-filters flex flex-wrap gap-1" aria-label="Filter upcoming matches by start time">
+    <div v-if="displayedTimeFilters.length" class="sports-time-filters flex flex-wrap gap-1 mb-2" aria-label="Filter upcoming matches by start time">
       <button
         v-for="filter in displayedTimeFilters"
         :key="filter"
@@ -261,12 +261,6 @@ const toggleCollapseAll = (): void => {
         {{ filter.replace('hours', 'hours') }}
       </button>
     </div>
-
-    <div v-if="!isPopular" class="section-heading">
-      <h2>Upcoming</h2>
-      <span>{{ filteredEvents.length }} events · Philippine time</span>
-    </div>
-
     <SportsSkeleton v-if="loading" :cols="oddsCols" />
 
     <div v-else-if="filteredEvents.length" class="sport-category-list">

@@ -496,7 +496,7 @@ const resetFilters = (): void => {
     <div v-else-if="isSearchSubmitted" class="search-results-view mb-12">
       <div
         v-if="searchResults.length > 0"
-        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2.5"
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-[repeat(auto-fill,minmax(150px,165px))] gap-2.5 justify-start"
       >
         <GameCard
           v-for="game in searchResults"
