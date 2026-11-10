@@ -88,7 +88,7 @@ watch(activeCategory, (category) => {
 <template>
   <div class="live-casino-page" :class="{ 'live-casino-page--featured': isFeatured }">
     <div class="casino-lobby-navigation sticky-header-seal">
-      <nav class="casino-category-nav" aria-label="Live casino categories">
+      <nav class="casino-category-nav " aria-label="Live casino categories">
         <template v-for="item in LIVE_CASINO_CATEGORIES" :key="item.key">
           <NuxtLink
             :to="`/explore/entertainment/live-casino/${item.key}`"
@@ -207,7 +207,7 @@ watch(activeCategory, (category) => {
   .casino-section-heading--filters-open { min-height: 80px; }
 }
 @media (max-width: 639px) {
-  .casino-category-nav { gap: 8px; min-height: 54px; padding-inline: 0; }
+  .casino-category-nav { gap: 8px; min-height: 54px; padding-inline: 10px; }
   .casino-category-button { width: 38px; height: 38px; }
   .casino-category-button--active { width: auto; }
   .casino-category-button span, .casino-multitable-button span { font-size: 12px; }
