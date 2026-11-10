@@ -1,11 +1,23 @@
+import path from 'node:path'
 import { PROMOTIONS } from '~/data/promotions'
 import { SLOT_CATEGORIES } from '~/data/slots'
 import { LIVE_CASINO_CATEGORIES } from '~/data/live-casino'
 import { BINGO_CATEGORIES } from '~/data/bingo'
 import { JACKPOT_SECTIONS } from '~/data/jackpot'
-import sitemapDatesJson from '~/data/sitemap-dates.json'
 
-const sitemapDates = sitemapDatesJson as Record<string, { lastmod?: string; hash?: string }>
+function getSitemapDates(): Record<string, { lastmod?: string; hash?: string }> {
+  try {
+    const proc = (globalThis as any).process
+    const fsMod = typeof proc?.getBuiltinModule === 'function' ? proc.getBuiltinModule('fs') : null
+    const datesPath = path.resolve(process.cwd(), 'data/sitemap-dates.json')
+    if (fsMod && fsMod.existsSync(datesPath)) {
+      return JSON.parse(fsMod.readFileSync(datesPath, 'utf8'))
+    }
+  } catch {
+    // Graceful fallback if file does not exist or cannot be parsed
+  }
+  return {}
+}
 
 export interface SitemapEntry {
   path: string
@@ -140,6 +152,7 @@ export function getSitemapEntries(): SitemapEntry[] {
 
   // Deduplicate entries by path
   const seen = new Set<string>()
+  const sitemapDates = getSitemapDates()
   return entries
     .filter((entry) => {
       if (seen.has(entry.path)) return false
