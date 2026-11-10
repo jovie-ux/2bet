@@ -25,14 +25,14 @@ useAppSeo({
   description: 'Conheça os tipsters com maior taxa de acertos na 2bet Brasil. Siga análises esportivas especializadas e aprimore suas estratégias diárias.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Praça ao Vivo', path: '/explore/live-plaza/home' },
-    { name: 'Especialistas', path: '/explore/live-plaza/experts' },
+    { name: 'Praça ao Vivo', path: '/live-plaza/home' },
+    { name: 'Especialistas', path: '/live-plaza/experts' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: '2Bet Sports Experts',
-    url: 'https://2bet.com/explore/live-plaza/experts',
+    url: 'https://2bet.com/live-plaza/experts',
   },
 })
 
@@ -155,7 +155,7 @@ onBeforeUnmount(() => {
   <div class="experts-page">
     <SubpageHeader
       title="All Experts"
-      back-to="/explore/live-plaza/expert-predictions"
+      back-to="/live-plaza/expert-predictions"
       class="mb-2 sm:mb-3"
     >
       <template #right>

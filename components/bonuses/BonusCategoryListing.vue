@@ -22,8 +22,8 @@ const nowMs = ref(Date.now())
 let countdownTimer: ReturnType<typeof setInterval> | null = null
 
 const categoryPath = (key: string): string => key === 'all'
-  ? '/explore/bonuses'
-  : `/explore/bonuses/${key}`
+  ? '/bonuses'
+  : `/bonuses/${key}`
 
 const categoryLabel = computed(() =>
   PROMO_CATEGORIES.find(item => item.key === props.category)?.label || 'Bonuses',
@@ -99,7 +99,7 @@ useAppSeo({
   description: () => formatSeoDescription(`Confira ofertas de ${translate(categoryLabel.value).toLowerCase()} na 2bet Brasil. Bônus de recarga, giros grátis e vantagens exclusivas no cassino.`),
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Bônus', path: '/explore/bonuses' },
+    { name: 'Bônus', path: '/bonuses' },
     { name: translate(categoryLabel.value), path: categoryPath(props.category) },
   ],
 })
@@ -113,7 +113,7 @@ useAppSeo({
         :meta-title="`${translate(categoryLabel)} — Bônus e Promoções de Cassino Online | 2bet`"
         :description="`Explore bônus e promoções de ${translate(categoryLabel).toLowerCase()} disponíveis na 2bet Brasil. Aproveite recompensas, rebates e ofertas exclusivas.`"
         keywords="2bet bônus, promoções, recompensas de depósito, rebates"
-        back-to="/explore/bonuses"
+        back-to="/bonuses"
         custom-class="bonus-category-header"
       >
         <template #actions>
@@ -139,7 +139,7 @@ useAppSeo({
       <NuxtLink
         v-for="promotion in featuredPromotions"
         :key="promotion.id"
-        :to="`/explore/bonus/${promotion.slug}`"
+        :to="`/bonus/${promotion.slug}`"
         class="category-card"
         @click="markAsViewed(promotion.slug)"
       >
@@ -168,7 +168,7 @@ useAppSeo({
       <NuxtLink
         v-for="promotion in categoryPromotions"
         :key="promotion.id"
-        :to="`/explore/bonus/${promotion.slug}`"
+        :to="`/bonus/${promotion.slug}`"
         class="category-card"
         @click="markAsViewed(promotion.slug)"
       >

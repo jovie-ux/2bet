@@ -26,7 +26,7 @@ const jackpots: Jackpot[] = [
     key: 'jili',
     label: 'JILI Jackpot',
     image: '/images/jackpots/mega-red.webp',
-    to: '/explore/egames/jackpot/jili',
+    to: '/egames/jackpot/jili',
     amountColor: '#FF99FF',
     borderEffectColor: '#ff4138',
   },
@@ -34,7 +34,7 @@ const jackpots: Jackpot[] = [
     key: 'cq9',
     label: 'CQ9 Jackpot',
     image: '/images/jackpots/cq9-jackpot.webp',
-    to: '/explore/egames/jackpot/cq9',
+    to: '/egames/jackpot/cq9',
     amountColor: '#7fd8ff',
     borderEffectColor: '#D10CFF',
   },
@@ -42,7 +42,7 @@ const jackpots: Jackpot[] = [
     key: 'jdb',
     label: 'JDB Jackpot',
     image: '/images/jackpots/jdb-jackpot.webp',
-    to: '/explore/egames/jackpot/jdb',
+    to: '/egames/jackpot/jdb',
     amountColor: '#FEE05B',
     borderEffectColor: '#1352DE',
   },
@@ -72,7 +72,7 @@ const { translate } = useSiteLocale()
         <Trophy :size="16" fill="currentColor" aria-hidden="true" />
         <h2 id="jackpots-title">{{ translate('Top Jackpots') }}</h2>
       </div>
-      <NuxtLink to="/explore/egames/jackpot/all">{{ translate('View All') }} <ArrowRight :size="9" /></NuxtLink>
+      <NuxtLink to="/egames/jackpot/all">{{ translate('View All') }} <ArrowRight :size="9" /></NuxtLink>
     </header>
     <div class="jackpot-grid">
       <NuxtLink

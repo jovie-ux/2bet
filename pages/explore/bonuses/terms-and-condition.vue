@@ -7,8 +7,8 @@ const pageTitle = 'Terms and Conditions for Promotion'
 const backPath = computed(() => {
   const slug = typeof route.query.promotion === 'string' ? route.query.promotion : ''
   return PROMOTIONS.some(item => item.slug === slug)
-    ? `/explore/bonus/${slug}`
-    : '/explore/bonuses'
+    ? `/bonus/${slug}`
+    : '/bonuses'
 })
 
 const terms = [
@@ -59,8 +59,8 @@ useAppSeo({
   description: 'Consulte os requisitos de rollover e regras das promoções da 2bet Brasil. Informações claras para você aproveitar seus bônus com confiança.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Bônus', path: '/explore/bonuses' },
-    { name: 'Termos e Condições da Promoção', path: '/explore/bonuses/terms-and-condition' },
+    { name: 'Bônus', path: '/bonuses' },
+    { name: 'Termos e Condições da Promoção', path: '/bonuses/terms-and-condition' },
   ],
 })
 </script>

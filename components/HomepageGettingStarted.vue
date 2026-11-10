@@ -11,9 +11,9 @@ const props = withDefaults(defineProps<{
 const { translate } = useSiteLocale()
 
 const steps = [
-  { title: 'Discover', description: 'Browse our games and features.', to: '/explore/egames/slots', image: '/icons/casino-steps/choose-table.webp' },
-  { title: 'Choose', description: 'Find what you love across every category.', to: '/explore/entertainment/live-casino/baccarat', image: '/icons/casino-steps/check-rules.webp' },
-  { title: 'Enjoy', description: 'Start exploring here at 2Bet.', to: '/explore/egames/bingo/top', image: '/icons/casino-steps/join-action.webp' },
+  { title: 'Discover', description: 'Browse our games and features.', to: '/egames/slots', image: '/icons/casino-steps/choose-table.webp' },
+  { title: 'Choose', description: 'Find what you love across every category.', to: '/entertainment/live-casino/baccarat', image: '/icons/casino-steps/check-rules.webp' },
+  { title: 'Enjoy', description: 'Start exploring here at 2Bet.', to: '/egames/bingo/top', image: '/icons/casino-steps/join-action.webp' },
 ]
 const faqDetails = ref<HTMLDetailsElement[]>([])
 
@@ -44,7 +44,7 @@ function showAllFaqs() {
       </ol>
 
       <div class="getting-started-actions flex">
-        <NuxtLink to="/explore/egames/slots" class="getting-started-explore homepage-primary-action">{{ translate('Explore all games') }} <ArrowRight :size="20" :stroke-width="1.8" aria-hidden="true" /></NuxtLink>
+        <NuxtLink to="/egames/slots" class="getting-started-explore homepage-primary-action">{{ translate('Explore all games') }} <ArrowRight :size="20" :stroke-width="1.8" aria-hidden="true" /></NuxtLink>
         <p>{{ translate('Choose your experience. Play at your pace.') }}</p>
       </div>
     </section>

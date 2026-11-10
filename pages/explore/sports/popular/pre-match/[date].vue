@@ -11,8 +11,8 @@ useAppSeo({
   description: computed(() => formatSeoDescription(`Consulte partidas pré-jogo em ${route.params.date} na 2bet Brasil. Encontre cotações antecipadas, estatísticas de equipes e linhas completas.`)),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Esportes', path: '/explore/sports/popular' },
-    { name: 'Pré-Jogo', path: '/explore/sports/popular/pre-match' },
+    { name: 'Esportes', path: '/sports/popular' },
+    { name: 'Pré-Jogo', path: '/sports/popular/pre-match' },
     { name: String(route.params.date), path: route.path },
   ]),
   schema: computed(() => ({

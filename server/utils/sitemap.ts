@@ -20,31 +20,31 @@ export function getSitemapEntries(): SitemapEntry[] {
     { path: '/', changefreq: 'daily', priority: 1.0 },
 
     // Primary E-Games & Casino Lobbies
-    { path: '/explore/egames/slots', changefreq: 'daily', priority: 0.9 },
-    { path: '/explore/egames/jackpot/all', changefreq: 'daily', priority: 0.9 },
-    { path: '/explore/entertainment/live-casino/baccarat', changefreq: 'daily', priority: 0.9 },
+    { path: '/egames/slots', changefreq: 'daily', priority: 0.9 },
+    { path: '/egames/jackpot/all', changefreq: 'daily', priority: 0.9 },
+    { path: '/entertainment/live-casino/baccarat', changefreq: 'daily', priority: 0.9 },
 
     // Sports Betting
-    { path: '/explore/sports/popular/inplay', changefreq: 'hourly', priority: 0.8 },
-    { path: '/explore/sports/popular/league', changefreq: 'hourly', priority: 0.8 },
-    { path: '/explore/sports/popular/upcoming', changefreq: 'hourly', priority: 0.8 },
-    { path: '/explore/sports/popular/pre-match', changefreq: 'hourly', priority: 0.8 },
-    { path: '/explore/sports/popular/outright', changefreq: 'hourly', priority: 0.8 },
-    { path: '/explore/sports/live', changefreq: 'hourly', priority: 0.9 },
-    { path: '/explore/sports/basketball', changefreq: 'hourly', priority: 0.8 },
-    { path: '/explore/sports/soccer', changefreq: 'hourly', priority: 0.8 },
-    { path: '/explore/sports/baseball', changefreq: 'hourly', priority: 0.8 },
-    { path: '/explore/sports/tennis', changefreq: 'hourly', priority: 0.8 },
+    { path: '/sports/popular/inplay', changefreq: 'hourly', priority: 0.8 },
+    { path: '/sports/popular/league', changefreq: 'hourly', priority: 0.8 },
+    { path: '/sports/popular/upcoming', changefreq: 'hourly', priority: 0.8 },
+    { path: '/sports/popular/pre-match', changefreq: 'hourly', priority: 0.8 },
+    { path: '/sports/popular/outright', changefreq: 'hourly', priority: 0.8 },
+    { path: '/sports/live', changefreq: 'hourly', priority: 0.9 },
+    { path: '/sports/basketball', changefreq: 'hourly', priority: 0.8 },
+    { path: '/sports/soccer', changefreq: 'hourly', priority: 0.8 },
+    { path: '/sports/baseball', changefreq: 'hourly', priority: 0.8 },
+    { path: '/sports/tennis', changefreq: 'hourly', priority: 0.8 },
 
     // Promotions & Bonuses
-    { path: '/explore/bonuses', changefreq: 'daily', priority: 0.8 },
-    { path: '/explore/bonuses/most-popular', changefreq: 'daily', priority: 0.8 },
-    { path: '/explore/bonuses/slots', changefreq: 'daily', priority: 0.8 },
-    { path: '/explore/bonuses/live-casino', changefreq: 'daily', priority: 0.8 },
-    { path: '/explore/bonuses/sports', changefreq: 'daily', priority: 0.8 },
-    { path: '/explore/bonuses/others', changefreq: 'daily', priority: 0.8 },
-    { path: '/explore/bonuses/deposit', changefreq: 'weekly', priority: 0.7 },
-    { path: '/explore/bonuses/terms-and-condition', changefreq: 'monthly', priority: 0.5 },
+    { path: '/bonuses', changefreq: 'daily', priority: 0.8 },
+    { path: '/bonuses/most-popular', changefreq: 'daily', priority: 0.8 },
+    { path: '/bonuses/slots', changefreq: 'daily', priority: 0.8 },
+    { path: '/bonuses/live-casino', changefreq: 'daily', priority: 0.8 },
+    { path: '/bonuses/sports', changefreq: 'daily', priority: 0.8 },
+    { path: '/bonuses/others', changefreq: 'daily', priority: 0.8 },
+    { path: '/bonuses/deposit', changefreq: 'weekly', priority: 0.7 },
+    { path: '/bonuses/terms-and-condition', changefreq: 'monthly', priority: 0.5 },
 
     // Game Rules
     { path: '/game-rules/sports-betting-rules', changefreq: 'monthly', priority: 0.7 },
@@ -71,23 +71,23 @@ export function getSitemapEntries(): SitemapEntry[] {
     { path: '/terms-of-use', changefreq: 'monthly', priority: 0.6 },
     { path: '/download-app', changefreq: 'weekly', priority: 0.8 },
     { path: '/affiliate', changefreq: 'monthly', priority: 0.7 },
-    { path: '/explore/help/contact-us', changefreq: 'monthly', priority: 0.6 },
-    { path: '/explore/legal/general-terms', changefreq: 'monthly', priority: 0.6 },
-    { path: '/explore/legal/cookie-policy', changefreq: 'monthly', priority: 0.6 },
-    { path: '/explore/egames/customer-service', changefreq: 'monthly', priority: 0.6 },
+    { path: '/help/contact-us', changefreq: 'monthly', priority: 0.6 },
+    { path: '/legal/general-terms', changefreq: 'monthly', priority: 0.6 },
+    { path: '/legal/cookie-policy', changefreq: 'monthly', priority: 0.6 },
+    { path: '/egames/customer-service', changefreq: 'monthly', priority: 0.6 },
 
     // Live Plaza
-    { path: '/explore/live-plaza/home', changefreq: 'daily', priority: 0.7 },
-    { path: '/explore/live-plaza/streamer/all', changefreq: 'daily', priority: 0.7 },
-    { path: '/explore/live-plaza/expert-predictions', changefreq: 'daily', priority: 0.7 },
-    { path: '/explore/live-plaza/experts', changefreq: 'daily', priority: 0.7 },
+    { path: '/live-plaza/home', changefreq: 'daily', priority: 0.7 },
+    { path: '/live-plaza/streamer/all', changefreq: 'daily', priority: 0.7 },
+    { path: '/live-plaza/expert-predictions', changefreq: 'daily', priority: 0.7 },
+    { path: '/live-plaza/experts', changefreq: 'daily', priority: 0.7 },
   ]
 
   // Dynamic Slot Categories
   for (const cat of SLOT_CATEGORIES) {
     if (cat.key && cat.key !== 'home') {
       entries.push({
-        path: `/explore/egames/slots/${cat.key}`,
+        path: `/egames/slots/${cat.key}`,
         changefreq: 'daily',
         priority: 0.8,
       })
@@ -98,7 +98,7 @@ export function getSitemapEntries(): SitemapEntry[] {
   for (const section of JACKPOT_SECTIONS) {
     if (section.id && section.id !== 'all') {
       entries.push({
-        path: `/explore/egames/jackpot/${section.id}`,
+        path: `/egames/jackpot/${section.id}`,
         changefreq: 'daily',
         priority: 0.8,
       })
@@ -109,7 +109,7 @@ export function getSitemapEntries(): SitemapEntry[] {
   for (const cat of BINGO_CATEGORIES) {
     if (cat.key && cat.key !== 'home') {
       entries.push({
-        path: `/explore/egames/bingo/${cat.key}`,
+        path: `/egames/bingo/${cat.key}`,
         changefreq: 'daily',
         priority: 0.8,
       })
@@ -120,7 +120,7 @@ export function getSitemapEntries(): SitemapEntry[] {
   for (const cat of LIVE_CASINO_CATEGORIES) {
     if (cat.key && cat.key !== 'baccarat') {
       entries.push({
-        path: `/explore/entertainment/live-casino/${cat.key}`,
+        path: `/entertainment/live-casino/${cat.key}`,
         changefreq: 'daily',
         priority: 0.8,
       })
@@ -131,7 +131,7 @@ export function getSitemapEntries(): SitemapEntry[] {
   for (const promo of PROMOTIONS) {
     if (promo.id) {
       entries.push({
-        path: `/explore/bonus/${promo.id}`,
+        path: `/bonus/${promo.id}`,
         changefreq: 'weekly',
         priority: 0.8,
       })
@@ -148,7 +148,7 @@ export function getSitemapEntries(): SitemapEntry[] {
     })
     .map((entry) => ({
       ...entry,
-      lastmod: entry.lastmod || sitemapDates[entry.path]?.lastmod,
+      lastmod: entry.lastmod || sitemapDates[entry.path]?.lastmod || sitemapDates[`/explore${entry.path}`]?.lastmod,
     }))
 }
 

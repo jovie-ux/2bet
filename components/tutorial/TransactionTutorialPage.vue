@@ -108,7 +108,7 @@ const steps = computed(() => (props.mode === 'deposit' ? depositSteps : withdraw
 
 <template>
   <section class="transaction-tutorial" :class="`transaction-tutorial--${mode}`">
-    <SubpageHeader mobile-tabs back-to="/explore/account/me" class="mb-2 sm:mb-3">
+    <SubpageHeader mobile-tabs back-to="/account/me" class="mb-2 sm:mb-3">
       <template #center>
         <div class="transaction-pill-group" role="tablist">
           <NuxtLink

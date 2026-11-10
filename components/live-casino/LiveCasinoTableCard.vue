@@ -20,7 +20,8 @@ const props = withDefaults(defineProps<{
   showRoadmap?: boolean
   compact?: boolean
   layout?: 'vertical' | 'horizontal'
-}>(), { showRoadmap: true, compact: false, layout: 'vertical' })
+  titleTag?: 'h2' | 'span'
+}>(), { showRoadmap: true, compact: false, layout: 'vertical', titleTag: 'span' })
 const emit = defineEmits<{ select: [table: LiveCasinoTable] }>()
 const tableImage = ref<HTMLImageElement | null>(null)
 const imageLoaded = ref(false)
@@ -91,7 +92,7 @@ onMounted(syncImageState)
       <img v-if="imageSource" ref="tableImage" :key="imageSource" class="casino-table-image" :class="{ 'casino-table-image--loaded': imageLoaded && !imageFailed }" :src="imageSource" :alt="table.title" loading="lazy" decoding="async" @load="imageLoaded = true" @error="imageFailed = true" />
       <span class="casino-picture-shade" aria-hidden="true" />
       <span class="casino-table-caption">
-        <span class="casino-table-title" :title="table.title">{{ table.title }}</span>
+        <component :is="titleTag" class="casino-table-title" :title="table.title">{{ table.title }}</component>
         <span class="casino-table-players"><User :size="10" aria-hidden="true" />{{ table.players.toLocaleString('en-US') }}</span>
       </span>
       <LiveCasinoRoundIndicator v-if="hasRoundIndicator" :table-id="table.id" :elapsed-ms="elapsedMs" />
@@ -149,7 +150,7 @@ onMounted(syncImageState)
 .casino-table-image--loaded { opacity: 1; }
 .casino-picture-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 0 0 / 30%), transparent 33%, transparent 75%, rgb(0 0 0 / 35%)); pointer-events: none; }
 .casino-table-caption { position: absolute; top: 7px; right: 6px; left: 7px; display: flex; align-items: flex-start; justify-content: space-between; gap: 5px; color: #fff; font-family: Arial, sans-serif; text-shadow: 0 1px 3px #000; }
-.casino-table-title { min-width: 0; overflow: hidden; font-size: 12px; font-weight: 500; line-height: 16px; text-overflow: ellipsis; white-space: nowrap; }
+.casino-table-title { margin: 0; padding: 0; min-width: 0; overflow: hidden; font-family: inherit; font-size: 12px; font-weight: 500; line-height: 16px; text-overflow: ellipsis; white-space: nowrap; }
 .casino-table-players { display: inline-flex; flex-shrink: 0; align-items: center; gap: 2px; padding-top: 1px; font-size: 11px; line-height: 14px; }
 .casino-table-outcome { position: absolute; right: 7px; bottom: 5px; color: #fff3d6; font-family: Arial, sans-serif; font-size: 9px; font-weight: 700; line-height: 14px; text-shadow: 0 0 3px #663800, 0 0 5px #000; }
 .casino-table-outcome--b { color: #ffe7e7; text-shadow: 0 0 3px #ff394b, 0 0 5px #ac1425; }
@@ -177,7 +178,7 @@ onMounted(syncImageState)
 .casino-table-card--horizontal { display: grid; grid-template-columns: minmax(0, 40%) minmax(0, 60%); height: auto; aspect-ratio: 3.8; }
 .casino-table-card--horizontal .casino-table-picture { height: 100%; aspect-ratio: auto; border-radius: 10px 0 0 10px; }
 .casino-table-card--horizontal .casino-table-caption { top: 5px; left: 5px; right: 5px; gap: 3px; }
-.casino-table-card--horizontal .casino-table-title { font-size: 11px; line-height: 14px; }
+.casino-table-card--horizontal .casino-table-title { margin: 0; font-size: 11px; line-height: 14px; }
 .casino-table-card--horizontal .casino-table-players { font-size: 10px; line-height: 13px; }
 .casino-table-card--horizontal .casino-table-outcome { right: 5px; bottom: 4px; font-size: 8px; line-height: 12px; }
 
@@ -187,7 +188,7 @@ onMounted(syncImageState)
 
 @media (max-width: 639px) {
   .casino-table-caption { top: 5px; left: 5px; right: 5px; }
-  .casino-table-title { font-size: 11px; }
+  .casino-table-title { margin: 0; font-size: 11px; }
   .casino-table-players { font-size: 10px; }
 }
 </style>

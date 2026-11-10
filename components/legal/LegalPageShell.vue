@@ -10,7 +10,7 @@ withDefaults(
     showDocumentTitle?: boolean
   }>(),
   {
-    backTo: '/explore/account/me',
+    backTo: '/account/me',
     bannerSrc: '/brand/about-hero-banner.webp',
     bannerAlt: '2Bet',
     showDocumentTitle: true,

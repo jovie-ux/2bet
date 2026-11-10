@@ -46,14 +46,14 @@ useAppSeo({
   description: 'Gire os melhores caça-níqueis no cassino 2bet. Centenas de slots online com alto RTP, jackpots acumulados em R$ e recursos bônus incríveis.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'eGames', path: '/explore/egames/slots' },
-    { name: 'Slots', path: '/explore/egames/slots' },
+    { name: 'eGames', path: '/egames/slots' },
+    { name: 'Slots', path: '/egames/slots' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: '2Bet Online Slots',
-    url: 'https://2bet.com/explore/egames/slots',
+    url: 'https://2bet.com/egames/slots',
     description: 'Play top online slot games at 2Bet Brasil. Spin popular titles, megaways, and progressive jackpots.',
   },
 })
@@ -112,7 +112,7 @@ const selectCategory = (key: string): void => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   } else {
-    router.push(`/explore/egames/slots/${key}`)
+    router.push(`/egames/slots/${key}`)
   }
 }
 
@@ -674,7 +674,7 @@ const resetFilters = (): void => {
 
           <!-- Section Link to Subroute -->
           <NuxtLink
-            :to="`/explore/egames/slots/${section.id === 'bonuses' ? 'bonus' : (section.id === 'max-rtp' ? 'max-rpt' : section.id)}`"
+            :to="`/egames/slots/${section.id === 'bonuses' ? 'bonus' : (section.id === 'max-rtp' ? 'max-rpt' : section.id)}`"
             class="count-badge flex items-center gap-0.5 rounded-full bg-[#202220] hover:bg-[#282a29] px-2.5 py-0.5 text-[11px] font-medium text-[#8e9491] hover:text-white transition-colors cursor-pointer"
           >
             <span>{{ section.count }}</span>

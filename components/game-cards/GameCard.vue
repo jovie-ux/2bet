@@ -216,13 +216,13 @@ const normalizedCategory = computed(() => {
 const isJackpotPage = computed(() => {
   const p = route?.path || ''
   const cat = normalizedCategory.value
-  return p.startsWith('/explore/egames/jackpot') || cat === 'jackpot' || cat === 'jackpot-jdb'
+  return p.includes('/egames/jackpot') || cat === 'jackpot' || cat === 'jackpot-jdb'
 })
 
 const isJdbJackpotPage = computed(() => {
   const p = route?.path || ''
   const cat = normalizedCategory.value
-  return p.includes('/explore/egames/jackpot/jdb') || cat === 'jackpot-jdb'
+  return p.includes('/egames/jackpot/jdb') || cat === 'jackpot-jdb'
 })
 
 const tagLabel = computed(() => {

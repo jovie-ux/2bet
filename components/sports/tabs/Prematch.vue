@@ -25,7 +25,7 @@ const search = ref('')
 const route = useRoute()
 const { translate } = useSiteLocale()
 const sportsRouteBase = useSportsRouteBase()
-const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular')
+const isPopular = computed(() => sportsRouteBase.value.endsWith('/sports/popular'))
 const oddsCols = computed<2 | 3>(() => route.params.sport === 'soccer' ? 3 : 2)
 const selectedDate = ref('all')
 watch(() => route.params.date, value => {

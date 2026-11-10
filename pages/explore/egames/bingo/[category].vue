@@ -61,14 +61,14 @@ useAppSeo({
   description: computed(() => formatSeoDescription(`Jogue ${translate(categoryLabel.value).toLowerCase()} no bingo online da 2bet Brasil. Cartelas dinâmicas, bolas bônus e prêmios em dinheiro real 24 horas.`)),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Bingo', path: '/explore/egames/bingo' },
-    { name: translate(categoryLabel.value), path: `/explore/egames/bingo/${activeCategory.value}` },
+    { name: 'Bingo', path: '/egames/bingo' },
+    { name: translate(categoryLabel.value), path: `/egames/bingo/${activeCategory.value}` },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `${translate(categoryLabel.value)} Bingo - 2bet`,
-    url: `https://2bet.com/explore/egames/bingo/${activeCategory.value}`,
+    url: `https://2bet.com/egames/bingo/${activeCategory.value}`,
   })),
 })
 
@@ -109,9 +109,9 @@ const selectCategory = (key: string): void => {
     closeSearch()
   }
   if (key === 'home') {
-    router.push('/explore/egames/bingo')
+    router.push('/egames/bingo')
   } else {
-    router.push(`/explore/egames/bingo/${key}`)
+    router.push(`/egames/bingo/${key}`)
   }
 }
 

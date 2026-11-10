@@ -1,8 +1,18 @@
 <script setup lang="ts">
 import { X } from 'lucide-vue-next'
-import { BONUS_CURRENCIES, getBonusCurrency } from '~/data/bonus-currencies'
+import { BONUS_CURRENCIES, getBonusCurrency, type BonusCurrency } from '~/data/bonus-currencies'
 
-const props = withDefaults(defineProps<{ modelValue?: string }>(), { modelValue: 'all' })
+const props = withDefaults(defineProps<{
+  modelValue?: string
+  currencies?: BonusCurrency[]
+  ariaLabel?: string
+  optionsLabel?: string
+}>(), {
+  modelValue: 'all',
+  currencies: () => BONUS_CURRENCIES,
+  ariaLabel: '',
+  optionsLabel: 'Bonus currencies',
+})
 const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 const { translate } = useSitePreferences()
 
@@ -10,7 +20,13 @@ const isOpen = ref(false)
 const trigger = ref<HTMLButtonElement | null>(null)
 const dialog = ref<HTMLDivElement | null>(null)
 const titleId = useId()
-const triggerCurrency = computed(() => getBonusCurrency(props.modelValue === 'all' ? 'BRL' : props.modelValue))
+const triggerCurrency = computed(() => {
+  const code = props.modelValue === 'all' ? 'BRL' : props.modelValue
+  return props.currencies.find(currency => currency.code === code) || getBonusCurrency(code)
+})
+const triggerAriaLabel = computed(() => props.ariaLabel || `Select bonus currency: ${
+  (props.currencies.find(currency => currency.code === props.modelValue) || getBonusCurrency(props.modelValue)).label
+}`)
 let previousOverflow = ''
 let scrollLocked = false
 
@@ -81,7 +97,7 @@ onBeforeUnmount(() => {
     type="button"
     aria-haspopup="dialog"
     :aria-expanded="isOpen"
-    :aria-label="`Select bonus currency: ${getBonusCurrency(modelValue).label}`"
+    :aria-label="triggerAriaLabel"
     @click="isOpen = true"
   >
     <img :src="triggerCurrency.icon" :alt="triggerCurrency.label" width="24" height="24">
@@ -102,9 +118,9 @@ onBeforeUnmount(() => {
             <X :size="18" aria-hidden="true" />
           </button>
         </div>
-        <div class="bonus-currency-options" role="group" :aria-label="translate('Bonus currencies')">
+        <div class="bonus-currency-options" role="group" :aria-label="translate(optionsLabel)">
           <button
-            v-for="currency in BONUS_CURRENCIES"
+            v-for="currency in currencies"
             :key="currency.code"
             class="bonus-currency-option"
             type="button"

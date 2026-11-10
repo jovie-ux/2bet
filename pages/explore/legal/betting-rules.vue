@@ -4,7 +4,7 @@ useAppSeo({
   description: 'Regulamento oficial de apostas esportivas na 2bet Brasil. Regras para futebol, basquete, tênis, mercados ao vivo e prazos de liquidação.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Legal', path: '/explore/legal/general-terms' },
+    { name: 'Legal', path: '/legal/general-terms' },
     { name: 'Regras de Apostas', path: '/game-rules/sports-betting-rules' },
   ],
 })

@@ -22,7 +22,7 @@ const { isLoading } = useByBetLoader()
     >
       <img
         class="roulette-entry__wheel"
-        src="/images/roulette-entry/roulette-wheel.png"
+        src="/images/roulette-entry/roulette-wheel.webp"
         alt="Roulette wheel"
         width="288"
         height="288"
@@ -32,7 +32,7 @@ const { isLoading } = useByBetLoader()
       <span class="roulette-entry__ball-track">
         <img
           class="roulette-entry__ball"
-          src="/images/roulette-entry/roulette-ball.png"
+          src="/images/roulette-entry/roulette-ball.webp"
           alt="Roulette ball"
           width="96"
           height="96"
@@ -44,7 +44,7 @@ const { isLoading } = useByBetLoader()
     <span class="roulette-entry__logo-panel" aria-hidden="true">
       <img
         class="roulette-entry__logo"
-        src="/images/roulette-entry/2bet-logo.png"
+        src="/images/roulette-entry/2bet-logo.webp"
         alt="2Bet"
         width="148"
         height="54"

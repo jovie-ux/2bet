@@ -12,7 +12,7 @@ const props = withDefaults(
   }>(),
   {
     title: '',
-    backTo: '/explore/account/me',
+    backTo: '/account/me',
     showBack: true,
     sticky: true,
     customClass: '',
@@ -121,7 +121,7 @@ const handleBack = (): void => {
   }
   .subpage-header--mobile-tabs :deep([role="tab"][aria-selected="true"]) {
     color: var(--main-color);
-    background: #fff;
+    background: #fedf00;
     border-color: #fff;
   }
 }

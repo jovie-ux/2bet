@@ -1,4 +1,7 @@
 export function useSportsRouteBase() {
   const route = useRoute()
-  return computed(() => route.path.match(/^\/explore\/sports\/(popular|basketball|baseball|soccer|football|tennis)(?=\/|$)/)?.[0] ?? '')
+  return computed(() => {
+    const match = route.path.match(/^\/(?:explore\/)?sports\/(popular|basketball|baseball|soccer|football|tennis)(?=\/|$)/)
+    return match ? `/sports/${match[1]}` : ''
+  })
 }

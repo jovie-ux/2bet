@@ -725,7 +725,7 @@ const selectChoice = (id: string): void => {
     class="game-tutorial-page"
     :class="{ 'game-tutorial-page--lesson': activeMode === 'tutorial' }"
   >
-    <SubpageHeader mobile-tabs back-to="/explore/account/me" class="mb-2">
+    <SubpageHeader mobile-tabs back-to="/account/me" class="mb-2">
       <template #center>
         <div class="tutorial-pill-group" role="tablist">
           <NuxtLink

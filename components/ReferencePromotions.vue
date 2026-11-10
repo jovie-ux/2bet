@@ -18,13 +18,13 @@ const { translate } = useSiteLocale()
   <section id="promotions" class="promotions-section" aria-labelledby="promotions-title">
     <header>
       <div><Gift :size="16" fill="currentColor" aria-hidden="true" /><h2 id="promotions-title">{{ translate('Promotions') }}</h2></div>
-      <NuxtLink to="/explore/bonuses">{{ translate('View All') }} <ArrowRight :size="9" /></NuxtLink>
+      <NuxtLink to="/bonuses">{{ translate('View All') }} <ArrowRight :size="9" /></NuxtLink>
     </header>
     <div class="promotion-grid">
       <NuxtLink
         v-for="(promotion, index) in mostPopularPromotions"
         :key="promotion.id"
-        :to="`/explore/bonus/${promotion.slug}`"
+        :to="`/bonus/${promotion.slug}`"
         :style="{
           '--promo-border-effect': promotion.accentColor || '#20c97d',
           '--promo-image-position': promotion.imagePosition || 'center',

@@ -4,8 +4,8 @@ useAppSeo({
   description: 'Consulte seu histórico de apostas, giros em caça-níqueis e movimentações financeiras na 2bet Brasil com relatórios detalhados em tempo real.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Minha Conta', path: '/explore/account/me' },
-    { name: 'Histórico', path: '/explore/account/history' },
+    { name: 'Minha Conta', path: '/account/me' },
+    { name: 'Histórico', path: '/account/history' },
   ],
 })
 </script>

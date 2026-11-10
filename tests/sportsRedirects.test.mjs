@@ -110,7 +110,7 @@ describe('Sports Navigation External Redirects Suite', () => {
   test('Case 11: pages/explore/sports/live.vue includes All eSports tab pointing to sportEvents/liveGame/eSportBallGroup', () => {
     const source = fs.readFileSync(path.resolve('pages/explore/sports/live.vue'), 'utf-8')
     assert.match(source, /sportEvents\/liveGame\/eSportBallGroup/, 'live.vue must contain live esports redirect path')
-    assert.match(source, /All eSports/, 'live.vue must define All eSports tab label')
+    assert.match(source, /key:\s*['"]esports['"]/, 'live.vue must define esports tab')
     assert.match(source, /:external="Boolean\(tab\.external\)"/, 'live.vue must bind external attribute on tabs')
   })
 

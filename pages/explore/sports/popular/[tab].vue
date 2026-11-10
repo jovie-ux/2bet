@@ -59,14 +59,14 @@ useAppSeo({
   description: computed(() => currentTab.value.description),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Esportes', path: '/explore/sports/popular' },
-    { name: currentTab.value.label, path: `/explore/sports/popular/${route.params.tab}` },
+    { name: 'Esportes', path: '/sports/popular' },
+    { name: currentTab.value.label, path: `/sports/popular/${route.params.tab}` },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: currentTab.value.title.replace(' | 2bet', ''),
-    url: `https://2bet.com/explore/sports/popular/${route.params.tab}`,
+    url: `https://2bet.com/sports/popular/${route.params.tab}`,
     description: currentTab.value.description,
   })),
 })

@@ -37,14 +37,14 @@ useAppSeo({
   description: 'Jogue bingo online na 2bet Brasil. Escolha suas cartelas favoritas, aproveite bolas extras com bônus e dispute prêmios em dinheiro real.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'eGames', path: '/explore/egames/slots' },
-    { name: 'Bingo', path: '/explore/egames/bingo' },
+    { name: 'eGames', path: '/egames/slots' },
+    { name: 'Bingo', path: '/egames/bingo' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: '2Bet Online Bingo',
-    url: 'https://2bet.com/explore/egames/bingo',
+    url: 'https://2bet.com/egames/bingo',
     description: 'Play online bingo games at 2Bet Brasil. Experience fast-paced ball draws, multi-card action, and instant cash prizes.',
   },
 })
@@ -97,7 +97,7 @@ const selectCategory = (key: string): void => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   } else {
-    router.push(`/explore/egames/bingo/${key}`)
+    router.push(`/egames/bingo/${key}`)
   }
 }
 
@@ -541,7 +541,7 @@ const resetFilters = (): void => {
 
         <!-- Section Link to Subroute -->
         <NuxtLink
-          :to="`/explore/egames/bingo/${section.id === 'max-rtp' ? 'max-rpt' : section.id}`"
+          :to="`/egames/bingo/${section.id === 'max-rtp' ? 'max-rpt' : section.id}`"
           class="count-badge flex items-center gap-0.5 rounded-full bg-[#202220] hover:bg-[#282a29] px-2.5 py-0.5 text-[11px] font-medium text-[#8e9491] hover:text-white transition-colors cursor-pointer"
         >
           <span>{{ section.count }}</span>

@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<{
   elapsedMs: number
   row?: boolean
   featured?: boolean
+  headerTag?: 'h2' | 'span'
 }>(), { row: false, featured: false })
 const emit = defineEmits<{ select: [table: LiveCasinoTable] }>()
 const list = ref<HTMLElement | null>(null)
@@ -19,7 +20,15 @@ const canScrollRight = ref(false)
 let resizeObserver: ResizeObserver | undefined
 const artworkKey = computed(() => props.id.toLowerCase().replace(/[^a-z0-9]+/g, '-'))
 const artworkSvg = computed(() => `/images/casino/placeholders/${artworkKey.value}.svg`)
-const artworkPng = computed(() => `/images/casino/placeholders/${artworkKey.value}.png`)
+const artworkWebp = computed(() => `/images/casino/placeholders/${artworkKey.value}.webp`)
+const computedHeaderTag = computed<'h2' | 'span'>(() => {
+  if (props.headerTag) return props.headerTag
+  const normalizedId = props.id.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+  if (['live-show', 'dragon-tiger', 'roulette', 'sicbo'].includes(normalizedId)) {
+    return 'span'
+  }
+  return 'h2'
+})
 
 const updateScrollState = (): void => {
   const element = list.value
@@ -53,13 +62,17 @@ onBeforeUnmount(() => resizeObserver?.disconnect())
     :class="{ 'casino-table-section--featured': featured, 'casino-table-section--row': row }"
     :aria-labelledby="`${id}-heading`"
   >
-    <h2 :id="`${id}-heading`" class="flex min-h-[36px] items-center justify-between gap-3">
+    <component
+      :is="computedHeaderTag"
+      :id="`${id}-heading`"
+      class="casino-section-header flex min-h-[36px] items-center justify-between gap-3"
+    >
       <span>{{ title }}</span>
       <span class="relative block h-[36px] w-[72px] shrink-0" aria-hidden="true">
         <img :src="artworkSvg" width="72" height="36" alt="" class="h-full w-full" />
-        <img :src="artworkPng" width="132" height="108" alt="" class="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain" />
+        <img :src="artworkWebp" width="132" height="108" alt="" class="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain" />
       </span>
-    </h2>
+    </component>
     <div class="casino-section-viewport">
       <div ref="list" class="casino-section-list" @scroll.passive="updateScrollState">
         <LiveCasinoTableCard
@@ -67,6 +80,7 @@ onBeforeUnmount(() => resizeObserver?.disconnect())
           :key="table.id"
           :table="table"
           :elapsed-ms="elapsedMs"
+          :title-tag="computedHeaderTag === 'span' ? 'h2' : 'span'"
           compact
           @select="emit('select', $event)"
         />
@@ -84,8 +98,10 @@ onBeforeUnmount(() => resizeObserver?.disconnect())
 
 <style scoped>
 .casino-table-section { width: 100%; min-width: 0; margin-bottom: 22px; }
-.casino-table-section h2 { margin: 0 0 14px; color: var(--main-color); font-size: 16px; font-weight: 400; line-height: 22px; }
-.casino-table-section--featured h2 { color: var(--heading); }
+.casino-table-section h2,
+.casino-table-section .casino-section-header { margin: 0 0 14px; color: var(--main-color); font-size: 16px; font-weight: 400; line-height: 22px; }
+.casino-table-section--featured h2,
+.casino-table-section--featured .casino-section-header { color: var(--heading); }
 .casino-section-empty { margin: 0; color: #929292; font-size: 12px; line-height: 20px; }
 .casino-section-viewport { position: relative; min-width: 0; }
 .casino-section-list { display: grid; min-width: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 8px; }
@@ -103,7 +119,8 @@ onBeforeUnmount(() => resizeObserver?.disconnect())
 @media (min-width: 1024px) { .casino-section-list { grid-template-columns: repeat(auto-fill, 204px); } }
 @media (max-width: 639px) {
   .casino-table-section { margin-bottom: 24px; }
-  .casino-table-section h2 { margin-bottom: 10px; font-size: 14px; }
+  .casino-table-section h2,
+  .casino-table-section .casino-section-header { margin-bottom: 10px; font-size: 14px; }
   .casino-table-section--row .casino-section-list > :deep(.casino-table-card) { width: 180px; flex-basis: 180px; }
 }
 </style>

@@ -13,14 +13,14 @@ useAppSeo({
   description: computed(() => locale.value === 'pt' ? formatSeoDescription(`Converse com nossa equipe no chat ao vivo da 2bet Brasil (Canal ${props.serviceNumber}). Suporte 24 horas para dúvidas sobre saldo e bônus.`) : `Chat with 2Bet 24/7 Customer Service ${props.serviceNumber} for account, deposit, withdrawal, promotion, and verification assistance.`),
   breadcrumbs: computed(() => [
     { name: translate('Home'), path: '/' },
-    { name: translate('Customer Service'), path: '/explore/egames/customer-service' },
-    { name: `${translate('24/7 Services')} ${props.serviceNumber}`, path: `/explore/egames/customer-service/${props.serviceNumber}` },
+    { name: translate('Customer Service'), path: '/egames/customer-service' },
+    { name: `${translate('24/7 Services')} ${props.serviceNumber}`, path: `/egames/customer-service/${props.serviceNumber}` },
   ]),
   schema: {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: `2bet Atendimento 24/7 Canal ${props.serviceNumber}`,
-    url: `https://2bet.com/explore/egames/customer-service/${props.serviceNumber}`,
+    url: `https://2bet.com/egames/customer-service/${props.serviceNumber}`,
   },
 })
 
@@ -36,7 +36,7 @@ onMounted(() => {
       title="24/7 Services"
       :meta-title="`Atendimento 24/7 — Canal ${serviceNumber} de Suporte Online | 2bet`"
       :description="`Converse ao vivo com o suporte 24/7 da 2bet Brasil (Canal ${serviceNumber}) para ajuda rápida com conta, depósitos, saques e bônus.`"
-      back-to="/explore/egames/customer-service"
+      back-to="/egames/customer-service"
     />
 
     <section class="customer-service-chat-stage" :aria-label="`24/7 Services ${serviceNumber} chat`">

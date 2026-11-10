@@ -29,11 +29,11 @@ const homepageMain = ref<HTMLElement | null>(null)
 const { toastMessage, showDemoMessage, clearDemoMessage } = useDemoInteraction()
 const { translate } = useSiteLocale()
 const categories = [
-  { id: 'sports', label: 'Sports', to: '/explore/sports/popular/league', image: '/hero/thumbnails/sports.webp' },
-  { id: 'slots', label: 'Slots', to: '/explore/egames/slots', image: '/hero/thumbnails/slots.webp' },
-  { id: 'live-casino', label: 'Live Casino', to: '/explore/entertainment/live-casino/baccarat', image: '/hero/thumbnails/live-casino.webp' },
-  { id: 'bingo', label: 'Bingo', to: '/explore/egames/bingo/top', image: '/hero/thumbnails/bingo.webp' },
-  { id: 'promotions', label: 'Promotions', to: '/explore/bonuses', image: '/hero/promotions.webp' },
+  { id: 'sports', label: 'Sports', to: '/sports/popular/league', image: '/hero/thumbnails/sports.webp' },
+  { id: 'slots', label: 'Slots', to: '/egames/slots', image: '/hero/thumbnails/slots.webp' },
+  { id: 'live-casino', label: 'Live Casino', to: '/entertainment/live-casino/baccarat', image: '/hero/thumbnails/live-casino.webp' },
+  { id: 'bingo', label: 'Bingo', to: '/egames/bingo/top', image: '/hero/thumbnails/bingo.webp' },
+  { id: 'promotions', label: 'Promotions', to: '/bonuses', image: '/hero/promotions.webp' },
 ]
 const categoryDetails = [
   { image: '/category-icons/sports.webp', description: 'Get closer to the game' },
@@ -138,7 +138,7 @@ onBeforeUnmount(() => {
     <main ref="homepageMain" class="allgames-main bg-black rounded-md">
       <div class="allgames-welcome flex items-center justify-between">
         <p>{{ translate('THE 2BET EXPERIENCE') }} <span>{{ translate('One destination. Every kind of play.') }}</span></p>
-        <NuxtLink to="/explore/bonuses">{{ translate('Explore your rewards') }} <Gift :size="14" aria-hidden="true" /></NuxtLink>
+        <NuxtLink to="/bonuses">{{ translate('Explore your rewards') }} <Gift :size="14" aria-hidden="true" /></NuxtLink>
       </div>
       <HomepageHero />
 
@@ -153,14 +153,14 @@ onBeforeUnmount(() => {
 
         <HomepageLiveCasinoSection :categories="liveGames" />
 
-        <HomepageContentSlider id="promotions" class="homepage-promotions-section" :title="translate('Promotions')" :description="translate('More to look forward to.')" view-all-to="/explore/bonuses" :view-all-label="translate('View all promotions')" :item-count="promotions.length" :visible-cards="2" :items-per-slide="1" mobile-dots>
+        <HomepageContentSlider id="promotions" class="homepage-promotions-section" :title="translate('Promotions')" :description="translate('More to look forward to.')" view-all-to="/bonuses" :view-all-label="translate('View all promotions')" :item-count="promotions.length" :visible-cards="2" :items-per-slide="1" mobile-dots>
           <template #header>
           <header class="allgames-section-heading flex items-center justify-between gap-3">
             <div class="allgames-heading-copy flex items-center"><div><h2 id="promotions-title"><Gift class="allgames-heading-symbol" :size="28" :stroke-width="1.6" aria-hidden="true" />{{ translate('Promotions') }}</h2><p>{{ translate('More to look forward to.') }}</p></div></div>
-            <NuxtLink to="/explore/bonuses" class="allgames-view-all">{{ translate('View all promotions') }} <ArrowRight :size="17" aria-hidden="true" /></NuxtLink>
+            <NuxtLink to="/bonuses" class="allgames-view-all">{{ translate('View all promotions') }} <ArrowRight :size="17" aria-hidden="true" /></NuxtLink>
           </header>
           </template>
-            <NuxtLink v-for="promotion in promotions" :key="promotion.id" :to="`/explore/bonus/${promotion.slug}`" class="allgames-promo relative overflow-hidden" :data-tone="promotion.tone">
+            <NuxtLink v-for="promotion in promotions" :key="promotion.id" :to="`/bonus/${promotion.slug}`" class="allgames-promo relative overflow-hidden" :data-tone="promotion.tone">
               <img :src="promotion.bannerImage" :alt="translate(promotion.title)" width="410" height="205" loading="lazy" decoding="async"><div class="relative"><p class="allgames-eyebrow">{{ translate(`${(promotion.category || '').toUpperCase()} REWARDS`.trim()) }}</p><h3>{{ translate(promotion.title) }}</h3><p>{{ translate(promotion.rate || '') }} <span>{{ translate('rewards to explore.') }}</span></p><span class="allgames-text-link">{{ translate('View promotion') }} <ArrowRight :size="16" /></span></div>
             </NuxtLink>
         </HomepageContentSlider>
@@ -169,7 +169,7 @@ onBeforeUnmount(() => {
 
         <div class="allgames-service-strip flex">
           <div class="flex items-center"><ShieldCheck :size="22" aria-hidden="true" /><span><strong>{{ translate('Your play. Your pace.') }}</strong><small>{{ translate('A better experience starts with responsible play.') }}</small></span></div>
-          <NuxtLink to="/explore/egames/customer-service" class="flex items-center"><Headphones :size="20" aria-hidden="true" /> {{ translate('Here to help') }} <ArrowRight :size="16" aria-hidden="true" /></NuxtLink>
+          <NuxtLink to="/egames/customer-service" class="flex items-center"><Headphones :size="20" aria-hidden="true" /> {{ translate('Here to help') }} <ArrowRight :size="16" aria-hidden="true" /></NuxtLink>
         </div>
       </div>
     </main>

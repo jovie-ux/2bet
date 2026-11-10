@@ -61,7 +61,7 @@ const toggleFaq = (index: number): void => {
           {{ translate('Play Now') }}
           <ChevronRight :size="12" aria-hidden="true" />
         </a>
-        <!-- <NuxtLink class="about-panel-cta" to="/explore/egames/slots">
+        <!-- <NuxtLink class="about-panel-cta" to="/egames/slots">
           {{ translate('Play Now') }}
           <ChevronRight :size="12" aria-hidden="true" />
         </NuxtLink> -->

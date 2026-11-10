@@ -50,11 +50,11 @@ const baccaratSections = computed(() => tableTypes.slice(1).map(item => ({
   tables: baccaratTables.value.filter(table => baccaratType(table) === item.key),
 })))
 const featuredSections = computed(() => [
-  { key: 'baccarat', title: 'Baccarat' },
-  { key: 'live-show', title: 'Live Show' },
-  { key: 'dragon-tiger', title: 'Dragon Tiger' },
-  { key: 'roulette', title: 'Roulette' },
-  { key: 'sicbo', title: 'Sicbo' },
+  { key: 'baccarat', title: 'Baccarat', headerTag: 'h2' as const },
+  { key: 'live-show', title: 'Live Show', headerTag: 'span' as const },
+  { key: 'dragon-tiger', title: 'Dragon Tiger', headerTag: 'span' as const },
+  { key: 'roulette', title: 'Roulette', headerTag: 'span' as const },
+  { key: 'sicbo', title: 'Sicbo', headerTag: 'span' as const },
 ].map(section => ({ ...section, tables: tablesForCategory(section.key) })))
 
 const filteredTables = computed(() => baccaratTables.value.filter(table =>
@@ -91,7 +91,7 @@ watch(activeCategory, (category) => {
       <nav class="casino-category-nav " aria-label="Live casino categories">
         <template v-for="item in LIVE_CASINO_CATEGORIES" :key="item.key">
           <NuxtLink
-            :to="`/explore/entertainment/live-casino/${item.key}`"
+            :to="`/entertainment/live-casino/${item.key}`"
             class="casino-category-button"
             :class="{ 'casino-category-button--active': activeCategory === item.key }"
             :aria-label="item.label"
@@ -134,7 +134,18 @@ watch(activeCategory, (category) => {
 
     <h1 v-if="!isGoodRoad" class="sr-only">{{ categoryLabel }}</h1>
     <div v-if="isFeatured" class="casino-section-list">
-      <LiveCasinoTableSection v-for="section in featuredSections" :id="section.key" :key="section.key" :title="section.title" :tables="section.tables" :elapsed-ms="roundElapsedMs" row featured @select="selectTable" />
+      <LiveCasinoTableSection
+        v-for="section in featuredSections"
+        :id="section.key"
+        :key="section.key"
+        :title="section.title"
+        :tables="section.tables"
+        :elapsed-ms="roundElapsedMs"
+        :header-tag="section.headerTag"
+        row
+        featured
+        @select="selectTable"
+      />
     </div>
     <template v-else-if="isGoodRoad">
       <div class="casino-section-heading" :class="{ 'casino-section-heading--filters-open': roadFiltersOpen }">
@@ -153,11 +164,29 @@ watch(activeCategory, (category) => {
       <GameEmptyState v-else text="No Good Road at the moment" :show-reset="true" @reset="resetFilters" />
     </template>
     <div v-else-if="isBaccarat" class="casino-section-list">
-      <LiveCasinoTableSection v-for="section in baccaratSections" :id="section.key" :key="section.key" :title="section.title" :tables="section.tables" :elapsed-ms="roundElapsedMs" row @select="selectTable" />
+      <LiveCasinoTableSection
+        v-for="section in baccaratSections"
+        :id="section.key"
+        :key="section.key"
+        :title="section.title"
+        :tables="section.tables"
+        :elapsed-ms="roundElapsedMs"
+        header-tag="h2"
+        row
+        @select="selectTable"
+      />
     </div>
     <GameEmptyState v-else-if="isEvolution" text="This is no game currently" />
     <div v-else class="casino-section-list">
-      <LiveCasinoTableSection v-if="categoryTables.length" :id="activeCategory" :title="categoryLabel" :tables="categoryTables" :elapsed-ms="roundElapsedMs" @select="selectTable" />
+      <LiveCasinoTableSection
+        v-if="categoryTables.length"
+        :id="activeCategory"
+        :title="categoryLabel"
+        :tables="categoryTables"
+        :elapsed-ms="roundElapsedMs"
+        :header-tag="['live-show', 'dragon-tiger', 'roulette', 'sicbo'].includes(activeCategory) ? 'span' : 'h2'"
+        @select="selectTable"
+      />
       <GameEmptyState v-else text="This is no game currently" />
     </div>
 

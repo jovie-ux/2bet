@@ -16,8 +16,8 @@ useAppSeo({
   description: 'Ajuste o fuso horário na 2bet Brasil para acompanhar partidas esportivas ao vivo e programações de torneios com horários locais precisos.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Minha Conta', path: '/explore/account/me' },
-    { name: 'Fuso Horário', path: '/explore/account/timezone' },
+    { name: 'Minha Conta', path: '/account/me' },
+    { name: 'Fuso Horário', path: '/account/timezone' },
   ],
 })
 
@@ -39,7 +39,7 @@ const filteredTimeZones = computed(() => {
   <section class="preference-page timezone-page w-full min-w-0 pb-16 text-white">
     <SubpageHeader
       title="Time Zone"
-      back-to="/explore/account/me"
+      back-to="/account/me"
       class="mb-2 sm:mb-3"
     />
 

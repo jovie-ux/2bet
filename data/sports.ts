@@ -13,7 +13,7 @@ export const getTournamentLogo = (sport: Sport | string | undefined | null): str
   if (key.includes('nba')) return '/images/sports/nba.webp'
   if (key.includes('euroleague')) return '/images/sports/euroleague.webp'
   if (key.includes('ncaa') || key.includes('ncaab') || key.includes('march_madness')) return '/images/sports/ncaab.webp'
-  if (key.includes('pba')) return '/images/sports/pba.webp'
+  if (key.includes('pba') || key.includes('philippine') || key.includes('pilipinas')) return '/images/sports/pba.webp'
   if (key.includes('epl') || key.includes('premier_league') || key.includes('premier league')) return '/images/sports/premier-league.webp'
   if (key.includes('conference')) return '/images/sports/uefa-europa-conference-league.webp'
   if (key.includes('europa_league') || key.includes('europa league')) return '/images/sports/uefa-europa-league.webp'

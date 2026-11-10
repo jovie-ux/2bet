@@ -121,7 +121,7 @@ onBeforeUnmount(() => {
         <p>{{ translate('Spin for life-changing progressive jackpots') }}</p>
       </div>
 
-      <NuxtLink to="/explore/egames/jackpot/all" class="jackpot-view-all">
+      <NuxtLink to="/egames/jackpot/all" class="jackpot-view-all">
         {{ translate('View all jackpots') }}
         <ArrowRight :size="16" aria-hidden="true" />
       </NuxtLink>
@@ -260,24 +260,6 @@ onBeforeUnmount(() => {
             <h3 class="winners-heading">{{ translate('Recent Winners') }}</h3>
           </div>
 
-          <div class="winners-header-actions flex items-center gap-2">
-            <div class="winner-live-beacon flex items-center gap-1.5">
-              <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span class="live-beacon-text">{{ translate('Live') }}</span>
-            </div>
-
-            <button
-              type="button"
-              class="winner-pause-btn"
-              :aria-label="isPaused ? 'Resume winners list' : 'Pause winners list'"
-              @click="isPaused = !isPaused"
-            >
-              <component :is="isPaused ? Play : Pause" :size="13" />
-            </button>
-          </div>
         </div>
 
         <!-- Animated Winners Body -->
@@ -318,7 +300,7 @@ onBeforeUnmount(() => {
             <span class="truncate">{{ translate('Over 2,450 payouts awarded today') }}</span>
           </div>
 
-          <NuxtLink to="/explore/egames/jackpot/all" class="winners-view-all-link flex items-center gap-1">
+          <NuxtLink to="/egames/jackpot/all" class="winners-view-all-link flex items-center gap-1">
             <span>{{ translate('View all winners') }}</span>
             <ArrowRight :size="13" />
           </NuxtLink>

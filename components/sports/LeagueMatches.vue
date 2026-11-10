@@ -100,7 +100,7 @@ const selectOutcome = (eventId: string, market: string, name: string): void => {
         :soccer="isSoccer"
         :full-markets="showFullMarkets"
         :selected-outcome="selectedOutcomes[`${match.id}:h2h`]"
-        :compact="sportsRouteBase === '/explore/sports/popular'"
+        :compact="sportsRouteBase.endsWith('/sports/popular')"
         @select="selectOutcome(match.id, 'h2h', $event)"
       />
     </template>

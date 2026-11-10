@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import {
-  Bell,
   ChevronDown,
   ChevronRight,
   ChevronUp,
-  Headphones,
   UserRound,
 } from 'lucide-vue-next'
 
@@ -23,7 +21,7 @@ useAppSeo({
   keywords: '2bet login, minha conta 2bet, clube vip 2bet, perfil 2bet',
   breadcrumbs: computed(() => [
     { name: translate('Home'), path: '/' },
-    { name: translate('My Account'), path: '/explore/account/me' },
+    { name: translate('My Account'), path: '/account/me' },
   ]),
 })
 
@@ -44,75 +42,12 @@ const isOddsDropdownOpen = ref(false)
 const oddsOptions = ['Euro Odds', 'Hong Kong Odds', 'Malay Odds', 'Indo Odds']
 
 const selectedTheme = ref<'International' | 'Asia'>('International')
-const headerScrollFade = ref(0)
-let headerScrollFrame: number | null = null
-
-const updateHeaderFade = (): void => {
-  headerScrollFade.value = Math.min(Math.max(window.scrollY, 0) / 80, 1)
-  headerScrollFrame = null
-}
-
-const handlePageScroll = (): void => {
-  if (headerScrollFrame === null) {
-    headerScrollFrame = window.requestAnimationFrame(updateHeaderFade)
-  }
-}
-
-onMounted(() => {
-  updateHeaderFade()
-  window.addEventListener('scroll', handlePageScroll, { passive: true })
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', handlePageScroll)
-  if (headerScrollFrame !== null) window.cancelAnimationFrame(headerScrollFrame)
-})
 </script>
 
 <template>
   <div class="me-page w-full min-w-0">
     <!-- Mobile View: Frosted Card & Green Felt Hero (< 1024px) -->
     <div class="me-mobile-view lg:hidden w-full min-w-0 pb-3 text-white">
-      <!-- Mobile Dedicated Header (Hidden on Desktop) -->
-      <header
-        class="me-mobile-header lg:hidden z-30 flex items-center justify-between px-4 py-3"
-        :class="{ 'me-mobile-header--sticky': headerScrollFade > 0 }"
-      >
-        <h1 class="text-[19px] font-bold text-white tracking-tight">{{ translate('Me') }}</h1>
-        <div class="flex items-center gap-2">
-          <NuxtLink
-            to="/explore/egames/customer-service"
-            class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/25 backdrop-blur-md flex items-center justify-center text-[#FEDF00] transition-all "
-            :aria-label="translate('Customer Service')"
-          >
-            <Headphones class="w-5 h-5 text-[#FEDF00]" />
-          </NuxtLink>
-          <a 
-            :href="bybetRedirectUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Account Login"  
-          >
-            <button
-              type="button"
-              class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/25 backdrop-blur-md flex items-center justify-center text-white transition-all shadow-sm cursor-pointer"
-              aria-label="Notifications"
-            >
-              <Bell class="w-4 h-4 text-white" />
-            </button>
-          </a>
-          
-          <button
-            type="button"
-            class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/25 backdrop-blur-md flex items-center justify-center text-[#FEDF00] transition-all shadow-sm cursor-pointer"
-            :aria-label="translate('Notifications')"
-            @click="showDemoMessage(translate('No new notifications'))"
-          >
-            <Bell class="w-5 h-5 text-[#FEDF00]" />
-          </button>
-        </div>
-      </header>
-
     <!-- Hero Area with Green Felt Texture & "2Bet" Watermark -->
     <div class="me-hero-wrapper relative w-full overflow-hidden">
       <!-- Frosted Profile Card -->
@@ -215,7 +150,7 @@ onBeforeUnmount(() => {
           </a>
 
           <!-- Bonuses -->
-          <NuxtLink to="/explore/bonuses" class="menu-item flex items-center justify-between group">
+          <NuxtLink to="/bonuses" class="menu-item flex items-center justify-between group">
             <div class="flex items-center gap-3">
               <div class="w-6 h-6 shrink-0 flex items-center justify-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="8" fill="#FFBA00"></rect><path d="M18.0058 19.5H6.00076C5.56593 19.5 5.16687 19.1208 5.16687 18.58V9.83301H18.8397V18.58C18.8397 19.1208 18.4406 19.5 18.0058 19.5Z" stroke="white"></path><path d="M14.9645 4C14.7711 4 14.5844 4.08 14.4443 4.22667L12.0033 6.78675L9.56229 4.22667C9.4289 4.08 9.23549 4 9.04207 4C6.99455 4 5.33386 5.74672 5.33386 7.88679C5.33386 8.31347 5.66733 8.66681 6.07417 8.66681H17.9324C18.3393 8.66681 18.6728 8.31347 18.6728 7.88679C18.6728 5.74672 17.0121 4 14.9645 4ZM6.9412 7.11343C7.21465 6.30007 7.90827 5.69339 8.74862 5.57338L10.2159 7.11343H6.9412ZM13.7907 7.11343L15.258 5.57338C16.0983 5.68672 16.792 6.30007 17.0654 7.11343H13.7907Z" fill="white"></path><path d="M19.6999 12.6664H4.30679C4.13339 12.6664 4 12.4998 4 12.2931V10.073C4 9.66635 4.28012 9.33301 4.61359 9.33301H19.3864C19.7266 9.33301 20 9.66635 20 10.073V12.2931C20 12.4998 19.8599 12.6664 19.6932 12.6664H19.6999Z" fill="white"></path><path d="M10.4026 9.33301H13.6039V20H10.4026V9.33301Z" fill="white"></path></svg>
@@ -264,7 +199,7 @@ onBeforeUnmount(() => {
 
         <div v-show="openSections.livePlaza" class="space-y-4 pt-4">
           <!-- Streamer Broadcast -->
-          <NuxtLink to="/explore/live-plaza/streamer" class="menu-item flex items-center justify-between group">
+          <NuxtLink to="/live-plaza/streamer" class="menu-item flex items-center justify-between group">
             <div class="flex items-center gap-3">
               <div class="w-6 h-6 shrink-0 flex items-center justify-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="8" fill="#9747FF"></rect><path d="M16.5245 8.99329C16.0889 8.99329 15.7334 9.35352 15.7334 9.7938V11.4949C15.7334 13.5662 14.0534 15.2473 11.9911 15.2473C9.92891 15.2473 8.24891 13.5662 8.24891 11.4949V9.7938C8.24891 9.35352 7.89336 8.99329 7.4578 8.99329C7.02225 8.99329 6.66669 9.35352 6.66669 9.7938V11.4949C6.66669 14.1766 8.64002 16.398 11.2 16.7782V18.3993H9.6178C9.18225 18.3993 8.82669 18.7595 8.82669 19.1998C8.82669 19.6401 9.18225 20.0003 9.6178 20.0003H14.3822C14.8178 20.0003 15.1734 19.6401 15.1734 19.1998C15.1734 18.7595 14.8178 18.3993 14.3822 18.3993H12.8V16.7782C15.36 16.398 17.3334 14.1666 17.3334 11.4949V9.7938C17.3334 9.35352 16.9778 8.99329 16.5422 8.99329H16.5245Z" fill="white"></path><path d="M11.9911 13.9961C10.5245 13.9961 9.32446 12.6352 9.32446 10.9842V7.01167C9.32446 5.35061 10.5245 3.99976 11.9911 3.99976C13.4578 3.99976 14.6578 5.36062 14.6578 7.01167V10.9842C14.6578 12.6453 13.4578 13.9961 11.9911 13.9961Z" fill="white"></path></svg>
@@ -275,7 +210,7 @@ onBeforeUnmount(() => {
           </NuxtLink>
 
           <!-- Match Predictions -->
-          <NuxtLink to="/explore/live-plaza/expert-predictions" class="menu-item flex items-center justify-between group">
+          <NuxtLink to="/live-plaza/expert-predictions" class="menu-item flex items-center justify-between group">
             <div class="flex items-center gap-3">
               <div class="w-6 h-6 shrink-0 flex items-center justify-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="8" fill="#1EB1A5"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M4.81528 14.6522C4.34665 15.1208 4.34665 15.8806 4.81528 16.3492C5.28391 16.8178 6.04371 16.8178 6.51233 16.3492L9.05892 13.8026L10.8432 15.5827C11.0686 15.8076 11.3742 15.9337 11.6926 15.9332C12.011 15.9327 12.3162 15.8057 12.5409 15.5801L16.7999 11.3048V13.2C16.7999 13.8627 17.3372 14.4 17.9999 14.4C18.6627 14.4 19.1999 13.8627 19.1999 13.2V8.39995C19.1999 8.23554 19.1669 8.07886 19.107 7.93618C19.0482 7.79563 18.9615 7.66401 18.8468 7.54981C18.6171 7.32094 18.3179 7.20441 18.0173 7.20008L17.9982 7.19995H13.1999C12.5372 7.19995 11.9999 7.73721 11.9999 8.39995C11.9999 9.06269 12.5372 9.59995 13.1999 9.59995H15.1107L11.6881 13.0355L9.90545 11.257C9.43666 10.7894 8.67763 10.7898 8.20939 11.258L4.81528 14.6522Z" fill="white"></path></svg>
@@ -403,7 +338,7 @@ onBeforeUnmount(() => {
 
         <div v-show="openSections.systemSettings" class="space-y-4 pt-4">
           <!-- Language -->
-          <NuxtLink to="/explore/account/language" class="menu-item flex items-center justify-between group">
+          <NuxtLink to="/account/language" class="menu-item flex items-center justify-between group">
             <div class="flex items-center gap-3">
               <div class="w-6 h-6 shrink-0 flex items-center justify-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="8" fill="#36C65D"></rect><path d="M12 4C14.1217 4 16.1566 4.84285 17.6569 6.34315C19.1571 7.84344 20 9.87827 20 12C20 14.1217 19.1571 16.1566 17.6569 17.6569C16.1566 19.1571 14.1217 20 12 20C9.87827 20 7.84344 19.1571 6.34315 17.6569C4.84285 16.1566 4 14.1217 4 12C4 9.87827 4.84285 7.84344 6.34315 6.34315C7.84344 4.84285 9.87827 4 12 4ZM6.043 10.398C5.969 10.472 5.969 10.472 6.043 10.544C5.846 10.863 5.423 10.902 5.12 10.71C4.94726 11.6323 4.96167 12.5799 5.16237 13.4966C5.36306 14.4132 5.74596 15.2802 6.2883 16.0459C6.83064 16.8117 7.52136 17.4606 8.31943 17.9542C9.1175 18.4477 10.0066 18.7758 10.934 18.919L10.928 18.914L10.808 18.854C11.033 18.782 11.331 18.782 11.553 18.782C11.479 18.344 11.479 17.981 11.479 17.542C11.479 17.542 9.767 16.304 9.767 15.574C9.767 14.844 9.99 14.481 9.767 14.481C9.394 14.481 8.947 14.773 8.873 14.481C8.724 14.043 8.426 13.679 7.979 13.534C6.954 13.534 6.807 12.43 6.789 11.292L6.788 10.982C6.788 10.616 6.341 10.616 6.043 10.398ZM12.423 5.013L12.509 5.036C13.643 5.382 13.676 6.526 12.745 6.386C12.745 6.749 12.745 7.186 12.671 7.624C12.596 8.354 11.702 8.136 11.479 8.5C11.257 8.865 11.926 9.229 12.671 9.083C12.894 9.083 12.671 8.863 12.821 8.791C13.118 8.719 13.49 8.719 13.788 8.791C13.4846 9.44669 13.1361 10.0805 12.745 10.688C12.595 10.906 12.745 11.344 12.745 11.635C12.745 13.824 11.702 11.125 11.553 11.198C11.404 11.344 10.735 11.052 10.437 11.052C10.139 11.052 10.287 11.635 9.99 11.635C9.394 11.635 9.543 11.489 9.543 11.707C9.543 11.999 9.616 12.583 9.616 13.458C9.616 13.75 10.212 13.386 10.584 13.386C11.031 13.386 11.329 13.75 11.627 13.896C12.147 14.116 12.669 14.845 13.041 14.916C13.413 14.991 13.115 15.573 13.561 15.5C13.784 15.428 14.082 15.574 14.231 15.792C14.455 16.084 14.306 16.45 14.008 16.668C13.562 17.105 13.413 17.615 13.19 18.636C13.312 18.596 13.456 18.698 13.575 18.821C14.6958 18.5616 15.7355 18.0304 16.6024 17.2742C17.4693 16.5181 18.1368 15.5601 18.546 14.485C17.98 15.086 17.326 15.132 17.52 14.623C17.296 14.186 16.998 13.82 16.626 13.456C15.955 12.873 15.359 11.778 17.445 10.246C17.122 9.424 17.922 8.656 18.43 9.232C17.9177 8.04155 17.0849 7.01671 16.0245 6.27162C14.9641 5.52654 13.7176 5.09047 12.424 5.012L12.423 5.013Z" fill="white"></path></svg>
@@ -417,7 +352,7 @@ onBeforeUnmount(() => {
           </NuxtLink>
 
           <!-- Time Zone -->
-          <NuxtLink to="/explore/account/timezone" class="menu-item flex items-center justify-between group">
+          <NuxtLink to="/account/timezone" class="menu-item flex items-center justify-between group">
             <div class="flex items-center gap-3">
               <div class="w-6 h-6 shrink-0 flex items-center justify-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="8" fill="#4C9EEA"></rect><path d="M15.8494 11.755C13.5794 11.755 11.7294 13.595 11.7294 15.865C11.7294 16.985 12.1794 17.995 12.8994 18.735C12.5294 18.825 12.0994 18.845 11.9094 18.845H11.8194C11.9094 18.595 11.9394 18.305 11.8694 18.015C11.7394 17.485 11.3094 17.045 10.5094 16.615L10.1794 16.435C9.63939 16.155 9.34939 16.005 9.17939 15.765C9.00939 15.535 8.88939 15.165 8.72939 14.365C8.61939 13.815 8.31939 13.395 7.85939 13.155C7.54939 12.995 7.16939 12.905 6.72939 12.905C6.41939 12.905 6.06939 12.945 5.70939 13.025C5.52939 13.065 5.35939 13.115 5.19939 13.155C5.12939 12.775 5.09939 12.365 5.09939 11.965C5.09939 9.535 6.36939 7.395 8.27939 6.165C8.28939 6.385 8.33939 6.615 8.43939 6.845C8.69939 7.40499 9.23939 7.755 10.0294 7.905C10.0694 7.915 10.0994 7.915 10.1294 7.915H10.1694C10.2394 7.915 10.4994 8.025 10.7794 8.125C11.1494 8.275 11.4194 8.325 11.4894 8.725C11.6594 9.975 11.7594 10.595 11.5194 11.325C11.4994 11.385 11.4894 11.445 11.4894 11.505C11.4894 11.805 11.7394 12.065 12.0494 12.065C12.1994 12.065 12.3394 12.005 12.4494 11.905C12.5594 11.805 14.9194 11.135 15.5294 10.365C15.5994 10.275 15.6694 10.195 15.7494 10.105C16.0394 9.765 16.3494 9.415 16.4594 8.90499C16.5894 8.345 16.4094 7.835 16.0194 7.075C15.7394 6.525 15.6894 6.285 15.6794 6.195C15.6894 6.185 15.7094 6.175 15.7294 6.165C17.4694 7.275 18.6794 9.14499 18.8794 11.345C18.9094 11.635 19.1394 11.855 19.4394 11.855H19.4894C19.7894 11.845 20.0194 11.585 19.9994 11.265C19.8194 9.285 18.9194 7.445 17.4394 6.105C15.9494 4.755 14.0294 3.995 12.0094 3.995C10.9294 3.995 9.87939 4.205 8.88939 4.625C8.87939 4.625 8.87939 4.635 8.86939 4.635C8.85939 4.635 8.85939 4.645 8.84939 4.645C7.90939 5.045 7.06939 5.615 6.33939 6.345C5.59939 7.085 5.01939 7.935 4.61939 8.895C4.20939 9.875 3.99939 10.925 3.99939 12.005C3.99939 12.705 4.08939 13.375 4.25939 14.035C4.25939 14.055 4.26939 14.075 4.27939 14.095C4.62939 15.385 5.29939 16.575 6.25939 17.565C7.50939 18.835 9.10939 19.645 10.8394 19.895C10.8594 19.895 10.8694 19.905 10.8894 19.905C11.1694 19.945 11.4694 19.975 11.7594 19.975H11.9394C12.2794 19.975 12.9394 19.945 13.4894 19.755C13.6294 19.705 13.7394 19.605 13.7994 19.475C13.7994 19.465 13.7994 19.445 13.8094 19.435C14.4194 19.785 15.1094 20.005 15.8694 20.005C18.1494 20.005 19.9894 18.165 19.9894 15.895C19.9894 13.625 18.1394 11.785 15.8694 11.785L15.8494 11.755ZM9.47939 5.555C10.2594 5.255 11.0994 5.085 11.9794 5.085C12.9294 5.085 13.8394 5.275 14.6694 5.625C14.6094 5.735 14.5594 5.865 14.5394 6.025C14.4994 6.415 14.6394 6.905 15.0094 7.605C15.5594 8.65499 15.3594 8.83499 14.8794 9.40499C14.7994 9.495 14.7194 9.585 14.6394 9.685C14.3394 10.065 13.4894 10.065 12.7994 10.795C12.7994 10.445 12.7794 10.035 12.7494 9.605C12.6794 8.615 12.5994 8.615 12.5994 8.585V8.555C12.4494 7.755 11.9194 7.285 11.1594 7.005C10.7294 6.845 10.3394 6.825 10.1894 6.825C9.79939 6.745 9.54939 6.595 9.44939 6.395C9.32939 6.155 9.40939 5.795 9.48939 5.575L9.47939 5.555ZM10.6494 18.725C8.20939 18.265 6.25939 16.535 5.46939 14.245C5.82939 14.145 6.30939 14.035 6.72939 14.035C6.97939 14.035 7.18939 14.075 7.33939 14.155C7.49939 14.245 7.58939 14.375 7.62939 14.595C7.79939 15.455 7.94939 16.025 8.28939 16.465C8.60939 16.885 9.02939 17.105 9.65939 17.435H9.67939C9.76939 17.495 9.87939 17.545 9.97939 17.605C10.6194 17.945 10.7594 18.185 10.7894 18.295C10.8194 18.405 10.7494 18.565 10.6594 18.725H10.6494ZM15.8494 18.855C14.1994 18.855 12.8394 17.515 12.8394 15.855C12.8394 14.195 14.1894 12.855 15.8494 12.855C17.5094 12.855 18.8594 14.195 18.8594 15.855C18.8594 17.515 17.4994 18.855 15.8494 18.855Z" fill="white"></path><path d="M16.2494 16.015V14.115C16.2494 13.815 15.9994 13.555 15.6894 13.555C15.3794 13.555 15.1294 13.805 15.1294 14.115V16.245C15.1294 16.395 15.1894 16.525 15.2894 16.635L16.2894 17.645C16.3894 17.745 16.5294 17.805 16.6794 17.805C16.8294 17.805 16.9594 17.745 17.0794 17.645C17.1794 17.545 17.2394 17.405 17.2394 17.255C17.2394 17.105 17.1794 16.965 17.0794 16.865L16.2394 16.015H16.2494Z" fill="white"></path></svg>
@@ -486,7 +421,7 @@ onBeforeUnmount(() => {
 
         <div v-show="openSections.help" class="space-y-4 pt-4">
           <!-- 24/7 Services -->
-          <NuxtLink to="/explore/egames/customer-service" class="menu-item flex items-center justify-between group">
+          <NuxtLink to="/egames/customer-service" class="menu-item flex items-center justify-between group">
             <div class="flex items-center gap-3">
               <div class="w-6 h-6 shrink-0 flex items-center justify-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="8" fill="#0976FF"></rect><path d="M12.005 3C7.59225 3 4 6.74792 4 11.3654C4 14.0639 5.23077 16.5625 7.31207 18.1416L6.0813 20.2404C5.97123 20.4203 5.99124 20.6602 6.13133 20.8201C6.22139 20.93 6.36148 21 6.49156 21C6.55159 21 6.61163 20.99 6.67167 20.96L9.98374 19.4609C10.6442 19.6408 11.3246 19.7307 11.995 19.7307C16.4078 19.7307 20 15.9828 20 11.3654C20 6.74792 16.4178 3 12.005 3ZM15.4171 13.884C15.3871 13.9639 14.5766 15.8029 12.2652 15.8029C9.7636 15.8029 9.1232 13.9239 9.09318 13.844C8.99312 13.5341 9.16323 13.2043 9.48343 13.1044C9.80363 13.0044 10.1448 13.1743 10.2439 13.4842C10.2839 13.6041 10.7042 14.6335 12.2652 14.6335C13.8261 14.6335 14.2964 13.4542 14.2964 13.4442C14.4265 13.1444 14.7767 13.0044 15.0869 13.1244C15.3971 13.2443 15.5472 13.5941 15.4171 13.8939V13.884Z" fill="white"></path></svg>
@@ -648,7 +583,7 @@ onBeforeUnmount(() => {
         </a>
 
         <!-- Bonuses -->
-        <NuxtLink to="/explore/bonuses" class="menu-item flex items-center justify-between group">
+        <NuxtLink to="/bonuses" class="menu-item flex items-center justify-between group">
           <div class="flex items-center gap-2.5">
             <div class="grid h-4 w-4 place-items-center rounded  text-[#ffc83d]">
               <em class="relative min-h-6 min-w-6 mr-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="8" fill="none" class="fill-[#FFBA00]"></rect><path d="M18.0058 19.5H6.00076C5.56593 19.5 5.16687 19.1208 5.16687 18.58V9.83301H18.8397V18.58C18.8397 19.1208 18.4406 19.5 18.0058 19.5Z" stroke="white"></path><path d="M14.9645 4C14.7711 4 14.5844 4.08 14.4443 4.22667L12.0033 6.78675L9.56229 4.22667C9.4289 4.08 9.23549 4 9.04207 4C6.99455 4 5.33386 5.74672 5.33386 7.88679C5.33386 8.31347 5.66733 8.66681 6.07417 8.66681H17.9324C18.3393 8.66681 18.6728 8.31347 18.6728 7.88679C18.6728 5.74672 17.0121 4 14.9645 4ZM6.9412 7.11343C7.21465 6.30007 7.90827 5.69339 8.74862 5.57338L10.2159 7.11343H6.9412ZM13.7907 7.11343L15.258 5.57338C16.0983 5.68672 16.792 6.30007 17.0654 7.11343H13.7907Z" fill="white"></path><g filter="url(#filter0_b_4992_814)"><path d="M19.6999 12.6664H4.30679C4.13339 12.6664 4 12.4998 4 12.2931V10.073C4 9.66635 4.28012 9.33301 4.61359 9.33301H19.3864C19.7266 9.33301 20 9.66635 20 10.073V12.2931C20 12.4998 19.8599 12.6664 19.6932 12.6664H19.6999Z" fill="white"></path></g><g filter="url(#filter1_b_4992_814)"><path d="M10.4026 9.33301H13.6039V20H10.4026V9.33301Z" fill="white"></path></g><defs><filter id="filter0_b_4992_814" x="0" y="5.33301" width="24" height="11.3335" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feGaussianBlur in="BackgroundImageFix" stdDeviation="2"></feGaussianBlur><feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4992_814"></feComposite><feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4992_814" result="shape"></feBlend></filter><filter id="filter1_b_4992_814" x="6.40259" y="5.33301" width="11.2013" height="18.667" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feGaussianBlur in="BackgroundImageFix" stdDeviation="2"></feGaussianBlur><feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4992_814"></feComposite><feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4992_814" result="shape"></feBlend></filter></defs></svg></em>
@@ -697,7 +632,7 @@ onBeforeUnmount(() => {
 
       <div v-show="openSections.livePlaza" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5 pt-4">
         <!-- Streamer Broadcast -->
-        <NuxtLink to="/explore/live-plaza/streamer" class="menu-item flex items-center justify-between group">
+        <NuxtLink to="/live-plaza/streamer" class="menu-item flex items-center justify-between group">
           <div class="flex items-center gap-2.5">
             <div class="grid h-4 w-4 place-items-center rounded bg-[#3a1a54] text-[#b388ff]">
               <em class="relative min-h-6 min-w-6 mr-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="8" fill="none" class="fill-[#9747FF]"></rect><path d="M16.5245 8.99329C16.0889 8.99329 15.7334 9.35352 15.7334 9.7938V11.4949C15.7334 13.5662 14.0534 15.2473 11.9911 15.2473C9.92891 15.2473 8.24891 13.5662 8.24891 11.4949V9.7938C8.24891 9.35352 7.89336 8.99329 7.4578 8.99329C7.02225 8.99329 6.66669 9.35352 6.66669 9.7938V11.4949C6.66669 14.1766 8.64002 16.398 11.2 16.7782V18.3993H9.6178C9.18225 18.3993 8.82669 18.7595 8.82669 19.1998C8.82669 19.6401 9.18225 20.0003 9.6178 20.0003H14.3822C14.8178 20.0003 15.1734 19.6401 15.1734 19.1998C15.1734 18.7595 14.8178 18.3993 14.3822 18.3993H12.8V16.7782C15.36 16.398 17.3334 14.1666 17.3334 11.4949V9.7938C17.3334 9.35352 16.9778 8.99329 16.5422 8.99329H16.5245Z" fill="white"></path><path d="M11.9911 13.9961C10.5245 13.9961 9.32446 12.6352 9.32446 10.9842V7.01167C9.32446 5.35061 10.5245 3.99976 11.9911 3.99976C13.4578 3.99976 14.6578 5.36062 14.6578 7.01167V10.9842C14.6578 12.6453 13.4578 13.9961 11.9911 13.9961Z" fill="white"></path></svg></em>
@@ -708,7 +643,7 @@ onBeforeUnmount(() => {
         </NuxtLink>
 
         <!-- Match Predictions -->
-        <NuxtLink to="/explore/live-plaza/expert-predictions" class="menu-item flex items-center justify-between group">
+        <NuxtLink to="/live-plaza/expert-predictions" class="menu-item flex items-center justify-between group">
           <div class="flex items-center gap-2.5">
             <div class="grid h-4 w-4 place-items-center rounded bg-[#124d45] text-[#34d399]">
               <em class="relative min-h-6 min-w-6 mr-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="8" fill="#1EB1A5" class=""></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M4.81528 14.6522C4.34665 15.1208 4.34665 15.8806 4.81528 16.3492C5.28391 16.8178 6.04371 16.8178 6.51233 16.3492L9.05892 13.8026L10.8432 15.5827C11.0686 15.8076 11.3742 15.9337 11.6926 15.9332C12.011 15.9327 12.3162 15.8057 12.5409 15.5801L16.7999 11.3048V13.2C16.7999 13.8627 17.3372 14.4 17.9999 14.4C18.6627 14.4 19.1999 13.8627 19.1999 13.2V8.39995C19.1999 8.23554 19.1669 8.07886 19.107 7.93618C19.0482 7.79563 18.9615 7.66401 18.8468 7.54981C18.6171 7.32094 18.3179 7.20441 18.0173 7.20008L17.9982 7.19995H13.1999C12.5372 7.19995 11.9999 7.73721 11.9999 8.39995C11.9999 9.06269 12.5372 9.59995 13.1999 9.59995H15.1107L11.6881 13.0355L9.90545 11.257C9.43666 10.7894 8.67763 10.7898 8.20939 11.258L4.81528 14.6522Z" fill="white"></path></svg></em>
@@ -847,7 +782,7 @@ onBeforeUnmount(() => {
 
       <div v-show="openSections.systemSettings" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5 pt-4">
         <!-- Language -->
-        <NuxtLink to="/explore/account/language" class="menu-item flex items-center justify-between group">
+        <NuxtLink to="/account/language" class="menu-item flex items-center justify-between group">
           <div class="flex items-center gap-2.5">
             <div class="grid h-4 w-4 place-items-center rounded bg-[#124d35] text-[#34d399]">
               <em class="relative min-h-6 min-w-6 mr-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="8" fill="#36C65D" class=""></rect><path d="M12 4C14.1217 4 16.1566 4.84285 17.6569 6.34315C19.1571 7.84344 20 9.87827 20 12C20 14.1217 19.1571 16.1566 17.6569 17.6569C16.1566 19.1571 14.1217 20 12 20C9.87827 20 7.84344 19.1571 6.34315 17.6569C4.84285 16.1566 4 14.1217 4 12C4 9.87827 4.84285 7.84344 6.34315 6.34315C7.84344 4.84285 9.87827 4 12 4ZM6.043 10.398C5.969 10.472 5.969 10.472 6.043 10.544C5.846 10.863 5.423 10.902 5.12 10.71C4.94726 11.6323 4.96167 12.5799 5.16237 13.4966C5.36306 14.4132 5.74596 15.2802 6.2883 16.0459C6.83064 16.8117 7.52136 17.4606 8.31943 17.9542C9.1175 18.4477 10.0066 18.7758 10.934 18.919L10.928 18.914L10.808 18.854C11.033 18.782 11.331 18.782 11.553 18.782C11.479 18.344 11.479 17.981 11.479 17.542C11.479 17.542 9.767 16.304 9.767 15.574C9.767 14.844 9.99 14.481 9.767 14.481C9.394 14.481 8.947 14.773 8.873 14.481C8.724 14.043 8.426 13.679 7.979 13.534C6.954 13.534 6.807 12.43 6.789 11.292L6.788 10.982C6.788 10.616 6.341 10.616 6.043 10.398ZM12.423 5.013L12.509 5.036C13.643 5.382 13.676 6.526 12.745 6.386C12.745 6.749 12.745 7.186 12.671 7.624C12.596 8.354 11.702 8.136 11.479 8.5C11.257 8.865 11.926 9.229 12.671 9.083C12.894 9.083 12.671 8.863 12.821 8.791C13.118 8.719 13.49 8.719 13.788 8.791C13.4846 9.44669 13.1361 10.0805 12.745 10.688C12.595 10.906 12.745 11.344 12.745 11.635C12.745 13.824 11.702 11.125 11.553 11.198C11.404 11.344 10.735 11.052 10.437 11.052C10.139 11.052 10.287 11.635 9.99 11.635C9.394 11.635 9.543 11.489 9.543 11.707C9.543 11.999 9.616 12.583 9.616 13.458C9.616 13.75 10.212 13.386 10.584 13.386C11.031 13.386 11.329 13.75 11.627 13.896C12.147 14.116 12.669 14.845 13.041 14.916C13.413 14.991 13.115 15.573 13.561 15.5C13.784 15.428 14.082 15.574 14.231 15.792C14.455 16.084 14.306 16.45 14.008 16.668C13.562 17.105 13.413 17.615 13.19 18.636C13.312 18.596 13.456 18.698 13.575 18.821C14.6958 18.5616 15.7355 18.0304 16.6024 17.2742C17.4693 16.5181 18.1368 15.5601 18.546 14.485C17.98 15.086 17.326 15.132 17.52 14.623C17.296 14.186 16.998 13.82 16.626 13.456C15.955 12.873 15.359 11.778 17.445 10.246C17.122 9.424 17.922 8.656 18.43 9.232C17.9177 8.04155 17.0849 7.01671 16.0245 6.27162C14.9641 5.52654 13.7176 5.09047 12.424 5.012L12.423 5.013Z" fill="white"></path></svg></em>
@@ -861,7 +796,7 @@ onBeforeUnmount(() => {
         </NuxtLink>
 
         <!-- Time Zone -->
-        <NuxtLink to="/explore/account/timezone" class="menu-item flex items-center justify-between group">
+        <NuxtLink to="/account/timezone" class="menu-item flex items-center justify-between group">
           <div class="flex items-center gap-2.5">
             <div class="grid h-4 w-4 place-items-center rounded bg-[#183a54] text-[#4ea8de]">
               <em class="relative min-h-6 min-w-6 mr-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="8" fill="#4C9EEA" class=""></rect><path d="M15.8494 11.755C13.5794 11.755 11.7294 13.595 11.7294 15.865C11.7294 16.985 12.1794 17.995 12.8994 18.735C12.5294 18.825 12.0994 18.845 11.9094 18.845H11.8194C11.9094 18.595 11.9394 18.305 11.8694 18.015C11.7394 17.485 11.3094 17.045 10.5094 16.615L10.1794 16.435C9.63939 16.155 9.34939 16.005 9.17939 15.765C9.00939 15.535 8.88939 15.165 8.72939 14.365C8.61939 13.815 8.31939 13.395 7.85939 13.155C7.54939 12.995 7.16939 12.905 6.72939 12.905C6.41939 12.905 6.06939 12.945 5.70939 13.025C5.52939 13.065 5.35939 13.115 5.19939 13.155C5.12939 12.775 5.09939 12.365 5.09939 11.965C5.09939 9.535 6.36939 7.395 8.27939 6.165C8.28939 6.385 8.33939 6.615 8.43939 6.845C8.69939 7.40499 9.23939 7.755 10.0294 7.905C10.0694 7.915 10.0994 7.915 10.1294 7.915H10.1694C10.2394 7.915 10.4994 8.025 10.7794 8.125C11.1494 8.275 11.4194 8.325 11.4894 8.725C11.6594 9.975 11.7594 10.595 11.5194 11.325C11.4994 11.385 11.4894 11.445 11.4894 11.505C11.4894 11.805 11.7394 12.065 12.0494 12.065C12.1994 12.065 12.3394 12.005 12.4494 11.905C12.5594 11.805 14.9194 11.135 15.5294 10.365C15.5994 10.275 15.6694 10.195 15.7494 10.105C16.0394 9.765 16.3494 9.415 16.4594 8.90499C16.5894 8.345 16.4094 7.835 16.0194 7.075C15.7394 6.525 15.6894 6.285 15.6794 6.195C15.6894 6.185 15.7094 6.175 15.7294 6.165C17.4694 7.275 18.6794 9.14499 18.8794 11.345C18.9094 11.635 19.1394 11.855 19.4394 11.855H19.4894C19.7894 11.845 20.0194 11.585 19.9994 11.265C19.8194 9.285 18.9194 7.445 17.4394 6.105C15.9494 4.755 14.0294 3.995 12.0094 3.995C10.9294 3.995 9.87939 4.205 8.88939 4.625C8.87939 4.625 8.87939 4.635 8.86939 4.635C8.85939 4.635 8.85939 4.645 8.84939 4.645C7.90939 5.045 7.06939 5.615 6.33939 6.345C5.59939 7.085 5.01939 7.935 4.61939 8.895C4.20939 9.875 3.99939 10.925 3.99939 12.005C3.99939 12.705 4.08939 13.375 4.25939 14.035C4.25939 14.055 4.26939 14.075 4.27939 14.095C4.62939 15.385 5.29939 16.575 6.25939 17.565C7.50939 18.835 9.10939 19.645 10.8394 19.895C10.8594 19.895 10.8694 19.905 10.8894 19.905C11.1694 19.945 11.4694 19.975 11.7594 19.975H11.9394C12.2794 19.975 12.9394 19.945 13.4894 19.755C13.6294 19.705 13.7394 19.605 13.7994 19.475C13.7994 19.465 13.7994 19.445 13.8094 19.435C14.4194 19.785 15.1094 20.005 15.8694 20.005C18.1494 20.005 19.9894 18.165 19.9894 15.895C19.9894 13.625 18.1394 11.785 15.8694 11.785L15.8494 11.755ZM9.47939 5.555C10.2594 5.255 11.0994 5.085 11.9794 5.085C12.9294 5.085 13.8394 5.275 14.6694 5.625C14.6094 5.735 14.5594 5.865 14.5394 6.025C14.4994 6.415 14.6394 6.905 15.0094 7.605C15.5594 8.65499 15.3594 8.83499 14.8794 9.40499C14.7994 9.495 14.7194 9.585 14.6394 9.685C14.3394 10.065 13.4894 10.065 12.7994 10.795C12.7994 10.445 12.7794 10.035 12.7494 9.605C12.6794 8.615 12.5994 8.615 12.5994 8.585V8.555C12.4494 7.755 11.9194 7.285 11.1594 7.005C10.7294 6.845 10.3394 6.825 10.1894 6.825C9.79939 6.745 9.54939 6.595 9.44939 6.395C9.32939 6.155 9.40939 5.795 9.48939 5.575L9.47939 5.555ZM10.6494 18.725C8.20939 18.265 6.25939 16.535 5.46939 14.245C5.82939 14.145 6.30939 14.035 6.72939 14.035C6.97939 14.035 7.18939 14.075 7.33939 14.155C7.49939 14.245 7.58939 14.375 7.62939 14.595C7.79939 15.455 7.94939 16.025 8.28939 16.465C8.60939 16.885 9.02939 17.105 9.65939 17.435H9.67939C9.76939 17.495 9.87939 17.545 9.97939 17.605C10.6194 17.945 10.7594 18.185 10.7894 18.295C10.8194 18.405 10.7494 18.565 10.6594 18.725H10.6494ZM15.8494 18.855C14.1994 18.855 12.8394 17.515 12.8394 15.855C12.8394 14.195 14.1894 12.855 15.8494 12.855C17.5094 12.855 18.8594 14.195 18.8594 15.855C18.8594 17.515 17.4994 18.855 15.8494 18.855Z" fill="white"></path><path d="M16.2494 16.015V14.115C16.2494 13.815 15.9994 13.555 15.6894 13.555C15.3794 13.555 15.1294 13.805 15.1294 14.115V16.245C15.1294 16.395 15.1894 16.525 15.2894 16.635L16.2894 17.645C16.3894 17.745 16.5294 17.805 16.6794 17.805C16.8294 17.805 16.9594 17.745 17.0794 17.645C17.1794 17.545 17.2394 17.405 17.2394 17.255C17.2394 17.105 17.1794 16.965 17.0794 16.865L16.2394 16.015H16.2494Z" fill="white"></path></svg></em>
@@ -944,7 +879,7 @@ onBeforeUnmount(() => {
 
       <div v-show="openSections.help" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5 pt-4">
         <!-- 24/7 Services -->
-        <NuxtLink to="/explore/egames/customer-service" class="menu-item flex items-center justify-between group">
+        <NuxtLink to="/egames/customer-service" class="menu-item flex items-center justify-between group">
           <div class="flex items-center gap-2.5">
             <div class="grid h-4 w-4 place-items-center rounded bg-[#183a54] text-[#4ea8de]">
               <em class="relative min-h-6 min-w-6 mr-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="8" fill="#0976FF" class="fill-blue-15"></rect><path d="M12.005 3C7.59225 3 4 6.74792 4 11.3654C4 14.0639 5.23077 16.5625 7.31207 18.1416L6.0813 20.2404C5.97123 20.4203 5.99124 20.6602 6.13133 20.8201C6.22139 20.93 6.36148 21 6.49156 21C6.55159 21 6.61163 20.99 6.67167 20.96L9.98374 19.4609C10.6442 19.6408 11.3246 19.7307 11.995 19.7307C16.4078 19.7307 20 15.9828 20 11.3654C20 6.74792 16.4178 3 12.005 3ZM15.4171 13.884C15.3871 13.9639 14.5766 15.8029 12.2652 15.8029C9.7636 15.8029 9.1232 13.9239 9.09318 13.844C8.99312 13.5341 9.16323 13.2043 9.48343 13.1044C9.80363 13.0044 10.1438 13.1743 10.2439 13.4842C10.2839 13.6041 10.7042 14.6335 12.2652 14.6335C13.8261 14.6335 14.2964 13.4542 14.2964 13.4442C14.4265 13.1444 14.7767 13.0044 15.0869 13.1244C15.3971 13.2443 15.5472 13.5941 15.4171 13.8939V13.884Z" fill="white"></path></svg></em>
@@ -1020,35 +955,6 @@ onBeforeUnmount(() => {
   .me-mobile-view {
     position: relative;
     isolation: isolate;
-  }
-
-  .me-mobile-header {
-    position: relative;
-    isolation: isolate;
-    min-height: 60px;
-  }
-
-  .me-mobile-header--sticky {
-    position: sticky;
-    top: 0;
-  }
-
-  .me-mobile-header--sticky::before {
-    content: '';
-    position: absolute;
-    inset: 0 0 -24px;
-    z-index: -1;
-    pointer-events: none;
-
-    background-image: 
-    url('/images/me/me-bg.webp');
-    background-size: cover;
-    background-position: top;
-     mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  /* Webkit support for Safari/older browsers */
-  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  height: 120px;
-    
   }
 
   .me-mobile-view .me-hero-wrapper {

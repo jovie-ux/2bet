@@ -1,15 +1,15 @@
-export const SPORTS_CATEGORY_BACKGROUND = '/images/sports/category-banners/background-tennis.png'
-export const BASKETBALL_CATEGORY_BACKGROUND = '/images/sports/category-banners/background-basketball.png'
-export const SOCCER_CATEGORY_BACKGROUND = '/images/sports/category-banners/background-football.png'
-export const FOOTBALL_CATEGORY_BACKGROUND = '/images/sports/category-banners/background-football.png'
-export const TENNIS_CATEGORY_BACKGROUND = '/images/sports/category-banners/background-tennis.png'
-export const BASEBALL_CATEGORY_BACKGROUND = '/images/sports/category-banners/background-tennis.png'
+export const SPORTS_CATEGORY_BACKGROUND = '/images/sports/category-banners/background-tennis.webp'
+export const BASKETBALL_CATEGORY_BACKGROUND = '/images/sports/category-banners/background-basketball.webp'
+export const SOCCER_CATEGORY_BACKGROUND = '/images/sports/category-banners/background-football.webp'
+export const FOOTBALL_CATEGORY_BACKGROUND = '/images/sports/category-banners/background-football.webp'
+export const TENNIS_CATEGORY_BACKGROUND = '/images/sports/category-banners/background-tennis.webp'
+export const BASEBALL_CATEGORY_BACKGROUND = '/images/sports/category-banners/background-tennis.webp'
 
-export const SPORTS_CATEGORY_PLACEHOLDER = '/images/sports/category-banners/tennis.png'
-export const BASKETBALL_CATEGORY_PLACEHOLDER = '/images/sports/category-banners/basketball.png'
-export const SOCCER_CATEGORY_PLACEHOLDER = '/images/sports/category-banners/soccer.png'
-export const TENNIS_CATEGORY_PLACEHOLDER = '/images/sports/category-banners/tennis.png'
-export const BASEBALL_CATEGORY_PLACEHOLDER = '/images/sports/category-banners/tennis.png'
+export const SPORTS_CATEGORY_PLACEHOLDER = '/images/sports/category-banners/tennis.webp'
+export const BASKETBALL_CATEGORY_PLACEHOLDER = '/images/sports/category-banners/basketball.webp'
+export const SOCCER_CATEGORY_PLACEHOLDER = '/images/sports/category-banners/soccer.webp'
+export const TENNIS_CATEGORY_PLACEHOLDER = '/images/sports/category-banners/tennis.webp'
+export const BASEBALL_CATEGORY_PLACEHOLDER = '/images/sports/category-banners/tennis.webp'
 
 // Replace any value below with a new file from public/images/sports/category-banners/.
 // Until a category gets its own artwork, it intentionally uses the tennis placeholder.

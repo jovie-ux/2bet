@@ -4,7 +4,7 @@ useAppSeo({
   description: 'Conheça os termos de serviço da 2bet Brasil. Informações essenciais sobre segurança da conta, transações financeiras e regras de conduta.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Legal', path: '/explore/legal/general-terms' },
+    { name: 'Legal', path: '/legal/general-terms' },
     { name: 'Termos de Serviço', path: '/terms-of-use' },
   ],
 })

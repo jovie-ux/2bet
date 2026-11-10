@@ -35,7 +35,8 @@ export default defineEventHandler(async (event: H3Event): Promise<{ sports: Spor
   }
 
   if (mode === 'inplay') {
-    const kadarioEvents = await getLiveInplayEvents(config.kadarioApi, config.kadarioSite, config.livestreamApi as string | undefined)
+    const inplayUrl = (config.inplayApi as string) || 'https://live88.eu.cc/api/v1/scores?site=YBa-BnymZ6iN8pkfAUFTWIKn'
+    const kadarioEvents = await getLiveInplayEvents(config.kadarioApi, config.kadarioSite, inplayUrl)
     
     // Filter out tennis and baseball from Kadario to avoid duplicates and fulfill requirement
     const otherEvents = kadarioEvents.filter((event: SportsEvent) => {

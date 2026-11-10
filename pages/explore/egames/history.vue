@@ -7,8 +7,8 @@ useAppSeo({
   description: 'Veja seus giros recentes e títulos favoritados na 2bet Brasil. Acesse sua conta para retomar rapidamente seus caça-níqueis preferidos.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'eGames', path: '/explore/egames/slots' },
-    { name: 'Histórico de Jogos', path: '/explore/egames/history' },
+    { name: 'eGames', path: '/egames/slots' },
+    { name: 'Histórico de Jogos', path: '/egames/history' },
   ],
 })
 
@@ -124,7 +124,7 @@ onBeforeUnmount(() => {
         {{ translate("Games you play or explore will be saved in your browser's history so you can easily return to them anytime.") }}
       </p>
       <NuxtLink
-        to="/explore/egames/slots"
+        to="/egames/slots"
         class="mt-3 inline-flex items-center gap-2 rounded-full bg-[var(--main-color)] px-5 py-2 text-xs font-bold text-white hover:bg-[#047b53] transition-colors"
       >
         <span>{{ translate('Explore Slots') }}</span>

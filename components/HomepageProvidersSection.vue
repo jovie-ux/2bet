@@ -21,7 +21,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'Slots & Live',
     categoryTone: 'emerald',
     gamesCount: '350+ Games',
-    to: '/explore/egames/slots?provider=pp',
+    to: '/egames/slots?provider=pp',
     tag: 'Popular',
   },
   {
@@ -31,7 +31,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'Mobile Slots',
     categoryTone: 'purple',
     gamesCount: '120+ Games',
-    to: '/explore/egames/slots?provider=pg',
+    to: '/egames/slots?provider=pg',
     tag: 'Hot',
   },
   {
@@ -41,7 +41,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'Slots & Arcade',
     categoryTone: 'amber',
     gamesCount: '95+ Games',
-    to: '/explore/egames/slots?provider=jili',
+    to: '/egames/slots?provider=jili',
     tag: 'Top',
   },
   {
@@ -51,7 +51,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'Jackpots',
     categoryTone: 'amber',
     gamesCount: '80+ Games',
-    to: '/explore/egames/jackpot/jdb',
+    to: '/egames/jackpot/jdb',
     tag: 'Jackpot',
   },
   {
@@ -61,7 +61,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'Asian Slots',
     categoryTone: 'blue',
     gamesCount: '160+ Games',
-    to: '/explore/egames/slots?provider=cq9',
+    to: '/egames/slots?provider=cq9',
     tag: 'Top',
   },
   {
@@ -71,7 +71,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'Daily Drops',
     categoryTone: 'red',
     gamesCount: '210+ Games',
-    to: '/explore/egames/slots?provider=red-tiger',
+    to: '/egames/slots?provider=red-tiger',
     tag: 'Jackpot',
   },
   {
@@ -81,7 +81,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'Premium Slots',
     categoryTone: 'emerald',
     gamesCount: '190+ Games',
-    to: '/explore/egames/slots?provider=netent',
+    to: '/egames/slots?provider=netent',
     tag: 'Classic',
   },
   {
@@ -91,7 +91,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'Mega Moolah',
     categoryTone: 'blue',
     gamesCount: '420+ Games',
-    to: '/explore/egames/slots?provider=mg%2B',
+    to: '/egames/slots?provider=mg%2B',
     tag: 'Mega',
   },
   {
@@ -101,7 +101,7 @@ const PROVIDERS: ProviderItem[] = [
     category: '3D Cinematic',
     categoryTone: 'purple',
     gamesCount: '115+ Games',
-    to: '/explore/egames/slots?provider=bs',
+    to: '/egames/slots?provider=bs',
     tag: '3D',
   },
   {
@@ -111,7 +111,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'Video Slots',
     categoryTone: 'amber',
     gamesCount: '70+ Games',
-    to: '/explore/egames/slots?provider=choice',
+    to: '/egames/slots?provider=choice',
     tag: 'New',
   },
   {
@@ -121,7 +121,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'eSports & Slots',
     categoryTone: 'red',
     gamesCount: '65+ Games',
-    to: '/explore/egames/slots?provider=lgd',
+    to: '/egames/slots?provider=lgd',
     tag: 'Hot',
   },
   {
@@ -131,7 +131,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'VIP Exclusive',
     categoryTone: 'emerald',
     gamesCount: 'Exclusive',
-    to: '/explore/egames/slots?provider=2bet',
+    to: '/egames/slots?provider=2bet',
     tag: 'VIP',
   },
   {
@@ -141,7 +141,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'Live Baccarat',
     categoryTone: 'amber',
     gamesCount: 'Live Tables',
-    to: '/explore/entertainment/live-casino',
+    to: '/entertainment/live-casino',
     tag: 'Live',
   },
   {
@@ -151,7 +151,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'P2P Tables',
     categoryTone: 'blue',
     gamesCount: 'Card Games',
-    to: '/explore/entertainment/poker',
+    to: '/entertainment/poker',
     tag: 'Cards',
   },
   {
@@ -161,7 +161,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'Poker & Dice',
     categoryTone: 'purple',
     gamesCount: 'Poker Rooms',
-    to: '/explore/entertainment/poker',
+    to: '/entertainment/poker',
     tag: 'Table',
   },
   {
@@ -171,7 +171,7 @@ const PROVIDERS: ProviderItem[] = [
     category: 'Arcade & Table',
     categoryTone: 'blue',
     gamesCount: 'Casual Games',
-    to: '/explore/entertainment/poker',
+    to: '/entertainment/poker',
     tag: 'Casual',
   },
 ]
@@ -357,35 +357,6 @@ onBeforeUnmount(() => {
         </div>
       </div>
 
-      <!-- Carousel Navigation Controls -->
-      <div class="carousel-controls flex items-center gap-1.5" role="toolbar" :aria-label="translate('Carousel controls')">
-        <button
-          type="button"
-          class="glass-control-btn"
-          :aria-label="isPaused ? translate('Resume providers carousel') : translate('Pause providers carousel')"
-          @click="togglePause"
-        >
-          <component :is="isPaused ? Play : Pause" :size="14" />
-        </button>
-
-        <button
-          type="button"
-          class="glass-control-btn"
-          :aria-label="translate('Scroll providers left')"
-          @click="scrollManual('left')"
-        >
-          <ChevronLeft :size="16" />
-        </button>
-
-        <button
-          type="button"
-          class="glass-control-btn"
-          :aria-label="translate('Scroll providers right')"
-          @click="scrollManual('right')"
-        >
-          <ChevronRight :size="16" />
-        </button>
-      </div>
     </header>
 
     <!-- Glassmorphic Auto-Sliding Carousel Viewport -->
@@ -429,7 +400,7 @@ onBeforeUnmount(() => {
           <!-- Card Glass Footer -->
           <div class="card-glass-footer flex items-center justify-between">
             <span class="provider-title truncate">{{ provider.name }}</span>
-            <span class="games-count-pill">{{ provider.gamesCount }}</span>
+            <span class="games-count-pill display-hidden sm:display-block">{{ provider.gamesCount }}</span>
           </div>
 
           <!-- Subtle Diagonal Light Reflection -->

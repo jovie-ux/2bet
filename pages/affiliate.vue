@@ -1,9 +1,19 @@
 <script setup lang="ts">
 import SubpageHeader from '~/components/SubpageHeader.vue'
+import BonusCurrencySelector from '~/components/bonuses/BonusCurrencySelector.vue'
+import { getBonusCurrency } from '~/data/bonus-currencies'
+import {
+  AFFILIATE_COMMISSION_DESCRIPTION,
+  AFFILIATE_COMMISSION_PAY_DESCRIPTION,
+  AFFILIATE_COMMISSION_PROGRAMS,
+  AFFILIATE_CURRENCY_CODES,
+  AFFILIATE_VALID_MEMBERS_DESCRIPTION,
+  formatAffiliateProfitRange,
+  isAffiliateCurrencyCode,
+  type AffiliateCurrencyCode,
+} from '~/data/affiliate'
 import {
   Check,
-  ChevronDown,
-  ChevronUp,
   Copy,
   Link as LinkIcon,
   Mail,
@@ -27,7 +37,6 @@ interface QuestionCategory {
   items: Array<{ question: string, answer: string }>
 }
 
-const router = useRouter()
 const runtimeConfig = useRuntimeConfig()
 const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = runtimeConfig.public
 const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
@@ -35,24 +44,6 @@ const affiliateSystemUrl = 'https://partnerships.bybet.com/'
 
 const activeTab = ref<AffiliateTabId>('cooperation')
 const activeQuestionTab = ref<QuestionTabId>('information')
-const expandedAdvantages = ref<Set<string>>(new Set([
-  'account',
-  'commission',
-  'support',
-  'payments',
-  'communication',
-]))
-const copiedContact = ref<'phone' | 'email' | null>(null)
-let copyResetTimer: ReturnType<typeof setTimeout> | null = null
-
-useAppSeo({
-  title: 'Programa de Afiliados Oficial e Comissões Exclusivas | 2bet',
-  description: 'Torne-se parceiro da 2bet Brasil e receba até 50% de comissões contínuas. Acompanhe relatórios em tempo real e receba pagamentos pontuais.',
-  breadcrumbs: [
-    { name: 'Início', path: '/' },
-    { name: 'Programa de Afiliados', path: '/affiliate' },
-  ],
-})
 
 const affiliateTabs: AffiliateTab[] = [
   { id: 'cooperation', label: 'Cooperation Methods' },
@@ -63,6 +54,25 @@ const affiliateTabs: AffiliateTab[] = [
   { id: 'contact', label: 'Contact Us' },
 ]
 
+const affiliateCurrencies = AFFILIATE_CURRENCY_CODES.map(getBonusCurrency)
+const selectedCurrency = ref<AffiliateCurrencyCode>('USDT')
+const commissionProgram = computed(() => AFFILIATE_COMMISSION_PROGRAMS[selectedCurrency.value])
+const selectAffiliateCurrency = (code: string): void => {
+  if (isAffiliateCurrencyCode(code)) selectedCurrency.value = code
+}
+
+const copiedContact = ref<'phone' | 'email' | null>(null)
+let copyResetTimer: ReturnType<typeof setTimeout> | null = null
+
+useAppSeo({
+  title: 'Programa de Afiliados Oficial e Comissões Exclusivas | 2bet',
+  description: 'Torne-se parceiro da 2bet Brasil e receba até 55% de comissões contínuas. Acompanhe relatórios em tempo real e receba pagamentos pontuais.',
+  breadcrumbs: [
+    { name: 'Início', path: '/' },
+    { name: 'Programa de Afiliados', path: '/affiliate' },
+  ],
+})
+
 const cooperationSteps = [
   { step: 'Step 1', label: 'Get Affiliate Now', icon: LinkIcon, tone: 'red' },
   { step: 'Step 2', label: 'Get Affiliation Promotion Link', icon: Network, tone: 'gold' },
@@ -70,10 +80,14 @@ const cooperationSteps = [
 ]
 
 const products = [
-  { label: 'SPORTS', image: '/images/sports/soccer.webp' },
-  { label: 'LIVE CASINO', image: '/images/casino/card1.webp' },
-  { label: 'SLOTS', image: '/images/games/popular/gates-of-olympus.webp' },
-  { label: 'LOTTERY', image: '/images/games/new-releases/777-strike.webp' },
+  { label: 'SPORTS', image: '/images/affiliate/affiliate-sports.png' },
+  { label: 'LIVE CASINO', image: '/images/affiliate/affiliate-live-casino.png' },
+  { label: 'LOTTERY', image: '/images/affiliate/affiliate-lottery.png' },
+  { label: 'POKER', image: '/images/affiliate/affiliate-poker.png' },
+  { label: 'SLOTS', image: '/images/affiliate/affiliate-slots.png' },
+  { label: 'FISHING', image: '/images/affiliate/affiliate-fishing.png' },
+  { label: 'RACE', image: '/images/affiliate/affiliate-race.png' },
+  { label: 'ESPORTS', image: '/images/affiliate/affiliate-esports.png' },
 ]
 
 const advantages = [
@@ -85,7 +99,7 @@ const advantages = [
   {
     id: 'commission',
     title: 'Lifetime Commission',
-    points: ['Industry-leading 50% commission', 'Players are your fixed assets', 'Earn for life from player bets'],
+    points: ['Industry-leading 55% commission', 'Players are your fixed assets', 'Earn for life from player bets'],
   },
   {
     id: 'support',
@@ -105,7 +119,7 @@ const advantages = [
   {
     id: 'fun',
     title: 'Unstoppable Fun',
-    points: ['Premium sports and gaming products', 'Fresh campaigns and promotions', 'Entertainment for every player'],
+    points: ['Exciting games', 'FrNon-stop promotions', 'Round-the-clock support'],
   },
 ]
 
@@ -121,15 +135,15 @@ const questionCategories: QuestionCategory[] = [
       },
       {
         question: 'Advantages of joining 2Bet affiliate program.',
-        answer: '2Bet has been well-known in the industry for more than 10 years with an excellent reputation. Our philosophy is to provide the great games and pay the players on time.\nJoining 2Bet is completely free. You only need to own the promotional websites to receive promotional tools such as advertising banners and affiliate links.\nByBet does have a commission cap. The more players bet, the more profit you will earn. You can earn generous commission from the players you referred anytime. Enjoy your free working hours by working from your home.',
+        answer: '2Bet has been well-known in the industry for more than 10 years with an excellent reputation. Our philosophy is to provide the great games and pay the players on time.\nJoining 2Bet is completely free. You only need to own the promotional websites to receive promotional tools such as advertising banners and affiliate links.\n2bet does have a commission cap. The more players bet, the more profit you will earn. You can earn generous commission from the players you referred anytime. Enjoy your free working hours by working from your home.',
       },
       {
         question: "Can I join even when I don't have my own website?",
-        answer: 'Owning your own website is definitely the best way to promote our business. Even without it, we will also provide the promotion links and banners for you. If you have other promotional ideas that you want to share with us, please feel free to contact and discuss with our affiliate team.',
+        answer: 'Having a personal website is definitely the best way to promote our brand. Eventhough there is not, we will also provide you with promotion links and advertisements for you. If you have other promotion methods that you want to share with us, please feel free to contact and discuss with our joint venture team.',
       },
       {
         question: 'What incentive does 2Bet give to affiliates with good performing?',
-        answer: 'Your promotional performance is directly proportional to your income. The higher turnover from your players, the more commission. The current commission is tiered, the lowest commission starts at 30% and goes up to 50%. Please Click "Commission System" to discover more in details! Should you have any requests for the commission, please contact our affiliate team to discuss further.',
+        answer: 'Your promotional performance is directly proportional to your income. The higher turnover from your players, the more commission. The current commission is tiered, the lowest commission starts at 30% and goes up to 55%. Please Click "Commission System" to discover more in details! Should you have any requests for the commission, please contact our affiliate team to discuss further.',
       },
     ],
   },
@@ -167,7 +181,7 @@ const questionCategories: QuestionCategory[] = [
       },
       {
         question: 'What is a valid player?',
-        answer: 'A valid player is someone who successfully signed up and played betting more than PHP20.',
+        answer: 'A valid player is someone who successfully signed up and played betting more than USDT100',
       },
       {
         question: 'How to calculate the joint commission?',
@@ -198,7 +212,7 @@ const questionCategories: QuestionCategory[] = [
       },
       {
         question: 'Can you provide more information about the members I referred?',
-        answer: 'For security reason, 2Bet will not provide any personal information. We will guarantee the security and privacy of personal information both for agents and players. In order to help the affiliate manage and track the downline members better, the affiliate page shows their betting activities.',
+        answer: 'For security reason, 2bet will not provide any personal information. We will guarantee the security and privacy of personal information both for agents and players.\nIn order to help the affiliate manage and track the downline members better, the affiliate page shows their betting activities.',
       },
       {
         question: 'Does 2Bet accept global partnership?',
@@ -207,29 +221,6 @@ const questionCategories: QuestionCategory[] = [
     ],
   },
 ]
-
-const activeQuestionCategory = computed(() => (
-  questionCategories.find(category => category.id === activeQuestionTab.value) ?? questionCategories[0]
-))
-
-const handleBack = (): void => {
-  if (import.meta.client && window.history.length > 1) {
-    router.back()
-    return
-  }
-
-  router.push('/explore/account/me')
-}
-
-const toggleAdvantage = (id: string): void => {
-  const nextExpanded = new Set(expandedAdvantages.value)
-  if (nextExpanded.has(id)) {
-    nextExpanded.delete(id)
-  } else {
-    nextExpanded.add(id)
-  }
-  expandedAdvantages.value = nextExpanded
-}
 
 const copyContact = async (type: 'phone' | 'email', value: string): Promise<void> => {
   if (!import.meta.client) return
@@ -255,7 +246,7 @@ onBeforeUnmount(() => {
   <div class="affiliate-page">
     <SubpageHeader
       title="Affiliate"
-      back-to="/explore/account/me"
+      back-to="/account/me"
       class="mb-1.5 sm:mb-2.5"
     />
 
@@ -274,154 +265,178 @@ onBeforeUnmount(() => {
         </button>
       </nav>
 
-      <main class="affiliate-main">
-      <section v-if="activeTab === 'cooperation'" class="affiliate-panel affiliate-cooperation">
-        <div class="affiliate-hero">
-          <div class="affiliate-hero-copy">
-            <h2>Provide highest commission rate<br>to make big money easily!</h2>
-            <p>Get up to 50% commission every month</p>
-          </div>
-          <div class="affiliate-hero-rate"><strong>50</strong><span>%</span></div>
-        </div>
-
-        <div class="cooperation-card">
-          <h2>「Earn for life」 on your 「player bets」!</h2>
-          <ol class="cooperation-steps">
-            <li v-for="step in cooperationSteps" :key="step.step">
-              <span class="step-icon" :class="`step-icon--${step.tone}`">
-                <component :is="step.icon" :size="24" />
-              </span>
-              <span>
-                <strong>{{ step.step }}</strong>
-                <small>{{ step.label }}</small>
-              </span>
-            </li>
-          </ol>
-          <div class="cooperation-description">
-            <strong>Complete three easy steps to start earning high commission!</strong>
-            <p>2Bet has been well-known in the industry for more than 10 years with excellent reputation. Players able to use all types of smart devices to enjoy the excellent gaming experience, is a reliable guarantee for your profit. A well-designed commission system makes it easier for you to make money. Get up to 50% commission every month.</p>
-          </div>
-        </div>
-
-        <div class="affiliate-actions">
-          <a :href="bybetRedirectUrl" target="_blank" rel="noopener noreferrer" class="affiliate-action affiliate-action--primary">Apply Now</a>
-          <a :href="affiliateSystemUrl" target="_blank" rel="noopener noreferrer" class="affiliate-action">Affiliate System</a>
-        </div>
-      </section>
-
-      <section v-else-if="activeTab === 'products'" class="affiliate-panel products-panel">
-        <div class="affiliate-surface">
-          <h2 class="section-label">Games</h2>
-          <div class="product-grid">
-            <article v-for="product in products" :key="product.label" class="product-card">
-              <span>{{ product.label }}</span>
-              <img :src="product.image" :alt="product.label" loading="lazy">
-            </article>
-          </div>
-          <p class="products-copy">
-            2Bet integrates premium gaming resources from around the world and is committed to delivering a secure, professional, and seamless entertainment experience. No matter which device players use, we strive to provide a high-quality gaming experience at every touchpoint.<br>
-            As a platform licensed by the Philippine Amusement and Gaming Corporation (PAGCOR), 2Bet provides partners with a compliant and reliable foundation for building strong and sustainable business relationships.
-          </p>
-        </div>
-      </section>
-
-      <section v-else-if="activeTab === 'advantages'" class="affiliate-panel advantages-panel">
-        <article v-for="advantage in advantages" :key="advantage.id" class="advantage-card">
-          <button type="button" :aria-expanded="expandedAdvantages.has(advantage.id)" @click="toggleAdvantage(advantage.id)">
-            <strong>{{ advantage.title }}</strong>
-            <ChevronUp v-if="expandedAdvantages.has(advantage.id)" :size="16" />
-            <ChevronDown v-else :size="16" />
-          </button>
-          <ul v-if="expandedAdvantages.has(advantage.id)">
-            <li v-for="point in advantage.points" :key="point">{{ point }}</li>
-          </ul>
-        </article>
-        <p class="advantages-note">2Bet provides multi-gradient rebates. The more profit your downline players generate on the platform, the more commissions you can receive. Please refer to the details shown on your management centre.</p>
-      </section>
-
-      <section v-else-if="activeTab === 'commission'" class="affiliate-panel">
-        <div class="affiliate-surface commission-panel">
-          <span class="commission-flag" aria-label="Brasil"><img
-                src="/icons/PHP.webp"
-                alt="2Bet"
-                class="h-7 sm:h-5 w-auto object-contain"
-                loading="lazy"
-              /></span>
-          <h2>Earn up to 50% commission every month<br>Affiliate Partnership Program</h2>
-          <p>Affiliates receive commissions based on a percentage of the monthly net revenue generated from sports betting, online casino, slot games, and other gaming products.</p>
-
-          <h3>Commission Program</h3>
-          <p>2Bet Commissions will be calculated as a percentage based on the monthly net income of sports betting, live dealers, slot machines and lotteries. Net income is defined as: the company's gross profit from sports betting, live dealers, slot machines and lotteries minus customer transaction costs, wrong payment collection, taxes, platform fees, bonuses and other rewards, etc. Referral fees and commissions are calculated based on 2Bet statistical methods and data collection methods.</p>
-
-          <div class="commission-table-wrap">
-            <table class="commission-table">
-              <thead>
-                <tr><th>Valid Members of the Month</th><th>Monthly Profit</th><th>Commission %</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>≥5</td><td>10000~300000</td><td>30%</td></tr>
-                <tr><td>≥20</td><td>300001~60000000</td><td>40%</td></tr>
-                <tr><td>≥50</td><td>above60000001</td><td>50%</td></tr>
-              </tbody>
-            </table>
+      <main class="affiliate-main pb-6">
+        <section
+          v-show="activeTab === 'cooperation'"
+          class="affiliate-panel affiliate-cooperation"
+          aria-labelledby="cooperation-title"
+        >
+          <h2 id="cooperation-title" class="affiliate-section-title">Cooperation Methods</h2>
+          <div class="affiliate-hero">
+            <div class="affiliate-hero-copy">
+              <h3>Provide highest commission rate<br>to make big money easily!</h3>
+              <p>Get up to 55% commission every month</p>
+            </div>
+            <div class="affiliate-hero-rate"><strong>55</strong><span>%</span></div>
           </div>
 
-          <h3>Definition of Valid Members</h3>
-          <p>Members are encouraged to make a minimum deposit of PHP 20 or more and place valid bets of at least PHP 20 within the monthly settlement period. If the agent does not reach the minimum 5 members of [Monthly Minimum Valid Member] on the current month, commissions cannot be calculated. Your agency account losses are borne by the company, and you don't have to bear the risk of customer wins or losses. Monthly commissions are calculated based on the total profits of all games, and commissions are settled on the 7th of every month. All your withdrawals will reach your designated bank account within 3 working days. The above calculation method is for reference only, please refer to the detailed regulations for details.</p>
+          <div class="cooperation-card">
+            <h3>「Earn for life」 on your 「player bets」!</h3>
+            <ol class="cooperation-steps">
+              <li v-for="step in cooperationSteps" :key="step.step">
+                <span class="step-icon" :class="`step-icon--${step.tone}`">
+                  <component :is="step.icon" :size="24" />
+                </span>
+                <span>
+                  <strong>{{ step.step }}</strong>
+                  <small>{{ step.label }}</small>
+                </span>
+              </li>
+            </ol>
+            <div class="cooperation-description">
+              <h3 class="m-0 text-sm font-bold">Complete three easy steps to start earning high commission!</h3>
+              <p>2Bet has been well-known in the industry for more than 10 years with excellent reputation. Players able to use all types of smart devices to enjoy the excellent gaming experience, is a reliable guarantee for your profit. A well-designed commission system makes it easier for you to make money. Get up to 55% commission every month.</p>
+            </div>
+          </div>
 
-          <h3>Commission Pay</h3>
-          <p>Affiliate commission is calculated from the first day to the last day of the month, according to the bonus system of affiliate program. After deducting the member bonus and administrative expenses, the commission is paid to the affiliates. After the customer service confirms the amount with them on 2nd or 3rd of each month, the commission will be directly deposited into their bank accounts on 5th. The monthly performance of the affiliates will be reset to zero after this settlement. The above calculation method is for reference only, and please refer to the specific regulations.</p>
-        </div>
-      </section>
+          <div class="affiliate-actions">
+            <a :href="bybetRedirectUrl" target="_blank" rel="noopener noreferrer" class="affiliate-action affiliate-action--primary">Apply Now</a>
+            <a :href="affiliateSystemUrl" target="_blank" rel="noopener noreferrer" class="affiliate-action">Affiliate System</a>
+          </div>
+        </section>
 
-      <section v-else-if="activeTab === 'questions'" class="affiliate-panel questions-panel">
-        <nav class="question-tabs" aria-label="Affiliate question categories" role="tablist">
-          <button
-            v-for="category in questionCategories"
-            :key="category.id"
-            type="button"
-            role="tab"
-            :aria-selected="activeQuestionTab === category.id"
-            :class="{ 'question-tab--active': activeQuestionTab === category.id }"
-            @click="activeQuestionTab = category.id"
-          >
-            {{ category.label }}
-          </button>
-        </nav>
-        <div class="affiliate-surface questions-content">
-          <h2>{{ activeQuestionCategory.title }}</h2>
-          <article v-for="item in activeQuestionCategory.items" :key="item.question">
-            <h3>{{ item.question }}</h3>
-            <p>{{ item.answer }}</p>
+        <section
+          v-show="activeTab === 'products'"
+          class="affiliate-panel products-panel"
+          aria-labelledby="products-title"
+        >
+          <h2 id="products-title" class="affiliate-section-title">Our Products</h2>
+          <div class="affiliate-surface">
+            <h3 class="section-label">Games</h3>
+            <div class="product-grid">
+              <article v-for="product in products" :key="product.label" class="product-card">
+                <h4 class="m-0 font-bold">{{ product.label }}</h4>
+                <img :src="product.image" :alt="product.label" loading="lazy">
+              </article>
+            </div>
+            <p class="products-copy">
+              2bet has brought together the elite of the global gaming industry. Since 2011, 2bet has established an excellent reputation based on its secure and professional services. Creating a top-notch gaming experience is our unwavering pursuit, whether players use a mobile phone, smart computer, laptop, or desktop.
+            </p>
+          </div>
+        </section>
+
+        <section
+          v-show="activeTab === 'advantages'"
+          class="affiliate-panel advantages-panel"
+          aria-labelledby="advantages-title"
+        >
+          <h2 id="advantages-title" class="affiliate-section-title">Service Advantages</h2>
+          <article v-for="advantage in advantages" :key="advantage.id" class="advantage-card">
+            <h3>{{ advantage.title }}</h3>
+            <ul>
+              <li v-for="point in advantage.points" :key="point">{{ point }}</li>
+            </ul>
           </article>
-        </div>
-      </section>
+          <p class="advantages-note">2Bet provides multi-gradient rebates. The more profit your downline players generate on the platform, the more commissions you can receive. Please refer to the details shown on your management centre.</p>
+        </section>
 
-      <section v-else class="affiliate-panel">
-        <div class="affiliate-surface contact-panel">
-          <h2>Contact Us</h2>
-          <p class="contact-intro">Let’s shape a great future together, beginning now. Have questions? Just get in touch!</p>
-          <div class="contact-row">
-            <span class="contact-icon contact-icon--phone"><Phone :size="25" fill="currentColor" /></span>
-            <span class="contact-copy"><strong>Agent Phone</strong><small>09176861888</small></span>
-            <button type="button" @click="copyContact('phone', '09176861888')">
-              <Check v-if="copiedContact === 'phone'" :size="15" />
-              <Copy v-else :size="15" />
-              {{ copiedContact === 'phone' ? 'Copied' : 'Copy' }}
-            </button>
+        <section
+          v-show="activeTab === 'commission'"
+          class="affiliate-panel"
+          aria-labelledby="commission-title"
+        >
+          <h2 id="commission-title" class="affiliate-section-title">Commission Program</h2>
+          <div class="affiliate-surface commission-panel">
+            <div class="commission-flag">
+              <BonusCurrencySelector
+                :model-value="selectedCurrency"
+                :currencies="affiliateCurrencies"
+                :aria-label="`Select affiliate currency: ${selectedCurrency}`"
+                options-label="Affiliate currencies"
+                @update:model-value="selectAffiliateCurrency"
+              />
+            </div>
+            <h3 class="commission-intro-title">
+              <span v-for="line in commissionProgram.title" :key="line" class="block">{{ line }}</span>
+            </h3>
+            <p v-for="paragraph in commissionProgram.introduction" :key="paragraph">{{ paragraph }}</p>
+
+            <h3>Commission Program</h3>
+            <p>{{ AFFILIATE_COMMISSION_DESCRIPTION }}</p>
+            <p v-if="commissionProgram.adjustmentNotice" class="commission-tier-notice">{{ commissionProgram.adjustmentNotice }}</p>
+
+            <div class="commission-table-wrap">
+              <table class="commission-table">
+                <caption class="sr-only">{{ selectedCurrency }} commission tiers</caption>
+                <thead>
+                  <tr><th scope="col">Valid Members of the Month</th><th scope="col">Monthly Profit</th><th scope="col">Commission %</th></tr>
+                </thead>
+                <tbody>
+                  <tr v-for="tier in commissionProgram.tiers" :key="tier.validMembers">
+                    <td>≥{{ tier.validMembers }}</td>
+                    <td>{{ formatAffiliateProfitRange(tier) }}</td>
+                    <td>{{ tier.commission }}%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Definition of Valid Members</h3>
+            <p>{{ AFFILIATE_VALID_MEMBERS_DESCRIPTION }}</p>
+
+            <h3>Commission Pay</h3>
+            <p>{{ AFFILIATE_COMMISSION_PAY_DESCRIPTION }}</p>
           </div>
-          <div class="contact-row">
-            <span class="contact-icon contact-icon--email"><Mail :size="25" /></span>
-            <span class="contact-copy"><strong>Agent Email</strong><small>partnerships@2bet.com</small></span>
-            <button type="button" @click="copyContact('email', 'partnerships@2bet.com')">
-              <Check v-if="copiedContact === 'email'" :size="15" />
-              <Copy v-else :size="15" />
-              {{ copiedContact === 'email' ? 'Copied' : 'Copy' }}
+        </section>
+
+        <section
+          v-show="activeTab === 'questions'"
+          class="affiliate-panel questions-panel"
+          aria-labelledby="questions-title"
+        >
+          <h2 id="questions-title" class="affiliate-section-title">Affiliate Questions</h2>
+          <nav class="question-tabs" aria-label="Affiliate question categories" role="tablist">
+            <button
+              v-for="category in questionCategories"
+              :key="category.id"
+              type="button"
+              role="tab"
+              :aria-selected="activeQuestionTab === category.id"
+              :class="{ 'question-tab--active': activeQuestionTab === category.id }"
+              @click="activeQuestionTab = category.id"
+            >
+              {{ category.label }}
             </button>
+          </nav>
+          <section
+            v-for="category in questionCategories"
+            v-show="activeQuestionTab === category.id"
+            :key="category.id"
+            class="affiliate-surface questions-content"
+            :aria-labelledby="`question-category-${category.id}`"
+          >
+            <h3 :id="`question-category-${category.id}`" class="question-category-title">{{ category.title }}</h3>
+            <article v-for="item in category.items" :key="item.question">
+              <h4>{{ item.question }}</h4>
+              <p>{{ item.answer }}</p>
+            </article>
+          </section>
+        </section>
+
+        <section
+          v-show="activeTab === 'contact'"
+          class="affiliate-panel"
+          aria-labelledby="contact-title"
+        >
+          <h2 id="contact-title" class="affiliate-section-title">Contact Us</h2>
+          <div class="affiliate-surface contact-panel">
+            <h3 class="text-[18px] font-semibold text-center">Contact Us</h3>
+            <p class="text-white font-semibold text-[14px]">Professional Service · Efficient Coordination · Trusted Assurance</p>
+            <p class="contact-intro">Thank you for your support and trust in 2bet. We are committed to providing a stable, secure, and high-quality service environment, delivering a professional and reliable experience for every user. Whether it is account assistance, deposit and withdrawal support, or partnership and business cooperation, our professional team is dedicated to offering timely, efficient, and comprehensive support with a rigorous approach.</p>
+            
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
     </div>
   </div>
 </template>
@@ -511,7 +526,17 @@ onBeforeUnmount(() => {
 .affiliate-tabs button:hover,
 .affiliate-tabs .affiliate-tab--active {
   color: #fff;
-  background: #007554;
+  background: var(--main-color, #007554);
+}
+
+.affiliate-section-title {
+  display: none;
+  @apply m-0 w-fit rounded-full bg-[var(--main-color)] px-[13px] py-1.5 text-sm font-bold leading-5 text-white;
+}
+
+.question-category-title {
+  display: none;
+  @apply m-0 w-fit rounded-full bg-[var(--main-color)] px-3 py-1.5 text-xs font-bold leading-5 text-white;
 }
 
 .affiliate-main,
@@ -520,7 +545,9 @@ onBeforeUnmount(() => {
 }
 
 .affiliate-panel {
+  display: grid;
   padding-top: 8px;
+  gap: 8px;
 }
 
 .affiliate-cooperation {
@@ -537,7 +564,7 @@ onBeforeUnmount(() => {
   overflow: hidden;
   border-radius: 12px;
   padding: 24px 32px;
-  background: linear-gradient(90deg, rgba(12, 24, 31, 0.52), rgba(79, 52, 7, 0.22)), url('/hero/promotions.webp') center 58% / cover no-repeat;
+  background: linear-gradient(90deg, rgba(12, 24, 31, 0.52), rgba(79, 52, 7, 0.22)), url('/images/affiliate/affiliate-bg.png') center / cover no-repeat;
 }
 
 .affiliate-hero::after {
@@ -554,7 +581,7 @@ onBeforeUnmount(() => {
   z-index: 1;
 }
 
-.affiliate-hero h2 {
+.affiliate-hero h3 {
   margin: 0;
   font-size: 19px;
   font-weight: 800;
@@ -588,7 +615,7 @@ onBeforeUnmount(() => {
   padding: 12px;
 }
 
-.cooperation-card > h2 {
+.cooperation-card > h3 {
   margin: 0 0 17px;
   text-align: center;
   font-size: 17px;
@@ -645,10 +672,6 @@ onBeforeUnmount(() => {
   padding-top: 14px;
 }
 
-.cooperation-description strong {
-  font-size: 14px;
-}
-
 .cooperation-description p,
 .products-copy,
 .commission-panel > p,
@@ -689,7 +712,7 @@ onBeforeUnmount(() => {
 }
 
 .affiliate-action--primary {
-  background: #007554;
+  background: var(--main-color);
 }
 
 .affiliate-surface {
@@ -724,7 +747,7 @@ onBeforeUnmount(() => {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.34), transparent 34%, rgba(0, 0, 0, 0.18));
 }
 
-.product-card span {
+.product-card h4 {
   position: absolute;
   z-index: 2;
   top: 14px;
@@ -752,25 +775,15 @@ onBeforeUnmount(() => {
   border-radius: 12px;
 }
 
-.advantage-card button {
+.advantage-card > h3 {
   display: flex;
-  width: 100%;
   min-height: 38px;
   align-items: center;
-  justify-content: space-between;
-  border: 0;
+  margin: 0;
   padding: 9px 12px;
   color: #f4f4f4;
-  background: transparent;
-  cursor: pointer;
-}
-
-.advantage-card button strong {
   font-size: 14px;
-}
-
-.advantage-card button svg {
-  color: #979797;
+  font-weight: 700;
 }
 
 .advantage-card ul {
@@ -792,12 +805,12 @@ onBeforeUnmount(() => {
   padding: 14px 12px 12px;
 }
 
-.commission-panel > h2,
-.questions-content > h2,
-.contact-panel > h2 {
+.commission-intro-title {
   margin: 0;
+  padding-inline: 40px;
   text-align: center;
   font-size: 18px;
+  font-weight: 700;
   line-height: 1.45;
 }
 
@@ -805,9 +818,15 @@ onBeforeUnmount(() => {
   margin: 17px 0;
 }
 
-.commission-panel h3 {
+.commission-panel > .commission-tier-notice {
+  color: inherit;
+  font-weight: 700;
+}
+
+.commission-panel > h3:not(.commission-intro-title) {
   margin: 16px 0 7px;
   font-size: 14px;
+  font-weight: 700;
 }
 
 .commission-flag {
@@ -910,7 +929,7 @@ onBeforeUnmount(() => {
   margin-top: 15px;
 }
 
-.questions-content h3 {
+.questions-content h4 {
   margin: 0 0 6px;
   font-size: 14px;
 }
@@ -958,8 +977,10 @@ onBeforeUnmount(() => {
   flex-direction: column;
 }
 
-.contact-copy strong {
+.contact-copy h3 {
+  margin: 0;
   font-size: 14px;
+  font-weight: 700;
 }
 
 .contact-copy small {
@@ -1047,9 +1068,6 @@ onBeforeUnmount(() => {
     min-height: 280px;
   }
 
-  .contact-panel {
-    min-height: 235px;
-  }
 }
 
 @media (max-width: 767px) {
@@ -1067,10 +1085,6 @@ onBeforeUnmount(() => {
     border-radius: 9px;
   }
 
-  .affiliate-titlebar {
-    min-height: 43px;
-  }
-
   .affiliate-tabs {
     padding-inline: 7px;
   }
@@ -1080,12 +1094,33 @@ onBeforeUnmount(() => {
     font-size: 12px;
   }
 
+  .question-tabs {
+    padding-inline: 4px;
+  }
+
+  .question-tabs button {
+    font-size: 10px;
+  }
+
+  .question-tabs .question-tab--active::after {
+    width: 48px;
+  }
+
+  .affiliate-titlebar {
+    min-height: 43px;
+  }
+
+  .affiliate-section-title {
+    padding-inline: 11px;
+    font-size: 12px;
+  }
+
   .affiliate-hero {
     min-height: 132px;
     padding: 18px;
   }
 
-  .affiliate-hero h2 {
+  .affiliate-hero h3 {
     font-size: 16px;
   }
 
@@ -1118,21 +1153,9 @@ onBeforeUnmount(() => {
     font-size: 20px;
   }
 
-  .commission-panel > h2 {
-    padding-inline: 24px;
+  .commission-intro-title {
+    padding-inline: 36px;
     font-size: 15px;
-  }
-
-  .question-tabs {
-    padding-inline: 4px;
-  }
-
-  .question-tabs button {
-    font-size: 10px;
-  }
-
-  .question-tabs .question-tab--active::after {
-    width: 48px;
   }
 
   .regulatory-logos img:first-child {
@@ -1155,7 +1178,7 @@ onBeforeUnmount(() => {
     font-size: 42px;
   }
 
-  .cooperation-card > h2 {
+  .cooperation-card > h3 {
     font-size: 14px;
   }
 

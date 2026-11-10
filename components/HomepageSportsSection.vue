@@ -11,8 +11,6 @@ const filters = [
   { key: 'all', label: 'All Sports' },
   { key: 'soccer', label: 'Football' },
   { key: 'basketball', label: 'Basketball' },
-  { key: 'baseball', label: 'Baseball' },
-  { key: 'tennis', label: 'Tennis' },
 ] as const
 const activeSport = ref<(typeof filters)[number]['key']>('all')
 
@@ -41,8 +39,8 @@ const currentSport = (position: number) => {
   return 'Sports'
 }
 const viewAllTarget = computed(() => {
-  if (activeSport.value === 'all') return '/explore/sports/live'
-  return `/explore/sports/${activeSport.value}/inplay`
+  if (activeSport.value === 'all') return '/sports/live'
+  return `/sports/${activeSport.value}/inplay`
 })
 </script>
 
@@ -50,6 +48,7 @@ const viewAllTarget = computed(() => {
   <HomepageContentSlider
     id="sports"
     class="homepage-sports-section"
+    :class="`homepage-sports-section--${activeSport}`"
     :title="translate('Sports')"
     :description="translate('Big games. Your front-row seat.')"
     :view-all-to="viewAllTarget"
@@ -68,7 +67,7 @@ const viewAllTarget = computed(() => {
         <NuxtLink :to="viewAllTarget" class="sports-explore inline-flex items-center">{{ translate('Explore sports') }} <ArrowUpRight :size="18" aria-hidden="true" /></NuxtLink>
       </header>
 
-      <aside class="sports-browse">
+      <aside class="sports-browse" :class="{ 'sports-browse--basketball': activeSport === 'basketball' }">
         <span class="sports-browse-label" id="sports-browse-label">{{ translate('BROWSE SPORTS') }}</span>
         <div class="sports-filters grid" role="group" aria-labelledby="sports-browse-label">
           <button v-for="filter in filters" :key="filter.key" type="button" class="flex items-center" :data-sport="filter.key" :aria-pressed="activeSport === filter.key" aria-controls="sports-track" @click="activeSport = filter.key">
@@ -126,6 +125,11 @@ const viewAllTarget = computed(() => {
 .sports-filters button:hover:where([aria-pressed='false']) { border-color: var(--sports-edge); background: #112a20; }
 .sports-filter-count { flex-shrink: 0; min-width: 26px; margin-left: auto; padding: 2px 5px; border-radius: 5px; color: #dae8e0; background: #182f27; font-size: 14px; font-weight: 800; line-height: 17px; text-align: center; font-variant-numeric: tabular-nums; }
 .sports-filters button[aria-pressed='true'] .sports-filter-count { color: #009440; background: #073e2c; }
+.sports-filters button[data-sport='basketball'][aria-pressed='true'] { border-color: #ff5252; color: #ff7875; background: rgba(239, 68, 68, 0.22); }
+.sports-filters button[data-sport='basketball'][aria-pressed='true'] .sports-filter-count { color: #ffa39e; background: rgba(220, 38, 38, 0.35); }
+.sports-filters button[data-sport='basketball']:hover:where([aria-pressed='false']) { border-color: rgba(255, 120, 120, 0.35); background: rgba(239, 68, 68, 0.12); }
+.sports-browse--basketball { background: radial-gradient(ellipse at 12% 65%, rgba(255, 82, 82, 0.18), transparent 65%), linear-gradient(115deg, #2b1416, #1a0b0d) !important; border-color: rgba(255, 100, 100, 0.18) !important; }
+.homepage-sports-section--basketball .sports-progress > span { background: #ff5252; }
 .sports-browse-league { gap: 12px; margin: 16px 7px 0; padding-top: 22px; border-top: 1px solid #ffffff10; }
 .sports-browse-league img { width: 26px; height: 40px; flex-shrink: 0; object-fit: contain; }
 .sports-browse-league--nba img { width: 22px; height: 42px; object-fit: cover; }

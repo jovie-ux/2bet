@@ -3,34 +3,36 @@ import { X } from 'lucide-vue-next'
 import MobileBottomNav from '~/components/MobileBottomNav.vue'
 import CommentPanel from '~/components/comments/CommentPanel.vue'
 import MobileLivePlazaHeader from '~/components/live-plaza/MobileLivePlazaHeader.vue'
+import MobileAccountHeader from '~/components/account/MobileAccountHeader.vue'
 
 const { context: commentContext, openSportsComments, closeComments } = useCommentPanel()
 const route = useRoute()
 const mobileViewport = ref(false)
 const normalizedPath = computed(() => route.path.replace(/\/+$/, '') || '/')
-const isSportsPage = computed(() => /^\/explore\/sports(?:\/|$)/.test(normalizedPath.value))
+const cleanPath = computed(() => normalizedPath.value.replace(/^\/explore(?=\/|$)/, '') || '/')
+const isSportsPage = computed(() => /^\/sports(?:\/|$)/.test(cleanPath.value))
 const isCustomerServicePage = computed(() => (
-  normalizedPath.value === '/explore/egames/customer-service'
-  || normalizedPath.value.startsWith('/explore/egames/customer-service/')
+  cleanPath.value === '/egames/customer-service'
+  || cleanPath.value.startsWith('/egames/customer-service/')
 ))
 const isCustomerServiceChatPage = computed(() => (
-  /^\/explore\/egames\/customer-service\/[12]$/.test(normalizedPath.value)
+  /^\/egames\/customer-service\/[12]$/.test(cleanPath.value)
 ))
 const desktopShellKind = computed<'sports' | null>(() => isSportsPage.value ? 'sports' : null)
 const usesDesktopReferenceShell = computed(() => desktopShellKind.value !== null)
 const usesDesktopContentReferenceShell = computed(() => {
-  const path = normalizedPath.value
+  const path = cleanPath.value
 
   return isCustomerServicePage.value
-    || path === '/explore/bonuses'
-    || path.startsWith('/explore/bonuses/')
-    || path.startsWith('/explore/bonus/')
-    || path === '/explore/live-plaza'
-    || path.startsWith('/explore/live-plaza/')
-    || path === '/explore/account'
-    || path.startsWith('/explore/account/')
-    || path.startsWith('/explore/help/')
-    || path.startsWith('/explore/legal/')
+    || path === '/bonuses'
+    || path.startsWith('/bonuses/')
+    || path.startsWith('/bonus/')
+    || path === '/live-plaza'
+    || path.startsWith('/live-plaza/')
+    || path === '/account'
+    || path.startsWith('/account/')
+    || path.startsWith('/help/')
+    || path.startsWith('/legal/')
     || path === '/tutorial'
     || path.startsWith('/tutorial/')
     || path === '/game-rules'
@@ -44,26 +46,26 @@ const usesDesktopContentReferenceShell = computed(() => {
       '/terms-of-use',
     ].includes(path)
 })
-const isEgamesPage = computed(() => route.path.startsWith('/explore/egames/') && !isCustomerServicePage.value)
-const isLiveCasinoPage = computed(() => route.path.startsWith('/explore/entertainment/live-casino'))
-const isLiveCasinoFeaturedPage = computed(() => normalizedPath.value === '/explore/entertainment/live-casino/featured')
-const isPokerPage = computed(() => /^\/explore\/entertainment\/poker(?:\/|$)/.test(route.path))
-const isAffiliatePage = computed(() => route.path === '/affiliate')
-const isBonusesPage = computed(() => /^\/explore\/bonuses?(?:\/|$)/.test(route.path))
-const isLivePlazaPage = computed(() => route.path.startsWith('/explore/live-plaza'))
-const isJackpotPage = computed(() => route.path.startsWith('/explore/egames/jackpot'))
+const isEgamesPage = computed(() => cleanPath.value.startsWith('/egames/') && !isCustomerServicePage.value)
+const isLiveCasinoPage = computed(() => cleanPath.value.startsWith('/entertainment/live-casino'))
+const isLiveCasinoFeaturedPage = computed(() => cleanPath.value === '/entertainment/live-casino/featured')
+const isPokerPage = computed(() => /^\/entertainment\/poker(?:\/|$)/.test(cleanPath.value))
+const isAffiliatePage = computed(() => cleanPath.value === '/affiliate')
+const isBonusesPage = computed(() => /^\/bonuses?(?:\/|$)/.test(cleanPath.value))
+const isLivePlazaPage = computed(() => cleanPath.value.startsWith('/live-plaza'))
+const isJackpotPage = computed(() => cleanPath.value.startsWith('/egames/jackpot'))
 const isAccountSettingsPage = computed(() => [
-  '/explore/account/me',
-  '/explore/account/language',
-  '/explore/account/timezone',
+  '/account/me',
+  '/account/language',
+  '/account/timezone',
   '/tutorial',
   '/affiliate',
-].some(path => route.path.startsWith(path)))
+].some(path => cleanPath.value.startsWith(path)))
 const isDockedChatPage = computed(() => usesDesktopReferenceShell.value)
 const showSportsSidebar = computed(() => isSportsPage.value && commentContext.value?.kind === 'sports')
-const isTutorialPage = computed(() => route.path === '/tutorial' || route.path.startsWith('/tutorial/'))
+const isTutorialPage = computed(() => cleanPath.value === '/tutorial' || cleanPath.value.startsWith('/tutorial/'))
 const isDedicatedMobileHeaderPage = computed(() => {
-  const path = route.path.replace(/\/$/, '')
+  const path = cleanPath.value
   return [
     '/tutorial',
     '/affiliate',
@@ -73,11 +75,11 @@ const isDedicatedMobileHeaderPage = computed(() => {
     '/about-us',
     '/game-rules',
     '/download-app',
-    '/explore/live-plaza',
-    '/explore/account/language',
-    '/explore/account/timezone',
-    '/explore/bonuses',
-    '/explore/bonus',
+    '/live-plaza',
+    '/account/language',
+    '/account/timezone',
+    '/bonuses',
+    '/bonus',
   ].some(prefix => path === prefix || path.startsWith(prefix + '/'))
 })
 const isMobileDevice = (): boolean => {
@@ -213,9 +215,9 @@ onBeforeUnmount(() => {
       'site-shell--bonuses': isBonusesPage,
       'site-shell--live-casino': isLiveCasinoPage,
       'site-shell--live-plaza': isLivePlazaPage,
-      'site-shell--me': route.path === '/explore/account/me',
+      'site-shell--me': cleanPath === '/account/me',
       'site-shell--dedicated-header': isDedicatedMobileHeaderPage,
-      'site-shell--green-header': isSportsPage || isEgamesPage || route.path.startsWith('/explore/entertainment/'),
+      'site-shell--green-header': isSportsPage || isEgamesPage || cleanPath.startsWith('/entertainment/'),
     }"
   >
     <div class="app-header-underlay" aria-hidden="true" />
@@ -234,8 +236,9 @@ onBeforeUnmount(() => {
 
     <div class="content-layout">
       <div class="content-main-area">
+        <MobileAccountHeader v-if="cleanPath === '/account/me'" />
         <main ref="pageContentElement" class="page-content pt-0 ml-1.5  sm:ml-0">
-          <MobileLivePlazaHeader v-if="isLivePlazaPage && normalizedPath !== '/explore/live-plaza/experts'" />
+          <MobileLivePlazaHeader v-if="isLivePlazaPage && cleanPath !== '/live-plaza/experts'" />
           <slot />
         </main>
 
@@ -517,7 +520,7 @@ onBeforeUnmount(() => {
   .site-shell--me .content-main-area {
     position: relative;
     isolation: isolate;
-    background: #0e0f0e;
+    background: #000;
   }
 
   .site-shell--me .content-main-area::before {
@@ -526,8 +529,9 @@ onBeforeUnmount(() => {
     inset: 0 0 auto;
     z-index: 0;
     height: 300px;
-    border-radius: 0 0 20px 20px;
     background: #0d6047 url('/images/me/me-bg.webp') right top / 100% auto no-repeat;
+    -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 50%, transparent 100%);
     pointer-events: none;
   }
 

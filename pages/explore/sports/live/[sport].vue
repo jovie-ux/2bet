@@ -12,15 +12,15 @@ useAppSeo({
   description: computed(() => formatSeoDescription(`Acompanhe e aposte em jogos de ${sportName.value.toLowerCase()} ao vivo na 2bet Brasil. Linhas dinâmicas, placares em tempo real e cash out rápido.`)),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Esportes', path: '/explore/sports/popular' },
-    { name: 'Esportes ao Vivo', path: '/explore/sports/live' },
-    { name: sportName.value, path: `/explore/sports/live/${sport.value}` },
+    { name: 'Esportes', path: '/sports/popular' },
+    { name: 'Esportes ao Vivo', path: '/sports/live' },
+    { name: sportName.value, path: `/sports/live/${sport.value}` },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `Apostas ao Vivo em ${sportName.value} - 2bet`,
-    url: `https://2bet.com/explore/sports/live/${sport.value}`,
+    url: `https://2bet.com/sports/live/${sport.value}`,
     description: `Acompanhe e aposte ao vivo em jogos de ${sportName.value} com odds em tempo real na 2bet Brasil.`,
   })),
 })

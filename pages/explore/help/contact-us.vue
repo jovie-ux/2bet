@@ -4,14 +4,14 @@ useAppSeo({
   description: 'Entre em contato com a equipe de suporte da 2bet Brasil. Canais de atendimento disponíveis 24 horas para garantir assistência ágil e segura.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Ajuda', path: '/explore/help/contact-us' },
-    { name: 'Fale Conosco', path: '/explore/help/contact-us' },
+    { name: 'Ajuda', path: '/help/contact-us' },
+    { name: 'Fale Conosco', path: '/help/contact-us' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: 'Contact 2Bet Support',
-    url: 'https://2bet.com/explore/help/contact-us',
+    url: 'https://2bet.com/help/contact-us',
   },
 })
 </script>

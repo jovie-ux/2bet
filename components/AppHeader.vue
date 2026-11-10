@@ -53,7 +53,7 @@ const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
         <Bell :size="20" :stroke-width="2" />
       </a>
       <NuxtLink
-        to="/explore/egames/customer-service"
+        to="/egames/customer-service"
         class="header-glass-icon header-glass-icon--utility header-action--desktop"
         aria-label="Customer service"
       >
@@ -76,7 +76,7 @@ const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
         {{ translate('Sign Up') }}
       </a>
       <NuxtLink
-        to="/explore/account/me"
+        to="/account/me"
         class="header-glass-icon header-glass-icon--profile header-action--desktop"
         aria-label="Open profile"
       >

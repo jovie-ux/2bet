@@ -12,7 +12,7 @@ const presentation: Array<{
   {
     id: 'seu-primeiro-deposito',
     tone: 'slots',
-    bannerImage: '/images/promotions/seu_primeiro_deposito.png',
+    bannerImage: '/images/promotions/seu_primeiro_deposito.webp',
     title: 'Seu Primeiro Depósito Vale Mais!',
     description: 'Até R$ 10.000 em Bônus de Boas-Vindas',
     slug: 'seu-primeiro-deposito',
@@ -21,7 +21,7 @@ const presentation: Array<{
   {
     id: 'bonus-diario-de-recuperacao',
     tone: 'sports',
-    bannerImage: '/images/promotions/bonus_diario_de_recuperacao.png',
+    bannerImage: '/images/promotions/bonus_diario_de_recuperacao.webp',
     title: 'Bônus Diário de Recuperação',
     description: 'Até R$ 18.888 de Volta em Perdas',
     slug: 'bonus-diario-de-recuperacao',
@@ -30,7 +30,7 @@ const presentation: Array<{
   {
     id: 'vip-privileges',
     tone: 'live-casino',
-    bannerImage: '/images/promotions/programa_vip.png',
+    bannerImage: '/images/promotions/programa_vip.webp',
     title: 'Sistema de Privilégios VIP',
     description: 'Cashback e Benefícios Exclusivos',
     slug: 'vip-privileges',
@@ -39,7 +39,7 @@ const presentation: Array<{
   {
     id: 'share-and-earn',
     tone: 'rankings',
-    bannerImage: '/images/promotions/share_and_earn.png',
+    bannerImage: '/images/promotions/share_and_earn.webp',
     title: 'Programa Compartilhe e Ganhe',
     description: 'Comissões Contínuas por Convite',
     slug: 'share-and-earn',

@@ -17,14 +17,14 @@ useAppSeo({
   description: computed(() => formatSeoDescription(`Jogue ${translate(categoryLabel.value).toLowerCase()} ao vivo na 2bet Brasil. Mesas exclusivas com crupiês profissionais, transmissão em HD e limites flexíveis.`)),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Cassino ao Vivo', path: '/explore/entertainment/live-casino/featured' },
-    { name: translate(categoryLabel.value), path: `/explore/entertainment/live-casino/${activeCategory.value}` },
+    { name: 'Cassino ao Vivo', path: '/entertainment/live-casino/featured' },
+    { name: translate(categoryLabel.value), path: `/entertainment/live-casino/${activeCategory.value}` },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `${translate(categoryLabel.value)} Cassino ao Vivo - 2bet`,
-    url: `https://2bet.com/explore/entertainment/live-casino/${activeCategory.value}`,
+    url: `https://2bet.com/entertainment/live-casino/${activeCategory.value}`,
   })),
 })
 
@@ -55,7 +55,7 @@ const selectCategory = (key: string): void => {
     isMaintenanceOpen.value = true
     return
   }
-  router.push(`/explore/entertainment/live-casino/${key}`)
+  router.push(`/entertainment/live-casino/${key}`)
 }
 
 const handleTableClick = (event: MouseEvent): void => {

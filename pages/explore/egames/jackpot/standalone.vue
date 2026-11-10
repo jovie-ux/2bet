@@ -12,8 +12,8 @@ useAppSeo({
   description: 'Aproveite jackpots acumulados da Betsoft na 2bet Brasil. Caça-níqueis temáticos em 3D, multiplicadores altos e rodadas bônus emocionantes.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Jackpots', path: '/explore/egames/jackpot/all' },
-    { name: 'Jogos de Jackpot Standalone', path: '/explore/egames/jackpot/standalone' },
+    { name: 'Jackpots', path: '/egames/jackpot/all' },
+    { name: 'Jogos de Jackpot Standalone', path: '/egames/jackpot/standalone' },
   ],
 })
 
@@ -117,7 +117,7 @@ onBeforeUnmount(() => {
           type="button"
           class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#242625] text-[#a2a6a4] transition-colors hover:text-white"
           aria-label="Back to jackpots"
-          @click="router.push('/explore/egames/jackpot/all')"
+          @click="router.push('/egames/jackpot/all')"
         >
           <ChevronLeft class="h-4 w-4" />
         </button>

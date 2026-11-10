@@ -22,8 +22,8 @@ useAppSeo({
   description: computed(() => formatSeoDescription(`Acompanhe e aposte em ${tournamentName.value} (${sportName.value}) na 2bet Brasil. Cotações atualizadas, mercados ao vivo e cash out rápido.`)),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Esportes', path: '/explore/sports/popular' },
-    { name: sportName.value, path: `/explore/sports/${route.params.sport}` },
+    { name: 'Esportes', path: '/sports/popular' },
+    { name: sportName.value, path: `/sports/${route.params.sport}` },
     { name: tournamentName.value, path: route.path },
   ]),
   schema: computed(() => ({

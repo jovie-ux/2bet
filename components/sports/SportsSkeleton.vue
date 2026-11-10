@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const sportsRouteBase = useSportsRouteBase()
-const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular' || route.path.startsWith('/explore/sports/popular'))
+const isPopular = computed(() => sportsRouteBase.value.endsWith('/sports/popular') || /^\/(?:explore\/)?sports\/popular(?:\/|$)/.test(route.path))
 
 withDefaults(defineProps<{
   cards?: number

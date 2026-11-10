@@ -16,6 +16,7 @@ const processGlobal = (
         SITE_URL?: string
         INDEX_FOLLOW?: string
         LIVESTREAM_API?: string
+        INPLAY_API?: string
       }
     }
   }
@@ -44,9 +45,26 @@ export default defineNuxtConfig({
     },
     kadarioApi: environment?.KADARIO_API || 'https://live88.eu.cc/',
     kadarioSite: 'YBa-BnymZ6iN8pkfAUFTWIKn',
-    livestreamApi: environment?.LIVESTREAM_API || 'https://live88.eu.cc/api/v1/hoopslive/basketball/games/live?site=YBa-BnymZ6iN8pkfAUFTWIKn',
+    inplayApi: environment?.INPLAY_API || 'https://live88.eu.cc/api/v1/scores?site=YBa-BnymZ6iN8pkfAUFTWIKn',
+    livestreamApi: environment?.LIVESTREAM_API || 'https://live88.eu.cc/api/v1/scores?site=YBa-BnymZ6iN8pkfAUFTWIKn',
   },
   modules: ['@nuxtjs/tailwindcss'],
+  hooks: {
+    'pages:extend'(pages) {
+      const extraPages: any[] = []
+      for (const page of pages) {
+        if (page.path && page.path.startsWith('/explore')) {
+          const cleanPath = page.path.replace(/^\/explore/, '') || '/'
+          extraPages.push({
+            ...page,
+            name: page.name ? `${page.name}__clean` : undefined,
+            path: cleanPath,
+          })
+        }
+      }
+      pages.push(...extraPages)
+    },
+  },
   nitro: {
     hooks: {
       compiled: async (nitro) => {

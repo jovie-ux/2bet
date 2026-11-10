@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import SubpageHeader from '~/components/SubpageHeader.vue'
+import { useSiteLocale } from '~/composables/useSitePreferences'
 
 const route = useRoute()
 const router = useRouter()
+const { translate } = useSiteLocale()
 
 const ruleTabs = [
   { label: 'FOOTBALL', to: '/game-rules/football' },
@@ -27,7 +29,7 @@ const handleBack = (): void => {
   if (import.meta.client && window.history.length > 1) {
     router.back()
   } else {
-    router.push('/explore/account/me')
+    router.push('/account/me')
   }
 }
 
@@ -129,10 +131,13 @@ watch(() => route.path, () => {
       <!-- Universal Emerald Subpage Header with AA text scaler -->
       <SubpageHeader
         title="Game Rules"
-        back-to="/explore/account/me"
+        back-to="/account/me"
         :sticky="false"
         class="mb-2"
       >
+        <template #center>
+          <p class="subpage-header__title m-0 max-w-[240px] truncate text-[16px] font-bold leading-[1.25] tracking-[-0.01em] text-white min-[480px]:max-w-[360px] min-[480px]:text-[17px]">{{ translate('Game Rules') }}</p>
+        </template>
         <template #right>
           <div ref="textSizePickerRef" class="relative flex items-center">
             <button

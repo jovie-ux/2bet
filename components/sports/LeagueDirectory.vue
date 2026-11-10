@@ -264,7 +264,7 @@ const COUNTRY_FLAGS: Record<string, string> = {
     <!-- Single Tournament Detail View -->
     <template v-if="tournamentKey">
          <NuxtLink
-          :to="base || '/explore/sports/popular'"
+          :to="base || '/sports/popular'"
           class="toolbar-circle-btn"
           aria-label="Back"
           title="Back"

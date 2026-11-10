@@ -11,7 +11,7 @@ import { getProviderLogoForTheme } from '~/utils/providerLogo'
 
 const props = withDefaults(defineProps<{ category?: string }>(), { category: 'popular' })
 const isPopular = computed(() => props.category === 'popular')
-const basePath = '/explore/entertainment/poker'
+const basePath = '/entertainment/poker'
 const { translate } = useSiteLocale()
 const { effectiveTheme } = useSiteTheme()
 

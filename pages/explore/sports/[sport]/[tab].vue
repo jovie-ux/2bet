@@ -86,8 +86,8 @@ useAppSeo({
   description: computed(() => activeTabInfo.value.description),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Esportes', path: '/explore/sports/popular' },
-    { name: sportName.value, path: `/explore/sports/${route.params.sport}` },
+    { name: 'Esportes', path: '/sports/popular' },
+    { name: sportName.value, path: `/sports/${route.params.sport}` },
     { name: tabDisplayName.value, path: route.path },
   ]),
   schema: computed(() => ({

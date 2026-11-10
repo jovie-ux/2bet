@@ -28,7 +28,7 @@ const earliestTimes = ref<Record<string, number>>({})
 const timeFilters = ['1hours', '3hours', '6hours', '12hours', '24hours'] as const
 const route = useRoute()
 const sportsRouteBase = useSportsRouteBase()
-const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular')
+const isPopular = computed(() => sportsRouteBase.value.endsWith('/sports/popular'))
 const oddsCols = computed<2 | 3>(() => route.params.sport === 'soccer' ? 3 : 2)
 const selectedTimeFilter = ref<(typeof timeFilters)[number] | null>(null)
 const sortBy = ref<'league' | 'time'>('time')

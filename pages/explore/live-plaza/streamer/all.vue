@@ -6,9 +6,9 @@ useAppSeo({
   description: 'Explore todos os canais e transmissões ao vivo disponíveis na 2bet Brasil. Acompanhe jogos de futebol, basquete e sessões de cassino.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Praça ao Vivo', path: '/explore/live-plaza/home' },
-    { name: 'Streamers', path: '/explore/live-plaza/streamer' },
-    { name: 'Todos os Streamers', path: '/explore/live-plaza/streamer/all' },
+    { name: 'Praça ao Vivo', path: '/live-plaza/home' },
+    { name: 'Streamers', path: '/live-plaza/streamer' },
+    { name: 'Todos os Streamers', path: '/live-plaza/streamer/all' },
   ],
 })
 
@@ -21,7 +21,7 @@ const handleBack = (): void => {
   if (import.meta.client && window.history.length > 1) {
     router.back()
   } else {
-    router.push('/explore/live-plaza/streamer')
+    router.push('/live-plaza/streamer')
   }
 }
 </script>
@@ -32,7 +32,7 @@ const handleBack = (): void => {
     <SeoHeader
       sticky
       :title="translate('All Streamers')"
-      back-to="/explore/live-plaza/streamer"
+      back-to="/live-plaza/streamer"
     />
 
     <!-- Search Section -->

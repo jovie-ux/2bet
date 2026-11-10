@@ -29,14 +29,14 @@ useAppSeo({
   description: computed(() => formatSeoDescription(`Aposte em partidas de ${sportDisplayName.value.toLowerCase()} na 2bet Brasil. Cotações competitivas, mercados ao vivo, estatísticas e saques rápidos via PIX.`)),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Esportes', path: '/explore/sports/popular' },
-    { name: sportDisplayName.value, path: `/explore/sports/${route.params.sport}` },
+    { name: 'Esportes', path: '/sports/popular' },
+    { name: sportDisplayName.value, path: `/sports/${route.params.sport}` },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `Apostas em ${sportDisplayName.value} - 2bet`,
-    url: `https://2bet.com/explore/sports/${route.params.sport}`,
+    url: `https://2bet.com/sports/${route.params.sport}`,
     description: `Aposte em ${sportDisplayName.value} na 2bet Brasil com spreads competitivos, vencedor, totais e apostas futuras.`,
   })),
 })
@@ -44,14 +44,15 @@ useAppSeo({
 definePageMeta({
   validate: route => ['basketball', 'baseball', 'soccer', 'football', 'tennis'].includes(String(route.params.sport)),
   middleware: to => {
-    const base = `/explore/sports/${to.params.sport}`
-    if (to.path.replace(/\/$/, '') !== base) return
+    const rawPath = to.path.replace(/\/$/, '')
+    const cleanBase = `/sports/${to.params.sport}`
+    if (rawPath !== cleanBase && rawPath !== `/explore/sports/${to.params.sport}`) return
     const requestedTab = to.query.tab === 'prematch' ? 'pre-match' : String(to.query.tab ?? 'inplay')
     const availableTabs = ['league', 'inplay', 'upcoming', 'pre-match', 'smart-pick', 'outright']
     if (['soccer', 'football'].includes(String(to.params.sport).toLowerCase())) availableTabs.push('replay')
     const tab = availableTabs.includes(requestedTab) ? requestedTab : 'inplay'
     const { tab: legacyTab, ...query } = to.query
-    return navigateTo({ path: `${base}/${tab}`, query }, { replace: true })
+    return navigateTo({ path: `${cleanBase}/${tab}`, query }, { replace: true })
   },
 })
 </script>

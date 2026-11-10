@@ -10,14 +10,14 @@ useAppSeo({
   keywords: 'suporte 2bet, atendimento ao cliente 2bet, ajuda 2bet, chat ao vivo',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Ajuda', path: '/explore/help/contact-us' },
-    { name: 'Atendimento ao Cliente', path: '/explore/egames/customer-service' },
+    { name: 'Ajuda', path: '/help/contact-us' },
+    { name: 'Atendimento ao Cliente', path: '/egames/customer-service' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: 'Suporte ao Cliente 2bet',
-    url: 'https://2bet.com/explore/egames/customer-service',
+    url: 'https://2bet.com/egames/customer-service',
   },
 })
 
@@ -34,7 +34,7 @@ onMounted(() => {
       title="24/7 Services"
       meta-title="Suporte ao Cliente 24/7 e Central de Ajuda Online | 2bet"
       description="Fale com o suporte ao cliente 24/7 da 2bet para ajuda rápida com depósitos, saques, bônus e verificação de conta. Atendimento ao vivo."
-      back-to="/explore/account/me"
+      back-to="/account/me"
     />
 
     <!-- Welcome Greeting Card -->
@@ -60,7 +60,7 @@ onMounted(() => {
     <div class="services-card px-0.5 rounded-md bg-[#141414] overflow-hidden shadow-sm" :aria-label="translate('Customer service channels')">
       <!-- 24/7 Services 1 -->
       <NuxtLink
-        to="/explore/egames/customer-service/1"
+        to="/egames/customer-service/1"
         class="service-row flex w-full items-center justify-between p-2 text-left transition-colors  group cursor-pointer "
       >
         <div class="flex items-center gap-3">

@@ -34,7 +34,7 @@ useAppSeo({
       url: `${siteUrl.value}/`,
       potentialAction: {
         '@type': 'SearchAction',
-        target: `${siteUrl.value}/explore/egames/slots?q={search_term_string}`,
+        target: `${siteUrl.value}/egames/slots?q={search_term_string}`,
         'query-input': 'required name=search_term_string',
       },
     },

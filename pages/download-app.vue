@@ -60,7 +60,7 @@ const handleAppStore = (): void => {
     <!-- Top Universal Emerald Subpage Header -->
     <SubpageHeader
       title="Download APP"
-      back-to="/explore/account/me"
+      back-to="/account/me"
       class="mb-2.5 sm:mb-3"
     />
 

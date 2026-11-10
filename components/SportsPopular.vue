@@ -43,9 +43,9 @@ const props = withDefaults(defineProps<{
 })
 
 const route = useRoute()
-const { translate } = useSitePreferences()
+const { locale, translate } = useSitePreferences()
 const sportsRouteBase = useSportsRouteBase()
-const isPopular = computed(() => sportsRouteBase.value === '/explore/sports/popular')
+const isPopular = computed(() => sportsRouteBase.value.endsWith('/sports/popular'))
 
 const tabs = [
   { key: 'league', label: 'League', icon: Trophy },
@@ -59,11 +59,11 @@ const tabs = [
 
 const visibleTabs = computed(() => tabs.filter(tab => {
   if (isPopular.value) return !['inplay', 'replay'].includes(tab.key)
-  return ['/explore/sports/soccer', '/explore/sports/football'].includes(sportsRouteBase.value) || tab.key !== 'replay'
+  return ['soccer', 'football'].some(s => sportsRouteBase.value.endsWith(`/sports/${s}`)) || tab.key !== 'replay'
 }))
 
 const tabLabel = (tab: typeof tabs[number]): string => {
-  if (tab.key === 'smart-pick' && sportsRouteBase.value !== '/explore/sports/popular') {
+  if (tab.key === 'smart-pick' && !isPopular.value) {
     return 'Parlay'
   }
 
@@ -102,7 +102,7 @@ const activeTab = computed(() => {
 
 const activeSportKey = computed(() => {
   if (isPopular.value) return 'popular'
-  const match = sportsRouteBase.value.match(/\/explore\/sports\/([^/]+)/)
+  const match = sportsRouteBase.value.match(/(?:\/explore)?\/sports\/([^/]+)/)
   if (match) return match[1]
   const param = String(route.params.sport || '')
   if (param) return param
@@ -206,6 +206,88 @@ const availableSports = computed(() => {
 const tournamentTitle = computed(() => {
   const tournament = leagues.value?.sports.find(sport => sport.key === tournamentKey.value)
   return tournament?.title ?? String(route.params.tournament ?? '').replaceAll('-', ' ').toUpperCase()
+})
+
+const pageHeading = computed(() => {
+  if (isOutrightDetail.value || route.params.tournament) {
+    return tournamentTitle.value || translate('Outright')
+  }
+
+  if (route.params.leagueTournament) {
+    const league = String(route.params.leagueTournament).replaceAll('-', ' ')
+    const sportName = routeSportKey.value ? translate(routeSportKey.value) : translate('Sports')
+    return `${league} - ${sportName}`
+  }
+
+  const tab = activeTab.value
+  const sportName = routeSportKey.value ? translate(routeSportKey.value) : ''
+  const isPt = locale.value === 'pt'
+
+  if (route.params.hours) {
+    const hours = String(route.params.hours).replace('hours', 'h')
+    if (isPopular.value) {
+      return isPt
+        ? `Próximas Partidas Esportivas Populares (${hours})`
+        : `Popular Sports Betting - Upcoming (${hours})`
+    }
+    return isPt
+      ? `Próximas Partidas de ${sportName} (${hours})`
+      : `${sportName} Betting - Upcoming (${hours})`
+  }
+
+  if (route.params.date) {
+    if (isPopular.value) {
+      return isPt
+        ? `Odds Pré-Jogo Populares (${route.params.date})`
+        : `Popular Sports Betting - Pre-Match (${route.params.date})`
+    }
+    return isPt
+      ? `Odds Pré-Jogo de ${sportName} (${route.params.date})`
+      : `${sportName} Betting - Pre-Match (${route.params.date})`
+  }
+
+  if (isPopular.value) {
+    const ptPopularMap: Record<string, string> = {
+      league: 'Ligas Esportivas Populares',
+      inplay: 'Apostas Esportivas ao Vivo',
+      upcoming: 'Próximas Partidas Esportivas Populares',
+      prematch: 'Odds Pré-Jogo Populares',
+      'smart-pick': 'Smart Pick com IA',
+      outright: 'Apostas Futuras Populares',
+      replay: 'Replays de Partidas Populares',
+    }
+    const enPopularMap: Record<string, string> = {
+      league: 'Popular Sports Leagues',
+      inplay: 'Popular Live Sports Betting',
+      upcoming: 'Popular Upcoming Sports Betting',
+      prematch: 'Popular Pre-Match Sports Betting',
+      'smart-pick': 'Smart Pick AI',
+      outright: 'Popular Sports Outrights',
+      replay: 'Popular Sports Replays',
+    }
+    return (isPt ? ptPopularMap[tab] : enPopularMap[tab]) || `${translate('Popular')} ${translate('Sports')}`
+  }
+
+  const ptSportMap: Record<string, string> = {
+    league: `Ligas e Torneios de ${sportName}`,
+    inplay: `Apostas ao Vivo em ${sportName}`,
+    upcoming: `Próximas Partidas de ${sportName}`,
+    prematch: `Odds Pré-Jogo de ${sportName}`,
+    'smart-pick': `Smart Pick em ${sportName}`,
+    outright: `Apostas Futuras em ${sportName}`,
+    replay: `Replays de ${sportName}`,
+  }
+  const enSportMap: Record<string, string> = {
+    league: `${sportName} Leagues and Tournaments`,
+    inplay: `Live ${sportName} Betting`,
+    upcoming: `Upcoming ${sportName} Matches`,
+    prematch: `Pre-Match ${sportName} Betting`,
+    'smart-pick': `Smart Pick ${sportName}`,
+    outright: `${sportName} Outrights`,
+    replay: `${sportName} Replays`,
+  }
+
+  return (isPt ? ptSportMap[tab] : enSportMap[tab]) || `${sportName || translate('Sports')} - ${translate(activeTab.value)}`
 })
 
 
@@ -362,6 +444,7 @@ onBeforeUnmount(() => {
 
 <template>
   <section class="sports-page" :class="{ 'sports-page--popular': isPopular }">
+    <h1 class="sr-only">{{ pageHeading }}</h1>
     <div class="sports-navigation">
       <MobileSportsNav />
       <nav
@@ -406,7 +489,7 @@ onBeforeUnmount(() => {
         </button>
       </div>
       <LeagueDirectory
-        v-else-if="activeTab === 'league' && sportsRouteBase !== '/explore/sports/popular'"
+        v-else-if="activeTab === 'league' && !isPopular"
         :sports="availableSports"
         :popular-leagues="popularLeagues"
         :ai-to="aiRedirectUrl"
@@ -417,7 +500,7 @@ onBeforeUnmount(() => {
         :sports="availableSports"
         :filtered-sports="filteredSports"
         :groups="groups"
-        :max-matches-per-group="sportsRouteBase === '/explore/sports/popular' ? 2 : undefined"
+        :max-matches-per-group="isPopular ? 2 : undefined"
         :ai-to="aiRedirectUrl"
         :loading="loading"
       />

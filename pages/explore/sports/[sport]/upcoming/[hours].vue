@@ -31,9 +31,9 @@ useAppSeo({
   description: computed(() => formatSeoDescription(`Confira as partidas de ${sportName.value} que começam nas próximas ${hoursLabel.value} na 2bet Brasil. Garanta cotações antecipadas.`)),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Esportes', path: '/explore/sports/popular' },
-    { name: sportName.value, path: `/explore/sports/${route.params.sport}` },
-    { name: 'Em Breve', path: `/explore/sports/${route.params.sport}/upcoming` },
+    { name: 'Esportes', path: '/sports/popular' },
+    { name: sportName.value, path: `/sports/${route.params.sport}` },
+    { name: 'Em Breve', path: `/sports/${route.params.sport}/upcoming` },
     { name: hoursLabel.value, path: route.path },
   ]),
   schema: computed(() => ({

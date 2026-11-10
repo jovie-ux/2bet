@@ -8,20 +8,21 @@ import {
 } from '~/utils/sportsRedirect'
 
 const route = useRoute()
+const { locale, translate } = useSiteLocale()
 
 useAppSeo({
   title: 'Apostas ao Vivo — Cotações em Tempo Real e Jogos | 2bet',
   description: 'Acompanhe partidas esportivas em tempo real com a 2bet Brasil. Mercados dinâmicos, atualização instantânea de odds e cash out rápido.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Esportes', path: '/explore/sports/popular' },
-    { name: 'Ao Vivo', path: '/explore/sports/live' },
+    { name: 'Esportes', path: '/sports/popular' },
+    { name: 'Ao Vivo', path: '/sports/live' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Live Sports Betting - 2Bet',
-    url: 'https://2bet.com/explore/sports/live',
+    url: 'https://2bet.com/sports/live',
   },
 })
 
@@ -32,11 +33,11 @@ const liveEsportsRedirectUrl = computed(() =>
 )
 
 const liveTabs = [
-  { key: 'all', label: 'All', icon: '', to: '/explore/sports/live' },
-  { key: 'basketball', label: '', icon: '/icons/sports/basketball.webp', to: '/explore/sports/live/basketball' },
-  { key: 'soccer', label: '', icon: '/icons/sports/soccer.webp', to: '/explore/sports/live/soccer' },
-  { key: 'tennis', label: '', icon: '/icons/sports/tennis.webp', to: '/explore/sports/live/tennis' },
-  { key: 'baseball', label: '', icon: '/icons/sports/baseball.webp', to: '/explore/sports/live/baseball' },
+  { key: 'all', label: 'All', icon: '', to: '/sports/live' },
+  { key: 'basketball', label: '', icon: '/icons/sports/basketball.webp', to: '/sports/live/basketball' },
+  { key: 'soccer', label: '', icon: '/icons/sports/soccer.webp', to: '/sports/live/soccer' },
+  { key: 'tennis', label: '', icon: '/icons/sports/tennis.webp', to: '/sports/live/tennis' },
+  { key: 'baseball', label: '', icon: '/icons/sports/baseball.webp', to: '/sports/live/baseball' },
   {
     key: 'esports',
     label: '',
@@ -52,6 +53,19 @@ const currentSport = computed(() => {
     return sportParam
   }
   return 'all'
+})
+
+const liveHeading = computed(() => {
+  if (currentSport.value !== 'all') {
+    const sportParam = currentSport.value
+    const sportName = translate(sportParam.charAt(0).toUpperCase() + sportParam.slice(1))
+    return locale.value === 'pt'
+      ? `Apostas ao Vivo em ${sportName}`
+      : `Live ${sportName} Betting`
+  }
+  return locale.value === 'pt'
+    ? 'Apostas Esportivas ao Vivo'
+    : 'Live Sports Betting'
 })
 
 const mobileModeTabs = [
@@ -72,12 +86,13 @@ const mobileModePath = (key: string): string => {
     return resolveSportsTabRedirectUrl(sport, key, rawRedirectUrl, bybetRedirectCode) ?? externalSiteUrl
   }
   const sport = currentSport.value === 'all' ? 'popular' : currentSport.value
-  return `/explore/sports/${sport}/${key}`
+  return `/sports/${sport}/${key}`
 }
 </script>
 
 <template>
   <section class="sports-page live-page">
+    <h1 class="sr-only">{{ liveHeading }}</h1>
     <!-- Sports Tabs Navigation: Sport Ball Icons -->
     <div class="sticky-header-seal sticky top-[var(--content-sticky-top)] z-30 -mx-1 px-1 pb-1">
       <MobileSportsNav />

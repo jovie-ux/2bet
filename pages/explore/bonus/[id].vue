@@ -41,7 +41,7 @@ const bonus = computed<BonusDetail>(() => {
   return getBonusDetail(promotion?.slug || 'share-and-earn')
 })
 const promotionTermsPath = computed(() => ({
-  path: '/explore/bonuses/terms-and-condition',
+  path: '/bonuses/terms-and-condition',
   query: { promotion: bonus.value.slug },
 }))
 const bannerImageError = ref(false)
@@ -85,7 +85,7 @@ const seoImage = computed(() => {
   return raw.startsWith('http') ? raw : `https://2bet.com${raw}`
 })
 
-const canonicalUrl = computed(() => `https://2bet.com/explore/bonus/${bonus.value.slug}`)
+const canonicalUrl = computed(() => `https://2bet.com/bonus/${bonus.value.slug}`)
 
 useAppSeo({
   title: seoTitle,
@@ -157,7 +157,7 @@ const handleContentClick = (event: MouseEvent): void => {
 
 <template>
   <div class="bonus-detail-page" :class="{ 'bonus-detail-page--with-action': bonus.hasJoinButton }" :style="{ '--bonus-accent': bonus.accentColor || '#087653' }">
-    <MobileBonusHeader back-to="/explore/bonuses" currency-selector />
+    <MobileBonusHeader back-to="/bonuses" currency-selector />
     <SeoHeader
       class="bonus-detail-desktop-header"
       sticky
@@ -166,7 +166,7 @@ const handleContentClick = (event: MouseEvent): void => {
       :description="seoDescription"
       :keywords="seoKeywords"
       :og-image="seoImage"
-      back-to="/explore/bonuses"
+      back-to="/bonuses"
       custom-class="bonus-detail-header"
     >
       <template #actions>

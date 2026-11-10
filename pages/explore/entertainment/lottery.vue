@@ -8,8 +8,8 @@ useAppSeo({
   description: 'Participe de loterias online e jogos de números na 2bet Brasil. Resultados em tempo real, sorteios frequentes e diversão garantida todo dia.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Entretenimento', path: '/explore/entertainment/live-casino/baccarat' },
-    { name: 'Loteria', path: '/explore/entertainment/lottery' },
+    { name: 'Entretenimento', path: '/entertainment/live-casino/baccarat' },
+    { name: 'Loteria', path: '/entertainment/lottery' },
   ],
 })
 </script>

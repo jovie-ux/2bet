@@ -38,6 +38,11 @@ const teamImages: Record<string, string> = {
   'Dallas Mavericks': '/images/teams/nba/dallas-mavericks.svg',
   'Phoenix Suns': '/images/teams/nba/phoenix-suns.svg',
 }
+const failedImages = ref<Record<number, boolean>>({})
+function onImageError(index: number) {
+  failedImages.value[index] = true
+}
+
 // Recolor the two arena halves to match the reference's team lighting.
 const arenaHueShifts: Record<string, string> = {
   'Boston Celtics': '-65deg',
@@ -85,9 +90,14 @@ const teams = computed(() => [props.fixture.home_team, props.fixture.away_team].
   const accent = teamAccents[name || ''] || '148 163 170'
   const [red = 0, green = 0, blue = 0] = accent.split(' ').map(Number)
   const brightness = (red * 299 + green * 587 + blue * 114) / 1000
+  const apiLogo = index === 0
+    ? (props.fixture.home_team_logo || props.fixture.home?.logo)
+    : (props.fixture.away_team_logo || props.fixture.away?.logo)
+  const image = apiLogo || teamImages[name || '']
+
   return {
     name: name || translate('To be confirmed'),
-    image: teamImages[name || ''],
+    image,
     accent,
     hoverAccent: hoverTeamAccents[name || ''] || accent,
     arenaHue: arenaHueShifts[name || ''] || `${Math.round((Math.atan2(Math.sqrt(3) * (green - blue), 2 * red - green - blue) * 180 / Math.PI + 360) % 360) - (index === 0 ? 210 : 40)}deg`,
@@ -95,10 +105,13 @@ const teams = computed(() => [props.fixture.home_team, props.fixture.away_team].
     initials: name ? name.split(' ').slice(0, 2).map(word => word.charAt(0)).join('') : 'TBC',
   }
 }))
+const competitionLogo = computed(() => {
+  return props.fixture.competition_logo || getTournamentLogo(`${props.fixture.sport || ''} ${props.fixture.sport_title || ''} ${props.fixture.sport_key || ''}`)
+})
 const destination = computed(() => {
   const rawSport = (props.fixture.sport || props.fixture.sport_key?.split('_')[0] || 'basketball').toLowerCase()
   const sport = rawSport === 'football' ? 'soccer' : rawSport
-  return `/explore/sports/${sport}/inplay`
+  return `/sports/${sport}/inplay`
 })
 const sportName = computed(() => {
   const rawSport = (props.fixture.sport || props.fixture.sport_key?.split('_')[0] || '').toLowerCase()
@@ -111,15 +124,27 @@ const sportName = computed(() => {
   }
   return translate(names[rawSport] || 'Sports')
 })
+const isBasketball = computed(() => {
+  const rawSport = (props.fixture.sport || props.fixture.sport_key?.split('_')[0] || '').toLowerCase()
+  return rawSport === 'basketball'
+})
 </script>
 
 <template>
   <NuxtLink
     :to="destination"
     class="sports-match-card"
-    :class="{ 'sports-match-card--highlighted': highlighted }"
+    :class="{
+      'sports-match-card--highlighted': highlighted,
+      'sports-match-card--basketball': isBasketball,
+    }"
     :data-sport="(fixture.sport || fixture.sport_key.split('_')[0] || '').toLowerCase()"
-    :style="{ '--home-arena-hue': teams[0]!.arenaHue, '--away-arena-hue': teams[1]!.arenaHue, '--home-hover-color': teams[0]!.hoverAccent, '--away-hover-color': teams[1]!.hoverAccent }"
+    :style="{
+      '--home-arena-hue': teams[0]!.arenaHue,
+      '--away-arena-hue': teams[1]!.arenaHue,
+      '--home-hover-color': teams[0]!.hoverAccent,
+      '--away-hover-color': teams[1]!.hoverAccent,
+    }"
     :aria-label="`${fixture.home_team} ${translate('VS')} ${fixture.away_team} - ${fixture.sport_title}`"
   >
     <div class="sports-match-heading flex items-center justify-between">
@@ -141,13 +166,31 @@ const sportName = computed(() => {
       <div class="sports-match-teams grid">
         <div class="sports-team flex flex-col items-center" :style="{ '--team-ink': teams[0]!.ink }">
           <span class="sports-team-badge">
-            <img v-if="teams[0]!.image" :src="teams[0]!.image" :alt="teams[0]!.name" width="64" height="64" loading="lazy" decoding="async">
+            <img
+              v-if="teams[0]!.image && !failedImages[0]"
+              :src="teams[0]!.image"
+              :alt="teams[0]!.name"
+              width="64"
+              height="64"
+              loading="lazy"
+              decoding="async"
+              @error="onImageError(0)"
+            >
             <span v-else class="sports-team-initials" aria-hidden="true">{{ teams[0]!.initials }}</span>
           </span>
           <strong>{{ teams[0]!.name }}</strong>
         </div>
 
         <div class="sports-match-center flex flex-col items-center">
+          <img
+            v-if="competitionLogo"
+            :src="competitionLogo"
+            :alt="fixture.sport_title || ''"
+            class="sports-center-watermark"
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+          >
           <div v-if="hasLiveScore" class="sports-live-score flex flex-col items-center justify-center">
             <span v-if="fixture.clock" class="sports-live-clock">{{ fixture.clock }}</span>
             <strong class="sports-live-score-digits">{{ displayScore }}</strong>
@@ -164,7 +207,16 @@ const sportName = computed(() => {
 
         <div class="sports-team flex flex-col items-center" :style="{ '--team-ink': teams[1]!.ink }">
           <span class="sports-team-badge">
-            <img v-if="teams[1]!.image" :src="teams[1]!.image" :alt="teams[1]!.name" width="64" height="64" loading="lazy" decoding="async">
+            <img
+              v-if="teams[1]!.image && !failedImages[1]"
+              :src="teams[1]!.image"
+              :alt="teams[1]!.name"
+              width="64"
+              height="64"
+              loading="lazy"
+              decoding="async"
+              @error="onImageError(1)"
+            >
             <span v-else class="sports-team-initials" aria-hidden="true">{{ teams[1]!.initials }}</span>
           </span>
           <strong>{{ teams[1]!.name }}</strong>
@@ -199,18 +251,140 @@ const sportName = computed(() => {
 .sports-arena-side--home { clip-path: inset(0 50% 0 0); filter: hue-rotate(var(--home-arena-hue)) saturate(1.05) brightness(.74); }
 .sports-arena-side--away { clip-path: inset(0 0 0 50%); filter: hue-rotate(var(--away-arena-hue)) saturate(1.05) brightness(.74); }
 .sports-match-arena::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg,transparent 45%,#0000002b 70%,#00100c5c); pointer-events: none; }
-.sports-hover-panel { position: absolute; z-index: -1; top: 0; bottom: 0; width: 60%; background: radial-gradient(ellipse at 50% 0%,#ffffff1f,transparent 65%),linear-gradient(180deg,#00000008,#000000b3),rgb(var(--panel-team-color)); transition: transform 420ms cubic-bezier(.22,.61,.36,1); pointer-events: none; }
+
+/* Basketball card styling: light red arena background and warm ambient lighting */
+.sports-match-card--basketball,
+.sports-match-card[data-sport='basketball'] {
+  background: #140708;
+  border-color: rgba(255, 120, 120, 0.22);
+}
+.sports-match-card--basketball:is(:hover, :focus-visible),
+.sports-match-card[data-sport='basketball']:is(:hover, :focus-visible) {
+  border-color: rgba(255, 120, 120, 0.48);
+}
+.sports-match-card--basketball .sports-match-heading,
+.sports-match-card[data-sport='basketball'] .sports-match-heading {
+  background: linear-gradient(180deg, #2b1315, #180809);
+  border-bottom-color: rgba(255, 120, 120, 0.16);
+}
+.sports-match-card--basketball .sports-match-footer,
+.sports-match-card[data-sport='basketball'] .sports-match-footer {
+  background: #140708;
+  border-top-color: rgba(255, 120, 120, 0.14);
+}
+.sports-match-card--basketball .sports-match-arena,
+.sports-match-card[data-sport='basketball'] .sports-match-arena {
+  background: radial-gradient(ellipse at 50% 25%, rgba(255, 120, 120, 0.45) 0%, rgba(239, 68, 68, 0.26) 45%, rgba(120, 15, 20, 0.18) 75%, #150506 100%), #110304;
+}
+.sports-match-card--basketball .sports-arena-side,
+.sports-match-card[data-sport='basketball'] .sports-arena-side {
+  opacity: 0.88;
+  filter: hue-rotate(180deg) saturate(1.4) brightness(0.92);
+}
+.sports-match-card--basketball .sports-match-arena::before,
+.sports-match-card[data-sport='basketball'] .sports-match-arena::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 20%, rgba(255, 130, 130, 0.38) 0%, rgba(239, 68, 68, 0.2) 40%, rgba(185, 28, 28, 0.1) 70%, transparent 100%),
+              linear-gradient(180deg, rgba(255, 110, 110, 0.16) 0%, transparent 45%, rgba(220, 38, 38, 0.22) 100%);
+  pointer-events: none;
+}
+.sports-match-card--basketball .sports-match-arena::after,
+.sports-match-card[data-sport='basketball'] .sports-match-arena::after {
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.3) 65%, rgba(65, 12, 16, 0.7) 100%);
+}
+.sports-hover-panel {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  width: 60%;
+  background: radial-gradient(ellipse at 50% 0%, #ffffff1f, transparent 65%), linear-gradient(180deg, #00000008, #000000b3), rgb(var(--panel-team-color));
+  transition: transform 400ms cubic-bezier(.22, .61, .36, 1);
+  pointer-events: none;
+}
+.sports-hover-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 16%, transparent 84%, rgba(0, 0, 0, 0.45) 100%);
+  pointer-events: none;
+}
 /* Complementary trapezoids each cover 50% of the arena and share one diagonal. */
-.sports-hover-panel--home { --panel-team-color: var(--home-hover-color); left: 0; clip-path: polygon(0 0,100% 0,66.666667% 100%,0 100%); transform: translateX(calc((var(--sports-hover-opacity) - 1) * 105%)); }
-.sports-hover-panel--away { --panel-team-color: var(--away-hover-color); right: 0; clip-path: polygon(33.333333% 0,100% 0,100% 100%,0 100%); transform: translateX(calc((1 - var(--sports-hover-opacity)) * 105%)); }
-.sports-hover-panel--home::after { content: ''; position: absolute; inset: 0; background: #c8cbbb; clip-path: polygon(96.5% 0,100% 0,66.666667% 100%,63.166667% 100%); }
+.sports-hover-panel--home {
+  --panel-team-color: var(--home-hover-color);
+  left: 0;
+  clip-path: polygon(0 0, 100% 0, 66.666667% 100%, 0 100%);
+  transform: translateX(calc((var(--sports-hover-opacity) - 1) * 105%));
+}
+.sports-hover-panel--away {
+  --panel-team-color: var(--away-hover-color);
+  right: 0;
+  clip-path: polygon(33.333333% 0, 100% 0, 100% 100%, 0 100%);
+  transform: translateX(calc((1 - var(--sports-hover-opacity)) * 105%));
+}
+/* Accents for closing door leading diagonal edges on hover */
+.sports-hover-panel--home::after,
+.sports-hover-panel--away::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(var(--panel-team-color), 0.92) 28%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(var(--panel-team-color), 0.92) 72%,
+    rgba(255, 255, 255, 0.98) 100%
+  );
+  filter: drop-shadow(0 0 6px rgba(var(--panel-team-color), 0.8)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.85));
+}
+.sports-hover-panel--home::after {
+  clip-path: polygon(96.5% 0, 100% 0, 66.666667% 100%, 63.166667% 100%);
+}
+.sports-hover-panel--away::after {
+  clip-path: polygon(33.333333% 0, 36.833333% 0, 3.5% 100%, 0 100%);
+}
+
+/* Basketball-specific closing door accents: fiery warm neon trim */
+.sports-match-card--basketball .sports-hover-panel--home::after,
+.sports-match-card--basketball .sports-hover-panel--away::after,
+.sports-match-card[data-sport='basketball'] .sports-hover-panel--home::after,
+.sports-match-card[data-sport='basketball'] .sports-hover-panel--away::after {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #ff7875 25%,
+    #fff1f0 50%,
+    #ff4d4f 75%,
+    #ffa39e 100%
+  );
+  filter: drop-shadow(0 0 8px rgba(255, 80, 80, 0.9)) drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));
+}
 .sports-match-teams { grid-template-columns: minmax(0,1fr) 34% minmax(0,1fr); align-items: start; gap: 0; height: 100%; padding: 32px 8px 10px; }
 .sports-team { min-width: 0; gap: 9px; text-align: center; }
 .sports-team-badge { display: grid; place-items: center; flex-shrink: 0; width: 64px; height: 64px; overflow: hidden; border: 2px solid #e3e9e6; border-radius: 50%; background: #f7f9f8; box-shadow: 0 2px 5px #0006; transform: scale(var(--sports-hover-logo-scale)); transition: transform 180ms ease; }
 .sports-team-badge img { width: 91%; height: 91%; object-fit: contain; }
 .sports-team-initials { color: rgb(var(--team-ink)); font-size: 21px; font-weight: 800; letter-spacing: -.04em; }
 .sports-team strong { min-width: 0; max-width: min(100%,104px); font-size: clamp(10px,3.7cqw,12px); font-weight: 800; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; overflow-wrap: anywhere; text-shadow: 0 1px 4px #000; }
-.sports-match-center { min-width: 0; gap: 8px; padding-top: 2px; }
+.sports-match-center { position: relative; min-width: 0; gap: 8px; padding-top: 2px; height: 100%; align-self: stretch; }
+.sports-center-watermark {
+  position: absolute;
+  top: calc(50% + 24px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(52px, 16cqw, 66px);
+  height: clamp(52px, 16cqw, 66px);
+  object-fit: contain;
+  opacity: 0.42;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.75)) contrast(1.15) brightness(1.1);
+  pointer-events: none;
+  z-index: 0;
+}
+.sports-versus, .sports-kickoff, .sports-live-score { position: relative; z-index: 1; }
 .sports-versus { color: #f0f4f2; font-size: 10px; font-weight: 800; line-height: 1; text-shadow: 0 1px 4px #000; }
 .sports-kickoff { width: 100%; min-height: 36px; padding: 3px 2px; border: 1px solid #ffffff0e; border-radius: 18px; background: #010b0ce8; white-space: nowrap; }
 .sports-kickoff strong { font-size: clamp(14px,4.7cqw,16px); font-weight: 800; line-height: 1.1; letter-spacing: -.03em; }

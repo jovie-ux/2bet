@@ -38,7 +38,7 @@ export const GAME_SHOW: LiveCasinoTable[] = [
   {
     "id": "treasure-roulette-c05",
     "title": "Treasure Roulette C05",
-    "image": "/images/casino/roulette/treasure-roulette-c05.jpg",
+    "image": "/images/casino/roulette/treasure-roulette-c05.webp",
     "players": 91,
     "category": "game-show",
     "wins": [["B", 31], ["B", 6], ["R", 12], ["B", 10], ["R", 3], ["R", 12], ["B", 2], ["R", 5], ["R", 5], ["B", 10]]
@@ -49,7 +49,7 @@ export const BACCARAT: LiveCasinoTable[] = [
   {
     "id": "bac-bo",
     "title": "Bac Bo C01",
-    "image": "/images/casino/baccarat/bac-bo.jpg",
+    "image": "/images/casino/baccarat/bac-bo.webp",
     "players": 50,
     "category": "baccarat",
     "wins": [

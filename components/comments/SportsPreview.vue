@@ -36,8 +36,8 @@ watch(selectedStreamId, () => {
 })
 
 const streamThumbnail = computed(() => {
-  if (thumbnailError.value) return '/images/sports/category-banners/background-basketball.png'
-  return selectedStream.value?.thumbnail || '/images/sports/category-banners/background-basketball.png'
+  if (thumbnailError.value) return '/images/sports/category-banners/background-basketball.webp'
+  return selectedStream.value?.thumbnail || '/images/sports/category-banners/background-basketball.webp'
 })
 
 function handleThumbnailError() {

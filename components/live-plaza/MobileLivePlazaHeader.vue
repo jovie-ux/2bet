@@ -12,8 +12,8 @@ const title = computed(() => {
   return 'Live Plaza'
 })
 const backTo = computed(() => path.value.endsWith('/streamer/all')
-  ? '/explore/live-plaza/streamer'
-  : path.value.endsWith('/home') ? '/' : '/explore/live-plaza/home')
+  ? '/live-plaza/streamer'
+  : path.value.endsWith('/home') ? '/' : '/live-plaza/home')
 </script>
 
 <template>

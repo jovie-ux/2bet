@@ -88,14 +88,14 @@ useAppSeo({
   ),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Jackpots', path: '/explore/egames/jackpot/all' },
-    { name: providerName.value, path: `/explore/egames/jackpot/${activeProvider.value}` },
+    { name: 'Jackpots', path: '/egames/jackpot/all' },
+    { name: providerName.value, path: `/egames/jackpot/${activeProvider.value}` },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `${providerName.value} Jackpots Progressivos - 2bet`,
-    url: `https://2bet.com/explore/egames/jackpot/${activeProvider.value}`,
+    url: `https://2bet.com/egames/jackpot/${activeProvider.value}`,
   })),
 })
 
@@ -196,7 +196,7 @@ const toggleChat = (): void => {
 }
 
 const selectTab = (key: string): void => {
-  router.push(`/explore/egames/jackpot/${key.toLowerCase()}`)
+  router.push(`/egames/jackpot/${key.toLowerCase()}`)
 }
 
 const showGameDetails = (game: any): void => {
@@ -264,7 +264,7 @@ watch(
   activeProvider,
   (p) => {
     if (p === 'jili' || p === 'cq9') {
-      router.replace('/explore/egames/jackpot/all')
+      router.replace('/egames/jackpot/all')
     }
     activeGameId.value = null
   },
@@ -377,7 +377,7 @@ watch(
 
         <div class="jackpot-provider-count">
           <NuxtLink
-            :to="`/explore/egames/jackpot/${section.id}`"
+            :to="`/egames/jackpot/${section.id}`"
             class="count-badge flex items-center gap-0.5 rounded-full bg-[#202220] hover:bg-[#282a29] px-2.5 py-0.5 text-[11px] font-medium text-[#8e9491] hover:text-white transition-colors cursor-pointer"
           >
             <span>{{ section.count }}</span>
@@ -418,14 +418,14 @@ watch(
       <div class="mb-2 flex items-center justify-between gap-3">
         <NuxtLink
           id="standalone-jackpot-title"
-          to="/explore/egames/jackpot/standalone"
+          to="/egames/jackpot/standalone"
           class="flex min-w-0 items-center gap-1.5 text-[15px] font-bold text-white transition-colors hover:text-[var(--main-color)]"
         >
           <span aria-hidden="true">🎰</span>
           <span class="truncate">{{ translate('Standalone Jackpot Game') }}</span>
         </NuxtLink>
         <NuxtLink
-          to="/explore/egames/jackpot/standalone"
+          to="/egames/jackpot/standalone"
           class="flex shrink-0 items-center gap-0.5 rounded-full bg-[#202220] px-2.5 py-0.5 text-[11px] font-medium text-[#8e9491] transition-colors hover:bg-[#282a29] hover:text-white"
           aria-label="View all standalone jackpot games"
         >

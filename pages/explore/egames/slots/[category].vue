@@ -76,14 +76,14 @@ useAppSeo({
   description: computed(() => formatSeoDescription(`Jogue caça-níqueis de ${translate(categoryLabel.value).toLowerCase()} na 2bet Brasil. Slots com alto RTP, jackpots progressivos e rodadas bônus exclusivas.`)),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Slots', path: '/explore/egames/slots' },
-    { name: translate(categoryLabel.value), path: `/explore/egames/slots/${activeCategory.value}` },
+    { name: 'Slots', path: '/egames/slots' },
+    { name: translate(categoryLabel.value), path: `/egames/slots/${activeCategory.value}` },
   ]),
   schema: computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `${translate(categoryLabel.value)} Slots - 2bet`,
-    url: `https://2bet.com/explore/egames/slots/${activeCategory.value}`,
+    url: `https://2bet.com/egames/slots/${activeCategory.value}`,
   })),
 })
 
@@ -126,9 +126,9 @@ const selectCategory = (key: string): void => {
     closeSearch()
   }
   if (key === 'home') {
-    router.push('/explore/egames/slots')
+    router.push('/egames/slots')
   } else {
-    router.push(`/explore/egames/slots/${key}`)
+    router.push(`/egames/slots/${key}`)
   }
 }
 

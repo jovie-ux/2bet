@@ -4,8 +4,8 @@ useAppSeo({
   description: 'Entenda como os cookies são utilizados na 2bet Brasil para otimizar sua experiência de navegação, segurança de login e personalização.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Legal', path: '/explore/legal/general-terms' },
-    { name: 'Política de Cookies', path: '/explore/legal/cookie-policy' },
+    { name: 'Legal', path: '/legal/general-terms' },
+    { name: 'Política de Cookies', path: '/legal/cookie-policy' },
   ],
 })
 </script>

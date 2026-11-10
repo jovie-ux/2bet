@@ -4,7 +4,7 @@ useAppSeo({
   description: 'Confira diretrizes e ferramentas de apoio para um jogo consciente na 2bet Brasil. Estabeleça limites de saldo e aposte com segurança total.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Ajuda', path: '/explore/help/contact-us' },
+    { name: 'Ajuda', path: '/help/contact-us' },
     { name: 'Jogo Responsável', path: '/responsible-gaming' },
   ],
 })

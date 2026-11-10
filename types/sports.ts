@@ -27,6 +27,11 @@ export interface SportsEvent {
   commence_time: string
   home_team: string | null
   away_team: string | null
+  home_team_logo?: string
+  away_team_logo?: string
+  competition_logo?: string
+  home?: { name?: string; logo?: string; score?: number }
+  away?: { name?: string; logo?: string; score?: number }
   completed?: boolean
   scores?: { name: string; score: string }[] | null
   bookmakers?: {

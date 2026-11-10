@@ -17,9 +17,9 @@ useAppSeo({
   description: computed(() => formatSeoDescription(`Confira as cotações pré-jogo de ${sportName.value} para ${route.params.date} na 2bet Brasil. Analise estatísticas e aposte com segurança.`)),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Esportes', path: '/explore/sports/popular' },
-    { name: sportName.value, path: `/explore/sports/${route.params.sport}` },
-    { name: 'Pré-Jogo', path: `/explore/sports/${route.params.sport}/pre-match` },
+    { name: 'Esportes', path: '/sports/popular' },
+    { name: sportName.value, path: `/sports/${route.params.sport}` },
+    { name: 'Pré-Jogo', path: `/sports/${route.params.sport}/pre-match` },
     { name: String(route.params.date), path: route.path },
   ]),
   schema: computed(() => ({

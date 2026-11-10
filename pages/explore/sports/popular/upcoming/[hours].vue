@@ -20,8 +20,8 @@ useAppSeo({
   description: computed(() => formatSeoDescription(`Confira eventos esportivos com início em ${hoursLabel.value.toLowerCase()} na 2bet Brasil. Aproveite odds atualizadas, mercados dinâmicos e apostas rápidas.`)),
   breadcrumbs: computed(() => [
     { name: 'Início', path: '/' },
-    { name: 'Esportes', path: '/explore/sports/popular' },
-    { name: 'Em Breve', path: '/explore/sports/popular/upcoming' },
+    { name: 'Esportes', path: '/sports/popular' },
+    { name: 'Em Breve', path: '/sports/popular/upcoming' },
     { name: hoursLabel.value, path: route.path },
   ]),
   schema: computed(() => ({

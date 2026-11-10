@@ -6,8 +6,8 @@ useAppSeo({
   description: 'Gerencie seu saldo e resgate recompensas promocionais na 2bet Brasil. Acompanhe movimentações financeiras com segurança e rapidez.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Praça ao Vivo', path: '/explore/live-plaza/home' },
-    { name: 'Fundos', path: '/explore/live-plaza/funds' },
+    { name: 'Praça ao Vivo', path: '/live-plaza/home' },
+    { name: 'Fundos', path: '/live-plaza/funds' },
   ],
 })
 
@@ -19,7 +19,7 @@ const handleClose = () => {
   if (import.meta.client && window.history.length > 1) {
     router.back()
   } else {
-    router.push('/explore/live-plaza/home')
+    router.push('/live-plaza/home')
   }
 }
 </script>

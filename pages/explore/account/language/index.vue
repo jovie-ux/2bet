@@ -9,8 +9,8 @@ useAppSeo({
   description: 'Personalize o idioma de navegação na plataforma 2bet. Escolha as configurações ideais para sua experiência em jogos e apostas online.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Minha Conta', path: '/explore/account/me' },
-    { name: 'Idioma', path: '/explore/account/language' },
+    { name: 'Minha Conta', path: '/account/me' },
+    { name: 'Idioma', path: '/account/language' },
   ],
 })
 </script>
@@ -19,7 +19,7 @@ useAppSeo({
   <section class="preference-page language-page w-full min-w-0 pb-16 text-white">
     <SubpageHeader
       title="Language"
-      back-to="/explore/account/me"
+      back-to="/account/me"
       class="mb-2 sm:mb-3"
     />
 

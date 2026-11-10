@@ -18,7 +18,7 @@ const { translate } = useSiteLocale()
     </NuxtLink>
     <h1>{{ translate('Bonuses') }}</h1>
     <BonusCurrencySelector v-if="currencySelector" v-model="selectedCurrency" />
-    <NuxtLink v-else to="/explore/account/language" class="mobile-bonus-header__flag" :aria-label="translate('Select language')">
+    <NuxtLink v-else to="/account/language" class="mobile-bonus-header__flag" :aria-label="translate('Select language')">
       <img src="/icons/PHP.webp" alt="Brazil" width="24" height="24">
     </NuxtLink>
   </header>

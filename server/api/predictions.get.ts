@@ -1,5 +1,11 @@
 import type { H3Event } from 'h3'
-import { EXPERT_PREDICTORS, type Prediction, type PredictionOption, type PredictionsResponse } from '~/data/predictions'
+import {
+  EXPERT_PREDICTORS,
+  type ExpertPredictor,
+  type Prediction,
+  type PredictionOption,
+  type PredictionsResponse,
+} from '~/data/predictions'
 import { getActiveUpcomingPredictions } from '~/server/utils/dailyPredictions/storage'
 import { runDailyPredictionRefresh } from '~/server/utils/dailyPredictions/refreshService'
 import { hashString } from '~/server/utils/dailyPredictions/marketGrouping'
@@ -126,6 +132,21 @@ export function buildMarketOptions(record: DailyPredictionRecord): PredictionOpt
   ]
 }
 
+const basketballExperts: ExpertPredictor[] = EXPERT_PREDICTORS.filter(p => p.sport === 'basketball')
+const soccerExperts: ExpertPredictor[] = EXPERT_PREDICTORS.filter(p => p.sport === 'soccer')
+const fallbackExperts: ExpertPredictor[] = EXPERT_PREDICTORS.length > 0 ? EXPERT_PREDICTORS : []
+
+function shuffleArray<T>(items: readonly T[]): T[] {
+  const result = [...items]
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    const temp = result[i]
+    result[i] = result[j]
+    result[j] = temp
+  }
+  return result
+}
+
 export default defineEventHandler(async (event: H3Event): Promise<PredictionsResponse> => {
   const today = getManilaDateStr()
   let records = await getActiveUpcomingPredictions(today)
@@ -139,8 +160,29 @@ export default defineEventHandler(async (event: H3Event): Promise<PredictionsRes
     }
   }
 
-  const predictions: Prediction[] = records.map((record, index) => {
-    const predictor = EXPERT_PREDICTORS[index % EXPERT_PREDICTORS.length]
+  // Randomly select unique experts for each prediction aligned with sport
+  const shuffledBasketball = shuffleArray(basketballExperts)
+  const shuffledSoccer = shuffleArray(soccerExperts)
+  let basketballIndex = 0
+  let soccerIndex = 0
+
+  const predictions: Prediction[] = records.map((record) => {
+    const isBasketball = record.sport === 'basketball'
+    let predictor: ExpertPredictor
+
+    if (isBasketball) {
+      if (basketballIndex >= shuffledBasketball.length) {
+        shuffledBasketball.splice(0, shuffledBasketball.length, ...shuffleArray(basketballExperts))
+        basketballIndex = 0
+      }
+      predictor = shuffledBasketball[basketballIndex++] || fallbackExperts[0]
+    } else {
+      if (soccerIndex >= shuffledSoccer.length) {
+        shuffledSoccer.splice(0, shuffledSoccer.length, ...shuffleArray(soccerExperts))
+        soccerIndex = 0
+      }
+      predictor = shuffledSoccer[soccerIndex++] || fallbackExperts[0]
+    }
 
     return {
       id: record.id,
@@ -152,7 +194,7 @@ export default defineEventHandler(async (event: H3Event): Promise<PredictionsRes
       hitRate: clampHitRate(record.hit_rate),
       winStreak: predictor.winStreak || `${Math.max(3, Math.floor(clampHitRate(record.hit_rate) / 12))} Wins`,
       marketType: toMarketLabel(record.market_type),
-      sport: record.sport === 'football' ? 'soccer' : 'basketball',
+      sport: isBasketball ? 'basketball' : 'soccer',
       league: record.competition_name,
       competitionLogo: record.competition_logo || '',
       matchTime: formatManilaTime(record.match_time_utc),

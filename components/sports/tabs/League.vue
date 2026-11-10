@@ -168,7 +168,7 @@ const sortedGroups = computed(() => {
 
 <template>
   <div class="league-tab">
-    <div v-if="sportsRouteBase !== '/explore/sports/popular'" class="toolbar">
+    <div v-if="!sportsRouteBase.endsWith('/sports/popular')" class="toolbar">
       <Ai
         v-if="aiTo"
         :to="aiTo"

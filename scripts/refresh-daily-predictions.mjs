@@ -2,6 +2,27 @@
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 
+// Auto-load .env from project root if present
+try {
+  if (typeof process.loadEnvFile === 'function') {
+    process.loadEnvFile()
+  } else {
+    const envPath = path.resolve(process.cwd(), '.env')
+    const content = await fs.readFile(envPath, 'utf-8').catch(() => '')
+    for (const line of content.split('\n')) {
+      const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/)
+      if (match) {
+        const key = match[1]
+        let val = (match[2] || '').trim()
+        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+          val = val.slice(1, -1)
+        }
+        if (process.env[key] === undefined) process.env[key] = val
+      }
+    }
+  }
+} catch {}
+
 /**
  * Standalone Daily Sports Prediction Refresh & Diagnostic Script for aaPanel Cron / Linux Crontab.
  * Usage:
@@ -39,7 +60,7 @@ const checkMatchArg = args.find(a => a.startsWith('--check-match='))?.split('=')
 const targetDate = dateArg || getManilaDateStr()
 
 const apiBase = process.env.KADARIO_API || 'https://live88.eu.cc/'
-const siteCode = process.env.KADARIO_SITE || 'YBa-BnymZ6iN8pkfAUFTWIKn'
+const siteCode = process.env.KADARIO_SITE || process.env.KADARIO_API_KEY || 'YBa-BnymZ6iN8pkfAUFTWIKn'
 const headers = {
   'Content-Type': 'application/json',
   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',

@@ -593,7 +593,13 @@ html[data-theme='light']:not(#_) .affiliate-tabs button:hover {
 
 html[data-theme='light']:not(#_) .affiliate-tabs .affiliate-tab--active {
   color: #ffffff;
-  background: #007554;
+  background: var(--main-color);
+}
+
+html[data-theme='light']:not(#_) .affiliate-section-title,
+html[data-theme='light']:not(#_) .question-category-title {
+  color: #ffffff;
+  background: var(--main-color);
 }
 
 html[data-theme='light']:not(#_) .cooperation-description {
@@ -622,11 +628,16 @@ html[data-theme='light']:not(#_) .affiliate-action--primary {
   background: #007554;
 }
 
-html[data-theme='light']:not(#_) .product-card span {
+html[data-theme='light']:not(#_) .product-card h4 {
   color: #ffffff;
 }
 
-html[data-theme='light']:not(#_) .advantage-card button {
+html[data-theme='light']:not(#_) .cooperation-card > h3,
+html[data-theme='light']:not(#_) .products-panel .section-label,
+html[data-theme='light']:not(#_) .advantage-card > h3,
+html[data-theme='light']:not(#_) .commission-panel > h3,
+html[data-theme='light']:not(#_) .commission-panel > .commission-tier-notice,
+html[data-theme='light']:not(#_) .questions-content h4 {
   color: var(--heading);
 }
 

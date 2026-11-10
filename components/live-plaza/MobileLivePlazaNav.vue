@@ -4,10 +4,10 @@ import { Compass, Mic, GraduationCap, WalletCards } from 'lucide-vue-next'
 defineEmits<{ back: [] }>()
 const route = useRoute()
 const items = [
-  { label: 'Plaza', to: '/explore/live-plaza/home', icon: Compass },
-  { label: 'Streamer', to: '/explore/live-plaza/streamer', icon: Mic },
-  { label: 'Predict', to: '/explore/live-plaza/expert-predictions', icon: GraduationCap },
-  { label: 'Funds', to: '/explore/live-plaza/funds', icon: WalletCards },
+  { label: 'Plaza', to: '/live-plaza/home', icon: Compass },
+  { label: 'Streamer', to: '/live-plaza/streamer', icon: Mic },
+  { label: 'Predict', to: '/live-plaza/expert-predictions', icon: GraduationCap },
+  { label: 'Funds', to: '/live-plaza/funds', icon: WalletCards },
 ]
 const isActive = (item: typeof items[number]): boolean => {
   const path = route.path.replace(/\/$/, '')

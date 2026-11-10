@@ -4,8 +4,8 @@ useAppSeo({
   description: 'Retire seus lucros de apostas e cassino na 2bet Brasil. Solicite saques rápidos em BRL via PIX com segurança e atendimento 24 horas por dia.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Minha Conta', path: '/explore/account/me' },
-    { name: 'Saque', path: '/explore/account/withdraw' },
+    { name: 'Minha Conta', path: '/account/me' },
+    { name: 'Saque', path: '/account/withdraw' },
   ],
 })
 </script>

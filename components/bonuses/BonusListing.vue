@@ -27,8 +27,8 @@ const visibleCategories = computed(() => featuredPromotions.value.length
 const selectedCategory = ref(props.category)
 watch(() => props.category, category => { selectedCategory.value = category })
 const categoryPath = (key: string): string => key === 'all'
-  ? '/explore/bonuses'
-  : `/explore/bonuses/${key}`
+  ? '/bonuses'
+  : `/bonuses/${key}`
 const featuredTrack = ref<HTMLElement | null>(null)
 const nowMs = ref(Date.now())
 let countdownTimer: ReturnType<typeof setInterval> | null = null
@@ -75,13 +75,13 @@ useAppSeo({
   description: 'Aproveite as ofertas de bônus na 2bet Brasil. Bônus de primeiro depósito, programa de convites e recompensas exclusivas do Clube VIP.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Promoções', path: '/explore/bonuses' },
+    { name: 'Promoções', path: '/bonuses' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: '2bet Promoções e Bônus',
-    url: 'https://2bet.com/explore/bonuses',
+    url: 'https://2bet.com/bonuses',
     description: 'Explore as promoções e bônus exclusivos da 2bet Brasil, incluindo o Programa Compartilhe e Ganhe e Privilégios VIP com regras claras.',
   },
 })
@@ -134,7 +134,7 @@ useAppSeo({
         <NuxtLink
           v-for="promotion in featuredPromotions"
           :key="promotion.id"
-          :to="`/explore/bonus/${promotion.slug}`"
+          :to="`/bonus/${promotion.slug}`"
           class="featured-card"
           @click="markAsViewed(promotion.slug)"
         >
@@ -185,7 +185,7 @@ useAppSeo({
           <NuxtLink
             v-for="promotion in section.items"
             :key="`${section.id}-${promotion.id}`"
-            :to="`/explore/bonus/${promotion.slug}`"
+            :to="`/bonus/${promotion.slug}`"
             class="promotion-row"
             @click="markAsViewed(promotion.slug)"
           >

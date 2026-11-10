@@ -6,14 +6,14 @@ useAppSeo({
   description: 'Assista a partidas e jogos em tempo real com streamers oficiais na 2bet Brasil. Interaja com a comunidade e confira dicas exclusivas.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Praça ao Vivo', path: '/explore/live-plaza/home' },
-    { name: 'Streamers', path: '/explore/live-plaza/streamer' },
+    { name: 'Praça ao Vivo', path: '/live-plaza/home' },
+    { name: 'Streamers', path: '/live-plaza/streamer' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: '2Bet Live Streamers',
-    url: 'https://2bet.com/explore/live-plaza/streamer',
+    url: 'https://2bet.com/live-plaza/streamer',
   },
 })
 
@@ -21,7 +21,7 @@ const router = useRouter()
 const { translate } = useSiteLocale()
 
 const handleAllStreamersClick = (): void => {
-  router.push('/explore/live-plaza/streamer/all')
+  router.push('/live-plaza/streamer/all')
 }
 </script>
 

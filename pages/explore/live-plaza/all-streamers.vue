@@ -4,12 +4,12 @@ useAppSeo({
   description: 'Descubra todos os streamers esportivos da Praça ao Vivo na 2bet Brasil. Transmissões de jogos, debates de partidas e análises táticas.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Praça ao Vivo', path: '/explore/live-plaza/home' },
-    { name: 'Streamers', path: '/explore/live-plaza/streamer/all' },
+    { name: 'Praça ao Vivo', path: '/live-plaza/home' },
+    { name: 'Streamers', path: '/live-plaza/streamer/all' },
   ],
 })
 
-await navigateTo('/explore/live-plaza/streamer/all', { replace: true })
+await navigateTo('/live-plaza/streamer/all', { replace: true })
 </script>
 
 <template>

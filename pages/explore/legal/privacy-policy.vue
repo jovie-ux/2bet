@@ -4,7 +4,7 @@ useAppSeo({
   description: 'Saiba como a 2bet Brasil coleta e trata seus dados pessoais, assegurando total sigilo, conformidade com a LGPD e privacidade digital.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Legal', path: '/explore/legal/general-terms' },
+    { name: 'Legal', path: '/legal/general-terms' },
     { name: 'Política de Privacidade', path: '/privacy-policy' },
   ],
 })

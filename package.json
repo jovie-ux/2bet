@@ -5,7 +5,7 @@
   "scripts": {
     "postinstall": "nuxt prepare",
     "dev": "nuxt dev",
-    "build": "nuxt build && node scripts/generate-sitemap.mjs",
+    "build": "nuxt build && node scripts/generate-sitemap.mjs && node scripts/generate-llms-txt.mjs",
     "typecheck": "nuxt typecheck",
     "predictions:refresh": "node scripts/refresh-daily-predictions.mjs",
     "test": "node --test tests/**/*.test.mjs"

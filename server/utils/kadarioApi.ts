@@ -147,7 +147,7 @@ function mapHoopsGameToLiveStream(game: HoopsLiveGame, site: string, origin: str
     awayScore,
     scoreAvailable,
     thumbnail: videoThumbnail || game.home?.logo || game.away?.logo
-      || `/images/sports/category-banners/background-${game.sport === 'football' ? 'football' : 'basketball'}.png`,
+      || `/images/sports/category-banners/background-${game.sport === 'football' ? 'football' : 'basketball'}.webp`,
     iframe: {
       src: embedUrl,
       title: `${homeName} vs ${awayName} (${competition})`,
@@ -261,13 +261,85 @@ function kadarioTournamentKey(match: LiveMatch) {
   }
   if (aliases[name]) return aliases[name]
   if (/^(atp|wta)\b/.test(name)) return `tennis_${name.replace(/[^a-z0-9]+/g, '_')}`
-  const sportPrefix = (match.sport || 'basketball').toLowerCase().replace(/[^a-z0-9]/g, '')
+  const rawSport = (match.sport || 'basketball').toLowerCase()
+  const sportPrefix = ['nba', 'pba'].includes(rawSport) ? 'basketball' : rawSport.replace(/[^a-z0-9]/g, '')
   const leagueSuffix = (match.leagueId || name || 'live').toLowerCase().replace(/[^a-z0-9]+/g, '_')
   return `${sportPrefix}_${leagueSuffix}`
 }
 
-export async function getLiveInplayEvents(api: string, site: string, livestreamApiUrl?: string): Promise<SportsEvent[]> {
-  const catalog = await getKadarioCatalog(api, site, false, ['basketball', 'football'], livestreamApiUrl)
+interface KadarioScoresResponse {
+  code: number
+  data?: {
+    results?: LiveMatch[]
+  }
+}
+
+export async function getLiveInplayEvents(
+  api: string,
+  site: string,
+  inplayApiUrl?: string,
+): Promise<SportsEvent[]> {
+  const defaultScoresUrl = `${api.replace(/\/+$/, '').replace(/\/api\/v1$/, '')}/api/v1/scores?site=${encodeURIComponent(site)}`
+  const targetUrl = (inplayApiUrl && inplayApiUrl.includes('/scores'))
+    ? inplayApiUrl
+    : defaultScoresUrl
+
+  try {
+    const response = await $fetch<KadarioScoresResponse>(targetUrl, {
+      timeout: 15000,
+      retry: 1,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'application/json',
+      },
+    })
+
+    if (response && response.code === 0 && Array.isArray(response.data?.results)) {
+      const liveMatches = response.data.results.filter(
+        match => match.status === 'live' && match.home?.name && match.away?.name && Number.isFinite(Date.parse(match.startTime ?? '')),
+      )
+      if (liveMatches.length > 0) {
+        return liveMatches.map((match) => {
+          const rawSport = (match.sport || '').toLowerCase()
+          const normalizedSport = ['nba', 'pba', 'basketball'].includes(rawSport)
+            ? 'basketball'
+            : (['football', 'soccer'].includes(rawSport) ? 'football' : (rawSport || 'basketball'))
+
+          return {
+            id: match.id,
+            leagueId: match.leagueId,
+            sources: match.sources,
+            thumbnail: match.thumbnail || match.home?.logo || match.away?.logo,
+            clock: match.clock,
+            clockUpdatedAt: Date.now(),
+            homeScore: match.homeScore,
+            awayScore: match.awayScore,
+            scoreAvailable: match.scoreAvailable ?? (typeof match.homeScore === 'number' && typeof match.awayScore === 'number'),
+            probability: match.probability,
+            sport: normalizedSport,
+            sport_key: kadarioTournamentKey(match),
+            sport_title: match.competition || 'Live match',
+            commence_time: match.startTime!,
+            home_team: match.home.name,
+            away_team: match.away.name,
+            home_team_logo: match.home.logo,
+            away_team_logo: match.away.logo,
+            home: match.home,
+            away: match.away,
+            completed: false,
+            scores: match.scoreAvailable === false ? [] : [
+              ...(typeof match.homeScore === 'number' ? [{ name: match.home.name, score: String(match.homeScore) }] : []),
+              ...(typeof match.awayScore === 'number' ? [{ name: match.away.name, score: String(match.awayScore) }] : []),
+            ],
+          }
+        }).sort((a, b) => Date.parse(b.commence_time) - Date.parse(a.commence_time))
+      }
+    }
+  } catch (err) {
+    console.warn('[inplay] Error fetching scores API, falling back to catalog:', err)
+  }
+
+  const catalog = await getKadarioCatalog(api, site, false, ['basketball', 'football'])
   const matches = catalog.results as LiveMatch[]
   return matches
     .filter(match => match.status === 'live' && match.home?.name && match.away?.name && Number.isFinite(Date.parse(match.startTime ?? '')))
@@ -288,8 +360,11 @@ export async function getLiveInplayEvents(api: string, site: string, livestreamA
       commence_time: match.startTime!,
       home_team: match.home.name,
       away_team: match.away.name,
+      home_team_logo: match.home.logo,
+      away_team_logo: match.away.logo,
+      home: match.home,
+      away: match.away,
       completed: false,
-      // Keep live games without published scores; do not invent zero scores.
       scores: match.scoreAvailable === false ? [] : [
         ...(typeof match.homeScore === 'number' ? [{ name: match.home.name, score: String(match.homeScore) }] : []),
         ...(typeof match.awayScore === 'number' ? [{ name: match.away.name, score: String(match.awayScore) }] : []),

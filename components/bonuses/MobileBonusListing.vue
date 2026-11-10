@@ -18,8 +18,8 @@ const activeSlide = ref(0)
 const nowMs = ref(Date.now())
 let countdownTimer: ReturnType<typeof setInterval> | null = null
 const categoryPath = (key: string): string => key === 'all'
-  ? '/explore/bonuses'
-  : `/explore/bonuses/${key}`
+  ? '/bonuses'
+  : `/bonuses/${key}`
 
 const featuredPromotions = computed(() => filterPromotions(PROMOTIONS))
 const visibleCategories = computed(() => featuredPromotions.value.length
@@ -84,7 +84,7 @@ watch(selectedCurrency, async () => {
 <template>
   <div class="mobile-bonuses">
     <div class="mobile-bonuses__sticky">
-      <MobileBonusHeader :back-to="category === 'all' ? '/' : '/explore/bonuses'" currency-selector />
+      <MobileBonusHeader :back-to="category === 'all' ? '/' : '/bonuses'" currency-selector />
       <nav ref="categoryNav" class="mobile-bonuses__categories mx-1" :aria-label="translate('Bonus categories')">
         <NuxtLink
           v-for="item in visibleCategories" :key="item.key"
@@ -97,7 +97,7 @@ watch(selectedCurrency, async () => {
 
     <section v-if="cards.length" class="mobile-bonuses__banners" :aria-label="category === 'all' ? translate('Featured bonuses') : `${translate(PROMO_CATEGORIES.find(item => item.key === category)?.label || '')} bonuses`">
       <div ref="track" :class="category === 'all' ? 'mobile-bonuses__carousel' : 'mobile-bonuses__stack'" @scroll.passive="updateSlide">
-        <NuxtLink v-for="(promotion, index) in cards" :key="promotion.id" :to="`/explore/bonus/${promotion.slug}`" class="mobile-bonus-card" @click="markAsViewed(promotion.slug)">
+        <NuxtLink v-for="(promotion, index) in cards" :key="promotion.id" :to="`/bonus/${promotion.slug}`" class="mobile-bonus-card" @click="markAsViewed(promotion.slug)">
           <div class="mobile-bonus-card__image">
             <img :src="getPromoBannerUrl(promotion.bannerImage, promotion.slug)" :alt="translate(promotion.title)" :style="{ objectPosition: promotion.imagePosition || 'center' }" :loading="index < 2 ? 'eager' : 'lazy'" decoding="async">
             <span v-if="promotion.showSaveBadge" class="mobile-bonus-card__save">◎ {{ translate('Save') }}</span>
@@ -121,7 +121,7 @@ watch(selectedCurrency, async () => {
         <NuxtLink class="mobile-bonuses__heading" :to="categoryPath(section.category)">
           <h2>{{ translate(section.title) }}</h2><ChevronRight :size="20" aria-hidden="true" />
         </NuxtLink>
-        <NuxtLink v-for="promotion in section.items" :key="promotion.id" :to="`/explore/bonus/${promotion.slug}`" class="mobile-bonus-row" @click="markAsViewed(promotion.slug)">
+        <NuxtLink v-for="promotion in section.items" :key="promotion.id" :to="`/bonus/${promotion.slug}`" class="mobile-bonus-row" @click="markAsViewed(promotion.slug)">
           <img :src="getPromoThumbnailUrl(promotion.thumbnailImage, promotion.slug)" :alt="translate(promotion.title)" loading="lazy" width="54" height="54">
           <span class="mobile-bonus-row__copy"><strong>{{ translate(promotion.title) }}</strong><small>{{ translate(promotion.description) }}</small></span>
           <span class="mobile-bonus-row__details">{{ translate('Details') }}</span>

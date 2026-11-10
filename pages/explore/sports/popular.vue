@@ -4,14 +4,14 @@ useAppSeo({
   description: 'Aposte nos eventos mais concorridos do momento na 2bet Brasil. Principais ligas de futebol, basquete e tênis com cotações vantajosas.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Esportes', path: '/explore/sports/popular' },
-    { name: 'Popular', path: '/explore/sports/popular' },
+    { name: 'Esportes', path: '/sports/popular' },
+    { name: 'Popular', path: '/sports/popular' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Popular Sports Betting - 2Bet',
-    url: 'https://2bet.com/explore/sports/popular',
+    url: 'https://2bet.com/sports/popular',
   },
 })
 
@@ -30,9 +30,10 @@ const selectedTournaments: Record<string, string[]> = {
 
 definePageMeta({
   middleware: (to) => {
-    if (to.path.replace(/\/$/, '') === '/explore/sports/popular') {
+    const clean = to.path.replace(/\/$/, '')
+    if (clean === '/explore/sports/popular' || clean === '/sports/popular') {
       return navigateTo({
-        path: '/explore/sports/popular/upcoming',
+        path: '/sports/popular/upcoming',
         query: to.query,
       }, { replace: true })
     }

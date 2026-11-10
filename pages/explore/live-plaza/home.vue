@@ -22,13 +22,13 @@ useAppSeo({
   description: 'Acompanhe palpites esportivos e assista a transmissões na Praça ao Vivo da 2bet Brasil. Dicas de tipsters qualificados e muita emoção.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Praça ao Vivo', path: '/explore/live-plaza/home' },
+    { name: 'Praça ao Vivo', path: '/live-plaza/home' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: '2Bet Live Plaza',
-    url: 'https://2bet.com/explore/live-plaza/home',
+    url: 'https://2bet.com/live-plaza/home',
   },
 })
 

@@ -16,23 +16,6 @@ const predictionSortOptions: Array<{ value: PredictionSort; label: string }> = [
   { value: 'win-streak', label: 'Win Streak' },
 ]
 
-const visiblePredictors = computed(() => {
-  const seen = new Set<string>()
-  return [...EXPERT_PREDICTORS]
-    .filter(predictor => (predictor.currentPredictions ?? 0) > 0)
-    .sort((a, b) => {
-      const predDiff = (b.currentPredictions ?? 0) - (a.currentPredictions ?? 0)
-      if (predDiff !== 0) return predDiff
-      return (b.hitRate ?? 0) - (a.hitRate ?? 0)
-    })
-    .filter((predictor) => {
-      const key = predictor.predictorName.toLowerCase()
-      if (seen.has(key)) return false
-      seen.add(key)
-      return true
-    })
-    .slice(0, 10)
-})
 const { bybetRedirectUrl: rawRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
 const bybetRedirectUrl = `${(rawRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${bybetRedirectCode || 'xjSD'}`
 
@@ -41,14 +24,14 @@ useAppSeo({
   description: 'Acesse análises e previsões esportivas fundamentadas na 2bet Brasil. Estatísticas de partidas de futebol para orientar suas decisões.',
   breadcrumbs: [
     { name: 'Início', path: '/' },
-    { name: 'Praça ao Vivo', path: '/explore/live-plaza/home' },
-    { name: 'Previsões de Especialistas', path: '/explore/live-plaza/expert-predictions' },
+    { name: 'Praça ao Vivo', path: '/live-plaza/home' },
+    { name: 'Previsões de Especialistas', path: '/live-plaza/expert-predictions' },
   ],
   schema: {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: '2Bet Expert Predictions',
-    url: 'https://2bet.com/explore/live-plaza/expert-predictions',
+    url: 'https://2bet.com/live-plaza/expert-predictions',
   },
 })
 
@@ -68,6 +51,61 @@ const getPredictorIdFromQuery = (value: unknown): string | null => {
   return EXPERT_PREDICTORS.some(predictor => predictor.id === value) ? value : null
 }
 const selectedPredictorId = ref<string | null>(getPredictorIdFromQuery(route.query.predictor))
+
+const visiblePredictors = computed(() => {
+  const preds = predictionData.value?.predictions ?? []
+  if (preds.length > 0) {
+    const predictorMap = new Map<string, {
+      id: string
+      predictorId: string
+      predictorName: string
+      predictorAvatar: string
+      currentPredictions: number
+      hitRate: number
+    }>()
+
+    for (const pred of preds) {
+      const key = pred.predictorId || pred.predictorName
+      const existing = predictorMap.get(key)
+      if (existing) {
+        existing.currentPredictions += 1
+      } else {
+        predictorMap.set(key, {
+          id: pred.predictorId,
+          predictorId: pred.predictorId,
+          predictorName: pred.predictorName,
+          predictorAvatar: pred.predictorAvatar,
+          currentPredictions: 1,
+          hitRate: pred.hitRate,
+        })
+      }
+    }
+
+    return Array.from(predictorMap.values())
+      .sort((a, b) => {
+        const predDiff = b.currentPredictions - a.currentPredictions
+        if (predDiff !== 0) return predDiff
+        return b.hitRate - a.hitRate
+      })
+      .slice(0, 10)
+  }
+
+  const seen = new Set<string>()
+  return [...EXPERT_PREDICTORS]
+    .filter(predictor => (predictor.currentPredictions ?? 0) > 0)
+    .sort((a, b) => {
+      const predDiff = (b.currentPredictions ?? 0) - (a.currentPredictions ?? 0)
+      if (predDiff !== 0) return predDiff
+      return (b.hitRate ?? 0) - (a.hitRate ?? 0)
+    })
+    .filter((predictor) => {
+      const key = predictor.predictorName.toLowerCase()
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+    .slice(0, 10)
+})
 const predictionSort = ref<PredictionSort>('featured')
 const sortMenuOpen = ref(false)
 const sortControl = ref<HTMLElement | null>(null)
@@ -177,7 +215,7 @@ const handleOddClick = (_prediction?: Prediction, _option?: PredictionOption): v
     <section class="predictor-panel" :aria-label="translate('Prediction experts')">
       <div class="predictor-rail">
         <NuxtLink
-          to="/explore/live-plaza/experts"
+          to="/live-plaza/experts"
           class="predictor-item predictor-item--all"
           :class="{ 'predictor-item--active': selectedPredictorId === null }"
           :aria-label="translate('View all experts')"

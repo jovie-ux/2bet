@@ -21,7 +21,7 @@ const sportsRouteBase = useSportsRouteBase()
     :soccer="isSoccer"
     :full-markets="fullMarkets"
     :selected-outcome="selectedOutcome"
-    :compact="sportsRouteBase === '/explore/sports/popular'"
+    :compact="sportsRouteBase.endsWith('/sports/popular')"
     @select="selectedOutcome = selectedOutcome === $event ? '' : $event"
   />
 </template>
