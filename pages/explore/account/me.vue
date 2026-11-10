@@ -91,14 +91,21 @@ onBeforeUnmount(() => {
           >
             <Headphones class="w-4 h-4 text-white" />
           </NuxtLink>
-          <button
-            type="button"
-            class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/25 backdrop-blur-md flex items-center justify-center text-white transition-all shadow-sm cursor-pointer"
-            aria-label="Notifications"
-            @click="showDemoMessage('No new notifications')"
+          <a 
+            :href="bybetRedirectUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Account Login"  
           >
-            <Bell class="w-4 h-4 text-white" />
-          </button>
+            <button
+              type="button"
+              class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/25 backdrop-blur-md flex items-center justify-center text-white transition-all shadow-sm cursor-pointer"
+              aria-label="Notifications"
+            >
+              <Bell class="w-4 h-4 text-white" />
+            </button>
+          </a>
+          
         </div>
       </header>
 
@@ -321,7 +328,7 @@ onBeforeUnmount(() => {
             <div class="relative">
               <button
                 type="button"
-                class="flex items-center gap-1.5 rounded-lg bg-[#242624] px-3 py-1.5 text-[13px] text-white hover:bg-[#2e312f] transition-colors cursor-pointer"
+                class="flex items-center gap-1.5 rounded-lg bg-black px-3 py-1.5 text-[13px] text-white hover:bg-[#2e312f] transition-colors cursor-pointer"
                 @click="isOddsDropdownOpen = !isOddsDropdownOpen"
               >
                 <span>{{ selectedOdds }}</span>
