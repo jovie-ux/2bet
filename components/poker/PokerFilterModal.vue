@@ -112,7 +112,7 @@ onBeforeUnmount(() => {
       @click="handleBackdropClick"
     >
       <header class="poker-filter-header">
-        <h2 id="poker-filter-title">{{ translate('Filter games') }}</h2>
+        <div id="poker-filter-title" class="poker-filter-title" role="heading" aria-level="2">{{ translate('Filter games') }}</div>
         <button ref="closeButton" type="button" class="poker-filter-close" :aria-label="translate('Close filters')" @click="close">
           <X :size="18" aria-hidden="true" />
         </button>
@@ -198,6 +198,7 @@ onBeforeUnmount(() => {
   border-bottom: 1px solid var(--border);
 }
 
+.poker-filter-title,
 h2 {
   margin: 0;
   color: var(--heading);

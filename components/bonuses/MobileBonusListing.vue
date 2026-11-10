@@ -4,7 +4,7 @@ import MobileBonusHeader from './MobileBonusHeader.vue'
 import BonusPaymentGroups from './BonusPaymentGroups.vue'
 import BonusEmptyState from './BonusEmptyState.vue'
 import {
-  PROMOTIONS, PROMO_CATEGORIES, PROMOTION_SECTIONS,
+  PROMOTIONS, PROMO_CATEGORIES, PROMOTION_SECTIONS, promotionHasCategory,
   getPromoBannerUrl, getPromoThumbnailUrl, getPromotionCountdownText, type PromotionItem,
 } from '~/data/promotions'
 
@@ -28,7 +28,9 @@ const visibleCategories = computed(() => featuredPromotions.value.length
 const activeCategory = computed(() => featuredPromotions.value.length ? props.category : 'all')
 const cards = computed(() => {
   if (props.category === 'all') return featuredPromotions.value
-  return filterPromotions(PROMOTION_SECTIONS.find(section => section.category === props.category)?.items || [])
+  const sectionItems = PROMOTION_SECTIONS.find(section => section.category === props.category)?.items
+  const items = sectionItems || PROMOTIONS.filter(item => promotionHasCategory(item, props.category))
+  return filterPromotions(items)
 })
 const sections = computed(() => PROMOTION_SECTIONS
   .map(section => {
@@ -147,7 +149,7 @@ watch(selectedCurrency, async () => {
   .mobile-bonuses__banners { position: relative; margin-top: 8px; }
   .mobile-bonuses__payments { margin: 8px 10px 0; }
   .mobile-bonuses__carousel { position: relative; display: flex; gap: 8px; padding: 0 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 10px; scrollbar-width: none; }
-  .mobile-bonus-card { display: block; overflow: hidden; min-width: 0; border-radius: 16px; background: #003e2b; scroll-snap-align: start; }
+  .mobile-bonus-card { display: block; overflow: hidden; min-width: 0; border-radius: 16px; background: #015D25; scroll-snap-align: start; }
   .mobile-bonuses__carousel .mobile-bonus-card { flex: 0 0 64%; }
   .mobile-bonus-card__image { position: relative; aspect-ratio: 2 / 1; overflow: hidden; background: #141414; }
   .mobile-bonus-card__image img { display: block; width: 100%; height: 100%; object-fit: cover; }

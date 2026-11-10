@@ -19,7 +19,7 @@ const casinoItems = [
 
 const eGamesItems = [
   { label: 'Slots', icon: '/icons/egames/slots.webp', to: '/egames/slots' },
-  { label: 'Jackpot', icon: '/icons/egames/jackpot.webp', to: '/egames/jackpot' },
+  { label: 'Jackpot', icon: '/icons/egames/jackpot.webp', to: '/egames/jackpot/all' },
   { label: 'History', icon: '/icons/egames/history.webp', to: bybetRedirectUrl },
   { label: 'CS', icon: 'CS', to: '/egames/customer-service' },
 ]
@@ -129,6 +129,9 @@ const isCasinoItemActive = (item: { label: string; to?: string }): boolean => {
 }
 
 const isEGamesItemActive = (item: { label: string; to: string }): boolean => {
+  if (item.label === 'Jackpot') {
+    return isPathActive('/egames/jackpot') || isPathActive('/explore/egames/jackpot')
+  }
   return isPathActive(item.to)
 }
 

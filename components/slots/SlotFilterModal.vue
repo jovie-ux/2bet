@@ -128,7 +128,7 @@ onBeforeUnmount(unlockPage)
             >
               {{ translate('Cancel') }}
             </button>
-            <h2 id="slot-filter-title">{{ translate('Filter') }}</h2>
+            <div id="slot-filter-title" class="slot-filter-title" role="heading" aria-level="2">{{ translate('Filter') }}</div>
             <span class="slot-filter-header-spacer" aria-hidden="true" />
           </header>
 
@@ -250,7 +250,8 @@ onBeforeUnmount(unlockPage)
   padding: 4px 16px 8px;
 }
 
-.slot-filter-header h2 {
+.slot-filter-header h2,
+.slot-filter-title {
   grid-column: 2;
   margin: 0;
   color: #ffffff;

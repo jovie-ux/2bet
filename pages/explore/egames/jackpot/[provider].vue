@@ -274,12 +274,13 @@ watch(
 
 <template>
   <div class="jackpot-page w-full min-w-0 pb-16">
+    <h1 class="sr-only">{{ providerName === 'Todos os Provedores' ? translate('Jackpots') : `Jackpot ${providerName}` }}</h1>
     <!-- Sticky Header (Top Nav Tabs Bar) -->
     <div class="sticky-header sticky-header-seal sticky top-[var(--content-sticky-top)] z-50 -mx-1 px-0 sm:px-1 pb-2">
       <!-- Top Nav Tabs Bar (777, JILI, JDB, CQ9 + Chat) -->
       <header class="top-nav-bar flex items-center justify-between gap-2 overflow-hidden rounded-lg bg-[#202020] py-0 sm:py-1 shadow-sm">
         <div class="provider-nav-track no-scrollbar flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto bg-[#141414] px-2.5 sm:px-1 py-4 sm:py-1.5 shadow-sm">
-          <RouletteEntryButton style="--roulette-entry-size: 33px; border: 0" />
+          <RouletteEntryButton style="--roulette-entry-size: 33px; border: 0" class="block sm:hidden" />
           <button
             v-for="tab in JACKPOT_NAV_TABS"
             :key="tab.key"

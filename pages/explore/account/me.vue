@@ -54,7 +54,7 @@ const selectedTheme = ref<'International' | 'Asia'>('International')
       <div class="px-3.5 pt-2 pb-4 lg:px-6 lg:py-6">
         <div class="me-frosted-card mx-auto max-w-xl rounded-[20px] p-4 lg:p-6 bg-white/[0.14] backdrop-blur-xl border border-white/25 shadow-0 ">
           <!-- User Avatar Silhouette -->
-          <div class="w-14 h-14 rounded-full border border-white/30 bg-white/10 flex items-center justify-center mx-auto mb-3 ">
+          <div class="me-top-btn w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-3">
             <UserRound class="w-7 h-7 text-white/70" :stroke-width="2" />
           </div>
 
@@ -64,7 +64,7 @@ const selectedTheme = ref<'International' | 'Asia'>('International')
               :href="loginUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/20 text-white font-medium text-[14px] flex items-center justify-center transition-all shadow-sm max-w-[135px]"
+              class="me-top-btn h-9 rounded-full bg-white/20 hover:bg-white/30 text-white font-medium text-[14px] flex items-center justify-center transition-all max-w-[135px]"
             >
               {{ translate('Login') }}
             </a>
@@ -72,7 +72,7 @@ const selectedTheme = ref<'International' | 'Asia'>('International')
               :href="bybetRedirectRegister"
               target="_blank"
               rel="noopener noreferrer"
-              class="h-9 rounded-full bg-white/20 hover:bg-white/30 border border-white/20 text-white font-medium text-[14px] flex items-center justify-center transition-all shadow-sm  max-w-[135px]"
+              class="me-top-btn h-9 rounded-full bg-white/20 hover:bg-white/30 text-white font-medium text-[14px] flex items-center justify-center transition-all max-w-[135px]"
             >
               {{ translate('Sign Up') }}
             </a>
@@ -87,7 +87,7 @@ const selectedTheme = ref<'International' | 'Asia'>('International')
               :href="bybetRedirectUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="h-8 rounded-full bg-white/20 hover:bg-white/30 border border-white/15 text-white text-[13px] font-normal flex items-center justify-center transition-all shadow-sm"
+              class="me-top-btn h-8 rounded-full bg-white/20 hover:bg-white/30 text-white text-[13px] font-normal flex items-center justify-center transition-all"
             >
               {{ translate('Deposit') }}
             </a>
@@ -95,7 +95,7 @@ const selectedTheme = ref<'International' | 'Asia'>('International')
               :href="bybetRedirectUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="h-8 rounded-full bg-white/20 hover:bg-white/30 border border-white/15 text-white text-[13px] font-normal flex items-center justify-center transition-all shadow-sm"
+              class="me-top-btn h-8 rounded-full bg-white/20 hover:bg-white/30 text-white text-[13px] font-normal flex items-center justify-center transition-all"
             >
               {{ translate('Withdraw') }}
             </a>
@@ -103,7 +103,7 @@ const selectedTheme = ref<'International' | 'Asia'>('International')
               :href="bybetRedirectUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="h-8 rounded-full bg-white/20 hover:bg-white/30 border border-white/15 text-white text-[13px] font-normal flex items-center justify-center transition-all shadow-sm"
+              class="me-top-btn h-8 rounded-full bg-white/20 hover:bg-white/30 text-white text-[13px] font-normal flex items-center justify-center transition-all"
             >
               {{ translate('VIP') }}
             </a>
@@ -111,7 +111,7 @@ const selectedTheme = ref<'International' | 'Asia'>('International')
               :href="bybetRedirectUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="h-8 rounded-full bg-white/20 hover:bg-white/30 border border-white/15 text-white text-[13px] font-normal flex items-center justify-center transition-all shadow-sm"
+              class="me-top-btn h-8 rounded-full bg-white/20 hover:bg-white/30 text-white text-[13px] font-normal flex items-center justify-center transition-all"
             >
               {{ translate('Bonus') }}
             </a>
@@ -968,6 +968,15 @@ const selectedTheme = ref<'International' | 'Asia'>('International')
   background-position: right top;
   background-repeat: no-repeat;
       border-radius: 0 0 50px 50px;
+}
+
+.me-top-btn {
+  border: 0 !important;
+  box-shadow: inset 1px 1px #ffffff4d, inset -1px -1px #ffffff80, inset 2px 2px 4px #00000005, inset -4px -4px 8px #00000005, 0 0 4px #0000000a, 0 4px 8px #00000014 !important;
+}
+
+.me-top-btn:hover {
+  filter: brightness(1.08);
 }
 
 .me-buttons{

@@ -6,6 +6,7 @@ import {
   PROMOTIONS,
   PROMO_CATEGORIES,
   PROMOTION_SECTIONS,
+  promotionHasCategory,
   getPromoBannerUrl,
   getPromotionCountdownText,
   type PromotionItem,
@@ -35,7 +36,9 @@ const allCategoryPromotions = computed(() => {
   if (props.category === 'all') {
     return currencyPromotions.value
   }
-  return filterPromotions(PROMOTION_SECTIONS.find(section => section.category === props.category)?.items || [])
+  const sectionItems = PROMOTION_SECTIONS.find(section => section.category === props.category)?.items
+  const items = sectionItems || PROMOTIONS.filter(item => promotionHasCategory(item, props.category))
+  return filterPromotions(items)
 })
 
 const isAllCategoryViewed = computed(() => {

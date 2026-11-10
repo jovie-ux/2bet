@@ -59,7 +59,7 @@ const { isLoading } = useByBetLoader()
 .roulette-entry {
   position: relative;
   isolation: isolate;
-  display: block;
+  /* display: block; */
   width: var(--roulette-entry-size, var(--header-control-size, 30px));
   height: var(--roulette-entry-size, var(--header-control-size, 30px));
   overflow: hidden;

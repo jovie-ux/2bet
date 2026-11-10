@@ -47,9 +47,10 @@ const backTo = computed(() => path.value.endsWith('/streamer/all')
     place-items: center;
     width: 30px;
     height: 30px;
-    border: 1px solid #ffffff60;
+    border: 0;
     border-radius: 50%;
     background: #ffffff26;
+    box-shadow: inset 1px 1px #ffffff4d, inset -1px -1px #ffffff80, inset 2px 2px 4px #00000005, inset -4px -4px 8px #00000005, 0 0 4px #0000000a, 0 4px 8px #00000014;
   }
 }
 </style>

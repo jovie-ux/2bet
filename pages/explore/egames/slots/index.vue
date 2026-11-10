@@ -449,6 +449,7 @@ const resetFilters = (): void => {
 
 <template>
   <div class="slots-page w-full min-w-0 pb-16">
+    <h1 class="sr-only">{{ translate('Slots') }}</h1>
     <!-- Top Bar: Category Tabs & Chat -->
     <div class="sticky-header sticky-header-seal sticky top-[var(--content-sticky-top)] z-30 -mx-1 px-1 pb-0.5 bg-black rounded-t-3xl">
       <header class="top-nav-bar flex items-center justify-between gap-2 rounded-lg bg-[#171817] p-1 overflow-hidden shadow-sm">
@@ -480,7 +481,7 @@ const resetFilters = (): void => {
       <!-- Provider Filter Bar & Search / Filter Icons -->
       <div v-if="!isSearchOpen" class="provider-filter-bar flex items-center justify-between gap-2 py-1.5 mb-1 shadow-sm bg-black">
         <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 min-w-0 flex-1">
-          <RouletteEntryButton style="--roulette-entry-size: 38px; border: 0" />
+          <RouletteEntryButton style="--roulette-entry-size: 38px; border: 0" class="block sm:hidden" />
           <button
             v-for="prov in SLOT_PROVIDERS"
             :key="prov.key"

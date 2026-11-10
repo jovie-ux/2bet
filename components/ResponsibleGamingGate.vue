@@ -116,10 +116,10 @@ onBeforeUnmount(restorePageScroll)
                   class="responsible-gaming-logo"
                 >
                 <span class="responsible-gaming-divider" aria-hidden="true" />
-                <h2 id="responsible-gaming-title">
+                <div id="responsible-gaming-title" role="heading" aria-level="2">
                   By entering this website,<br>
                   I acknowledge and confirm:
-                </h2>
+                </div>
               </header>
 
               <p id="responsible-gaming-description" class="responsible-gaming-intro">
@@ -352,7 +352,8 @@ onBeforeUnmount(restorePageScroll)
   background: rgb(255 255 255 / 38%);
 }
 
-.responsible-gaming-header h2 {
+.responsible-gaming-header h2,
+.responsible-gaming-header #responsible-gaming-title {
   margin: 0;
   font-size: 14px;
   font-weight: 700;

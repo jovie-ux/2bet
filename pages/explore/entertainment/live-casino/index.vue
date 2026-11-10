@@ -13,8 +13,12 @@ definePageMeta({
     return navigateTo('/entertainment/live-casino/featured', { replace: true })
   },
 })
+
+navigateTo('/entertainment/live-casino/featured', { replace: true, redirectCode: 301 })
 </script>
 
 <template>
-  <div />
+  <div>
+    <h1 class="sr-only">Cassino ao Vivo</h1>
+  </div>
 </template>

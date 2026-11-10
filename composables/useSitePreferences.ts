@@ -436,6 +436,7 @@ const translations: Partial<Record<LocaleCode, Record<string, string>>> = {
     'Next featured bonus': 'Próximo bônus em destaque',
     'Featured bonus slides': 'Slides de bônus em destaque',
     'Most Popular': 'Mais populares',
+    'New Member': 'Novos Membros',
     Others: 'Outros',
     'Winning Line': 'Linhas de pagamento',
     'Start Now': 'Jogar agora',

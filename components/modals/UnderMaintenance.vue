@@ -44,7 +44,7 @@ onBeforeUnmount(() => {
     >
       <div class="maintenance-content">
         <div class="maintenance-symbol" aria-hidden="true">!</div>
-        <h2 id="maintenance-title">{{ translate(title) }}</h2>
+        <div id="maintenance-title" class="maintenance-title" role="heading" aria-level="2">{{ translate(title) }}</div>
         <p id="maintenance-description">
           {{ translate(message) }}
         </p>
@@ -96,6 +96,7 @@ onBeforeUnmount(() => {
   line-height: 1;
 }
 
+.maintenance-title,
 h2 {
   margin: 0;
   font-size: 18px;

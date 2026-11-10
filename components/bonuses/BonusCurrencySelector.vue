@@ -113,7 +113,7 @@ onBeforeUnmount(() => {
         :aria-labelledby="titleId"
       >
         <div class="bonus-currency-dialog__header">
-          <h2 :id="titleId">{{ translate('Currency') }}</h2>
+          <div :id="titleId" class="bonus-currency-dialog__title" role="heading" aria-level="2">{{ translate('Currency') }}</div>
           <button class="bonus-currency-dialog__close" type="button" :aria-label="translate('Close currency selector')" @click="close">
             <X :size="18" aria-hidden="true" />
           </button>
@@ -146,7 +146,8 @@ onBeforeUnmount(() => {
   place-items: center;
   border: 0;
   border-radius: 50%;
-  background: #303a36;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: inset 1px 1px #ffffff4d, inset -1px -1px #ffffff80, inset 2px 2px 4px #00000005, inset -4px -4px 8px #00000005, 0 0 4px #0000000a, 0 4px 8px #00000014;
   cursor: pointer;
 }
 
@@ -195,7 +196,8 @@ onBeforeUnmount(() => {
   justify-content: center;
 }
 
-.bonus-currency-dialog__header h2 {
+.bonus-currency-dialog__header h2,
+.bonus-currency-dialog__title {
   margin: 0;
   color: #fff;
   font-size: 16px;

@@ -148,23 +148,22 @@ const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
   width: var(--header-control-size);
   height: var(--header-control-size);
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.52);
+  border: 0;
   border-radius: 50%;
   color: var(--header-text);
   background: rgba(255, 255, 255, 0.2);
-  box-shadow: none;
+  box-shadow: inset 1px 1px #ffffff4d, inset -1px -1px #ffffff80, inset 2px 2px 4px #00000005, inset -4px -4px 8px #00000005, 0 0 4px #0000000a, 0 4px 8px #00000014;
   transition:
-    border-color 160ms ease,
+    filter 160ms ease,
     background-color 160ms ease;
 }
 
 .header-glass-icon:hover {
-  border-color: rgba(255, 255, 255, 0.72);
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.26);
+  filter: brightness(1.08);
 }
 
 .header-glass-icon--profile {
-  border-width: 1.5px;
   padding: 3px;
 }
 
@@ -175,6 +174,7 @@ const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
   align-items: center;
   justify-content: center;
   padding: 0 10px;
+  border: 0;
   box-shadow: inset 1px 1px #ffffff4d, inset -1px -1px #ffffff80, inset 2px 2px 4px #00000005, inset -4px -4px 8px #00000005, 0 0 4px #0000000a, 0 4px 8px #00000014;
   border-radius: var(--header-button-radius);
   font-size: 11px;
@@ -183,7 +183,6 @@ const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
   line-height: 1;
   background: rgba(255, 255, 255, 0.2);
   transition:
-    border-color 160ms ease,
     filter 160ms ease,
     background-color 160ms ease;
 }
@@ -199,13 +198,12 @@ const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
 
 .header-glass-button--signup {
   min-width: 80px;
-  border-color: rgba(255, 255, 255, 0.54);
   background: rgba(255, 255, 255, 0.2);
 }
 
 .header-glass-button:hover {
-  border-color: rgba(255, 255, 255, 0.68);
-  filter: brightness(1.04);
+  background: rgba(255, 255, 255, 0.26);
+  filter: brightness(1.08);
 }
 
 .menu-button {
@@ -215,10 +213,11 @@ const registerUrl = `${bybetBaseUrl}/registered?p=${bybetRedirectCode}`
   place-items: center;
   margin-right: 0.25rem;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  border: 0;
   border-radius: 50%;
   color: var(--header-text);
   background: rgba(255, 255, 255, 0.2);
+  box-shadow: inset 1px 1px #ffffff4d, inset -1px -1px #ffffff80, inset 2px 2px 4px #00000005, inset -4px -4px 8px #00000005, 0 0 4px #0000000a, 0 4px 8px #00000014;
 }
 
 @media (min-width: 48rem) {

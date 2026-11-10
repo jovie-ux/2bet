@@ -13,9 +13,13 @@ definePageMeta({
     return navigateTo('/egames/jackpot/all', { replace: true })
   },
 })
+
+navigateTo('/egames/jackpot/all', { replace: true, redirectCode: 301 })
 </script>
 
 <template>
-  <div />
+  <div>
+    <h1 class="sr-only">Jackpots</h1>
+  </div>
 </template>
 

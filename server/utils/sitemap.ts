@@ -56,6 +56,7 @@ export function getSitemapEntries(): SitemapEntry[] {
     { path: '/bonuses/sports', changefreq: 'daily', priority: 0.8 },
     { path: '/bonuses/others', changefreq: 'daily', priority: 0.8 },
     { path: '/bonuses/deposit', changefreq: 'weekly', priority: 0.7 },
+    { path: '/bonuses/new-member', changefreq: 'weekly', priority: 0.7 },
     { path: '/bonuses/terms-and-condition', changefreq: 'monthly', priority: 0.5 },
 
     // Game Rules

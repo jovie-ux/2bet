@@ -52,7 +52,7 @@ onBeforeUnmount(() => {
     >
       <div class="reminder-content">
         <div class="reminder-symbol" aria-hidden="true">!</div>
-        <h2 id="reminder-title">{{ title }}</h2>
+        <div id="reminder-title" class="reminder-title" role="heading" aria-level="2">{{ title }}</div>
         <p id="reminder-description">
           {{ message }}
         </p>
@@ -101,6 +101,7 @@ onBeforeUnmount(() => {
   line-height: 1;
 }
 
+.reminder-title,
 h2 {
   margin: 0;
   font-size: 18px;

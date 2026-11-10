@@ -61,7 +61,7 @@ export interface PromotionItem {
   slug: string
   title: string
   description: string
-  category: string | string[]
+  category?: string | string[]
   categories?: string[]
   'most-popular'?: boolean
   mostPopular?: boolean
@@ -230,7 +230,7 @@ export const PROMO_IMAGE_MAP: Record<string, PromoImages> = {
   },
 }
 
-import bonusDetailDatabase from './bonus-details.json'
+import bonusDetailDatabase from './bonus-details.json' with { type: 'json' }
 
 const DEFAULT_BONUS_ICON = '/icons/promotions/megaphone.svg'
 const DEPOSIT_BONUS_ICON = '/icons/promotions/first-deposit.svg'
@@ -276,23 +276,33 @@ export const getPromoHeaderUrl = (img?: PromoImages | string, slug?: string): st
 export const PROMO_CATEGORIES: PromoCategory[] = [
   { key: 'all', label: 'All' },
   { key: 'most-popular', label: 'Most Popular' },
-  { key: 'slots', label: 'Slots' },
-  { key: 'live-casino', label: 'Live Casino' },
+  { key: 'deposit', label: 'Deposit' },
   { key: 'sports', label: 'Sports' },
+  { key: 'live-casino', label: 'Live Casino' },
+  { key: 'slots', label: 'Slots' },
+  { key: 'new-member', label: 'New Member' },
   { key: 'others', label: 'Others' },
 ]
 
+export const getItemCategories = (item: PromotionItem): string[] => {
+  const list: string[] = []
+  if (Array.isArray(item.categories) && item.categories.length > 0) {
+    list.push(...item.categories)
+  } else if (Array.isArray(item.category)) {
+    list.push(...item.category)
+  } else if (typeof item.category === 'string' && item.category) {
+    list.push(item.category)
+  }
+  if ((item.mostPopular || item['most-popular']) && !list.includes('most-popular')) {
+    list.push('most-popular')
+  }
+  return [...new Set(list.map(c => c.trim().toLowerCase()))]
+}
+
 export const promotionHasCategory = (item: PromotionItem, categoryKey: string): boolean => {
   if (categoryKey === 'all') return true
-  if (categoryKey === 'most-popular') {
-    return Boolean(item['most-popular'] || item.mostPopular)
-      || (Array.isArray(item.category) && item.category.includes('most-popular'))
-      || Boolean(item.categories?.includes('most-popular'))
-  }
-  if (Array.isArray(item.category) && item.category.includes(categoryKey)) {
-    return true
-  }
-  return item.category === categoryKey || Boolean(item.categories?.includes(categoryKey))
+  const list = getItemCategories(item)
+  return list.includes(categoryKey.toLowerCase())
 }
 
 const shareAndEarn = bonusDetailDatabase.records['share-and-earn']
@@ -309,8 +319,8 @@ export const PROMOTIONS: PromotionItem[] = [
     description: vipProgram.subtitle,
     seoTitle: vipProgram.seoTitle,
     seoDesc: vipProgram.seoDesc,
-    category: 'live-casino',
-    categories: ['live-casino', 'most-popular'],
+    category: ['most-popular'],
+    categories: ['most-popular'],
     mostPopular: true,
     paymentMethods: [...vipProgram.paymentMethods],
     thumbnailType: 'vip',
@@ -328,8 +338,8 @@ export const PROMOTIONS: PromotionItem[] = [
     description: firstDeposit.subtitle,
     seoTitle: firstDeposit.seoTitle,
     seoDesc: firstDeposit.seoDesc,
-    category: 'slots',
-    categories: ['slots', 'most-popular'],
+    category: ['most-popular', 'deposit', 'new-member', 'others'],
+    categories: ['most-popular', 'deposit', 'new-member', 'others'],
     mostPopular: true,
     paymentMethods: [...firstDeposit.paymentMethods],
     thumbnailType: 'deposit',
@@ -366,7 +376,7 @@ export const PROMOTIONS: PromotionItem[] = [
     description: shareAndEarn.subtitle,
     seoTitle: shareAndEarn.seoTitle,
     seoDesc: shareAndEarn.seoDesc,
-    category: 'others',
+    category: ['others', 'most-popular'],
     categories: ['others', 'most-popular'],
     mostPopular: true,
     paymentMethods: [...shareAndEarn.paymentMethods],
@@ -385,8 +395,8 @@ export const PROMOTIONS: PromotionItem[] = [
     description: vipPrivileges.subtitle,
     seoTitle: vipPrivileges.seoTitle,
     seoDesc: vipPrivileges.seoDesc,
-    category: 'live-casino',
-    categories: ['live-casino', 'most-popular'],
+    category: [ 'most-popular'],
+    categories: ['most-popular', 'others'],
     mostPopular: true,
     paymentMethods: [...vipPrivileges.paymentMethods],
     thumbnailType: 'vip',
@@ -448,56 +458,36 @@ export const FEATURED_PROMOTIONS: FeaturedPromo[] = [
     countdownText: 'Permanent',
     paymentMethods: ['USDT'],
   },
-  ...PROMOTIONS.map(p => ({
-    id: p.id,
-    title: p.title,
-    description: p.description,
-    slug: p.slug,
-    category: Array.isArray(p.category) ? String(p.category[0] || 'SLOTS').toUpperCase() : String(p.category).toUpperCase(),
-    paymentMethods: p.paymentMethods,
-    thumbnailType: p.thumbnailType,
-    accentColor: p.accentColor,
-    bannerImage: p.bannerImage || PROMOTION_PLACEHOLDER_IMAGES.banner,
-    headerImage: p.headerImage,
-    thumbnailImage: p.thumbnailImage,
-    showSaveBadge: p.showSaveBadge,
-    countdownText: p.countdownText,
-    endDate: p.endDate || '',
-  })),
+  ...PROMOTIONS.map(p => {
+    const cats = getItemCategories(p).filter(c => c !== 'most-popular')
+    const primaryCategory = cats[0] || getItemCategories(p)[0] || 'slots'
+    return {
+      id: p.id,
+      title: p.title,
+      description: p.description,
+      slug: p.slug,
+      category: primaryCategory.toUpperCase(),
+      paymentMethods: p.paymentMethods,
+      thumbnailType: p.thumbnailType,
+      accentColor: p.accentColor,
+      bannerImage: p.bannerImage || PROMOTION_PLACEHOLDER_IMAGES.banner,
+      headerImage: p.headerImage,
+      thumbnailImage: p.thumbnailImage,
+      showSaveBadge: p.showSaveBadge,
+      countdownText: p.countdownText,
+      endDate: p.endDate || '',
+    }
+  }),
 ]
 
-export const PROMOTION_SECTIONS: PromoSection[] = [
-  {
-    id: 'most-popular',
-    title: 'Most Popular',
-    category: 'most-popular',
-    items: PROMOTIONS.filter(item => promotionHasCategory(item, 'most-popular')),
-  },
-  {
-    id: 'slots',
-    title: 'Slots',
-    category: 'slots',
-    items: PROMOTIONS.filter(item => promotionHasCategory(item, 'slots')),
-  },
-  {
-    id: 'live-casino',
-    title: 'Live Casino',
-    category: 'live-casino',
-    items: PROMOTIONS.filter(item => promotionHasCategory(item, 'live-casino')),
-  },
-  {
-    id: 'sports',
-    title: 'Sports',
-    category: 'sports',
-    items: PROMOTIONS.filter(item => promotionHasCategory(item, 'sports')),
-  },
-  {
-    id: 'others',
-    title: 'Others',
-    category: 'others',
-    items: PROMOTIONS.filter(item => promotionHasCategory(item, 'others')),
-  },
-]
+export const PROMOTION_SECTIONS: PromoSection[] = PROMO_CATEGORIES
+  .filter(category => category.key !== 'all')
+  .map(category => ({
+    id: category.key,
+    title: category.label,
+    category: category.key,
+    items: PROMOTIONS.filter(item => promotionHasCategory(item, category.key)),
+  }))
 
 type BonusDatabaseRecord = Omit<
   BonusDetail,

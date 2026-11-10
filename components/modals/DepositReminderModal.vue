@@ -53,7 +53,7 @@ onBeforeUnmount(() => {
     >
       <div class="reminder-content">
         <div class="reminder-symbol" aria-hidden="true">!</div>
-        <h2 id="reminder-title">{{ translate(title) }}</h2>
+        <div id="reminder-title" class="reminder-title" role="heading" aria-level="2">{{ translate(title) }}</div>
         <p id="reminder-description">
           <template v-if="message.includes('\n')">
             <span v-for="(line, idx) in message.split('\n')" :key="idx" class="block">
@@ -109,6 +109,7 @@ onBeforeUnmount(() => {
   line-height: 1;
 }
 
+.reminder-title,
 h2 {
   margin: 0;
   font-size: 18px;

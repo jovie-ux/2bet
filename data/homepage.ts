@@ -251,10 +251,10 @@ export const createRailItems = (bybetRedirectUrl: string, redirectCode?: string)
       { label: 'Popular', iconImage: '/icons/sports/popular.webp', to: '/sports/popular', accentColor: '#ff6948' },
       { label: 'Basketball', iconImage: '/icons/sports/basketball.webp', to: '/sports/basketball', accentColor: '#ff8a3d' },
       { label: 'Soccer', iconImage: '/icons/sports/soccer.webp', to: '/sports/soccer', accentColor: '#f4f7f5' },
-      { label: 'Tennis', iconImage: '/icons/sports/tennis.webp', to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/sportEvents/inplay/tennis?p=${redirectCode || 'xjSD'}`, accentColor: '#9cda35', external: true },
-      { label: 'Table Tennis', iconImage: '/icons/sports/table-tennis.webp', to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/sportEvents/incoming/tableTennis?p=${redirectCode || 'xjSD'}`, accentColor: '#9cda35', external: true },
-      { label: 'eSports', iconImage: '/icons/sports/egame.webp', to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/sportEvents/eSportGame?p=${redirectCode || 'xjSD'}`, accentColor: '#9cda35', external: true },
-      { label: 'eSports', iconImage: '/icons/sports/esports.webp', to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/sportEvents/eSportBall?p=${redirectCode || 'xjSD'}`, accentColor: '#9cda35', external: true },
+      { label: 'Tennis', iconImage: '/icons/sports/tennis.webp', to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/login(?:\?.*)?$/, '').replace(/\/+$/, '')}/sportEvents/inplay/tennis?p=${redirectCode || 'xjSD'}`, accentColor: '#9cda35', external: true },
+      { label: 'Table Tennis', iconImage: '/icons/sports/table-tennis.webp', to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/login(?:\?.*)?$/, '').replace(/\/+$/, '')}/sportEvents/incoming/tableTennis?p=${redirectCode || 'xjSD'}`, accentColor: '#9cda35', external: true },
+      { label: 'eSports', iconImage: '/icons/sports/egame.webp', to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/login(?:\?.*)?$/, '').replace(/\/+$/, '')}/sportEvents/eSportGame?p=${redirectCode || 'xjSD'}`, accentColor: '#9cda35', external: true },
+      { label: 'eSports', iconImage: '/icons/sports/esports.webp', to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/login(?:\?.*)?$/, '').replace(/\/+$/, '')}/sportEvents/eSportBall?p=${redirectCode || 'xjSD'}`, accentColor: '#9cda35', external: true },
       // { label: 'Baseball', iconImage: '/icons/sports/baseball.webp', to: '/sports/baseball', accentColor: '#ff6262' },
       { label: 'Live', iconImage: '/icons/sports/live.webp', to: '/sports/live', accentColor: '#48d5a5' },
     ],
@@ -277,8 +277,8 @@ export const createRailItems = (bybetRedirectUrl: string, redirectCode?: string)
     children: [
       { label: 'Slots', iconImage: '/icons/egames/slots.webp', to: '/egames/slots', accentColor: '#f1b33c' },
       // { label: 'Bingo', iconImage: '/icons/egames/bingo.webp', to: '/egames/bingo', accentColor: '#4d9cff' },
-      { label: 'Jackpot', iconImage: '/icons/egames/jackpot.webp', to: '/egames/jackpot', accentColor: '#f4bd3e' },
-      { label: 'History', iconImage: '/icons/egames/history.webp', to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${redirectCode || 'xjSD'}`, accentColor: '#45cdb0', external: true },
+      { label: 'Jackpot', iconImage: '/icons/egames/jackpot.webp', to: '/egames/jackpot/all', accentColor: '#f4bd3e' },
+      { label: 'History', iconImage: '/icons/egames/history.webp', to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/login(?:\?.*)?$/, '').replace(/\/+$/, '')}/login?p=${redirectCode || 'xjSD'}`, accentColor: '#45cdb0', external: true },
       { label: 'Customer Service', iconImage: '/icons/egames/customer-service.webp', to: '/egames/customer-service', accentColor: '#8bd537' },
     ],
   },
@@ -295,10 +295,10 @@ export const createRailItems = (bybetRedirectUrl: string, redirectCode?: string)
     ],
   },
   { label: 'Me', icon: UserRound, sectionId: null, to: '/account/me' },
-  { label: 'Deposit', icon: BadgeDollarSign, sectionId: null, to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${redirectCode || 'xjSD'}`, external: true }, ///explore/account/deposit
-  { label: 'Withdraw', icon: CreditCard, sectionId: null, to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${redirectCode || 'xjSD'}`, external: true }, //explore/account/withdraw
-  { label: 'VIP', icon: Crown, sectionId: null, to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${redirectCode || 'xjSD'}`, external: true }, //explore/account/vip
-  { label: 'History', icon: NotebookTabs, sectionId: null, to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/+$/, '')}/login?p=${redirectCode || 'xjSD'}`, external: true }, // explore/account/history
+  { label: 'Deposit', icon: BadgeDollarSign, sectionId: null, to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/login(?:\?.*)?$/, '').replace(/\/+$/, '')}/login?p=${redirectCode || 'xjSD'}`, external: true }, ///explore/account/deposit
+  { label: 'Withdraw', icon: CreditCard, sectionId: null, to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/login(?:\?.*)?$/, '').replace(/\/+$/, '')}/login?p=${redirectCode || 'xjSD'}`, external: true }, //explore/account/withdraw
+  { label: 'VIP', icon: Crown, sectionId: null, to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/login(?:\?.*)?$/, '').replace(/\/+$/, '')}/login?p=${redirectCode || 'xjSD'}`, external: true }, //explore/account/vip
+  { label: 'History', icon: NotebookTabs, sectionId: null, to: `${(bybetRedirectUrl || 'https://bybet.com').replace(/\/login(?:\?.*)?$/, '').replace(/\/+$/, '')}/login?p=${redirectCode || 'xjSD'}`, external: true }, // explore/account/history
   { label: 'English', icon: Globe, sectionId: null, control: 'language', surface: true },
   { label: 'Auto', icon: Moon, sectionId: null, control: 'theme', surface: true },
 ]
@@ -364,7 +364,7 @@ export const recommendedGames: ReferenceGame[] = [
 
 export const mobileQuickCategories: GameCategory[] = [
   { label: 'Hot Slots', icon: Flame, accentColor: '#ffb02e', to: '/egames/slots' },
-  { label: 'Jackpots', icon: Crown, accentColor: '#f4f7f5', to: '/egames/jackpot' },
+  { label: 'Jackpots', icon: Crown, accentColor: '#f4f7f5', to: '/egames/jackpot/all' },
   { label: 'New Games', icon: BadgePlus, accentColor: '#f4f7f5', to: '/egames/slots' },
   { label: 'Buy Feature', icon: BadgeCent, accentColor: '#f4f7f5', to: '/egames/slots' },
 ]

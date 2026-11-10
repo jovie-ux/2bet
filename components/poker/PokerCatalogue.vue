@@ -118,6 +118,7 @@ watch(() => props.category, () => {
 
 <template>
   <div class="poker-page" :class="{ 'poker-page--popular': isPopular }">
+    <h1 class="sr-only">{{ categoryLabel }}</h1>
     <div class="poker-sticky-header sticky-header-seal">
       <nav class="poker-category-nav" aria-label="Poker game categories">
         <NuxtLink
@@ -136,6 +137,7 @@ watch(() => props.category, () => {
 
       <div class="poker-toolbar bg-black">
         <div class="poker-providers" role="group" :aria-label="translate('Filter by provider')">
+          <RouletteEntryButton style="--roulette-entry-size: 38px; border: 0" class="block sm:hidden" />
           <button
             v-for="provider in availableProviders"
             :key="provider.key"
@@ -172,8 +174,6 @@ watch(() => props.category, () => {
         <button type="button" class="poker-icon-button" :aria-label="translate('Close search')" @click="closeSearch"><X :size="16" /></button>
       </div>
     </div>
-
-    <h1 class="sr-only">{{ categoryLabel }}</h1>
 
     <template v-if="games.length">
       <section

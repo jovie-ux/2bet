@@ -1,12 +1,13 @@
 <script setup lang="ts">
-const { bybetRedirectUrl: bybetBaseUrl, bybetRedirectCode } = useRuntimeConfig().public
-const railItems = createRailItems(`${bybetBaseUrl}/login?p=${bybetRedirectCode}`)
 import { Check, ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import UnderMaintenance from '~/components/modals/UnderMaintenance.vue'
 import DepositReminderModal from '~/components/modals/DepositReminderModal.vue'
 import { createRailItems } from '~/data/homepage'
 import type { RailItem, RailSubItem } from '~/data/homepage'
 import type { LanguageOption, ThemePreference } from '~/composables/useSitePreferences'
+
+const { bybetRedirectUrl, bybetRedirectCode } = useRuntimeConfig().public
+const railItems = createRailItems(bybetRedirectUrl, bybetRedirectCode)
 
 const props = defineProps<{
   open: boolean
@@ -97,6 +98,9 @@ const isSubmenuItemActive = (childItem: RailSubItem): boolean => {
   }
   if (childItem.external || childItem.to.startsWith('http://') || childItem.to.startsWith('https://')) {
     return false
+  }
+  if (childItem.to.startsWith('/egames/jackpot') && (route.path === '/egames/jackpot' || route.path.startsWith('/egames/jackpot/'))) {
+    return true
   }
   return route.path === childItem.to || route.path.startsWith(`${childItem.to}/`)
 }

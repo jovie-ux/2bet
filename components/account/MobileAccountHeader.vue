@@ -40,7 +40,7 @@ onBeforeUnmount(() => {
     <div class="flex items-center gap-2">
       <NuxtLink
         to="/egames/customer-service"
-        class="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/20 text-[#FEDF00] backdrop-blur-md transition-all hover:bg-white/30"
+        class="me-header-btn flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-[#FEDF00] backdrop-blur-md transition-all hover:bg-white/30"
         :aria-label="translate('Customer Service')"
       >
         <Headphones class="h-5 w-5 text-[#FEDF00]" />
@@ -50,23 +50,20 @@ onBeforeUnmount(() => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Account Login"
-        class="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/20 text-white shadow-sm backdrop-blur-md transition-all hover:bg-white/30"
-      >
-        <Bell class="h-4 w-4 text-white" />
-      </a>
-      <button
-        type="button"
-        class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-white/20 text-[#FEDF00] shadow-sm backdrop-blur-md transition-all hover:bg-white/30"
-        :aria-label="translate('Notifications')"
-        @click="showDemoMessage(translate('No new notifications'))"
+        class="me-header-btn flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-all hover:bg-white/30"
       >
         <Bell class="h-5 w-5 text-[#FEDF00]" />
-      </button>
+      </a> 
     </div>
   </header>
 </template>
 
 <style scoped>
+.me-header-btn {
+  border: 0;
+  box-shadow: inset 1px 1px #ffffff4d, inset -1px -1px #ffffff80, inset 2px 2px 4px #00000005, inset -4px -4px 8px #00000005, 0 0 4px #0000000a, 0 4px 8px #00000014;
+}
+
 @media (max-width: 63.99rem) {
   .me-mobile-header {
     position: sticky;
