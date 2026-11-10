@@ -30,8 +30,8 @@ export interface SportsEvent {
   home_team_logo?: string
   away_team_logo?: string
   competition_logo?: string
-  home?: { name?: string; logo?: string; score?: number }
-  away?: { name?: string; logo?: string; score?: number }
+  home?: { name?: string; logo?: string; score?: number; accent?: string }
+  away?: { name?: string; logo?: string; score?: number; accent?: string }
   completed?: boolean
   scores?: { name: string; score: string }[] | null
   bookmakers?: {

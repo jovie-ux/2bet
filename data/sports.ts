@@ -1883,6 +1883,8 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     commence_time: hoursAgo(1.2),
     home_team: 'Milwaukee Bucks',
     away_team: 'Miami Heat',
+    home: { name: 'Milwaukee Bucks', accent: '#00471b' },
+    away: { name: 'Miami Heat', accent: '#98002e' },
     completed: false,
     scores: [
       { name: 'Milwaukee Bucks', score: '84' },
@@ -1911,6 +1913,8 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     commence_time: hoursAgo(0.6),
     home_team: 'Los Angeles Lakers',
     away_team: 'Boston Celtics',
+    home: { name: 'Los Angeles Lakers', accent: '#552583' },
+    away: { name: 'Boston Celtics', accent: '#007a33' },
     completed: false,
     scores: [
       { name: 'Los Angeles Lakers', score: '76' },
@@ -1939,6 +1943,8 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     commence_time: hoursAgo(1.9),
     home_team: 'Golden State Warriors',
     away_team: 'Denver Nuggets',
+    home: { name: 'Golden State Warriors', accent: '#1d428a' },
+    away: { name: 'Denver Nuggets', accent: '#8b2332' },
     completed: false,
     scores: [
       { name: 'Golden State Warriors', score: '104' },
@@ -1967,6 +1973,8 @@ export const SAMPLE_INPLAY_EVENTS: SportsEvent[] = [
     commence_time: hoursAgo(0.8),
     home_team: 'Manchester City',
     away_team: 'Liverpool',
+    home: { name: 'Manchester City', accent: '#6cabdd' },
+    away: { name: 'Liverpool', accent: '#c8102e' },
     completed: false,
     scores: [
       { name: 'Manchester City', score: '2' },

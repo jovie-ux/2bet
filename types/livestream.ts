@@ -7,8 +7,8 @@ export interface LiveStream {
   probability?: { home?: number | null; draw?: number | null; away?: number | null }
   startTime?: string
   status?: string
-  home: { name: string; logo?: string; score?: number }
-  away: { name: string; logo?: string; score?: number }
+  home: { name: string; logo?: string; score?: number; accent?: string }
+  away: { name: string; logo?: string; score?: number; accent?: string }
   homeScore?: number
   awayScore?: number
   scoreAvailable?: boolean

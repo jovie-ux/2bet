@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ArrowRight, Heart, Play } from 'lucide-vue-next'
+import { ArrowRight, ChevronLeft, ChevronRight, Heart, Play } from 'lucide-vue-next'
+import HomepageContentSlider from '~/components/HomepageContentSlider.vue'
 import { SLOTS, newGames as newSlotGames, type SlotGame } from '~/data/slots'
 import type { ReferenceGame } from '~/data/homepage'
 
@@ -56,6 +57,11 @@ const currentCollection = computed<SlotGame[]>(() => {
   return allGames.value
 })
 
+// Desktop mode: show only the first 10 slots in carousel
+const desktopGames = computed<SlotGame[]>(() => {
+  return currentCollection.value.slice(0, 10)
+})
+
 const emptyMessage = computed(() => activeTab.value === 'favorites'
   ? translate('Save games with the heart icon to see your favorites here.')
   : translate('No games are available in this collection yet.'))
@@ -66,7 +72,7 @@ function toggleFavorite(title: string) {
     : [...favorites.value, title]
 }
 
-// Infinite scroll: 3 columns, starts with 30 items, loads 9 more (3 full rows) on reaching end
+// Mobile infinite scroll: 3 columns, starts with 30 items, loads 9 more
 const INITIAL_LIMIT = 30
 const LOAD_CHUNK = 9
 const visibleLimit = ref(INITIAL_LIMIT)
@@ -137,123 +143,271 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section id="slots" class="homepage-slots-section" aria-labelledby="slots-title">
-    <header class="slots-header flex items-center justify-between">
-      <div class="slots-heading flex items-center min-w-0">
-        <h2 id="slots-title" class="flex items-center">
-          <img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" :alt="translate('Top Slots')" width="28" height="28">
-          {{ translate('Top Slots') }}
-        </h2>
-        <p>{{ translate('Handpicked games from leading providers') }}</p>
-      </div>
-      <div class="slots-actions flex items-center">
-        <NuxtLink to="/egames/slots/top" class="slots-view-all inline-flex items-center">
-          {{ translate('View all') }} <ArrowRight :size="16" aria-hidden="true" />
-        </NuxtLink>
-      </div>
-    </header>
+  <div class="homepage-slots-wrapper">
+    <!-- Desktop Carousel Mode (shows only first 10 slots) -->
+    <div class="slots-desktop-carousel">
+      <HomepageContentSlider
+        id="slots"
+        class="homepage-slots-section"
+        :title="translate('Top Slots')"
+        :description="translate('Handpicked games from leading providers')"
+        view-all-to="/egames/slots/top"
+        :view-all-label="translate('View all')"
+        :item-count="desktopGames.length"
+        :visible-cards="6"
+        :items-per-slide="1"
+        :reset-key="activeTab"
+      >
+        <template #header="{ atStart, atEnd, move }">
+          <header class="slots-header flex items-center justify-between">
+            <div class="slots-heading flex items-center min-w-0">
+              <h2 id="slots-title" class="flex items-center">
+                <img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" :alt="translate('Top Slots')" width="28" height="28">
+                {{ translate('Top Slots') }}
+              </h2>
+              <p>{{ translate('Handpicked games from leading providers') }}</p>
+            </div>
+            <div class="slots-actions flex items-center">
+              <NuxtLink to="/egames/slots/top" class="slots-view-all inline-flex items-center">
+                {{ translate('View all') }} <ArrowRight :size="16" aria-hidden="true" />
+              </NuxtLink>
+              <div class="slots-controls flex items-center" :aria-label="translate('Top Slots slider controls')">
+                <button type="button" :disabled="atStart" :aria-label="translate('Previous Top Slots items')" aria-controls="slots-track" @click="move(-1)">
+                  <ChevronLeft :size="17" aria-hidden="true" />
+                </button>
+                <button type="button" :disabled="atEnd" :aria-label="translate('Next Top Slots items')" aria-controls="slots-track" @click="move(1)">
+                  <ChevronRight :size="17" aria-hidden="true" />
+                </button>
+              </div>
+            </div>
+          </header>
+          <div class="slots-toolbar flex items-center justify-between">
+            <div class="slots-tabs flex items-center" role="group" :aria-label="translate('Slot collections')">
+              <button
+                v-for="tab in tabs"
+                :key="tab.key"
+                type="button"
+                :data-collection="tab.key"
+                :aria-pressed="activeTab === tab.key"
+                aria-controls="slots-track"
+                @click="activeTab = tab.key"
+              >
+                {{ translate(tab.label) }}
+              </button>
+            </div>
+            <nav class="slots-provider-pills flex items-center" :aria-label="translate('Browse slots by provider')">
+              <NuxtLink
+                v-for="provider in providers"
+                :key="provider.key"
+                :to="provider.key === 'all' ? '/egames/slots' : { path: '/egames/slots', query: { provider: provider.value } }"
+                :data-provider="provider.key"
+                :class="{ 'is-all': provider.key === 'all' }"
+              >
+                {{ provider.key === 'all' ? translate(provider.label) : provider.label }}
+              </NuxtLink>
+            </nav>
+          </div>
+        </template>
 
-    <div class="slots-toolbar flex items-center justify-between">
-      <div class="slots-tabs flex items-center" role="group" :aria-label="translate('Slot collections')">
-        <button
-          v-for="tab in tabs"
-          :key="tab.key"
-          type="button"
-          :data-collection="tab.key"
-          :aria-pressed="activeTab === tab.key"
-          @click="activeTab = tab.key"
+        <article
+          v-for="game in desktopGames"
+          :key="`desktop-${game.id || game.title}`"
+          class="slots-game"
+          :data-provider="providerName(game.provider)"
         >
-          {{ translate(tab.label) }}
+          <NuxtLink
+            :to="game.href || '/egames/slots/top'"
+            class="slots-game-link"
+            :aria-label="`${translate('Discover')} ${game.title} - ${providerName(game.provider)}`"
+          >
+            <div class="slots-game-art">
+              <img
+                :src="game.image"
+                :alt="game.title"
+                width="300"
+                height="300"
+                loading="lazy"
+                decoding="async"
+              >
+              <span v-if="game.badge || game.title === 'Sweet Bonanza 1000' || game.hotPercent" class="slots-game-hot">
+                {{ game.badge || translate('HOT') }}
+              </span>
+              <span class="slots-game-play" aria-hidden="true">
+                <Play :size="20" fill="currentColor" />
+              </span>
+            </div>
+            <div class="slots-game-caption">
+              <h3>{{ game.title }}</h3>
+              <p>{{ providerName(game.provider) }}</p>
+            </div>
+          </NuxtLink>
+          <button
+            type="button"
+            class="slots-favorite"
+            :class="{ 'is-saved': favorites.includes(game.title) }"
+            :aria-pressed="favorites.includes(game.title)"
+            :aria-label="`${game.title} - ${translate('Favorites')}`"
+            @click="toggleFavorite(game.title)"
+          >
+            <Heart
+              :size="15"
+              :fill="favorites.includes(game.title) ? 'currentColor' : 'none'"
+              aria-hidden="true"
+            />
+          </button>
+        </article>
+
+        <div v-if="!desktopGames.length" class="slots-empty" role="status">
+          {{ emptyMessage }}
+        </div>
+      </HomepageContentSlider>
+    </div>
+
+    <!-- Mobile: 3 Column Grid with Infinite Scroll -->
+    <section id="slots-mobile" class="slots-mobile-grid homepage-slots-section" aria-labelledby="slots-mobile-title">
+      <header class="slots-header flex items-center justify-between">
+        <div class="slots-heading flex items-center min-w-0">
+          <h2 id="slots-mobile-title" class="flex items-center">
+            <img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" :alt="translate('Top Slots')" width="28" height="28">
+            {{ translate('Top Slots') }}
+          </h2>
+          <p>{{ translate('Handpicked games from leading providers') }}</p>
+        </div>
+        <div class="slots-actions flex items-center">
+          <NuxtLink to="/egames/slots/top" class="slots-view-all inline-flex items-center">
+            {{ translate('View all') }} <ArrowRight :size="16" aria-hidden="true" />
+          </NuxtLink>
+        </div>
+      </header>
+
+      <div class="slots-toolbar flex items-center justify-between">
+        <div class="slots-tabs flex items-center" role="group" :aria-label="translate('Slot collections')">
+          <button
+            v-for="tab in tabs"
+            :key="tab.key"
+            type="button"
+            :data-collection="tab.key"
+            :aria-pressed="activeTab === tab.key"
+            @click="activeTab = tab.key"
+          >
+            {{ translate(tab.label) }}
+          </button>
+        </div>
+        <nav class="slots-provider-pills flex items-center" :aria-label="translate('Browse slots by provider')">
+          <NuxtLink
+            v-for="provider in providers"
+            :key="provider.key"
+            :to="provider.key === 'all' ? '/egames/slots' : { path: '/egames/slots', query: { provider: provider.value } }"
+            :data-provider="provider.key"
+            :class="{ 'is-all': provider.key === 'all' }"
+          >
+            {{ provider.key === 'all' ? translate(provider.label) : provider.label }}
+          </NuxtLink>
+        </nav>
+      </div>
+
+      <!-- 3 Column Grid with Square Thumbnails -->
+      <div v-if="displayedGames.length" class="slots-grid">
+        <article
+          v-for="game in displayedGames"
+          :key="`mobile-${game.id || game.title}`"
+          class="slots-game"
+          :data-provider="providerName(game.provider)"
+        >
+          <NuxtLink
+            :to="game.href || '/egames/slots/top'"
+            class="slots-game-link"
+            :aria-label="`${translate('Discover')} ${game.title} - ${providerName(game.provider)}`"
+          >
+            <div class="slots-game-art">
+              <img
+                :src="game.image"
+                :alt="game.title"
+                width="300"
+                height="300"
+                loading="lazy"
+                decoding="async"
+              >
+              <span v-if="game.badge || game.title === 'Sweet Bonanza 1000' || game.hotPercent" class="slots-game-hot">
+                {{ game.badge || translate('HOT') }}
+              </span>
+              <span class="slots-game-play" aria-hidden="true">
+                <Play :size="20" fill="currentColor" />
+              </span>
+            </div>
+            <div class="slots-game-caption">
+              <h3>{{ game.title }}</h3>
+              <p>{{ providerName(game.provider) }}</p>
+            </div>
+          </NuxtLink>
+          <button
+            type="button"
+            class="slots-favorite"
+            :class="{ 'is-saved': favorites.includes(game.title) }"
+            :aria-pressed="favorites.includes(game.title)"
+            :aria-label="`${game.title} - ${translate('Favorites')}`"
+            @click="toggleFavorite(game.title)"
+          >
+            <Heart
+              :size="15"
+              :fill="favorites.includes(game.title) ? 'currentColor' : 'none'"
+              aria-hidden="true"
+            />
+          </button>
+        </article>
+      </div>
+
+      <div v-else class="slots-empty" role="status">
+        {{ emptyMessage }}
+      </div>
+
+      <!-- Mobile Infinite Scroll Sentinel & Load More Indicator -->
+      <div
+        v-if="hasMore"
+        ref="sentinelRef"
+        class="slots-sentinel flex items-center justify-center py-4"
+      >
+        <button
+          type="button"
+          class="slots-load-more-btn inline-flex items-center gap-2"
+          :disabled="isLoadingMore"
+          @click="loadMore"
+        >
+          <span v-if="isLoadingMore" class="slots-spinner" aria-hidden="true" />
+          <span>{{ isLoadingMore ? translate('Loading more games...') : translate('Load more games') }}</span>
         </button>
       </div>
-      <nav class="slots-provider-pills flex items-center" :aria-label="translate('Browse slots by provider')">
-        <NuxtLink
-          v-for="provider in providers"
-          :key="provider.key"
-          :to="provider.key === 'all' ? '/egames/slots' : { path: '/egames/slots', query: { provider: provider.value } }"
-          :data-provider="provider.key"
-          :class="{ 'is-all': provider.key === 'all' }"
-        >
-          {{ provider.key === 'all' ? translate(provider.label) : provider.label }}
-        </NuxtLink>
-      </nav>
-    </div>
-
-    <!-- 3 Column Grid with Square Thumbnails -->
-    <div v-if="displayedGames.length" class="slots-grid">
-      <article
-        v-for="game in displayedGames"
-        :key="game.id || game.title"
-        class="slots-game"
-        :data-provider="providerName(game.provider)"
-      >
-        <NuxtLink
-          :to="game.href || '/egames/slots/top'"
-          class="slots-game-link"
-          :aria-label="`${translate('Discover')} ${game.title} - ${providerName(game.provider)}`"
-        >
-          <div class="slots-game-art">
-            <img
-              :src="game.image"
-              :alt="game.title"
-              width="300"
-              height="300"
-              loading="lazy"
-              decoding="async"
-            >
-            <span v-if="game.badge || game.title === 'Sweet Bonanza 1000' || game.hotPercent" class="slots-game-hot">
-              {{ game.badge || translate('HOT') }}
-            </span>
-            <span class="slots-game-play" aria-hidden="true">
-              <Play :size="20" fill="currentColor" />
-            </span>
-          </div>
-          <div class="slots-game-caption">
-            <h3>{{ game.title }}</h3>
-            <p>{{ providerName(game.provider) }}</p>
-          </div>
-        </NuxtLink>
-        <button
-          type="button"
-          class="slots-favorite"
-          :class="{ 'is-saved': favorites.includes(game.title) }"
-          :aria-pressed="favorites.includes(game.title)"
-          :aria-label="`${game.title} - ${translate('Favorites')}`"
-          @click="toggleFavorite(game.title)"
-        >
-          <Heart
-            :size="15"
-            :fill="favorites.includes(game.title) ? 'currentColor' : 'none'"
-            aria-hidden="true"
-          />
-        </button>
-      </article>
-    </div>
-
-    <div v-else class="slots-empty" role="status">
-      {{ emptyMessage }}
-    </div>
-
-    <!-- Infinite Scroll Sentinel & Load More Indicator -->
-    <div
-      v-if="hasMore"
-      ref="sentinelRef"
-      class="slots-sentinel flex items-center justify-center py-4"
-    >
-      <button
-        type="button"
-        class="slots-load-more-btn inline-flex items-center gap-2"
-        :disabled="isLoadingMore"
-        @click="loadMore"
-      >
-        <span v-if="isLoadingMore" class="slots-spinner" aria-hidden="true" />
-        <span>{{ isLoadingMore ? translate('Loading more games...') : translate('Load more games') }}</span>
-      </button>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <style scoped>
+.homepage-slots-wrapper {
+  width: 100%;
+}
+
+/* Responsive visibility: Desktop Carousel vs Mobile Grid */
+.slots-desktop-carousel {
+  display: block;
+  width: 100%;
+}
+.slots-mobile-grid {
+  display: flex;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .slots-mobile-grid {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .slots-desktop-carousel {
+    display: none !important;
+  }
+}
+
 .homepage-slots-section {
   --slots-muted: #a8b6bc;
   --slots-edge: #ffffff18;
@@ -301,6 +455,28 @@ onBeforeUnmount(() => {
 .slots-view-all:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+.slots-controls {
+  gap: 10px;
+}
+.slots-controls button {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--slots-edge, #ffffff18);
+  border-radius: 5px;
+  color: #fff;
+  background: #00291d;
+  transition: all 160ms ease;
+}
+.slots-controls button:hover:not(:disabled) {
+  border-color: #25d6a480;
+  background: #004532;
+}
+.slots-controls button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 .slots-toolbar {
   min-width: 0;
@@ -378,27 +554,30 @@ onBeforeUnmount(() => {
   outline-offset: -2px;
 }
 
-/* Slots Grid: 3-column on mobile, expanding to 6-column on desktop */
+/* Desktop Carousel track sizing */
+.slots-desktop-carousel :deep(.allgames-game-track) {
+  --allgames-row-gap: 14px;
+  grid-template-columns: none;
+  grid-auto-columns: calc((100% - 5 * var(--allgames-row-gap)) / 6);
+  padding: 0;
+}
+@media (max-width: 1023px) {
+  .slots-desktop-carousel :deep(.allgames-game-track) {
+    grid-auto-columns: calc((100% - 3 * var(--allgames-row-gap)) / 4);
+  }
+}
+.slots-desktop-carousel :deep(.allgames-game-track:has(.slots-empty)) {
+  grid-auto-columns: 100%;
+}
+
+/* Mobile Slots Grid: 3 columns */
 .slots-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 12px;
   width: 100%;
 }
 
-@media (min-width: 768px) {
-  .slots-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 14px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .slots-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 14px;
-  }
-}
 .slots-game {
   position: relative;
   min-width: 0;
@@ -636,6 +815,10 @@ onBeforeUnmount(() => {
 }
 
 @media (pointer: coarse) {
+  .slots-controls button {
+    min-width: 44px;
+    min-height: 44px;
+  }
   .slots-tabs button,
   .slots-provider-pills a {
     min-height: 44px;

@@ -42,6 +42,7 @@ interface HoopsLiveGame {
     names?: { zh?: string; zhHant?: string; en?: string }
     logo?: string
     score?: number
+    accent?: string
   }
   away: {
     id?: string
@@ -49,6 +50,7 @@ interface HoopsLiveGame {
     names?: { zh?: string; zhHant?: string; en?: string }
     logo?: string
     score?: number
+    accent?: string
   }
   homeName?: string
   awayName?: string
@@ -141,8 +143,8 @@ function mapHoopsGameToLiveStream(game: HoopsLiveGame, site: string, origin: str
     clock: game.sport === 'basketball' ? normalizeBasketballClock(game.status) : game.status,
     startTime: game.startsAt || (game.matchTime ? new Date(game.matchTime * 1000).toISOString() : new Date().toISOString()),
     status: 'live',
-    home: { name: homeName, logo: game.home?.logo, score: homeScore },
-    away: { name: awayName, logo: game.away?.logo, score: awayScore },
+    home: { name: homeName, logo: game.home?.logo, score: homeScore, accent: game.home?.accent },
+    away: { name: awayName, logo: game.away?.logo, score: awayScore, accent: game.away?.accent },
     homeScore,
     awayScore,
     scoreAvailable,

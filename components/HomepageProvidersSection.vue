@@ -381,7 +381,7 @@ onBeforeUnmount(() => {
               <span class="status-dot" aria-hidden="true" />
               {{ translate(provider.category) }}
             </span>
-            <span v-if="provider.tag" class="tag-pill">
+            <span v-if="provider.tag" class="tag-pill hidden sm:block">
               {{ translate(provider.tag) }}
             </span>
           </div>
@@ -400,7 +400,7 @@ onBeforeUnmount(() => {
           <!-- Card Glass Footer -->
           <div class="card-glass-footer flex items-center justify-between">
             <span class="provider-title truncate">{{ provider.name }}</span>
-            <span class="games-count-pill display-hidden sm:display-block">{{ provider.gamesCount }}</span>
+            <span class="games-count-pill hidden sm:block">{{ provider.gamesCount }}</span>
           </div>
 
           <!-- Subtle Diagonal Light Reflection -->

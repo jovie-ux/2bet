@@ -43,6 +43,49 @@ function onImageError(index: number) {
   failedImages.value[index] = true
 }
 
+function parseColorToRgb(color?: string | null): [number, number, number] | null {
+  if (!color) return null
+  const trimmed = color.trim()
+  if (trimmed.startsWith('#') || /^[0-9a-fA-F]{3,8}$/.test(trimmed)) {
+    const hex = trimmed.replace('#', '')
+    if (hex.length === 3) {
+      const r = parseInt(hex[0] + hex[0], 16)
+      const g = parseInt(hex[1] + hex[1], 16)
+      const b = parseInt(hex[2] + hex[2], 16)
+      if (!Number.isNaN(r) && !Number.isNaN(g) && !Number.isNaN(b)) return [r, g, b]
+    } else if (hex.length >= 6) {
+      const r = parseInt(hex.slice(0, 2), 16)
+      const g = parseInt(hex.slice(2, 4), 16)
+      const b = parseInt(hex.slice(4, 6), 16)
+      if (!Number.isNaN(r) && !Number.isNaN(g) && !Number.isNaN(b)) return [r, g, b]
+    }
+  }
+  const parts = trimmed.split(/[\s,]+/).map(Number)
+  if (parts.length >= 3 && parts.every(n => !Number.isNaN(n) && n >= 0 && n <= 255)) {
+    return [parts[0]!, parts[1]!, parts[2]!]
+  }
+  return null
+}
+
+function rgbToHueDegrees(r: number, g: number, b: number): number {
+  r /= 255
+  g /= 255
+  b /= 255
+  const max = Math.max(r, g, b)
+  const min = Math.min(r, g, b)
+  if (max === min) return 0
+  let h = 0
+  const d = max - min
+  if (max === r) {
+    h = ((g - b) / d + (g < b ? 6 : 0)) * 60
+  } else if (max === g) {
+    h = ((b - r) / d + 2) * 60
+  } else {
+    h = ((r - g) / d + 4) * 60
+  }
+  return Math.round(h)
+}
+
 // Recolor the two arena halves to match the reference's team lighting.
 const arenaHueShifts: Record<string, string> = {
   'Boston Celtics': '-65deg',
@@ -86,22 +129,35 @@ const teamAccents: Record<string, string> = {
   Barcelona: '165 0 68',
   'Atletico Madrid': '207 34 52',
 }
-const teams = computed(() => [props.fixture.home_team, props.fixture.away_team].map((name, index) => {
-  const accent = teamAccents[name || ''] || '148 163 170'
-  const [red = 0, green = 0, blue = 0] = accent.split(' ').map(Number)
+const teams = computed(() => [
+  { name: props.fixture.home_team, data: props.fixture.home, logo: props.fixture.home_team_logo || props.fixture.home?.logo },
+  { name: props.fixture.away_team, data: props.fixture.away, logo: props.fixture.away_team_logo || props.fixture.away?.logo },
+].map((team, index) => {
+  const name = team.name || ''
+  const apiAccent = team.data?.accent
+  const parsedApiRgb = parseColorToRgb(apiAccent)
+  const fallbackRgbStr = teamAccents[name] || (index === 0 ? '0 131 72' : '220 31 45')
+  const parsedFallbackRgb = parseColorToRgb(fallbackRgbStr) || [148, 163, 170]
+
+  const [red, green, blue] = parsedApiRgb || parsedFallbackRgb
+  const rgbString = `${red} ${green} ${blue}`
   const brightness = (red * 299 + green * 587 + blue * 114) / 1000
-  const apiLogo = index === 0
-    ? (props.fixture.home_team_logo || props.fixture.home?.logo)
-    : (props.fixture.away_team_logo || props.fixture.away?.logo)
-  const image = apiLogo || teamImages[name || '']
+  const image = team.logo || teamImages[name]
+
+  // Calculate arena hue rotation so that the neon arena side matches the team accent hue:
+  const teamHue = rgbToHueDegrees(red, green, blue)
+  // Left arena side has base hue ~210 deg (cyan/blue); right arena side has base hue ~40 deg (orange/red).
+  const baseSideHue = index === 0 ? 210 : 40
+  const computedHueShift = `${(teamHue - baseSideHue + 360) % 360}deg`
+  const arenaHue = (!apiAccent && arenaHueShifts[name]) ? arenaHueShifts[name] : computedHueShift
 
   return {
     name: name || translate('To be confirmed'),
     image,
-    accent,
-    hoverAccent: hoverTeamAccents[name || ''] || accent,
-    arenaHue: arenaHueShifts[name || ''] || `${Math.round((Math.atan2(Math.sqrt(3) * (green - blue), 2 * red - green - blue) * 180 / Math.PI + 360) % 360) - (index === 0 ? 210 : 40)}deg`,
-    ink: brightness > 150 ? '45 55 65' : accent,
+    accent: rgbString,
+    hoverAccent: parsedApiRgb ? rgbString : (hoverTeamAccents[name] || rgbString),
+    arenaHue,
+    ink: brightness > 150 ? '45 55 65' : rgbString,
     initials: name ? name.split(' ').slice(0, 2).map(word => word.charAt(0)).join('') : 'TBC',
   }
 }))
@@ -248,53 +304,19 @@ const isBasketball = computed(() => {
 .sports-match-status--live > span { background: #00ea76; box-shadow: 0 0 6px #00ea76; }
 .sports-match-arena { position: relative; isolation: isolate; height: clamp(156px,52cqw,190px); overflow: hidden; background: #020909; }
 .sports-arena-side { position: absolute; z-index: -1; inset: 0; background: url('/images/sports/match-arena-neon-v2.webp') center / 100% 100% no-repeat; pointer-events: none; }
-.sports-arena-side--home { clip-path: inset(0 50% 0 0); filter: hue-rotate(var(--home-arena-hue)) saturate(1.05) brightness(.74); }
-.sports-arena-side--away { clip-path: inset(0 0 0 50%); filter: hue-rotate(var(--away-arena-hue)) saturate(1.05) brightness(.74); }
-.sports-match-arena::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg,transparent 45%,#0000002b 70%,#00100c5c); pointer-events: none; }
-
-/* Basketball card styling: light red arena background and warm ambient lighting */
-.sports-match-card--basketball,
-.sports-match-card[data-sport='basketball'] {
-  background: #140708;
-  border-color: rgba(255, 120, 120, 0.22);
-}
-.sports-match-card--basketball:is(:hover, :focus-visible),
-.sports-match-card[data-sport='basketball']:is(:hover, :focus-visible) {
-  border-color: rgba(255, 120, 120, 0.48);
-}
-.sports-match-card--basketball .sports-match-heading,
-.sports-match-card[data-sport='basketball'] .sports-match-heading {
-  background: linear-gradient(180deg, #2b1315, #180809);
-  border-bottom-color: rgba(255, 120, 120, 0.16);
-}
-.sports-match-card--basketball .sports-match-footer,
-.sports-match-card[data-sport='basketball'] .sports-match-footer {
-  background: #140708;
-  border-top-color: rgba(255, 120, 120, 0.14);
-}
-.sports-match-card--basketball .sports-match-arena,
-.sports-match-card[data-sport='basketball'] .sports-match-arena {
-  background: radial-gradient(ellipse at 50% 25%, rgba(255, 120, 120, 0.45) 0%, rgba(239, 68, 68, 0.26) 45%, rgba(120, 15, 20, 0.18) 75%, #150506 100%), #110304;
-}
-.sports-match-card--basketball .sports-arena-side,
-.sports-match-card[data-sport='basketball'] .sports-arena-side {
-  opacity: 0.88;
-  filter: hue-rotate(180deg) saturate(1.4) brightness(0.92);
-}
-.sports-match-card--basketball .sports-match-arena::before,
-.sports-match-card[data-sport='basketball'] .sports-match-arena::before {
+.sports-arena-side--home { clip-path: inset(0 50% 0 0); filter: hue-rotate(var(--home-arena-hue)) saturate(1.3) brightness(.82); }
+.sports-arena-side--away { clip-path: inset(0 0 0 50%); filter: hue-rotate(var(--away-arena-hue)) saturate(1.3) brightness(.82); }
+.sports-match-arena::before {
   content: '';
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 20%, rgba(255, 130, 130, 0.38) 0%, rgba(239, 68, 68, 0.2) 40%, rgba(185, 28, 28, 0.1) 70%, transparent 100%),
-              linear-gradient(180deg, rgba(255, 110, 110, 0.16) 0%, transparent 45%, rgba(220, 38, 38, 0.22) 100%);
+  background:
+    radial-gradient(ellipse at 25% 40%, rgba(var(--home-hover-color), 0.38) 0%, transparent 68%),
+    radial-gradient(ellipse at 75% 40%, rgba(var(--away-hover-color), 0.38) 0%, transparent 68%);
   pointer-events: none;
 }
-.sports-match-card--basketball .sports-match-arena::after,
-.sports-match-card[data-sport='basketball'] .sports-match-arena::after {
-  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.3) 65%, rgba(65, 12, 16, 0.7) 100%);
-}
+.sports-match-arena::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg,transparent 45%,#0000002b 70%,#00100c5c); pointer-events: none; }
 .sports-hover-panel {
   position: absolute;
   z-index: -1;
@@ -347,22 +369,6 @@ const isBasketball = computed(() => {
 }
 .sports-hover-panel--away::after {
   clip-path: polygon(33.333333% 0, 36.833333% 0, 3.5% 100%, 0 100%);
-}
-
-/* Basketball-specific closing door accents: fiery warm neon trim */
-.sports-match-card--basketball .sports-hover-panel--home::after,
-.sports-match-card--basketball .sports-hover-panel--away::after,
-.sports-match-card[data-sport='basketball'] .sports-hover-panel--home::after,
-.sports-match-card[data-sport='basketball'] .sports-hover-panel--away::after {
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #ff7875 25%,
-    #fff1f0 50%,
-    #ff4d4f 75%,
-    #ffa39e 100%
-  );
-  filter: drop-shadow(0 0 8px rgba(255, 80, 80, 0.9)) drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));
 }
 .sports-match-teams { grid-template-columns: minmax(0,1fr) 34% minmax(0,1fr); align-items: start; gap: 0; height: 100%; padding: 32px 8px 10px; }
 .sports-team { min-width: 0; gap: 9px; text-align: center; }
