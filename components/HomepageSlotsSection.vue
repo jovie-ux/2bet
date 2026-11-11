@@ -72,74 +72,8 @@ function toggleFavorite(title: string) {
     : [...favorites.value, title]
 }
 
-// Mobile infinite scroll: 3 columns, starts with 30 items, loads 9 more
-const INITIAL_LIMIT = 30
-const LOAD_CHUNK = 9
-const visibleLimit = ref(INITIAL_LIMIT)
-const isLoadingMore = ref(false)
-const sentinelRef = ref<HTMLElement | null>(null)
-
-const displayedGames = computed(() => {
-  return currentCollection.value.slice(0, visibleLimit.value)
-})
-
-const hasMore = computed(() => {
-  return visibleLimit.value < currentCollection.value.length
-})
-
-function loadMore() {
-  if (!hasMore.value || isLoadingMore.value) return
-  isLoadingMore.value = true
-  visibleLimit.value = Math.min(visibleLimit.value + LOAD_CHUNK, currentCollection.value.length)
-  nextTick(() => {
-    isLoadingMore.value = false
-  })
-}
-
-let observer: IntersectionObserver | null = null
-
-function setupObserver() {
-  if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return
-  if (observer) {
-    observer.disconnect()
-    observer = null
-  }
-  if (!sentinelRef.value) return
-
-  observer = new IntersectionObserver((entries) => {
-    const [entry] = entries
-    if (entry?.isIntersecting) {
-      loadMore()
-    }
-  }, {
-    rootMargin: '250px 0px',
-    threshold: 0,
-  })
-
-  observer.observe(sentinelRef.value)
-}
-
-watch(activeTab, () => {
-  visibleLimit.value = INITIAL_LIMIT
-  nextTick(() => {
-    setupObserver()
-  })
-})
-
-watch(sentinelRef, (el) => {
-  if (el) {
-    setupObserver()
-  }
-})
-
-onMounted(() => {
-  setupObserver()
-})
-
-onBeforeUnmount(() => {
-  observer?.disconnect()
-  observer = null
-})
+const MOBILE_GAME_LIMIT = 24
+const displayedGames = computed(() => currentCollection.value.slice(0, MOBILE_GAME_LIMIT))
 </script>
 
 <template>
@@ -263,7 +197,7 @@ onBeforeUnmount(() => {
       </HomepageContentSlider>
     </div>
 
-    <!-- Mobile: 3 Column Grid with Infinite Scroll -->
+    <!-- Mobile: show up to 24 games, followed by the full catalogue link. -->
     <section id="slots-mobile" class="slots-mobile-grid homepage-slots-section" aria-labelledby="slots-mobile-title">
       <header class="slots-header flex items-center justify-between">
         <div class="slots-heading flex items-center min-w-0">
@@ -272,11 +206,6 @@ onBeforeUnmount(() => {
             {{ translate('Top Slots') }}
           </h2>
           <p>{{ translate('Handpicked games from leading providers') }}</p>
-        </div>
-        <div class="slots-actions flex items-center">
-          <NuxtLink to="/egames/slots/top" class="slots-view-all inline-flex items-center">
-            {{ translate('View all') }} <ArrowRight :size="16" aria-hidden="true" />
-          </NuxtLink>
         </div>
       </header>
 
@@ -288,26 +217,16 @@ onBeforeUnmount(() => {
             type="button"
             :data-collection="tab.key"
             :aria-pressed="activeTab === tab.key"
+            aria-controls="slots-mobile-games"
             @click="activeTab = tab.key"
           >
             {{ translate(tab.label) }}
           </button>
         </div>
-        <nav class="slots-provider-pills flex items-center" :aria-label="translate('Browse slots by provider')">
-          <NuxtLink
-            v-for="provider in providers"
-            :key="provider.key"
-            :to="provider.key === 'all' ? '/egames/slots' : { path: '/egames/slots', query: { provider: provider.value } }"
-            :data-provider="provider.key"
-            :class="{ 'is-all': provider.key === 'all' }"
-          >
-            {{ provider.key === 'all' ? translate(provider.label) : provider.label }}
-          </NuxtLink>
-        </nav>
       </div>
 
       <!-- 3 Column Grid with Square Thumbnails -->
-      <div v-if="displayedGames.length" class="slots-grid">
+      <div v-if="displayedGames.length" id="slots-mobile-games" class="slots-grid">
         <article
           v-for="game in displayedGames"
           :key="`mobile-${game.id || game.title}`"
@@ -337,7 +256,6 @@ onBeforeUnmount(() => {
             </div>
             <div class="slots-game-caption">
               <h3>{{ game.title }}</h3>
-              <p>{{ providerName(game.provider) }}</p>
             </div>
           </NuxtLink>
           <button
@@ -361,22 +279,9 @@ onBeforeUnmount(() => {
         {{ emptyMessage }}
       </div>
 
-      <!-- Mobile Infinite Scroll Sentinel & Load More Indicator -->
-      <div
-        v-if="hasMore"
-        ref="sentinelRef"
-        class="slots-sentinel flex items-center justify-center py-4"
-      >
-        <button
-          type="button"
-          class="slots-load-more-btn inline-flex items-center gap-2"
-          :disabled="isLoadingMore"
-          @click="loadMore"
-        >
-          <span v-if="isLoadingMore" class="slots-spinner" aria-hidden="true" />
-          <span>{{ isLoadingMore ? translate('Loading more games...') : translate('Load more games') }}</span>
-        </button>
-      </div>
+      <NuxtLink to="/egames/slots" class="slots-all-games flex w-full items-center justify-center">
+        {{ translate('All Games') }}
+      </NuxtLink>
     </section>
   </div>
 </template>
@@ -395,6 +300,30 @@ onBeforeUnmount(() => {
   display: flex;
   width: 100%;
 }
+.slots-mobile-grid.homepage-slots-section {
+  --slots-muted: var(--secondary);
+  --slots-edge: var(--border);
+  color: var(--text);
+}
+.slots-mobile-grid .slots-tabs button:is([aria-pressed='true'], :hover) {
+  color: var(--text);
+}
+.slots-mobile-grid .slots-game {
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--surface);
+}
+.slots-mobile-grid .slots-game-caption {
+  padding: 6px 4px;
+}
+.slots-mobile-grid .slots-game-caption h3 {
+  display: block;
+  overflow: hidden;
+  color: var(--text);
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 @media (min-width: 768px) {
   .slots-mobile-grid {
@@ -403,6 +332,9 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 767px) {
+  .slots-mobile-grid {
+    margin-top: 10px;
+  }
   .slots-desktop-carousel {
     display: none !important;
   }
@@ -691,43 +623,21 @@ onBeforeUnmount(() => {
   text-align: center;
 }
 
-/* Infinite Scroll Sentinel & Load More */
-.slots-sentinel {
-  min-height: 48px;
-  width: 100%;
-}
-.slots-load-more-btn {
-  min-height: 38px;
-  padding: 8px 22px;
-  border: 1px solid #ffffff26;
-  border-radius: 20px;
-  color: #e8eeeb;
-  background: #14241c;
-  font-size: 13px;
-  font-weight: 600;
+.slots-all-games {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid var(--brand);
+  border-radius: 8px;
+  color: #fff;
+  background: var(--brand);
+  font-size: var(--homepage-mobile-control-font-size,12px);
+  font-weight: 400;
   transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
-  cursor: pointer;
 }
-.slots-load-more-btn:hover:not(:disabled) {
-  border-color: #00ea7655;
-  background: #1a3327;
-  color: #00ea76;
-}
-.slots-load-more-btn:disabled {
-  opacity: 0.7;
-  cursor: default;
-}
-.slots-spinner {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #00ea76;
-  border-radius: 50%;
-  animation: slots-spin 0.7s linear infinite;
-}
-@keyframes slots-spin {
-  to { transform: rotate(360deg); }
+.slots-all-games:is(:hover, :focus-visible) {
+  border-color: var(--brand-hover);
+  background: var(--brand-hover);
+  color: #fff;
 }
 
 @media (max-width: 1023px) {
@@ -833,7 +743,8 @@ onBeforeUnmount(() => {
 @media (prefers-reduced-motion: reduce) {
   .slots-game-art > img,
   .slots-game-play,
-  .slots-favorite {
+  .slots-favorite,
+  .slots-all-games {
     transition: none;
   }
 }

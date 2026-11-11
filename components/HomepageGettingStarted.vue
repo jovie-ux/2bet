@@ -141,5 +141,14 @@ function showAllFaqs() {
   .getting-started-icon { flex-basis: 64px; width: 64px; height: 80px; }
   .getting-started-explore { width: 100%; }
 }
+@media (max-width: 767px) {
+  .getting-started-card { min-height: 116px; gap: 12px; }
+  .getting-started-icon { flex-basis: 64px; width: 64px; height: 72px; }
+  .getting-started-card-copy > strong { font-size: 18px; }
+  .help-eyebrow,.getting-started-number { font-size: 10px; }
+  .getting-started-card-copy > p { font-size: 13px; }
+  .getting-started-all-faqs { font-size: var(--homepage-mobile-control-font-size,12px); }
+  .getting-started-faq-list summary { min-height: 48px; font-size: 13px; }
+}
 @media (prefers-reduced-motion: reduce) { .homepage-getting-started * { transition: none !important; } .homepage-getting-started :is(a:hover,a:focus-visible) :is(img,svg) { transform: none; } }
 </style>

@@ -27,7 +27,7 @@ function categoryIcon(key: string) {
 <template>
   <HomepageContentSlider
     id="live-casino"
-    class="homepage-live-casino-section"
+    class="homepage-live-casino-section live-casino-desktop"
     :title="translate('Live Casino')"
     :description="translate('Real dealers. Real games. Real excitement.')"
     view-all-to="/entertainment/live-casino"
@@ -76,9 +76,38 @@ function categoryIcon(key: string) {
       </div>
     </NuxtLink>
   </HomepageContentSlider>
+
+  <section id="live-casino-mobile" class="live-casino-mobile allgames-section" aria-labelledby="live-casino-mobile-title">
+    <header class="live-mobile-header">
+      <h2 id="live-casino-mobile-title" class="flex items-center">
+        <img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" :alt="translate('Live Casino')" width="28" height="28" loading="lazy" decoding="async">
+        {{ translate('Live Casino') }}
+      </h2>
+      <p>{{ translate('Real dealers. Real games. Real excitement.') }}</p>
+    </header>
+    <div class="live-mobile-grid grid grid-cols-3">
+      <NuxtLink
+        v-for="game in categories.slice(0, 24)"
+        :key="game.key"
+        :to="`/entertainment/live-casino/${game.category}`"
+        class="live-mobile-card"
+        :aria-label="translate(game.title)"
+        :title="translate(game.title)"
+      >
+        <div class="live-mobile-art">
+          <img :src="game.image" :alt="translate(game.title)" width="300" height="300" loading="lazy" decoding="async">
+        </div>
+        <h3>{{ translate(game.title) }}</h3>
+      </NuxtLink>
+    </div>
+    <NuxtLink to="/entertainment/live-casino" class="live-all-games flex w-full items-center justify-center">
+      {{ translate('All Games') }}
+    </NuxtLink>
+  </section>
 </template>
 
 <style scoped>
+.live-casino-mobile { display: none; }
 .homepage-live-casino-section { display: grid; grid-template-columns: 188px minmax(0,1fr); gap: 14px 20px; }
 .live-section-header { grid-column: 1 / -1; grid-row: 1; min-height: 48px; gap: 20px; padding-bottom: 16px; border-bottom: 1px solid #ffffff18; }
 .live-heading { gap: 22px; }
@@ -141,6 +170,28 @@ function categoryIcon(key: string) {
   .live-dealer-caption h3 { font-size: 16px; }
   .live-dealer-caption p { font-size: 12px; }
 }
+@media (max-width:767px) {
+  .live-casino-desktop { display: none; }
+  .live-casino-mobile { display: flex; flex-direction: column; gap: 16px; color: var(--text); }
+  .live-mobile-header { padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .live-mobile-header h2 { gap: 12px; font-size: var(--allgames-heading-size); font-weight: var(--homepage-display-weight); line-height: 1.2; }
+  .live-mobile-header p { max-width: 210px; margin-top: 6px; color: var(--secondary); font-size: 13px; line-height: 1.4; }
+  .live-mobile-grid { gap: 12px; }
+  .live-mobile-card { min-width: 0; overflow: hidden; border-radius: 10px; background: var(--surface); }
+  .live-mobile-art { overflow: hidden; aspect-ratio: 1; border-radius: 8px; background: #10231a; }
+  .live-mobile-art img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
+  .live-mobile-card h3 { overflow: hidden; padding: 6px 4px; color: var(--text); font-size: 13px; font-weight: 500; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+  .live-all-games { min-height: 44px; padding: 8px 16px; border: 1px solid var(--brand); border-radius: 8px; color: #fff; background: var(--brand); font-size: var(--homepage-mobile-control-font-size,12px); font-weight: 400; transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease; }
+  .live-all-games:is(:hover,:focus-visible) { border-color: var(--brand-hover); color: #fff; background: var(--brand-hover); }
+}
+@media (max-width:700px) {
+  .live-mobile-grid { gap: 10px; }
+  .live-mobile-card h3 { font-size: 12px; }
+}
+@media (max-width:480px) {
+  .live-mobile-grid { gap: 8px; }
+  .live-mobile-card h3 { font-size: 11px; }
+}
 @media (pointer:coarse) { .live-carousel-controls button { min-width: 44px; min-height: 44px; } }
-@media (prefers-reduced-motion:reduce) { .live-dealer-card,.live-dealer-art>img,.live-dealer-arrow,.live-table-links>a { transition: none; } }
+@media (prefers-reduced-motion:reduce) { .live-dealer-card,.live-dealer-art>img,.live-dealer-arrow,.live-table-links>a,.live-all-games { transition: none; } }
 </style>

@@ -739,6 +739,14 @@ html[data-theme='light']:not(#_) .provider-logo-img {
 }
 
 /* Responsive Scaling */
+@media (max-width: 767px) {
+  .header-titles { min-width: 0; width: 100%; }
+  .header-titles > div:last-child { flex: 1; min-width: 0; }
+  .icon-orb { flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; }
+  .icon-orb svg { width: 16px; height: 16px; }
+  .section-title { font-size: 18px; }
+  .providers-glass-header .section-subtitle { font-size: 12px; }
+}
 @media (max-width: 639px) {
   .providers-glass-section {
     padding: 14px 12px 16px;
