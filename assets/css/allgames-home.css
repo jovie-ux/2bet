@@ -176,9 +176,9 @@
   .allgames-main { font-size: 16px; }
   .homepage-promotions-section > header > .allgames-view-all { max-width: 145px; font-size: 14px; text-align: right; }
   .homepage-promotions-section .allgames-game-track { --allgames-row-gap: 12px; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc((100% - .15 * var(--allgames-row-gap)) / 1.15); gap: var(--allgames-row-gap); overflow-x: auto; overflow-y: hidden; }
-  .homepage-promotions-section .allgames-promo { height: 290px; }
-  .homepage-promotions-section .allgames-promo > div { max-width: 78%; padding: 22px 20px; }
-  .homepage-promotions-section .allgames-promo h3 { max-width: 100%; font-size: 22px; }
+  .homepage-promotions-section .allgames-promo { height: 240px; }
+  .homepage-promotions-section .allgames-promo > div { max-width: 78%; padding: 16px; }
+  .homepage-promotions-section .allgames-promo h3 { max-width: 100%; font-size: 20px; }
   .homepage-promotions-section .allgames-promo::before {
     background:
       linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0.95) 45%, rgba(0, 0, 0, 0.82) 65%, rgba(0, 0, 0, 0.35) 85%, transparent 100%),
@@ -438,8 +438,6 @@
   .allgames-hero-card.is-active::before { background: linear-gradient(135deg,#c2fff4,#18d6aa 35%,#047f63 70%,#84ffe1); }
   .allgames-main :is(.allgames-hero-card,.allgames-game-card,.allgames-promo,.allgames-category-link):hover,.allgames-game-card:hover img,.allgames-promo:is(:hover,:focus-visible)>img,.allgames-category-link:is(:hover,:focus-visible) .allgames-category-arrow,.allgames-category-link:hover .allgames-category-art img { transform: none; }
 }
-<<<<<<< Updated upstream
-=======
 @media (max-width: 767px) {
   .allgames-main { --allgames-heading-size: 20px; --homepage-mobile-control-font-size: 12px; --homepage-mobile-control-icon-size: 16px; }
   .allgames-main .homepage-primary-action { min-height: 44px; padding: 12px 16px; gap: 10px; font-size: var(--homepage-mobile-control-font-size); }
@@ -453,4 +451,3 @@
   .homepage-promotions-section .allgames-promo .allgames-text-link { font-size: var(--homepage-mobile-control-font-size); }
   .allgames-main .allgames-service-strip > a { min-height: 44px; font-size: var(--homepage-mobile-control-font-size); }
 }
->>>>>>> Stashed changes

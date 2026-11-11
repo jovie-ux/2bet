@@ -9,6 +9,11 @@ npm install
 npm run dev
 ```
 
+The dev launcher gives Node and the Nitro SSR worker a 6 GB heap limit to avoid
+out-of-memory failures during development. An existing heap limit in
+`NODE_OPTIONS` takes precedence. Pass Nuxt options through as usual, for example
+`npm run dev -- --port 3001`.
+
 Type-check and create a production build:
 
 ```bash
