@@ -908,6 +908,11 @@ onBeforeUnmount(() => {
   }
 }
 
+@media (max-width: 767px) {
+  .jdb-cta-btn { min-height: 44px; padding: 8px 16px; font-size: var(--homepage-mobile-control-font-size,12px); }
+  .winner-pause-btn { width: 44px; height: 44px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .jdb-mascot-img {
     animation: none;

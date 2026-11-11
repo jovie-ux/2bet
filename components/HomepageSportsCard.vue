@@ -413,14 +413,25 @@ const isBasketball = computed(() => {
   .sports-preview { gap: 5px; font-size: 10px; }
   .sports-match-category { font-size: 9px; }
 }
+@media (max-width: 767px) {
+  .sports-preview { font-size: var(--homepage-mobile-control-font-size,12px); }
+}
 @media (max-width: 600px) {
+  .sports-match-heading { min-height: 32px; padding: 3px 10px; }
+  .sports-league img { height: 24px; }
   .sports-league-copy { font-size: 12px; }
   .sports-match-status { font-size: 11px; }
-  .sports-team strong { font-size: 13px; }
+  .sports-match-arena { height: 96px; }
+  .sports-match-teams { padding: 8px 8px 6px; }
+  .sports-team { gap: 6px; }
+  .sports-team-badge { width: 44px; height: 44px; }
+  .sports-team-initials { font-size: 17px; }
+  .sports-team strong { font-size: 12px; }
+  .sports-center-watermark { top: calc(50% + 16px); width: 36px; height: 36px; }
   .sports-versus { font-size: 12px; }
   .sports-kickoff > span { font-size: 11px; }
+  .sports-match-footer { min-height: 54px; padding: 7px 10px; }
   .sports-match-category { font-size: 12px; }
-  .sports-preview { font-size: 14px; }
 }
 @media (pointer: coarse) { .sports-preview { min-height: 40px; } }
 .sports-match-card:focus-visible { --sports-hover-opacity: 1; --sports-hover-logo-scale: 1.03; }
