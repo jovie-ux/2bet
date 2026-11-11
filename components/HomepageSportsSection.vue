@@ -165,6 +165,7 @@ const viewAllTarget = computed(() => {
 @media (max-width: 850px) {
   .homepage-sports-section { grid-template-columns: minmax(0,1fr); }
   .sports-header { grid-row: 1; }
+<<<<<<< Updated upstream
   .sports-browse { grid-column: 1; grid-row: 2; padding: 0 0 4px; border: 0; border-radius: 0; background: transparent; }
   .sports-browse-label,.sports-browse-league { display: none; }
   .sports-filters { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
@@ -174,6 +175,26 @@ const viewAllTarget = computed(() => {
   .sports-toolbar { grid-column: 1; grid-row: 3; }
   .homepage-sports-section :deep(.allgames-game-track) { grid-column: 1; grid-row: 4; }
   .sports-slider-footer { grid-column: 1; grid-row: 5; }
+=======
+  .sports-browse { grid-template-columns: minmax(0,1fr); }
+  .sports-browse-league { display: none; }
+  .sports-filter-value { gap: 10px; padding-inline: 14px; }
+}
+@media (max-width: 767px) {
+  .sports-header { display: grid; grid-template-columns: minmax(0,1fr); align-items: center; gap: 8px; margin-bottom: 4px; padding-bottom: 16px; }
+  .sports-heading { display: contents; }
+  .sports-heading h2 { grid-column: 1; grid-row: 1; min-width: 0; gap: 8px; font-size: var(--allgames-heading-size); }
+  .sports-heading h2 img { width: 24px; height: 24px; }
+  .sports-heading p { grid-column: 1 / -1; grid-row: 2; min-width: 0; padding: 0; border: 0; font-size: 13px; line-height: 1.6; text-wrap: pretty; }
+  .homepage-sports-section .sports-explore { display: none; }
+  .sports-slider-footer { display: flex; flex-direction: column; gap: 12px; }
+  .sports-explore-mobile { display: flex; }
+}
+@media (max-width: 359px) {
+  .sports-header { gap: 8px; }
+  .sports-heading h2 { gap: 6px; }
+  .sports-filter-option { gap: 8px; }
+>>>>>>> Stashed changes
 }
 @media (max-width: 600px) {
   .sports-header { align-items: flex-start; gap: 10px; padding-bottom: 14px; }

@@ -438,3 +438,19 @@
   .allgames-hero-card.is-active::before { background: linear-gradient(135deg,#c2fff4,#18d6aa 35%,#047f63 70%,#84ffe1); }
   .allgames-main :is(.allgames-hero-card,.allgames-game-card,.allgames-promo,.allgames-category-link):hover,.allgames-game-card:hover img,.allgames-promo:is(:hover,:focus-visible)>img,.allgames-category-link:is(:hover,:focus-visible) .allgames-category-arrow,.allgames-category-link:hover .allgames-category-art img { transform: none; }
 }
+<<<<<<< Updated upstream
+=======
+@media (max-width: 767px) {
+  .allgames-main { --allgames-heading-size: 20px; --homepage-mobile-control-font-size: 12px; --homepage-mobile-control-icon-size: 16px; }
+  .allgames-main .homepage-primary-action { min-height: 44px; padding: 12px 16px; gap: 10px; font-size: var(--homepage-mobile-control-font-size); }
+  .allgames-main :is(a,button,summary) svg { flex-shrink: 0; max-width: var(--homepage-mobile-control-icon-size); max-height: var(--homepage-mobile-control-icon-size); }
+  .allgames-main .allgames-heading-symbol { flex-shrink: 0; width: 20px; height: 20px; }
+  .homepage-promotions-section #promotions-title { gap: 8px; font-size: var(--allgames-heading-size); }
+  .homepage-promotions-section #promotions-title > svg { width: 20px; height: 20px; }
+  .homepage-promotions-section .allgames-heading-copy p { margin-left: 28px; font-size: 12px; }
+  .homepage-promotions-section > header > .allgames-view-all { min-height: 44px; font-size: var(--homepage-mobile-control-font-size); }
+  .homepage-promotions-section .allgames-promo h3 { font-size: 18px; }
+  .homepage-promotions-section .allgames-promo .allgames-text-link { font-size: var(--homepage-mobile-control-font-size); }
+  .allgames-main .allgames-service-strip > a { min-height: 44px; font-size: var(--homepage-mobile-control-font-size); }
+}
+>>>>>>> Stashed changes

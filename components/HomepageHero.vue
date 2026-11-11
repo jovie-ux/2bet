@@ -340,6 +340,7 @@ onBeforeUnmount(() => {
   .homepage-hero__preview { width: auto; right: 2%; top: 38%; }
   .homepage-hero__footer { bottom: 4%; }
 }
+<<<<<<< Updated upstream
 @media (max-width: 700px) {
   .homepage-hero { min-height: 560px; aspect-ratio: auto; border-radius: 8px; }
   .homepage-hero__photo { object-position: 88% top; transform-origin: 88% 20%; }
@@ -357,6 +358,26 @@ onBeforeUnmount(() => {
   .homepage-hero__arrows { width: 40px; }
   .homepage-hero__thumbnail span { padding: 12px 6px 5px; font-size: 10px; }
   .homepage-hero__footer { top: 15px; right: 15px; bottom: auto; left: auto; }
+=======
+@media (max-width: 767px) {
+  .homepage-hero { display: block; min-height: clamp(200px,54cqw,280px); max-height: none; padding: 16px 10px 64px; aspect-ratio: auto; border-radius: 8px; }
+  .homepage-hero__photo { inset: 0 0 0 auto; width: 78%; height: 100%; animation: none; }
+  .homepage-hero__photo img { object-fit: cover; object-position: right 30%; }
+  .homepage-hero__shade { background: linear-gradient(90deg,#07110d 5%,#07110de6 30%,#07110d73 62%,#07110d08 88%); }
+  .homepage-hero__copy { position: static; width: 78%; max-width: 420px; }
+  .homepage-hero__copy-content { animation: none; }
+  .homepage-hero .homepage-hero__eyebrow { display: none; }
+  .homepage-hero h1 { font-size: clamp(28px,7.5cqw,36px); line-height: 1.08; }
+  .homepage-hero h1 span { white-space: normal; overflow-wrap: anywhere; text-wrap: pretty; }
+  .homepage-hero .homepage-hero__description { max-width: 38ch; margin-top: 8px; color: #edf1ee; font-size: clamp(11px,2.9cqw,14px); line-height: 1.45; }
+  .homepage-hero .homepage-hero__action.homepage-primary-action { position: absolute; bottom: 10px; left: 10px; max-width: calc(100% - 112px); min-height: 36px; margin: 0; padding: 6px 10px; border-radius: 6px; gap: 6px; font-size: clamp(10px,2.8cqw,12px); }
+  .homepage-hero__markers,.homepage-hero .homepage-hero__counter,.homepage-hero__thumbnail { display: none; }
+  .homepage-hero__preview { position: absolute; inset: auto 10px 10px auto; width: auto; }
+  .homepage-hero__preview-row { min-height: 36px; aspect-ratio: auto; }
+  .homepage-hero__arrows { flex-direction: row; gap: 8px; width: auto; min-width: 0; background: transparent; }
+  .homepage-hero__arrows button { flex: 0 0 36px; width: 36px; height: 36px; min-height: 36px; border: 1px solid #ffffff66; border-radius: 6px; background: #071c14e6; }
+  .homepage-hero__footer { top: 12px; right: 10px; bottom: auto; left: auto; }
+>>>>>>> Stashed changes
   .homepage-hero__scroll { display: none; }
   .homepage-hero__playback { justify-content: center; width: 40px; border: 1px solid #ffffff50; border-radius: 50%; background: #04100b99; }
   .homepage-hero__playback>span { display: none; }
