@@ -130,7 +130,7 @@ const viewAllTarget = computed(() => {
           <h2 id="sports-title" class="flex items-center"><img src="/icons/sports/popular.webp" class="allgames-heading-symbol allgames-heading-image" alt="" width="28" height="28">{{ translate('Sports') }}</h2>
           <p>{{ translate('Big games. Your front-row seat.') }}</p>
         </div>
-        <NuxtLink :to="viewAllTarget" class="sports-explore inline-flex items-center">{{ translate('Explore sports') }} <ArrowUpRight :size="18" aria-hidden="true" /></NuxtLink>
+        <NuxtLink :to="viewAllTarget" class="sports-explore homepage-text-cta">{{ translate('Explore sports') }} <ArrowUpRight :size="18" aria-hidden="true" /></NuxtLink>
       </header>
 
       <aside class="sports-browse">
@@ -215,9 +215,7 @@ const viewAllTarget = computed(() => {
 .sports-heading { gap: 18px; }
 .sports-heading h2 { flex-shrink: 0; gap: 10px; font-size: var(--allgames-heading-size); font-weight: var(--homepage-display-weight); line-height: 1.2; letter-spacing: .01em; }
 .sports-heading p { padding-left: 18px; border-left: 1px solid #ffffff18; color: var(--sports-muted); font-size: 14px; line-height: 24px; }
-.homepage-sports-section .sports-explore { flex-shrink: 0; gap: 8px; min-height: 44px; padding: 0 12px; border: 1px solid #ffffff18; border-radius: 7px; color: #F9C600; background: #ffffff05; font-size: 13px; font-weight: 700; white-space: nowrap; }
-.sports-explore svg { color: #F9C600; }
-.homepage-sports-section .sports-explore:hover { border-color: #ffffff30; background: #0c2a1d; }
+.homepage-sports-section .sports-explore { min-height: 44px; font-weight: 700; }
 .sports-browse { grid-column: 1; grid-row: 2; display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); align-items: center; gap: 8px 24px; min-width: 0; padding-bottom: 4px; }
 .sports-browse-label { grid-column: 1; display: block; color: #91aaa0; font-size: 10px; font-weight: 700; line-height: 1.4; letter-spacing: .08em; overflow-wrap: break-word; }
 .sports-filter { --sports-filter-accent: var(--sports-accent); --sports-filter-border: #25865c; --sports-filter-background: #0b2a1e; grid-column: 1; grid-row: 2; color: #e1e9e4; }

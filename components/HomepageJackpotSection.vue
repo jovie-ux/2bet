@@ -121,7 +121,7 @@ onBeforeUnmount(() => {
         <p>{{ translate('Spin for life-changing progressive jackpots') }}</p>
       </div>
 
-      <NuxtLink to="/egames/jackpot/all" class="jackpot-view-all">
+      <NuxtLink to="/egames/jackpot/all" class="homepage-text-cta">
         {{ translate('View all jackpots') }}
         <ArrowRight :size="16" aria-hidden="true" />
       </NuxtLink>
@@ -300,9 +300,9 @@ onBeforeUnmount(() => {
             <span class="truncate">{{ translate('Over 2,450 payouts awarded today') }}</span>
           </div>
 
-          <NuxtLink to="/egames/jackpot/all" class="winners-view-all-link flex items-center gap-1">
-            <span>{{ translate('View all winners') }}</span>
-            <ArrowRight :size="13" />
+          <NuxtLink to="/egames/jackpot/all" class="homepage-text-cta">
+            {{ translate('View all winners') }}
+            <ArrowRight :size="13" aria-hidden="true" />
           </NuxtLink>
         </div>
       </div>
@@ -348,24 +348,6 @@ onBeforeUnmount(() => {
   color: #a8b6bc;
   font-size: 14px;
   line-height: 22px;
-}
-
-.jackpot-view-all {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 32px;
-  color: #32d49a;
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: opacity 0.2s ease, color 0.2s ease;
-}
-
-.jackpot-view-all:hover {
-  color: #019440;
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
 
 /* Main Grid Layout */
@@ -794,19 +776,6 @@ onBeforeUnmount(() => {
 .winners-stat {
   font-size: 12px;
   color: #9ca3af;
-}
-
-.winners-view-all-link {
-  color: #32d49a;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-
-.winners-view-all-link:hover {
-  color: #019440;
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 /* Responsive adjustments */

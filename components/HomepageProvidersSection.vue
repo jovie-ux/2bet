@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronLeft, ChevronRight, Layers, Pause, Play, Sparkles } from 'lucide-vue-next'
+import { Layers } from 'lucide-vue-next'
 import { getProviderLogoForTheme } from '~/utils/providerLogo'
 
 export interface ProviderItem {
@@ -328,38 +328,27 @@ onBeforeUnmount(() => {
 <template>
   <section
     id="game-providers"
-    class="providers-glass-section"
+    class="homepage-providers-section"
     aria-labelledby="providers-section-title"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
     @touchstart.passive="handleMouseEnter"
     @touchend.passive="handleTouchEnd"
   >
-    <!-- Glassmorphic Section Header -->
-    <header class="providers-glass-header flex items-center justify-between flex-wrap gap-3">
-      <div class="header-titles flex items-center gap-2.5">
-        <div class="icon-orb flex items-center justify-center">
-          <Layers :size="18" class="text-[#32d49a]" aria-hidden="true" />
-        </div>
-        <div class="flex flex-col">
-          <div class="flex items-center gap-2">
-            <h2 id="providers-section-title" class="section-title">
-              {{ translate('Featured Providers') }}
-            </h2>
-            <span class="partners-badge hidden sm:inline-flex items-center gap-1">
-              <Sparkles :size="11" class="text-[#32d49a]" />
-              16 {{ translate('Official Partners') }}
-            </span>
-          </div>
-          <p class="section-subtitle">
-            {{ translate('World-class gaming studios powering 2Bet') }}
-          </p>
-        </div>
+    <header class="providers-header flex items-center justify-between">
+      <div class="providers-heading flex items-center min-w-0">
+        <h2 id="providers-section-title">
+          <Layers class="allgames-heading-symbol" :size="28" :stroke-width="1.6" aria-hidden="true" />
+          {{ translate('Featured Providers') }}
+        </h2>
+        <p>
+          {{ translate('World-class gaming studios powering 2Bet') }}
+          <span class="providers-partners-note hidden sm:inline"> · 16 {{ translate('Official Partners') }}</span>
+        </p>
       </div>
-
     </header>
 
-    <!-- Glassmorphic Auto-Sliding Carousel Viewport -->
+    <!-- Auto-sliding carousel -->
     <div class="providers-carousel-wrapper">
       <div
         ref="trackRef"
@@ -412,61 +401,47 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-/* Glassmorphism Section Container */
-.providers-glass-section {
-  position: relative;
-  margin: 18px 0 24px;
-  padding: 16px 18px 20px;
-  border-radius: 16px;
-  background: linear-gradient(180deg, rgba(6, 20, 11, 0.88) 0%, rgba(0, 0, 0, 0.96) 100%);
-  background-image:
-    radial-gradient(circle at 10% 0%, rgba(1, 148, 64, 0.3) 0%, transparent 48%),
-    radial-gradient(circle at 90% 100%, rgba(1, 148, 64, 0.16) 0%, transparent 52%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(1, 148, 64, 0.28);
-  border-top: 1px solid rgba(1, 148, 64, 0.55);
-  box-shadow:
-    0 16px 40px -8px rgba(0, 0, 0, 0.85),
-    0 0 24px -4px rgba(1, 148, 64, 0.15),
-    inset 0 1px 1px 0 rgba(1, 148, 64, 0.3);
-  overflow: hidden;
+.homepage-providers-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 24px;
+  color: #f4f7f5;
 }
 
-/* Header Elements */
-.icon-orb {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: rgba(1, 148, 64, 0.2);
-  border: 1px solid rgba(1, 148, 64, 0.45);
-  box-shadow: inset 0 1px 1px rgba(1, 148, 64, 0.3), 0 4px 14px rgba(1, 148, 64, 0.35);
+.providers-header {
+  min-height: 48px;
+  gap: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ffffff18;
 }
 
-.section-title {
-  font-family: Impact, 'Arial Narrow', 'Manrope', sans-serif;
-  font-size: clamp(20px, 2.2vw, 24px);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  color: #ffffff;
+.providers-heading {
+  gap: 22px;
+}
+
+.providers-heading h2 {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 12px;
+  color: #fff;
+  font-size: var(--allgames-heading-size);
+  font-weight: var(--homepage-display-weight);
   line-height: 1.2;
+  letter-spacing: 0.01em;
 }
 
-.partners-badge {
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: rgba(1, 148, 64, 0.14);
-  border: 1px solid rgba(1, 148, 64, 0.32);
-  color: #e5e7eb;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+.providers-heading > p {
+  padding-left: 22px;
+  border-left: 1px solid #ffffff26;
+  color: #a8b6bc;
+  font-size: 14px;
+  line-height: 22px;
 }
 
-.section-subtitle {
-  font-size: 12px;
-  color: #94a39b;
-  margin-top: 2px;
+.providers-partners-note {
+  color: #8fac9b;
 }
 
 /* Control Buttons */
@@ -497,7 +472,7 @@ onBeforeUnmount(() => {
 /* Carousel Wrapper & Mask */
 .providers-carousel-wrapper {
   position: relative;
-  margin-top: 14px;
+  margin-top: 18px;
   overflow: hidden;
   mask-image: linear-gradient(90deg, transparent 0%, #000 24px, #000 calc(100% - 24px), transparent 100%);
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 24px, #000 calc(100% - 24px), transparent 100%);
@@ -524,7 +499,6 @@ onBeforeUnmount(() => {
   cursor: grabbing;
 }
 
-/* Glassmorphism Card */
 .provider-glass-card {
   position: relative;
   display: flex;
@@ -534,45 +508,24 @@ onBeforeUnmount(() => {
   width: 205px;
   height: 134px;
   padding: 12px 14px;
-  border-radius: 14px;
-  background: linear-gradient(145deg, rgba(1, 148, 64, 0.08) 0%, rgba(0, 0, 0, 0.78) 55%, #000000 100%);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(1, 148, 64, 0.2);
-  border-top: 1px solid rgba(1, 148, 64, 0.45);
-  box-shadow:
-    0 8px 26px -4px rgba(0, 0, 0, 0.7),
-    inset 0 1px 1px 0 rgba(1, 148, 64, 0.25);
+  border-radius: 8px;
+  background: #03110d;
+  border: 1px solid #ffffff12;
   text-decoration: none;
   color: inherit;
   flex-shrink: 0;
-  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
-              border-color 260ms ease,
-              box-shadow 260ms ease,
-              background 260ms ease;
+  transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease;
   overflow: hidden;
 }
 
 .provider-glass-card:hover {
-  transform: translateY(-4px) scale(1.015);
-  background: linear-gradient(145deg, rgba(1, 148, 64, 0.18) 0%, rgba(0, 0, 0, 0.85) 55%, #000000 100%);
-  border-color: #019440;
-  box-shadow:
-    0 14px 34px -4px rgba(0, 0, 0, 0.8),
-    0 0 24px rgba(1, 148, 64, 0.42),
-    inset 0 1px 1px 0 rgba(1, 148, 64, 0.4);
+  transform: translateY(-2px);
+  border-color: #ffffff30;
+  background: #061713;
 }
 
-/* Diagonal Gloss Reflection */
 .glass-reflection {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 52%;
-  background: linear-gradient(135deg, rgba(1, 148, 64, 0.12) 0%, transparent 80%);
-  pointer-events: none;
-  border-radius: 13px 13px 0 0;
+  display: none;
 }
 
 /* Card Header Components */
@@ -637,7 +590,7 @@ onBeforeUnmount(() => {
 /* Card Footer */
 .card-glass-footer {
   padding-top: 6px;
-  border-top: 1px solid rgba(1, 148, 64, 0.16);
+  border-top: 1px solid #ffffff12;
 }
 
 .provider-title {
@@ -664,31 +617,16 @@ onBeforeUnmount(() => {
   border-color: rgba(1, 148, 64, 0.45);
 }
 
-/* Light Theme Overrides */
-html[data-theme='light']:not(#_) .providers-glass-section {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(243, 246, 244, 0.94) 100%);
-  background-image:
-    radial-gradient(circle at 8% 0%, rgba(1, 148, 64, 0.08) 0%, transparent 45%),
-    radial-gradient(circle at 92% 100%, rgba(245, 158, 11, 0.06) 0%, transparent 50%);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-top: 1px solid rgba(255, 255, 255, 1);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.06),
-    inset 0 1px 1px rgba(255, 255, 255, 1);
-}
-
-html[data-theme='light']:not(#_) .section-title {
+html[data-theme='light']:not(#_) .providers-heading h2 {
   color: #111827;
 }
 
-html[data-theme='light']:not(#_) .section-subtitle {
+html[data-theme='light']:not(#_) .providers-heading > p {
   color: #6b7280;
 }
 
-html[data-theme='light']:not(#_) .partners-badge {
-  background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.08);
-  color: #374151;
+html[data-theme='light']:not(#_) .providers-header {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
 }
 
 html[data-theme='light']:not(#_) .glass-control-btn {
@@ -740,20 +678,17 @@ html[data-theme='light']:not(#_) .provider-logo-img {
 
 /* Responsive Scaling */
 @media (max-width: 767px) {
-  .header-titles { min-width: 0; width: 100%; }
-  .header-titles > div:last-child { flex: 1; min-width: 0; }
-  .icon-orb { flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; }
-  .icon-orb svg { width: 16px; height: 16px; }
-  .section-title { font-size: 18px; }
-  .providers-glass-header .section-subtitle { font-size: 12px; }
-}
-@media (max-width: 639px) {
-  .providers-glass-section {
-    padding: 14px 12px 16px;
-    margin: 14px 0 20px;
-    border-radius: 12px;
+  .providers-heading {
+    gap: 12px;
   }
 
+  .providers-heading > p {
+    padding-left: 14px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
+@media (max-width: 639px) {
   .providers-carousel-wrapper {
     mask-image: linear-gradient(90deg, transparent 0%, #000 12px, #000 calc(100% - 12px), transparent 100%);
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12px, #000 calc(100% - 12px), transparent 100%);
@@ -776,9 +711,19 @@ html[data-theme='light']:not(#_) .provider-logo-img {
     height: 32px;
   }
 
-  .section-subtitle { font-size: 14px; }
+  .providers-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .providers-heading > p {
+    padding: 0;
+    border: 0;
+    font-size: 13px;
+  }
+
   .provider-title { font-size: 14px; }
   .games-count-pill { font-size: 12px; }
-  .provider-rank { font-size: 12px; }
 }
 </style>

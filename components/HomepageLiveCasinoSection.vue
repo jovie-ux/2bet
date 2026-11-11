@@ -40,7 +40,7 @@ function categoryIcon(key: string) {
       <header class="live-section-header flex items-center justify-between">
         <div class="live-heading flex items-center min-w-0"><h2 id="live-casino-title"><img :src="titleIcon" class="allgames-heading-symbol allgames-heading-image" :alt="translate('Live Casino')" width="28" height="28" loading="lazy" decoding="async">{{ translate('Live Casino') }}</h2><p>{{ translate('Real dealers. Real games. Real excitement.') }}</p></div>
         <div class="live-header-actions flex items-center">
-          <NuxtLink to="/entertainment/live-casino" class="live-view-all">{{ translate('View all live casino') }} <ArrowRight :size="16" aria-hidden="true" /></NuxtLink>
+          <NuxtLink to="/entertainment/live-casino" class="live-view-all homepage-text-cta">{{ translate('View all live casino') }} <ArrowRight :size="16" aria-hidden="true" /></NuxtLink>
           <div class="live-carousel-controls flex items-center" :aria-label="translate('Live Casino slider controls')">
             <button type="button" :disabled="atStart" :aria-label="translate('Previous Live Casino items')" aria-controls="live-casino-track" @click="move(-1)"><ChevronLeft :size="17" aria-hidden="true" /></button>
             <button type="button" :disabled="atEnd" :aria-label="translate('Next Live Casino items')" aria-controls="live-casino-track" @click="move(1)"><ChevronRight :size="17" aria-hidden="true" /></button>
@@ -114,8 +114,7 @@ function categoryIcon(key: string) {
 .live-heading h2 { display: flex; align-items: center; flex-shrink: 0; gap: 12px; font-size: var(--allgames-heading-size); font-weight: var(--homepage-display-weight); line-height: 1.2; letter-spacing: .01em; }
 .live-heading > p { padding-left: 22px; border-left: 1px solid #ffffff26; color: #a8b6bc; font-size: 14px; line-height: 22px; }
 .live-header-actions { flex-shrink: 0; gap: 32px; }
-.live-section-header .live-view-all { display: inline-flex; align-items: center; gap: 12px; min-height: 32px; color: #F9C600; font-size: 14px; font-weight: 600; }
-.live-view-all:hover { text-decoration: underline; text-underline-offset: 4px; }
+.live-section-header .live-view-all { gap: 12px; }
 .live-carousel-controls { gap: 12px; }
 .live-carousel-controls button { display: grid; place-items: center; width: 34px; height: 30px; border: 1px solid #ffffff26; border-radius: 6px; color: #d6e1dc; background: transparent; }
 .live-carousel-controls button:disabled { opacity: .35; cursor: default; }

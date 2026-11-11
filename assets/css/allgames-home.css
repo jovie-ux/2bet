@@ -11,6 +11,9 @@
 .allgames-main { --homepage-action-radius: 7px; }
 .allgames-main .homepage-primary-action { display: inline-flex; align-items: center; justify-content: center; gap: 20px; min-height: 52px; padding: 17px 27px; border: 1px solid transparent; border-radius: var(--homepage-action-radius); background: var(--brand); color: #fff; font-family: var(--homepage-body-font); font-size: clamp(14px,1cqw,15px); font-weight: 800; line-height: 1.3; text-transform: uppercase; transition: background 180ms; }
 .allgames-main .homepage-primary-action:is(:hover,:focus-visible) { background: var(--brand-hover); }
+.homepage-text-cta { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; min-height: 32px; padding: 0; border: none; border-radius: 0; background: transparent; color: #F9C600; font-size: 14px; font-weight: 600; line-height: 1.3; white-space: nowrap; text-decoration: none; transition: color 180ms ease; }
+.homepage-text-cta svg { flex-shrink: 0; color: currentColor; }
+.homepage-text-cta:is(:hover,:focus-visible) { color: #ffe8b2; text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 1199px) and (min-width: 701px) {
   .allgames-main .homepage-primary-action { min-height: 48px; padding: 14px 20px; }
 }

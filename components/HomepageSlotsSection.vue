@@ -102,7 +102,7 @@ const displayedGames = computed(() => currentCollection.value.slice(0, MOBILE_GA
               <p>{{ translate('Handpicked games from leading providers') }}</p>
             </div>
             <div class="slots-actions flex items-center">
-              <NuxtLink to="/egames/slots/top" class="slots-view-all inline-flex items-center">
+              <NuxtLink to="/egames/slots/top" class="slots-view-all homepage-text-cta">
                 {{ translate('View all') }} <ArrowRight :size="16" aria-hidden="true" />
               </NuxtLink>
               <div class="slots-controls flex items-center" :aria-label="translate('Top Slots slider controls')">
@@ -379,14 +379,6 @@ const displayedGames = computed(() => currentCollection.value.slice(0, MOBILE_GA
 }
 .slots-view-all {
   gap: 12px;
-  min-height: 32px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #F9C600;
-}
-.slots-view-all:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
 .slots-controls {
   gap: 10px;
